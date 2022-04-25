@@ -1,0 +1,490 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Scout V2.5 User Guide &mdash; Weston Robot v0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Scout V2.6 User Guide" href="scout_v2.6.html" />
+    <link rel="prev" title="Robot User Guide" href="../user_guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #323640" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../_getting_started/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../user_guide.html">Robot User Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Scout V2.5 User Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#summary-of-changes">1. Summary of Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#control-token">2. Control Token</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#key-operation-information">3. Key Operation Information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#software-packages">4. Software Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#preview-feature">5. Preview Feature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#firmware-upgrade">6. Firmware Upgrade</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="scout_v2.6.html">Scout V2.6 User Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_toolbox/toolbox.html">Weston Robot Toolbox</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Weston Robot</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../user_guide.html">Robot User Guide</a> &raquo;</li>
+        
+      <li>Scout V2.5 User Guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/_user_guide/westonrobot/scout_v2.5.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="scout-v2-5-user-guide">
+<h1>Scout V2.5 User Guide<a class="headerlink" href="#scout-v2-5-user-guide" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="summary-of-changes">
+<h2>1. Summary of Changes<a class="headerlink" href="#summary-of-changes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="hardware-modifications">
+<h3>1.1 Hardware Modifications<a class="headerlink" href="#hardware-modifications" title="Permalink to this headline">¶</a></h3>
+<div class="line-block">
+<div class="line"><strong>Item</strong> | <strong>Current</strong> | <strong>Previous</strong> |</div>
+<div class="line">— | — | — |</div>
+<div class="line">Top Interface Panel | CAN+POWER, MicroUSB | CAN+POWER, RS232 |</div>
+<div class="line">Low-level Controller | Weston Robot | AgileX |</div>
+<div class="line">Motor Driver | 2-in-1 Driver x 2 | Driver x 4 |</div>
+<div class="line">Battery | 24V, 60Ah | 24V, 30Ah |</div>
+</div>
+<a class="reference internal image-reference" href="https://cdn.nlark.com/yuque/0/2021/jpeg/1068073/1623632120412-77559e59-aac9-402b-bdb9-2ed641902b3a.jpeg?x-oss-process=image/auto-orient,1#clientId=u040e6249-2684-4&amp;from=ui&amp;height=447&amp;id=AIUmz&amp;margin=%5Bobject%20Object%5D&amp;name=IMG_20210614_084855.jpg&amp;originHeight=3648&amp;originWidth=2736&amp;originalType=binary&amp;ratio=1&amp;size=233709&amp;status=done&amp;style=none&amp;taskId=uc719dabd-997b-4804-829d-f60588a4709&amp;width=335"><img alt="https://cdn.nlark.com/yuque/0/2021/jpeg/1068073/1623632120412-77559e59-aac9-402b-bdb9-2ed641902b3a.jpeg?x-oss-process=image/auto-orient,1#clientId=u040e6249-2684-4&amp;from=ui&amp;height=447&amp;id=AIUmz&amp;margin=%5Bobject%20Object%5D&amp;name=IMG_20210614_084855.jpg&amp;originHeight=3648&amp;originWidth=2736&amp;originalType=binary&amp;ratio=1&amp;size=233709&amp;status=done&amp;style=none&amp;taskId=uc719dabd-997b-4804-829d-f60588a4709&amp;width=335" src="https://cdn.nlark.com/yuque/0/2021/jpeg/1068073/1623632120412-77559e59-aac9-402b-bdb9-2ed641902b3a.jpeg?x-oss-process=image/auto-orient,1#clientId=u040e6249-2684-4&amp;from=ui&amp;height=447&amp;id=AIUmz&amp;margin=%5Bobject%20Object%5D&amp;name=IMG_20210614_084855.jpg&amp;originHeight=3648&amp;originWidth=2736&amp;originalType=binary&amp;ratio=1&amp;size=233709&amp;status=done&amp;style=none&amp;taskId=uc719dabd-997b-4804-829d-f60588a4709&amp;width=335" style="width: 320px;" /></a>
+<a class="reference internal image-reference" href="https://cdn.nlark.com/yuque/0/2021/jpeg/1068073/1623631998368-d8b4917f-22df-43c0-91ec-2298c47ef508.jpeg#clientId=u040e6249-2684-4&amp;from=ui&amp;height=447&amp;id=GtOAu&amp;margin=%5Bobject%20Object%5D&amp;name=IMG_20210614_085231.jpg&amp;originHeight=3648&amp;originWidth=2736&amp;originalType=binary&amp;ratio=1&amp;size=537196&amp;status=done&amp;style=none&amp;taskId=u3d94fc40-aac4-447f-9bb9-61fc8f2d9d0&amp;width=335"><img alt="https://cdn.nlark.com/yuque/0/2021/jpeg/1068073/1623631998368-d8b4917f-22df-43c0-91ec-2298c47ef508.jpeg#clientId=u040e6249-2684-4&amp;from=ui&amp;height=447&amp;id=GtOAu&amp;margin=%5Bobject%20Object%5D&amp;name=IMG_20210614_085231.jpg&amp;originHeight=3648&amp;originWidth=2736&amp;originalType=binary&amp;ratio=1&amp;size=537196&amp;status=done&amp;style=none&amp;taskId=u3d94fc40-aac4-447f-9bb9-61fc8f2d9d0&amp;width=335" src="https://cdn.nlark.com/yuque/0/2021/jpeg/1068073/1623631998368-d8b4917f-22df-43c0-91ec-2298c47ef508.jpeg#clientId=u040e6249-2684-4&amp;from=ui&amp;height=447&amp;id=GtOAu&amp;margin=%5Bobject%20Object%5D&amp;name=IMG_20210614_085231.jpg&amp;originHeight=3648&amp;originWidth=2736&amp;originalType=binary&amp;ratio=1&amp;size=537196&amp;status=done&amp;style=none&amp;taskId=u3d94fc40-aac4-447f-9bb9-61fc8f2d9d0&amp;width=335" style="width: 320px;" /></a>
+<ul class="simple">
+<li><dl class="simple">
+<dt>The pinout of CAN+POWER connector remains the same:</dt><dd><ul>
+<li><p>Pin 1 - Vcc (23V - 26.5V)</p></li>
+<li><p>Pin 2 - GND</p></li>
+<li><p>Pin 3 - CAN High</p></li>
+<li><p>Pin 4 - CAN Low</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>MicroUSB port is for firmware upgrade only</p></li>
+</ul>
+</div>
+<div class="section" id="software-updates">
+<h3>1.2 Software Updates<a class="headerlink" href="#software-updates" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Updated CAN communication protocol</p></li>
+<li><p>Deprecated RS232 support for robot control and monitoring</p></li>
+<li><p>Introduced the concept of control token for enhanced safety of robot operation</p></li>
+<li><p>The SDK is now provided as a Debian package for easy and convenient installation</p></li>
+<li><p>The ROS interface is provided with the “wr_mobilerobot_ros” package</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="control-token">
+<h2>2. Control Token<a class="headerlink" href="#control-token" title="Permalink to this headline">¶</a></h2>
+<img alt="https://cdn.nlark.com/yuque/0/2021/png/1068073/1623727919809-15a3c552-a515-4ebf-9087-eadee141907a.png#clientId=uc24d888e-4872-4&amp;from=paste&amp;height=296&amp;id=u525c98bf&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=296&amp;originWidth=1043&amp;originalType=binary&amp;ratio=1&amp;size=42274&amp;status=done&amp;style=none&amp;taskId=u4c8eab76-9d31-47b9-9aa2-79db1a04b0f&amp;width=1043" src="https://cdn.nlark.com/yuque/0/2021/png/1068073/1623727919809-15a3c552-a515-4ebf-9087-eadee141907a.png#clientId=uc24d888e-4872-4&amp;from=paste&amp;height=296&amp;id=u525c98bf&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=296&amp;originWidth=1043&amp;originalType=binary&amp;ratio=1&amp;size=42274&amp;status=done&amp;style=none&amp;taskId=u4c8eab76-9d31-47b9-9aa2-79db1a04b0f&amp;width=1043" />
+<p>The robot can be controlled <strong>manually</strong> with a remote controller or <strong>programatically</strong> through the CAN interface from a Linux computer. Previously, there was no explicit way for the onboard computer (the navigation system) to know whether it can control the robot base or not and possible reasons why the robot doesn’t move even though it has commanded the robot to do so. We introduced the concept of control token to provide finer access control of the the robot base.</p>
+<ul class="simple">
+<li><p>There is only one control token available and the token is initially held by the robot controller (command from either remote controller or CAN bus will not be responded)</p></li>
+<li><p>Only the entity who has gained the control token will be able to control the robot to move</p></li>
+<li><p>The remote controller has a higher priority to take the control token than the CAN bus. This means the operator can always take over control from the onboard computer using the remote controller.</p></li>
+<li><p>You can register a callback function through the SDK to get notified when the control token is taken away. Please note that you need to keep callback function short and non-blocking. This callback function is supposed to be a notifier only and complicated handling functionalities should not be implemented inside.</p></li>
+<li><p>Once the operator has finished manual control, the operator can switch the control mode back to <strong>standby</strong> and the control token will be returned to the robot controller.  (Switching off of remote controlle will return the control token to the robot controller as well). The SDK will have to request to gain the control token again to resume control.</p></li>
+<li><p>An error code will be returned to the user if the SDK fails to gain the control. Possible reasons include hardware failture, robot in manual control mode etc.</p></li>
+<li><p>Only <strong>one **SDK instance **or</strong> ROS node** <a href="#id1"><span class="problematic" id="id2">**</span></a>is allowed to communicate with the robot at a time.</p></li>
+</ul>
+<img alt="https://cdn.nlark.com/yuque/0/2021/png/10383397/1623633207516-7896f7e2-0a94-4e6b-a9c7-b2ee99c81d2f.png#clientId=u2224111b-fac3-4&amp;from=paste&amp;height=344&amp;id=w3JCJ&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=686&amp;originWidth=1006&amp;originalType=binary&amp;ratio=1&amp;size=404917&amp;status=done&amp;style=none&amp;taskId=u6c192c44-4c9e-4bdd-8926-0815c5f3055&amp;width=504" src="https://cdn.nlark.com/yuque/0/2021/png/10383397/1623633207516-7896f7e2-0a94-4e6b-a9c7-b2ee99c81d2f.png#clientId=u2224111b-fac3-4&amp;from=paste&amp;height=344&amp;id=w3JCJ&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=686&amp;originWidth=1006&amp;originalType=binary&amp;ratio=1&amp;size=404917&amp;status=done&amp;style=none&amp;taskId=u6c192c44-4c9e-4bdd-8926-0815c5f3055&amp;width=504" />
+<p>With the introduced control token concept, the functional mappings of “<strong>SWA</strong>” and “<strong>SWB</strong>” on the remote controller are slightly different:</p>
+<ul class="simple">
+<li><p>Initally <strong>SWB</strong> stays at the up position and the robot is in standby mode (control token kept by the robot)</p></li>
+<li><p>The remote controller will gain the control token by placing <strong>SWB</strong> at the middle position, setting the robot to be in the manual control mode</p></li>
+<li><p>Once the operator has finished manual control, the operator can switch the control mode back to <strong>standby</strong> by placing <strong>SWB to up</strong> position.  (Switching off the remote controller will return the control token to the robot controller as well).</p></li>
+<li><p><strong>SWA</strong> acts as a wireless E-Stop. If <strong>SWA **is switched to **down position,</strong> the control token will remain at robot controller, <strong>neither remote controller</strong> <a href="#id3"><span class="problematic" id="id4">**</span></a>nor SDK <a href="#id5"><span class="problematic" id="id6">**</span></a>would be able to control the robot until <a href="#id7"><span class="problematic" id="id8">**</span></a>SWA <a href="#id9"><span class="problematic" id="id10">**</span></a>is returned to <a href="#id11"><span class="problematic" id="id12">**</span></a>up <a href="#id13"><span class="problematic" id="id14">**</span></a>position.</p></li>
+</ul>
+</div>
+<div class="section" id="key-operation-information">
+<h2>3. Key Operation Information<a class="headerlink" href="#key-operation-information" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="system-state-message">
+<h3>3.1 System State Message<a class="headerlink" href="#system-state-message" title="Permalink to this headline">¶</a></h3>
+<p>Key information about the robot base can be extracted from the system state message:</p>
+<p>1. <strong>rc_connected</strong>: indicates whether remote controller is connected
+- 1 - RC connected
+- 0 - RC disconnected
+2. <strong>error_code</strong>: system error or fault code
+- Please refer to the Table 1.1 below for detailed error code meaning
+3. <strong>operational_state</strong>: possible states and explanations are listed in the following table
+| <strong>Value ** | **Operational state</strong> | <strong>Situation</strong> |
+| — | — | — |
+| 0x00 | OPERATIONAL | Robot is at normal operation |
+| 0x01 | INITIALIZATION | Robot is starting up |
+| 0x02 | MAINTENANCE | Not applicable for now |
+| 0x03 | SOFTWARE_UPDATE | Not applicable for now |
+| 0x04 | ESTOP_ACTIVATED | Emergency stop button is pressed |
+| 0x05 | HARDWARE_FAULT | There is fault error code |</p>
+<p>4. <strong>ctrl_state: **indicates which entity is in control of the robot
+| **Value</strong> | <strong>Control state</strong> | <strong>Situation</strong> |
+| — | — | — |
+| 0x00 | UNINITIALIZED | Robot is starting up / recover from estop |
+| 0x01 | STANDBY | Robot is ready to be controlled |
+| 0x02 | RC_HALT_TRIGGERED | Robot is halted by remote controller (SWA is pushed down) |
+| 0x03 | RC_MANUAL_CONTROL | Robot is controlled by remote controller |
+| 0x04 | CAN_COMMAND_CONTROL | Robot is controlled by SDK / ROS |</p>
+<p>5. battery-state
+- contains information of battery voltage</p>
+<p><strong>Note</strong>: There are other feedback messages available in addition to the system state message. Please refer to the ROS package message definitions for more details.
+## 3.2 Buzzer Alert</p>
+<ul class="simple">
+<li><p>There are two levels of alert: <strong>Warn</strong> and <strong>Fault. **You can still control the robot when you get a **warn</strong>-level alert but  Once the robot gives a <strong>fault</strong>-level alert, the robot will stop and not react to any motion commands to avoid possible hardware damage.</p></li>
+<li><dl class="simple">
+<dt>Warn-level alert: buzzer will be triggered at a relatively low frequency (0.5Hz).</dt><dd><ul>
+<li><p>The robot still <strong>can be controlled</strong>, but the warning will remain until none of the <strong>warning</strong> condition from Table 1.1 exists.</p></li>
+<li><p>It’s advised to take proper actions to get the robot back to normal.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Fault-level alert: buzzer will be triggered <strong>at higher frequency</strong> (2Hz).</dt><dd><ul>
+<li><p>The robot <strong>cannot be controlled</strong> until all <strong>fault</strong> code disappears</p></li>
+<li><p>For recoverable faults (e.g. over-heating). robot may first recover back to warn-level condition then return to normal, given enough time for cooling</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Conditions that may trigger the alert are listed as below</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><strong>Condition</strong> | <strong>Warn ** | **Fault</strong> | <strong>Warn error code</strong> | <strong>Fault error code</strong> |</div>
+<div class="line">— | — | — | — | — |</div>
+<div class="line">Battery | State of Charge (SOC) &lt; 25% | State of Charge (SOC) &lt; 15% | 0x00000001 | 0x00010000 |</div>
+<div class="line">Motor Temperature | &gt; 70 °C | &gt; 100 °C | 0x00000002 | 0x00020000 |</div>
+<div class="line">Motor Current | &gt; 25 A | &gt; 50 A | 0x00000004 | 0x00040000 |</div>
+<div class="line">Motor Communication | Not applicable | Lost communication with motor drivers | Not applicable | 0x00080000 |</div>
+</div>
+<p><strong>Table 1.1 Robot Warning and Fault Conditions</strong></p>
+</div>
+</div>
+<div class="section" id="software-packages">
+<h2>4. Software Packages<a class="headerlink" href="#software-packages" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Sample code for wrp_sdk: [<a class="reference external" href="https://github.com/westonrobot/sdk_sample](https://github.com/westonrobot/sdk_sample">https://github.com/westonrobot/sdk_sample](https://github.com/westonrobot/sdk_sample</a>)</p></li>
+<li><p>ROS support packages: [<a class="reference external" href="https://github.com/westonrobot/wr_mobilerobot_ros](https://github.com/westonrobot/wr_mobilerobot_ros">https://github.com/westonrobot/wr_mobilerobot_ros](https://github.com/westonrobot/wr_mobilerobot_ros</a>)</p></li>
+</ul>
+<p>Note: sdk_sample provides an example showing how the SDK can re-gain control automatically if the control of the robot is taken over by the remote controller.</p>
+</div>
+<div class="section" id="preview-feature">
+<h2>5. Preview Feature<a class="headerlink" href="#preview-feature" title="Permalink to this headline">¶</a></h2>
+<p>System state monitor with Bluetooth. You can download any Bluetooth serial terminal application to receive basic robot state information. We have tested the following app and you can download it from Play store.</p>
+<a class="reference internal image-reference" href="https://cdn.nlark.com/yuque/0/2021/png/1068073/1623732407048-4bdfb93e-b7b9-4246-8ea6-166607ebb701.png#clientId=u471041c6-4f9b-4&amp;from=paste&amp;height=361&amp;id=u2989bde9&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=720&amp;originWidth=679&amp;originalType=binary&amp;ratio=1&amp;size=139937&amp;status=done&amp;style=none&amp;taskId=ub553310d-bb90-4d77-9b3d-4572fe7329d&amp;width=340"><img alt="https://cdn.nlark.com/yuque/0/2021/png/1068073/1623732407048-4bdfb93e-b7b9-4246-8ea6-166607ebb701.png#clientId=u471041c6-4f9b-4&amp;from=paste&amp;height=361&amp;id=u2989bde9&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=720&amp;originWidth=679&amp;originalType=binary&amp;ratio=1&amp;size=139937&amp;status=done&amp;style=none&amp;taskId=ub553310d-bb90-4d77-9b3d-4572fe7329d&amp;width=340" src="https://cdn.nlark.com/yuque/0/2021/png/1068073/1623732407048-4bdfb93e-b7b9-4246-8ea6-166607ebb701.png#clientId=u471041c6-4f9b-4&amp;from=paste&amp;height=361&amp;id=u2989bde9&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=720&amp;originWidth=679&amp;originalType=binary&amp;ratio=1&amp;size=139937&amp;status=done&amp;style=none&amp;taskId=ub553310d-bb90-4d77-9b3d-4572fe7329d&amp;width=340" style="width: 320px;" /></a>
+<p>You can scan Bluetooth devices <strong>near the robot</strong> and connect to the robot controller. The device name should be similar to “WR-SC210404”.</p>
+<a class="reference internal image-reference" href="https://cdn.nlark.com/yuque/0/2021/jpeg/1068073/1623732714442-1f5ef8a0-4ff5-494d-a964-2b4456f4dac6.jpeg#clientId=u471041c6-4f9b-4&amp;from=ui&amp;height=585&amp;id=RwiS7&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot_20210615_124739_de.kai_morich.serial_bluetooth_terminal.jpg&amp;originHeight=2340&amp;originWidth=1080&amp;originalType=binary&amp;ratio=1&amp;size=295195&amp;status=done&amp;style=none&amp;taskId=uff87c1a0-abc1-4657-b9b9-4c14fefcde0&amp;width=270"><img alt="https://cdn.nlark.com/yuque/0/2021/jpeg/1068073/1623732714442-1f5ef8a0-4ff5-494d-a964-2b4456f4dac6.jpeg#clientId=u471041c6-4f9b-4&amp;from=ui&amp;height=585&amp;id=RwiS7&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot_20210615_124739_de.kai_morich.serial_bluetooth_terminal.jpg&amp;originHeight=2340&amp;originWidth=1080&amp;originalType=binary&amp;ratio=1&amp;size=295195&amp;status=done&amp;style=none&amp;taskId=uff87c1a0-abc1-4657-b9b9-4c14fefcde0&amp;width=270" src="https://cdn.nlark.com/yuque/0/2021/jpeg/1068073/1623732714442-1f5ef8a0-4ff5-494d-a964-2b4456f4dac6.jpeg#clientId=u471041c6-4f9b-4&amp;from=ui&amp;height=585&amp;id=RwiS7&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot_20210615_124739_de.kai_morich.serial_bluetooth_terminal.jpg&amp;originHeight=2340&amp;originWidth=1080&amp;originalType=binary&amp;ratio=1&amp;size=295195&amp;status=done&amp;style=none&amp;taskId=uff87c1a0-abc1-4657-b9b9-4c14fefcde0&amp;width=270" style="width: 320px;" /></a>
+</div>
+<div class="section" id="firmware-upgrade">
+<h2>6. Firmware Upgrade<a class="headerlink" href="#firmware-upgrade" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>To upgrade the firmware, please ensure you have the following items</dt><dd><ul>
+<li><p>Laptop running on Ubuntu18.04</p></li>
+<li><p>USB to Micro USB cable</p></li>
+<li><p>Signed binary image from Weston Robot</p></li>
+<li><p>MCU Manager installed (kindly refer for the installation guide below)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="section" id="installation-guide-for-mcu-manager-mcumgr">
+<h3>6.1 Installation guide for MCU Manager (mcumgr)<a class="headerlink" href="#installation-guide-for-mcu-manager-mcumgr" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Installation for Go.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt install golang-go
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Verify whether Go is installed properly by the following command.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ go version
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Now you can install mcumgr CLI.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span>
+$ go get github.com/apache/mynewt-mcumgr-cli/mcumgr
+$ nano ~/.bashrc
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Add in path for mcumgr into .bashrc file</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:&lt;path-to-home-directory&gt;/go/bin/
+$ <span class="nb">alias</span> <span class="nv">sudo</span><span class="o">=</span><span class="s1">&#39;sudo env PATH=$PATH&#39;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Verify whether mcumgr is installed properly by the following command.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">source</span> ~/.bashrc
+$ mcumgr version
+</pre></div>
+</div>
+<p><strong>Troubleshooting</strong></p>
+<ul class="simple">
+<li><p>If the installed golang-go is an older version, the “go get…” command in <strong>step 3</strong> might fail. To get around this error, manually install a newer version of go by following the instructions from golang’s website [<a class="reference external" href="https://golang.org/doc/install](https://golang.org/doc/install">https://golang.org/doc/install](https://golang.org/doc/install</a>) and reattempt installation from <strong>step 3</strong>.</p></li>
+</ul>
+</div>
+<div class="section" id="firmware-upgrade-using-mcu-manager-through-usb-cable">
+<h3>6.2 Firmware upgrade using MCU Manager through USB cable<a class="headerlink" href="#firmware-upgrade-using-mcu-manager-through-usb-cable" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>After you have installed mcumgr, now you should be able to upgrade the firmware through USB cable.</p></li>
+<li><p>Connect your computer to the MicroUSB port on robot using USB to Micro USB cable.</p></li>
+<li><p>Check on your computer for the device connected by the following command.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ls /dev
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>if there is only one USB device connected you should be able to see device named “ttyUSB0”, if there are more instances such as “ttyUSB1”, you can check the device using the following command.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mcumgr &lt;connection string&gt; image list
+</pre></div>
+</div>
+<p>The default connection string is</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--conntype serial --connstring <span class="s2">&quot;/dev/ttyUSB0,baud=115200&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>You should be able to see something like below</p></li>
+</ul>
+<img alt="https://cdn.nlark.com/yuque/0/2021/png/10383397/1624162894519-29972046-30ff-447c-a48b-f58ce6374bda.png#clientId=u0690fbf6-4f2f-4&amp;from=ui&amp;id=ubfc92cd9&amp;margin=%5Bobject%20Object%5D&amp;name=mcumg1.png&amp;originHeight=144&amp;originWidth=985&amp;originalType=binary&amp;ratio=2&amp;size=29684&amp;status=done&amp;style=none&amp;taskId=u9d6b8e9a-6019-4db0-955d-3918718db2d" src="https://cdn.nlark.com/yuque/0/2021/png/10383397/1624162894519-29972046-30ff-447c-a48b-f58ce6374bda.png#clientId=u0690fbf6-4f2f-4&amp;from=ui&amp;id=ubfc92cd9&amp;margin=%5Bobject%20Object%5D&amp;name=mcumg1.png&amp;originHeight=144&amp;originWidth=985&amp;originalType=binary&amp;ratio=2&amp;size=29684&amp;status=done&amp;style=none&amp;taskId=u9d6b8e9a-6019-4db0-955d-3918718db2d" />
+<ul class="simple">
+<li><p>If you don’t get any response, replace the connstring to other USB instance appeared on your computer such as “/dev/ttyUSB1,baud=115200”.</p></li>
+<li><p>Assuming your USB device appeared on your computer is “/dev/ttyUSB0”, you can upload the image with the following command.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mcumgr &lt;connection string&gt; image upload &lt;path-to-signed.bin&gt;
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Wait for about 3seconds, you should be able to see something like below</p></li>
+</ul>
+<img alt="https://cdn.nlark.com/yuque/0/2021/png/10383397/1624163352643-baf95c51-9843-42f5-91a8-4dc7843c6e80.png#clientId=u0690fbf6-4f2f-4&amp;from=ui&amp;id=u9c99fda1&amp;margin=%5Bobject%20Object%5D&amp;name=mcumgr2.png&amp;originHeight=55&amp;originWidth=1208&amp;originalType=binary&amp;ratio=2&amp;size=17260&amp;status=done&amp;style=none&amp;taskId=u7a7a5cda-c595-40be-9e1d-a5ff102d790" src="https://cdn.nlark.com/yuque/0/2021/png/10383397/1624163352643-baf95c51-9843-42f5-91a8-4dc7843c6e80.png#clientId=u0690fbf6-4f2f-4&amp;from=ui&amp;id=u9c99fda1&amp;margin=%5Bobject%20Object%5D&amp;name=mcumgr2.png&amp;originHeight=55&amp;originWidth=1208&amp;originalType=binary&amp;ratio=2&amp;size=17260&amp;status=done&amp;style=none&amp;taskId=u7a7a5cda-c595-40be-9e1d-a5ff102d790" />
+<ul class="simple">
+<li><p>Wait until the process is Done.</p></li>
+</ul>
+<img alt="https://cdn.nlark.com/yuque/0/2021/png/10383397/1624163707522-0570a43c-5dfb-4db0-a76b-52e88e2b9523.png#clientId=u0690fbf6-4f2f-4&amp;from=ui&amp;id=u137ea47b&amp;margin=%5Bobject%20Object%5D&amp;name=mcumgr3.png&amp;originHeight=51&amp;originWidth=1203&amp;originalType=binary&amp;ratio=2&amp;size=16923&amp;status=done&amp;style=none&amp;taskId=u8dd3dd85-04e5-49e5-bb35-eaa8d66702a" src="https://cdn.nlark.com/yuque/0/2021/png/10383397/1624163707522-0570a43c-5dfb-4db0-a76b-52e88e2b9523.png#clientId=u0690fbf6-4f2f-4&amp;from=ui&amp;id=u137ea47b&amp;margin=%5Bobject%20Object%5D&amp;name=mcumgr3.png&amp;originHeight=51&amp;originWidth=1203&amp;originalType=binary&amp;ratio=2&amp;size=16923&amp;status=done&amp;style=none&amp;taskId=u8dd3dd85-04e5-49e5-bb35-eaa8d66702a" />
+<ul class="simple">
+<li><p>You can check whether the image is uploaded succesfully by the following command.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mcumgr &lt;connection string&gt; image list
+</pre></div>
+</div>
+<img alt="https://cdn.nlark.com/yuque/0/2021/png/10383397/1624163715058-7630e039-deca-4531-b80b-778873fbabb1.png#clientId=u0690fbf6-4f2f-4&amp;from=ui&amp;id=uf2e97ad5&amp;margin=%5Bobject%20Object%5D&amp;name=mcumgr4.png&amp;originHeight=238&amp;originWidth=982&amp;originalType=binary&amp;ratio=2&amp;size=43023&amp;status=done&amp;style=none&amp;taskId=ub03f4592-8700-4680-9694-741c00739ac" src="https://cdn.nlark.com/yuque/0/2021/png/10383397/1624163715058-7630e039-deca-4531-b80b-778873fbabb1.png#clientId=u0690fbf6-4f2f-4&amp;from=ui&amp;id=uf2e97ad5&amp;margin=%5Bobject%20Object%5D&amp;name=mcumgr4.png&amp;originHeight=238&amp;originWidth=982&amp;originalType=binary&amp;ratio=2&amp;size=43023&amp;status=done&amp;style=none&amp;taskId=ub03f4592-8700-4680-9694-741c00739ac" />
+<ul class="simple">
+<li><p>Copy the hash of latest image to be used in next step, in this example, it is  “d89511ec321ebc4e0cd3775f9be05a6c8880bdfded37213e430fa6cfcbbdc6ec”</p></li>
+<li><p>Now confirm the image by running the following command</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mcumgr &lt;connection string&gt; image confirm &lt;<span class="nb">hash</span> of image&gt;
+</pre></div>
+</div>
+<img alt="https://cdn.nlark.com/yuque/0/2021/png/10383397/1624164006532-b4620fb5-726e-44a3-bf21-cf82448d7716.png#clientId=u0690fbf6-4f2f-4&amp;from=ui&amp;id=u0c4ebebb&amp;margin=%5Bobject%20Object%5D&amp;name=mcumgr5.png&amp;originHeight=255&amp;originWidth=1206&amp;originalType=binary&amp;ratio=2&amp;size=49553&amp;status=done&amp;style=none&amp;taskId=u0f7a0f3e-b773-4cab-a034-2458ff41325" src="https://cdn.nlark.com/yuque/0/2021/png/10383397/1624164006532-b4620fb5-726e-44a3-bf21-cf82448d7716.png#clientId=u0690fbf6-4f2f-4&amp;from=ui&amp;id=u0c4ebebb&amp;margin=%5Bobject%20Object%5D&amp;name=mcumgr5.png&amp;originHeight=255&amp;originWidth=1206&amp;originalType=binary&amp;ratio=2&amp;size=49553&amp;status=done&amp;style=none&amp;taskId=u0f7a0f3e-b773-4cab-a034-2458ff41325" />
+<ul class="simple">
+<li><p>Reset by the following command</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mcumgr &lt;connection string&gt; reset
+</pre></div>
+</div>
+<img alt="https://cdn.nlark.com/yuque/0/2021/png/10383397/1624164297393-7a77d96a-183d-4c26-8b01-e06d75205af6.png#clientId=u0690fbf6-4f2f-4&amp;from=ui&amp;id=u812b1eda&amp;margin=%5Bobject%20Object%5D&amp;name=mcumgr6.png&amp;originHeight=36&amp;originWidth=944&amp;originalType=binary&amp;ratio=2&amp;size=12245&amp;status=done&amp;style=none&amp;taskId=udc0a7197-d667-4246-9b57-8a93f401307" src="https://cdn.nlark.com/yuque/0/2021/png/10383397/1624164297393-7a77d96a-183d-4c26-8b01-e06d75205af6.png#clientId=u0690fbf6-4f2f-4&amp;from=ui&amp;id=u812b1eda&amp;margin=%5Bobject%20Object%5D&amp;name=mcumgr6.png&amp;originHeight=36&amp;originWidth=944&amp;originalType=binary&amp;ratio=2&amp;size=12245&amp;status=done&amp;style=none&amp;taskId=udc0a7197-d667-4246-9b57-8a93f401307" />
+<ul class="simple">
+<li><p>Wait for about 30 seconds and run the following command</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mcumgr &lt;connection string&gt; image list
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>You should be able to see the following</p></li>
+</ul>
+<img alt="https://cdn.nlark.com/yuque/0/2021/png/10383397/1624164273167-b9cc719a-a171-4411-ace1-192b8622f045.png#clientId=u0690fbf6-4f2f-4&amp;from=ui&amp;id=udd2944a4&amp;margin=%5Bobject%20Object%5D&amp;name=mcumgr7.png&amp;originHeight=238&amp;originWidth=971&amp;originalType=binary&amp;ratio=2&amp;size=42012&amp;status=done&amp;style=none&amp;taskId=u0f6d676f-fc33-45e0-80f8-892901b263f" src="https://cdn.nlark.com/yuque/0/2021/png/10383397/1624164273167-b9cc719a-a171-4411-ace1-192b8622f045.png#clientId=u0690fbf6-4f2f-4&amp;from=ui&amp;id=udd2944a4&amp;margin=%5Bobject%20Object%5D&amp;name=mcumgr7.png&amp;originHeight=238&amp;originWidth=971&amp;originalType=binary&amp;ratio=2&amp;size=42012&amp;status=done&amp;style=none&amp;taskId=u0f6d676f-fc33-45e0-80f8-892901b263f" />
+<ul class="simple">
+<li><p>Now, you have upgraded the firmware successfully to a newer version.</p></li>
+<li><p>If you would like to revert the previous firmware, you can do so by confirming the image with hash of old image followed by a reset.</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="scout_v2.6.html" class="btn btn-neutral float-right" title="Scout V2.6 User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../user_guide.html" class="btn btn-neutral float-left" title="Robot User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2022, Weston Robot Pte Ltd
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
