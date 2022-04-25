@@ -1,6 +1,6 @@
-##########
-User Guide
-##########
+################
+Robot User Guide
+################
 
 .. .. contents::
 ..    :depth: 1
@@ -8,25 +8,9 @@ User Guide
 
 Here you can find user guides giving detailed information about a specific robot platform or peripheral:
 
-*************
-UGV Platforms
-*************
-
 .. toctree::
    :maxdepth: 1
 
-   /_platforms/ugv/common/ugv_system_overview
-   /_platforms/ugv/scout/scout
-   /_platforms/ugv/hunter/hunter
-   
-   
-****************
-Legged Platforms
-****************
-
-.. toctree::
-   :maxdepth: 1
-
-   /_platforms/legged/a1
-   /_platforms/legged/aliengo
+   /_user_guide/westonrobot/scout_v2.5
+   /_user_guide/westonrobot/scout_v2.6
    
