@@ -1,0 +1,228 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Overview of Software Packages &mdash; Weston Robot v0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #323640" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../_getting_started/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../_user_guide/user_guide.html">User Guide</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Weston Robot</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Overview of Software Packages</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../../_sources/_platforms/ugv/common/software_packages.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="overview-of-software-packages">
+<h1>Overview of Software Packages<a class="headerlink" href="#overview-of-software-packages" title="Permalink to this headline">¶</a></h1>
+<p>This segment is an overview of the packages and aims to aid you when navigating through the different packages.</p>
+<p>The software pacakges provided by Weston Robots aim to achieve the following:</p>
+<ol class="arabic simple">
+<li><p>Handle the low level communication between the computer and the embedded controller in the robots</p></li>
+<li><p>Provide and interface between ROS messages and communicating with the robots</p></li>
+<li><p>Occasionally, support for simulations (espescailly in webots) is provided</p></li>
+</ol>
+<div class="section" id="repository-naming">
+<h2>Repository Naming<a class="headerlink" href="#repository-naming" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>ugv_sdk: This SDK deals with the low level communication between the computer and the robot platoform via CAN and Serial bus. Currently, this SDK supports the platforms Hunter, Scout and Tracer.</p></li>
+<li><p>&lt;platform&gt;_base: This repository provides the interface between ROS and ugv_sdk.</p>
+<ul>
+<li><p>This repository is structure based on the standard ROS package sturcture for a robot.</p></li>
+<li><p>The &lt;platform&gt;_base package translates ROS messages into C++ data structure. This C++ data structure is then converted to low levle messages by ugv_sdk.</p></li>
+</ul>
+</li>
+</ul>
+<div class="section" id="example">
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
+<p>To give a clearer overview on the purpose of the package, a sample scenario for using these SDKs is described below:</p>
+<ul class="simple">
+<li><p>You are using the scout platform with a LIDAR module attachced to it.</p></li>
+<li><p>You would like to use the ROS navigation stack to control the scout platform in a mapped region using the inputs from the LIDAR module.</p></li>
+<li><p>Using the LIDAR’s own software package, a LIDAR node in ROS is created the publsihes a /scan data.</p></li>
+<li><p>Using the Scout_Base SDK, a node is created that subscribes to /cmd_vel topics and publishes /odom topic.</p></li>
+<li><p>Based on the position which the LIDAR is mounted, a .xacro file for the trasnform between the platform and the LIDAR is created.</p></li>
+</ul>
+<p>With this, ROS navigation stack is able to navigate the robot based on the provided map.</p>
+<p>This specific example has been implemented and can be found in TODO: link to scout_nav package</p>
+<div class="toctree-wrapper compound">
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2022, Weston Robot Pte Ltd
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
