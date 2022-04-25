@@ -20,8 +20,8 @@
 # -- Project information -----------------------------------------------------
 
 project = u'Weston Robot'
-copyright = u'2021, Weston Robot Pte Ltd'
-author = u'Weston Robot Team'
+copyright = u'2022, Weston Robot Pte Ltd'
+author = u'Weston Robot Development Team'
 
 # The short X.Y version
 version = u''
@@ -87,8 +87,8 @@ html_theme = "sphinx_rtd_theme" #'alabaster'
 #
 html_theme_options = {
     'logo_only': True,
-    'display_version': True,
-    'collapse_navigation': False,
+    'display_version': False,
+    'collapse_navigation': True,
     'navigation_depth': 3,
     'style_nav_header_background': '#323640'}
 

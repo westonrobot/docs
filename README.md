@@ -14,7 +14,7 @@ $ git clone https://github.com/westonrobot/docs.git
 Following instructions [here](https://docs.docker.com/engine/install/ubuntu/) to install docker engine first.
 
 ```
-$ sudo docker run --rm -v ~/Workspace/docs:/docs rduweston/sphinx-rtd make html
+$ sudo docker run --rm -v ${PWD}:/docs rduweston/sphinx-rtd make html
 ```
 
 Deploy generated pages to github
