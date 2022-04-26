@@ -12,7 +12,7 @@ jobs:
     - uses: actions/checkout@v1
     - uses: ammaraskar/sphinx-action@master
       with:
-        build-command: "make deploy"
+        build-command: "make html"
         docs-folder: "."
     # Great extra actions to compose with:
     # Create an artifact of the html output.
@@ -25,8 +25,10 @@ jobs:
     - name: Commit documentation changes
       run: |
         git clone https://github.com/westonrobot/docs.git --branch gh-pages --single-branch gh-pages
-        cp -r docs/* gh-pages/
+        cp -r build/html/* gh-pages/
+        cp CNAME gh-pages/
         cd gh-pages
+        touch .nojekyll
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add .
