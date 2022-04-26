@@ -2,21 +2,11 @@
 Getting Started
 ###############
 
+Here you can find general information about robot operation and development:
 
-******************
-Operational Safety
-******************
+.. toctree::
+   :maxdepth: 1
 
-*****************
-Robot Maintenance
-*****************
-
-.. .. contents::
-..    :depth: 1
-..    :local:
-
-Battery 
-=======
-
-Tire
-====
+   /_getting_started/basics/operational_safety
+   /_getting_started/basics/robot_maintenance
+   
