@@ -8,7 +8,7 @@
 Welcome to Weston Robot Documentation
 #####################################
 
-This website provides intrsutctions and tutorials on the setup and software development of the robot platforms from Weston Robot.
+This website provides intrsutctions and tutorials on the setup and software development with the robot platforms from Weston Robot.
 
 .. toctree::
    :maxdepth: 2
