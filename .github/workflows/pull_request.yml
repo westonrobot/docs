@@ -9,11 +9,6 @@ jobs:
     - uses: actions/checkout@v1
     - uses: ammaraskar/sphinx-action@master
       with:
+        pre-build-command: "pip install sphinx_rtd_theme"
         build-command: "make html"
         docs-folder: "."
-    # Great extra actions to compose with:
-    # Create an artifact of the html output.
-    - uses: actions/upload-artifact@v1
-      with:
-        name: DocumentationHTML
-        path: build/html/

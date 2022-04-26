@@ -2,28 +2,47 @@
 
 ## Setup the development repository
 
-You can put the repository at other places but remember to adjust the docker run command accordingly.
+You can use docker to build and preview the generated documentations site on your computer.
+
+Following instructions [here](https://docs.docker.com/engine/install/ubuntu/) to install docker engine first. Here is a brief summary of the installation if you have never installed docker on your computer before:
+
+```
+$ sudo apt-get update
+$ sudo apt-get install \
+    ca-certificates \
+    curl \
+    gnupg \
+    lsb-release
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+$ echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+$ sudo apt-get update
+$ sudo apt-get install docker-ce docker-ce-cli containerd.io
+```
+
+Now you can clone the repository (or your forked repository):
 
 ```
 $ cd Workspace
 $ git clone https://github.com/westonrobot/docs.git
 ```
 
-## Build with sphinx docker
-
-Following instructions [here](https://docs.docker.com/engine/install/ubuntu/) to install docker engine first.
+Build the docs:
 
 ```
 $ sudo docker run --rm -v ${PWD}:/docs rduweston/sphinx-rtd make html
 ```
 
-Deploy generated pages to github
+You can preview the pages by opening index.html inside the build/html folder.
 
 ```
-$ make deploy
+$ firefox build/html/index.html
 ```
 
-Then commit and push changes in the repository to Github.
+## Publish to the Github Page
+
+You can create a pull request to the "main" branch. Once your pull request is merged, Github Actions will publish the updated pages automatically.
 
 ## Reference
 
