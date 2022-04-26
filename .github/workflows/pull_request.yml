@@ -1,0 +1,19 @@
+name: Pull Request Check
+
+on: [pull_request]
+
+jobs:
+  build:
+    runs-on: rduweston/sphinx-rtd
+    steps:
+    - uses: actions/checkout@v1
+    - uses: ammaraskar/sphinx-action@master
+      with:
+        build-command: "make html"
+        docs-folder: "."
+    # Great extra actions to compose with:
+    # Create an artifact of the html output.
+    - uses: actions/upload-artifact@v1
+      with:
+        name: DocumentationHTML
+        path: build/html/
