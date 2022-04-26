@@ -1,0 +1,272 @@
+*********************
+Scout V2.5 User Guide
+*********************
+
+1. Summary of Changes
+=====================
+
+1.1 Hardware Modifications
+--------------------------
+
+| **Item** | **Current** | **Previous** |
+| --- | --- | --- |
+| Top Interface Panel | CAN+POWER, MicroUSB | CAN+POWER, RS232 |
+| Low-level Controller | Weston Robot | AgileX |
+| Motor Driver | 2-in-1 Driver x 2 | Driver x 4 |
+| Battery | 24V, 60Ah | 24V, 30Ah |
+
+.. image:: https://cdn.nlark.com/yuque/0/2021/jpeg/1068073/1623632120412-77559e59-aac9-402b-bdb9-2ed641902b3a.jpeg?x-oss-process=image/auto-orient,1#clientId=u040e6249-2684-4&from=ui&height=447&id=AIUmz&margin=%5Bobject%20Object%5D&name=IMG_20210614_084855.jpg&originHeight=3648&originWidth=2736&originalType=binary&ratio=1&size=233709&status=done&style=none&taskId=uc719dabd-997b-4804-829d-f60588a4709&width=335
+    :width: 320 px
+.. image:: https://cdn.nlark.com/yuque/0/2021/jpeg/1068073/1623631998368-d8b4917f-22df-43c0-91ec-2298c47ef508.jpeg#clientId=u040e6249-2684-4&from=ui&height=447&id=GtOAu&margin=%5Bobject%20Object%5D&name=IMG_20210614_085231.jpg&originHeight=3648&originWidth=2736&originalType=binary&ratio=1&size=537196&status=done&style=none&taskId=u3d94fc40-aac4-447f-9bb9-61fc8f2d9d0&width=335
+    :width: 320 px
+
+- The pinout of CAN+POWER connector remains the same:
+   - Pin 1 - Vcc (23V - 26.5V)
+   - Pin 2 - GND
+   - Pin 3 - CAN High
+   - Pin 4 - CAN Low
+- MicroUSB port is for firmware upgrade only
+
+1.2 Software Updates
+--------------------
+
+- Updated CAN communication protocol 
+- Deprecated RS232 support for robot control and monitoring
+- Introduced the concept of control token for enhanced safety of robot operation
+- The SDK is now provided as a Debian package for easy and convenient installation
+- The ROS interface is provided with the "wr_mobilerobot_ros" package
+
+2. Control Token
+================
+
+.. image:: https://cdn.nlark.com/yuque/0/2021/png/1068073/1623727919809-15a3c552-a515-4ebf-9087-eadee141907a.png#clientId=uc24d888e-4872-4&from=paste&height=296&id=u525c98bf&margin=%5Bobject%20Object%5D&name=image.png&originHeight=296&originWidth=1043&originalType=binary&ratio=1&size=42274&status=done&style=none&taskId=u4c8eab76-9d31-47b9-9aa2-79db1a04b0f&width=1043
+    
+The robot can be controlled **manually** with a remote controller or **programatically** through the CAN interface from a Linux computer. Previously, there was no explicit way for the onboard computer (the navigation system) to know whether it can control the robot base or not and possible reasons why the robot doesn't move even though it has commanded the robot to do so. We introduced the concept of control token to provide finer access control of the the robot base.
+
+- There is only one control token available and the token is initially held by the robot controller (command from either remote controller or CAN bus will not be responded)
+- Only the entity who has gained the control token will be able to control the robot to move
+- The remote controller has a higher priority to take the control token than the CAN bus. This means the operator can always take over control from the onboard computer using the remote controller.
+- You can register a callback function through the SDK to get notified when the control token is taken away. Please note that you need to keep callback function short and non-blocking. This callback function is supposed to be a notifier only and complicated handling functionalities should not be implemented inside.
+- Once the operator has finished manual control, the operator can switch the control mode back to **standby** and the control token will be returned to the robot controller.  (Switching off of remote controlle will return the control token to the robot controller as well). The SDK will have to request to gain the control token again to resume control. 
+- An error code will be returned to the user if the SDK fails to gain the control. Possible reasons include hardware failture, robot in manual control mode etc.
+- Only **one **SDK instance **or** ROS node** **is allowed to communicate with the robot at a time.
+
+
+.. image:: https://cdn.nlark.com/yuque/0/2021/png/10383397/1623633207516-7896f7e2-0a94-4e6b-a9c7-b2ee99c81d2f.png#clientId=u2224111b-fac3-4&from=paste&height=344&id=w3JCJ&margin=%5Bobject%20Object%5D&name=image.png&originHeight=686&originWidth=1006&originalType=binary&ratio=1&size=404917&status=done&style=none&taskId=u6c192c44-4c9e-4bdd-8926-0815c5f3055&width=504
+
+With the introduced control token concept, the functional mappings of "**SWA**" and "**SWB**" on the remote controller are slightly different:
+
+- Initally **SWB** stays at the up position and the robot is in standby mode (control token kept by the robot)
+- The remote controller will gain the control token by placing **SWB** at the middle position, setting the robot to be in the manual control mode
+- Once the operator has finished manual control, the operator can switch the control mode back to **standby** by placing **SWB to up** position.  (Switching off the remote controller will return the control token to the robot controller as well). 
+- **SWA** acts as a wireless E-Stop. If **SWA **is switched to **down position,** the control token will remain at robot controller, **neither remote controller** **nor SDK **would be able to control the robot until **SWA **is returned to **up **position. 
+
+3. Key Operation Information
+============================
+
+3.1 System State Message
+------------------------
+
+Key information about the robot base can be extracted from the system state message:
+
+1. **rc_connected**: indicates whether remote controller is connected
+- 1 - RC connected
+- 0 - RC disconnected
+2. **error_code**: system error or fault code
+- Please refer to the Table 1.1 below for detailed error code meaning
+3. **operational_state**: possible states and explanations are listed in the following table
+| **Value ** | **Operational state** | **Situation** |
+| --- | --- | --- |
+| 0x00 | OPERATIONAL | Robot is at normal operation |
+| 0x01 | INITIALIZATION | Robot is starting up |
+| 0x02 | MAINTENANCE | Not applicable for now |
+| 0x03 | SOFTWARE_UPDATE | Not applicable for now |
+| 0x04 | ESTOP_ACTIVATED | Emergency stop button is pressed |
+| 0x05 | HARDWARE_FAULT | There is fault error code |
+
+4. **ctrl_state: **indicates which entity is in control of the robot
+| **Value** | **Control state** | **Situation** |
+| --- | --- | --- |
+| 0x00 | UNINITIALIZED | Robot is starting up / recover from estop |
+| 0x01 | STANDBY | Robot is ready to be controlled |
+| 0x02 | RC_HALT_TRIGGERED | Robot is halted by remote controller (SWA is pushed down) |
+| 0x03 | RC_MANUAL_CONTROL | Robot is controlled by remote controller |
+| 0x04 | CAN_COMMAND_CONTROL | Robot is controlled by SDK / ROS |
+
+5. battery-state
+- contains information of battery voltage
+
+**Note**: There are other feedback messages available in addition to the system state message. Please refer to the ROS package message definitions for more details.
+## 3.2 Buzzer Alert
+
+- There are two levels of alert: **Warn** and **Fault. **You can still control the robot when you get a **warn**-level alert but  Once the robot gives a **fault**-level alert, the robot will stop and not react to any motion commands to avoid possible hardware damage.
+- Warn-level alert: buzzer will be triggered at a relatively low frequency (0.5Hz).
+   - The robot still **can be controlled**, but the warning will remain until none of the **warning** condition from Table 1.1 exists.
+   - It's advised to take proper actions to get the robot back to normal.
+- Fault-level alert: buzzer will be triggered **at higher frequency** (2Hz).
+   - The robot **cannot be controlled** until all **fault** code disappears 
+   - For recoverable faults (e.g. over-heating). robot may first recover back to warn-level condition then return to normal, given enough time for cooling
+- Conditions that may trigger the alert are listed as below
+| **Condition** | **Warn ** | **Fault** | **Warn error code** | **Fault error code** |
+| --- | --- | --- | --- | --- |
+| Battery | State of Charge (SOC) < 25% | State of Charge (SOC) < 15% | 0x00000001 | 0x00010000 |
+| Motor Temperature | > 70 °C | > 100 °C | 0x00000002 | 0x00020000 |
+| Motor Current | > 25 A | > 50 A | 0x00000004 | 0x00040000 |
+| Motor Communication | Not applicable | Lost communication with motor drivers | Not applicable | 0x00080000 |
+
+**Table 1.1 Robot Warning and Fault Conditions**
+
+4. Software Packages
+====================
+
+- Sample code for wrp_sdk: [https://github.com/westonrobot/sdk_sample](https://github.com/westonrobot/sdk_sample)
+- ROS support packages: [https://github.com/westonrobot/wr_mobilerobot_ros](https://github.com/westonrobot/wr_mobilerobot_ros)
+
+Note: sdk_sample provides an example showing how the SDK can re-gain control automatically if the control of the robot is taken over by the remote controller.
+
+5. Preview Feature
+==================
+
+System state monitor with Bluetooth. You can download any Bluetooth serial terminal application to receive basic robot state information. We have tested the following app and you can download it from Play store.
+
+.. image:: https://cdn.nlark.com/yuque/0/2021/png/1068073/1623732407048-4bdfb93e-b7b9-4246-8ea6-166607ebb701.png#clientId=u471041c6-4f9b-4&from=paste&height=361&id=u2989bde9&margin=%5Bobject%20Object%5D&name=image.png&originHeight=720&originWidth=679&originalType=binary&ratio=1&size=139937&status=done&style=none&taskId=ub553310d-bb90-4d77-9b3d-4572fe7329d&width=340
+    :width: 320 px
+
+You can scan Bluetooth devices **near the robot** and connect to the robot controller. The device name should be similar to "WR-SC210404".
+
+.. image:: https://cdn.nlark.com/yuque/0/2021/jpeg/1068073/1623732714442-1f5ef8a0-4ff5-494d-a964-2b4456f4dac6.jpeg#clientId=u471041c6-4f9b-4&from=ui&height=585&id=RwiS7&margin=%5Bobject%20Object%5D&name=Screenshot_20210615_124739_de.kai_morich.serial_bluetooth_terminal.jpg&originHeight=2340&originWidth=1080&originalType=binary&ratio=1&size=295195&status=done&style=none&taskId=uff87c1a0-abc1-4657-b9b9-4c14fefcde0&width=270
+    :width: 320 px
+    
+6. Firmware Upgrade
+===================
+
+- To upgrade the firmware, please ensure you have the following items
+   - Laptop running on Ubuntu18.04
+   - USB to Micro USB cable
+   - Signed binary image from Weston Robot
+   - MCU Manager installed (kindly refer for the installation guide below)
+
+6.1 Installation guide for MCU Manager (mcumgr)
+-----------------------------------------------
+
+1. Installation for Go.
+
+.. code-block:: bash
+
+    $ sudo apt install golang-go
+
+2. Verify whether Go is installed properly by the following command.
+
+.. code-block:: bash
+
+    $ go version
+
+3. Now you can install mcumgr CLI.
+
+.. code-block:: bash
+
+    $ cd 
+    $ go get github.com/apache/mynewt-mcumgr-cli/mcumgr
+    $ nano ~/.bashrc
+
+1. Add in path for mcumgr into .bashrc file
+
+.. code-block:: bash
+
+    $ export PATH=$PATH:<path-to-home-directory>/go/bin/
+    $ alias sudo='sudo env PATH=$PATH'
+
+5. Verify whether mcumgr is installed properly by the following command.
+
+.. code-block:: bash
+
+    $ source ~/.bashrc
+    $ mcumgr version
+
+**Troubleshooting**
+
+- If the installed golang-go is an older version, the "go get..." command in **step 3** might fail. To get around this error, manually install a newer version of go by following the instructions from golang's website [https://golang.org/doc/install](https://golang.org/doc/install) and reattempt installation from **step 3**.
+
+6.2 Firmware upgrade using MCU Manager through USB cable
+--------------------------------------------------------
+
+- After you have installed mcumgr, now you should be able to upgrade the firmware through USB cable.
+- Connect your computer to the MicroUSB port on robot using USB to Micro USB cable.
+- Check on your computer for the device connected by the following command.
+
+.. code-block:: bash
+
+    $ ls /dev
+
+- if there is only one USB device connected you should be able to see device named "ttyUSB0", if there are more instances such as "ttyUSB1", you can check the device using the following command. 
+
+.. code-block:: bash
+
+    $ sudo mcumgr <connection string> image list
+
+The default connection string is 
+
+.. code-block:: bash
+
+    --conntype serial --connstring "/dev/ttyUSB0,baud=115200"
+
+- You should be able to see something like below
+
+.. image:: https://cdn.nlark.com/yuque/0/2021/png/10383397/1624162894519-29972046-30ff-447c-a48b-f58ce6374bda.png#clientId=u0690fbf6-4f2f-4&from=ui&id=ubfc92cd9&margin=%5Bobject%20Object%5D&name=mcumg1.png&originHeight=144&originWidth=985&originalType=binary&ratio=2&size=29684&status=done&style=none&taskId=u9d6b8e9a-6019-4db0-955d-3918718db2d
+
+- If you don't get any response, replace the connstring to other USB instance appeared on your computer such as "/dev/ttyUSB1,baud=115200".
+- Assuming your USB device appeared on your computer is "/dev/ttyUSB0", you can upload the image with the following command.
+
+.. code-block:: bash
+
+    $ sudo mcumgr <connection string> image upload <path-to-signed.bin>
+
+
+- Wait for about 3seconds, you should be able to see something like below
+
+.. image:: https://cdn.nlark.com/yuque/0/2021/png/10383397/1624163352643-baf95c51-9843-42f5-91a8-4dc7843c6e80.png#clientId=u0690fbf6-4f2f-4&from=ui&id=u9c99fda1&margin=%5Bobject%20Object%5D&name=mcumgr2.png&originHeight=55&originWidth=1208&originalType=binary&ratio=2&size=17260&status=done&style=none&taskId=u7a7a5cda-c595-40be-9e1d-a5ff102d790
+
+- Wait until the process is Done. 
+
+.. image:: https://cdn.nlark.com/yuque/0/2021/png/10383397/1624163707522-0570a43c-5dfb-4db0-a76b-52e88e2b9523.png#clientId=u0690fbf6-4f2f-4&from=ui&id=u137ea47b&margin=%5Bobject%20Object%5D&name=mcumgr3.png&originHeight=51&originWidth=1203&originalType=binary&ratio=2&size=16923&status=done&style=none&taskId=u8dd3dd85-04e5-49e5-bb35-eaa8d66702a
+
+- You can check whether the image is uploaded succesfully by the following command.
+
+.. code-block:: bash
+
+    $ sudo mcumgr <connection string> image list
+
+.. image:: https://cdn.nlark.com/yuque/0/2021/png/10383397/1624163715058-7630e039-deca-4531-b80b-778873fbabb1.png#clientId=u0690fbf6-4f2f-4&from=ui&id=uf2e97ad5&margin=%5Bobject%20Object%5D&name=mcumgr4.png&originHeight=238&originWidth=982&originalType=binary&ratio=2&size=43023&status=done&style=none&taskId=ub03f4592-8700-4680-9694-741c00739ac
+
+- Copy the hash of latest image to be used in next step, in this example, it is  "d89511ec321ebc4e0cd3775f9be05a6c8880bdfded37213e430fa6cfcbbdc6ec"
+- Now confirm the image by running the following command
+
+.. code-block:: bash
+
+    $ sudo mcumgr <connection string> image confirm <hash of image>
+
+
+.. image:: https://cdn.nlark.com/yuque/0/2021/png/10383397/1624164006532-b4620fb5-726e-44a3-bf21-cf82448d7716.png#clientId=u0690fbf6-4f2f-4&from=ui&id=u0c4ebebb&margin=%5Bobject%20Object%5D&name=mcumgr5.png&originHeight=255&originWidth=1206&originalType=binary&ratio=2&size=49553&status=done&style=none&taskId=u0f7a0f3e-b773-4cab-a034-2458ff41325
+
+- Reset by the following command
+  
+.. code-block:: bash
+
+    $ sudo mcumgr <connection string> reset
+
+
+.. image:: https://cdn.nlark.com/yuque/0/2021/png/10383397/1624164297393-7a77d96a-183d-4c26-8b01-e06d75205af6.png#clientId=u0690fbf6-4f2f-4&from=ui&id=u812b1eda&margin=%5Bobject%20Object%5D&name=mcumgr6.png&originHeight=36&originWidth=944&originalType=binary&ratio=2&size=12245&status=done&style=none&taskId=udc0a7197-d667-4246-9b57-8a93f401307
+
+- Wait for about 30 seconds and run the following command
+
+.. code-block:: bash
+
+    $ sudo mcumgr <connection string> image list
+
+
+- You should be able to see the following
+
+.. image:: https://cdn.nlark.com/yuque/0/2021/png/10383397/1624164273167-b9cc719a-a171-4411-ace1-192b8622f045.png#clientId=u0690fbf6-4f2f-4&from=ui&id=udd2944a4&margin=%5Bobject%20Object%5D&name=mcumgr7.png&originHeight=238&originWidth=971&originalType=binary&ratio=2&size=42012&status=done&style=none&taskId=u0f6d676f-fc33-45e0-80f8-892901b263f
+
+- Now, you have upgraded the firmware successfully to a newer version.
+- If you would like to revert the previous firmware, you can do so by confirming the image with hash of old image followed by a reset. 
