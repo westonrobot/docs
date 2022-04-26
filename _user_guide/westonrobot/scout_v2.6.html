@@ -39,7 +39,15 @@
 <li class="toctree-l1"><a class="reference internal" href="../../_getting_started/getting_started.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../user_guide.html">Robot User Guide</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="scout_v2.5.html">Scout V2.5 User Guide</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Scout V2.6 User Guide</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Scout V2.6 User Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#summary-of-changes">1. Summary of Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#control-token">2. Control Token</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#key-operation-information">3. Key Operation Information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#software-packages">4. Software Packages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#preview-feature">1. Preview Feature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#faq">1. FAQ</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../_toolbox/toolbox.html">Weston Robot Toolbox</a></li>
@@ -72,14 +80,34 @@
              
   <div class="section" id="scout-v2-6-user-guide">
 <h1>Scout V2.6 User Guide<a class="headerlink" href="#scout-v2-6-user-guide" title="Permalink to this headline">¶</a></h1>
-<p># 1. Summary of Changes</p>
-<p>## 1.1 Hardware Updates
-| <strong>Item</strong> | <strong>Current</strong> | <strong>Previous</strong> |
-| — | — | — |
-| Top Interface Panel | CAN+POWER, Peripheral CAN | CAN+POWER, RS232 |
-| Low-level Controller | Weston Robot | AgileX |
-| Battery | 24V, 60Ah | 24V, 30Ah |</p>
-<img alt="https://cdn.nlark.com/yuque/0/2022/png/10383397/1650334798561-ecf30c65-a4bc-4a2f-8124-ad9d4076f489.png#clientId=u32daf6c6-484c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=586&amp;id=u0c9d0b79&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=586&amp;originWidth=599&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=249922&amp;status=done&amp;style=none&amp;taskId=u46fcf24f-46c9-47b3-900d-1feb14bdd99&amp;title=&amp;width=599" src="https://cdn.nlark.com/yuque/0/2022/png/10383397/1650334798561-ecf30c65-a4bc-4a2f-8124-ad9d4076f489.png#clientId=u32daf6c6-484c-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=586&amp;id=u0c9d0b79&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=586&amp;originWidth=599&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=249922&amp;status=done&amp;style=none&amp;taskId=u46fcf24f-46c9-47b3-900d-1feb14bdd99&amp;title=&amp;width=599" />
+<div class="section" id="summary-of-changes">
+<h2>1. Summary of Changes<a class="headerlink" href="#summary-of-changes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="hardware-updates">
+<h3>1.1 Hardware Updates<a class="headerlink" href="#hardware-updates" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 41%" />
+<col style="width: 27%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Item</p></th>
+<th class="head"><p>Current</p></th>
+<th class="head"><p>Previous (V2.5)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Top Interface Panel</p></td>
+<td><p>CAN+POWER, Peripheral CAN</p></td>
+<td><p>CAN+POWER, RS232</p></td>
+</tr>
+<tr class="row-odd"><td><p>Battery</p></td>
+<td><p>24V, 60Ah</p></td>
+<td><p>24V, 30Ah</p></td>
+</tr>
+</tbody>
+</table>
+<a class="reference internal image-reference" href="../../_images/scout_v2.6_01.png"><img alt="../../_images/scout_v2.6_01.png" src="../../_images/scout_v2.6_01.png" style="width: 500px;" /></a>
 <ul class="simple">
 <li><dl class="simple">
 <dt>The pinout of CAN+POWER connector (the bigger one) remains the same:</dt><dd><ul>
@@ -93,7 +121,9 @@
 </li>
 <li><p>Peripheral CAN connector (the smaller one) can be used for extension, such as for adding ultrasonic sensors, TOF sensors</p></li>
 </ul>
-<p>## 1.2 Software Updates</p>
+</div>
+<div class="section" id="software-updates">
+<h3>1.2 Software Updates<a class="headerlink" href="#software-updates" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Updated CAN communication protocol</p></li>
 <li><p>Deprecated RS232 support for robot control and monitoring</p></li>
@@ -101,8 +131,11 @@
 <li><p>The SDK is now provided as a Debian package for easy and convenient installation</p></li>
 <li><p>The ROS interface is provided with the “wrp_ros” package</p></li>
 </ul>
-<p># 2. Control Token</p>
-<img alt="https://cdn.nlark.com/yuque/0/2022/png/10383397/1650354110024-6b4ed95e-6291-4c23-8ce1-2a4b30db0146.png#clientId=ua38ab7dc-90dc-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=ui&amp;id=ud318c19b&amp;margin=%5Bobject%20Object%5D&amp;name=tokenUpd.png&amp;originHeight=587&amp;originWidth=2068&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=195236&amp;status=done&amp;style=none&amp;taskId=ue64b49bf-3f57-48a7-9f5f-0eb5673057f&amp;title=" src="https://cdn.nlark.com/yuque/0/2022/png/10383397/1650354110024-6b4ed95e-6291-4c23-8ce1-2a4b30db0146.png#clientId=ua38ab7dc-90dc-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=ui&amp;id=ud318c19b&amp;margin=%5Bobject%20Object%5D&amp;name=tokenUpd.png&amp;originHeight=587&amp;originWidth=2068&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=195236&amp;status=done&amp;style=none&amp;taskId=ue64b49bf-3f57-48a7-9f5f-0eb5673057f&amp;title=" />
+</div>
+</div>
+<div class="section" id="control-token">
+<h2>2. Control Token<a class="headerlink" href="#control-token" title="Permalink to this headline">¶</a></h2>
+<img alt="../../_images/scout_v2.6_02.png" src="../../_images/scout_v2.6_02.png" />
 <p>The robot can be controlled <strong>manually</strong> with a remote controller or <strong>programatically</strong> through the CAN interface from a Linux computer. Previously, there was no explicit way for the onboard computer (the navigation system by the user) to know whether it had control of the robot and this made it difficult to troubleshoot when the robot  does not execute the commands sent to it. To circumvent this problem, we introduced the concept of a control token to provide finer access control of the the robot.</p>
 <ul class="simple">
 <li><p>There is only one control token available and the token is initially held by the robot (commands from either remote controller or CAN bus will not be responded).</p></li>
@@ -110,51 +143,124 @@
 <li><p>The remote controller has a higher priority to take the control token than the CAN bus. This means the operator can always take over control from the onboard computer using the remote controller.</p></li>
 <li><p>Once the operator has finished manual control, the operator can switch the control mode back to <strong>standby</strong> and the control token will be returned to the robot.  (Switching off the remote controller will return the control token to the robot as well). The SDK will have to request to gain the control token to resume control via CAN bus .</p></li>
 <li><p>An error code will be returned to the user if the SDK fails to gain the control token. Possible reasons include hardware failure, robot in manual control mode, etc.</p></li>
-<li><p>Only <strong>one **SDK instance **or</strong> ROS node** <a href="#id1"><span class="problematic" id="id2">**</span></a>is allowed to communicate with the robot at a time.</p></li>
+<li><p>Only <strong>one SDK instance</strong> or <strong>one ROS node</strong> is allowed to communicate with the robot at a time.</p></li>
 </ul>
-<p>![remoteUpd.png](<a class="reference external" href="https://cdn.nlark.com/yuque/0/2022/png/10383397/1650354083652-4a0d93e4-f2fe-4a27-a28e-74691982fcc2.png#clientId=ua38ab7dc-90dc-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=ui&amp;id=u01811e01&amp;margin=%5Bobject%20Object%5D&amp;name=remoteUpd.png&amp;originHeight=1411&amp;originWidth=2068&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=1539496&amp;status=done&amp;style=none&amp;taskId=u57479289-e0c3-43a3-9219-4a1d241fe9b&amp;title=">https://cdn.nlark.com/yuque/0/2022/png/10383397/1650354083652-4a0d93e4-f2fe-4a27-a28e-74691982fcc2.png#clientId=ua38ab7dc-90dc-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=ui&amp;id=u01811e01&amp;margin=%5Bobject%20Object%5D&amp;name=remoteUpd.png&amp;originHeight=1411&amp;originWidth=2068&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=1539496&amp;status=done&amp;style=none&amp;taskId=u57479289-e0c3-43a3-9219-4a1d241fe9b&amp;title=</a>)
-With the introduced control token feature, the functional mapping of “<strong>SWA</strong>” and “<strong>SWB</strong>” on the remote controller are slightly different:</p>
+<a class="reference internal image-reference" href="../../_images/scout_v2.6_03.png"><img alt="../../_images/scout_v2.6_03.png" src="../../_images/scout_v2.6_03.png" style="width: 500px;" /></a>
+<p>With the introduced control token feature, the functional mapping of “<strong>SWA</strong>” and “<strong>SWB</strong>” on the remote controller are slightly different:</p>
 <ul class="simple">
 <li><p>Initally, the robot is in standby mode when <strong>SWB</strong> stays at the up position (control token kept by the robot).</p></li>
 <li><p>The remote controller will gain the control token by placing <strong>SWB</strong> at the middle position, setting the robot to be in the manual control mode.</p></li>
 <li><p>Once the operator has finished manual control, the operator can switch the control mode back to <strong>standby</strong> by placing <strong>SWB **to</strong> up** position. This will return the control token to the robot. Switching off the remote controller will return the control token to the robot controller as well.</p></li>
-<li><p><strong>SWA</strong> acts as a wireless E-Stop. If <strong>SWA **is switched to **down position,</strong> the control token will remain with the robot, <strong>neither remote controller</strong> <a href="#id3"><span class="problematic" id="id4">**</span></a>nor SDK <a href="#id5"><span class="problematic" id="id6">**</span></a>would be able to control the robot until <a href="#id7"><span class="problematic" id="id8">**</span></a>SWA <a href="#id9"><span class="problematic" id="id10">**</span></a>is returned to <a href="#id11"><span class="problematic" id="id12">**</span></a>up <a href="#id13"><span class="problematic" id="id14">**</span></a>position.</p></li>
+<li><p><strong>SWA</strong> acts as a wireless E-Stop. If <strong>SWA **is switched to **down position,</strong> the control token will remain with the robot, <strong>neither remote controller</strong> <a href="#id1"><span class="problematic" id="id2">**</span></a>nor SDK <a href="#id3"><span class="problematic" id="id4">**</span></a>would be able to control the robot until <a href="#id5"><span class="problematic" id="id6">**</span></a>SWA <a href="#id7"><span class="problematic" id="id8">**</span></a>is returned to <a href="#id9"><span class="problematic" id="id10">**</span></a>up <a href="#id11"><span class="problematic" id="id12">**</span></a>position.</p></li>
 </ul>
-<p># 3. Key Operation Information
-## 3.1 System State Message
-Key information about the robot can be extracted from the system state message:</p>
+</div>
+<div class="section" id="key-operation-information">
+<h2>3. Key Operation Information<a class="headerlink" href="#key-operation-information" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="system-state-message">
+<h3>3.1 System State Message<a class="headerlink" href="#system-state-message" title="Permalink to this headline">¶</a></h3>
+<p>Key information about the robot can be extracted from the system state message:</p>
 <ol class="arabic simple">
-<li><p><strong>rc_connected</strong>: indicates whether remote controller is connected
-- 1 - RC connected
-- 0 - RC disconnected</p></li>
-<li><p><strong>error_code</strong>: system error or fault code
-- Please refer to Table 3.2.1 below for detailed error code meaning</p></li>
+<li><p><strong>rc_connected</strong>: indicates whether remote controller is connected</p>
+<ul class="simple">
+<li><p>1 - RC connected</p></li>
+<li><p>0 - RC disconnected</p></li>
+</ul>
+</li>
+<li><p><strong>error_code</strong>: system error or fault code</p>
+<ul class="simple">
+<li><p>Please refer to Table 3.2.1 below for detailed error code meaning</p></li>
+</ul>
+</li>
+<li><p><strong>operational_state</strong>: possible states and explanations are listed in the following table</p></li>
 </ol>
-<p>3. <strong>operational_state</strong>: possible states and explanations are listed in the following table
-| <strong>Value ** | **Operational state</strong> | <strong>Situation</strong> |
-| — | — | — |
-| 0x00 | OPERATIONAL | Robot is at normal operation |
-| 0x01 | INITIALIZATION | Robot is starting up |
-| 0x02 | MAINTENANCE | Not applicable for now |
-| 0x03 | SOFTWARE_UPDATE | Not applicable for now |
-| 0x04 | ESTOP_ACTIVATED | Emergency stop button is pressed |
-| 0x05 | HARDWARE_FAULT | There is fault error code |</p>
-<p>4. <strong>ctrl_state: **indicates which entity is in control of the robot
-| **Value</strong> | <strong>Control state</strong> | <strong>Situation</strong> |
-| — | — | — |
-| 0x00 | UNINITIALIZED | Robot is starting up / recover from estop |
-| 0x01 | STANDBY | Robot is ready to be controlled |
-| 0x02 | RC_HALT_TRIGGERED | Robot is halted by remote controller (SWA is pushed down) |
-| 0x03 | RC_MANUAL_CONTROL | Robot is controlled by remote controller |
-| 0x04 | CAN_COMMAND_CONTROL | Robot is controlled by SDK / ROS |</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 32%" />
+<col style="width: 57%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Value</p></th>
+<th class="head"><p>Operational state</p></th>
+<th class="head"><p>Situation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0x00</p></td>
+<td><p>OPERATIONAL</p></td>
+<td><p>Robot is at normal operation</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x01</p></td>
+<td><p>INITIALIZATION</p></td>
+<td><p>Robot is starting up</p></td>
+</tr>
+<tr class="row-even"><td><p>0x02</p></td>
+<td><p>MAINTENANCE</p></td>
+<td><p>Not applicable for now</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x03</p></td>
+<td><p>SOFTWARE_UPDATE</p></td>
+<td><p>Not applicable for now</p></td>
+</tr>
+<tr class="row-even"><td><p>0x04</p></td>
+<td><p>ESTOP_ACTIVATED</p></td>
+<td><p>Emergency stop button is pressed</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x05</p></td>
+<td><p>HARDWARE_FAULT</p></td>
+<td><p>There is fault error code</p></td>
+</tr>
+</tbody>
+</table>
+<ol class="arabic simple" start="4">
+<li><p><strong>ctrl_state</strong>: indicates which entity is in control of the robot</p></li>
+</ol>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 24%" />
+<col style="width: 68%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Value</p></th>
+<th class="head"><p>Operational state</p></th>
+<th class="head"><p>Situation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0x00</p></td>
+<td><p>UNINITIALIZED</p></td>
+<td><p>Robot is starting up / recover from estop</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x01</p></td>
+<td><p>STANDBY</p></td>
+<td><p>Robot is ready to be controlled</p></td>
+</tr>
+<tr class="row-even"><td><p>0x02</p></td>
+<td><p>RC_HALT_TRIGGERED</p></td>
+<td><p>Robot is halted by remote controller (SWA is pushed down)</p></td>
+</tr>
+<tr class="row-odd"><td><p>0x03</p></td>
+<td><p>RC_MANUAL_CONTROL</p></td>
+<td><p>Robot is controlled by remote controller</p></td>
+</tr>
+<tr class="row-even"><td><p>0x04</p></td>
+<td><p>CAN_COMMAND_CONTROL</p></td>
+<td><p>Robot is controlled by SDK/ROS</p></td>
+</tr>
+</tbody>
+</table>
 <ol class="arabic simple" start="5">
-<li><p>battery-state
-- contains information about battery voltage</p></li>
+<li><p>battery-state</p>
+<ul class="simple">
+<li><p>contains information about battery voltage</p></li>
+</ul>
+</li>
 </ol>
 <p><strong>Note</strong>: There are other feedback messages available in addition to the system state message. Please refer to the ROS package message definitions for more details.
 ## 3.2 Buzzer Alert</p>
 <ul class="simple">
-<li><p>There are two levels of alert: <strong>Warn</strong> and <strong>Fault. **You can still control the robot when you get a **warn</strong>-level alert but once a <strong>fault</strong>-level alert is triggered, the robot will stop and not respond to any motion commands to avoid possible hardware damage.</p></li>
+<li><p>There are two levels of alert: <strong>Warn</strong> and <strong>Fault</strong>. You can still control the robot when you get a <strong>warn</strong>-level alert but once a <strong>fault</strong>-level alert is triggered, the robot will stop and not respond to any motion commands to avoid possible hardware damage.</p></li>
 <li><dl class="simple">
 <dt>Warn-level alert: buzzer will be triggered at a relatively <strong>low frequency</strong> (0.5Hz).</dt><dd><ul>
 <li><p>The robot <strong>can still be controlled</strong>, but the warning (buzzer) will remain until none of the <strong>warning</strong> conditions from Table 1.1 exist.</p></li>
@@ -165,7 +271,7 @@ Key information about the robot can be extracted from the system state message:<
 </li>
 <li><dl class="simple">
 <dt>Fault-level alert: buzzer will be triggered <strong>at higher frequency</strong> (2Hz).</dt><dd><ul>
-<li><p>The robot <strong>cannot be controlled</strong> until all <a href="#id15"><span class="problematic" id="id16">**</span></a>faults <a href="#id17"><span class="problematic" id="id18">**</span></a>are resolved.</p></li>
+<li><p>The robot <strong>cannot be controlled</strong> until all <a href="#id13"><span class="problematic" id="id14">**</span></a>faults <a href="#id15"><span class="problematic" id="id16">**</span></a>are resolved.</p></li>
 <li><p>For recoverable faults (e.g. over-heating), the robot may first recover back to warn-level condition before returning to normal, given enough time for cooling.</p></li>
 </ul>
 </dd>
@@ -173,54 +279,103 @@ Key information about the robot can be extracted from the system state message:<
 </li>
 <li><p>Conditions that may trigger the alert are listed below</p></li>
 </ul>
-<div class="line-block">
-<div class="line"><strong>Condition</strong> | <strong>Warn ** | **Fault</strong> | <strong>Warn error code</strong> | <strong>Fault error code</strong> |</div>
-<div class="line">— | — | — | — | — |</div>
-<div class="line">Battery | State of Charge (SOC) &lt; 25% | State of Charge (SOC) &lt; 15% | 0x00000001 | 0x00010000 |</div>
-<div class="line">Motor Temperature | &gt; 70 °C | &gt; 100 °C | 0x00000002 | 0x00020000 |</div>
-<div class="line">Motor Current | &gt; 25 A | Fault reported by motor driver</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 22%" />
+<col style="width: 35%" />
+<col style="width: 13%" />
+<col style="width: 14%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Condition</p></th>
+<th class="head"><p>Warn</p></th>
+<th class="head"><p>Fault</p></th>
+<th class="head"><p>Warn error code</p></th>
+<th class="head"><p>Fault error code</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Battery</p></td>
+<td><p>State of Charge (SOC) &lt; 25%</p></td>
+<td><p>State of Charge (SOC) &lt; 15%</p></td>
+<td><p>0x00000001</p></td>
+<td><p>0x00010000</p></td>
+</tr>
+<tr class="row-odd"><td><p>Motor Temperature</p></td>
+<td><p>&gt; 70 °C</p></td>
+<td><p>&gt; 100 °C</p></td>
+<td><p>0x00000002</p></td>
+<td><p>0x00020000</p></td>
+</tr>
+<tr class="row-even"><td><p>Motor Current</p></td>
+<td><p>&gt; 25 A</p></td>
+<td><p>continuous 100A for 3ms (reported by driver)</p></td>
+<td><p>0x00000004</p></td>
+<td><p>0x00040000</p></td>
+</tr>
+<tr class="row-odd"><td><p>Motor Communication</p></td>
+<td><p>Not applicable</p></td>
+<td><p>Lost communication with motor drivers</p></td>
+<td><p>Not applicabl</p></td>
+<td><p>0x00080000</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table 3.2.1 Robot Warning and Fault Conditions</strong></p>
 </div>
-<p>(continuous 100A for 3 microseconds) | 0x00000004 | 0x00040000 |
-| Motor Communication | Not applicable | Lost communication with motor drivers | Not applicable | 0x00080000 |</p>
-<p><strong>Table 3.2.1 Robot Warning and Fault Conditions</strong>
-# 4. Software Packages</p>
+</div>
+<div class="section" id="software-packages">
+<h2>4. Software Packages<a class="headerlink" href="#software-packages" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><dl class="simple">
-<dt>Installation instructions and sample code for wrp_sdk</dt><dd><ul>
-<li><p>[<a class="reference external" href="https://github.com/westonrobot/wrp_sdk](https://github.com/westonrobot/wrp_sdk">https://github.com/westonrobot/wrp_sdk](https://github.com/westonrobot/wrp_sdk</a>)</p></li>
+<dt>Weston Robot Platform SDK</dt><dd><ul>
+<li><p><a class="reference external" href="https://github.com/westonrobot/wrp_sdk">https://github.com/westonrobot/wrp_sdk</a></p></li>
 </ul>
 </dd>
 </dl>
 </li>
 <li><dl class="simple">
 <dt>ROS support package</dt><dd><ul>
-<li><p>[<a class="reference external" href="https://github.com/westonrobot/wrp_ros](https://github.com/westonrobot/wrp_ros">https://github.com/westonrobot/wrp_ros](https://github.com/westonrobot/wrp_ros</a>)</p></li>
+<li><p><a class="reference external" href="https://github.com/westonrobot/wrp_ros">https://github.com/westonrobot/wrp_ros</a></p></li>
 </ul>
 </dd>
 </dl>
 </li>
 </ul>
-<p><strong>Note</strong>: Scout V2.6 is incompatible with ugv_sdk and scout_ros.
-# 5. Preview Feature
-System state monitor with Bluetooth. You can download any Bluetooth serial terminal application to receive basic robot state information. We have tested the following app and you can download it from Play store.
-![image.png](<a class="reference external" href="https://cdn.nlark.com/yuque/0/2021/png/1068073/1623732407048-4bdfb93e-b7b9-4246-8ea6-166607ebb701.png#clientId=u471041c6-4f9b-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=361&amp;id=u2989bde9&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=720&amp;originWidth=679&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=139937&amp;status=done&amp;style=none&amp;taskId=ub553310d-bb90-4d77-9b3d-4572fe7329d&amp;title=&amp;width=340">https://cdn.nlark.com/yuque/0/2021/png/1068073/1623732407048-4bdfb93e-b7b9-4246-8ea6-166607ebb701.png#clientId=u471041c6-4f9b-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=paste&amp;height=361&amp;id=u2989bde9&amp;margin=%5Bobject%20Object%5D&amp;name=image.png&amp;originHeight=720&amp;originWidth=679&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=139937&amp;status=done&amp;style=none&amp;taskId=ub553310d-bb90-4d77-9b3d-4572fe7329d&amp;title=&amp;width=340</a>)
-You can scan Bluetooth devices <strong>near the robot</strong> and connect to the robot controller. The device name should be similar to “WR-SC210404”.
-![Screenshot_20210615_124739_de.kai_morich.serial_bluetooth_terminal.jpg](<a class="reference external" href="https://cdn.nlark.com/yuque/0/2021/jpeg/1068073/1623732714442-1f5ef8a0-4ff5-494d-a964-2b4456f4dac6.jpeg#clientId=u471041c6-4f9b-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=ui&amp;height=585&amp;id=RwiS7&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot_20210615_124739_de.kai_morich.serial_bluetooth_terminal.jpg&amp;originHeight=2340&amp;originWidth=1080&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=295195&amp;status=done&amp;style=none&amp;taskId=uff87c1a0-abc1-4657-b9b9-4c14fefcde0&amp;title=&amp;width=270">https://cdn.nlark.com/yuque/0/2021/jpeg/1068073/1623732714442-1f5ef8a0-4ff5-494d-a964-2b4456f4dac6.jpeg#clientId=u471041c6-4f9b-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=ui&amp;height=585&amp;id=RwiS7&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot_20210615_124739_de.kai_morich.serial_bluetooth_terminal.jpg&amp;originHeight=2340&amp;originWidth=1080&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=295195&amp;status=done&amp;style=none&amp;taskId=uff87c1a0-abc1-4657-b9b9-4c14fefcde0&amp;title=&amp;width=270</a>)
-# 6. FAQ</p>
-<p>1. What is the expected battery life (60Ah) and runtime of the robot?
-- Full charging cycle using normal 10A charger takes about 5 hours
-- With maximum load, battery can last 4 hours
-- Without load, battery can last 5 hours</p>
-<p>2. What is the epxected motor temperature and current
-- For <strong>50kg</strong> load running for <strong>15 minutes</strong>:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Average temperature for motor driver and motor about <a href="#id19"><span class="problematic" id="id20">**</span></a>55 degree Celcius **</p></li>
+<p><strong>Note</strong>: Scout V2.6 is incompatible with ugv_sdk and scout_ros.</p>
+</div>
+<div class="section" id="preview-feature">
+<h2>1. Preview Feature<a class="headerlink" href="#preview-feature" title="Permalink to this headline">¶</a></h2>
+<p>System state monitor with Bluetooth. You can download any Bluetooth serial terminal application to receive basic robot state information. We have tested the following app and you can download it from Play store.</p>
+<a class="reference internal image-reference" href="../../_images/scout_v2.6_04.png"><img alt="../../_images/scout_v2.6_04.png" src="../../_images/scout_v2.6_04.png" style="width: 350px;" /></a>
+<p>You can scan Bluetooth devices <strong>near the robot</strong> and connect to the robot controller. The device name should be similar to “WR-SC210404”.</p>
+<a class="reference internal image-reference" href="../../_images/scout_v2.6_05.jpg"><img alt="../../_images/scout_v2.6_05.jpg" src="../../_images/scout_v2.6_05.jpg" style="width: 350px;" /></a>
+</div>
+<div class="section" id="faq">
+<h2>1. FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>What is the expected battery life (60Ah) and runtime of the robot?</p>
+<ul class="simple">
+<li><p>Full charging cycle using normal 10A charger takes about 5 hours</p></li>
+<li><p>With maximum load, battery can last 4 hours</p></li>
+<li><p>Without load, battery can last 5 hours</p></li>
+</ul>
+</li>
+<li><p>What is the epxected motor temperature and current</p>
+<ul class="simple">
+<li><p>For <strong>50kg</strong> load running for <strong>15 minutes</strong>:</p></li>
+<li><p>Average temperature for motor driver and motor about <strong>55 degree Celcius</strong></p></li>
 <li><p>Average current per motor is about <strong>4.5A</strong></p></li>
 </ul>
-</div></blockquote>
-<p>3. BMS
-- if &lt;= SOC 10%, battery will enter protection mode</p>
+</li>
+<li><p>BMS</p>
+<ul class="simple">
+<li><p>if &lt;= SOC 10%, battery will enter protection mode</p></li>
+</ul>
+</li>
+</ol>
+</div>
 </div>
 
 

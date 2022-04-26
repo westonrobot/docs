@@ -8,7 +8,9 @@
 Welcome to Weston Robot Documentation
 #####################################
 
-This website provides intrsutctions and tutorials on the setup and software development with the robot platforms from Weston Robot.
+This website provides intrsutctions and tutorials on the setup and software development with the robot platforms from Weston Robot (Singapore).
+
+**Please ensure that only trained personals should operate the robot.**
 
 .. toctree::
    :maxdepth: 2
@@ -16,5 +18,4 @@ This website provides intrsutctions and tutorials on the setup and software deve
    /_getting_started/getting_started
    /_user_guide/user_guide
    /_toolbox/toolbox
-
 
