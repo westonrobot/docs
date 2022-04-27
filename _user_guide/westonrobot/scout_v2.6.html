@@ -44,8 +44,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#control-token">2. Control Token</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#key-operation-information">3. Key Operation Information</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#software-packages">4. Software Packages</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#preview-feature">1. Preview Feature</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#faq">1. FAQ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#preview-feature">5. Preview Feature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#faq">6. FAQ</a></li>
 </ul>
 </li>
 </ul>
@@ -84,29 +84,6 @@
 <h2>1. Summary of Changes<a class="headerlink" href="#summary-of-changes" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="hardware-updates">
 <h3>1.1 Hardware Updates<a class="headerlink" href="#hardware-updates" title="Permalink to this headline">¶</a></h3>
-<table class="docutils align-default">
-<colgroup>
-<col style="width: 32%" />
-<col style="width: 41%" />
-<col style="width: 27%" />
-</colgroup>
-<thead>
-<tr class="row-odd"><th class="head"><p>Item</p></th>
-<th class="head"><p>Current</p></th>
-<th class="head"><p>Previous (V2.5)</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Top Interface Panel</p></td>
-<td><p>CAN+POWER, Peripheral CAN</p></td>
-<td><p>CAN+POWER, RS232</p></td>
-</tr>
-<tr class="row-odd"><td><p>Battery</p></td>
-<td><p>24V, 60Ah</p></td>
-<td><p>24V, 30Ah</p></td>
-</tr>
-</tbody>
-</table>
 <a class="reference internal image-reference" href="../../_images/scout_v2.6_01.png"><img alt="../../_images/scout_v2.6_01.png" src="../../_images/scout_v2.6_01.png" style="width: 500px;" /></a>
 <ul class="simple">
 <li><dl class="simple">
@@ -257,8 +234,10 @@
 </ul>
 </li>
 </ol>
-<p><strong>Note</strong>: There are other feedback messages available in addition to the system state message. Please refer to the ROS package message definitions for more details.
-## 3.2 Buzzer Alert</p>
+<p><strong>Note</strong>: There are other feedback messages available in addition to the system state message. Please refer to the ROS package message definitions for more details.</p>
+</div>
+<div class="section" id="buzzer-alert">
+<h3>3.2 Buzzer Alert<a class="headerlink" href="#buzzer-alert" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>There are two levels of alert: <strong>Warn</strong> and <strong>Fault</strong>. You can still control the robot when you get a <strong>warn</strong>-level alert but once a <strong>fault</strong>-level alert is triggered, the robot will stop and not respond to any motion commands to avoid possible hardware damage.</p></li>
 <li><dl class="simple">
@@ -346,14 +325,14 @@
 <p><strong>Note</strong>: Scout V2.6 is incompatible with ugv_sdk and scout_ros.</p>
 </div>
 <div class="section" id="preview-feature">
-<h2>1. Preview Feature<a class="headerlink" href="#preview-feature" title="Permalink to this headline">¶</a></h2>
+<h2>5. Preview Feature<a class="headerlink" href="#preview-feature" title="Permalink to this headline">¶</a></h2>
 <p>System state monitor with Bluetooth. You can download any Bluetooth serial terminal application to receive basic robot state information. We have tested the following app and you can download it from Play store.</p>
 <a class="reference internal image-reference" href="../../_images/scout_v2.6_04.png"><img alt="../../_images/scout_v2.6_04.png" src="../../_images/scout_v2.6_04.png" style="width: 350px;" /></a>
 <p>You can scan Bluetooth devices <strong>near the robot</strong> and connect to the robot controller. The device name should be similar to “WR-SC210404”.</p>
 <a class="reference internal image-reference" href="../../_images/scout_v2.6_05.jpg"><img alt="../../_images/scout_v2.6_05.jpg" src="../../_images/scout_v2.6_05.jpg" style="width: 350px;" /></a>
 </div>
 <div class="section" id="faq">
-<h2>1. FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h2>
+<h2>6. FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
 <li><p>What is the expected battery life (60Ah) and runtime of the robot?</p>
 <ul class="simple">
