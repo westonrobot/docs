@@ -11,7 +11,7 @@ Scout V2.6 User Guide
 +---------------------+---------------------------+------------------+
 |        Item         |          Current          | Previous (V2.5)  |
 +=====================+===========================+==================+
-| Top Interface Panel | CAN+POWER, Peripheral CAN | CAN+POWER, RS232 |
+| Top Interface Panel | CAN+POWER, Peripheral CAN | CAN+POWER, MicroUSB |
 +---------------------+---------------------------+------------------+
 | Battery             | 24V, 60Ah                 | 24V, 30Ah        |
 +---------------------+---------------------------+------------------+
@@ -116,7 +116,9 @@ Key information about the robot can be extracted from the system state message:
    - contains information about battery voltage
 
 **Note**: There are other feedback messages available in addition to the system state message. Please refer to the ROS package message definitions for more details.
-## 3.2 Buzzer Alert
+
+3.2 Buzzer Alert
+----------------
 
 - There are two levels of alert: **Warn** and **Fault**. You can still control the robot when you get a **warn**-level alert but once a **fault**-level alert is triggered, the robot will stop and not respond to any motion commands to avoid possible hardware damage.
 - Warn-level alert: buzzer will be triggered at a relatively **low frequency** (0.5Hz).
@@ -151,7 +153,7 @@ Key information about the robot can be extracted from the system state message:
 
 **Note**: Scout V2.6 is incompatible with ugv_sdk and scout_ros.
 
-1. Preview Feature
+5. Preview Feature
 ==================
 
 System state monitor with Bluetooth. You can download any Bluetooth serial terminal application to receive basic robot state information. We have tested the following app and you can download it from Play store.
@@ -164,7 +166,7 @@ You can scan Bluetooth devices **near the robot** and connect to the robot contr
 .. image:: figures/scout_v2.6_05.jpg
     :width: 350 px
 
-1. FAQ
+6. FAQ
 ======
 
 1. What is the expected battery life (60Ah) and runtime of the robot?
