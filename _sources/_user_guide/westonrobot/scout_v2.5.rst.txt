@@ -284,7 +284,7 @@ The default connection string is
     $ sudo mcumgr <connection string> image confirm <hash of image>
 
 
-.. image:: https://cdn.nlark.com/yuque/0/2021/png/10383397/1624164006532-b4620fb5-726e-44a3-bf21-cf82448d7716.png#clientId=u0690fbf6-4f2f-4&from=ui&id=u0c4ebebb&margin=%5Bobject%20Object%5D&name=mcumgr5.png&originHeight=255&originWidth=1206&originalType=binary&ratio=2&size=49553&status=done&style=none&taskId=u0f7a0f3e-b773-4cab-a034-2458ff41325
+.. image:: figures/scout_v2.5_10.png
 
 - Reset by the following command
   
@@ -293,7 +293,7 @@ The default connection string is
     $ sudo mcumgr <connection string> reset
 
 
-.. image:: https://cdn.nlark.com/yuque/0/2021/png/10383397/1624164297393-7a77d96a-183d-4c26-8b01-e06d75205af6.png#clientId=u0690fbf6-4f2f-4&from=ui&id=u812b1eda&margin=%5Bobject%20Object%5D&name=mcumgr6.png&originHeight=36&originWidth=944&originalType=binary&ratio=2&size=12245&status=done&style=none&taskId=udc0a7197-d667-4246-9b57-8a93f401307
+.. image:: figures/scout_v2.5_11.png
 
 - Wait for about 30 seconds and run the following command
 
@@ -304,7 +304,7 @@ The default connection string is
 
 - You should be able to see the following
 
-.. image:: https://cdn.nlark.com/yuque/0/2021/png/10383397/1624164273167-b9cc719a-a171-4411-ace1-192b8622f045.png#clientId=u0690fbf6-4f2f-4&from=ui&id=udd2944a4&margin=%5Bobject%20Object%5D&name=mcumgr7.png&originHeight=238&originWidth=971&originalType=binary&ratio=2&size=42012&status=done&style=none&taskId=u0f6d676f-fc33-45e0-80f8-892901b263f
+.. image:: figures/scout_v2.5_12.png
 
 - Now, you have upgraded the firmware successfully to a newer version.
 - If you would like to revert the previous firmware, you can do so by confirming the image with hash of old image followed by a reset. 
