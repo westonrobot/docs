@@ -17,5 +17,6 @@ This website provides intrsutctions and tutorials on the setup and software deve
       
    /_getting_started/getting_started
    /_user_guide/user_guide
+   /_software/software
    /_toolbox/toolbox
 
