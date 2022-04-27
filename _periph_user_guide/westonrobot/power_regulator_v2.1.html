@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Power Regulator V2.1 User Guide &mdash; Weston Robot v0.1 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Software Packages" href="../../_software/software.html" />
+    <link rel="prev" title="Peripheral User Guide" href="../periph_user_guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #323640" >
+            <a href="../../index.html"><img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../_getting_started/getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_robot_user_guide/robot_user_guide.html">Robot User Guide</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../periph_user_guide.html">Peripheral User Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Power Regulator V2.1 User Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#overview">1. Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#specifications">2. Specifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hardware-setup">3. Hardware Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#software-setup">4. Software Setup</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../_software/software.html">Software Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../_toolbox/toolbox.html">Weston Robot Toolbox</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #323640" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Weston Robot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../periph_user_guide.html">Peripheral User Guide</a> &raquo;</li>
+      <li>Power Regulator V2.1 User Guide</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/_periph_user_guide/westonrobot/power_regulator_v2.1.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="power-regulator-v2-1-user-guide">
+<h1>Power Regulator V2.1 User Guide<a class="headerlink" href="#power-regulator-v2-1-user-guide" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>1. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The power management unit is designed by Weston Robot for mobile robot applications. It has the following features:</p>
+<ul class="simple">
+<li><p>Stable and low output ripple of the outputs</p></li>
+<li><p>All ports are fused for protection of both battery and connected devices</p></li>
+<li><p>Supports soft-start to avoid current surge during startup</p></li>
+<li><p>Temperature monitoring and regulation with active fan cooling</p></li>
+<li><p>The output ports can be controlled individually (on/off) for finer boot sequence control</p></li>
+<li><p>Output voltage and current feedback via CAN/RS485 communication port</p></li>
+</ul>
+</div>
+<div class="section" id="specifications">
+<h2>2. Specifications<a class="headerlink" href="#specifications" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="power-module">
+<h3>Power Module<a class="headerlink" href="#power-module" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 27%" />
+<col style="width: 13%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Port</p></th>
+<th class="head"><p>Voltage</p></th>
+<th class="head"><p>Current (Max)</p></th>
+<th class="head"><p>Power</p></th>
+<th class="head"><p>Fused</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Main input</p></td>
+<td><p>18-32V</p></td>
+<td><p>20A</p></td>
+<td><p>/</p></td>
+<td><p>20A fuse</p></td>
+</tr>
+<tr class="row-odd"><td><p>Output - 19V</p></td>
+<td><p>19V</p></td>
+<td><p>8A</p></td>
+<td><p>150W</p></td>
+<td><p>10A fuse</p></td>
+</tr>
+<tr class="row-even"><td><p>Output - 12V</p></td>
+<td><p>12V</p></td>
+<td><p>10A</p></td>
+<td><p>120W</p></td>
+<td><p>15A fuse</p></td>
+</tr>
+<tr class="row-odd"><td><p>Output - 5V isolated</p></td>
+<td><p>5V</p></td>
+<td><p>4A</p></td>
+<td><p>20W</p></td>
+<td><p>Resettable</p></td>
+</tr>
+<tr class="row-even"><td><p>Output - 12V isolated</p></td>
+<td><p>12V</p></td>
+<td><p>3.3A</p></td>
+<td><p>40W</p></td>
+<td><p>Resettable</p></td>
+</tr>
+<tr class="row-odd"><td><p>Output - extension</p></td>
+<td><p>input voltage</p></td>
+<td><p>/</p></td>
+<td><p>limited by total power</p></td>
+<td><p>/</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="control-module">
+<h3>Control Module<a class="headerlink" href="#control-module" title="Permalink to this headline">¶</a></h3>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 16%" />
+<col style="width: 73%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Port</p></th>
+<th class="head"><p>Protocol</p></th>
+<th class="head"><p>Function</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>CAN</p></td>
+<td><p>CANopen</p></td>
+<td><p>monitoring and control, firmware upgrade</p></td>
+</tr>
+<tr class="row-odd"><td><p>RS485</p></td>
+<td><p>/</p></td>
+<td><p>firmware upgrade (backup), future extension</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="hardware-setup">
+<h2>3. Hardware Setup<a class="headerlink" href="#hardware-setup" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="startup-and-operation">
+<h3>Startup and Operation<a class="headerlink" href="#startup-and-operation" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Upon start up, both red and green leds would light up</p></li>
+<li><p>After that, a callibration process would happen for about 2 seconds</p></li>
+<li><p>After calibration, the unit would go into the operation state where the green led would be blinking at 1Hz frequency.</p></li>
+<li><p>If there is any firmware upgrade happenning, the green led would be turned off while red led would be blinking.</p></li>
+</ul>
+</div>
+<div class="section" id="output-connection">
+<h3>Output Connection<a class="headerlink" href="#output-connection" title="Permalink to this headline">¶</a></h3>
+<p>The output ports of the power module are exposed with <strong>Molex Megafit</strong> connectors. For each port, 2 or 4 channels are provided. Note that the channels are interconnected internally, thus the total power consumption should not exceed the power ratings of the port.</p>
+</div>
+</div>
+<div class="section" id="software-setup">
+<span id="ref-power-regulator-software-setup"></span><h2>4. Software Setup<a class="headerlink" href="#software-setup" title="Permalink to this headline">¶</a></h2>
+<p>The power regulator uses CANopen to communication with a computer.</p>
+<p><strong>Note</strong> The CANopen driver for the power regulator is supported by wrp_sdk since version 1.0.0.</p>
+<p>Follow the following instructions to install the latest SDK.</p>
+<div class="section" id="install-dependencies">
+<h3>Install Dependencies<a class="headerlink" href="#install-dependencies" title="Permalink to this headline">¶</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install -y software-properties-common
+$ sudo add-apt-repository ppa:lely/ppa <span class="o">&amp;&amp;</span> sudo apt-get update
+$ sudo apt-get install -y pkg-config liblely-coapp-dev liblely-co-tools
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-the-sdk">
+<h3>Install the SDK<a class="headerlink" href="#install-the-sdk" title="Permalink to this headline">¶</a></h3>
+<p>Please add the debian repository to your apt-get source list firt. Refer to section <a class="reference internal" href="../../_software/software.html#ref-add-debian-source"><span class="std std-ref">Debian Repository</span></a></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install wrp_sdk
+</pre></div>
+</div>
+</div>
+<div class="section" id="install-the-widget">
+<h3>Install the Widget<a class="headerlink" href="#install-the-widget" title="Permalink to this headline">¶</a></h3>
+<p>Please make sure you have followed the instructions above and installed the SDK.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#  1 install wr_regulator_widget dependencies</span>
+$ sudo apt-get install libgl1-mesa-dev libglfw3-dev libcairo2-dev
+<span class="c1">## 2. install the package</span>
+$ sudo apt-get install wr_regulator_widget
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../periph_user_guide.html" class="btn btn-neutral float-left" title="Peripheral User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../_software/software.html" class="btn btn-neutral float-right" title="Software Packages" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Weston Robot Pte Ltd.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
