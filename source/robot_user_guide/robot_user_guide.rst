@@ -11,6 +11,6 @@ Here you can find user guides giving detailed information about a specific robot
 .. toctree::
    :maxdepth: 1
 
-   /_robot_user_guide/westonrobot/scout_v2.5
-   /_robot_user_guide/westonrobot/scout_v2.6
+   /robot_user_guide/westonrobot/scout_v2.5
+   /robot_user_guide/westonrobot/scout_v2.6
    

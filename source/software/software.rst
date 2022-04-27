@@ -22,19 +22,19 @@ C++ SDK
 * **Weston Robot Autonomy SDK (wra_sdk)**
   
   - https://github.com/westonrobot/wra_sdk
-  - wra_sdk provides a C++ API to access application-level functionalities developed by Weston Robot, for example, robot tele-operation, video streaming.
+  - wra_sdk provides a C++ API to access application-level functionalities developed by Weston Robot, for example, robot tele-operation, video streaming
 
 ROS Package
 ===========
 
 * **Weston Robot Platofrom ROS Support Package (wrp_ros)**
 
-  - This package provides a light wrapper around wrp_sdk for ROS1.
+  - This package provides a light wrapper around wrp_sdk for ROS1
   - https://github.com/westonrobot/wrp_ros
 
 * **Weston Robot Platofrom ROS2 Support Package (wrp_ros2)**
 
-  - This package provides a light wrapper around wrp_sdk for ROS2.
+  - This package provides a light wrapper around wrp_sdk for ROS2
   - https://github.com/westonrobot/wrp_ros2
 
 Widget Apps
@@ -44,7 +44,7 @@ In order to install the widget, please add the Weston Robot debian repository to
 
 * **Power Regulator Widget (wr_regulator_widget)**
   
-  - This widget allows monitoring and control of power regulator channels.
+  - This widget allows monitoring and control of power regulator channels
   - Install from apt-get server with package name: wr_regulator_widget
   - Refer to this section :ref:`Power Regulator Software Setup <ref_power_regulator_software_setup>`
 
