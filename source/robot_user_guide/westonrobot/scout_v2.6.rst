@@ -43,12 +43,12 @@ Scout V2.6 User Guide
     
 The robot can be controlled **manually** with a remote controller or **programatically** through the CAN interface from a Linux computer. Previously, there was no explicit way for the onboard computer (the navigation system by the user) to know whether it had control of the robot and this made it difficult to troubleshoot when the robot  does not execute the commands sent to it. To circumvent this problem, we introduced the concept of a control token to provide finer access control of the the robot.
 
-- There is only one control token available and the token is initially held by the robot (commands from either remote controller or CAN bus will not be responded).
+- There is only one control token available and the token is initially held by the robot (commands from either remote controller or CAN bus will not be responded)
 - Only the entity who has gained the control token will be able to control the robot to move
-- The remote controller has a higher priority to take the control token than the CAN bus. This means the operator can always take over control from the onboard computer using the remote controller.
-- Once the operator has finished manual control, the operator can switch the control mode back to **standby** and the control token will be returned to the robot.  (Switching off the remote controller will return the control token to the robot as well). The SDK will have to request to gain the control token to resume control via CAN bus . 
+- The remote controller has a higher priority to take the control token than the CAN bus. This means the operator can always take over control from the onboard computer using the remote controller
+- Once the operator has finished manual control, the operator can switch the control mode back to **standby** and the control token will be returned to the robot.  (Switching off the remote controller will return the control token to the robot as well). The SDK will have to request to gain the control token to resume control via CAN bus 
 - An error code will be returned to the user if the SDK fails to gain the control token. Possible reasons include hardware failure, robot in manual control mode, etc.
-- Only **one SDK instance** or **one ROS node** is allowed to communicate with the robot at a time.
+- Only **one SDK instance** or **one ROS node** is allowed to communicate with the robot at a time
 
 .. image:: figures/scout_v2.6_03.png
     :width: 500 px
@@ -58,7 +58,7 @@ With the introduced control token feature, the functional mapping of "**SWA**" a
 - Initally, the robot is in standby mode when **SWB** stays at the up position (control token kept by the robot).
 - The remote controller will gain the control token by placing **SWB** at the middle position, setting the robot to be in the manual control mode.
 - Once the operator has finished manual control, the operator can switch the control mode back to **standby** by placing **SWB **to** up** position. This will return the control token to the robot. Switching off the remote controller will return the control token to the robot controller as well. 
-- **SWA** acts as a wireless E-Stop. If **SWA **is switched to **down position,** the control token will remain with the robot, **neither remote controller** **nor SDK **would be able to control the robot until **SWA **is returned to **up **position. 
+- **SWA** acts as a wireless E-Stop. If **SWA **is switched to **down position,** the control token will remain with the robot, **neither remote controller** **nor SDK **would be able to control the robot until **SWA **is returned to **up **position 
 
 3. Key Operation Information
 ============================
@@ -120,13 +120,13 @@ Key information about the robot can be extracted from the system state message:
 3.2 Buzzer Alert
 ----------------
 
-- There are two levels of alert: **Warn** and **Fault**. You can still control the robot when you get a **warn**-level alert but once a **fault**-level alert is triggered, the robot will stop and not respond to any motion commands to avoid possible hardware damage.
-- Warn-level alert: buzzer will be triggered at a relatively **low frequency** (0.5Hz).
-   - The robot **can still be controlled**, but the warning (buzzer) will remain until none of the **warning** conditions from Table 1.1 exist.
-   - It is advised to take proper actions to get the robot back to normal.
-- Fault-level alert: buzzer will be triggered **at higher frequency** (2Hz).
-   - The robot **cannot be controlled** until all **faults **are resolved. 
-   - For recoverable faults (e.g. over-heating), the robot may first recover back to warn-level condition before returning to normal, given enough time for cooling.
+- There are two levels of alert: **Warn** and **Fault**. You can still control the robot when you get a **warn**-level alert but once a **fault**-level alert is triggered, the robot will stop and not respond to any motion commands to avoid possible hardware damage
+- Warn-level alert: buzzer will be triggered at a relatively **low frequency** (0.5Hz)
+   - The robot **can still be controlled**, but the warning (buzzer) will remain until none of the **warning** conditions from Table 1.1 exist
+   - It is advised to take proper actions to get the robot back to normal
+- Fault-level alert: buzzer will be triggered **at higher frequency** (2Hz)
+   - The robot **cannot be controlled** until all **faults **are resolved 
+   - For recoverable faults (e.g. over-heating), the robot may first recover back to warn-level condition before returning to normal, given enough time for cooling
 - Conditions that may trigger the alert are listed below
   
 +---------------------+-----------------------------+----------------------------------------------+-----------------+------------------+

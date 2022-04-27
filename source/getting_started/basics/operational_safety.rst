@@ -5,9 +5,9 @@ Operational Safety
 Operation Environment
 =====================
 
-- Do not place the robot near heaters or heating elements.
-- Do not use the robot in an environment with corrosive and flammable gases or combustible substances.
-- Unless specially customized, the general robot models are not waterproof and shall not be operated in places with excessive humidity.
+- Do not place the robot near heaters or heating elements
+- Do not use the robot in an environment with corrosive and flammable gases or combustible substances
+- Unless specially customized, the general robot models are not waterproof and shall not be operated in places with excessive humidity
   
 Software Development
 ====================
