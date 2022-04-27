@@ -16,6 +16,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Weston Robot Maintenance Toolbox (MT)" href="mt_toolbox.html" />
     <link rel="prev" title="Weston Robot Toolbox" href="toolbox.html" /> 
 </head>
 
@@ -37,12 +38,14 @@
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../_getting_started/getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../_user_guide/user_guide.html">Robot User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../_software/software.html">Software Packages</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="toolbox.html">Weston Robot Toolbox</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Weston Robot Asssisted Driving Toolbox (ADT)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#assisted-driving-server-setup">Assisted Driving Server Setup</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#assisted-driving-client-setup">Assisted Driving Client Setup</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="mt_toolbox.html">Weston Robot Maintenance Toolbox (MT)</a></li>
 </ul>
 </li>
 </ul>
@@ -75,7 +78,7 @@
   <div class="section" id="weston-robot-asssisted-driving-toolbox-adt">
 <h1>Weston Robot Asssisted Driving Toolbox (ADT)<a class="headerlink" href="#weston-robot-asssisted-driving-toolbox-adt" title="Permalink to this headline">¶</a></h1>
 <p>Weston Robot proudly presents the Assisted Driving Toolbox (ADT), a teleoperation system designed and developed by Weston Robot for usage on multiple mobile robot platforms. The system allows the the control and operation of an robot through a shared network; with a wide coverage of its surroundings using mounted onboard camera modules.</p>
-<img alt="https://cdn.nlark.com/yuque/0/2021/png/21990865/1634203319259-97fb8982-89e0-4ec3-b831-8e244199cd0a.png#clientId=u3f917be2-7d1f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u490b4231&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot_20211014_170652.png&amp;originHeight=1109&amp;originWidth=1920&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=2671638&amp;status=done&amp;style=none&amp;taskId=u1ddb83e4-9431-4bc5-a416-3554f64ca47&amp;title=" src="https://cdn.nlark.com/yuque/0/2021/png/21990865/1634203319259-97fb8982-89e0-4ec3-b831-8e244199cd0a.png#clientId=u3f917be2-7d1f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u490b4231&amp;margin=%5Bobject%20Object%5D&amp;name=Screenshot_20211014_170652.png&amp;originHeight=1109&amp;originWidth=1920&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=2671638&amp;status=done&amp;style=none&amp;taskId=u1ddb83e4-9431-4bc5-a416-3554f64ca47&amp;title=" />
+<img alt="../_images/adt_01.png" src="../_images/adt_01.png" />
 <div class="section" id="assisted-driving-server-setup">
 <h2>Assisted Driving Server Setup<a class="headerlink" href="#assisted-driving-server-setup" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="service-management">
@@ -142,12 +145,12 @@ $ sudo apt-get install wr_assisted_teleop
 <ul class="simple">
 <li><p>The icons below show the status of the control and video streaming servers. The icons on the left screenshot indicates the services are online, while the one on the right indicates the services offline.</p></li>
 </ul>
-<a class="reference internal image-reference" href="https://cdn.nlark.com/yuque/0/2021/png/21990865/1635920922054-421cc592-8185-4eae-a476-1d49fcad7136.png#clientId=uf20fb758-32ed-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=ud272b381&amp;margin=%5Bobject%20Object%5D&amp;name=screenshot_14.png&amp;originHeight=232&amp;originWidth=342&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=31417&amp;status=done&amp;style=none&amp;taskId=ud0fbbb6d-d7c7-423f-bc82-b391e681127&amp;title="><img alt="https://cdn.nlark.com/yuque/0/2021/png/21990865/1635920922054-421cc592-8185-4eae-a476-1d49fcad7136.png#clientId=uf20fb758-32ed-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=ud272b381&amp;margin=%5Bobject%20Object%5D&amp;name=screenshot_14.png&amp;originHeight=232&amp;originWidth=342&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=31417&amp;status=done&amp;style=none&amp;taskId=ud0fbbb6d-d7c7-423f-bc82-b391e681127&amp;title=" src="https://cdn.nlark.com/yuque/0/2021/png/21990865/1635920922054-421cc592-8185-4eae-a476-1d49fcad7136.png#clientId=uf20fb758-32ed-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=ud272b381&amp;margin=%5Bobject%20Object%5D&amp;name=screenshot_14.png&amp;originHeight=232&amp;originWidth=342&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=31417&amp;status=done&amp;style=none&amp;taskId=ud0fbbb6d-d7c7-423f-bc82-b391e681127&amp;title=" style="width: 300px;" /></a>
-<a class="reference internal image-reference" href="https://cdn.nlark.com/yuque/0/2021/png/21990865/1635920832411-9a3974ae-4b36-4ae9-bcff-018383de3b7f.png#clientId=uf20fb758-32ed-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;height=232&amp;id=uc1f28126&amp;margin=%5Bobject%20Object%5D&amp;name=screenshot_13.png&amp;originHeight=242&amp;originWidth=372&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=151925&amp;status=done&amp;style=none&amp;taskId=u13d824b0-43ac-4efe-903f-c32f19bc40d&amp;title=&amp;width=356"><img alt="https://cdn.nlark.com/yuque/0/2021/png/21990865/1635920832411-9a3974ae-4b36-4ae9-bcff-018383de3b7f.png#clientId=uf20fb758-32ed-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;height=232&amp;id=uc1f28126&amp;margin=%5Bobject%20Object%5D&amp;name=screenshot_13.png&amp;originHeight=242&amp;originWidth=372&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=151925&amp;status=done&amp;style=none&amp;taskId=u13d824b0-43ac-4efe-903f-c32f19bc40d&amp;title=&amp;width=356" src="https://cdn.nlark.com/yuque/0/2021/png/21990865/1635920832411-9a3974ae-4b36-4ae9-bcff-018383de3b7f.png#clientId=uf20fb758-32ed-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;height=232&amp;id=uc1f28126&amp;margin=%5Bobject%20Object%5D&amp;name=screenshot_13.png&amp;originHeight=242&amp;originWidth=372&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=151925&amp;status=done&amp;style=none&amp;taskId=u13d824b0-43ac-4efe-903f-c32f19bc40d&amp;title=&amp;width=356" style="width: 313px;" /></a>
+<a class="reference internal image-reference" href="../_images/adt_02.png"><img alt="../_images/adt_02.png" src="../_images/adt_02.png" style="width: 300px;" /></a>
+<a class="reference internal image-reference" href="../_images/adt_03.png"><img alt="../_images/adt_03.png" src="../_images/adt_03.png" style="width: 313px;" /></a>
 <ul class="simple">
 <li><p>If system has been configured before, camera streams will automatically be enabled. To toggle individual camera streams, use the buttons below</p></li>
 </ul>
-<a class="reference internal image-reference" href="https://cdn.nlark.com/yuque/0/2021/png/21990865/1634203699500-09fff5a0-0335-4537-bd9d-ad176151bfc2.png#clientId=u3f917be2-7d1f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u875d4533&amp;margin=%5Bobject%20Object%5D&amp;name=2021-10-14_17-26.png&amp;originHeight=276&amp;originWidth=451&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=198256&amp;status=done&amp;style=none&amp;taskId=u9326cd46-0da0-4a0c-bef5-9e1607f0a1a&amp;title="><img alt="https://cdn.nlark.com/yuque/0/2021/png/21990865/1634203699500-09fff5a0-0335-4537-bd9d-ad176151bfc2.png#clientId=u3f917be2-7d1f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u875d4533&amp;margin=%5Bobject%20Object%5D&amp;name=2021-10-14_17-26.png&amp;originHeight=276&amp;originWidth=451&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=198256&amp;status=done&amp;style=none&amp;taskId=u9326cd46-0da0-4a0c-bef5-9e1607f0a1a&amp;title=" src="https://cdn.nlark.com/yuque/0/2021/png/21990865/1634203699500-09fff5a0-0335-4537-bd9d-ad176151bfc2.png#clientId=u3f917be2-7d1f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u875d4533&amp;margin=%5Bobject%20Object%5D&amp;name=2021-10-14_17-26.png&amp;originHeight=276&amp;originWidth=451&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=198256&amp;status=done&amp;style=none&amp;taskId=u9326cd46-0da0-4a0c-bef5-9e1607f0a1a&amp;title=" style="width: 350px;" /></a>
+<a class="reference internal image-reference" href="../_images/adt_04.png"><img alt="../_images/adt_04.png" src="../_images/adt_04.png" style="width: 350px;" /></a>
 <ul>
 <li><p>To toggle control of the robot (control disabled by default) and to view the status of attached joystick, use the buttons below</p>
 <blockquote>
@@ -157,7 +160,7 @@ $ sudo apt-get install wr_assisted_teleop
 </div></blockquote>
 </li>
 </ul>
-<a class="reference internal image-reference" href="https://cdn.nlark.com/yuque/0/2021/png/21990865/1634203834112-12f927c4-3d4b-4ed8-8db8-744315286c41.png#clientId=u3f917be2-7d1f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;height=289&amp;id=u07e9de80&amp;margin=%5Bobject%20Object%5D&amp;name=2021-10-14_17-30.png&amp;originHeight=265&amp;originWidth=413&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=172069&amp;status=done&amp;style=none&amp;taskId=u88c23ac3-fc3a-48ba-842f-291db16c5a4&amp;title=&amp;width=451"><img alt="https://cdn.nlark.com/yuque/0/2021/png/21990865/1634203834112-12f927c4-3d4b-4ed8-8db8-744315286c41.png#clientId=u3f917be2-7d1f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;height=289&amp;id=u07e9de80&amp;margin=%5Bobject%20Object%5D&amp;name=2021-10-14_17-30.png&amp;originHeight=265&amp;originWidth=413&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=172069&amp;status=done&amp;style=none&amp;taskId=u88c23ac3-fc3a-48ba-842f-291db16c5a4&amp;title=&amp;width=451" src="https://cdn.nlark.com/yuque/0/2021/png/21990865/1634203834112-12f927c4-3d4b-4ed8-8db8-744315286c41.png#clientId=u3f917be2-7d1f-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;height=289&amp;id=u07e9de80&amp;margin=%5Bobject%20Object%5D&amp;name=2021-10-14_17-30.png&amp;originHeight=265&amp;originWidth=413&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=172069&amp;status=done&amp;style=none&amp;taskId=u88c23ac3-fc3a-48ba-842f-291db16c5a4&amp;title=&amp;width=451" style="width: 350px;" /></a>
+<a class="reference internal image-reference" href="../_images/adt_05.png"><img alt="../_images/adt_05.png" src="../_images/adt_05.png" style="width: 350px;" /></a>
 <ul>
 <li><p>The joystick gauge displays the current state of the attached controlling joystick.</p>
 <blockquote>
@@ -168,15 +171,15 @@ $ sudo apt-get install wr_assisted_teleop
 </div></blockquote>
 </li>
 </ul>
-<img alt="https://cdn.nlark.com/yuque/0/2021/png/21990865/1635920601936-f6cb0f7f-882f-47ec-8e86-5fce4145a328.png#clientId=uf20fb758-32ed-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;height=146&amp;id=u0b167acd&amp;margin=%5Bobject%20Object%5D&amp;name=screenshot_9.png&amp;originHeight=215&amp;originWidth=980&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=239233&amp;status=done&amp;style=none&amp;taskId=udc1c1adc-c55b-409d-b8c1-ec1f584d408&amp;title=&amp;width=666" src="https://cdn.nlark.com/yuque/0/2021/png/21990865/1635920601936-f6cb0f7f-882f-47ec-8e86-5fce4145a328.png#clientId=uf20fb758-32ed-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;height=146&amp;id=u0b167acd&amp;margin=%5Bobject%20Object%5D&amp;name=screenshot_9.png&amp;originHeight=215&amp;originWidth=980&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=239233&amp;status=done&amp;style=none&amp;taskId=udc1c1adc-c55b-409d-b8c1-ec1f584d408&amp;title=&amp;width=666" />
+<img alt="../_images/adt_06.png" src="../_images/adt_06.png" />
 <ul class="simple">
 <li><p>The obstacle detection gauge displays the current feedback on any range finders in the system (when applicable)</p></li>
 </ul>
-<img alt="https://cdn.nlark.com/yuque/0/2021/png/21990865/1635920602358-13393aca-f57e-4a24-a067-177f5d0df95f.png#clientId=uf20fb758-32ed-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;height=138&amp;id=u4a61a414&amp;margin=%5Bobject%20Object%5D&amp;name=screenshot_10.png&amp;originHeight=199&amp;originWidth=975&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=236015&amp;status=done&amp;style=none&amp;taskId=ue108498a-38da-498d-b67c-29679079297&amp;title=&amp;width=674" src="https://cdn.nlark.com/yuque/0/2021/png/21990865/1635920602358-13393aca-f57e-4a24-a067-177f5d0df95f.png#clientId=uf20fb758-32ed-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;height=138&amp;id=u4a61a414&amp;margin=%5Bobject%20Object%5D&amp;name=screenshot_10.png&amp;originHeight=199&amp;originWidth=975&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=236015&amp;status=done&amp;style=none&amp;taskId=ue108498a-38da-498d-b67c-29679079297&amp;title=&amp;width=674" />
+<img alt="../_images/adt_07.png" src="../_images/adt_07.png" />
 <ul class="simple">
 <li><p>The Speedo- and Battery meter gauge displays the current speed and battery’s charge (Upcoming feature)</p></li>
 </ul>
-<img alt="https://cdn.nlark.com/yuque/0/2021/png/21990865/1635920406603-31547821-f689-4abe-be30-2eba65125f9c.png#clientId=uf20fb758-32ed-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;height=145&amp;id=u289ba4ca&amp;margin=%5Bobject%20Object%5D&amp;name=screenshot_7.png&amp;originHeight=208&amp;originWidth=970&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=291012&amp;status=done&amp;style=none&amp;taskId=ufefd7106-fc66-4267-a50b-5a3d4618f19&amp;title=&amp;width=678" src="https://cdn.nlark.com/yuque/0/2021/png/21990865/1635920406603-31547821-f689-4abe-be30-2eba65125f9c.png#clientId=uf20fb758-32ed-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;height=145&amp;id=u289ba4ca&amp;margin=%5Bobject%20Object%5D&amp;name=screenshot_7.png&amp;originHeight=208&amp;originWidth=970&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=291012&amp;status=done&amp;style=none&amp;taskId=ufefd7106-fc66-4267-a50b-5a3d4618f19&amp;title=&amp;width=678" />
+<img alt="../_images/adt_08.png" src="../_images/adt_08.png" />
 </div>
 <div class="section" id="client-configuration">
 <h3>Client Configuration<a class="headerlink" href="#client-configuration" title="Permalink to this headline">¶</a></h3>
@@ -188,11 +191,11 @@ $ sudo apt-get install wr_assisted_teleop
 </ul>
 </dd>
 </dl>
-<img alt="https://cdn.nlark.com/yuque/0/2021/png/21990865/1635920378868-980a1b82-3835-497b-9221-5c4449275a71.png#clientId=uf20fb758-32ed-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=ub7b4a0be&amp;margin=%5Bobject%20Object%5D&amp;name=screenshot_4.png&amp;originHeight=971&amp;originWidth=1732&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=1905667&amp;status=done&amp;style=none&amp;taskId=u6e446683-d51c-4a20-88ff-67d09451b9b&amp;title=" src="https://cdn.nlark.com/yuque/0/2021/png/21990865/1635920378868-980a1b82-3835-497b-9221-5c4449275a71.png#clientId=uf20fb758-32ed-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=ub7b4a0be&amp;margin=%5Bobject%20Object%5D&amp;name=screenshot_4.png&amp;originHeight=971&amp;originWidth=1732&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=1905667&amp;status=done&amp;style=none&amp;taskId=u6e446683-d51c-4a20-88ff-67d09451b9b&amp;title=" />
+<img alt="../_images/adt_09.png" src="../_images/adt_09.png" />
 <ul class="simple">
 <li><p>To change settings after first startup, click the settings button at the bottom right of the client to access settings.</p></li>
 </ul>
-<a class="reference internal image-reference" href="https://cdn.nlark.com/yuque/0/2021/png/21990865/1635920590819-eafb3d4f-34b1-4b8b-9df1-b51903ac68dd.png#clientId=uf20fb758-32ed-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u80a26cd4&amp;margin=%5Bobject%20Object%5D&amp;name=screenshot_8.png&amp;originHeight=308&amp;originWidth=609&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=306381&amp;status=done&amp;style=none&amp;taskId=u5b34f6b9-dd62-450d-92e7-a70f88054c8&amp;title="><img alt="https://cdn.nlark.com/yuque/0/2021/png/21990865/1635920590819-eafb3d4f-34b1-4b8b-9df1-b51903ac68dd.png#clientId=uf20fb758-32ed-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u80a26cd4&amp;margin=%5Bobject%20Object%5D&amp;name=screenshot_8.png&amp;originHeight=308&amp;originWidth=609&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=306381&amp;status=done&amp;style=none&amp;taskId=u5b34f6b9-dd62-450d-92e7-a70f88054c8&amp;title=" src="https://cdn.nlark.com/yuque/0/2021/png/21990865/1635920590819-eafb3d4f-34b1-4b8b-9df1-b51903ac68dd.png#clientId=uf20fb758-32ed-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u80a26cd4&amp;margin=%5Bobject%20Object%5D&amp;name=screenshot_8.png&amp;originHeight=308&amp;originWidth=609&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=306381&amp;status=done&amp;style=none&amp;taskId=u5b34f6b9-dd62-450d-92e7-a70f88054c8&amp;title=" style="width: 350px;" /></a>
+<a class="reference internal image-reference" href="../_images/adt_10.png"><img alt="../_images/adt_10.png" src="../_images/adt_10.png" style="width: 350px;" /></a>
 <ul class="simple">
 <li><dl class="simple">
 <dt>Changing the IP address and ports of the Servers is as simple as changing the values below</dt><dd><ul>
@@ -202,7 +205,7 @@ $ sudo apt-get install wr_assisted_teleop
 </dl>
 </li>
 </ul>
-<img alt="https://cdn.nlark.com/yuque/0/2021/png/21990865/1635920357963-5ab38e65-505f-4f6a-981a-365d766adbda.png#clientId=uf20fb758-32ed-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=uda8599ad&amp;margin=%5Bobject%20Object%5D&amp;name=screenshot_5.png&amp;originHeight=606&amp;originWidth=554&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=279330&amp;status=done&amp;style=none&amp;taskId=ub63cbf95-5e08-4293-8bdf-aba126a58f7&amp;title=" src="https://cdn.nlark.com/yuque/0/2021/png/21990865/1635920357963-5ab38e65-505f-4f6a-981a-365d766adbda.png#clientId=uf20fb758-32ed-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=uda8599ad&amp;margin=%5Bobject%20Object%5D&amp;name=screenshot_5.png&amp;originHeight=606&amp;originWidth=554&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=279330&amp;status=done&amp;style=none&amp;taskId=ub63cbf95-5e08-4293-8bdf-aba126a58f7&amp;title=" />
+<a class="reference internal image-reference" href="../_images/adt_11.png"><img alt="../_images/adt_11.png" src="../_images/adt_11.png" style="width: 450px;" /></a>
 <ul class="simple">
 <li><dl class="simple">
 <dt>Changing the joystick mapping is as simple as changing the values below</dt><dd><ul>
@@ -224,7 +227,7 @@ $ sudo apt-get install wr_assisted_teleop
 </dl>
 </li>
 </ul>
-<img alt="https://cdn.nlark.com/yuque/0/2021/png/21990865/1635920375029-9914dddb-3eac-4a38-8900-8bf800c2fca1.png#clientId=uf20fb758-32ed-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u597fba5f&amp;margin=%5Bobject%20Object%5D&amp;name=screenshot_6.png&amp;originHeight=600&amp;originWidth=552&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=269656&amp;status=done&amp;style=none&amp;taskId=ua3307b6d-d63e-44a8-a6d1-2230f608c08&amp;title=" src="https://cdn.nlark.com/yuque/0/2021/png/21990865/1635920375029-9914dddb-3eac-4a38-8900-8bf800c2fca1.png#clientId=uf20fb758-32ed-4&amp;crop=0&amp;crop=0&amp;crop=1&amp;crop=1&amp;from=drop&amp;id=u597fba5f&amp;margin=%5Bobject%20Object%5D&amp;name=screenshot_6.png&amp;originHeight=600&amp;originWidth=552&amp;originalType=binary&amp;ratio=1&amp;rotation=0&amp;showTitle=false&amp;size=269656&amp;status=done&amp;style=none&amp;taskId=ua3307b6d-d63e-44a8-a6d1-2230f608c08&amp;title=" />
+<a class="reference internal image-reference" href="../_images/adt_12.png"><img alt="../_images/adt_12.png" src="../_images/adt_12.png" style="width: 450px;" /></a>
 </div>
 </div>
 </div>
@@ -234,6 +237,7 @@ $ sudo apt-get install wr_assisted_teleop
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="toolbox.html" class="btn btn-neutral float-left" title="Weston Robot Toolbox" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mt_toolbox.html" class="btn btn-neutral float-right" title="Weston Robot Maintenance Toolbox (MT)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
