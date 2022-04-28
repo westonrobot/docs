@@ -64,22 +64,24 @@ Output Connection
 
 The output ports of the power module are exposed with **Molex Megafit** connectors. For each port, 2 or 4 channels are provided. Note that the channels are interconnected internally, thus the total power consumption should not exceed the power ratings of the port.  
 
-**Note** The operation of the fan is dependent on the state of the 12V channel, it will operate only when the 12V channel is on.
+**Note**: The operation of the fan is dependent on the state of the 12V channel, it will operate only when the 12V channel is on.
 The fan would be turned on once the temperature reaches 28°C, and having maximum speed once the temperature reaches 40°C and above.
-
-.. _ref_power_regulator_software_setup:
 
 4. Software Setup
 =================
 
-The power regulator uses CANopen to communication with a computer. 
+The power regulator uses CANopen to communication with a computer. The CANopen driver for the power regulator is supported by wrp_sdk since version 1.0.0. 
 
-**Note** The CANopen driver for the power regulator is supported by wrp_sdk since version 1.0.0. 
+* If you want to interact with the power regulator from your C++ program, you need to install the SDK.
+* If you only need to monitor and control the power regulator with a GUI, you just need to install the widget. 
+
+4.1 Install SDK
+---------------
 
 Follow the following instructions to install the latest SDK.
 
-Install Dependencies
---------------------
+Install dependencies
+^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: bash
 
@@ -88,7 +90,7 @@ Install Dependencies
     $ sudo apt-get install -y pkg-config liblely-coapp-dev liblely-co-tools
 
 Install the SDK
----------------
+^^^^^^^^^^^^^^^
 
 Please add the debian repository to your apt-get source list firt. Refer to section :ref:`Debian Repository <ref_add_debian_source>`
 
@@ -96,10 +98,12 @@ Please add the debian repository to your apt-get source list firt. Refer to sect
 
     $ sudo apt-get install wrp_sdk
 
-Install the Widget
-------------------
+.. _ref_power_regulator_software_setup:
 
-Please make sure you have followed the instructions above and installed the SDK.
+4.2 Install the Widget
+----------------------
+
+Please make sure you have added the debian source as described in section :ref:`Debian Repository <ref_add_debian_source>`.
 
 .. code-block:: bash
 
@@ -108,6 +112,15 @@ Please make sure you have followed the instructions above and installed the SDK.
     # 2. install the package 
     $ sudo apt-get install wr_regulator_widget
 
+Once finished the installation, you can find the executable of the widget at "/opt/weston_robot/bin/regulator_widget".
+
+.. code-block:: bash
+
+    $ /opt/weston_robot/bin/regulator_widget/wr_regulator_widget
+
+Run the widget and you should see the GUI like this:
+
+.. image:: figures/regulator_v2.1_01.png
 
 5. Configuration
 ================
@@ -115,13 +128,9 @@ Please make sure you have followed the instructions above and installed the SDK.
 Setting Default State for Channels
 ----------------------------------
 
-By default, all the output channels are turned off once the power regulator is powered on for safety.
+By default, all the output channels are disabled after the power regulator is powered on for safety purpose. Nevertheless, depending on your application, you may want to have a different initial state for the output channels. For example, if your main control computer is powered by the 19V channel, you would want this channel to be on by default, only after which you can control the power sequence of other channels from your control computer.
 
-Nevertheless, for some applications, you may want to have some output channels on by default.
-
-For example, if the PC powered on by the output channels is in charge of controlling the power regulator, then the output channel connected to the PC should be turned on by default.
-
-The default state is stored in non-volatile storage ROM, in other words, the default state set would remain even the power regulator reboots.
+The default state is stored in non-volatile storage ROM. Thus, once set, the settings would persist. 
 
 Install dependencies
 ^^^^^^^^^^^^^^^^^^^^
