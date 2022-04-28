@@ -194,17 +194,22 @@
 <div class="section" id="output-connection">
 <h3>Output Connection<a class="headerlink" href="#output-connection" title="Permalink to this headline">¶</a></h3>
 <p>The output ports of the power module are exposed with <strong>Molex Megafit</strong> connectors. For each port, 2 or 4 channels are provided. Note that the channels are interconnected internally, thus the total power consumption should not exceed the power ratings of the port.</p>
-<p><strong>Note</strong> The operation of the fan is dependent on the state of the 12V channel, it will operate only when the 12V channel is on.
+<p><strong>Note</strong>: The operation of the fan is dependent on the state of the 12V channel, it will operate only when the 12V channel is on.
 The fan would be turned on once the temperature reaches 28°C, and having maximum speed once the temperature reaches 40°C and above.</p>
 </div>
 </div>
 <div class="section" id="software-setup">
-<span id="ref-power-regulator-software-setup"></span><h2>4. Software Setup<a class="headerlink" href="#software-setup" title="Permalink to this headline">¶</a></h2>
-<p>The power regulator uses CANopen to communication with a computer.</p>
-<p><strong>Note</strong> The CANopen driver for the power regulator is supported by wrp_sdk since version 1.0.0.</p>
+<h2>4. Software Setup<a class="headerlink" href="#software-setup" title="Permalink to this headline">¶</a></h2>
+<p>The power regulator uses CANopen to communication with a computer. The CANopen driver for the power regulator is supported by wrp_sdk since version 1.0.0.</p>
+<ul class="simple">
+<li><p>If you want to interact with the power regulator from your C++ program, you need to install the SDK.</p></li>
+<li><p>If you only need to monitor and control the power regulator with a GUI, you just need to install the widget.</p></li>
+</ul>
+<div class="section" id="install-sdk">
+<h3>4.1 Install SDK<a class="headerlink" href="#install-sdk" title="Permalink to this headline">¶</a></h3>
 <p>Follow the following instructions to install the latest SDK.</p>
 <div class="section" id="install-dependencies">
-<h3>Install Dependencies<a class="headerlink" href="#install-dependencies" title="Permalink to this headline">¶</a></h3>
+<h4>Install dependencies<a class="headerlink" href="#install-dependencies" title="Permalink to this headline">¶</a></h4>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install -y software-properties-common
 $ sudo add-apt-repository ppa:lely/ppa <span class="o">&amp;&amp;</span> sudo apt-get update
 $ sudo apt-get install -y pkg-config liblely-coapp-dev liblely-co-tools
@@ -212,31 +217,36 @@ $ sudo apt-get install -y pkg-config liblely-coapp-dev liblely-co-tools
 </div>
 </div>
 <div class="section" id="install-the-sdk">
-<h3>Install the SDK<a class="headerlink" href="#install-the-sdk" title="Permalink to this headline">¶</a></h3>
+<h4>Install the SDK<a class="headerlink" href="#install-the-sdk" title="Permalink to this headline">¶</a></h4>
 <p>Please add the debian repository to your apt-get source list firt. Refer to section <a class="reference internal" href="../../software/software.html#ref-add-debian-source"><span class="std std-ref">Debian Repository</span></a></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install wrp_sdk
 </pre></div>
 </div>
 </div>
+</div>
 <div class="section" id="install-the-widget">
-<h3>Install the Widget<a class="headerlink" href="#install-the-widget" title="Permalink to this headline">¶</a></h3>
-<p>Please make sure you have followed the instructions above and installed the SDK.</p>
+<span id="ref-power-regulator-software-setup"></span><h3>4.2 Install the Widget<a class="headerlink" href="#install-the-widget" title="Permalink to this headline">¶</a></h3>
+<p>Please make sure you have added the debian source as described in section <a class="reference internal" href="../../software/software.html#ref-add-debian-source"><span class="std std-ref">Debian Repository</span></a>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1 install wr_regulator_widget dependencies</span>
 $ sudo apt-get install libgl1-mesa-dev libglfw3-dev libcairo2-dev
 <span class="c1"># 2. install the package</span>
 $ sudo apt-get install wr_regulator_widget
 </pre></div>
 </div>
+<p>Once finished the installation, you can find the executable of the widget at “/opt/weston_robot/bin/regulator_widget”.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ /opt/weston_robot/bin/regulator_widget/wr_regulator_widget
+</pre></div>
+</div>
+<p>Run the widget and you should see the GUI like this:</p>
+<img alt="../../_images/regulator_v2.1_01.png" src="../../_images/regulator_v2.1_01.png" />
 </div>
 </div>
 <div class="section" id="configuration">
 <h2>5. Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="setting-default-state-for-channels">
 <h3>Setting Default State for Channels<a class="headerlink" href="#setting-default-state-for-channels" title="Permalink to this headline">¶</a></h3>
-<p>By default, all the output channels are turned off once the power regulator is powered on for safety.</p>
-<p>Nevertheless, for some applications, you may want to have some output channels on by default.</p>
-<p>For example, if the PC powered on by the output channels is in charge of controlling the power regulator, then the output channel connected to the PC should be turned on by default.</p>
-<p>The default state is stored in non-volatile storage ROM, in other words, the default state set would remain even the power regulator reboots.</p>
+<p>By default, all the output channels are disabled after the power regulator is powered on for safety purpose. Nevertheless, depending on your application, you may want to have a different initial state for the output channels. For example, if your main control computer is powered by the 19V channel, you would want this channel to be on by default, only after which you can control the power sequence of other channels from your control computer.</p>
+<p>The default state is stored in non-volatile storage ROM. Thus, once set, the settings would persist.</p>
 <div class="section" id="id1">
 <h4>Install dependencies<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
 <p>python-can can be used to set default state for channels,</p>
