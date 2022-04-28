@@ -7,6 +7,5 @@ Here you can find user guides giving detailed information about a specific robot
 .. toctree::
    :maxdepth: 1
 
-   /_toolbox/adt_toolbox
-   /_toolbox/mt_toolbox
+   /toolbox/adt_toolbox
    

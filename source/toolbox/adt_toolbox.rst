@@ -120,13 +120,13 @@ On client's first startup, "Settings" popup will prompt user to input the releva
 
 .. image:: figures/adt_09.png
 
-- To change settings after first startup, click the settings button at the bottom right of the client to access settings.
+- To change settings after first startup, click the settings button at the bottom right of the client to access settings
 
 .. image:: figures/adt_10.png
      :width: 350 px
 
 - Changing the IP address and ports of the Servers is as simple as changing the values below
-   - This IP address should correspond to the robot's wlan0 interface IP address by default.
+   - This IP address should correspond to the robot's wlan0 interface IP address by default
 
 .. image:: figures/adt_11.png
      :width: 450 px

@@ -15,8 +15,9 @@ This website provides intrsutctions and tutorials on the setup and software deve
 .. toctree::
    :maxdepth: 2
       
-   /_getting_started/getting_started
-   /_user_guide/user_guide
-   /_software/software
-   /_toolbox/toolbox
+   /getting_started/getting_started
+   /robot_user_guide/robot_user_guide
+   /periph_user_guide/periph_user_guide
+   /software/software
+   /toolbox/toolbox
 

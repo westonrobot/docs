@@ -2,8 +2,6 @@
 Weston Robot Maintenance Toolbox (MT)
 *************************************
 
-.. _ref_install_power_regulator_widget:
-
 Install Power Regulator Widget
 ------------------------------
 
