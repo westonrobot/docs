@@ -16,8 +16,16 @@ C++ SDK
 
 * **Weston Robot Platform SDK (wrp_sdk)** 
   
-  - https://github.com/westonrobot/wrp_sdk
-  - wrp_sdk provides a C++ API to interact with robot bases (e.g. Scout) and peripherals (e.g. IMU, GPS, power regulator)
+  - wrp_sdk provides a C++ API to interact with robot bases and peripherals
+  - Github: https://github.com/westonrobot/wrp_sdk
+  - Supported OS: Ubuntu 18.04/20.04
+  - Supported Robot: 
+     - Scout V2.5/V2.6
+     - Scout Mini
+     - Tracer
+  - Supported Peripheral:
+     - IMU: Hipnuc/Wit-Motion
+     - GPS: NMEA-compatible
 
 * **Weston Robot Autonomy SDK (wra_sdk)**
   
@@ -29,13 +37,13 @@ ROS Package
 
 * **Weston Robot Platofrom ROS Support Package (wrp_ros)**
 
-  - This package provides a light wrapper around wrp_sdk for ROS1
   - https://github.com/westonrobot/wrp_ros
+  - This package provides a light wrapper around wrp_sdk for ROS1
 
 * **Weston Robot Platofrom ROS2 Support Package (wrp_ros2)**
 
-  - This package provides a light wrapper around wrp_sdk for ROS2
   - https://github.com/westonrobot/wrp_ros2
+  - This package provides a light wrapper around wrp_sdk for ROS2
 
 Widget Apps
 ===========
