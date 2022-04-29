@@ -9,6 +9,8 @@ Operation Environment
 - Do not use the robot in an environment with corrosive and flammable gases or combustible substances
 - Unless specially customized, the general robot models are not waterproof and shall not be operated in places with excessive humidity
   
+.. _ref_op_dev_safety:
+
 Software Development
 ====================
 
