@@ -81,4 +81,4 @@ Here are the steps you can follow to add the Weston Robot package source:
 
 Now you can install packages with "apt-get" command. 
 
-**Important:** Installation of additional third-party dependency packages may be required for a package provided by Weston Robot. Please follow the package-specific instructions.
+**Note:** Installation of additional third-party dependency packages may be required for a package provided by Weston Robot. Please follow the package-specific instructions.
