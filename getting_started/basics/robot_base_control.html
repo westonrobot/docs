@@ -40,8 +40,8 @@
 <li class="toctree-l2"><a class="reference internal" href="operational_safety.html">Operational Safety</a></li>
 <li class="toctree-l2"><a class="reference internal" href="robot_maintenance.html">Robot Maintenance</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Robot Base Control</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#manual-control">Manual Control</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#program-control">Program Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#manual-control">1. Manual Control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#program-control">2. Program Control</a></li>
 </ul>
 </li>
 </ul>
@@ -81,7 +81,7 @@
 <h1>Robot Base Control<a class="headerlink" href="#robot-base-control" title="Permalink to this headline">¶</a></h1>
 <p>Various mobile robot bases may appear very different but their controls are similar. You may refer to the user guide of a specific robot for all the details. This article aims at providing a general view of the robot control.</p>
 <div class="section" id="manual-control">
-<h2>Manual Control<a class="headerlink" href="#manual-control" title="Permalink to this headline">¶</a></h2>
+<h2>1. Manual Control<a class="headerlink" href="#manual-control" title="Permalink to this headline">¶</a></h2>
 <p>Manual control with a radio transmitter is one of the most common way to control a robot. Even when a robot is designed to be fully autonomous, you may need to manually control the robot for development/debugging purpose.</p>
 <p>Generally, manual control has a higher priority so that you can always take over the control even when the robot is behaving abnormally while executing an autonomous task.</p>
 <p>Here is a picture of the remote controller used for most of our mobile bases:</p>
@@ -97,12 +97,13 @@
 </ul>
 </div>
 <div class="section" id="program-control">
-<h2>Program Control<a class="headerlink" href="#program-control" title="Permalink to this headline">¶</a></h2>
+<h2>2. Program Control<a class="headerlink" href="#program-control" title="Permalink to this headline">¶</a></h2>
 <p>If you want to set up the robot for autonomous navigation, you would need to control the robot from your program through some kind of communication interfaces. Most of our robots use CAN bus for this purpose. CAN is reliable and easy to use. But it’s not a standard communication interface on most development PCs. So in order to talk with the robot via CAN bus, you would likely need a CAN adapter. You could also use a single-board computer with CAN interface, such as Nvidia Jetson, Raspberry Pi with <a class="reference external" href="https://www.waveshare.com/wiki/2-CH_CAN_HAT">CAN HAT</a>.</p>
 <p><strong>Note</strong>: Nvidia Jetson AGX/NX development kit supports CAN but it only has a CAN controller from the SOC by default. You will need to add a CAN transceiver (e.g. <a class="reference external" href="https://www.waveshare.com/sn65hvd230-can-board.htm">this transceiver breakout board</a>) to communicate with other CAN devices properly.</p>
 <div class="section" id="setup-can-adapter">
-<h3>Setup CAN Adapter<a class="headerlink" href="#setup-can-adapter" title="Permalink to this headline">¶</a></h3>
+<h3>2.1 Setup CAN Adapter<a class="headerlink" href="#setup-can-adapter" title="Permalink to this headline">¶</a></h3>
 <p>Here we take the CAN-to-USB adapter shipped with the robot as an example. Setting up drivers for other types of CAN adapters may be a little different. But once the driver is installed properly, subsequent CAN operations are the same in Linux.</p>
+<a class="reference internal image-reference" href="../../_images/can_to_usb_adapter.jpg"><img alt="../../_images/can_to_usb_adapter.jpg" src="../../_images/can_to_usb_adapter.jpg" style="width: 600px;" /></a>
 <ol class="arabic simple">
 <li><p>Enable gs_usb kernel module</p></li>
 </ol>
@@ -110,7 +111,7 @@
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
-<li><p>Bringup can device</p></li>
+<li><p>Plug the USB port of the adapter to your computer, bringup can device</p></li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo ip link <span class="nb">set</span> can0 up <span class="nb">type</span> can bitrate <span class="m">500000</span>
 $ sudo ip link <span class="nb">set</span> can0 txqueuelen <span class="m">1000</span>
@@ -127,7 +128,7 @@ $     TX errors <span class="m">1</span>  dropped <span class="m">1</span> overr
 </div>
 </div>
 <div class="section" id="check-frames-on-can-bus">
-<h3>Check Frames on CAN Bus<a class="headerlink" href="#check-frames-on-can-bus" title="Permalink to this headline">¶</a></h3>
+<h3>2.2 Check Frames on CAN Bus<a class="headerlink" href="#check-frames-on-can-bus" title="Permalink to this headline">¶</a></h3>
 <p>You can easily check CAN bus traffic with can-utils in Linux.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install can-utils
 </pre></div>
@@ -165,8 +166,8 @@ $     TX errors <span class="m">1</span>  dropped <span class="m">1</span> overr
 </div>
 </div>
 <div class="section" id="control-the-robot-with-sdk-ros">
-<h3>Control the Robot with SDK/ROS<a class="headerlink" href="#control-the-robot-with-sdk-ros" title="Permalink to this headline">¶</a></h3>
-<p>Now you’ve setup the CAN interface on your development or onboard computer. Connecting the robot CAN to your computer CAN (HIGH signal to High, LOW signal to LOW). Make sure you’ve <strong>SWB</strong> on the remote controller is at the up position. Now you should be able to use the SDK or ROS node to control the robot.</p>
+<h3>2.3 Control the Robot with SDK/ROS<a class="headerlink" href="#control-the-robot-with-sdk-ros" title="Permalink to this headline">¶</a></h3>
+<p>Now you’ve setup the CAN interface on your development or onboard computer. Connecting the robot CAN to your computer CAN (HIGH signal to High, LOW signal to LOW). Make sure <strong>SWB</strong> on the remote controller is at the up position. Now you should be able to use the SDK or ROS node to control the robot.</p>
 <p>Refer to <a class="reference external" href="https://github.com/westonrobot/wrp_sdk/tree/sample-v1.0.0/sample/mobile_base">sample code</a> and <a class="reference external" href="https://github.com/westonrobot/wrp_ros/tree/main/launch/mobile_base">sample launch files</a> for details of the program control.</p>
 <p><strong>Important</strong>: Please lift the robot up with a stool and keep the RC controller in hand for the initial testings to avoid the robot crashing into something around. Refer to this section about <a class="reference internal" href="operational_safety.html#ref-op-dev-safety"><span class="std std-ref">Operational Safety</span></a>.</p>
 </div>
