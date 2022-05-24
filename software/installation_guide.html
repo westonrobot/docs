@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Software Packages &mdash; Weston Robot v0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <title>Installation Guide &mdash; Weston Robot v0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
@@ -16,8 +16,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="List of Packages" href="list_of_packages.html" />
-    <link rel="prev" title="Power Regulator V2.1 User Guide" href="../periph_user_guide/westonrobot/power_regulator_v2.1.html" /> 
+    <link rel="next" title="Weston Robot Toolbox" href="../toolbox/toolbox.html" />
+    <link rel="prev" title="List of Packages" href="list_of_packages.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -39,9 +39,13 @@
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../robot_user_guide/robot_user_guide.html">Robot User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../periph_user_guide/periph_user_guide.html">Peripheral User Guide</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Software Packages</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="software.html">Software Packages</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="list_of_packages.html">List of Packages</a></li>
-<li class="toctree-l2"><a class="reference internal" href="installation_guide.html">Installation Guide</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Installation Guide</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#build-from-source">Build from Source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#debian-repository">Debian Repository</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../toolbox/toolbox.html">Weston Robot Toolbox</a></li>
@@ -61,9 +65,10 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Software Packages</li>
+          <li><a href="software.html">Software Packages</a> &raquo;</li>
+      <li>Installation Guide</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../_sources/software/software.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/software/installation_guide.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -71,14 +76,23 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="software-packages">
-<h1>Software Packages<a class="headerlink" href="#software-packages" title="Permalink to this headline">¶</a></h1>
-<p>Here you can find information about software packages provide by Weston Robot:</p>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="list_of_packages.html">List of Packages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="installation_guide.html">Installation Guide</a></li>
-</ul>
+  <div class="section" id="installation-guide">
+<h1>Installation Guide<a class="headerlink" href="#installation-guide" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="build-from-source">
+<h2>Build from Source<a class="headerlink" href="#build-from-source" title="Permalink to this headline">¶</a></h2>
+<p>Please refer to the <strong>README</strong> in the cooresponding github repository for instructions to build the package from source.</p>
+</div>
+<div class="section" id="debian-repository">
+<span id="ref-add-debian-source"></span><h2>Debian Repository<a class="headerlink" href="#debian-repository" title="Permalink to this headline">¶</a></h2>
+<p>C++ library and binary packages (including the widget apps) are provided as “.deb” installation packages. You can download the “.deb” packages from the cooresponding github repository and install with “dpkg” or “apt-get” command. Or you can install the packages from the apt-get server directly.</p>
+<p>Here are the steps you can follow to add the Weston Robot package source:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s2">&quot;deb https://westonrobot.jfrog.io/artifactory/wrtoolbox-release </span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> main&quot;</span> <span class="p">|</span> sudo tee /etc/apt/sources.list.d/weston-robot.list
+$ curl -sSL <span class="s1">&#39;https://westonrobot.jfrog.io/artifactory/api/security/keypair/wr-deb/public&#39;</span> <span class="p">|</span> sudo apt-key add -
+$ sudo apt-get update
+</pre></div>
+</div>
+<p>Now you can install packages with “apt-get” command.</p>
+<p><strong>Note:</strong> Installation of additional third-party dependency packages may be required for a package provided by Weston Robot. Please follow the package-specific instructions.</p>
 </div>
 </div>
 
@@ -86,8 +100,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../periph_user_guide/westonrobot/power_regulator_v2.1.html" class="btn btn-neutral float-left" title="Power Regulator V2.1 User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="list_of_packages.html" class="btn btn-neutral float-right" title="List of Packages" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="list_of_packages.html" class="btn btn-neutral float-left" title="List of Packages" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../toolbox/toolbox.html" class="btn btn-neutral float-right" title="Weston Robot Toolbox" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
