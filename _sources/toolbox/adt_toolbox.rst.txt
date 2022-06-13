@@ -69,6 +69,13 @@ Follow the following commands in a terminal to install the Assisted Driving Tool
 
 Before continuing, retrieve the IP address of the robot's wlan0 interface for client configuration later (see _configuration_ below).
 
+To add path to environment
+
+.. code-block:: bash
+
+    $ echo 'export PATH=/opt/weston_robot/bin:$PATH' >> ~/.bashrc
+
+
 To (re)start the client
 
 .. code-block:: bash
