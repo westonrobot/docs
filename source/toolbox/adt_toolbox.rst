@@ -21,11 +21,17 @@ The Assisted Driving Toolbox servers has been configured to startup upon the rob
 
     $ sudo systemctl restart wr_adt_server.service
   
-- To stop the server
+- To stop the server (does not carry over through reboots)
 
 .. code-block:: bash
 
     $ sudo systemctl stop wr_adt_server.service
+
+- To permanently enable/disable the server (carry over through reboot)
+
+.. code-block:: bash
+
+    $ sudo systemctl enable/disable wr_adt_server.service
 
 Video Streaming Configuration
 -----------------------------
