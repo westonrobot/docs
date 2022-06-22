@@ -90,9 +90,15 @@
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>To stop the server</p></li>
+<li><p>To stop the server (does not carry over through reboots)</p></li>
 </ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo systemctl stop wr_adt_server.service
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>To permanently enable/disable the server (carry over through reboot)</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo systemctl enable/disable wr_adt_server.service
 </pre></div>
 </div>
 </div>
