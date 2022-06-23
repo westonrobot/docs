@@ -192,13 +192,5 @@ The default connection string is
 .. image:: figures/scout_v2.5_12.png
 
 - Now, you have upgraded the firmware successfully to a newer version.
-- If you would like to revert the previous firmware, you can do so by confirming the image with hash of old image followed by a reset. 
-
-
-AgileX Robot Base
-=================
-
-
-Unitree Robot Dog 
-=================
-
+- After uploading the new firmware, if you would like to revert the previous firmware, the old firmware image should still be present in the board. 
+- To revert to this old firmware, confirm this old image again by repeating the last few steps and reset the board.
