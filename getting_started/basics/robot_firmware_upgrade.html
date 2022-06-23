@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Robot Firmware Upgrade &mdash; Weston Robot v0.1 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Robot User Guide" href="../../robot_user_guide/robot_user_guide.html" />
+    <link rel="prev" title="Robot Base Control" href="robot_base_control.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #323640" >
+            <a href="../../index.html"><img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../getting_started.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="operational_safety.html">Operational Safety</a></li>
+<li class="toctree-l2"><a class="reference internal" href="robot_maintenance.html">Robot Maintenance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="robot_base_control.html">Robot Base Control</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Robot Firmware Upgrade</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#scout-v2-5-robot">Scout (&gt;V2.5) Robot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scout2-5fwupgrade">Scout V2.5 Robot</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../robot_user_guide/robot_user_guide.html">Robot User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../periph_user_guide/periph_user_guide.html">Peripheral User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../software/software.html">Software Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../toolbox/toolbox.html">Weston Robot Toolbox</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #323640" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Weston Robot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../getting_started.html">Getting Started</a> &raquo;</li>
+      <li>Robot Firmware Upgrade</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/getting_started/basics/robot_firmware_upgrade.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="robot-firmware-upgrade">
+<h1>Robot Firmware Upgrade<a class="headerlink" href="#robot-firmware-upgrade" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="scout-v2-5-robot">
+<span id="scout2-5-fwupgrade"></span><h2>Scout (&gt;V2.5) Robot<a class="headerlink" href="#scout-v2-5-robot" title="Permalink to this headline">¶</a></h2>
+<p><strong>Important:</strong> Please approach us for Firmware Update Manager and latest firmware updates.</p>
+<ul>
+<li><p>To upgrade the firmware, please ensure you have the following items</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Laptop running on Ubuntu 18.04/20.04</p></li>
+<li><p>USB to CAN + Power cables for Peripheral and Control Board</p></li>
+<li><p>Signed binary image from Weston Robot</p></li>
+<li><p>Weston Robot Firmware Update Manager executable from Weston Robot</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="figure align-center" id="id2">
+<a class="reference internal image-reference" href="../../_images/scout26_io.jpg"><img alt="../../_images/scout26_io.jpg" src="../../_images/scout26_io.jpg" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text">Middle aviation connector for Control Board. Left aviation connector for Peripheral Board</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
+<ul class="simple">
+<li><p>Connect powered on robot</p></li>
+<li><p>Setup CAN connection for both/either boards</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo modprobe gs_usb
+<span class="c1"># Replace can&lt;X&gt; e.g. can0</span>
+$ sudo ip link <span class="nb">set</span> up can&lt;X&gt; <span class="nb">type</span> can bitrate <span class="m">1000000</span>
+$ sudo ip link <span class="nb">set</span> can&lt;X&gt; txqueuelen <span class="m">10000</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Launch Weston Robot Firmware Update Manager</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./wr_firmware_manager
+</pre></div>
+</div>
+<ul>
+<li><p>Verify the boards are connected</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Select boards via drop-down menu at “Board Selection”</p></li>
+<li><p>Click “Check”</p></li>
+<li><p>The hardware and software versions are displayed, otherwise error will be displayed</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Upgrade the firmware</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Select boards via drop-down menu at “Board Selection”</p></li>
+<li><p>Browse and select binary file to be flashed</p></li>
+<li><p>Click “Update”</p></li>
+<li><dl class="simple">
+<dt>Wait for for update to complete, robot will restart once flashing completes</dt><dd><ul>
+<li><p>Robot may beep during this time, this is normal behaviour</p></li>
+<li><p>The “Confirm” action should be executed by default upon restarting, if it fails, restart the robot and click “Confirm”</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="scout2-5fwupgrade">
+<span id="id1"></span><h2>Scout V2.5 Robot<a class="headerlink" href="#scout2-5fwupgrade" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>To upgrade the firmware, please ensure you have the following items</dt><dd><ul>
+<li><p>Laptop running on Ubuntu18.04</p></li>
+<li><p>USB to Micro USB cable</p></li>
+<li><p>Signed binary image from Weston Robot</p></li>
+<li><p>MCU Manager installed (kindly refer for the installation guide below)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="section" id="installation-guide-for-mcu-manager-mcumgr">
+<h3>Installation guide for MCU Manager (mcumgr)<a class="headerlink" href="#installation-guide-for-mcu-manager-mcumgr" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Installation for Go.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt install golang-go
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Verify whether Go is installed properly by the following command.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ go version
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Now you can install mcumgr CLI.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span>
+$ go get github.com/apache/mynewt-mcumgr-cli/mcumgr
+$ nano ~/.bashrc
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Add in path for mcumgr into .bashrc file</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:&lt;path-to-home-directory&gt;/go/bin/
+$ <span class="nb">alias</span> <span class="nv">sudo</span><span class="o">=</span><span class="s1">&#39;sudo env PATH=$PATH&#39;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Verify whether mcumgr is installed properly by the following command.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">source</span> ~/.bashrc
+$ mcumgr version
+</pre></div>
+</div>
+<p><strong>Troubleshooting</strong></p>
+<ul class="simple">
+<li><p>If the installed golang-go is an older version, the “go get…” command in <strong>step 3</strong> might fail. To get around this error, manually install a newer version of go by following the instructions from golang’s <a class="reference external" href="https://golang.org/doc/install">website</a> and reattempt installation from <strong>step 3</strong>.</p></li>
+</ul>
+</div>
+<div class="section" id="firmware-upgrade-using-mcu-manager-through-usb-cable">
+<h3>Firmware upgrade using MCU Manager through USB cable<a class="headerlink" href="#firmware-upgrade-using-mcu-manager-through-usb-cable" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>After you have installed mcumgr, now you should be able to upgrade the firmware through USB cable.</p></li>
+<li><p>Connect your computer to the MicroUSB port on robot using USB to Micro USB cable.</p></li>
+<li><p>Check on your computer for the device connected by the following command.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ls /dev
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>if there is only one USB device connected you should be able to see device named “ttyUSB0”, if there are more instances such as “ttyUSB1”, you can check the device using the following command.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mcumgr &lt;connection string&gt; image list
+</pre></div>
+</div>
+<p>The default connection string is</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--conntype serial --connstring <span class="s2">&quot;/dev/ttyUSB0,baud=115200&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>You should be able to see something like below</p></li>
+</ul>
+<img alt="getting_started/basics/figures/scout_v2.5_07.png" src="getting_started/basics/figures/scout_v2.5_07.png" />
+<ul class="simple">
+<li><p>If you don’t get any response, replace the connstring to other USB instance appeared on your computer such as “/dev/ttyUSB1,baud=115200”.</p></li>
+<li><p>Assuming your USB device appeared on your computer is “/dev/ttyUSB0”, you can upload the image with the following command.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mcumgr &lt;connection string&gt; image upload &lt;path-to-signed.bin&gt;
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Wait for about 3 seconds, you should be able to see something like below</p></li>
+</ul>
+<img alt="getting_started/basics/figures/scout_v2.5_08.png" src="getting_started/basics/figures/scout_v2.5_08.png" />
+<ul class="simple">
+<li><p>Wait until the process is Done.</p></li>
+</ul>
+<img alt="getting_started/basics/figures/scout_v2.5_08-2.png" src="getting_started/basics/figures/scout_v2.5_08-2.png" />
+<ul class="simple">
+<li><p>You can check whether the image is uploaded succesfully by the following command.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mcumgr &lt;connection string&gt; image list
+</pre></div>
+</div>
+<img alt="getting_started/basics/figures/scout_v2.5_09.png" src="getting_started/basics/figures/scout_v2.5_09.png" />
+<ul class="simple">
+<li><p>Copy the hash of latest image to be used in next step, in this example, it is</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>d89511ec321ebc4e0cd3775f9be05a6c8880bdfded37213e430fa6cfcbbdc6ec
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Now confirm the image by running the following command</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mcumgr &lt;connection string&gt; image confirm &lt;<span class="nb">hash</span> of image&gt;
+</pre></div>
+</div>
+<img alt="getting_started/basics/figures/scout_v2.5_10.png" src="getting_started/basics/figures/scout_v2.5_10.png" />
+<ul class="simple">
+<li><p>Reset by the following command</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mcumgr &lt;connection string&gt; reset
+</pre></div>
+</div>
+<img alt="getting_started/basics/figures/scout_v2.5_11.png" src="getting_started/basics/figures/scout_v2.5_11.png" />
+<ul class="simple">
+<li><p>Wait for about 30 seconds and run the following command</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mcumgr &lt;connection string&gt; image list
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>You should be able to see the following</p></li>
+</ul>
+<img alt="../../_images/scout_v2.5_12.png" src="../../_images/scout_v2.5_12.png" />
+<ul class="simple">
+<li><p>Now, you have upgraded the firmware successfully to a newer version.</p></li>
+<li><p>After uploading the new firmware, if you would like to revert the previous firmware, the old firmware image should still be present in the board.</p></li>
+<li><p>To revert to this old firmware, confirm this old image again by repeating the last few steps and reset the board.</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="robot_base_control.html" class="btn btn-neutral float-left" title="Robot Base Control" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../robot_user_guide/robot_user_guide.html" class="btn btn-neutral float-right" title="Robot User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Weston Robot Pte Ltd.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

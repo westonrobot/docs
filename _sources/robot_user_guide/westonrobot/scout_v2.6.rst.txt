@@ -166,7 +166,12 @@ You can scan Bluetooth devices **near the robot** and connect to the robot contr
 .. image:: figures/scout_v2.6_05.jpg
     :width: 350 px
 
-6. FAQ
+6. Firmware Upgrade
+===================
+
+See :ref:`Scout(>2.5) Firmware Upgrade Guide <Scout2.5+FWUpgrade>`
+
+7. FAQ
 ======
 
 1. What is the expected battery life (60Ah) and runtime of the robot?
