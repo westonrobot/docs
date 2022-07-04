@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scout (&gt;V2.5) Robot &mdash; Weston Robot v0.1 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/language_data.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="Robot User Guide" href="../../../robot_user_guide/robot_user_guide.html" />
+    <link rel="prev" title="Scout V2.5 Robot" href="scout_v2.5.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #323640" >
+            <a href="../../../index.html"><img src="../../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../getting_started.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../operational_safety.html">Operational Safety</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../robot_maintenance.html">Robot Maintenance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../robot_base_control.html">Robot Base Control</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="robot_firmware_upgrade.html">Robot Upgrade Guide</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="scout_v2.5.html">Scout V2.5 Robot</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Scout (&gt;V2.5) Robot</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../robot_user_guide/robot_user_guide.html">Robot User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../periph_user_guide/periph_user_guide.html">Peripheral User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/software.html">Software Packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../toolbox/toolbox.html">Weston Robot Toolbox</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #323640" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Weston Robot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../getting_started.html">Getting Started</a> &raquo;</li>
+          <li><a href="robot_firmware_upgrade.html">Robot Upgrade Guide</a> &raquo;</li>
+      <li>Scout (&gt;V2.5) Robot</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/getting_started/basics/robot_firmware_upgrade/scout_v2.6.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="scout-v2-5-robot">
+<span id="scout2-5-fwupgrade"></span><h1>Scout (&gt;V2.5) Robot<a class="headerlink" href="#scout-v2-5-robot" title="Permalink to this headline">¶</a></h1>
+<p><strong>Important:</strong> Please approach us for Firmware Update Manager and latest firmware updates.</p>
+<ul>
+<li><p>To upgrade the firmware, please ensure you have the following items</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Laptop running on Ubuntu 18.04/20.04</p></li>
+<li><p>USB to CAN + Power cables for Peripheral and Control Board</p></li>
+<li><p>Signed binary image from Weston Robot</p></li>
+<li><p>Weston Robot Firmware Update Manager executable from Weston Robot</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<div class="figure align-center" id="id1">
+<a class="reference internal image-reference" href="../../../_images/scout26_io.jpg"><img alt="../../../_images/scout26_io.jpg" src="../../../_images/scout26_io.jpg" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text">Middle aviation connector for Control Board. Left aviation connector for Peripheral Board</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<ul class="simple">
+<li><p>Connect powered on robot</p></li>
+<li><p>Setup CAN connection for both/either boards</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo modprobe gs_usb
+<span class="c1"># Replace can&lt;X&gt; e.g. can0</span>
+$ sudo ip link <span class="nb">set</span> up can&lt;X&gt; <span class="nb">type</span> can bitrate <span class="m">1000000</span>
+$ sudo ip link <span class="nb">set</span> can&lt;X&gt; txqueuelen <span class="m">10000</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Launch Weston Robot Firmware Update Manager</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./wr_firmware_manager
+</pre></div>
+</div>
+<ul>
+<li><p>Verify the boards are connected</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Select boards via drop-down menu at “Board Selection”</p></li>
+<li><p>Click “Check”</p></li>
+<li><p>The hardware and software versions are displayed, otherwise error will be displayed</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Upgrade the firmware</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Select boards via drop-down menu at “Board Selection”</p></li>
+<li><p>Browse and select binary file to be flashed</p></li>
+<li><p>Click “Update”</p></li>
+<li><dl class="simple">
+<dt>Wait for for update to complete, robot will restart once flashing completes</dt><dd><ul>
+<li><p>Robot may beep during this time, this is normal behaviour</p></li>
+<li><p>The “Confirm” action should be executed by default upon restarting, if it fails, restart the robot and click “Confirm”</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="scout_v2.5.html" class="btn btn-neutral float-left" title="Scout V2.5 Robot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../../robot_user_guide/robot_user_guide.html" class="btn btn-neutral float-right" title="Robot User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Weston Robot Pte Ltd.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
