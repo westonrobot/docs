@@ -3,7 +3,7 @@
 Scout (>V2.5) Robot
 ===================
 
-**Important:** Please approach us for Firmware Update Manager and latest firmware updates.
+.. **Important:** Please approach us for Firmware Update Manager and latest firmware updates.
 
 - To upgrade the firmware, please ensure you have the following items
 
@@ -11,6 +11,10 @@ Scout (>V2.5) Robot
    - USB to CAN + Power cables for Peripheral and Control Board
    - Signed binary image from Weston Robot
    - Weston Robot Firmware Update Manager executable from Weston Robot
+
+      - :download:`Ubuntu 18.04 (bionic) <./wr_firmware_mgr/bionic/wr_firmware_manager>`
+      - :download:`Ubuntu 20.04 (focal) <./wr_firmware_mgr/focal/wr_firmware_manager>`
+      - :download:`Ubuntu 22.04 (jammy) <./wr_firmware_mgr/jammy/wr_firmware_manager>`
 
 .. figure:: figures/scout26_io.jpg
     :width: 500px
@@ -29,6 +33,8 @@ Scout (>V2.5) Robot
     $ sudo ip link set can<X> txqueuelen 10000
 
 - Launch Weston Robot Firmware Update Manager
+
+    - (you may need to make the file executable first using chmod)
 
 .. code-block:: bash
 
