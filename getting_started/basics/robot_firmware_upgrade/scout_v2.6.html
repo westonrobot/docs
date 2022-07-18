@@ -81,15 +81,22 @@
              
   <div class="section" id="scout-v2-5-robot">
 <span id="scout2-5-fwupgrade"></span><h1>Scout (&gt;V2.5) Robot<a class="headerlink" href="#scout-v2-5-robot" title="Permalink to this headline">¶</a></h1>
-<p><strong>Important:</strong> Please approach us for Firmware Update Manager and latest firmware updates.</p>
 <ul>
 <li><p>To upgrade the firmware, please ensure you have the following items</p>
 <blockquote>
-<div><ul class="simple">
+<div><ul>
 <li><p>Laptop running on Ubuntu 18.04/20.04</p></li>
 <li><p>USB to CAN + Power cables for Peripheral and Control Board</p></li>
 <li><p>Signed binary image from Weston Robot</p></li>
-<li><p>Weston Robot Firmware Update Manager executable from Weston Robot</p></li>
+<li><p>Weston Robot Firmware Update Manager executable from Weston Robot</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference download internal" download="" href="../../../_downloads/e2e6733613d9bbde679139e79d47db99/wr_firmware_manager"><code class="xref download docutils literal notranslate"><span class="pre">Ubuntu</span> <span class="pre">18.04</span> <span class="pre">(bionic)</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/2db0e97b717c2c12acff9ff9ca1b8752/wr_firmware_manager"><code class="xref download docutils literal notranslate"><span class="pre">Ubuntu</span> <span class="pre">20.04</span> <span class="pre">(focal)</span></code></a></p></li>
+<li><p><a class="reference download internal" download="" href="../../../_downloads/c8146fedbe15dcd9c4dceb9a70a2a306/wr_firmware_manager"><code class="xref download docutils literal notranslate"><span class="pre">Ubuntu</span> <span class="pre">22.04</span> <span class="pre">(jammy)</span></code></a></p></li>
+</ul>
+</div></blockquote>
+</li>
 </ul>
 </div></blockquote>
 </li>
@@ -108,8 +115,14 @@ $ sudo ip link <span class="nb">set</span> up can&lt;X&gt; <span class="nb">type
 $ sudo ip link <span class="nb">set</span> can&lt;X&gt; txqueuelen <span class="m">10000</span>
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>Launch Weston Robot Firmware Update Manager</p></li>
+<ul>
+<li><p>Launch Weston Robot Firmware Update Manager</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>(you may need to make the file executable first using chmod)</p></li>
+</ul>
+</div></blockquote>
+</li>
 </ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./wr_firmware_manager
 </pre></div>
