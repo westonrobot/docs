@@ -58,7 +58,7 @@ Tag Module
 - Upon start up, the 4 blue leds will light up, indicating battery level.
 - To switch off, quickly **double press** the button.
 
-1. Software Setup
+4. Software Setup
 =================
 
 The Anchor module uses a ROS1 driver to communicate with a computer. The ROS1 driver can be found here https://github.com/westonrobot/nlink_parser.
