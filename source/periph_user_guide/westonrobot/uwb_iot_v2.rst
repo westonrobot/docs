@@ -13,11 +13,10 @@ The IOT UWB system is designed by Weston Robot for mobile robot applications. It
 
 1. Specifications
 =================
-
+.. TODO Swap images with better ones when available
 Anchor Module
 ------------
-.. TODO: Swap to new images when done 
-.. image:: figures/uwb_v2_anchor.jpg
+.. image:: figures/uwb_v2_anchor.png
   :align: center
 
 +-----------+----------+-------------------------+
@@ -29,7 +28,7 @@ Anchor Module
 Tag Module
 --------------
 
-.. image:: figures/uwb_v2_tag.jpg
+.. image:: figures/uwb_v2_tag.png
   :align: center
 
 +-----------+---------------------+
@@ -89,7 +88,7 @@ Operating Conditions
 - Each module should be upright and have their front (face with logo) facing each other for optimal communications setup
 - Horizontal and Vertical angles are according to the anchor module's coordinate system (shown below)
 
-.. image:: figures/uwb_v2_anchor.jpg
+.. image:: figures/uwb_v2_anchor_coord.png
   :align: center
 
 
