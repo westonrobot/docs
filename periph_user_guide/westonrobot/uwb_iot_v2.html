@@ -42,8 +42,8 @@
 <li class="toctree-l2"><a class="reference internal" href="power_regulator_v2.1.html">Power Regulator V2.1 User Guide</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">IOT UWB V2 User Guide</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#overview">1. Overview</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#specifications">1. Specifications</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#hardware-setup">1. Hardware Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#specifications">2. Specifications</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hardware-setup">3. Hardware Setup</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#software-setup">4. Software Setup</a></li>
 </ul>
 </li>
@@ -82,19 +82,29 @@
 <h1>IOT UWB V2 User Guide<a class="headerlink" href="#iot-uwb-v2-user-guide" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="overview">
 <h2>1. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<p>The IOT UWB system is designed by Weston Robot for mobile robot applications. It has the following features:</p>
-<ul class="simple">
+<blockquote>
+<div><p>The IOT UWB system is designed by Weston Robot for mobile robot applications. It has the following features:</p>
+<blockquote>
+<div><ul class="simple">
 <li><p>1 Anchor to Multiple Tags “pairing”</p></li>
 <li><p>Distance Measurement Accuracy: ±5cm</p></li>
 <li><p>Angular Position Accuracy: ±5°</p></li>
 <li><p>Anchor Interface: ROS1, Windows/Ubuntu App</p></li>
 </ul>
+</div></blockquote>
+</div></blockquote>
 </div>
 <div class="section" id="specifications">
-<h2>1. Specifications<a class="headerlink" href="#specifications" title="Permalink to this headline">¶</a></h2>
+<h2>2. Specifications<a class="headerlink" href="#specifications" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div></div></blockquote>
 <div class="section" id="anchor-module">
-<h3>Anchor Module<a class="headerlink" href="#anchor-module" title="Permalink to this headline">¶</a></h3>
-<img alt="../../_images/uwb_v2_anchor.png" class="align-center" src="../../_images/uwb_v2_anchor.png" />
+<h3>2.1 Anchor Module<a class="headerlink" href="#anchor-module" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><img alt="../../_images/uwb_v2_anchor.png" class="align-center" src="../../_images/uwb_v2_anchor.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 24%" />
@@ -114,10 +124,15 @@
 </tr>
 </tbody>
 </table>
+</div></blockquote>
 </div>
 <div class="section" id="tag-module">
-<h3>Tag Module<a class="headerlink" href="#tag-module" title="Permalink to this headline">¶</a></h3>
-<img alt="../../_images/uwb_v2_tag.png" class="align-center" src="../../_images/uwb_v2_tag.png" />
+<h3>2.2 Tag Module<a class="headerlink" href="#tag-module" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><img alt="../../_images/uwb_v2_tag.png" class="align-center" src="../../_images/uwb_v2_tag.png" />
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 <table class="docutils align-default">
 <colgroup>
 <col style="width: 34%" />
@@ -137,11 +152,13 @@
 </tr>
 </tbody>
 </table>
+</div></blockquote>
 </div>
 <div class="section" id="communication">
-<h3>Communication<a class="headerlink" href="#communication" title="Permalink to this headline">¶</a></h3>
-<div class="line-block">
-<div class="line">No. of Modules           - Number of active modules (tags + anchors).</div>
+<h3>2.3 Communication<a class="headerlink" href="#communication" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><div class="line-block">
+<div class="line">No. of Modules           - Number of active tag modules.</div>
 <div class="line">Feedback Packet rate     - Rate which Anchor sends a feedback packet.</div>
 <div class="line">Average Node Update Rate - Average rate which nodes are updated within the feedback packet.</div>
 <div class="line">Average Packet Loss      - Percentage of packet loss between modules.</div>
@@ -193,61 +210,80 @@
 </tr>
 </tbody>
 </table>
+</div></blockquote>
 </div>
 </div>
 <div class="section" id="hardware-setup">
-<h2>1. Hardware Setup<a class="headerlink" href="#hardware-setup" title="Permalink to this headline">¶</a></h2>
+<h2>3. Hardware Setup<a class="headerlink" href="#hardware-setup" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="startup-and-operation">
-<h3>Startup and Operation<a class="headerlink" href="#startup-and-operation" title="Permalink to this headline">¶</a></h3>
-</div>
+<h3>3.1 Startup and Operation<a class="headerlink" href="#startup-and-operation" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="id1">
-<h3>Anchor Module<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
+<h4>3.1.1 Anchor Module<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><ul class="simple">
 <li><p>Connect the module to the computer via a micro-usb cable.</p></li>
 <li><p>Upon start up, you should see a solid blue led and flashing green led.</p></li>
 </ul>
+</div></blockquote>
 </div>
 <div class="section" id="id2">
-<h3>Tag Module<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
+<h4>3.1.2 Tag Module<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><ul class="simple">
 <li><p>To switch on, press <strong>single press</strong> the button.</p></li>
 <li><p>Upon start up, the 4 blue leds will light up, indicating battery level.</p></li>
 <li><p>To switch off, quickly <strong>double press</strong> the button.</p></li>
 </ul>
+</div></blockquote>
 </div>
 <div class="section" id="operating-conditions">
-<h3>Operating Conditions<a class="headerlink" href="#operating-conditions" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
+<h4>3.1.3 Operating Conditions<a class="headerlink" href="#operating-conditions" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><blockquote>
+<div><ul class="simple">
 <li><p>Each module should be upright and have their front (face with logo) facing each other for optimal communications setup</p></li>
 <li><p>Horizontal and Vertical angles are according to the anchor module’s coordinate system (shown below)</p></li>
 </ul>
+</div></blockquote>
 <img alt="../../_images/uwb_v2_anchor_coord.png" class="align-center" src="../../_images/uwb_v2_anchor_coord.png" />
+</div></blockquote>
+</div>
 </div>
 </div>
 <div class="section" id="software-setup">
 <h2>4. Software Setup<a class="headerlink" href="#software-setup" title="Permalink to this headline">¶</a></h2>
-<dl class="simple">
+<blockquote>
+<div><dl class="simple">
 <dt>There are 2 ways to interface with the Anchor modules out-of-the-box.</dt><dd><ol class="arabic simple">
 <li><p>NAssistant (Windows or Ubuntu)</p></li>
 <li><p>ROS1 Driver</p></li>
 </ol>
 </dd>
 </dl>
+</div></blockquote>
 <div class="section" id="nassistant">
 <h3>4.1 NAssistant<a class="headerlink" href="#nassistant" title="Permalink to this headline">¶</a></h3>
-<dl class="simple">
-<dt>4.1.1 Getting NAssistant</dt><dd><p>NAssistant can be downloaded from this link: <a class="reference external" href="https://www.nooploop.com/en/download/">https://www.nooploop.com/en/download/</a></p>
-</dd>
-<dt>4.1.2 Setting up</dt><dd><ol class="arabic simple">
+<div class="section" id="getting-nassistant">
+<h4>4.1.1 Getting NAssistant<a class="headerlink" href="#getting-nassistant" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><p>NAssistant can be downloaded from this link: <a class="reference external" href="https://www.nooploop.com/en/download/">https://www.nooploop.com/en/download/</a></p>
+</div></blockquote>
+</div>
+<div class="section" id="setting-up">
+<h4>4.1.2 Setting up<a class="headerlink" href="#setting-up" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><ol class="arabic simple">
 <li><p>Connect the Anchor module to the computer.</p></li>
 <li><p>Connection should open automatically.</p></li>
 <li><p>Click on the button below to automatically identify tag protocol.</p></li>
 </ol>
-</dd>
-</dl>
 <img alt="../../_images/nassistant_auto.png" class="align-center" src="../../_images/nassistant_auto.png" />
-<dl>
-<dt>4.1.3 Visualisation</dt><dd><ol class="arabic simple">
+</div></blockquote>
+</div>
+<div class="section" id="visualisation">
+<h4>4.1.3 Visualisation<a class="headerlink" href="#visualisation" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><ol class="arabic simple">
 <li><p>Data tab can be used to see information such as raw data and node IDs.</p></li>
 </ol>
 <blockquote>
@@ -259,18 +295,24 @@
 <blockquote>
 <div><img alt="../../_images/nassistant_line.png" class="align-center" src="../../_images/nassistant_line.png" />
 </div></blockquote>
-</dd>
-</dl>
+</div></blockquote>
+</div>
 </div>
 <div class="section" id="ros1-driver">
 <h3>4.2 ROS1 Driver<a class="headerlink" href="#ros1-driver" title="Permalink to this headline">¶</a></h3>
-<dl>
-<dt>4.2.1 Setting up</dt><dd><div class="line-block">
+<div class="section" id="id3">
+<h4>4.2.1 Setting up<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><div class="line-block">
 <div class="line">The ROS1 driver can be found here: <a class="reference external" href="https://github.com/westonrobot/nlink_parser">https://github.com/westonrobot/nlink_parser</a>.</div>
 <div class="line">Follow the README guide on the github repo to setup the anchor for communication with tag modules.</div>
 </div>
-</dd>
-<dt>4.2.2 Running</dt><dd><ul class="simple">
+</div></blockquote>
+</div>
+<div class="section" id="running">
+<h4>4.2.2 Running<a class="headerlink" href="#running" title="Permalink to this headline">¶</a></h4>
+<blockquote>
+<div><ul class="simple">
 <li><p>Parameters</p></li>
 </ul>
 <table class="docutils align-default">
@@ -318,8 +360,8 @@
 </tr>
 </tbody>
 </table>
-</dd>
-</dl>
+</div></blockquote>
+</div>
 </div>
 </div>
 </div>
