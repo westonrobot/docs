@@ -2,6 +2,16 @@
 IOT UWB V2 User Guide
 *********************
 
+Changelog
+=========
++------+-------------------+---------------------------+---------+
+| Name | Date (DD/MM/YYYY) | Reason For Change         | Version |
++------+-------------------+---------------------------+---------+
+| Hans | 04/08/2022        | Initial guide             | v1.0    |
++------+-------------------+---------------------------+---------+
+| Hans | 11/08/2022        | Fix in anchor module axes | v1.1    |
++------+-------------------+---------------------------+---------+
+
 1. Overview
 ===========
   The IOT UWB system is designed by Weston Robot for mobile robot applications. It has the following features:
