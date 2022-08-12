@@ -2,15 +2,16 @@
 IOT UWB V2 User Guide
 *********************
 
-Changelog
-=========
-+------+-------------------+---------------------------+---------+
-| Name | Date (DD/MM/YYYY) | Reason For Change         | Version |
-+------+-------------------+---------------------------+---------+
-| Hans | 04/08/2022        | Initial guide             | v1.0    |
-+------+-------------------+---------------------------+---------+
-| Hans | 11/08/2022        | Fix in anchor module axes | v1.1    |
-+------+-------------------+---------------------------+---------+
+Revision History
+================
+
++----------+-------------------+--------+---------------------------+
+| Revision | Date (DD/MM/YYYY) | Author | Changes                   |
++----------+-------------------+--------+---------------------------+
+| 1        | 04/08/2022        | Hans   | Initial release           |
++----------+-------------------+--------+---------------------------+
+| 2        | 11/08/2022        | Hans   | Fix in anchor module axes |
++----------+-------------------+--------+---------------------------+
 
 1. Overview
 ===========
@@ -52,10 +53,10 @@ Changelog
 
 2.3 Communication
 -----------------
-  | No. of Modules           - Number of active tag modules.
-  | Feedback Packet rate     - Rate which Anchor sends a feedback packet.
-  | Average Node Update Rate - Average rate which nodes are updated within the feedback packet.
-  | Average Packet Loss      - Percentage of packet loss between modules.
+  | No. of Modules           - Number of active tag modules.                                    |
+  | Feedback Packet rate     - Rate which Anchor sends a feedback packet.                       |
+  | Average Node Update Rate - Average rate which nodes are updated within the feedback packet. |
+  | Average Packet Loss      - Percentage of packet loss between modules.                       |
 
   +----------------+----------------------+-----------------------+---------------------+
   | No. of Modules | Feedback Packet Rate | Avg. Node Update Rate | Average Packet loss |
@@ -138,6 +139,7 @@ Changelog
 
 4.2.1 Setting up
 ~~~~~~~~~~~~~~~~
+
   | The ROS1 driver can be found here: https://github.com/westonrobot/nlink_parser.
   | Follow the README guide on the github repo to setup the anchor for communication with tag modules.
 
