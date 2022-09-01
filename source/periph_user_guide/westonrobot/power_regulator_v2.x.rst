@@ -64,7 +64,7 @@ Control Module
 3.1 Startup and Operation
 -------------------------
 +------------------+---------------------+---------------------+
-|                  | V2.1                | V2.X                |
+|                  | V2.1                | V2.2                |
 |                  +---------+-----------+---------+-----------+
 |       State      | Red LED | Green LED | Red LED | Green LED |
 +                  |         |           |         |           |
@@ -84,7 +84,7 @@ Startup Sequence
 **V2.1:**
 
     - Upon start up, both red and green LEDs would light up for about 2 seconds as it is initialising. Both LEDs will then switch off for another 2 seconds, indicating that the regulator is going through a state of calibration.
-**V2.X:**
+**V2.2:**
 
     - Upon start up, both red and green LEDs would light up for about 18 seconds. During this phase, initialisation and calibration of the power regulator takes place
 
