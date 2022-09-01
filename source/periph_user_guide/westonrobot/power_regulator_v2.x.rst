@@ -61,42 +61,43 @@ Control Module
 3. Hardware Setup
 =================
 
-Startup and Operation
----------------------
+3.1 Startup and Operation
+-------------------------
++------------------+---------------------+---------------------+
+|                  | V2.1                | V2.X                |
+|                  +---------+-----------+---------+-----------+
+|       State      | Red LED | Green LED | Red LED | Green LED |
++                  |         |           |         |           |
+|                  | Status  | Status    | Status  | Status    |
++==================+=========+===========+=========+===========+
+| Initialisation   | ON      | ON        | ON      | ON        |
++------------------+---------+-----------+         |           |
+| Calibration      | OFF     | OFF       |         |           |
++------------------+---------+-----------+---------+-----------+
+|   Operational    | OFF     | BLINKING  | OFF     | BLINKING  |
++------------------+---------+-----------+---------+-----------+
+| Firmware Upgrade | BLINKING| OFF       | BLINKING| OFF       |
++------------------+---------+-----------+---------+-----------+
 
-+------------------+---------+-----------+
-|       State      | Red LED | Green LED |
-+                  |         |           |
-|                  | Status  | Status    |
-+==================+=========+===========+
-| Initialisation & | ON      | ON        |
-|                  |         |           |
-| Calibration      |         |           |
-+------------------+---------+-----------+
-|   Operational    | OFF     | BLINKING  |
-+------------------+---------+-----------+
-| Firmware Upgrade | BLINKING| OFF       |
-+------------------+---------+-----------+
+Startup Sequence 
+^^^^^^^^^^^^^^^^^
+**V2.1:**
 
-- Upon start up, both red and green LEDs would light up for about 18 seconds
-- During this phase, initialisation and calibration of the power regulator takes place
+    - Upon start up, both red and green LEDs would light up for about 2 seconds as it is initialising. Both LEDs will then switch off for another 2 seconds, indicating that the regulator is going through a state of calibration.
+**V2.X:**
+
+    - Upon start up, both red and green LEDs would light up for about 18 seconds. During this phase, initialisation and calibration of the power regulator takes place
+
+Operational State 
+^^^^^^^^^^^^^^^^^^
 - After calibration, the unit would go into operational state, where the red LED would be turned off while the green LED would be blinking
+
+Firmware Upgrades 
+^^^^^^^^^^^^^^^^^^
 - If there is any firmware upgrade happening, the green LED would be turned off while red LED would be blinking
 
-Note: For **Power Regulator V2.1**, the LED signal differs for initialisation and calibration. Both phases take 2 seconds each.
-
-+------------------+---------+-----------+
-|       State      | Red LED | Green LED |
-+                  |         |           |
-|                  | Status  | Status    |
-+==================+=========+===========+
-| Initialisation   | ON      | ON        |
-+------------------+---------+-----------+
-| Calibration      | OFF     | OFF       |
-+------------------+---------+-----------+
-
-Output Connection
------------------
+3.2 Output Connection
+---------------------
 
 The output ports of the power module are exposed with **Molex Megafit** connectors. For each port, 2 or 4 channels are provided. Note that the channels are interconnected internally, thus the total power consumption should not exceed the power ratings of the port.  
 
