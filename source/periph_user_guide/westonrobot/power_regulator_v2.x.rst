@@ -79,21 +79,12 @@ Control Module
 | Firmware Upgrade | BLINKING| OFF       | BLINKING| OFF       |
 +------------------+---------+-----------+---------+-----------+
 
-Startup Sequence 
-^^^^^^^^^^^^^^^^^
-**V2.1:**
+- Upon start up, 
+  
+  - **[V2.1]** both red and green LEDs would light up for about 2 seconds as it is initialising. Both LEDs will then switch off for another 2 seconds, indicating that the regulator is going through a state of calibration.
+  - **[V2.2]** both red and green LEDs would light up for about 18 seconds. During this phase, initialisation and calibration of the power regulator takes place
 
-    - Upon start up, both red and green LEDs would light up for about 2 seconds as it is initialising. Both LEDs will then switch off for another 2 seconds, indicating that the regulator is going through a state of calibration.
-**V2.2:**
-
-    - Upon start up, both red and green LEDs would light up for about 18 seconds. During this phase, initialisation and calibration of the power regulator takes place
-
-Operational State 
-^^^^^^^^^^^^^^^^^^
 - After calibration, the unit would go into operational state, where the red LED would be turned off while the green LED would be blinking
-
-Firmware Upgrades 
-^^^^^^^^^^^^^^^^^^
 - If there is any firmware upgrade happening, the green LED would be turned off while red LED would be blinking
 
 3.2 Output Connection
@@ -228,15 +219,11 @@ The example code below demonstrates how to set all output channels to be on by d
 
     print("----------------------")
     time.sleep(1)
-    print("Setting Output command:")
+    print("Setting Output command (1:on, 0:off):")
     print("----------------------")
-    print("19V True")
     node.sdo['Output command'][1].raw = 1
-    print("12V True")
     node.sdo['Output command'][2].raw = 1
-    print("Isolated 12V True")
     node.sdo['Output command'][3].raw = 1
-    print("Isolated 5V True")
     node.sdo['Output command'][4].raw = 1
     node.store() # store into ROM 
     # node.restore() # restore ROM
