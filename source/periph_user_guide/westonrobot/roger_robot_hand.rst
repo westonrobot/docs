@@ -72,7 +72,7 @@ The Roger robot hand is designed as a end-effector for collaborative robots.  It
     * Device will show up as a /dev/ttyUSBx device.
 * On Windows
     * Device will show up as a COMx port device.
-    * :red:`You might need to install the CP210x driver first, available at:` https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads
+    * :red:`You may need to install the CP210x driver first, available at:` https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads
 
 4. Software Setup
 =================
@@ -88,7 +88,7 @@ There are 2 ways to interface with the hand out-of-the-box.
 | The ROS1 driver can be found here: https://github.com/westonrobot/roger_hand_ros
 | Follow the README on the github repo to setup the hand for communication with computer.
 
-4.2.2 Running
+4.1.2 Running
 ~~~~~~~~~~~~~
 .. code-block:: bash
 
@@ -108,4 +108,34 @@ There are 2 ways to interface with the hand out-of-the-box.
 | ~/hand_state | roger_hand_msgs::hand_state | State of the hand |
 +--------------+-----------------------------+-------------------+
 
+- Services
++-----------------------+----------------------------------+-----------------------------+
+| Name                  | Message Format                   | Description                 |
++=======================+==================================+=============================+
+| ~/set_finger_pose     | roger_hand_msgs::finger_pose     | Set pose of one finger      |
++-----------------------+----------------------------------+-----------------------------+
+| ~/set_hand_pose       | roger_hand_msgs::hand_pose       | Set pose of entire hand     |
++-----------------------+----------------------------------+-----------------------------+
+| ~/clear_hand_error    | roger_hand_msgs::clear_error     | Clear any errors raised     |
++-----------------------+----------------------------------+-----------------------------+
+| ~/set_ampere_feedback | roger_hand_msgs::ampere_feedback | Enable current feedback     |
++-----------------------+----------------------------------+-----------------------------+
+| ~/set_hand_enable     | roger_hand_msgs::hand_enable     | (Dis/En)able hand operation |
++-----------------------+----------------------------------+-----------------------------+
 
+- Finger IDs
++-------+------------------+
+| Index | Joint            |
++=======+==================+
+| 1     | Thumb            |
++-------+------------------+
+| 2     | Thumb (rotation) |
++-------+------------------+
+| 3     | Index            |
++-------+------------------+
+| 4     | Middle           |
++-------+------------------+
+| 5     | Ring             |
++-------+------------------+
+| 6     | Little           |
++-------+------------------+
