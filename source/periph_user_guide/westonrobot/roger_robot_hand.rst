@@ -17,9 +17,9 @@ The Roger robot hand is designed as a end-effector for collaborative robots.  It
 
 - Grasping and holding of items
 - Hand-like monitoring
-- User interface: ROS1, Ubuntu App
+- User interface: ROS1
 
-2. Specifications
+1. Specifications
 =================
 
 2.1 In the box
@@ -78,7 +78,6 @@ The Roger robot hand is designed as a end-effector for collaborative robots.  It
 =================
 There are 2 ways to interface with the hand out-of-the-box.
     1. ROS1 Driver
-    2. Ubuntu Testing App
 
 4.1 ROS1 Driver
 ---------------
