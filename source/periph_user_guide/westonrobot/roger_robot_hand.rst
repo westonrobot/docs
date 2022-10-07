@@ -19,7 +19,7 @@ The Roger robot hand is designed as a end-effector for collaborative robots.  It
 - Hand-like monitoring
 - User interface: ROS1
 
-1. Specifications
+2. Specifications
 =================
 
 2.1 In the box
@@ -53,7 +53,7 @@ The Roger robot hand is designed as a end-effector for collaborative robots.  It
 | Ethernet port | /        | Future extension        |
 +---------------+----------+-------------------------+
 
-1. Hardware Setup
+3. Hardware Setup
 =================
 
 3.1 Startup and Operation
@@ -77,7 +77,7 @@ The Roger robot hand is designed as a end-effector for collaborative robots.  It
     * Device will show up as a COMx port device.
     * :red:`You may need to install the CP210x driver first, available at:` https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers?tab=downloads
 
-1. Software Setup
+4. Software Setup
 =================
 There are 2 ways to interface with the hand out-of-the-box.
     1. ROS1 Driver
