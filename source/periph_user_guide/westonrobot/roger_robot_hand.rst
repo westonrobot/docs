@@ -17,7 +17,7 @@ The Roger robot hand is designed as a end-effector for collaborative robots.  It
 
 - Grasping and holding of items
 - Hand-like monitoring
-- User interface: ROS1
+- User interface: ROS1, Linux Application
 
 2. Specifications
 =================
@@ -81,6 +81,7 @@ The Roger robot hand is designed as a end-effector for collaborative robots.  It
 =================
 There are 2 ways to interface with the hand out-of-the-box.
     1. ROS1 Driver
+    2. Linux Application
 
 4.1 ROS1 Driver
 ---------------
@@ -141,3 +142,19 @@ There are 2 ways to interface with the hand out-of-the-box.
 +-------+------------------+
 | 6     | Little           |
 +-------+------------------+
+
+4.2 Linux Application
+---------------------
+
+4.2.1 Download
+~~~~~~~~~~~~~~
+- To use the application, please ensure you have the following items
+    - Computer running Ubuntu 18.04/20.04 
+        - :download:`Ubuntu 18.04 (bionic) <./roger_hand_control/bionic/roger_hand_control>`
+        - :download:`Ubuntu 20.04 (focal) <./roger_hand_control/focal/roger_hand_control>`
+
+4.2.2 Running
+~~~~~~~~~~~~~
+.. code-block:: bash
+
+    $ ./roger_hand_control
