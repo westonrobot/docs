@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Scout Navigation Respository &mdash; Weston Robot v0.1 documentation</title><link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/hacks.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -65,7 +66,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="scout-navigation-respository">
+  <blockquote>
+<div></div></blockquote>
+<div class="section" id="scout-navigation-respository">
 <h1>Scout Navigation Respository<a class="headerlink" href="#scout-navigation-respository" title="Permalink to this headline">¶</a></h1>
 <p>This repository contains navigation and simulation packages for scout robot.</p>
 <ul class="simple">
@@ -194,7 +197,7 @@ $ catkin_make
 <li><p><a class="reference external" href="https://github.com/pd-tan/lslidar_C16.git">lslidar</a> package was used to publish the LiDAR data as a ROS topic.</p></li>
 <li><p><a class="reference external" href="https://github.com/westonrobot/scout_base.git">scout_base</a> package was used to interface between ROS topics and CAN messages sent through the CAN bus.</p></li>
 <li><p><a class="reference external" href="https://github.com/westonrobot/scout_navigation/tree/master/scout_webots_sim">scout_webots_sim</a> package was used to implements a Webots simulation of the navigation platform.</p></li>
-<li><p><cite>ROS navigation stack</cite> was used for mapping and navigation. gmapping was used for mapping while amcl was used for localization.</p></li>
+<li><p><span class="incremental">ROS navigation stack</span> was used for mapping and navigation. gmapping was used for mapping while amcl was used for localization.</p></li>
 </ul>
 </li>
 </ul>
@@ -320,7 +323,7 @@ and <a class="reference external" href="https://github.com/westonrobot/scout_nav
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ roslaunch scout_ros_nav scout_v2_mapping.launch
 </pre></div>
 </div>
-<p>The map can be visualized on RVIZ by adding the <cite>map</cite> and selecting the map topic.</p>
+<p>The map can be visualized on RVIZ by adding the <span class="incremental">map</span> and selecting the map topic.</p>
 <p>To obtain an appropriate map of the surrounding, the Scout has to be moved around. The Scout robot can be controlled from the workstation using:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ roslaunch scout_bringup scout_teleop_keyboard.launch
 </pre></div>
@@ -360,40 +363,40 @@ and <a class="reference external" href="https://github.com/westonrobot/scout_nav
 <div class="section" id="scout-v2-sim-nav-platform-full-launch">
 <h3>scout_v2_sim_nav_platform_full.launch<a class="headerlink" href="#scout-v2-sim-nav-platform-full-launch" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
-<li><p>Launches <cite>scout_v2_sim_nav_platform.launch</cite>: Runs Webots and start ROS node to interface LiDAR, IMU and Scout in webots with ROS</p></li>
-<li><p>Launches <cite>scout_v2_nav_platform_description.launch</cite>: Publishes transformed between links in the robot</p></li>
-<li><p>Launches <cite>scout_teleop_keyboard.launch</cite>: Control Scout in Webots using keyboard.</p></li>
-<li><p>Runs <cite>pointcloud_to_laserscan</cite> node that condenses 3D pointcloud into 2D scan for gmapping</p></li>
+<li><p>Launches <span class="incremental">scout_v2_sim_nav_platform.launch</span>: Runs Webots and start ROS node to interface LiDAR, IMU and Scout in webots with ROS</p></li>
+<li><p>Launches <span class="incremental">scout_v2_nav_platform_description.launch</span>: Publishes transformed between links in the robot</p></li>
+<li><p>Launches <span class="incremental">scout_teleop_keyboard.launch</span>: Control Scout in Webots using keyboard.</p></li>
+<li><p>Runs <span class="incremental">pointcloud_to_laserscan</span> node that condenses 3D pointcloud into 2D scan for gmapping</p></li>
 </ol>
 </div>
 <div class="section" id="scout-v2-sim-mapping-launch">
 <h3>scout_v2_sim_mapping.launch<a class="headerlink" href="#scout-v2-sim-mapping-launch" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
-<li><p>Launches <cite>scout_v2_sim_nav_platform_full.launch</cite></p></li>
-<li><p>Launches <cite>scout_v2_mapping.launch</cite></p></li>
+<li><p>Launches <span class="incremental">scout_v2_sim_nav_platform_full.launch</span></p></li>
+<li><p>Launches <span class="incremental">scout_v2_mapping.launch</span></p></li>
 </ol>
 </div>
 <div class="section" id="scout-v2-sim-navigation-launch">
 <h3>scout_v2_sim_navigation.launch<a class="headerlink" href="#scout-v2-sim-navigation-launch" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
-<li><p>Launches <cite>scout_v2_sim_nav_platform_full.launch</cite></p></li>
-<li><p>Launches <cite>scout_v2_navigation.launch</cite></p></li>
+<li><p>Launches <span class="incremental">scout_v2_sim_nav_platform_full.launch</span></p></li>
+<li><p>Launches <span class="incremental">scout_v2_navigation.launch</span></p></li>
 </ol>
 </div>
 <div class="section" id="scout-v2-robot-mapping-launch">
 <h3>scout_v2_robot_mapping.launch<a class="headerlink" href="#scout-v2-robot-mapping-launch" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
-<li><p>Launches <cite>scout_base.launch</cite>: Setup communication between onboard PC and Scout</p></li>
-<li><p>Launches <cite>scout_v2_nav_platform_description.launch</cite>: Publishes transformed between links in the robot</p></li>
-<li><p>Launches <cite>scout_v2_mapping.launch</cite></p></li>
+<li><p>Launches <span class="incremental">scout_base.launch</span>: Setup communication between onboard PC and Scout</p></li>
+<li><p>Launches <span class="incremental">scout_v2_nav_platform_description.launch</span>: Publishes transformed between links in the robot</p></li>
+<li><p>Launches <span class="incremental">scout_v2_mapping.launch</span></p></li>
 </ol>
 </div>
 <div class="section" id="scout-v2-robot-navigation-launch">
 <h3>scout_v2_robot_navigation.launch<a class="headerlink" href="#scout-v2-robot-navigation-launch" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
-<li><p>Launches <cite>scout_base.launch</cite>: Setup communication between onboard PC and Scout</p></li>
-<li><p>Launches <cite>scout_v2_nav_platform_description.launch</cite>: Publishes transformed between links in the robot</p></li>
-<li><p>Launches <cite>scout_v2_navigation.launch</cite></p></li>
+<li><p>Launches <span class="incremental">scout_base.launch</span>: Setup communication between onboard PC and Scout</p></li>
+<li><p>Launches <span class="incremental">scout_v2_nav_platform_description.launch</span>: Publishes transformed between links in the robot</p></li>
+<li><p>Launches <span class="incremental">scout_v2_navigation.launch</span></p></li>
 </ol>
 </div>
 <div class="section" id="scout-v2-workstation-mapping-launch">

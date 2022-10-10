@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>UGV System Overview &mdash; Weston Robot v0.1 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/hacks.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -65,7 +66,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="ugv-system-overview">
+  <blockquote>
+<div></div></blockquote>
+<div class="section" id="ugv-system-overview">
 <h1>UGV System Overview<a class="headerlink" href="#ugv-system-overview" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="ros-to-can-serial-interface">
 <h2>ROS to CAN/Serial interface<a class="headerlink" href="#ros-to-can-serial-interface" title="Permalink to this headline">¶</a></h2>
@@ -103,8 +106,8 @@ into platform-unique <em>Platform Messages</em>.</p>
 <h3>CAN Interface<a class="headerlink" href="#can-interface" title="Permalink to this headline">¶</a></h3>
 <p>Information on CAN bus can be found in <a class="reference external" href="https://www.youtube.com/watch?v=FqLDpHsxvf8">https://www.youtube.com/watch?v=FqLDpHsxvf8</a> and <a class="reference external" href="https://en.wikipedia.org/wiki/CAN_bus">https://en.wikipedia.org/wiki/CAN_bus</a>.</p>
 <p>Many protocols for communication through the CAN bus is similar for different platforms.
-As such, an abstract class <cite>MobileBase</cite> was designed as the super class of the CAN interface class for each robot model.</p>
-<p>On the level of <cite>MobileBase</cite> the following is handled:</p>
+As such, an abstract class <span class="incremental">MobileBase</span> was designed as the super class of the CAN interface class for each robot model.</p>
+<p>On the level of <span class="incremental">MobileBase</span> the following is handled:</p>
 <ol class="arabic simple">
 <li><p>Setting up CAN connection</p></li>
 <li><p>Disconnecting CAN connection</p></li>
@@ -121,7 +124,7 @@ $ sudo ip link set can0 up type can bitrate 500000
 </div>
 <div class="section" id="starting-can-connection">
 <h4>Starting CAN connection<a class="headerlink" href="#starting-can-connection" title="Permalink to this headline">¶</a></h4>
-<p>During the setting up of the CAN connection, the protocol used to read the CAN Frame <cite>ParseCANFrame()</cite> will be set.</p>
+<p>During the setting up of the CAN connection, the protocol used to read the CAN Frame <span class="incremental">ParseCANFrame()</span> will be set.</p>
 <p>Since each platform will process CAN Frames differently, each platform will write its own ParseCANFrame(can_frame <a href="#id1"><span class="problematic" id="id2">*</span></a>rx_frame) function.</p>
 <p>To ensure the safe operation of the robots, the robots requires a steady stream of commands from the computer.
 This is to ensure that if communication is lost, the robots would not be stuck executing the previously sent command,
@@ -135,7 +138,7 @@ and instead the robot will stop moving.</p>
 </div>
 <p>in the MobileBase class.</p>
 <p>However, the types CAN Frames varies between robots.
-Therefore, the actual function designed to send each message is determined by each platform in the <cite>SendRobotCmd()</cite> function
+Therefore, the actual function designed to send each message is determined by each platform in the <span class="incremental">SendRobotCmd()</span> function
 i.e. Each platform designs its own CAN Frame sending protocol while the MobileRobot abstract class maintains the loop
 to consistently send CAN frames to the robot.</p>
 </div>
