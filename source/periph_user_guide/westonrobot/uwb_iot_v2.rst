@@ -145,21 +145,22 @@ Revision History
 
 4.2.2 Running
 ~~~~~~~~~~~~~
-  .. code-block:: bash
-      $ roslaunch nlink_parser iot.launch
+.. code-block:: bash
 
-  - Parameters
-  +-----------+---------------------------+----------------+
-  | Parameter | Description               | Default        |
-  +===========+===========================+================+
-  | port_name | port to the anchor module | "/dev/ttyUSB0" |
-  +-----------+---------------------------+----------------+
-  | baud_rate | baud rate of the module   | 921600         |
-  +-----------+---------------------------+----------------+
+    $ roslaunch nlink_parser iot.launch
 
-  - Published Topics
-  +-------------------+-------------------------+-------------------------------------+
-  | Topics            | Message Format          | Description                         |
-  +===================+=========================+=====================================+
-  | /nlink_iot_frame0 | nlink_parser::IotFrame0 | Data from detected tags (<=10 tags) |
-  +-------------------+-------------------------+-------------------------------------+
+- Parameters
++-----------+---------------------------+----------------+
+| Parameter | Description               | Default        |
++===========+===========================+================+
+| port_name | port to the anchor module | "/dev/ttyUSB0" |
++-----------+---------------------------+----------------+
+| baud_rate | baud rate of the module   | 921600         |
++-----------+---------------------------+----------------+
+
+- Published Topics
++-------------------+-------------------------+-------------------------------------+
+| Topics            | Message Format          | Description                         |
++===================+=========================+=====================================+
+| /nlink_iot_frame0 | nlink_parser::IotFrame0 | Data from detected tags (<=10 tags) |
++-------------------+-------------------------+-------------------------------------+
