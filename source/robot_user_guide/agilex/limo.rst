@@ -34,3 +34,9 @@ The Limo mobile robot is a four-wheeled drive platform that supports omni-wheel 
    * - Weight
      - 4.8kg
 
+3. Resources
+============
+
+* Limo Manual: `limo_manual <https://github.com/agilexrobotics/limo-doc/blob/master/Limo%20user%20manual(EN).md>`_
+* ROS package: `limo_ros <https://github.com/westonrobot/limo_ros>`_
+* ROS2 package: `limo_ros2 <https://github.com/westonrobot/limo_ros2>`_

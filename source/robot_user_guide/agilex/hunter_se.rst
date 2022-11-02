@@ -42,3 +42,10 @@ The Hunter SE mobile robot is an ackermann steering, 4-wheeled robot platform th
    * - Motor
      - 2 x 350W, 1 x 105W (all BLDC)
 
+3. Resources
+============
+
+* Hunter SE Manual: :download:`PDF <manual/Hunter_SE_User_Manual-EN.pdf>`
+* C++ SDK: `ugv_sdk <https://github.com/westonrobot/ugv_sdk>`_
+* ROS package: `hunter_ros <https://github.com/westonrobot/hunter_ros>`_
+* ROS2 package: `hunter_ros2 <https://github.com/westonrobot/hunter_ros2>`_

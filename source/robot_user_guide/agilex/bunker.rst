@@ -41,3 +41,11 @@ The Bunker mobile robot is an tracked, differential steering, robot platform tha
      - 70kg
    * - Motor
      - 2 x 650W BLDC
+
+3. Resources
+============
+
+* Bunker Manual: :download:`PDF <manual/BUNKER_USER_MANUAL _3.0.pdf>`
+* C++ SDK: `ugv_sdk <https://github.com/westonrobot/ugv_sdk>`_
+* ROS package: `bunker_ros <https://github.com/westonrobot/bunker_ros>`_
+* ROS2 package: `bunker_ros2 <https://github.com/westonrobot/bunker_ros2>`_

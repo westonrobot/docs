@@ -40,3 +40,11 @@ The Scout Mini mobile robot is a four wheel differential drive platform.
      - Standard wheel\: 10kg, Mecanum wheel: 20kg
    * - Motor
      - BLDC
+
+3. Resources
+============
+
+* Scout Mini Manual: :download:`PDF <manual/SCOUT_MINI_USER_MANUAL_3.0.pdf>`
+* C++ SDK: `wrp_sdk <https://github.com/westonrobot/wrp_sdk>`_
+* ROS package: `scout_ros <https://github.com/westonrobot/scout_ros>`_
+* ROS2 package: `scout_ros2 <https://github.com/westonrobot/scout_ros2>`_

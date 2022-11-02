@@ -1,5 +1,5 @@
 *********************************
-[Ackerman] Hunter V2.0 User Guide
+[Ackerman] Hunter2.0 User Guide
 *********************************
 
 Revision History
@@ -13,7 +13,7 @@ Revision History
 
 1. Overview
 ===========
-The Hunter mobile robot is an ackermann steering, 4-wheeled robot platform that can be used in numerous settings ranging from delivery to security inspection.
+The Hunter2.0 mobile robot is an ackermann steering, 4-wheeled robot platform with use cases ranging from delivery to security inspection.
 
 2. Specifications
 ===========================
@@ -42,3 +42,10 @@ The Hunter mobile robot is an ackermann steering, 4-wheeled robot platform that 
    * - Motor
      - 3 x 400W BLDC
 
+3. Resources
+============
+
+* Hunter2.0 Manual: :download:`PDF <manual/HUNTER2.0_USER_MANUAL_3.0.pdf>`
+* C++ SDK: `ugv_sdk <https://github.com/westonrobot/ugv_sdk>`_
+* ROS package: `hunter_ros <https://github.com/westonrobot/hunter_ros>`_
+* ROS2 package: `hunter_ros2 <https://github.com/westonrobot/hunter_ros2>`_

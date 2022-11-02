@@ -42,3 +42,10 @@ The Tracer mobile robot is a two-wheeled differential drive platform.
    * - Motor
      - 2 x 150W BLDC
 
+3. Resources
+============
+
+* Tracer Manual: :download:`PDF <manual/TRACER_USER MANUAL_ENv2.0.pdf>`
+* C++ SDK: `ugv_sdk <https://github.com/westonrobot/ugv_sdk>`_
+* ROS package: `tracer_ros <https://github.com/westonrobot/tracer_ros>`_
+* ROS2 package: `tracer_ros2 <https://github.com/westonrobot/tracer_ros2>`_
