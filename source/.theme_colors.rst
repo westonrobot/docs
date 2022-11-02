@@ -1,0 +1,8 @@
+.. Color profiles for Sphinx.
+.. role:: red
+.. role:: magenta
+.. role:: green
+.. role:: olive
+.. role:: blue
+.. role:: navy
+.. role:: purple

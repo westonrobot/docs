@@ -1,0 +1,31 @@
+/* Colors and text decoration.
+ For example, :black:`text in black` or :blink:`text blinking` in rST. */
+
+.red {
+    color: red;
+}
+
+.magenta {
+    color: magenta;
+}
+
+.green {
+    color: green;
+}
+
+.olive {
+    color: olive;
+}
+
+.blue {
+    color: blue;
+}
+
+.navy {
+    color: navy;
+}
+
+.purple {
+    color: purple;
+}
+

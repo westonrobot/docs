@@ -1,6 +1,6 @@
-*********************
-Scout V2.6 User Guide
-*********************
+****************************
+[Skid] Scout V2.6 User Guide
+****************************
 
 1. Summary of Changes
 =====================
@@ -183,7 +183,7 @@ See :ref:`Scout(>2.5) Firmware Upgrade Guide <Scout2.5+FWUpgrade>`
 2. What is the epxected motor temperature and current 
    
    - For **50kg** load running for **15 minutes**:
-   - Average temperature for motor driver and motor about **55 degree Celcius**
+   - Average temperature for motor driver and motor is about **55 degree Celcius**
    - Average current per motor is about **4.5A**
 
 3. BMS

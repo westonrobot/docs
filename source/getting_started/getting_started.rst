@@ -4,6 +4,8 @@ Getting Started
 
 Here you can find general information about robot operation and development:
 
+.. _ref_getting_started:
+
 .. toctree::
    :maxdepth: 1
 
