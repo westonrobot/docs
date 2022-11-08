@@ -2,13 +2,55 @@
 [Skid] Scout V2.5 (WR) User Guide
 *********************************
 
-Scout V2.5 is a modified version of the original Scout V2.0. It uses a different main controller and runs firmware developed by Weston Robot.
+Revision History
+================
 
-1. Robot Modifications
-======================
++----------+-------------------+---------+-----------------+
+| Revision | Date (DD/MM/YYYY) | Author  |     Changes     |
++==========+===================+=========+=================+
+| 1        | 08/11/2022        | Kee Jin | Initial release |
++----------+-------------------+---------+-----------------+
 
-1.1 Hardware Changes
+1. Getting Started
+==================
+
+Please read the information from :ref:`Getting Started <ref_getting_started>` before attempting to operate the robot. It will help to keep both you and your robot safe from potential damages/injuries.
+
+2. Specifications
+=================
+
+The Scout V2.5 is a modified version of the original Scout V2.0. It uses a different main controller and runs firmware developed by Weston Robot.
+
+.. list-table:: Technical Specifications
+   :widths: 25 25
+
+   * - Steering
+     - Skid steer
+   * - Size
+     - 930mm x 699mm x 349mm	
+   * - Minimum Ground Clearance
+     - 135mm
+   * - Operating Temperature
+     - -10-40 degrees Celsius
+   * - Maximum Speed
+     - 1.5m/s	
+   * - Encoder
+     - Magnetic 2500ppr
+   * - Charging Time
+     - 3h (24V/30Ah), 6h (24V/60Ah)
+   * - Weight
+     - 67kg
+   * - Rated Load
+     - 50kg (tested on surface with friction coefficient of 0.5)
+   * - Motor
+     - 4 x 400W BLDC
+
+2.1 Robot Modifications
 --------------------
+The following sections summarises key modifications made to the Scout V2.0.
+
+2.1.1 Hardware Changes
+^^^^^^^^^^^^^^^^^^^^
 
 +---------------------+------------------+---------------------+---------------------------+
 |        Item         |  Standard V2.0   |     V2.5 Rev.0      |        V2.5 Rev.1         |
@@ -37,22 +79,24 @@ You can see the different versions of the top control panels in the following pi
 - For V2.5 Rev.0, the MicroUSB port is for firmware upgrade only
 - For V2.5 Rev.1, the peripheral CAN connector (the smaller one) can be used for extension, such as for adding ultrasonic sensors, TOF sensors
 
-1.2 Software Changes
---------------------
+2.1.2 Software Changes
+^^^^^^^^^^^^^^^^^^^^
 
 - Defined new CAN communication protocol by Weston Robot (wrp_zbus)
 - Deprecated RS232 support for robot control and monitoring
-- Introduced the concept of control token for enhanced safety of robot operation
+- Introduced the concept of control token for enhanced safety of robot operation. The working principle of this control token mechanism has been explained in section 3.
 - The SDK (wrp_sdk) is now provided as a Debian package for easy and convenient installation
 - For V2.5 Rev.0, the ROS interface is provided with the "wr_mobilerobot_ros" package
 - For V2.5 Rev.1, the ROS interface is provided with the "wr_mobilerobot_ros" package
 
-2. Control Token
+3. Control Token Mechanism
 ================
 
 .. image:: figures/scout_v2.5_03.png
     
-The robot can be controlled **manually** with a remote controller or **programatically** through the CAN interface from a Linux computer. Previously, there was no explicit way for the onboard computer (the navigation system) to know whether it can control the robot base or not and possible reasons why the robot doesn't move even though it has commanded the robot to do so. We introduced the concept of control token to provide finer access control of the the robot base
+The robot can be controlled **manually** with a remote controller or **programatically** through the CAN interface from a Linux computer. Previously, there was no explicit way for the onboard computer (the navigation system) to know whether it can control the robot base or not and possible reasons why the robot doesn't move even though it has commanded 
+the robot to do so. We introduced the concept of control token to provide finer 
+access control of the the robot base. The following points outline the working principle of our control token mechanism: 
 
 - There is only one control token available and the token is initially held by the robot controller (command from either remote controller or CAN bus will not be responded)
 - Only the entity who has gained the control token will be able to control the robot to move
@@ -65,52 +109,72 @@ The robot can be controlled **manually** with a remote controller or **programat
 
 .. image:: figures/scout_v2.5_04.png
 
-With the introduced control token concept, the functional mappings of "**SWA**" and "**SWB**" on the remote controller are slightly different:
+With this new concept of a control token, the functional mappings of "**SWA**" and "**SWB**" on the remote controller are now slightly different:
 
 - Initally **SWB** stays at the up position and the robot is in standby mode (control token kept by the robot)
 - The remote controller will gain the control token by placing **SWB** at the middle position, setting the robot to be in the manual control mode
 - Once the operator has finished manual control, the operator can switch the control mode back to **standby** by placing **SWB to up** position  (Switching off the remote controller will return the control token to the robot controller as well). 
 - **SWA** acts as a wireless E-Stop. If **SWA** is switched to **down position**, the control token will remain at robot controller, neither **remote controller** nor **SDK** would be able to control the robot until **SWA** is returned to **up** position 
 
-3. Key Operation Information
+4. Key Operation Information
 ============================
 
-3.1 System State Message
+4.1 System State Message
 ------------------------
 
 Key information about the robot can be extracted from the system state message:
 
-1. **rc_connected**: indicates whether remote controller is connected
+1. **rc_connected** - indicates whether remote controller is connected:
    
    - 1 - RC connected
    - 0 - RC disconnected
   
-2. **error_code**: system error or fault code
+2. **error_code** - possible system codes are as follows:
    
-   - Please refer to Table 3.2.1 below for detailed error code meaning
-  
-3. **operational_state**: possible states and explanations are listed in the following table
++-------------+-----------------------+----------------------------------+
+| Value       | Error Code            |            Description           |
++=============+=======================+==================================+
+| 0x00000000  | kNone                 | No errors                        |
++-------------+-----------------------+----------------------------------+
+| 0x00000001  | kBatteryLowWarn       | Battery level low (warn)         |
++-------------+-----------------------+----------------------------------+
+| 0x00000002  | kMotorOverheatWarn    | Motor overheating (warn)         |
++-------------+-----------------------+----------------------------------+
+| 0x00000004  | kMotorOvercurrentWarn | Motor overcurrent (warn)         |
++-------------+-----------------------+----------------------------------+
+| 0x00010000  | kBatteryLowFault      | Battery level low (fault)        |
++-------------+-----------------------+----------------------------------+
+| 0x00020000  | kMotorOverheatFault   | Motor overheat (fault)           |
++-------------+-----------------------+----------------------------------+
+| 0x00040000  | kMotorOvercurrentFault| Motor overcurrent (fault)        |
++-------------+-----------------------+----------------------------------+
+| 0x00080000  | kMotorCommFault       | Motor communication fault        |
++-------------+-----------------------+----------------------------------+
+
+**Note**: The 2 levels of alerts, "warn" and "fault" will be discussed in section 4.2.
+
+3. **operational_state** - possible states and explanations are listed in the following table
 
 +-------+-------------------+----------------------------------+
-| Value | Operational state |            Situation             |
+| Value | Operational state |           Description            |
 +=======+===================+==================================+
-| 0x00  | OPERATIONAL       | Robot is at normal operation     |
+| 0x00  | kOperational      | Robot is at normal operation     |
 +-------+-------------------+----------------------------------+
-| 0x01  | INITIALIZATION    | Robot is starting up             |
+| 0x01  | kInitialization   | Robot is starting up             |
 +-------+-------------------+----------------------------------+
-| 0x02  | MAINTENANCE       | Not applicable for now           |
+| 0x02  | kMaintenance      | Not applicable for now           |
 +-------+-------------------+----------------------------------+
-| 0x03  | SOFTWARE_UPDATE   | Not applicable for now           |
+| 0x03  | kSoftwareUpdate   | Not applicable for now           |
 +-------+-------------------+----------------------------------+
-| 0x04  | ESTOP_ACTIVATED   | Emergency stop button is pressed |
+| 0x04  | kEStopActivated   | Emergency stop button is pressed |
 +-------+-------------------+----------------------------------+
-| 0x05  | HARDWARE_FAULT    | There is fault error code        |
+| 0x05  | kHardwareFault    | There is fault error code        |
 +-------+-------------------+----------------------------------+
 
-4. **ctrl_state**: indicates which entity is in control of the robot
+4. **control_state**: indicates which entity is in control of the robot
 
 +-------+---------------------+-----------------------------------------------------------+
-| Value |  Operational state  |                         Situation                         |
+| Value |  Control state      |                        Description                        |
 +=======+=====================+===========================================================+
 | 0x00  | UNINITIALIZED       | Robot is starting up / recover from estop                 |
 +-------+---------------------+-----------------------------------------------------------+
@@ -123,13 +187,9 @@ Key information about the robot can be extracted from the system state message:
 | 0x04  | CAN_COMMAND_CONTROL | Robot is controlled by SDK/ROS                            |
 +-------+---------------------+-----------------------------------------------------------+
 
-5. battery-state
-   
-   - contains information about battery voltage
-
 **Note**: There are other feedback messages available in addition to the system state message. Please refer to the ROS package message definitions for more details.
 
-3.2 Buzzer Alert
+4.2 Buzzer Alert
 ----------------
 
 - There are two levels of alert: **Warn** and **Fault**. You can still control the robot when you get a **warn**-level alert but once a **fault**-level alert is triggered, the robot will stop and not respond to any motion commands to avoid possible hardware damage.
@@ -153,19 +213,20 @@ Key information about the robot can be extracted from the system state message:
 | Motor Communication | Not applicable              | Lost communication with motor drivers        | Not applicabl   | 0x00080000       |
 +---------------------+-----------------------------+----------------------------------------------+-----------------+------------------+
 
-**Table 3.2.1 Robot Warning and Fault Conditions**
-
-4. Software Packages
+5. Resources
 ====================
 
-- Sample code for wrp_sdk
-  - https://github.com/westonrobot/sdk_sample
-- ROS support packages
-  - https://github.com/westonrobot/wr_mobilerobot_ros
+- Scout V2.0 Manual: :download:`PDF <../agilex/manual/SCOUT2.0_USER_MANUAL_3.0.pdf>`
+- `Sample code for wrp_sdk <https://github.com/westonrobot/sdk_sample>`_
+- ROS packages: 
+  
+  - `wr_mobilerobot_ros <https://github.com/westonrobot/wr_mobilerobot_ros>`_ (no longer maintained) 
+  - `wrp_ros <https://github.com/westonrobot/wrp_ros>`_ (maintained, uses newer ROS interface) 
+- ROS2 package: `wrp_ros2 <https://github.com/westonrobot/wrp_ros2>`_
 
 **Note**: Scout V2.5 is incompatible with ugv_sdk and scout_ros.
 
-5. Preview Feature
+6. Preview Feature
 ==================
 
 System state monitor with Bluetooth. You can download any Bluetooth serial terminal application to receive basic robot state information. We have tested the following app and you can download it from Play store.
@@ -178,7 +239,7 @@ You can scan Bluetooth devices **near the robot** and connect to the robot contr
 .. image:: figures/scout_v2.5_06.jpg
     :width: 350 px
     
-6. Firmware Upgrade
+7. Firmware Upgrade
 ===================
 
 See :ref:`Scout2.5 Firmware Upgrade Guide <Scout2.5FWUpgrade>`
