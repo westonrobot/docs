@@ -1,5 +1,5 @@
 ****************************
-[Skid/Mecanum] Scout Mini User Guide
+Scout Mini
 ****************************
 
 Revision History

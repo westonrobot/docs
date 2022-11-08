@@ -1,5 +1,5 @@
 *********************************
-[Ackerman] Hunter2.0 User Guide
+Hunter2.0
 *********************************
 
 Revision History

@@ -1,5 +1,5 @@
 *********************************
-[Skid] Scout V2.5 (WR) User Guide
+Scout V2.5 (WR) User Guide
 *********************************
 
 Revision History

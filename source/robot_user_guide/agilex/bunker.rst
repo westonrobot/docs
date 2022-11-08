@@ -1,5 +1,5 @@
 ###################
-[Skid] Bunker User Guide
+Bunker
 ###################
 
 Revision History

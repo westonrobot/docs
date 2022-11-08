@@ -1,5 +1,5 @@
 ********************************
-[Skid] Tracer Mini User Guide
+Tracer Mini
 ********************************
 
 Revision History

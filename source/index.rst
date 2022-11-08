@@ -16,7 +16,21 @@ This website provides instructions and tutorials on the setup and software devel
    :maxdepth: 2
       
    /getting_started/getting_started
+
+User Guides of all supported robot platforms
+---
+
+.. toctree::
+   :maxdepth: 3
+
    /robot_user_guide/robot_user_guide
+
+User Guides of all other products (complements supported robot platforms)
+---
+
+.. toctree::
+   :maxdepth: 2
+   
    /periph_user_guide/periph_user_guide
    /software/software
    /toolbox/toolbox

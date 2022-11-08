@@ -1,5 +1,5 @@
 ###################
-[Ackerman] Hunter SE User Guide
+Hunter SE
 ###################
 
 Revision History

@@ -1,5 +1,5 @@
 *******************************
-[Swerve] Ranger Mini User Guide
+Ranger Mini
 *******************************
 
 Revision History

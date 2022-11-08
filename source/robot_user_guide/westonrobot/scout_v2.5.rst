@@ -1,5 +1,5 @@
 ****************************
-[Skid] Scout V2.5 User Guide
+Scout V2.5 User Guide
 ****************************
 
 1. Summary of Changes

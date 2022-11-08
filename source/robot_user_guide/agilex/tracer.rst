@@ -1,5 +1,5 @@
 ********************************
-[Skid] Tracer User Guide
+Tracer
 ********************************
 
 Revision History

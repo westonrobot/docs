@@ -6,10 +6,12 @@ Robot User Guide
    :depth: 1
 ..    :local:
 
-Here you can find user guides giving detailed information about a specific robot platform:
+Here you can find user guides giving detailed information about a specific robot platform.
 
+Unmanned Ground Vehicles
+-----
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
 
    /robot_user_guide/agilex/scout_v2.0
    /robot_user_guide/westonrobot/scout_wr_v2.5
@@ -21,8 +23,15 @@ Here you can find user guides giving detailed information about a specific robot
    /robot_user_guide/agilex/hunter_se
    /robot_user_guide/agilex/ranger_mini
    /robot_user_guide/agilex/limo
-   .. /robot_user_guide/unitree/go1
-   .. /robot_user_guide/unitree/a1
-   .. /robot_user_guide/unitree/b1
+
+Quadruped robots
+----------
+
+.. toctree::
+   :maxdepth: 1
+
+   /robot_user_guide/unitree/go1
+   /robot_user_guide/unitree/a1
+   /robot_user_guide/unitree/b1
 
 
