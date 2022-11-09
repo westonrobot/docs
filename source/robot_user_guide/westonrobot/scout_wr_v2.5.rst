@@ -1,6 +1,6 @@
-**************************
-Scout V2.5 (WR) User Guide
-**************************
+***************
+Scout V2.5 (WR)
+***************
 
 Revision History
 ================
@@ -242,4 +242,4 @@ You can scan Bluetooth devices **near the robot** and connect to the robot contr
 7. Firmware Upgrade
 ===================
 
-See :ref:`Scout2.5 Firmware Upgrade Guide <Scout2.5FWUpgrade>`
+See :ref:`Scout V2.5 Firmware Upgrade Guide <Scout2.5FWUpgrade>`
