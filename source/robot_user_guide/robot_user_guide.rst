@@ -9,7 +9,8 @@ Robot User Guide
 Here you can find user guides giving detailed information about a specific robot platform.
 
 Unmanned Ground Vehicles
------
+---------
+
 .. toctree::
    :maxdepth: 1
 
