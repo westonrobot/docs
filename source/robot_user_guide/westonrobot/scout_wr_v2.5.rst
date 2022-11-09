@@ -1,6 +1,6 @@
-*********************************
+**************************
 Scout V2.5 (WR) User Guide
-*********************************
+**************************
 
 Revision History
 ================
@@ -46,11 +46,11 @@ The Scout V2.5 is a modified version of the original Scout V2.0. It uses a diffe
      - 4 x 400W BLDC
 
 2.1 Robot Modifications
---------------------
+-----------------------
 The following sections summarises key modifications made to the Scout V2.0.
 
 2.1.1 Hardware Changes
-^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 
 +---------------------+------------------+---------------------+---------------------------+
 |        Item         |  Standard V2.0   |     V2.5 Rev.0      |        V2.5 Rev.1         |
@@ -80,7 +80,7 @@ You can see the different versions of the top control panels in the following pi
 - For V2.5 Rev.1, the peripheral CAN connector (the smaller one) can be used for extension, such as for adding ultrasonic sensors, TOF sensors
 
 2.1.2 Software Changes
-^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 
 - Defined new CAN communication protocol by Weston Robot (wrp_zbus)
 - Deprecated RS232 support for robot control and monitoring
@@ -90,7 +90,7 @@ You can see the different versions of the top control panels in the following pi
 - For V2.5 Rev.1, the ROS interface is provided with the "wr_mobilerobot_ros" package
 
 3. Control Token Mechanism
-================
+==========================
 
 .. image:: figures/scout_v2.5_03.png
     
@@ -214,7 +214,7 @@ Key information about the robot can be extracted from the system state message:
 +---------------------+-----------------------------+----------------------------------------------+-----------------+------------------+
 
 5. Resources
-====================
+============
 
 - Scout V2.0 Manual: :download:`PDF <../agilex/manual/SCOUT2.0_USER_MANUAL_3.0.pdf>`
 - `Sample code for wrp_sdk <https://github.com/westonrobot/sdk_sample>`_

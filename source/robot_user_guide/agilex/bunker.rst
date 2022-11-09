@@ -1,6 +1,6 @@
-###################
+******
 Bunker
-###################
+******
 
 Revision History
 ================
@@ -16,7 +16,7 @@ Revision History
 The Bunker mobile robot is an tracked, differential steering, robot platform that can be used in numerous settings ranging from delivery to security inspection.
 
 2. Specifications
-===========================
+=================
 
 .. list-table:: Technical Specifications
    :widths: 25 25

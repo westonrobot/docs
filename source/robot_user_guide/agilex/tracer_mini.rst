@@ -1,6 +1,6 @@
-********************************
+***********
 Tracer Mini
-********************************
+***********
 
 Revision History
 ================
@@ -16,7 +16,7 @@ Revision History
 The Tracer Mini mobile robot is a two-wheeled differential drive platform. 
 
 2. Specifications
-===========================
+=================
 
 .. list-table:: Technical Specifications
    :widths: 25 25

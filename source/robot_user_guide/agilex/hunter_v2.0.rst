@@ -1,6 +1,6 @@
-*********************************
+*********
 Hunter2.0
-*********************************
+*********
 
 Revision History
 ================
@@ -16,7 +16,7 @@ Revision History
 The Hunter2.0 mobile robot is an ackermann steering, 4-wheeled robot platform with use cases ranging from delivery to security inspection.
 
 2. Specifications
-===========================
+=================
 
 .. list-table:: Technical Specifications
    :widths: 25 25

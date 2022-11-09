@@ -18,14 +18,14 @@ This website provides instructions and tutorials on the setup and software devel
    /getting_started/getting_started
 
 User Guides for all supported robot platforms
---------------------------------------------
+---------------------------------------------
 .. toctree::
    :maxdepth: 3
 
    /robot_user_guide/robot_user_guide
 
 User Guides for Weston Robot's complementary products
---------------------------------------------------------
+-----------------------------------------------------
 
 .. toctree::
    :maxdepth: 2

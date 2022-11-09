@@ -1,6 +1,6 @@
-*******************************
+***********
 Ranger Mini
-*******************************
+***********
 
 Revision History
 ================
@@ -17,7 +17,7 @@ The Ranger Mini mobile robot is an independant four-wheeled differential drive p
 
 
 2. Specifications
-===========================
+=================
 
 .. list-table:: Technical Specifications
    :widths: 25 25

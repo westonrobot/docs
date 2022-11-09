@@ -1,6 +1,6 @@
-****************************
+**********
 Scout Mini
-****************************
+**********
 
 Revision History
 ================
@@ -17,7 +17,7 @@ The Scout Mini mobile robot is a four wheel differential drive platform.
 
 
 2. Specifications
-===========================
+=================
 
 .. list-table:: Technical Specifications
    :widths: 25 25

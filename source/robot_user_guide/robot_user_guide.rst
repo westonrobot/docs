@@ -9,7 +9,7 @@ Robot User Guide
 Here you can find user guides giving detailed information about a specific robot platform.
 
 Unmanned Ground Vehicles
----------
+------------------------
 
 .. toctree::
    :maxdepth: 1
@@ -25,8 +25,8 @@ Unmanned Ground Vehicles
    /robot_user_guide/agilex/ranger_mini
    /robot_user_guide/agilex/limo
 
-Quadruped robots
-----------
+Quadruped robot
+---------------
 
 .. toctree::
    :maxdepth: 1

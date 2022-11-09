@@ -1,6 +1,6 @@
-********************************
+****
 Limo
-********************************
+****
 
 Revision History
 ================
@@ -16,7 +16,7 @@ Revision History
 The Limo mobile robot is a four-wheeled drive platform that supports omni-wheel steering, tracked steering, differential steering and ackermann steering. 
 
 2. Specifications
-===========================
+=================
 
 .. list-table:: Technical Specifications
    :widths: 25 25

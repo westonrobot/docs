@@ -1,6 +1,6 @@
-###################
+*********
 Hunter SE
-###################
+*********
 
 Revision History
 ================
@@ -16,7 +16,7 @@ Revision History
 The Hunter SE mobile robot is an ackermann steering, 4-wheeled robot platform that can be used in numerous settings ranging from delivery to security inspection.
 
 2. Specifications
-===========================
+=================
 
 .. list-table:: Technical Specifications
    :widths: 25 25
