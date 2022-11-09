@@ -194,10 +194,10 @@ Key information about the robot can be extracted from the system state message:
 
 - There are two levels of alert: **Warn** and **Fault**. You can still control the robot when you get a **warn**-level alert but once a **fault**-level alert is triggered, the robot will stop and not respond to any motion commands to avoid possible hardware damage.
 - Warn-level alert: buzzer will be triggered at a relatively **low frequency** (0.5Hz)
-   - The robot **can still be controlled**, but the warning (buzzer) will remain until none of the **warning** conditions from Table 1.1 exist
+   - The robot **can still be controlled**, but the warning (buzzer) will remain until none of the **warning** conditions (from table below) exist
    - It is advised to take proper actions to get the robot back to normal
 - Fault-level alert: buzzer will be triggered **at higher frequency** (2Hz)
-   - The robot **cannot be controlled** until all **faults **are resolved
+   - The robot **cannot be controlled** until all **faults** are resolved
    - For recoverable faults (e.g. over-heating), the robot may first recover back to warn-level condition before returning to normal, given enough time for cooling
 - Conditions that may trigger the alert are listed below
   
