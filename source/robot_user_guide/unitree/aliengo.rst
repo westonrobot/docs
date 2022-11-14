@@ -1,6 +1,6 @@
-*************
-GO1 Robot Dog
-*************
+*****************
+Aliengo Robot Dog
+*****************
 
 Revision History
 ================
@@ -13,7 +13,7 @@ Revision History
 
 1. Overview
 ===========
-The Go1 robot dog is a 12 DOF, quadruped robot.
+The Aliengo robot dog is a 12 DOF, quadruped robot.
 
 2. Specifications
 =================
@@ -22,36 +22,39 @@ The Go1 robot dog is a 12 DOF, quadruped robot.
    :widths: 25 25
 
    * - Dimensions (Proning State)
-     - 550mm x 300mm x 130mm
+     - 600mm x 310mm x 150mm
    * - Dimensions (Standing State)
-     - 650mm x 300mm x 400mm
+     - 650mm x 310mm x 600mm
    * - Maximum traversal tilt
-     - 35 degrees
+     - 25 degrees
+   * - Maximum stair-climbing height
+     - 18cm
    * - Maximum Speed
-     - Pro\: 3.5m/s Edu: 3.7m/s	
+     - 1.5m/s	
    * - Charging Time
-     - 50min
+     - 45min
    * - Average Running Time
-     - 1h
+     - >2h
    * - Weight
-     - 12kg
+     - 21.5kg
    * - Rated Load
-     - Pro\: 3kg, Edu: 5kg
+     - 10kg
    * - Motor
      - 12 x Servo Geared motors
 
 3. General Notes
 ================
-* When conducting experiments with the Go1 that may impact its stability, the emergency stop provided should be used where necessary.
+* When conducting experiments with the Aliengo that may impact its stability, the emergency stop and leash provided should be used where necessary.
 .. image:: figures/A1_estop.png
     :width: 180 px
-    :align: center
-* The Go1 should be powered off and its battery should be replaced whenever there is only 1/4 of the battery LED indicators left lit and blinking. This indicates that the battery level is low (0-25%).
-* Before powering off the Go1, be sure to bring it down to the damped proning state first to prevent the robot from dropping down from a height. To do so, get the Go1 to the "proning state" with "L2+A" and finally press "L2+B". 
+.. image:: figures/A1_leash.png
+    :width: 380 px
+* The Aliengo should be powered off and its battery should be replaced whenever there is only 1/5 of the battery LED indicators left lit and blinking. This indicates that the battery level is low (0-20%).
+* Before powering off the Aliengo, be sure to bring it down to the damped proning state first to prevent the robot from dropping down from a height. To do so, get the Aliengo to the "proning state" with "L2+A" and finally press "L2+B". 
 
 4. Resources
 ============
 
-* :download:`Getting Started with Go1 <manual/Go1_slides.pdf>`
+.. * :download:`Getting Started with Aliengo <manual/Aliengo_slides.pdf>`
 * SDK: `unitree_legged_sdk <https://github.com/westonrobot/unitree_legged_sdk>`_
 * ROS package: `unitree_ros <https://github.com/westonrobot/unitree_ros>`_
