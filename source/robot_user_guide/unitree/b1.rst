@@ -26,7 +26,7 @@ The B1 robot dog is an industrial grade, 12 DOF, quadruped robot.
    * - Dimensions (Standing State)
      - 1126mm x 467mm x 636mm
    * - Operating Temperature
-     - -5 - 45 degrees Celsius
+     - 5 - 40 degrees Celsius
    * - Maximum traversal tilt
      - 30 degrees
    * - Maximum stair-climbing height
@@ -41,6 +41,8 @@ The B1 robot dog is an industrial grade, 12 DOF, quadruped robot.
      - 50kg
    * - Rated Load
      - Standing\: 80kg, Walking: 20kg
+   * - Protection Level
+     - IP67 (IP68 optional)
    * - Motor
      - 12 x Servo Geared motors
 
