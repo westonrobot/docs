@@ -1,8 +1,8 @@
-####################
-Weston Robot Toolbox
-####################
+#######
+Toolbox
+#######
 
-Here you can find user guides giving detailed information about a specific robot platform or peripheral:
+Here you can find user guides of robotic toolboxes developed by Weston Robot:
 
 .. toctree::
    :maxdepth: 1

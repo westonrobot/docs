@@ -1,6 +1,6 @@
-**************************
-Scout V2.5 (WR) User Guide
-**************************
+***************
+Scout V2.5 (WR)
+***************
 
 Revision History
 ================
@@ -31,7 +31,7 @@ The Scout V2.5 is a modified version of the original Scout V2.0. It uses a diffe
    * - Minimum Ground Clearance
      - 135mm
    * - Operating Temperature
-     - -10-40 degrees Celsius
+     - -10 - 40 degrees Celsius
    * - Maximum Speed
      - 1.5m/s	
    * - Encoder
@@ -242,4 +242,4 @@ You can scan Bluetooth devices **near the robot** and connect to the robot contr
 7. Firmware Upgrade
 ===================
 
-See :ref:`Scout2.5 Firmware Upgrade Guide <Scout2.5FWUpgrade>`
+See :ref:`Scout V2.5 Firmware Upgrade Guide <Scout2.5FWUpgrade>`
