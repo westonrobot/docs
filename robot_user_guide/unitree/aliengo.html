@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hunter SE &mdash; Weston Robot v0.1 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <title>Aliengo Robot Dog &mdash; Weston Robot v0.1 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/hacks.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -17,8 +17,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Ranger Mini" href="ranger_mini.html" />
-    <link rel="prev" title="Hunter V2.0" href="hunter_v2.0.html" /> 
+    <link rel="next" title="B1 Robot Dog" href="b1.html" />
+    <link rel="prev" title="GO1 Robot Dog" href="go1.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -41,20 +41,14 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../robot_user_guide.html">Robot User Guide</a><ul class="current">
-<li class="toctree-l2 current"><a class="reference internal" href="../ugv.html">Unmanned Ground Vehicles</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="scout_v2.0.html">Scout V2.0</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../westonrobot/scout_wr_v2.5.html">Scout V2.5 (WR)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scout_mini.html">Scout Mini</a></li>
-<li class="toctree-l3"><a class="reference internal" href="bunker.html">Bunker</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tracer.html">Tracer</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tracer_mini.html">Tracer Mini</a></li>
-<li class="toctree-l3"><a class="reference internal" href="hunter_v2.0.html">Hunter V2.0</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Hunter SE</a></li>
-<li class="toctree-l3"><a class="reference internal" href="ranger_mini.html">Ranger Mini</a></li>
-<li class="toctree-l3"><a class="reference internal" href="limo.html">Limo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ugv.html">Unmanned Ground Vehicles</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../quadruped.html">Quadruped Robots</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="a1.html">A1 Robot Dog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="go1.html">GO1 Robot Dog</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Aliengo Robot Dog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="b1.html">B1 Robot Dog</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../quadruped.html">Quadruped Robots</a></li>
 </ul>
 </li>
 </ul>
@@ -83,10 +77,10 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a></li>
           <li class="breadcrumb-item"><a href="../robot_user_guide.html">Robot User Guide</a></li>
-          <li class="breadcrumb-item"><a href="../ugv.html">Unmanned Ground Vehicles</a></li>
-      <li class="breadcrumb-item active">Hunter SE</li>
+          <li class="breadcrumb-item"><a href="../quadruped.html">Quadruped Robots</a></li>
+      <li class="breadcrumb-item active">Aliengo Robot Dog</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/robot_user_guide/agilex/hunter_se.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/robot_user_guide/unitree/aliengo.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -96,8 +90,8 @@
              
   <blockquote>
 <div></div></blockquote>
-<div class="section" id="hunter-se">
-<h1>Hunter SE<a class="headerlink" href="#hunter-se" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="aliengo-robot-dog">
+<h1>Aliengo Robot Dog<a class="headerlink" href="#aliengo-robot-dog" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="revision-history">
 <h2>Revision History<a class="headerlink" href="#revision-history" title="Permalink to this headline">¶</a></h2>
 <table class="docutils align-default">
@@ -116,7 +110,7 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>1</p></td>
-<td><p>28/04/2022</p></td>
+<td><p>14/11/2022</p></td>
 <td><p>Kee Jin</p></td>
 <td><p>Initial release</p></td>
 </tr>
@@ -125,7 +119,7 @@
 </div>
 <div class="section" id="overview">
 <h2>1. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<p>The Hunter SE mobile robot is an ackermann steering, 4-wheeled robot platform that can be used in numerous settings ranging from delivery to security inspection.</p>
+<p>The Aliengo robot dog is a 12 DOF, quadruped robot.</p>
 </div>
 <div class="section" id="specifications">
 <h2>2. Specifications<a class="headerlink" href="#specifications" title="Permalink to this headline">¶</a></h2>
@@ -136,46 +130,56 @@
 <col style="width: 50%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p>Steering</p></td>
-<td><p>Ackermann steering</p></td>
+<tr class="row-odd"><td><p>Dimensions (Proning State)</p></td>
+<td><p>600mm x 310mm x 150mm</p></td>
 </tr>
-<tr class="row-even"><td><p>Size</p></td>
-<td><p>820mm x 640mm x 310mm</p></td>
+<tr class="row-even"><td><p>Dimensions (Standing State)</p></td>
+<td><p>650mm x 310mm x 600mm</p></td>
 </tr>
-<tr class="row-odd"><td><p>Minimum Ground Clearance</p></td>
-<td><p>120mm</p></td>
+<tr class="row-odd"><td><p>Maximum traversal tilt</p></td>
+<td><p>25 degrees</p></td>
 </tr>
-<tr class="row-even"><td><p>Operating Temperature</p></td>
-<td><p>-10 - 40 degrees Celsius</p></td>
+<tr class="row-even"><td><p>Maximum stair-climbing height</p></td>
+<td><p>18cm</p></td>
 </tr>
 <tr class="row-odd"><td><p>Maximum Speed</p></td>
-<td><p>4.8m/s</p></td>
+<td><p>1.5m/s</p></td>
 </tr>
-<tr class="row-even"><td><p>Encoder</p></td>
-<td><p>Magnetic 1000ppr</p></td>
+<tr class="row-even"><td><p>Charging Time</p></td>
+<td><p>45min</p></td>
 </tr>
-<tr class="row-odd"><td><p>Charging Time</p></td>
-<td><p>3h (24V/30Ah)</p></td>
+<tr class="row-odd"><td><p>Average Running Time</p></td>
+<td><p>&gt;2h</p></td>
 </tr>
 <tr class="row-even"><td><p>Weight</p></td>
-<td><p>42kg</p></td>
+<td><p>21.5kg</p></td>
 </tr>
 <tr class="row-odd"><td><p>Rated Load</p></td>
-<td><p>50kg</p></td>
+<td><p>10kg</p></td>
 </tr>
 <tr class="row-even"><td><p>Motor</p></td>
-<td><p>2 x 350W, 1 x 105W (all BLDC)</p></td>
+<td><p>12 x Servo Geared motors</p></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div class="section" id="resources">
-<h2>3. Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="general-notes">
+<h2>3. General Notes<a class="headerlink" href="#general-notes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>Hunter SE Manual: <a class="reference download internal" download="" href="../../_downloads/35b6d0210fd7b416e3e751285c62c1ba/Hunter_SE_User_Manual-EN.pdf"><code class="xref download docutils literal notranslate"><span class="pre">PDF</span></code></a></p></li>
-<li><p>C++ SDK: <a class="reference external" href="https://github.com/westonrobot/ugv_sdk">ugv_sdk</a></p></li>
-<li><p>ROS package: <a class="reference external" href="https://github.com/westonrobot/hunter_ros">hunter_ros</a></p></li>
-<li><p>ROS2 package: <a class="reference external" href="https://github.com/westonrobot/hunter_ros2">hunter_ros2</a></p></li>
+<li><p>When conducting experiments with the Aliengo that may impact its stability, the emergency stop and leash provided should be used where necessary.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/A1_estop.png"><img alt="../../_images/A1_estop.png" src="../../_images/A1_estop.png" style="width: 180px;" /></a>
+<a class="reference internal image-reference" href="../../_images/A1_leash.png"><img alt="../../_images/A1_leash.png" src="../../_images/A1_leash.png" style="width: 380px;" /></a>
+<ul class="simple">
+<li><p>The Aliengo should be powered off and its battery should be replaced whenever there is only 1/5 of the battery LED indicators left lit and blinking. This indicates that the battery level is low (0-20%).</p></li>
+<li><p>Before powering off the Aliengo, be sure to bring it down to the damped proning state first to prevent the robot from dropping down from a height. To do so, get the Aliengo to the “proning state” with “L2+A” and finally press “L2+B”.</p></li>
+</ul>
+</div>
+<div class="section" id="resources">
+<h2>4. Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>SDK: <a class="reference external" href="https://github.com/westonrobot/unitree_legged_sdk">unitree_legged_sdk</a></p></li>
+<li><p>ROS simulation package: <a class="reference external" href="https://github.com/westonrobot/unitree_ros">unitree_ros</a></p></li>
 </ul>
 </div>
 </div>
@@ -184,8 +188,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="hunter_v2.0.html" class="btn btn-neutral float-left" title="Hunter V2.0" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="ranger_mini.html" class="btn btn-neutral float-right" title="Ranger Mini" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="go1.html" class="btn btn-neutral float-left" title="GO1 Robot Dog" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="b1.html" class="btn btn-neutral float-right" title="B1 Robot Dog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

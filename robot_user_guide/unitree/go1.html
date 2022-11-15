@@ -17,8 +17,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="A1 Robot Dog" href="a1.html" />
-    <link rel="prev" title="Limo" href="../agilex/limo.html" /> 
+    <link rel="next" title="Aliengo Robot Dog" href="aliengo.html" />
+    <link rel="prev" title="A1 Robot Dog" href="a1.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -41,10 +41,11 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../robot_user_guide.html">Robot User Guide</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../robot_user_guide.html#unmanned-ground-vehicles">Unmanned Ground Vehicles</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../robot_user_guide.html#quadruped-robot">Quadruped robot</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">GO1 Robot Dog</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ugv.html">Unmanned Ground Vehicles</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../quadruped.html">Quadruped Robots</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="a1.html">A1 Robot Dog</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">GO1 Robot Dog</a></li>
+<li class="toctree-l3"><a class="reference internal" href="aliengo.html">Aliengo Robot Dog</a></li>
 <li class="toctree-l3"><a class="reference internal" href="b1.html">B1 Robot Dog</a></li>
 </ul>
 </li>
@@ -53,8 +54,12 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../periph_user_guide/periph_user_guide.html">Peripheral User Guide</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../../software/software.html">Software Packages</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../toolbox/toolbox.html">Weston Robot Toolbox</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../toolbox/toolbox.html">Toolbox</a></li>
 </ul>
 
         </div>
@@ -72,6 +77,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a></li>
           <li class="breadcrumb-item"><a href="../robot_user_guide.html">Robot User Guide</a></li>
+          <li class="breadcrumb-item"><a href="../quadruped.html">Quadruped Robots</a></li>
       <li class="breadcrumb-item active">GO1 Robot Dog</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/robot_user_guide/unitree/go1.rst.txt" rel="nofollow"> View page source</a>
@@ -88,6 +94,91 @@
 <h1>GO1 Robot Dog<a class="headerlink" href="#go1-robot-dog" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="revision-history">
 <h2>Revision History<a class="headerlink" href="#revision-history" title="Permalink to this headline">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 30%" />
+<col style="width: 16%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Revision</p></th>
+<th class="head"><p>Date (DD/MM/YYYY)</p></th>
+<th class="head"><p>Author</p></th>
+<th class="head"><p>Changes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>14/11/2022</p></td>
+<td><p>Kee Jin</p></td>
+<td><p>Initial release</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="overview">
+<h2>1. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The Go1 robot dog is a 12 DOF, quadruped robot.</p>
+</div>
+<div class="section" id="specifications">
+<h2>2. Specifications<a class="headerlink" href="#specifications" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-given docutils align-default" id="id1">
+<caption><span class="caption-text">Technical Specifications</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Dimensions (Proning State)</p></td>
+<td><p>550mm x 300mm x 130mm</p></td>
+</tr>
+<tr class="row-even"><td><p>Dimensions (Standing State)</p></td>
+<td><p>650mm x 300mm x 400mm</p></td>
+</tr>
+<tr class="row-odd"><td><p>Maximum traversal tilt</p></td>
+<td><p>35 degrees</p></td>
+</tr>
+<tr class="row-even"><td><p>Maximum Speed</p></td>
+<td><p>Pro: 3.5m/s Edu: 3.7m/s</p></td>
+</tr>
+<tr class="row-odd"><td><p>Charging Time</p></td>
+<td><p>50min</p></td>
+</tr>
+<tr class="row-even"><td><p>Average Running Time</p></td>
+<td><p>1h</p></td>
+</tr>
+<tr class="row-odd"><td><p>Weight</p></td>
+<td><p>12kg</p></td>
+</tr>
+<tr class="row-even"><td><p>Rated Load</p></td>
+<td><p>Pro: 3kg, Edu: 5kg</p></td>
+</tr>
+<tr class="row-odd"><td><p>Motor</p></td>
+<td><p>12 x Servo Geared motors</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="general-notes">
+<h2>3. General Notes<a class="headerlink" href="#general-notes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>When conducting experiments with the Go1 that may impact its stability, the emergency stop provided should be used where necessary.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/A1_estop.png"><img alt="../../_images/A1_estop.png" class="align-center" src="../../_images/A1_estop.png" style="width: 180px;" /></a>
+<ul class="simple">
+<li><p>The Go1 should be powered off and its battery should be replaced whenever there is only 1/4 of the battery LED indicators left lit and blinking. This indicates that the battery level is low (0-25%).</p></li>
+<li><p>Before powering off the Go1, be sure to bring it down to the damped proning state first to prevent the robot from dropping down from a height. To do so, get the Go1 to the “proning state” with “L2+A” and finally press “L2+B”.</p></li>
+</ul>
+</div>
+<div class="section" id="resources">
+<h2>4. Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>User guide: <a class="reference download internal" download="" href="../../_downloads/a335610e78a3b235e7de8de63801798c/Go1_slides.pdf"><code class="xref download docutils literal notranslate"><span class="pre">Getting</span> <span class="pre">Started</span> <span class="pre">with</span> <span class="pre">Go1</span></code></a></p></li>
+<li><p>SDK: <a class="reference external" href="https://github.com/westonrobot/unitree_legged_sdk">unitree_legged_sdk</a></p></li>
+<li><p>ROS simulation package: <a class="reference external" href="https://github.com/westonrobot/unitree_ros">unitree_ros</a></p></li>
+<li><p>ROS controller package: <a class="reference external" href="https://github.com/westonrobot/unitree_ros_to_real">unitree_ros_to_real</a></p></li>
+</ul>
 </div>
 </div>
 
@@ -95,8 +186,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../agilex/limo.html" class="btn btn-neutral float-left" title="Limo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="a1.html" class="btn btn-neutral float-right" title="A1 Robot Dog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="a1.html" class="btn btn-neutral float-left" title="A1 Robot Dog" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="aliengo.html" class="btn btn-neutral float-right" title="Aliengo Robot Dog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

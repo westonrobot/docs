@@ -1,6 +1,53 @@
-********************************
+************
 B1 Robot Dog
-********************************
+************
 
 Revision History
 ================
+
++----------+-------------------+----------+------------------------+
+| Revision | Date (DD/MM/YYYY) | Author   | Changes                |
++==========+===================+==========+========================+
+| 1        | 14/11/2022        | Kee Jin  | Initial release        |
++----------+-------------------+----------+------------------------+
+
+1. Overview
+===========
+The B1 robot dog is an industrial grade, 12 DOF, quadruped robot.
+
+2. Specifications
+=================
+
+.. list-table:: Technical Specifications
+   :widths: 25 25
+
+   * - Dimensions (Proning State)
+     - 1202mm x 467mm x 297mm
+   * - Dimensions (Standing State)
+     - 1126mm x 467mm x 636mm
+   * - Operating Temperature
+     - 5 - 40 degrees Celsius
+   * - Maximum traversal tilt
+     - 30 degrees
+   * - Maximum stair-climbing height
+     - 20cm
+   * - Maximum Speed
+     - 1.2m/s	
+   * - Charging Time
+     - 1h - 2h
+   * - Average Running Time
+     - Continuous standing\: 2.5h, Continuous walking: 2h
+   * - Weight
+     - 50kg
+   * - Rated Load
+     - Standing\: 80kg, Walking: 20kg
+   * - Protection Level
+     - IP67 (IP68 optional)
+   * - Motor
+     - 12 x Servo Geared motors
+
+.. 3. Resources
+.. ============
+.. * User guide: :download:`Getting Started with Go1 <manual/Go1_slides.pdf>`
+.. * SDK: `unitree_legged_sdk <https://github.com/westonrobot/unitree_legged_sdk>`_
+.. * ROS simulation package: `unitree_ros <https://github.com/westonrobot/unitree_ros>`_
