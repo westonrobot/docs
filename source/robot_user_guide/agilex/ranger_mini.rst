@@ -41,7 +41,7 @@ The Ranger Mini mobile robot is an independant four-wheeled differential drive p
 
 3. Resources
 ============
-.. * Ranger Mini Manual: :download:`PDF <manual/BUNKER_USER_MANUAL _3.0.pdf>`
+* Ranger Mini Manual: :download:`PDF <manual/Ranger_Mini_User_Manual_ EN.pdf>`
 * C++ SDK: `ugv_sdk <https://github.com/westonrobot/ugv_sdk>`_
 * ROS package: `ranger_ros <https://github.com/westonrobot/ranger_ros>`_
 * ROS2 package: `ranger_ros2 <https://github.com/westonrobot/ranger_ros2>`_
