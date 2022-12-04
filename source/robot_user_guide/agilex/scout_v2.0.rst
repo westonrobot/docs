@@ -31,7 +31,7 @@ The Scout robot is a four-wheel skid-steer mobile platform.
    * - Minimum Ground Clearance
      - 135mm
    * - Operating Temperature
-     - -10-40 degrees Celsius
+     - -10 - 40 ℃
    * - IP Rating
      - IP22 (IP44, IP64 available upon request)
    * - Maximum Speed

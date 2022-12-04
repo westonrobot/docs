@@ -31,7 +31,7 @@ The Scout V2.5 is a modified version of the original Scout V2.0. It uses a diffe
    * - Minimum Ground Clearance
      - 135mm
    * - Operating Temperature
-     - -10 - 40 degrees Celsius
+     - -10 - 40 ℃
    * - IP Rating
      - IP22 (IP44, IP64 available upon request)
    * - Maximum Speed

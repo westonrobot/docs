@@ -29,7 +29,7 @@ The Scout Mini mobile robot is a four wheel differential drive platform.
    * - Minimum Ground Clearance
      - 115mm
    * - Operating Temperature
-     - -10 - 40 degrees Celsius
+     - -10 - 40 ℃
    * - IP Rating
      - IP22
    * - Maximum Speed

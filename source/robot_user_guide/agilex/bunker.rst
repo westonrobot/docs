@@ -28,7 +28,7 @@ The Bunker mobile robot is an tracked, differential steering, robot platform tha
    * - Minimum Ground Clearance
      - 90mm
    * - Operating Temperature
-     - -10 - 40 degrees Celsius
+     - -10 - 40 ℃
    * - IP Rating
      - IP44 (IP52, IP54 available upon request)
    * - Maximum Speed

@@ -28,7 +28,7 @@ The Hunter V2.0 mobile robot is an ackermann steering, 4-wheeled robot platform 
    * - Minimum Ground Clearance
      - 100mm
    * - Operating Temperature
-     - -10 - 40 degrees Celsius
+     - -10 - 40 ℃
    * - IP Rating
      - IP22 (IP54 available upon request)
    * - Maximum Speed
