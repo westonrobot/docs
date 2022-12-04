@@ -27,8 +27,12 @@ The Limo mobile robot is a four-wheeled drive platform that supports omni-wheel 
      - 24mm
    * - Operating Temperature
      - -10 - 40 degrees Celsius
+   * - IP Rating
+     - IP22
    * - Maximum Speed
      - 1m/s	
+   * - Maximum Angle of Tilt
+     - <25° (omni-wheel, differential, ackermann), <40° (tracked)
    * - Charging Time
      - 2h
    * - Weight

@@ -30,8 +30,12 @@ The Scout Mini mobile robot is a four wheel differential drive platform.
      - 115mm
    * - Operating Temperature
      - -10 - 40 degrees Celsius
+   * - IP Rating
+     - IP22
    * - Maximum Speed
      - 3m/s	
+   * - Maximum Angle of Tilt
+     - Standard wheel\: <30° (unloaded), Mecanum wheel: <8° (unloaded)
    * - Charging Time
      - 2h
    * - Weight

@@ -29,8 +29,12 @@ The Hunter SE mobile robot is an ackermann steering, 4-wheeled robot platform th
      - 120mm
    * - Operating Temperature
      - -10 - 40 degrees Celsius
+   * - IP Rating
+     - IP22
    * - Maximum Speed
      - 4.8m/s	
+   * - Maximum Angle of Tilt
+     - <20° (fully loaded)
    * - Encoder
      - Magnetic 1000ppr
    * - Charging Time

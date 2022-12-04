@@ -29,8 +29,12 @@ The Tracer Mini mobile robot is a two-wheeled differential drive platform.
      - 30mm
    * - Operating Temperature
      - -10 - 40 degrees Celsius
+   * - IP Rating
+     - IP22
    * - Maximum Speed
      - 1.6m/s	
+   * - Maximum Angle of Tilt
+     - <4°
    * - Encoder
      - Photoelectric 1024ppr
    * - Charging Time

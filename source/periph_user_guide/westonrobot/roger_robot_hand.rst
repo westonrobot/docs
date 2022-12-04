@@ -98,6 +98,7 @@ There are 2 ways to interface with the hand out-of-the-box.
     $ roslaunch roger_hand_bringup roger_hand_server.launch
 
 - Parameters
+
 +-----------+-------------------------+----------------+
 | Parameter | Description             | Default        |
 +===========+=========================+================+
@@ -105,6 +106,7 @@ There are 2 ways to interface with the hand out-of-the-box.
 +-----------+-------------------------+----------------+
 
 - Published Topics
+
 +--------------+-----------------------------+-------------------+
 | Topics       | Message Format              | Description       |
 +==============+=============================+===================+
@@ -112,6 +114,7 @@ There are 2 ways to interface with the hand out-of-the-box.
 +--------------+-----------------------------+-------------------+
 
 - Services
+
 +-----------------------+----------------------------------+-----------------------------+
 | Name                  | Message Format                   | Description                 |
 +=======================+==================================+=============================+
@@ -127,6 +130,7 @@ There are 2 ways to interface with the hand out-of-the-box.
 +-----------------------+----------------------------------+-----------------------------+
 
 - Finger IDs
+
 +-------+------------------+
 | Index | Joint            |
 +=======+==================+

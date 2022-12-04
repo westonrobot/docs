@@ -29,8 +29,12 @@ The Hunter V2.0 mobile robot is an ackermann steering, 4-wheeled robot platform 
      - 100mm
    * - Operating Temperature
      - -10 - 40 degrees Celsius
+   * - IP Rating
+     - IP22 (IP54 available upon request)
    * - Maximum Speed
      - 1.5m/s	
+   * - Maximum Angle of Tilt
+     - <10° (fully loaded)
    * - Encoder
      - Magnetic 2500ppr
    * - Charging Time

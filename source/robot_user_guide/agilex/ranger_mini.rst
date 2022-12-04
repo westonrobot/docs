@@ -30,8 +30,12 @@ The Ranger Mini mobile robot is an independant four-wheeled differential drive p
      - 200mm
    * - Operating Temperature
      - -10 - 40 degrees Celsius
+   * - IP Rating
+     - IP22
    * - Maximum Speed
      - 1.5m/s	
+   * - Maximum Angle of Tilt
+     - <4°
    * - Charging Time
      - 3h
    * - Weight

@@ -29,8 +29,12 @@ The Bunker mobile robot is an tracked, differential steering, robot platform tha
      - 90mm
    * - Operating Temperature
      - -10 - 40 degrees Celsius
+   * - IP Rating
+     - IP44 (IP52, IP54 available upon request)
    * - Maximum Speed
      - 1.5m/s	
+   * - Maximum Angle of Tilt
+     - <30° (without loading)
    * - Encoder
      - Magnetic 1024ppr
    * - Charging Time

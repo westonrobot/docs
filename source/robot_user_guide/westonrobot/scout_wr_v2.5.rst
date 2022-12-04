@@ -32,8 +32,12 @@ The Scout V2.5 is a modified version of the original Scout V2.0. It uses a diffe
      - 135mm
    * - Operating Temperature
      - -10 - 40 degrees Celsius
+   * - IP Rating
+     - IP22 (IP44, IP64 available upon request)
    * - Maximum Speed
      - 1.5m/s	
+   * - Maximum Angle of Tilt
+     - <30°
    * - Encoder
      - Magnetic 2500ppr
    * - Charging Time
