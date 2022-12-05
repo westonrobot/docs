@@ -24,11 +24,14 @@ Revision History
 
 2. Specifications
 =================
-  .. TODO Swap images with better ones when available
+.. TODO Swap images with better ones when available
+
 2.1 Anchor Module
 -----------------
+
   .. image:: figures/uwb_v2_anchor.png
     :align: center
+
   |
 
   +-----------+----------+-------------------------+
@@ -41,6 +44,7 @@ Revision History
 --------------
   .. image:: figures/uwb_v2_tag.png
       :align: center
+
   |
 
   +-----------+---------------------+
@@ -53,10 +57,11 @@ Revision History
 
 2.3 Communication
 -----------------
-  | No. of Modules           - Number of active tag modules.                                    |
-  | Feedback Packet rate     - Rate which Anchor sends a feedback packet.                       |
-  | Average Node Update Rate - Average rate which nodes are updated within the feedback packet. |
-  | Average Packet Loss      - Percentage of packet loss between modules.                       |
+
+  | No. of Modules           - Number of active tag modules. 
+  | Feedback Packet rate     - Rate which Anchor sends a feedback packet.
+  | Average Node Update Rate - Average rate which nodes are updated within the feedback packet. 
+  | Average Packet Loss      - Percentage of packet loss between modules.                       
 
   +----------------+----------------------+-----------------------+---------------------+
   | No. of Modules | Feedback Packet Rate | Avg. Node Update Rate | Average Packet loss |
@@ -75,7 +80,7 @@ Revision History
   +----------------+----------------------+-----------------------+---------------------+
 
 
-3. Hardware Setup
+1. Hardware Setup
 =================
 
 3.1 Startup and Operation
@@ -99,7 +104,6 @@ Revision History
 
   .. image:: figures/uwb_v2_anchor_coord.png
     :align: center
-
 
 4. Software Setup
 =================
@@ -126,11 +130,13 @@ Revision History
 4.1.3 Visualisation
 ~~~~~~~~~~~~~~~~~~~
   1. Data tab can be used to see information such as raw data and node IDs.
+
     .. image:: figures/nassistant_data.png
         :align: center
 
 
   2. Line tab can be used to observe changes in each variable.
+
     .. image:: figures/nassistant_line.png
         :align: center
 
@@ -150,17 +156,19 @@ Revision History
     $ roslaunch nlink_parser iot.launch
 
 - Parameters
-+-----------+---------------------------+----------------+
-| Parameter | Description               | Default        |
-+===========+===========================+================+
-| port_name | port to the anchor module | "/dev/ttyUSB0" |
-+-----------+---------------------------+----------------+
-| baud_rate | baud rate of the module   | 921600         |
-+-----------+---------------------------+----------------+
+
+  +-----------+---------------------------+----------------+
+  | Parameter | Description               | Default        |
+  +===========+===========================+================+
+  | port_name | port to the anchor module | "/dev/ttyUSB0" |
+  +-----------+---------------------------+----------------+
+  | baud_rate | baud rate of the module   | 921600         |
+  +-----------+---------------------------+----------------+
 
 - Published Topics
-+-------------------+-------------------------+-------------------------------------+
-| Topics            | Message Format          | Description                         |
-+===================+=========================+=====================================+
-| /nlink_iot_frame0 | nlink_parser::IotFrame0 | Data from detected tags (<=10 tags) |
-+-------------------+-------------------------+-------------------------------------+
+
+  +-------------------+-------------------------+-------------------------------------+
+  | Topics            | Message Format          | Description                         |
+  +===================+=========================+=====================================+
+  | /nlink_iot_frame0 | nlink_parser::IotFrame0 | Data from detected tags (<=10 tags) |
+  +-------------------+-------------------------+-------------------------------------+

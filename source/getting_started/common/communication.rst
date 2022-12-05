@@ -70,7 +70,7 @@ Starting CAN connection
 
 During the setting up of the CAN connection, the protocol used to read the CAN Frame `ParseCANFrame()` will be set. 
 
-Since each platform will process CAN Frames differently, each platform will write its own ParseCANFrame(can_frame *rx_frame) function. 
+Since each platform will process CAN Frames differently, each platform will write its own ParseCANFrame(can_frame *rx_frame*) function. 
 
 To ensure the safe operation of the robots, the robots requires a steady stream of commands from the computer.
 This is to ensure that if communication is lost, the robots would not be stuck executing the previously sent command, 

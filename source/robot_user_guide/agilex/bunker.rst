@@ -28,13 +28,19 @@ The Bunker mobile robot is an tracked, differential steering, robot platform tha
    * - Minimum Ground Clearance
      - 90mm
    * - Operating Temperature
-     - -10 - 40 degrees Celsius
+     - -10 - 40 ℃
+   * - IP Rating
+     - IP44 (IP52, IP54 available upon request)
    * - Maximum Speed
      - 1.5m/s	
+   * - Maximum Angle of Tilt
+     - <30° (without loading)
    * - Encoder
      - Magnetic 1024ppr
    * - Charging Time
      - 6.5h
+   * - User Power
+     - 48V, 10A
    * - Weight
      - 145 - 150kg
    * - Rated Load
@@ -42,7 +48,7 @@ The Bunker mobile robot is an tracked, differential steering, robot platform tha
    * - Motor
      - 2 x 650W BLDC
 
-3. Resources
+1. Resources
 ============
 
 * Bunker Manual: :download:`PDF <manual/BUNKER_USER_MANUAL _3.0.pdf>`
