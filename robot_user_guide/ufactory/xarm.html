@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>xArm Manipulator Series &mdash; Weston Robot v0.1 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/hacks.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Peripheral User Guide" href="../../periph_user_guide/periph_user_guide.html" />
+    <link rel="prev" title="Robot Manipulators" href="../manipulators.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #323640" >
+            <a href="../../index.html"><img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting Started</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../robot_user_guide.html">Robot User Guide</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../ugv.html">Unmanned Ground Vehicles</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../quadruped.html">Quadruped Robots</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../manipulators.html">Robot Manipulators</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">xArm Manipulator Series</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../periph_user_guide/periph_user_guide.html">Peripheral User Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/software.html">Software Packages</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../toolbox/toolbox.html">Toolbox</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #323640" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Weston Robot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../robot_user_guide.html">Robot User Guide</a></li>
+          <li class="breadcrumb-item"><a href="../manipulators.html">Robot Manipulators</a></li>
+      <li class="breadcrumb-item active">xArm Manipulator Series</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/robot_user_guide/ufactory/xarm.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <blockquote>
+<div></div></blockquote>
+<div class="section" id="xarm-manipulator-series">
+<h1>xArm Manipulator Series<a class="headerlink" href="#xarm-manipulator-series" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="revision-history">
+<h2>Revision History<a class="headerlink" href="#revision-history" title="Permalink to this headline">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 30%" />
+<col style="width: 16%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Revision</p></th>
+<th class="head"><p>Date (DD/MM/YYYY)</p></th>
+<th class="head"><p>Author</p></th>
+<th class="head"><p>Changes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>04/12/2022</p></td>
+<td><p>Kee Jin</p></td>
+<td><p>Initial release</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="overview">
+<h2>1. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The xArm is a multi-DOF robot arm manipulator with use cases ranging from machine tending to industrial automation.</p>
+</div>
+<div class="section" id="specifications">
+<h2>2. Specifications<a class="headerlink" href="#specifications" title="Permalink to this headline">¶</a></h2>
+<table class="colwidths-given docutils align-default" id="id1">
+<caption><span class="caption-text">Common Technical Specifications</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Ambient Temperature Range</p></td>
+<td><p>0 - 50 ℃</p></td>
+</tr>
+<tr class="row-even"><td><p>Power Consumption</p></td>
+<td><p>Min 8.4 W, Typical 200 W, Max 400 W</p></td>
+</tr>
+<tr class="row-odd"><td><p>Input Power Supply</p></td>
+<td><p>24V DC, 16.5A</p></td>
+</tr>
+<tr class="row-even"><td><p>Footprint</p></td>
+<td><p>Ø 126 mm</p></td>
+</tr>
+<tr class="row-odd"><td><p>Materials</p></td>
+<td><p>Aluminum, Carbon Fiber</p></td>
+</tr>
+<tr class="row-even"><td><p>Base Connector Type</p></td>
+<td><p>M5 x 5</p></td>
+</tr>
+<tr class="row-odd"><td><p>ISO Class Cleanroom</p></td>
+<td><p>5</p></td>
+</tr>
+<tr class="row-even"><td><p>End Effector Communication Protocol</p></td>
+<td><p>Modbus RTU (RS485)</p></td>
+</tr>
+<tr class="row-odd"><td><p>End Effector I/O</p></td>
+<td><p>2 x DI / 2 x DO / 2 x AI / 1 x RS485</p></td>
+</tr>
+<tr class="row-even"><td><p>Communication Mode</p></td>
+<td><p>Ethernet</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Specific Technical Specifications</span><a class="headerlink" href="#id2" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 44%" />
+<col style="width: 19%" />
+<col style="width: 19%" />
+<col style="width: 19%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p>xArm 5</p></th>
+<th class="head"><p>xArm 6</p></th>
+<th class="head"><p>xArm 7</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Payload</p></td>
+<td><p>3kg</p></td>
+<td><p>5kg</p></td>
+<td><p>3.5kg</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reach</p></td>
+<td colspan="3"><p class="centered">
+<strong>700mm</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Degrees of Freedom</p></td>
+<td><p>5</p></td>
+<td><p>6</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-odd"><td><p>Repeatability</p></td>
+<td><p>±0.1mm</p></td>
+<td><p>±0.1mm</p></td>
+<td><p>±0.1mm</p></td>
+</tr>
+<tr class="row-even"><td><p>Maximum Speed</p></td>
+<td><p>1m/s</p></td>
+<td><p>1m/s</p></td>
+<td><p>1m/s</p></td>
+</tr>
+<tr class="row-odd"><td><p>Weight(robot arm only)</p></td>
+<td><p>11.2kg</p></td>
+<td><p>12.2kg</p></td>
+<td><p>13.7kg</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-text">Joint Limits</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 23%" />
+<col style="width: 23%" />
+<col style="width: 23%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"></th>
+<th class="head"><p>xArm 5</p></th>
+<th class="head"><p>xArm 6</p></th>
+<th class="head"><p>xArm 7</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Maximum Speed</p></td>
+<td colspan="3"><p class="centered">
+<strong>180°/s</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Joint 1</p></td>
+<td colspan="3"><p class="centered">
+<strong>±360°</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Joint 2</p></td>
+<td colspan="3"><p class="centered">
+<strong>-118° - 120°</strong></p></td>
+</tr>
+<tr class="row-odd"><td><p>Joint 3</p></td>
+<td colspan="2"><p class="centered">
+<strong>-225° - 11°</strong></p></td>
+<td><p>±360°</p></td>
+</tr>
+<tr class="row-even"><td><p>Joint 4</p></td>
+<td><p>-97° - 180°</p></td>
+<td><p>±360°</p></td>
+<td><p>-11° - 225°</p></td>
+</tr>
+<tr class="row-odd"><td><p>Joint 5</p></td>
+<td><p>±360°</p></td>
+<td><p>-97° - 180°</p></td>
+<td><p>±360°</p></td>
+</tr>
+<tr class="row-even"><td><p>Joint 6</p></td>
+<td><p>NA</p></td>
+<td><p>±360°</p></td>
+<td><p>-97° - 180°</p></td>
+</tr>
+<tr class="row-odd"><td><p>Joint 7</p></td>
+<td><p>NA</p></td>
+<td><p>NA</p></td>
+<td><p>±360°</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="resources">
+<h2>3. Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Manuals, Software, 3D models: <a class="reference external" href="https://www.ufactory.cc/download-xarm-robot">xArm Download Page</a></p></li>
+<li><p>Python SDK: <a class="reference external" href="https://github.com/xArm-Developer/xArm-Python-SDK">xArm-Python-SDK</a></p></li>
+<li><p>C++ SDK: <a class="reference external" href="https://github.com/xArm-Developer/xArm-CPLUS-SDK">xArm-CPLUS-SDK</a></p></li>
+<li><p>ROS package: <a class="reference external" href="https://github.com/xArm-Developer/xarm_ros">xarm_ros</a></p></li>
+<li><p>ROS2 package: <a class="reference external" href="https://github.com/xArm-Developer/xarm_ros2">xarm_ros2</a></p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../manipulators.html" class="btn btn-neutral float-left" title="Robot Manipulators" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../periph_user_guide/periph_user_guide.html" class="btn btn-neutral float-right" title="Peripheral User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Weston Robot Pte Ltd.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

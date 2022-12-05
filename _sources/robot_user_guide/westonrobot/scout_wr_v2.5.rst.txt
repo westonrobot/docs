@@ -31,13 +31,19 @@ The Scout V2.5 is a modified version of the original Scout V2.0. It uses a diffe
    * - Minimum Ground Clearance
      - 135mm
    * - Operating Temperature
-     - -10 - 40 degrees Celsius
+     - -10 - 40 ℃
+   * - IP Rating
+     - IP22 (IP44, IP64 available upon request)
    * - Maximum Speed
      - 1.5m/s	
+   * - Maximum Angle of Tilt
+     - <30°
    * - Encoder
      - Magnetic 2500ppr
    * - Charging Time
      - 3h (24V/30Ah), 6h (24V/60Ah)
+   * - User Power
+     - 24V, 10A
    * - Weight
      - 67kg
    * - Rated Load
