@@ -39,6 +39,8 @@ The Hunter SE mobile robot is an ackermann steering, 4-wheeled robot platform th
      - Magnetic 1000ppr
    * - Charging Time
      - 3h (24V/30Ah)
+   * - User Power
+     - 24V, 10A
    * - Weight
      - 42kg
    * - Rated Load

@@ -39,6 +39,8 @@ The Hunter V2.0 mobile robot is an ackermann steering, 4-wheeled robot platform 
      - Magnetic 2500ppr
    * - Charging Time
      - 3h (24V/30Ah), 6h (24V/60Ah)
+   * - User Power
+     - 24V, 10A
    * - Weight
      - 65-72kg
    * - Rated Load

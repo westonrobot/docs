@@ -38,6 +38,8 @@ The Scout Mini mobile robot is a four wheel differential drive platform.
      - Standard wheel\: <30° (unloaded), Mecanum wheel: <8° (unloaded)
    * - Charging Time
      - 2h
+   * - User Power
+     - 24V, 5A
    * - Weight
      - 22.5 - 23.5kg
    * - Rated Load

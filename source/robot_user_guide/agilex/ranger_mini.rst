@@ -38,6 +38,8 @@ The Ranger Mini mobile robot is an independant four-wheeled differential drive p
      - <4°
    * - Charging Time
      - 3h
+   * - User Power
+     - 24V, 10A
    * - Weight
      - 55kg
    * - Rated Load

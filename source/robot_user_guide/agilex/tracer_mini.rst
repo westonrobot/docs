@@ -39,6 +39,8 @@ The Tracer Mini mobile robot is a two-wheeled differential drive platform.
      - Photoelectric 1024ppr
    * - Charging Time
      - 2h
+   * - User Power
+     - 24V, 10A
    * - Weight
      - 18 - 20kg
    * - Rated Load

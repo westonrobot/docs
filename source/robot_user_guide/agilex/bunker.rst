@@ -39,6 +39,8 @@ The Bunker mobile robot is an tracked, differential steering, robot platform tha
      - Magnetic 1024ppr
    * - Charging Time
      - 6.5h
+   * - User Power
+     - 48V, 10A
    * - Weight
      - 145 - 150kg
    * - Rated Load
@@ -46,7 +48,7 @@ The Bunker mobile robot is an tracked, differential steering, robot platform tha
    * - Motor
      - 2 x 650W BLDC
 
-3. Resources
+1. Resources
 ============
 
 * Bunker Manual: :download:`PDF <manual/BUNKER_USER_MANUAL _3.0.pdf>`

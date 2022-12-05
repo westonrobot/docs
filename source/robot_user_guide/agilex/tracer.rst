@@ -39,6 +39,8 @@ The Tracer mobile robot is a two-wheeled differential drive platform.
      - Photoelectric 1024ppr
    * - Charging Time
      - 2h
+   * - User Power
+     - 24V, 5A
    * - Weight
      - 28 - 30kg
    * - Rated Load
