@@ -85,9 +85,8 @@ The xArm is a 6 DOF robot arm manipulator with use cases ranging from machine te
 3. Resources
 ============
 
-* xArm User Manual: :download:`PDF <manual/xArm_User_Manual-V1.8.6.pdf>`
-* xArm Developer Manual: :download:`PDF <manual/xArm Developer Manual-V1.10.0.pdf>`
-
-.. * C++ SDK: `ugv_sdk <https://github.com/westonrobot/ugv_sdk>`_
-.. * ROS package: `bunker_ros <https://github.com/westonrobot/bunker_ros>`_
-.. * ROS2 package: `bunker_ros2 <https://github.com/westonrobot/bunker_ros2>`_
+* Manuals, Software, 3D models: `xArm Download Page <https://www.ufactory.cc/download-xarm-robot>`_
+* Python SDK: `xArm-Python-SDK <https://github.com/xArm-Developer/xArm-Python-SDK>`_
+* C++ SDK: `xArm-CPLUS-SDK <https://github.com/xArm-Developer/xArm-CPLUS-SDK>`_
+* ROS package: `xarm_ros <https://github.com/xArm-Developer/xarm_ros>`_
+* ROS2 package: `xarm_ros2 <https://github.com/xArm-Developer/xarm_ros2>`_
