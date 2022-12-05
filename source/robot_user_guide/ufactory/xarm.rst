@@ -13,7 +13,7 @@ Revision History
 
 1. Overview
 ===========
-The xArm is a 6 DOF robot arm manipulator with use cases ranging from machine tending to industrial automation.
+The xArm is a multi-DOF robot arm manipulator with use cases ranging from machine tending to industrial automation.
 
 2. Specifications
 =================
@@ -51,7 +51,7 @@ The xArm is a 6 DOF robot arm manipulator with use cases ranging from machine te
    +----------------------------+------------+------------+------------+
    | Reach                      | .. centered:: 700mm                  |
    +----------------------------+------------+------------+------------+
-   | Degrees of freedom         | 5          | 6          | 7          |
+   | Degrees of Freedom         | 5          | 6          | 7          |
    +----------------------------+------------+------------+------------+
    | Repeatability              | ±0.1mm     | ±0.1mm     | ±0.1mm     |
    +----------------------------+------------+------------+------------+
