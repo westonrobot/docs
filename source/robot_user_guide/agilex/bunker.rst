@@ -48,7 +48,7 @@ The Bunker mobile robot is an tracked, differential steering, robot platform tha
    * - Motor
      - 2 x 650W BLDC
 
-1. Resources
+3. Resources
 ============
 
 * Bunker Manual: :download:`PDF <manual/BUNKER_USER_MANUAL _3.0.pdf>`
