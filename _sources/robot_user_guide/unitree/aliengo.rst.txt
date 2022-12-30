@@ -45,10 +45,12 @@ The Aliengo robot dog is a 12 DOF, quadruped robot.
 3. General Notes
 ================
 * When conducting experiments with the Aliengo that may impact its stability, the emergency stop and leash provided should be used where necessary.
+
 .. image:: figures/A1_estop.png
     :width: 180 px
 .. image:: figures/A1_leash.png
     :width: 380 px
+
 * The Aliengo should be powered off and its battery should be replaced whenever there is only 1/5 of the battery LED indicators left lit and blinking. This indicates that the battery level is low (0-20%).
 * Before powering off the Aliengo, be sure to bring it down to the damped proning state first to prevent the robot from dropping down from a height. To do so, get the Aliengo to the "proning state" with "L2+A" and finally press "L2+B". 
 
@@ -56,5 +58,6 @@ The Aliengo robot dog is a 12 DOF, quadruped robot.
 ============
 
 .. * User guide: :download:`Getting Started with Aliengo <manual/Aliengo_slides.pdf>`
+
 * SDK: `unitree_legged_sdk <https://github.com/westonrobot/unitree_legged_sdk>`_
 * ROS simulation package: `unitree_ros <https://github.com/westonrobot/unitree_ros>`_
