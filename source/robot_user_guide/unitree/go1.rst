@@ -43,9 +43,11 @@ The Go1 robot dog is a 12 DOF, quadruped robot.
 3. General Notes
 ================
 * When conducting experiments with the Go1 that may impact its stability, the emergency stop provided should be used where necessary.
+
 .. image:: figures/A1_estop.png
     :width: 180 px
     :align: center
+
 * The Go1 should be powered off and its battery should be replaced whenever there is only 1/4 of the battery LED indicators left lit and blinking. This indicates that the battery level is low (0-25%).
 * Before powering off the Go1, be sure to bring it down to the damped proning state first to prevent the robot from dropping down from a height. To do so, get the Go1 to the "proning state" with "L2+A" and finally press "L2+B". 
 
