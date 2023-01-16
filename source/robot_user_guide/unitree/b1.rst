@@ -48,6 +48,7 @@ The B1 robot dog is an industrial grade, 12 DOF, quadruped robot.
 
 .. 3. Resources
 .. ============
-.. * User guide: :download:`Getting Started with Go1 <manual/Go1_slides.pdf>`
-.. * SDK: `unitree_legged_sdk <https://github.com/westonrobot/unitree_legged_sdk>`_
+* User guide: :download:`Getting Started with B1 <manual/B1_User_Manual_V1.0.1.pdf>`
+* SDK: `unitree_legged_sdk <https://github.com/westonrobot/unitree_legged_sdk>`_
+* SDK Guide (CN): :download:`B1 SDK Guide <manual/B1_sdk_guide_cn.pdf>`
 .. * ROS simulation package: `unitree_ros <https://github.com/westonrobot/unitree_ros>`_
