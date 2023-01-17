@@ -1,5 +1,5 @@
 *************
-GO1 Robot Dog
+Go1 Robot Dog
 *************
 
 Revision History
@@ -55,6 +55,7 @@ The Go1 robot dog is a 12 DOF, quadruped robot.
 ============
 
 * User guide: :download:`Getting Started with Go1 <manual/Go1_slides.pdf>`
+* Software guide: :download:`Go1 Software Manual <manual/go1_software_manual_20211201.pdf>`
 * SDK: `unitree_legged_sdk <https://github.com/westonrobot/unitree_legged_sdk>`_
 * ROS simulation package: `unitree_ros <https://github.com/westonrobot/unitree_ros>`_
 * ROS controller package: `unitree_ros_to_real <https://github.com/westonrobot/unitree_ros_to_real>`_
