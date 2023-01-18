@@ -5,11 +5,13 @@ B1 Robot Dog
 Revision History
 ================
 
-+----------+-------------------+----------+------------------------+
-| Revision | Date (DD/MM/YYYY) | Author   | Changes                |
-+==========+===================+==========+========================+
-| 1        | 14/11/2022        | Kee Jin  | Initial release        |
-+----------+-------------------+----------+------------------------+
++----------+-------------------+---------+--------------------------------------------------------------+
+| Revision | Date (DD/MM/YYYY) | Author  | Changes                                                      |
++==========+===================+=========+==============================================================+
+| 1        | 14/11/2022        | Kee Jin | Initial release                                              |
++----------+-------------------+---------+--------------------------------------------------------------+
+| 2        | 18/01/2023        | Hans    | Update Resources, Specifications & Basic Operations sections |
++----------+-------------------+---------+--------------------------------------------------------------+
 
 1. Overview
 ===========
@@ -17,7 +19,6 @@ The B1 robot dog is an industrial grade, 12 DOF, quadruped robot.
 
 2. Specifications
 =================
-
 .. list-table:: Technical Specifications
    :widths: 25 25
 
@@ -46,8 +47,46 @@ The B1 robot dog is an industrial grade, 12 DOF, quadruped robot.
    * - Motor
      - 12 x Servo Geared motors
 
-.. 3. Resources
-.. ============
-.. * User guide: :download:`Getting Started with Go1 <manual/Go1_slides.pdf>`
-.. * SDK: `unitree_legged_sdk <https://github.com/westonrobot/unitree_legged_sdk>`_
-.. * ROS simulation package: `unitree_ros <https://github.com/westonrobot/unitree_ros>`_
+.. list-table:: What's In The Box
+   :widths: 40 5
+   :header-rows: 1
+
+   * - Description
+     - Amount
+   * - B1 Robot (without) battery
+     - x1
+   * - B1 Battery
+     - x1
+   * - B1 Battery Charger
+     - x1
+   * - Remote Controller
+     - x1
+   * - Remote Controller Charger and Type-C Cable
+     - x1
+   * - User Extension Dock
+     - x1
+   * - User Extension Dock USB Cable (15cm)
+     - x1
+   * - User Extension Dock Power Cable (10cm)
+     - x1
+   * - User Extension Dock 16 Pin Cable (15cm)
+     - x1
+
+3. Basic Operations
+===================
+The B1 can be operated in 2 ways, manual control using the included remote control 
+or programmatically through Unitree's sdk.
+
+Both methods are detailed in the user guides included in the :ref:`Resources<B1 Resources>` section below
+
+:red:`Note: Unitree's SDK robot support is version specific, please check that you are using the correct version. Latest supported version for the B1 is v3.8.3`
+
+.. _B1 Resources:
+4. Resources
+============
+* User guide: :download:`Getting Started with B1 <manual/B1_User_Manual_V1.0.1.pdf>`
+* Instructional video: `Instructional video <https://youtu.be/nP6fa-LCz6g>`_
+* SDK: `unitree_legged_sdk <https://github.com/westonrobot/unitree_legged_sdk>`_
+* SDK Guide (CN): :download:`B1 SDK Guide <manual/B1_sdk_guide_cn.pdf>`
+* ROS Control package: `unitree_ros_to_real <https://github.com/unitreerobotics/unitree_ros_to_real/tree/B1>`_
+* Basic Training Slides: :download:`PDF <manual/B1_training_170123.pdf>`
