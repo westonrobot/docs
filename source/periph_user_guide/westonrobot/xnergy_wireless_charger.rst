@@ -5,11 +5,13 @@ Xnergy Wireless Charger
 Revision History
 ================
 
-+----------+-------------------+----------+------------------------+
-| Revision | Date (DD/MM/YYYY) | Author   | Changes                |
-+==========+===================+==========+========================+
-| 1        | 27/12/2022        | Kee Jin  | Initial release        |
-+----------+-------------------+----------+------------------------+
++----------+-------------------+---------+----------------------------------------------+
+| Revision | Date (DD/MM/YYYY) | Author  | Changes                                      |
++==========+===================+=========+==============================================+
+| 1        | 27/12/2022        | Kee Jin | Initial release                              |
++----------+-------------------+---------+----------------------------------------------+
+| 2        | 18/1/2023         | Hans    | Remove broken xdm links and provide contact. |
++----------+-------------------+---------+----------------------------------------------+
 
 1. Overview
 ===========
@@ -53,8 +55,7 @@ Maximum Effective Air Gap Charging Capability
 3. Software Setup
 =================
 
-The Xnergy Wireless Charger settings can be modified with the Xnergy Device Manager (XDM). 
-The XDM (Windows supported only) can be downloaded :download:`here <software/xdm-v8.0.3-win_sec.zip>`.
+The Xnergy Wireless Charger settings can be modified with the Xnergy Device Manager (XDM), contact us at `contact@westonrobot.com <contact@westonrobot.com>`_ to get it.
 
 4. Resources
 ============
@@ -73,6 +74,4 @@ Manuals and Documentation
 
 Other Links
 -----------
-
-* XDM Software Download: :download:`ZIP <software/xdm-v8.0.3-win_sec.zip>`
 * ROS package: `xnergy_charger_rcu <https://github.com/westonrobot/xnergy_charger_rcu>`_
