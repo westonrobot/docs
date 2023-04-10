@@ -26,11 +26,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search"  style="background: #323640" >
-            <a href="../../index.html"><img src="../../_static/logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -79,7 +84,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a></li>
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../periph_user_guide.html">Peripheral User Guide</a></li>
       <li class="breadcrumb-item active">Power Regulator V2.X</li>
       <li class="wy-breadcrumbs-aside">
@@ -368,17 +373,20 @@ this:</p>
 <p>Next, bring up the CAN interface on the PC.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo ip link <span class="nb">set</span> can0 <span class="nb">type</span> can bitrate <span class="m">500000</span>
 sudo ip link <span class="nb">set</span> up can0
+sudo ip link <span class="nb">set</span> can0 txqueuelen <span class="m">1000</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="configure-with-python-scripts">
 <h4>Configure with Python scripts<a class="headerlink" href="#configure-with-python-scripts" title="Permalink to this headline">¶</a></h4>
-<p>The example code below demonstrates how to set all output channels to be on by default:</p>
+<p>You can customize the default output state of each channel to be ON or OFF upon power up.</p>
+<p>The example code below demonstrates how to set all output channels to be ON by default.</p>
+<p>Note that you will have to finish the configuration steps in Section 5 to execute the code below successfully. And you also need to modify the path of the eds file (“EDS” variable) from the SDK.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>import canopen
 import os
 import <span class="nb">time</span>
 
-<span class="nv">EDS</span> <span class="o">=</span> &lt;your-path-to-eds&gt; // eg. /opt/weston_robot/share/wrp_sdk/eds/regulator/regulator_v2.1.eds
+<span class="nv">EDS</span> <span class="o">=</span> &lt;your-path-to-eds&gt; // eg. /opt/weston_robot/share/wrp_sdk/eds/westonrobot/regulator/regulator_v2.1.eds
 <span class="nv">NODEID</span> <span class="o">=</span> <span class="m">30</span>
 
 <span class="nv">network</span> <span class="o">=</span> canopen.Network<span class="o">()</span>
