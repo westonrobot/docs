@@ -188,11 +188,16 @@ Next, bring up the CAN interface on the PC.
 
    sudo ip link set can0 type can bitrate 500000
    sudo ip link set up can0
+   sudo ip link set can0 txqueuelen 1000
 
 Configure with Python scripts
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The example code below demonstrates how to set all output channels to be on by default: 
+You can customize the default output state of each channel to be ON or OFF upon power up. 
+
+The example code below demonstrates how to set all output channels to be ON by default. 
+
+Note that you will have to finish the configuration steps in Section 5 to execute the code below successfully. And you also need to modify the path of the eds file ("EDS" variable) from the SDK.  
 
 .. code-block:: bash
 
@@ -200,7 +205,7 @@ The example code below demonstrates how to set all output channels to be on by d
     import os
     import time
 
-    EDS = <your-path-to-eds> // eg. /opt/weston_robot/share/wrp_sdk/eds/regulator/regulator_v2.1.eds
+    EDS = <your-path-to-eds> // eg. /opt/weston_robot/share/wrp_sdk/eds/westonrobot/regulator/regulator_v2.1.eds
     NODEID = 30
 
     network = canopen.Network()

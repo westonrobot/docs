@@ -24,6 +24,8 @@ This website provides instructions and tutorials on the setup and software devel
 
    /robot_user_guide/robot_user_guide
 
+------------------------------------------------
+
 .. toctree::
    :maxdepth: 2
    
