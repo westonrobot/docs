@@ -14,4 +14,5 @@ Unmanned Ground Vehicles
    /robot_user_guide/agilex/hunter_v2.0
    /robot_user_guide/agilex/hunter_se
    /robot_user_guide/agilex/ranger_mini
+   /robot_user_guide/agilex/ranger_mini_v2.0
    /robot_user_guide/agilex/limo
