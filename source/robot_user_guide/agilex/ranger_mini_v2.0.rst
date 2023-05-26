@@ -50,4 +50,4 @@ The Ranger Mini 2.0 mobile robot is an independent four-wheeled differential dri
 .. * Ranger Mini 2.0 Manual: :download:`PDF <manual/RANGER_MINI2.0_User_Manual_V1.0.pdf>`
 * C++ SDK: `ugv_sdk <https://github.com/westonrobot/ugv_sdk>`_
 * ROS package: `ranger_ros <https://github.com/westonrobot/ranger_ros>`_
-* ROS2 package: `ranger_ros2 <https://github.com/westonrobot/ranger_ros2>`_
+.. * ROS2 package: `ranger_ros2 <https://github.com/westonrobot/ranger_ros2>`_
