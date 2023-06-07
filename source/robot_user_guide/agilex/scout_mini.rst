@@ -54,4 +54,4 @@ The Scout Mini mobile robot is a four wheel differential drive platform.
 * C++ SDK: `wrp_sdk <https://github.com/westonrobot/wrp_sdk>`_
 * ROS package: `scout_ros <https://github.com/westonrobot/scout_ros>`_
 * ROS2 package: `scout_ros2 <https://github.com/westonrobot/scout_ros2>`_
-* CAD File: `SCOUT_MINI.STEP <https://tangrobot.sharepoint.com/sites/ProductDevelopment/Shared%20Documents/Forms/AllItems.aspx?ga=1&id=%2Fsites%2FProductDevelopment%2FShared%20Documents%2FGeneral%2FPublic%20Sharing%2FCAD%2Fdocs%2FUGVs%2FScout%20mini%5F%E8%B6%8A%E9%87%8E%E8%BD%AE%2ESTEP&viewid=cb47fb93%2D32a7%2D4da8%2Db2ed%2De5f6463d97ba&parent=%2Fsites%2FProductDevelopment%2FShared%20Documents%2FGeneral%2FPublic%20Sharing%2FCAD%2Fdocs%2FUGVs>`_
+* CAD File: `Scout Mini STEP file <https://tangrobot.sharepoint.com/:u:/s/ProductDevelopment/ETMxaqgOXQlJh2eNyqmz9JEBMCwCgHc3U6Yi4EvYnS0sIw?e=fMBHda&download=1>`_
