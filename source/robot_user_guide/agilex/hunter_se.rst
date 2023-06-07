@@ -55,3 +55,4 @@ The Hunter SE mobile robot is an ackermann steering, 4-wheeled robot platform th
 * C++ SDK: `ugv_sdk <https://github.com/westonrobot/ugv_sdk>`_
 * ROS package: `hunter_ros <https://github.com/westonrobot/hunter_ros>`_
 * ROS2 package: `hunter_ros2 <https://github.com/westonrobot/hunter_ros2>`_
+* CAD File: `HUNTER_SE.STEP <https://tangrobot.sharepoint.com/sites/ProductDevelopment/Shared%20Documents/Forms/AllItems.aspx?ga=1&id=%2Fsites%2FProductDevelopment%2FShared%20Documents%2FGeneral%2FPublic%20Sharing%2FCAD%2Fdocs%2FUGVs%2FHunter%20SE%20Westonrobot%2030May2022%2Estep&viewid=cb47fb93%2D32a7%2D4da8%2Db2ed%2De5f6463d97ba&parent=%2Fsites%2FProductDevelopment%2FShared%20Documents%2FGeneral%2FPublic%20Sharing%2FCAD%2Fdocs%2FUGVs>`_
