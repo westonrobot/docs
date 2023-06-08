@@ -59,3 +59,4 @@ The Go1 robot dog is a 12 DOF, quadruped robot.
 * SDK: `unitree_legged_sdk <https://github.com/westonrobot/unitree_legged_sdk>`_
 * ROS simulation package: `unitree_ros <https://github.com/westonrobot/unitree_ros>`_
 * ROS controller package: `unitree_ros_to_real <https://github.com/westonrobot/unitree_ros_to_real>`_
+* CAD File: `Go1 STEP file <https://tangrobot.sharepoint.com/:u:/s/ProductDevelopment/EWqrWgu6lldLuSq5x02rIH8BitIKJNUlO_XLleq1kKBzaw?e=voJvVF&download=1>`_
