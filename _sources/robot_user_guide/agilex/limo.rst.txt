@@ -44,3 +44,4 @@ The Limo mobile robot is a four-wheeled drive platform that supports omni-wheel 
 * Limo Manual: `limo_manual <https://github.com/agilexrobotics/limo-doc/blob/master/Limo%20user%20manual(EN).md>`_
 * ROS package: `limo_ros <https://github.com/westonrobot/limo_ros>`_
 * ROS2 package: `limo_ros2 <https://github.com/westonrobot/limo_ros2>`_
+* CAD File: `Limo STEP file <https://tangrobot.sharepoint.com/:u:/s/ProductDevelopment/EVyEpCLYSV9GvPyWCnEVmp8BPNbWp2v-j9fdz4XszofUBA?e=69UMgX&download=1>`_

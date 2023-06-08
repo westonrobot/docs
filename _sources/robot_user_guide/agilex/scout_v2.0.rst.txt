@@ -59,3 +59,4 @@ The Scout robot is a four-wheel skid-steer mobile platform.
 * C++ SDK: `ugv_sdk <https://github.com/westonrobot/ugv_sdk>`_
 * ROS package: `scout_ros <https://github.com/westonrobot/scout_ros>`_
 * ROS2 package: `scout_ros2 <https://github.com/westonrobot/scout_ros2>`_
+* CAD File: `Scout V2.0 STEP file <https://tangrobot.sharepoint.com/:u:/s/ProductDevelopment/ETMhEESiK8lOhOD1m4F4eyIByZoQdAF_-_tSKi0wdpcopw?e=jfPcMo&download=1>`_

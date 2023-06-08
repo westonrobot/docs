@@ -61,3 +61,4 @@ The Aliengo robot dog is a 12 DOF, quadruped robot.
 
 * SDK: `unitree_legged_sdk <https://github.com/westonrobot/unitree_legged_sdk>`_
 * ROS simulation package: `unitree_ros <https://github.com/westonrobot/unitree_ros>`_
+* CAD File: `Aliengo STEP file <https://tangrobot.sharepoint.com/:u:/s/ProductDevelopment/EVKyzQiTsmtGmgL1C86nJ7cBrxmfPrLvYG3j0lvR6TtgHg?e=hRpRr0&download=1>`_
