@@ -1,6 +1,6 @@
-#################
-Software Packages
-#################
+################
+Software Package
+################
 
 Here you can find information about software packages provide by Weston Robot:
 
