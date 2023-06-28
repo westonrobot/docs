@@ -51,7 +51,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../periph_user_guide/periph_user_guide.html">Peripheral User Guide</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="software.html">Software Packages</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="software.html">Software Package</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="list_of_packages.html">List of Packages</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Installation Guide</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#build-from-source">Build from Source</a></li>
@@ -79,7 +79,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="software.html">Software Packages</a></li>
+          <li class="breadcrumb-item"><a href="software.html">Software Package</a></li>
       <li class="breadcrumb-item active">Installation Guide</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/software/installation_guide.rst.txt" rel="nofollow"> View page source</a>
@@ -102,8 +102,13 @@
 <span id="ref-add-debian-source"></span><h2>Debian Repository<a class="headerlink" href="#debian-repository" title="Permalink to this headline">¶</a></h2>
 <p>C++ library and binary packages (including the widget apps) are provided as “.deb” installation packages. You can download the “.deb” packages from the cooresponding github repository and install with “dpkg” or “apt-get” command. Or you can install the packages from the apt-get server directly.</p>
 <p>Here are the steps you can follow to add the Weston Robot package source:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s2">&quot;deb https://westonrobot.jfrog.io/artifactory/wrtoolbox-release </span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> main&quot;</span> <span class="p">|</span> sudo tee /etc/apt/sources.list.d/weston-robot.list
-$ curl -sSL <span class="s1">&#39;https://westonrobot.jfrog.io/artifactory/api/security/keypair/wr-deb/public&#39;</span> <span class="p">|</span> sudo apt-key add -
+<p>Note that if you’ve added Weston Robot’s old debian package source before, you need to remove it first:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo rm /etc/apt/sources.list.d/weston-robot.list
+</pre></div>
+</div>
+<p>Now follow the steps below to add the new source:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s2">&quot;deb http://deb.westonrobot.net/</span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> </span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> main&quot;</span> <span class="p">|</span> sudo tee /etc/apt/sources.list.d/weston-robot.list
+$ curl -sSL <span class="s1">&#39;http://deb.westonrobot.net/signing.key&#39;</span> <span class="p">|</span> sudo apt-key add -
 $ sudo apt-get update
 </pre></div>
 </div>
