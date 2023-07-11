@@ -5,11 +5,13 @@ Ranger Mini V2.0
 Revision History
 ================
 
-+----------+-------------------+----------+------------------------+
-| Revision | Date (DD/MM/YYYY) | Author   | Changes                |
-+==========+===================+==========+========================+
-| 1        | 04/05/2023        | Kee Jin  | Initial release        |
-+----------+-------------------+----------+------------------------+
++----------+-------------------+----------+------------------------------------+
+| Revision | Date (DD/MM/YYYY) | Author   | Changes                            |
++==========+===================+==========+====================================+
+| 1        | 04/05/2023        | Kee Jin  | Initial release                    |
++----------+-------------------+----------+------------------------------------+
+| 2        | 04/05/2023        | Matthew  | Added steering wheel calibrations  |
++----------+-------------------+----------+------------------------------------+
 
 1. Overview
 ===========
@@ -52,3 +54,18 @@ The Ranger Mini 2.0 mobile robot is an independent four-wheeled differential dri
 * ROS package: `ranger_ros <https://github.com/westonrobot/ranger_ros>`_
 .. * ROS2 package: `ranger_ros2 <https://github.com/westonrobot/ranger_ros2>`_
 * CAD File: `Ranger Mini 2.0 STEP file <https://tangrobot.sharepoint.com/:u:/s/ProductDevelopment/EWYApmdAaPxNsWyB5VLhnMEBq4o2WMImmiJ63GuMhAFHrQ?e=aCecan&download=1>`_
+
+4. Steering Motor Calibration
+=============================
+
+Turn off robot and controller. While robot is turned off, adjust the position of the steering wheels. 
+Using a long straight object to help straighten the wheels is generally sufficient.
+
+.. image:: figures/ranger_calibration_1.jpg
+
+Turn on robot and controller. With SWA flipped to down position, and VRA pushed to topmost position, press KEY1.
+
+.. image:: figures/ranger_calibration_2.jpg
+.. image:: figures/ranger_calibration_3.jpg
+
+The controller display should flash a error code for 1-2 seconds then return to normal. Calibration is completed.
