@@ -100,19 +100,45 @@
 </div>
 <div class="section" id="debian-repository">
 <span id="ref-add-debian-source"></span><h2>Debian Repository<a class="headerlink" href="#debian-repository" title="Permalink to this headline">¶</a></h2>
-<p>C++ library and binary packages (including the widget apps) are provided as “.deb” installation packages. You can download the “.deb” packages from the cooresponding github repository and install with “dpkg” or “apt-get” command. Or you can install the packages from the apt-get server directly.</p>
+<p>C++ libraries and binaries (including the widget apps) are provided as “.deb” installation packages. There are two methods you can aquire and install the released debian packages:</p>
+<ul class="simple">
+<li><p>Download the “.deb” packages from the cooresponding github repository and install with the “dpkg” command, e.g., $ sudo dpkg -i &lt;package_name&gt;.deb</p></li>
+<li><p>Install the packages from Weston Robot’s apt-get server</p></li>
+</ul>
 <p>Here are the steps you can follow to add the Weston Robot package source:</p>
-<p>Note that if you’ve added Weston Robot’s old debian package source before, you need to remove it first:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo rm /etc/apt/sources.list.d/weston-robot.list
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We updated our apt-get server in July 2023. If you’ve added Weston Robot’s old apt source before, you will need to remove it first.</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo rm /etc/apt/sources.list.d/weston-robot.list
 </pre></div>
 </div>
-<p>Now follow the steps below to add the new source:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s2">&quot;deb http://deb.westonrobot.net/</span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> </span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> main&quot;</span> <span class="p">|</span> sudo tee /etc/apt/sources.list.d/weston-robot.list
-$ curl -sSL <span class="s1">&#39;http://deb.westonrobot.net/signing.key&#39;</span> <span class="p">|</span> sudo apt-key add -
-$ sudo apt-get update
+</div></blockquote>
+</div>
+<p>Now follow the steps below to setup the repository.</p>
+<ol class="arabic simple">
+<li><p>Add the GPG key for the Weston Robot repository:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo install -m <span class="m">0755</span> -d /etc/apt/keyrings
+$ curl -fsSL http://deb.westonrobot.net/signing.key <span class="p">|</span> sudo gpg --dearmor -o /etc/apt/keyrings/weston-robot.gpg
+$ sudo chmod a+r /etc/apt/keyrings/weston-robot.gpg
 </pre></div>
 </div>
-<p>Now you can install packages with “apt-get” command.</p>
+<ol class="arabic simple" start="2">
+<li><p>Add the Weston Robot repository to your system’s software repository list:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="se">\</span>
+    <span class="s2">&quot;deb [arch=</span><span class="k">$(</span>dpkg --print-architecture<span class="k">)</span><span class="s2"> signed-by=/etc/apt/keyrings/weston-robot.gpg] http://deb.westonrobot.net/</span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> </span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> main&quot;</span> <span class="p">|</span> <span class="se">\</span>
+    sudo tee /etc/apt/sources.list.d/weston-robot.list &gt; /dev/null
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Now you can update the index and install packages with “apt-get” command.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get update
+$ sudo apt-get install &lt;package_name&gt;
+</pre></div>
+</div>
 <p><strong>Note:</strong> Installation of additional third-party dependency packages may be required for a package provided by Weston Robot. Please follow the package-specific instructions.</p>
 </div>
 </div>
