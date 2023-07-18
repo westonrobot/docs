@@ -51,8 +51,8 @@ The Tracer Mini mobile robot is a two-wheeled differential drive platform.
 3. Resources
 ============
 
-* Tracer Mini Manual: :download:`PDF <manual/Tracer_Mini_User_Manual_EN.pdf>`
+* Tracer Mini Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EbhvwoKVM45DjozExGxDjnEBUh7KOQYezl0giZWS0J8ATg?e=QYicer>`_
 * C++ SDK: `ugv_sdk <https://github.com/westonrobot/ugv_sdk>`_
 * ROS package: `tracer_ros <https://github.com/westonrobot/tracer_ros>`_
 * ROS2 package: `tracer_ros2 <https://github.com/westonrobot/tracer_ros2>`_
-* CAD File: `Tracer Mini STEP file <https://tangrobot.sharepoint.com/:u:/s/ProductDevelopment/EYW1Vu12xHxPuRsuDk3m0KUBp6sbjhUDM3JzcpTcbk5Uug?e=UPORJH&download=1>`_
+* CAD File: `Tracer Mini STEP file <https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EWgpwvkwJJxJpYyW0f9JUbwBKmmr_KTqUmMxQ3cyEN7EYQ?e=cd0E2G>`_

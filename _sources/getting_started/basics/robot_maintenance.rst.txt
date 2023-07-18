@@ -21,6 +21,6 @@ Battery
 - Do not charge the robot near any flammable materials
 - Do not leave the robot charging unattended. Please disconnect the charger after the batter is fully charged
 - Do not use any charger other than the one provided with the robot 
-- Do not modify or replace the original batteries 
+- Do not modify or replace the original batteries
 - Please charge the robot at least once every two months if the robot is not used for a long time
   

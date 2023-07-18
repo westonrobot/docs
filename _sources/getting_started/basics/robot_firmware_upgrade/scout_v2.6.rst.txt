@@ -12,9 +12,9 @@ Scout (>V2.5) Robot
    - Signed binary image from Weston Robot
    - Weston Robot Firmware Update Manager executable from Weston Robot
 
-      - :download:`Ubuntu 18.04 (bionic) <./wr_firmware_mgr/bionic/wr_firmware_manager>`
-      - :download:`Ubuntu 20.04 (focal) <./wr_firmware_mgr/focal/wr_firmware_manager>`
-      - :download:`Ubuntu 22.04 (jammy) <./wr_firmware_mgr/jammy/wr_firmware_manager>`
+      - `Ubuntu 18.04 (bionic) <https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EcqN9hPJQOlMpRgwS-LAz8cBjcU087fBtF_WvmwnTNPInw?e=ODEw25>`_
+      - `Ubuntu 20.04 (focal) <https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/Ed7p4twlXLxHo49FksMJQssBuup2nLopd3fYYGtQyqtfkQ?e=dpkNJG>`_
+      - `Ubuntu 22.04 (jammy) <https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EbuqytFMWsxKqvjpvPpxD-cBcorZt463br9wgVRlFN2yHw?e=xxtkWK>`_
 
 .. figure:: figures/scout26_io.jpg
     :width: 500px

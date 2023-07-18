@@ -154,8 +154,8 @@ There are 2 ways to interface with the hand out-of-the-box.
 ~~~~~~~~~~~~~~
 - To use the application, please ensure you have the following items
     - Computer running Ubuntu 18.04/20.04 
-        - :download:`Ubuntu 18.04 (bionic) <./roger_hand_control/bionic/roger_hand_control>`
-        - :download:`Ubuntu 20.04 (focal) <./roger_hand_control/focal/roger_hand_control>`
+        - `Ubuntu 18.04 (bionic) <https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/Ee0a7qRKQhZKgE9F1IFa8YwB_Tjeq8fgGgf2BagPVz5sOA?e=7Ycbxb>`_
+        - `Ubuntu 20.04 (focal) <https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/Ec3um8MndiJFqMPiu5uOt4sBX3qN4pxksN5htVa5MjfVTQ?e=68FzNh>`_
 
 4.2.2 Running
 ~~~~~~~~~~~~~

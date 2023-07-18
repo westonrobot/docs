@@ -61,8 +61,8 @@ The following table summarises the 3 possible modes available in the A1 robot do
 5. Resources
 ============
 
-* User guide: :download:`Getting Started with A1 <manual/A1_slides.pdf>`
+* User guide: `Getting Started with A1 <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EWldLuLPrqxPjYHd6UM5pgsBTVi_D0cK11hqG4RYbkdaGA?e=kNOz91>`_
 * SDK: `unitree_legged_sdk <https://github.com/westonrobot/unitree_legged_sdk>`_
 * ROS simulation package: `unitree_ros <https://github.com/westonrobot/unitree_ros>`_
 * ROS controller package: `unitree_ros_to_real <https://github.com/westonrobot/unitree_ros_to_real>`_
-* CAD File: `A1 STEP file <https://tangrobot.sharepoint.com/:u:/s/ProductDevelopment/EW3BcmlkeSFDlbbTgXs_-RIBeuWhXjoG-jvLtqmOcVAPTg?e=4tGnaS&download=1>`_
+* CAD File: `A1 STEP file <https://tangrobot.sharepoint.com/:f:/s/Public-Outgoing/ElQRG3RQ_c9AgNYCMkutAmABLD7A14Lb1seaXNhzNVFgww?e=dKDxeq>`_

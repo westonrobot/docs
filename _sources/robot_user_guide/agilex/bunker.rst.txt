@@ -51,8 +51,8 @@ The Bunker mobile robot is an tracked, differential steering, robot platform tha
 3. Resources
 ============
 
-* Bunker Manual: :download:`PDF <manual/BUNKER_USER_MANUAL _3.0.pdf>`
+* Bunker Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EVLM0z8GU9tLjecXNcCBsVkBN_OOpSlf2LhN-A8zCjCiyw?e=gZtvua>`_
 * C++ SDK: `ugv_sdk <https://github.com/westonrobot/ugv_sdk>`_
 * ROS package: `bunker_ros <https://github.com/westonrobot/bunker_ros>`_
 * ROS2 package: `bunker_ros2 <https://github.com/westonrobot/bunker_ros2>`_
-* CAD File: `Bunker STEP file <https://tangrobot.sharepoint.com/:u:/s/ProductDevelopment/EexlRirH-BtLhL9inPRM3iEBEpQevPFR4d1o_QdKpwFpEw?e=8YVkqx&download=1>`_
+* CAD File: `Bunker STEP file <https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/ET1HSS3CvShDgjTxQMAw13cBWn13ZJaM7IGK1v-9wJgjqg?e=mjB5Tg>`_
