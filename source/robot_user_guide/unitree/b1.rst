@@ -84,10 +84,10 @@ Both methods are detailed in the user guides included in the :ref:`Resources<B1 
 .. _B1 Resources:
 4. Resources
 ============
-* User guide: :download:`Getting Started with B1 <manual/B1_User_Manual_V1.0.1.pdf>`
+* User guide: `Getting Started with B1 <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/ETYapVcB8kRMoX1rOmjZxnIBLjz8isr6J2Hi4Oil-JxBTw?e=TcoTgk>`_
 * Instructional video: `Instructional video <https://youtu.be/nP6fa-LCz6g>`_
 * SDK: `unitree_legged_sdk <https://github.com/westonrobot/unitree_legged_sdk>`_
-* SDK Guide (CN): :download:`B1 SDK Guide <manual/B1_sdk_guide_cn.pdf>`
+* SDK Guide (CN): `B1 SDK Guide <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EWDXLQRK4yJBp9y6m5s7bVQBOttWoZh8VLISD2rJVMEDXQ?e=2oNWoa>`_
 * ROS Control package: `unitree_ros_to_real <https://github.com/unitreerobotics/unitree_ros_to_real/tree/B1>`_
-* Basic Training Slides: :download:`PDF <manual/B1_training_170123.pdf>`
-* CAD File: `B1 STEP file <https://tangrobot.sharepoint.com/:u:/s/ProductDevelopment/EUutWxEPjLRCqft65RSSEIkBKUygiqcMxviFMSdz4NgzRQ?e=WLu7Us&download=1>`_
+* Basic Training Slides: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EfYWQUWjRMRNuJtq5xKvDC8BpxQgOsn5rl0p5fnYAjbnPg?e=HIpKel>`_
+* CAD File: `B1 STEP file <https://tangrobot.sharepoint.com/:f:/s/Public-Outgoing/EmaC4l97lJ5Ms3YwN60R354B2zgJRyyn-pYI5czAnoTS0A?e=XsucGO>`_

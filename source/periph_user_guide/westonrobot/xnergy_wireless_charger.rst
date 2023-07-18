@@ -63,14 +63,14 @@ The Xnergy Wireless Charger settings can be modified with the Xnergy Device Mana
 Manuals and Documentation
 -------------------------
 
-* Product Information and Quick Setup Guide: :download:`PDF <manual/20221227 - Xnergy Wireless Charging Product Information and Quick Setup Preparation.pdf>`
-* Xnergy Wireless Charger User Manual: :download:`PDF <manual/BET7E51 - User Manual v1.2.pdf>`
-* Xnergy RCU Control Flowchart: :download:`PDF <manual/BEQ574W - Quick Guide of Flowchart on Controlling Xnergy RCU.pdf>`
-* Xnergy RCU Operation Mode and Data Communication Specifications: :download:`PDF <manual/BEAB6BA - Control and Monitor your charger v1.07.pdf>`
-* RCU Mounting and Installation Guide: :download:`PDF <manual/BEA29CC - Side Mounting Guide v2.0.pdf>`
-* Electronics Clearance Guidelines: :download:`PDF <manual/BEAC018 - Electronics Clearance Guidelines v.2.0.pdf>`
-* Product Safety Information: :download:`PDF <manual/BEW59ED - Safe Deployment of Xnergy Wireless Charger v1.0.xps.pdf>`
-* Troubleshooting Guide: :download:`PDF <manual/BEAB5F2 - Troubleshoot Guide v1.0.pdf>`
+* Product Information and Quick Setup Guide: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EdIcNq9uoltChwj3n9j_OVABAD2w6EScJkQ5CZSaAglzOA?e=pblvWR>`_
+* Xnergy Wireless Charger User Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/ERdIePS-Lg1LoM-9KZqQ9zgBHKOEPuzd4qP-1OCQjj2lQw?e=QLd6fC>`_
+* Xnergy RCU Control Flowchart: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/ESo251kq7bFLrjAa2BBOjhoBtz_fEFDQvJ0HW_PPpLVOmQ?e=reTarp>`_
+* Xnergy RCU Operation Mode and Data Communication Specifications: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/ERb6mnv2hQFNvrVubTy-wAEBrNl_rR55JMpw6RQz6vCE_A?e=TMaui8>`_
+* RCU Mounting and Installation Guide: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EYh31vtkAPFMlANKR3bI1DsBpX8PadhMd6vbsjITdAdp8A?e=39zbNp>`_
+* Electronics Clearance Guidelines: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/ETJBZRZMToxEjEaqxita7WEBHdpi1nVvV-DNm1WQjGgLqg?e=ZOymAt>`_
+* Product Safety Information: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EUaDV8nhryNGuv1R8KYHEs0B-C1KcvGq6v8MQx_dcW1u8A?e=Bdxcmo>`_
+* Troubleshooting Guide: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EUcnhe9KgaRGiaf-ZOP2VyoBVIsMtv_wMXwzCDX7Q4txWQ?e=3gBcaZ>`_
 
 Other Links
 -----------
