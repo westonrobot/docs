@@ -51,8 +51,8 @@ The Hunter V2.0 mobile robot is an ackermann steering, 4-wheeled robot platform 
 3. Resources
 ============
 
-* Hunter V2.0 Manual: :download:`PDF <manual/HUNTER2.0_USER_MANUAL_3.0.pdf>`
+* Hunter V2.0 Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/Eden7a5bTh1ClXTMIsFThSEBfDipukHB9FcCVz1Y8bx4mA?e=cRGFsF>`_
 * C++ SDK: `ugv_sdk <https://github.com/westonrobot/ugv_sdk>`_
 * ROS package: `hunter_ros <https://github.com/westonrobot/hunter_ros>`_
 * ROS2 package: `hunter_ros2 <https://github.com/westonrobot/hunter_ros2>`_
-* CAD File: `Hunter 2.0 STEP file <https://tangrobot.sharepoint.com/:u:/s/ProductDevelopment/EWiTZeJ0AVNDo7hsofaV5oEBefFhgmUwV89rc1tesnlUdw?e=lWZRdf&download=1>`_
+* CAD File: `Hunter 2.0 STEP file <https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/ETgMtmw0sfRLlUSwp2YakYYBOrcsennSzgqd05YOaxd-qQ?e=qRqIRN>`_

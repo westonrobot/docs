@@ -222,7 +222,7 @@ Key information about the robot can be extracted from the system state message:
 5. Resources
 ============
 
-- Scout V2.0 Manual: :download:`PDF <../agilex/manual/SCOUT2.0_USER_MANUAL_3.0.pdf>`
+- Scout V2.0 Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EUfVxzLGw0VNh3bSXtqnOQ4BBe90_MfwAR9LLA8Tu0MkrA?e=WDhcGl>`_
 - `Sample code for wrp_sdk <https://github.com/westonrobot/sdk_sample>`_
 - ROS packages: 
   
