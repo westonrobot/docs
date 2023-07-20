@@ -107,7 +107,7 @@ The DIABLO is a super agile & stylish two-wheeled-leg robot.
    :widths: 25 25
 
    * - Battery Type
-     - Li-ionbattery
+     - Li-ion battery
    * - Capacity
      - 6AH
    * - Cycle Life
