@@ -40,7 +40,7 @@ The A1 robot dog is a 12 DOF, quadruped robot.
 
 3. Summary of Modes
 ===================
-The following table summarises the 3 possible modes available in the A1 robot dog. For more details and complete state diagrams, please refer to our user guide: :download:`Getting Started with A1 <manual/A1_slides.pdf>`.
+The following table summarises the 3 possible modes available in the A1 robot dog. For more details and complete state diagrams, please refer to our user guide: :download:`Getting Started with A1 <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EWldLuLPrqxPjYHd6UM5pgsBTVi_D0cK11hqG4RYbkdaGA?e=kNOz91>`.
 
 .. image:: figures/summary_A1_modes.png
     :width: 720 px
