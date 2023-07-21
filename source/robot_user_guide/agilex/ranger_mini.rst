@@ -51,4 +51,4 @@ The Ranger Mini mobile robot is an independant four-wheeled differential drive p
 * C++ SDK: `ugv_sdk <https://github.com/westonrobot/ugv_sdk>`_
 * ROS package: `ranger_ros <https://github.com/westonrobot/ranger_ros>`_
 * ROS2 package: `ranger_ros2 <https://github.com/westonrobot/ranger_ros2>`_
-* CAD File: `Ranger Mini STEP file <https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EakXKCk_n_xAptldeV_zDu4Bug_n2pBhRb8DpJcI0A4DRA?e=bn4LcV>`_
+* CAD File: `Ranger Mini STEP file <https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EakXKCk_n_xAptldeV_zDu4Bug_n2pBhRb8DpJcI0A4DRA?e=psq1KG>`_

@@ -116,7 +116,7 @@ The DIABLO is a super agile & stylish two-wheeled-leg robot.
 1. Resources
 ============
 
-* Diablo Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EY0YfbjbE29BkQdulKqsnIoBaJntmiJzG3AzVbQ4OMixhA?e=OQ3vIt>`_
+* Diablo Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EY0YfbjbE29BkQdulKqsnIoBaJntmiJzG3AzVbQ4OMixhA?e=HW3dnc>`_
 * C++ SDK: `diablo_sdk <https://github.com/westonrobot/diablo_sdk>`_
 .. * ROS package: `scout_ros <https://github.com/westonrobot/scout_ros>`_
 .. * ROS2 package: `scout_ros2 <https://github.com/westonrobot/scout_ros2>`_

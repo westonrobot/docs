@@ -63,14 +63,14 @@ The Xnergy Wireless Charger settings can be modified with the Xnergy Device Mana
 Manuals and Documentation
 -------------------------
 
-* Product Information and Quick Setup Guide: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EdIcNq9uoltChwj3n9j_OVABAD2w6EScJkQ5CZSaAglzOA?e=pblvWR>`_
-* Xnergy Wireless Charger User Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/ERdIePS-Lg1LoM-9KZqQ9zgBHKOEPuzd4qP-1OCQjj2lQw?e=QLd6fC>`_
-* Xnergy RCU Control Flowchart: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/ESo251kq7bFLrjAa2BBOjhoBtz_fEFDQvJ0HW_PPpLVOmQ?e=reTarp>`_
-* Xnergy RCU Operation Mode and Data Communication Specifications: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/ERb6mnv2hQFNvrVubTy-wAEBrNl_rR55JMpw6RQz6vCE_A?e=TMaui8>`_
-* RCU Mounting and Installation Guide: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EYh31vtkAPFMlANKR3bI1DsBpX8PadhMd6vbsjITdAdp8A?e=39zbNp>`_
-* Electronics Clearance Guidelines: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/ETJBZRZMToxEjEaqxita7WEBHdpi1nVvV-DNm1WQjGgLqg?e=ZOymAt>`_
-* Product Safety Information: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EUaDV8nhryNGuv1R8KYHEs0B-C1KcvGq6v8MQx_dcW1u8A?e=Bdxcmo>`_
-* Troubleshooting Guide: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EUcnhe9KgaRGiaf-ZOP2VyoBVIsMtv_wMXwzCDX7Q4txWQ?e=3gBcaZ>`_
+* Product Information and Quick Setup Guide: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EdIcNq9uoltChwj3n9j_OVABAD2w6EScJkQ5CZSaAglzOA?e=nRcyKW>`_
+* Xnergy Wireless Charger User Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/ERdIePS-Lg1LoM-9KZqQ9zgBHKOEPuzd4qP-1OCQjj2lQw?e=PNoIae>`_
+* Xnergy RCU Control Flowchart: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/ESo251kq7bFLrjAa2BBOjhoBtz_fEFDQvJ0HW_PPpLVOmQ?e=eQq7SA>`_
+* Xnergy RCU Operation Mode and Data Communication Specifications: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/ERb6mnv2hQFNvrVubTy-wAEBrNl_rR55JMpw6RQz6vCE_A?e=vdAB6k>`_
+* RCU Mounting and Installation Guide: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EYh31vtkAPFMlANKR3bI1DsBpX8PadhMd6vbsjITdAdp8A?e=k5ph68>`_
+* Electronics Clearance Guidelines: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/ETJBZRZMToxEjEaqxita7WEBHdpi1nVvV-DNm1WQjGgLqg?e=OTjBn1>`_
+* Product Safety Information: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EUaDV8nhryNGuv1R8KYHEs0B-C1KcvGq6v8MQx_dcW1u8A?e=YGOQUm>`_
+* Troubleshooting Guide: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EUcnhe9KgaRGiaf-ZOP2VyoBVIsMtv_wMXwzCDX7Q4txWQ?e=ZWEhMi>`_
 
 Other Links
 -----------

@@ -12,9 +12,9 @@ Scout (>V2.5) Robot
    - Signed binary image from Weston Robot
    - Weston Robot Firmware Update Manager executable from Weston Robot
 
-      - `Ubuntu 18.04 (bionic) <https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EcqN9hPJQOlMpRgwS-LAz8cBjcU087fBtF_WvmwnTNPInw?e=ODEw25>`_
-      - `Ubuntu 20.04 (focal) <https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/Ed7p4twlXLxHo49FksMJQssBuup2nLopd3fYYGtQyqtfkQ?e=dpkNJG>`_
-      - `Ubuntu 22.04 (jammy) <https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EbuqytFMWsxKqvjpvPpxD-cBcorZt463br9wgVRlFN2yHw?e=xxtkWK>`_
+      - `Ubuntu 18.04 (bionic) <https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EcqN9hPJQOlMpRgwS-LAz8cBjcU087fBtF_WvmwnTNPInw?e=0ulyVx>`_
+      - `Ubuntu 20.04 (focal) <https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/Ed7p4twlXLxHo49FksMJQssBuup2nLopd3fYYGtQyqtfkQ?e=CQectV>`_
+      - `Ubuntu 22.04 (jammy) <https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EbuqytFMWsxKqvjpvPpxD-cBcorZt463br9wgVRlFN2yHw?e=BJ6j8F>`_
 
 .. figure:: figures/scout26_io.jpg
     :width: 500px
