@@ -49,11 +49,11 @@ The Ranger Mini 2.0 mobile robot is an independent four-wheeled differential dri
 
 3. Resources
 ============
-* Ranger Mini 2.0 Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EVURuAx3ByVPi8Z4fuFz3xkBDFappiu2zvyZkAqbTcd7Aw?e=EYIYJn>`_
+* Ranger Mini 2.0 Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EVURuAx3ByVPi8Z4fuFz3xkBDFappiu2zvyZkAqbTcd7Aw?e=elTBAE>`_
 * C++ SDK: `ugv_sdk <https://github.com/westonrobot/ugv_sdk>`_
 * ROS package: `ranger_ros <https://github.com/westonrobot/ranger_ros>`_
 .. * ROS2 package: `ranger_ros2 <https://github.com/westonrobot/ranger_ros2>`_
-* CAD File: `Ranger Mini 2.0 STEP file <https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/Efcf9NZa15JGkcNRaEoGLNsBfNuwNNzcgjNtEsDMMHAM4A?e=waofLQ>`_
+* CAD File: `Ranger Mini 2.0 STEP file <https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/Efcf9NZa15JGkcNRaEoGLNsBfNuwNNzcgjNtEsDMMHAM4A?e=YcQ9AB>`_
 
 1. Steering Motor Calibration
 =============================

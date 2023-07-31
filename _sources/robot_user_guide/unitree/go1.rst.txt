@@ -54,9 +54,9 @@ The Go1 robot dog is a 12 DOF, quadruped robot.
 4. Resources
 ============
 
-* User guide: `Getting Started with Go1 <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EWkPsjYni41MjcukW1VNwhMBhOqCz3DxIxBa5dtJ3XV6PQ?e=8oqP0Z>`_
-* Software guide: `Go1 Software Manual <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EengpX_Tv-NBiYwO-6PInTsBbsRL6N1EqfOVFiCnB1Gbwg?e=uTD3nW>`_
+* User guide: `Getting Started with Go1 <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EWkPsjYni41MjcukW1VNwhMBhOqCz3DxIxBa5dtJ3XV6PQ?e=e7LNl6>`_
+* Software guide: `Go1 Software Manual <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EengpX_Tv-NBiYwO-6PInTsBbsRL6N1EqfOVFiCnB1Gbwg?e=QQ9dwH>`_
 * SDK: `unitree_legged_sdk <https://github.com/westonrobot/unitree_legged_sdk>`_
 * ROS simulation package: `unitree_ros <https://github.com/westonrobot/unitree_ros>`_
 * ROS controller package: `unitree_ros_to_real <https://github.com/westonrobot/unitree_ros_to_real>`_
-* CAD File: `Go1 STEP file <https://tangrobot.sharepoint.com/:f:/s/Public-Outgoing/Epo7xFk4MVNGgrDL9sgeVmcBM7-5QvVGvsCztrksVI7Iwg?e=y4aYKF>`_
+* CAD File: `Go1 STEP file <https://tangrobot.sharepoint.com/:f:/s/Public-Outgoing/Epo7xFk4MVNGgrDL9sgeVmcBM7-5QvVGvsCztrksVI7Iwg?e=PTiy74>`_
