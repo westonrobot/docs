@@ -1,6 +1,6 @@
-*****
-WRM65
-*****
+******************
+Weston Robot WRM65
+******************
 
 Revision History
 ================
@@ -13,6 +13,7 @@ Revision History
 
 1. Overview
 ===========
+
 The ultralightweight 6-DOF WRM65 is a robot arm manipulator that provides solutions for industries such as automotive parts, 3C electronics, metal processing, food packaging, medical health, new retail, etc.
 
 2. Specifications
