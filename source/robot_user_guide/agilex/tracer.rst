@@ -51,8 +51,8 @@ The Tracer mobile robot is a two-wheeled differential drive platform.
 3. Resources
 ============
 
-* Tracer Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/ETEPl5QlFa1CkpOCgmHthcMBCFo2MT_ww045NEowGPijow?e=vhCGsD>`_
+* Tracer Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/ETEPl5QlFa1CkpOCgmHthcMBCFo2MT_ww045NEowGPijow?e=ZdElyc>`_
 * C++ SDK: `ugv_sdk <https://github.com/westonrobot/ugv_sdk>`_
 * ROS package: `tracer_ros <https://github.com/westonrobot/tracer_ros>`_
 * ROS2 package: `tracer_ros2 <https://github.com/westonrobot/tracer_ros2>`_
-* CAD File: `Trace STEP file <https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EZ9dixazf5NFrjSPwt4LGXsBcAv2lMCgXBaV-9M0QywbeQ?e=WvSbsw>`_
+* CAD File: `Trace STEP file <https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EZ9dixazf5NFrjSPwt4LGXsBcAv2lMCgXBaV-9M0QywbeQ?e=jEgaTa>`_
