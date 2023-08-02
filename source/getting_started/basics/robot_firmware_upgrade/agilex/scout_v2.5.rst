@@ -1,5 +1,3 @@
-.. _Scout2.5FWUpgrade:
-
 Scout V2.5 Robot
 ================
 
