@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scout V2.5 Robot &mdash; Weston Robot v0.1 documentation</title><link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/hacks.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/language_data.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" />
+    <link rel="next" title="Scout (&gt;V2.5) Robot" href="scout_v2.6.html" />
+    <link rel="prev" title="AgileX" href="agilex.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #323640" >
+
+          
+          
+          <a href="../../../../index.html">
+            
+              <img src="../../../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../../../getting_started.html">Getting Started</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../operational_safety.html">Operational Safety</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../robot_maintenance.html">Robot Maintenance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../robot_base_control.html">Robot Base Control</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../robot_firmware_upgrade.html">Robot Upgrade Guide</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="agilex.html">AgileX</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../robot_user_guide/robot_user_guide.html">Robot User Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../periph_user_guide/periph_user_guide.html">Peripheral User Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../software/software.html">Software Package</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../toolbox/toolbox.html">Toolbox</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #323640" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Weston Robot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../../getting_started.html">Getting Started</a></li>
+          <li class="breadcrumb-item"><a href="../robot_firmware_upgrade.html">Robot Upgrade Guide</a></li>
+          <li class="breadcrumb-item"><a href="agilex.html">AgileX</a></li>
+      <li class="breadcrumb-item active">Scout V2.5 Robot</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/getting_started/basics/robot_firmware_upgrade/agilex/scout_v2.5.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <blockquote>
+<div></div></blockquote>
+<div class="section" id="scout-v2-5-robot">
+<h1>Scout V2.5 Robot<a class="headerlink" href="#scout-v2-5-robot" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><dl class="simple">
+<dt>To upgrade the firmware, please ensure you have the following items</dt><dd><ul>
+<li><p>Laptop running on Ubuntu18.04</p></li>
+<li><p>USB to Micro USB cable</p></li>
+<li><p>Signed binary image from Weston Robot</p></li>
+<li><p>MCU Manager installed (kindly refer for the installation guide below)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="section" id="installation-guide-for-mcu-manager-mcumgr">
+<h2>Installation guide for MCU Manager (mcumgr)<a class="headerlink" href="#installation-guide-for-mcu-manager-mcumgr" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Installation for Go.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt install golang-go
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Verify whether Go is installed properly by the following command.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ go version
+</pre></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Now you can install mcumgr CLI.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span>
+$ go get github.com/apache/mynewt-mcumgr-cli/mcumgr
+$ nano ~/.bashrc
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Add in path for mcumgr into .bashrc file</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:&lt;path-to-home-directory&gt;/go/bin/
+$ <span class="nb">alias</span> <span class="nv">sudo</span><span class="o">=</span><span class="s1">&#39;sudo env PATH=$PATH&#39;</span>
+</pre></div>
+</div>
+<ol class="arabic simple" start="5">
+<li><p>Verify whether mcumgr is installed properly by the following command.</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">source</span> ~/.bashrc
+$ mcumgr version
+</pre></div>
+</div>
+<p><strong>Troubleshooting</strong></p>
+<ul class="simple">
+<li><p>If the installed golang-go is an older version, the “go get…” command in <strong>step 3</strong> might fail. To get around this error, manually install a newer version of go by following the instructions from golang’s <a class="reference external" href="https://golang.org/doc/install">website</a> and reattempt installation from <strong>step 3</strong>.</p></li>
+</ul>
+</div>
+<div class="section" id="firmware-upgrade-using-mcu-manager-through-usb-cable">
+<h2>Firmware upgrade using MCU Manager through USB cable<a class="headerlink" href="#firmware-upgrade-using-mcu-manager-through-usb-cable" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>After you have installed mcumgr, now you should be able to upgrade the firmware through USB cable.</p></li>
+<li><p>Connect your computer to the MicroUSB port on robot using USB to Micro USB cable.</p></li>
+<li><p>Check on your computer for the device connected by the following command.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ls /dev
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>if there is only one USB device connected you should be able to see device named “ttyUSB0”, if there are more instances such as “ttyUSB1”, you can check the device using the following command.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mcumgr &lt;connection string&gt; image list
+</pre></div>
+</div>
+<p>The default connection string is</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--conntype serial --connstring <span class="s2">&quot;/dev/ttyUSB0,baud=115200&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>You should be able to see something like below</p></li>
+</ul>
+<img alt="../../../../_images/scout_v2.5_07.png" src="../../../../_images/scout_v2.5_07.png" />
+<ul class="simple">
+<li><p>If you don’t get any response, replace the connstring to other USB instance appeared on your computer such as “/dev/ttyUSB1,baud=115200”.</p></li>
+<li><p>Assuming your USB device appeared on your computer is “/dev/ttyUSB0”, you can upload the image with the following command.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mcumgr &lt;connection string&gt; image upload &lt;path-to-signed.bin&gt;
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Wait for about 3 seconds, you should be able to see something like below</p></li>
+</ul>
+<img alt="../../../../_images/scout_v2.5_08.png" src="../../../../_images/scout_v2.5_08.png" />
+<ul class="simple">
+<li><p>Wait until the process is Done.</p></li>
+</ul>
+<img alt="../../../../_images/scout_v2.5_08-2.png" src="../../../../_images/scout_v2.5_08-2.png" />
+<ul class="simple">
+<li><p>You can check whether the image is uploaded succesfully by the following command.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mcumgr &lt;connection string&gt; image list
+</pre></div>
+</div>
+<img alt="../../../../_images/scout_v2.5_09.png" src="../../../../_images/scout_v2.5_09.png" />
+<ul class="simple">
+<li><p>Copy the hash of latest image to be used in next step, in this example, it is</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>d89511ec321ebc4e0cd3775f9be05a6c8880bdfded37213e430fa6cfcbbdc6ec
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Now confirm the image by running the following command</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mcumgr &lt;connection string&gt; image confirm &lt;<span class="nb">hash</span> of image&gt;
+</pre></div>
+</div>
+<img alt="../../../../_images/scout_v2.5_10.png" src="../../../../_images/scout_v2.5_10.png" />
+<ul class="simple">
+<li><p>Reset by the following command</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mcumgr &lt;connection string&gt; reset
+</pre></div>
+</div>
+<img alt="../../../../_images/scout_v2.5_11.png" src="../../../../_images/scout_v2.5_11.png" />
+<ul class="simple">
+<li><p>Wait for about 30 seconds and run the following command</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mcumgr &lt;connection string&gt; image list
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>You should be able to see the following</p></li>
+</ul>
+<img alt="../../../../_images/scout_v2.5_12.png" src="../../../../_images/scout_v2.5_12.png" />
+<ul class="simple">
+<li><p>Now, you have upgraded the firmware successfully to a newer version.</p></li>
+<li><p>After uploading the new firmware, if you would like to revert the previous firmware, the old firmware image should still be present in the board.</p></li>
+<li><p>To revert to this old firmware, confirm this old image again by repeating the last few steps and reset the board.</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="agilex.html" class="btn btn-neutral float-left" title="AgileX" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="scout_v2.6.html" class="btn btn-neutral float-right" title="Scout (&gt;V2.5) Robot" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Weston Robot Pte Ltd.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
