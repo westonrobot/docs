@@ -6,7 +6,7 @@ Ranger Mini V2.0
    - USB to CAN Adapter
 
 - Turn off the robot, and connect it to your pc using the adapter.
-- Start the executable.
+- Start the executable (`Tool <https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EaPf9gpqXs1IlKpHQSwMhoMBIrPnCFtyhxf3HjwdGbsALw?e=IgD3tl>`_).
 - Click Open Device then turn on the robot.
 
 .. figure:: figures/ranger_mini_v2_01.png
