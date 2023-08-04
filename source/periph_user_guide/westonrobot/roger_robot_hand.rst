@@ -21,11 +21,36 @@ The Roger robot hand is designed as a end-effector for collaborative robots.  It
 
 2. Specifications
 =================
-
-2.1 In the box
---------------
 .. image:: figures/roger_hand_pkg.jpg
     :align: center
+
+2.1 General
+-----------
++---------------------------+------------------+
+| Physical Specifications   |                  |
++===========================+==================+
+| Number of Fingers         | 5                |
++---------------------------+------------------+
+| Degree of Freedom         | 6                |
++---------------------------+------------------+
+| Weight                    | 0.3kg            |
++---------------------------+------------------+
+| Strong Grip Mode Payload  | 2kg              |
++---------------------------+------------------+
+| Precise Grip Mode Payload | 0.2kg            |
++---------------------------+------------------+
+| Angular Motion Range      | 85degs           |
++---------------------------+------------------+
+| Grasping Response Times   | < 1.5secs        |
++---------------------------+------------------+
+| Motion Noise              | < 60dB           |
++---------------------------+------------------+
+| Operating Temperature     | < 80degs celsius |
++---------------------------+------------------+
+
+
+2.2 In the box
+--------------
 
 +---------------------------------------+--------+
 | Item                                  | Amount |
@@ -43,7 +68,7 @@ The Roger robot hand is designed as a end-effector for collaborative robots.  It
 | USB A male-male cable                 | 1      |
 +---------------------------------------+--------+
 
-2.2 Control Box
+2.3 Control Box
 ---------------
 +---------------+----------+-------------------------+
 | Port          | Protocol | Function                |
