@@ -1,5 +1,5 @@
-Ranger Mini V2.0
-================
+Firmware Upgrade Tool
+=====================
 
 - To upgrade the firmware, please ensure you have the following items
    - PC running on Windows
