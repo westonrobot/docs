@@ -55,7 +55,9 @@ The Go1 robot dog is a 12 DOF, quadruped robot.
 ============
 
 * User guide: `Getting Started with Go1 <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EWkPsjYni41MjcukW1VNwhMBhOqCz3DxIxBa5dtJ3XV6PQ?e=e7LNl6>`_
+* Official User manual: `Go1 User Manual V1.4 <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EfN-kw3WillLoPDFdPTMjZQBNyfvgurdt0KMnO36B4pHIA?e=3ei6Es>`_
 * Software guide: `Go1 Software Manual <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EengpX_Tv-NBiYwO-6PInTsBbsRL6N1EqfOVFiCnB1Gbwg?e=QQ9dwH>`_
+* Official SDK guide: `Unitree Legged SDK Manual <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/Edh2OJLDqe9LtzRZQDgmpcsBJAHLhkejnlN_4znJp-oIiw?e=5ggCrE>`_
 * SDK: `unitree_legged_sdk <https://github.com/westonrobot/unitree_legged_sdk>`_
 * ROS simulation package: `unitree_ros <https://github.com/westonrobot/unitree_ros>`_
 * ROS controller package: `unitree_ros_to_real <https://github.com/westonrobot/unitree_ros_to_real>`_
