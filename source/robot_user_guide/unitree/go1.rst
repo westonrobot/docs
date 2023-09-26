@@ -54,8 +54,6 @@ The Go1 is equippred with 12 servo motors (3 per limb) giving it a total of 12 d
    * - Rated Load
      - | Pro\: 3kg
        | Edu\: 5kg
-   * - Power Output
-     - 22.2V
    * - Motor
      - 12 x Servo geared motors
    * - Remote Controller Range
@@ -126,8 +124,11 @@ Remote Controller Calibration
    - When the Go1 is in move mode, press "A" to switch to climbing mode. To switch back to move mode, press "B".
 * What is the maximum stairs height Go1 can ascend in climbing mode?
    -  The Go1 can ascend stairs of height 10cm.
-* Can the Go1 connect to wifi?
-   - No, the Go1 has a local network within its on-board system but it cannot connect to the internet.
+* Can the Go1 connect to Wi-Fi?
+   - No, the Go1 does not have the capability to connect to Wi-Fi networks or the internet via Ethernet or external wireless networks. 
+     It operates within its own on-board local network system but does not have internet connectivity features.
+* Without Wi-Fi capability for the Go1, what is the recommended approach for custom software development?
+   -  For software development at the application layer, we recommend adding supplementary hardware components to the Go1 according to the development needs.
 * What is self-discharge protection?
    - When the power of battery is higher than 65%, after 10 days without any operation, the battery will self-discharge to 65% to protect the battery.
 * Does the Go1 have an IP rating for water and dust resistance?
