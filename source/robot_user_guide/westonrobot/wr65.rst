@@ -1,6 +1,6 @@
-*****
-WRM65
-*****
+*****************
+Weston Robot WR65
+*****************
 
 Revision History
 ================
@@ -13,7 +13,7 @@ Revision History
 
 1. Overview
 ===========
-The ultralightweight 6-DOF WRM65 is a robot arm manipulator that provides solutions for industries such as automotive parts, 3C electronics, metal processing, food packaging, medical health, new retail, etc.
+The ultralightweight 6-DOF WR65 is a robot arm manipulator that provides solutions for industries such as automotive parts, 3C electronics, metal processing, food packaging, medical health, new retail, etc.
 
 2. Specifications
 =================
@@ -46,7 +46,7 @@ The ultralightweight 6-DOF WRM65 is a robot arm manipulator that provides soluti
 .. table:: Specific Technical Specifications
 
    +--------------------------+---------------+----------------+----------------+
-   |                          |    WRM65-B    |    WRM65-ZF    |    WRM65-6F    |
+   |                          |     WR65-B    |     WR65-ZF    |     WR65-6F    |
    +==========================+===============+================+================+
    | Body Weight              |7.2kg          | .. centered:: 7.3kg             |
    +--------------------------+---------------+----------------+----------------+
@@ -61,7 +61,7 @@ The ultralightweight 6-DOF WRM65 is a robot arm manipulator that provides soluti
 .. table:: Joint Maximum Speed    
 
    +-------------+---------------+----------------+----------------+
-   |             |    WRM65-B    |    WRM65-ZF    |    WRM65-6F    |
+   |             |     WR65-B    |     WR65-ZF    |     WR65-6F    |
    +=============+===============+================+================+
    | J1 - J2     | .. centered:: 180°/s                            |
    +-------------+-------------------------------------------------+
@@ -72,7 +72,7 @@ The ultralightweight 6-DOF WRM65 is a robot arm manipulator that provides soluti
 .. table:: Joint Motion Range
 
    +-------------+---------------+----------------+----------------+
-   |             |    WRM65-B    |    WRM65-ZF    |    WRM65-6F    |
+   |             |     WR65-B    |     WR65-ZF    |     WR65-6F    |
    +=============+===============+================+================+
    | Joint 1     | .. centered:: ±178°                             |
    +-------------+-------------------------------------------------+
@@ -90,7 +90,16 @@ The ultralightweight 6-DOF WRM65 is a robot arm manipulator that provides soluti
 3. Resources
 ============
 
-* WRM65 Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EYAt45Gm0l9LgOzTa7HfQrcBlTcsyHED_Ly1IlU_X5oVcA?e=H5B6xR>`_
-* SDK Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/ESstkv1n5RpBgyWG6JA-SXABQBYADSdwOAB6iwv93qk1TQ?e=6m98p0>`_
-* ROS Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EXc9QHX9Q81BnBT01E7MSBYB_4wr9UcVQg37iGBkpDaIwA?e=L1E1Vp>`_
-* JSON Protocol Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EQZaNilrlKNJlxpckRXhwYkBFvDLWEicplov21BNptrUIQ?e=PqNQJu>`_
+Manuals
+-------
+
+* WR65 Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EXNetvnt1ZRKkMdllhengmIBey1UroMttwYZHxBs2shr-g?e=pYhIOr>`_
+* SDK Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EZ16f6SHNoxNvpkJ8o1ijTMBhU4XZkE8KfvYXObn9SeuCA?e=ZVbTYn>`_
+* ROS Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/ET4USOMo1wBJo1MX9l_mMJEBZ_7MkDZKw51P5VzWy0ydeA?e=DL1nBT>`_
+* JSON Protocol Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EZ7t0oc9qnBDpLFsvta_lS4BvWJMEUFE7YfafvXfA6m0Bw?e=UxWjki>`_
+
+Development
+-----------
+
+* C++ SDK: `wr_arm_sdk <https://github.com/westonrobot/wr_arm_sdk.git>`_
+* ROS Package: `wr65b_ros <https://github.com/westonrobot/wr65b_ros.git>`_

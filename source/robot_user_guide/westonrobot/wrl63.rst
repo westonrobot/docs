@@ -1,6 +1,6 @@
-******************
-Weston Robot WRM65
-******************
+*****************
+Weston Robot WRL63
+*****************
 
 Revision History
 ================
@@ -8,13 +8,12 @@ Revision History
 +----------+-------------------+----------+------------------------+
 | Revision | Date (DD/MM/YYYY) | Author   | Changes                |
 +==========+===================+==========+========================+
-| 1        | 28/07/2023        | Kang Wei | Initial release        |
+| 1        | 27/09/2023        | Kang Wei | Initial release        |
 +----------+-------------------+----------+------------------------+
 
 1. Overview
 ===========
-
-The ultralightweight 6-DOF WRM65 is a robot arm manipulator that provides solutions for industries such as automotive parts, 3C electronics, metal processing, food packaging, medical health, new retail, etc.
+The ultra-long 6-DOF WRL63 is a robot arm manipulator that provides solutions for industries such as automotive parts, 3C electronics, metal processing, food packaging, medical health, new retail, etc.
 
 2. Specifications
 =================
@@ -25,7 +24,7 @@ The ultralightweight 6-DOF WRM65 is a robot arm manipulator that provides soluti
    * - Degree of Freedom
      - 6
    * - Payload
-     - 5 kg
+     - 3 kg
    * - Repeatability
      - ±0.05mm  
    * - Power Supply Voltage
@@ -47,11 +46,11 @@ The ultralightweight 6-DOF WRM65 is a robot arm manipulator that provides soluti
 .. table:: Specific Technical Specifications
 
    +--------------------------+---------------+----------------+----------------+
-   |                          |    WRM65-B    |    WRM65-ZF    |    WRM65-6F    |
+   |                          |    WRL63-B    |    WRL63-ZF    |    WRL63-6F    |
    +==========================+===============+================+================+
-   | Body Weight              |7.2kg          | .. centered:: 7.3kg             |
+   | Body Weight              |10.0kg         | .. centered:: 10.1kg            |
    +--------------------------+---------------+----------------+----------------+
-   | Working Radius           |610mm          |618mm           |638.5mm         |
+   | Working Radius           |900mm          |908mm           |928.5mm         |
    +--------------------------+---------------+----------------+----------------+
    | One-Axis Force Range     |NA             |200N            |200N / 7Nm      |
    +--------------------------+---------------+----------------+----------------+
@@ -62,7 +61,7 @@ The ultralightweight 6-DOF WRM65 is a robot arm manipulator that provides soluti
 .. table:: Joint Maximum Speed    
 
    +-------------+---------------+----------------+----------------+
-   |             |    WRM65-B    |    WRM65-ZF    |    WRM65-6F    |
+   |             |    WRL63-B    |    WRL63-ZF    |    WRL63-6F    |
    +=============+===============+================+================+
    | J1 - J2     | .. centered:: 180°/s                            |
    +-------------+-------------------------------------------------+
@@ -73,17 +72,17 @@ The ultralightweight 6-DOF WRM65 is a robot arm manipulator that provides soluti
 .. table:: Joint Motion Range
 
    +-------------+---------------+----------------+----------------+
-   |             |    WRM65-B    |    WRM65-ZF    |    WRM65-6F    |
+   |             |    WRL63-B    |    WRL63-ZF    |    WRL63-6F    |
    +=============+===============+================+================+
    | Joint 1     | .. centered:: ±178°                             |
    +-------------+-------------------------------------------------+
-   | Joint 2     | .. centered:: ±130°                             |
+   | Joint 2     | .. centered:: ±178°                             |
    +-------------+-------------------------------------------------+
-   | Joint 3     | .. centered:: ±135°                             |
+   | Joint 3     | .. centered:: +145° to -178°                    |
    +-------------+-------------------------------------------------+
    | Joint 4     | .. centered:: ±178°                             |
    +-------------+-------------------------------------------------+
-   | Joint 5     | .. centered:: ±128°                             |
+   | Joint 5     | .. centered:: ±178°                             |
    +-------------+-------------------------------------------------+ 
    | Joint 6     | .. centered:: ±360°                             |
    +-------------+-------------------------------------------------+ 
@@ -91,7 +90,16 @@ The ultralightweight 6-DOF WRM65 is a robot arm manipulator that provides soluti
 3. Resources
 ============
 
-* WRM65 Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EYAt45Gm0l9LgOzTa7HfQrcBlTcsyHED_Ly1IlU_X5oVcA?e=H5B6xR>`_
-* SDK Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/ESstkv1n5RpBgyWG6JA-SXABQBYADSdwOAB6iwv93qk1TQ?e=6m98p0>`_
-* ROS Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EXc9QHX9Q81BnBT01E7MSBYB_4wr9UcVQg37iGBkpDaIwA?e=L1E1Vp>`_
-* JSON Protocol Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EQZaNilrlKNJlxpckRXhwYkBFvDLWEicplov21BNptrUIQ?e=PqNQJu>`_
+.. Manuals
+.. -------
+
+.. * WRL63 Manual: `PDF <>`_
+.. * SDK Manual: `PDF <>`_
+.. * ROS Manual: `PDF <>`_
+.. * JSON Protocol Manual: `PDF <>`_
+
+Development
+-----------
+
+* C++ SDK: `wr_arm_sdk <https://github.com/westonrobot/wr_arm_sdk.git>`_
+* ROS Package: `wrl63b_ros <https://github.com/westonrobot/wrl63b_ros.git>`_
