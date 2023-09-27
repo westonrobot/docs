@@ -102,10 +102,10 @@
 <h2>Revision History<a class="headerlink" href="#revision-history" title="Permalink to this headline">¶</a></h2>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 16%" />
-<col style="width: 30%" />
-<col style="width: 16%" />
-<col style="width: 38%" />
+<col style="width: 11%" />
+<col style="width: 20%" />
+<col style="width: 11%" />
+<col style="width: 58%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Revision</p></th>
@@ -120,15 +120,32 @@
 <td><p>Kee Jin</p></td>
 <td><p>Initial release</p></td>
 </tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>22/09/2023</p></td>
+<td><p>Karthee</p></td>
+<td><p>Updates to safety precautions, FAQ and General notes</p></td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="overview">
 <h2>1. Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<p>The Go1 robot dog is a 12 DOF, quadruped robot.</p>
+<a class="reference internal image-reference" href="../../_images/Go1_robot.png"><img alt="../../_images/Go1_robot.png" class="align-center" src="../../_images/Go1_robot.png" style="width: 300px;" /></a>
+<p>The Go1 robot dog is a quadruped robot with force control technology, used for compound control of the force and position of each joint.
+The Go1 is equippred with 12 servo motors (3 per limb) giving it a total of 12 degrees of freedom, making it suitable for use in uneven terrain.</p>
+</div>
+<div class="section" id="safety-precautions">
+<h2>2. Safety Precautions<a class="headerlink" href="#safety-precautions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Do not carry</strong> the Go1 when in static mode or sports mode.</p></li>
+<li><p>When battery level indicator is <strong>1 blinking LED light (0-25%)</strong>, turn off the Go1 and charge the battery to prevent it from falling to the ground due to battery depletion.</p></li>
+<li><p>If you have additional hardware installed atop the Go1, <strong>do not</strong> use the roll function as it risks damaging the hardware or robot.</p></li>
+<li><p>Please make sure that the Go1 is placed on its abdominal support pad on <strong>level ground</strong> before starting the machine.</p></li>
+<li><p>Bring Go1 to <strong>damped prone position</strong> before switching off the robot. To do so, get the Go1 to the “proning state” with “L2+A” and finally press “L2+B”.</p></li>
+</ul>
 </div>
 <div class="section" id="specifications">
-<h2>2. Specifications<a class="headerlink" href="#specifications" title="Permalink to this headline">¶</a></h2>
+<h2>3. Specifications<a class="headerlink" href="#specifications" title="Permalink to this headline">¶</a></h2>
 <table class="colwidths-given docutils align-default" id="id1">
 <caption><span class="caption-text">Technical Specifications</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
 <colgroup>
@@ -143,42 +160,85 @@
 <td><p>650mm x 300mm x 400mm</p></td>
 </tr>
 <tr class="row-odd"><td><p>Maximum traversal tilt</p></td>
-<td><p>35 degrees</p></td>
+<td><p>25 degrees</p></td>
 </tr>
 <tr class="row-even"><td><p>Maximum Speed</p></td>
 <td><p>Pro: 3.5m/s Edu: 3.7m/s</p></td>
 </tr>
 <tr class="row-odd"><td><p>Charging Time</p></td>
-<td><p>50min</p></td>
+<td><p>~50min</p></td>
 </tr>
 <tr class="row-even"><td><p>Average Running Time</p></td>
-<td><p>1h</p></td>
+<td><p>~1h</p></td>
 </tr>
 <tr class="row-odd"><td><p>Weight</p></td>
 <td><p>12kg</p></td>
 </tr>
 <tr class="row-even"><td><p>Rated Load</p></td>
-<td><p>Pro: 3kg, Edu: 5kg</p></td>
+<td><div class="line-block">
+<div class="line">Pro: 3kg</div>
+<div class="line">Edu: 5kg</div>
+</div>
+</td>
 </tr>
 <tr class="row-odd"><td><p>Motor</p></td>
-<td><p>12 x Servo Geared motors</p></td>
+<td><p>12 x Servo geared motors</p></td>
+</tr>
+<tr class="row-even"><td><p>Remote Controller Range</p></td>
+<td><p>100m</p></td>
+</tr>
+<tr class="row-odd"><td><p>Camera</p></td>
+<td><div class="line-block">
+<div class="line">4 x Stereo cameras</div>
+<div class="line">FOV: 150 degrees x 170 degrees</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>Sensor</p></td>
+<td><p>3 x Ultrasonic sensors</p></td>
+</tr>
+<tr class="row-odd"><td><p>Lidar (Purchased Separately)</p></td>
+<td><div class="line-block">
+<div class="line">Working range: 0.15m-12m</div>
+<div class="line">Angular range: 360 degrees</div>
+<div class="line">Resolution: &lt; 1 degree</div>
+</div>
+</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="general-notes">
-<h2>3. General Notes<a class="headerlink" href="#general-notes" title="Permalink to this headline">¶</a></h2>
+<h2>4. General Notes<a class="headerlink" href="#general-notes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="emergency-stop">
+<h3>Emergency Stop<a class="headerlink" href="#emergency-stop" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>When conducting experiments with the Go1 that may impact its stability, the emergency stop provided should be used where necessary.</p></li>
 </ul>
 <a class="reference internal image-reference" href="../../_images/A1_estop.png"><img alt="../../_images/A1_estop.png" class="align-center" src="../../_images/A1_estop.png" style="width: 180px;" /></a>
 <ul class="simple">
-<li><p>The Go1 should be powered off and its battery should be replaced whenever there is only 1/4 of the battery LED indicators left lit and blinking. This indicates that the battery level is low (0-25%).</p></li>
-<li><p>Before powering off the Go1, be sure to bring it down to the damped proning state first to prevent the robot from dropping down from a height. To do so, get the Go1 to the “proning state” with “L2+A” and finally press “L2+B”.</p></li>
+<li><p>Press and hold the <strong>OFF button</strong> for 1 second to trigger the emergency stop. Do note that once the emergency stop is triggered, the power to the motors on board
+the Go1 will be cut causing it to drop to the ground.</p></li>
+<li><p>To reset the emergency stop, power cycle the Go1.</p></li>
 </ul>
 </div>
+<div class="section" id="remote-controller-calibration">
+<h3>Remote Controller Calibration<a class="headerlink" href="#remote-controller-calibration" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>When the Go1 drift is significant during remote controller operation, calibration of the remote controller may fix this.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/Go1_rc.png"><img alt="../../_images/Go1_rc.png" class="align-center" src="../../_images/Go1_rc.png" style="width: 200px;" /></a>
+<ul class="simple">
+<li><p>Press the remote control buttons “F1” and “F3” and release them at the same time. At this time, the remote control will emit 2 continuous beep sounds
+to indicate that it has entered the calibration mode.</p></li>
+<li><p>After entering the calibration mode, move the left and right joysticks to full rudder and rotate it several times until the beep sound stops.
+Press F3 once to make the calibration take effect and that completes the calibration process.</p></li>
+<li><p><strong>Note</strong> : Please do not touch the joystick before calibrating, only move the joystick after entering the calibration mode.</p></li>
+</ul>
+</div>
+</div>
 <div class="section" id="resources">
-<h2>4. Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
+<h2>5. Resources<a class="headerlink" href="#resources" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>User guide: <a class="reference external" href="https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EWkPsjYni41MjcukW1VNwhMBhOqCz3DxIxBa5dtJ3XV6PQ?e=e7LNl6">Getting Started with Go1</a></p></li>
 <li><p>Official User manual: <a class="reference external" href="https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EfN-kw3WillLoPDFdPTMjZQBNyfvgurdt0KMnO36B4pHIA?e=3ei6Es">Go1 User Manual V1.4</a></p></li>
@@ -188,6 +248,82 @@
 <li><p>ROS simulation package: <a class="reference external" href="https://github.com/westonrobot/unitree_ros">unitree_ros</a></p></li>
 <li><p>ROS controller package: <a class="reference external" href="https://github.com/westonrobot/unitree_ros_to_real">unitree_ros_to_real</a></p></li>
 <li><p>CAD File: <a class="reference external" href="https://tangrobot.sharepoint.com/:f:/s/Public-Outgoing/Epo7xFk4MVNGgrDL9sgeVmcBM7-5QvVGvsCztrksVI7Iwg?e=PTiy74">Go1 STEP file</a></p></li>
+</ul>
+</div>
+<div class="section" id="faq">
+<h2>6. FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Can the Go1 navigate autonomously?</dt><dd><ul>
+<li><p>The Go1 has a basic navigation stack setup in ROS Melodic. To use it, the Go1 will need a lidar to be installed and a map of the area that the robot is going to be navigating in.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>How to switch between static mode and move mode?</dt><dd><ul>
+<li><p>When the Go1 is in static mode (locked joints), press “START” to switch to move mode. From move mode, press “L2+A” to switch to static mode.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>How to switch from move mode to running mode?</dt><dd><ul>
+<li><p>When the Go1 is in move mode, press “L2 + START” to switch to running mode.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>How to switch from move mode and climbing mode?</dt><dd><ul>
+<li><p>When the Go1 is in move mode, press “A” to switch to climbing mode. To switch back to move mode, press “B”.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>What is the maximum stairs height Go1 can ascend in climbing mode?</dt><dd><ul>
+<li><p>The Go1 can ascend stairs of height 10cm.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Can the Go1 connect to Wi-Fi?</dt><dd><ul>
+<li><p>No, the Go1 does not have the capability to connect to Wi-Fi networks or the internet via Ethernet or external wireless networks.
+It operates within its own on-board local network system but does not have internet connectivity features.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Without Wi-Fi capability for the Go1, what is the recommended approach for custom software development?</dt><dd><ul>
+<li><p>For software development at the application layer, we recommend adding supplementary hardware components to the Go1 according to the development needs.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>What is self-discharge protection?</dt><dd><ul>
+<li><p>When the power of battery is higher than 65%, after 10 days without any operation, the battery will self-discharge to 65% to protect the battery.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Does the Go1 have an IP rating for water and dust resistance?</dt><dd><ul>
+<li><p>No, the Go1 does not have an IP rating for water and dust resistance.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Can the Go1 start on a slope instead of level ground?</dt><dd><ul>
+<li><p>No, the Go1 needs to start on a level ground for the IMU sensor to calibrate correctly.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
 </ul>
 </div>
 </div>
