@@ -6,4 +6,5 @@ Robot Manipulators
    :maxdepth: 1
 
    /robot_user_guide/westonrobot/wr65
+   /robot_user_guide/westonrobot/wrl63
    /robot_user_guide/ufactory/xarm
