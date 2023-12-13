@@ -2,7 +2,7 @@ Scout V2.5 Robot
 ================
 
 - To upgrade the firmware, please ensure you have the following items
-   - Laptop running on Ubuntu18.04
+   - Laptop running on Ubuntu
    - USB to Micro USB cable
    - Signed binary image from Weston Robot
    - MCU Manager installed (kindly refer for the installation guide below)
@@ -22,18 +22,27 @@ Installation guide for MCU Manager (mcumgr)
 
     $ go version
 
+**Note: You will need go version >=1.12, if the version provided by the OS is too old, please manually install a newer version from golang's** `website <https://golang.org/doc/install>`_.
+
 3. Now you can install mcumgr CLI.
 
+- For Go version < 1.18
+
 .. code-block:: bash
 
-    $ cd 
     $ go get github.com/apache/mynewt-mcumgr-cli/mcumgr
-    $ nano ~/.bashrc
 
-1. Add in path for mcumgr into .bashrc file
+- For Go version >= 1.18
 
 .. code-block:: bash
 
+    $ go install github.com/apache/mynewt-mcumgr-cli/mcumgr@latest
+
+4. Add in path for mcumgr into .bashrc file
+
+.. code-block:: bash
+
+    $ nano ~/.bashrc
     $ export PATH=$PATH:<path-to-home-directory>/go/bin/
     $ alias sudo='sudo env PATH=$PATH'
 
@@ -44,9 +53,36 @@ Installation guide for MCU Manager (mcumgr)
     $ source ~/.bashrc
     $ mcumgr version
 
-**Troubleshooting**
+Firmware version check using MCU Manager through USB cable
+--------------------------------------------------------
+- After you have installed mcumgr, now you should be able to check the firmware version through USB cable.
+- Connect your computer to the MicroUSB port on robot using USB to Micro USB cable.
+- Check on your computer for the device connected by the following command.
 
-- If the installed golang-go is an older version, the "go get..." command in **step 3** might fail. To get around this error, manually install a newer version of go by following the instructions from golang's `website <https://golang.org/doc/install>`_ and reattempt installation from **step 3**.
+.. code-block:: bash
+
+    $ ls /dev
+
+**Note:**
+if there is only one USB device connected you should be able to see device named "ttyUSB0", if there are more instances such as "ttyUSB1", you might need to run the command before and after plugging in the USB cable to check the correct device name. 
+
+- Assuming your USB device appeared on your computer is "/dev/ttyUSB0", you can check the firmware version by the following command.
+.. code-block:: bash
+
+    $ sudo mcumgr <connection string> image list
+
+The default connection string is 
+
+.. code-block:: bash
+
+    --conntype serial --connstring "/dev/ttyUSB0,baud=115200"
+
+- You should be able to see something like below
+
+.. image:: figures/scout_v2.5_07.png
+
+- If you don't get any response, replace the connstring to other USB instance appeared on your computer such as "/dev/ttyUSB1,baud=115200".
+
 
 Firmware upgrade using MCU Manager through USB cable
 --------------------------------------------------------
@@ -59,8 +95,10 @@ Firmware upgrade using MCU Manager through USB cable
 
     $ ls /dev
 
-- if there is only one USB device connected you should be able to see device named "ttyUSB0", if there are more instances such as "ttyUSB1", you can check the device using the following command. 
+**Note:**
+if there is only one USB device connected you should be able to see device named "ttyUSB0", if there are more instances such as "ttyUSB1", you might need to run the command before and after plugging in the USB cable to check the correct device name. 
 
+- Assuming your USB device appeared on your computer is "/dev/ttyUSB0", you can check the firmware version by the following command.
 .. code-block:: bash
 
     $ sudo mcumgr <connection string> image list
