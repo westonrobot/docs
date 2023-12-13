@@ -1,19 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Weston Robot Maintenance Toolbox (MT) &mdash; Weston Robot v0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/hacks.css" type="text/css" />
+  <title>Weston Robot Maintenance Toolbox (MT) &mdash; Weston Robot v0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/hacks.css?v=a7984756" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4c0d86c8"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" /> 
@@ -81,10 +86,10 @@
              
   <blockquote>
 <div></div></blockquote>
-<div class="section" id="weston-robot-maintenance-toolbox-mt">
-<h1>Weston Robot Maintenance Toolbox (MT)<a class="headerlink" href="#weston-robot-maintenance-toolbox-mt" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="install-power-regulator-widget">
-<h2>Install Power Regulator Widget<a class="headerlink" href="#install-power-regulator-widget" title="Permalink to this headline">¶</a></h2>
+<section id="weston-robot-maintenance-toolbox-mt">
+<h1>Weston Robot Maintenance Toolbox (MT)<a class="headerlink" href="#weston-robot-maintenance-toolbox-mt" title="Permalink to this heading"></a></h1>
+<section id="install-power-regulator-widget">
+<h2>Install Power Regulator Widget<a class="headerlink" href="#install-power-regulator-widget" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><strong>Power Regulator Widget (wr_regulator_widget)</strong></p>
 <ul>
@@ -96,17 +101,17 @@
 <p>Please add the debian repository to your apt-get source list firt. Refer to section <a class="reference internal" href="../software/installation_guide.html#ref-add-debian-source"><span class="std std-ref">Debian Repository</span></a></p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">## 1. install dependencies</span>
 <span class="c1"># 1.1 if you haven&#39;t installed wrp_sdk, you need to install the SDK first. skip this step otherwise.</span>
-$ sudo apt-get install software-properties-common <span class="o">&amp;&amp;</span> sudo add-apt-repository ppa:lely/ppa <span class="o">&amp;&amp;</span> sudo apt-get update
-$ sudo apt-get install pkg-config liblely-coapp-dev liblely-co-tools
-$ sudo apt-get install wrp_sdk
+$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>software-properties-common<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>add-apt-repository<span class="w"> </span>ppa:lely/ppa<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>pkg-config<span class="w"> </span>liblely-coapp-dev<span class="w"> </span>liblely-co-tools
+$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>wrp_sdk
 <span class="c1"># 1.2 install wr_regulator_widget dependencies</span>
-$ sudo apt-get install libgl1-mesa-dev libglfw3-dev libcairo2-dev
+$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libgl1-mesa-dev<span class="w"> </span>libglfw3-dev<span class="w"> </span>libcairo2-dev
 <span class="c1">## 2. install the package</span>
-$ sudo apt-get install wr_regulator_widget
+$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>wr_regulator_widget
 </pre></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

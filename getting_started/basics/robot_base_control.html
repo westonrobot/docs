@@ -1,19 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Robot Base Control &mdash; Weston Robot v0.1 documentation</title><link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/hacks.css" type="text/css" />
+  <title>Robot Base Control &mdash; Weston Robot v0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/hacks.css?v=a7984756" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/language_data.js"></script>
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=4c0d86c8"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -94,11 +99,11 @@
              
   <blockquote>
 <div></div></blockquote>
-<div class="section" id="robot-base-control">
-<h1>Robot Base Control<a class="headerlink" href="#robot-base-control" title="Permalink to this headline">¶</a></h1>
+<section id="robot-base-control">
+<h1>Robot Base Control<a class="headerlink" href="#robot-base-control" title="Permalink to this heading"></a></h1>
 <p>Various mobile robot bases may appear very different but their controls are similar. You may refer to the user guide of a specific robot for all the details. This article aims at providing a general view of the robot control.</p>
-<div class="section" id="manual-control">
-<h2>1. Manual Control<a class="headerlink" href="#manual-control" title="Permalink to this headline">¶</a></h2>
+<section id="manual-control">
+<h2>1. Manual Control<a class="headerlink" href="#manual-control" title="Permalink to this heading"></a></h2>
 <p>Manual control with a radio transmitter is one of the most common way to control a robot. Even when a robot is designed to be fully autonomous, you may need to manually control the robot for development/debugging purpose.</p>
 <p>Generally, manual control has a higher priority so that you can always take over the control even when the robot is behaving abnormally while executing an autonomous task.</p>
 <p>Here is a picture of the remote controller used for most of our mobile bases:</p>
@@ -112,84 +117,84 @@
 <li><p>Switch <strong>SWB</strong> back to its <strong>up</strong> position to disable manual control. In this state, the robot will not respond to the remote transmitter but can be controlled from its other communication interfaces (e.g. CAN bus)</p></li>
 <li><p>For some models (e.g. Scout V2.5 and newer), <strong>SWA</strong> acts as a wireless E-Stop. If <strong>SWA</strong> is switched to <strong>down</strong> position, <strong>neither remote controller</strong> <strong>nor CAN interface</strong> would be able to control the robot until <strong>SWA</strong> is returned to <strong>up</strong> position</p></li>
 </ul>
-</div>
-<div class="section" id="program-control">
-<h2>2. Program Control<a class="headerlink" href="#program-control" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="program-control">
+<h2>2. Program Control<a class="headerlink" href="#program-control" title="Permalink to this heading"></a></h2>
 <p>If you want to set up the robot for autonomous navigation, you would need to control the robot from your program through some kind of communication interfaces. Most of our robots use CAN bus for this purpose. CAN is reliable and easy to use. But it’s not a standard communication interface on most development PCs. So in order to talk with the robot via CAN bus, you would likely need a CAN adapter. You could also use a single-board computer with CAN interface, such as Nvidia Jetson, Raspberry Pi with <a class="reference external" href="https://www.waveshare.com/wiki/2-CH_CAN_HAT">CAN HAT</a>.</p>
 <p><strong>Note</strong>: Nvidia Jetson AGX/NX development kit supports CAN but it only has a CAN controller from the SOC by default. You will need to add a CAN transceiver (e.g. <a class="reference external" href="https://www.waveshare.com/sn65hvd230-can-board.htm">this transceiver breakout board</a>) to communicate with other CAN devices properly.</p>
-<div class="section" id="setup-can-adapter">
-<h3>2.1 Setup CAN Adapter<a class="headerlink" href="#setup-can-adapter" title="Permalink to this headline">¶</a></h3>
+<section id="setup-can-adapter">
+<h3>2.1 Setup CAN Adapter<a class="headerlink" href="#setup-can-adapter" title="Permalink to this heading"></a></h3>
 <p>Here we take the CAN-to-USB adapter shipped with the robot as an example. Setting up drivers for other types of CAN adapters may be a little different. But once the driver is installed properly, subsequent CAN operations are the same in Linux.</p>
 <a class="reference internal image-reference" href="../../_images/can_to_usb_adapter.jpg"><img alt="../../_images/can_to_usb_adapter.jpg" src="../../_images/can_to_usb_adapter.jpg" style="width: 600px;" /></a>
 <ol class="arabic simple">
 <li><p>Enable gs_usb kernel module</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo modprobe gs_usb
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>modprobe<span class="w"> </span>gs_usb
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
 <li><p>Plug the USB port of the adapter to your computer, bringup can device</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo ip link <span class="nb">set</span> can0 up <span class="nb">type</span> can bitrate <span class="m">500000</span>
-$ sudo ip link <span class="nb">set</span> can0 txqueuelen <span class="m">1000</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>can0<span class="w"> </span>up<span class="w"> </span><span class="nb">type</span><span class="w"> </span>can<span class="w"> </span>bitrate<span class="w"> </span><span class="m">500000</span>
+$<span class="w"> </span>sudo<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>can0<span class="w"> </span>txqueuelen<span class="w"> </span><span class="m">1000</span>
 </pre></div>
 </div>
 <p>Now you should be able to see the can0 interface. Type “ifconfig” command in a terminal, look for “can0” and you should see something similar:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ can0: <span class="nv">flags</span><span class="o">=</span><span class="m">193</span>&lt;UP,RUNNING,NOARP&gt;  mtu <span class="m">16</span>
-$     unspec <span class="m">00</span>-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00  txqueuelen <span class="m">1000</span>  <span class="o">(</span>UNSPEC<span class="o">)</span>
-$     RX packets <span class="m">4</span>  bytes <span class="m">32</span> <span class="o">(</span><span class="m">32</span>.0 B<span class="o">)</span>
-$     RX errors <span class="m">0</span>  dropped <span class="m">0</span>  overruns <span class="m">0</span>  frame <span class="m">0</span>
-$     TX packets <span class="m">4</span>  bytes <span class="m">32</span> <span class="o">(</span><span class="m">32</span>.0 B<span class="o">)</span>
-$     TX errors <span class="m">1</span>  dropped <span class="m">1</span> overruns <span class="m">0</span>  carrier <span class="m">1</span>  collisions <span class="m">0</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>can0:<span class="w"> </span><span class="nv">flags</span><span class="o">=</span><span class="m">193</span>&lt;UP,RUNNING,NOARP&gt;<span class="w">  </span>mtu<span class="w"> </span><span class="m">16</span>
+$<span class="w">     </span>unspec<span class="w"> </span><span class="m">00</span>-00-00-00-00-00-00-00-00-00-00-00-00-00-00-00<span class="w">  </span>txqueuelen<span class="w"> </span><span class="m">1000</span><span class="w">  </span><span class="o">(</span>UNSPEC<span class="o">)</span>
+$<span class="w">     </span>RX<span class="w"> </span>packets<span class="w"> </span><span class="m">4</span><span class="w">  </span>bytes<span class="w"> </span><span class="m">32</span><span class="w"> </span><span class="o">(</span><span class="m">32</span>.0<span class="w"> </span>B<span class="o">)</span>
+$<span class="w">     </span>RX<span class="w"> </span>errors<span class="w"> </span><span class="m">0</span><span class="w">  </span>dropped<span class="w"> </span><span class="m">0</span><span class="w">  </span>overruns<span class="w"> </span><span class="m">0</span><span class="w">  </span>frame<span class="w"> </span><span class="m">0</span>
+$<span class="w">     </span>TX<span class="w"> </span>packets<span class="w"> </span><span class="m">4</span><span class="w">  </span>bytes<span class="w"> </span><span class="m">32</span><span class="w"> </span><span class="o">(</span><span class="m">32</span>.0<span class="w"> </span>B<span class="o">)</span>
+$<span class="w">     </span>TX<span class="w"> </span>errors<span class="w"> </span><span class="m">1</span><span class="w">  </span>dropped<span class="w"> </span><span class="m">1</span><span class="w"> </span>overruns<span class="w"> </span><span class="m">0</span><span class="w">  </span>carrier<span class="w"> </span><span class="m">1</span><span class="w">  </span>collisions<span class="w"> </span><span class="m">0</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="check-frames-on-can-bus">
-<h3>2.2 Check Frames on CAN Bus<a class="headerlink" href="#check-frames-on-can-bus" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="check-frames-on-can-bus">
+<h3>2.2 Check Frames on CAN Bus<a class="headerlink" href="#check-frames-on-can-bus" title="Permalink to this heading"></a></h3>
 <p>You can easily check CAN bus traffic with can-utils in Linux.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install can-utils
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>can-utils
 </pre></div>
 </div>
 <p>The most commonly used commands from can-utils are “candump” and “cansend”.</p>
-<div class="section" id="listen-to-can-frames-on-the-bus">
-<h4>Listen to CAN frames on the bus<a class="headerlink" href="#listen-to-can-frames-on-the-bus" title="Permalink to this headline">¶</a></h4>
+<section id="listen-to-can-frames-on-the-bus">
+<h4>Listen to CAN frames on the bus<a class="headerlink" href="#listen-to-can-frames-on-the-bus" title="Permalink to this heading"></a></h4>
 <p>In the following example, you will see can frames on can0 printed out to the terminal.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ candump can0
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>candump<span class="w"> </span>can0
 </pre></div>
 </div>
 <p>If you’re looking for frames with a specific CAN ID, you can apply a filter. For example, to look for CAN frames with ID 0x602, you can use</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ candump can0,602:1fffffff
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>candump<span class="w"> </span>can0,602:1fffffff
 </pre></div>
 </div>
-</div>
-<div class="section" id="send-a-can-frame-to-the-bus">
-<h4>Send a CAN frame to the bus<a class="headerlink" href="#send-a-can-frame-to-the-bus" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="send-a-can-frame-to-the-bus">
+<h4>Send a CAN frame to the bus<a class="headerlink" href="#send-a-can-frame-to-the-bus" title="Permalink to this heading"></a></h4>
 <p>You can also send a frame to the CAN bus. For example, send frame with data “0x00 0x11 0x22 0x33 0x44 0x55 0x66 0x77” with ID 0x121 to can0 interface.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ cansend can0 <span class="m">121</span><span class="c1">#0011223344556677</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>cansend<span class="w"> </span>can0<span class="w"> </span><span class="m">121</span><span class="c1">#0011223344556677</span>
 </pre></div>
 </div>
 <p><strong>Note</strong>: You can send up-to 8 bytes in a single CAN frame.</p>
-</div>
-<div class="section" id="log-frames-and-playback">
-<h4>Log Frames and Playback<a class="headerlink" href="#log-frames-and-playback" title="Permalink to this headline">¶</a></h4>
+</section>
+<section id="log-frames-and-playback">
+<h4>Log Frames and Playback<a class="headerlink" href="#log-frames-and-playback" title="Permalink to this heading"></a></h4>
 <p>You can log can frames from a CAN interface to a file for debugging.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>candump -l can0
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>candump<span class="w"> </span>-l<span class="w"> </span>can0
 </pre></div>
 </div>
 <p>Then you can playback the log file</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>canplayer -I &lt;candump-log-file-name&gt;.log
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>canplayer<span class="w"> </span>-I<span class="w"> </span>&lt;candump-log-file-name&gt;.log
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="control-the-robot-with-sdk-ros">
-<h3>2.3 Control the Robot with SDK/ROS<a class="headerlink" href="#control-the-robot-with-sdk-ros" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="control-the-robot-with-sdk-ros">
+<h3>2.3 Control the Robot with SDK/ROS<a class="headerlink" href="#control-the-robot-with-sdk-ros" title="Permalink to this heading"></a></h3>
 <p>Now you’ve setup the CAN interface on your development or onboard computer. Connecting the robot CAN to your computer CAN (HIGH signal to High, LOW signal to LOW). Make sure <strong>SWB</strong> on the remote controller is at the up position. Now you should be able to use the SDK or ROS node to control the robot.</p>
 <p>Refer to <a class="reference external" href="https://github.com/westonrobot/wrp_sdk/tree/sample-v1.0.0/sample/mobile_base">sample code</a> and <a class="reference external" href="https://github.com/westonrobot/wrp_ros/tree/main/launch/mobile_base">sample launch files</a> for details of the program control.</p>
 <p><strong>Important</strong>: Please lift the robot up with a stool and keep the RC controller in hand for the initial testings to avoid the robot crashing into something around. Refer to this section about <a class="reference internal" href="operational_safety.html#ref-op-dev-safety"><span class="std std-ref">Operational Safety</span></a>.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

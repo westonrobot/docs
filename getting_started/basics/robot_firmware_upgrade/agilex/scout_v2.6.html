@@ -1,19 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Scout (&gt;V2.5) Robot &mdash; Weston Robot v0.1 documentation</title><link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/hacks.css" type="text/css" />
+  <title>Scout (&gt;V2.5) Robot &mdash; Weston Robot v0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/hacks.css?v=a7984756" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/language_data.js"></script>
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=4c0d86c8"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -95,8 +100,8 @@
              
   <blockquote>
 <div></div></blockquote>
-<div class="section" id="scout-v2-5-robot">
-<h1>Scout (&gt;V2.5) Robot<a class="headerlink" href="#scout-v2-5-robot" title="Permalink to this headline">¶</a></h1>
+<section id="scout-v2-5-robot">
+<h1>Scout (&gt;V2.5) Robot<a class="headerlink" href="#scout-v2-5-robot" title="Permalink to this heading"></a></h1>
 <ul>
 <li><p>To upgrade the firmware, please ensure you have the following items</p>
 <blockquote>
@@ -117,18 +122,20 @@
 </div></blockquote>
 </li>
 </ul>
-<div class="figure align-center" id="id1">
+<figure class="align-center" id="id1">
 <a class="reference internal image-reference" href="../../../../_images/scout26_io.jpg"><img alt="../../../../_images/scout26_io.jpg" src="../../../../_images/scout26_io.jpg" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Middle aviation connector for Control Board. Left aviation connector for Peripheral Board</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Middle aviation connector for Control Board. Left aviation connector for Peripheral Board</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
 <ul class="simple">
 <li><p>Connect powered on robot</p></li>
 <li><p>Setup CAN connection for both/either boards</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo modprobe gs_usb
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>modprobe<span class="w"> </span>gs_usb
 <span class="c1"># Replace can&lt;X&gt; e.g. can0</span>
-$ sudo ip link <span class="nb">set</span> up can&lt;X&gt; <span class="nb">type</span> can bitrate <span class="m">1000000</span>
-$ sudo ip link <span class="nb">set</span> can&lt;X&gt; txqueuelen <span class="m">10000</span>
+$<span class="w"> </span>sudo<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>up<span class="w"> </span>can&lt;X&gt;<span class="w"> </span><span class="nb">type</span><span class="w"> </span>can<span class="w"> </span>bitrate<span class="w"> </span><span class="m">1000000</span>
+$<span class="w"> </span>sudo<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>can&lt;X&gt;<span class="w"> </span>txqueuelen<span class="w"> </span><span class="m">10000</span>
 </pre></div>
 </div>
 <ul>
@@ -140,7 +147,7 @@ $ sudo ip link <span class="nb">set</span> can&lt;X&gt; txqueuelen <span class="
 </div></blockquote>
 </li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ./wr_firmware_manager
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>./wr_firmware_manager
 </pre></div>
 </div>
 <ul>
@@ -171,7 +178,7 @@ $ sudo ip link <span class="nb">set</span> can&lt;X&gt; txqueuelen <span class="
 </div></blockquote>
 </li>
 </ul>
-</div>
+</section>
 
 
            </div>

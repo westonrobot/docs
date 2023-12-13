@@ -1,19 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Scout V2.5 Robot &mdash; Weston Robot v0.1 documentation</title><link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../../../_static/css/hacks.css" type="text/css" />
+  <title>Scout V2.5 Robot &mdash; Weston Robot v0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../../_static/css/hacks.css?v=a7984756" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../../../../" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
-        <script src="../../../../_static/language_data.js"></script>
+  
+        <script src="../../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=4c0d86c8"></script>
+        <script src="../../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" />
@@ -95,12 +100,12 @@
              
   <blockquote>
 <div></div></blockquote>
-<div class="section" id="scout-v2-5-robot">
-<h1>Scout V2.5 Robot<a class="headerlink" href="#scout-v2-5-robot" title="Permalink to this headline">¶</a></h1>
+<section id="scout-v2-5-robot">
+<h1>Scout V2.5 Robot<a class="headerlink" href="#scout-v2-5-robot" title="Permalink to this heading"></a></h1>
 <ul class="simple">
 <li><dl class="simple">
 <dt>To upgrade the firmware, please ensure you have the following items</dt><dd><ul>
-<li><p>Laptop running on Ubuntu18.04</p></li>
+<li><p>Laptop running on Ubuntu</p></li>
 <li><p>USB to Micro USB cable</p></li>
 <li><p>Signed binary image from Weston Robot</p></li>
 <li><p>MCU Manager installed (kindly refer for the installation guide below)</p></li>
@@ -109,65 +114,102 @@
 </dl>
 </li>
 </ul>
-<div class="section" id="installation-guide-for-mcu-manager-mcumgr">
-<h2>Installation guide for MCU Manager (mcumgr)<a class="headerlink" href="#installation-guide-for-mcu-manager-mcumgr" title="Permalink to this headline">¶</a></h2>
+<section id="installation-guide-for-mcu-manager-mcumgr">
+<h2>Installation guide for MCU Manager (mcumgr)<a class="headerlink" href="#installation-guide-for-mcu-manager-mcumgr" title="Permalink to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>Installation for Go.</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt install golang-go
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>golang-go
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
 <li><p>Verify whether Go is installed properly by the following command.</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ go version
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>go<span class="w"> </span>version
 </pre></div>
 </div>
+<p><strong>Note: You will need go version &gt;=1.12, if the version provided by the OS is too old, please manually install a newer version from golang’s</strong> <a class="reference external" href="https://golang.org/doc/install">website</a>.</p>
 <ol class="arabic simple" start="3">
 <li><p>Now you can install mcumgr CLI.</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span>
-$ go get github.com/apache/mynewt-mcumgr-cli/mcumgr
-$ nano ~/.bashrc
+<ul class="simple">
+<li><p>For Go version &lt; 1.18</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>go<span class="w"> </span>get<span class="w"> </span>github.com/apache/mynewt-mcumgr-cli/mcumgr
 </pre></div>
 </div>
-<ol class="arabic simple">
+<ul class="simple">
+<li><p>For Go version &gt;= 1.18</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>go<span class="w"> </span>install<span class="w"> </span>github.com/apache/mynewt-mcumgr-cli/mcumgr@latest
+</pre></div>
+</div>
+<ol class="arabic simple" start="4">
 <li><p>Add in path for mcumgr into .bashrc file</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:&lt;path-to-home-directory&gt;/go/bin/
-$ <span class="nb">alias</span> <span class="nv">sudo</span><span class="o">=</span><span class="s1">&#39;sudo env PATH=$PATH&#39;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>nano<span class="w"> </span>~/.bashrc
+$<span class="w"> </span><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:&lt;path-to-home-directory&gt;/go/bin/
+$<span class="w"> </span><span class="nb">alias</span><span class="w"> </span><span class="nv">sudo</span><span class="o">=</span><span class="s1">&#39;sudo env PATH=$PATH&#39;</span>
 </pre></div>
 </div>
 <ol class="arabic simple" start="5">
 <li><p>Verify whether mcumgr is installed properly by the following command.</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">source</span> ~/.bashrc
-$ mcumgr version
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">source</span><span class="w"> </span>~/.bashrc
+$<span class="w"> </span>mcumgr<span class="w"> </span>version
 </pre></div>
 </div>
-<p><strong>Troubleshooting</strong></p>
+</section>
+<section id="firmware-version-check-using-mcu-manager-through-usb-cable">
+<h2>Firmware version check using MCU Manager through USB cable<a class="headerlink" href="#firmware-version-check-using-mcu-manager-through-usb-cable" title="Permalink to this heading"></a></h2>
 <ul class="simple">
-<li><p>If the installed golang-go is an older version, the “go get…” command in <strong>step 3</strong> might fail. To get around this error, manually install a newer version of go by following the instructions from golang’s <a class="reference external" href="https://golang.org/doc/install">website</a> and reattempt installation from <strong>step 3</strong>.</p></li>
+<li><p>After you have installed mcumgr, now you should be able to check the firmware version through USB cable.</p></li>
+<li><p>Connect your computer to the MicroUSB port on robot using USB to Micro USB cable.</p></li>
+<li><p>Check on your computer for the device connected by the following command.</p></li>
 </ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ls<span class="w"> </span>/dev
+</pre></div>
 </div>
-<div class="section" id="firmware-upgrade-using-mcu-manager-through-usb-cable">
-<h2>Firmware upgrade using MCU Manager through USB cable<a class="headerlink" href="#firmware-upgrade-using-mcu-manager-through-usb-cable" title="Permalink to this headline">¶</a></h2>
+<p><strong>Note:</strong>
+if there is only one USB device connected you should be able to see device named “ttyUSB0”, if there are more instances such as “ttyUSB1”, you might need to run the command before and after plugging in the USB cable to check the correct device name.</p>
+<ul class="simple">
+<li><p>Assuming your USB device appeared on your computer is “/dev/ttyUSB0”, you can check the firmware version by the following command.</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>mcumgr<span class="w"> </span>&lt;connection<span class="w"> </span>string&gt;<span class="w"> </span>image<span class="w"> </span>list
+</pre></div>
+</div>
+<p>The default connection string is</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--conntype<span class="w"> </span>serial<span class="w"> </span>--connstring<span class="w"> </span><span class="s2">&quot;/dev/ttyUSB0,baud=115200&quot;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>You should be able to see something like below</p></li>
+</ul>
+<img alt="../../../../_images/scout_v2.5_07.png" src="../../../../_images/scout_v2.5_07.png" />
+<ul class="simple">
+<li><p>If you don’t get any response, replace the connstring to other USB instance appeared on your computer such as “/dev/ttyUSB1,baud=115200”.</p></li>
+</ul>
+</section>
+<section id="firmware-upgrade-using-mcu-manager-through-usb-cable">
+<h2>Firmware upgrade using MCU Manager through USB cable<a class="headerlink" href="#firmware-upgrade-using-mcu-manager-through-usb-cable" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>After you have installed mcumgr, now you should be able to upgrade the firmware through USB cable.</p></li>
 <li><p>Connect your computer to the MicroUSB port on robot using USB to Micro USB cable.</p></li>
 <li><p>Check on your computer for the device connected by the following command.</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ ls /dev
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ls<span class="w"> </span>/dev
 </pre></div>
 </div>
+<p><strong>Note:</strong>
+if there is only one USB device connected you should be able to see device named “ttyUSB0”, if there are more instances such as “ttyUSB1”, you might need to run the command before and after plugging in the USB cable to check the correct device name.</p>
 <ul class="simple">
-<li><p>if there is only one USB device connected you should be able to see device named “ttyUSB0”, if there are more instances such as “ttyUSB1”, you can check the device using the following command.</p></li>
+<li><p>Assuming your USB device appeared on your computer is “/dev/ttyUSB0”, you can check the firmware version by the following command.</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mcumgr &lt;connection string&gt; image list
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>mcumgr<span class="w"> </span>&lt;connection<span class="w"> </span>string&gt;<span class="w"> </span>image<span class="w"> </span>list
 </pre></div>
 </div>
 <p>The default connection string is</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--conntype serial --connstring <span class="s2">&quot;/dev/ttyUSB0,baud=115200&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>--conntype<span class="w"> </span>serial<span class="w"> </span>--connstring<span class="w"> </span><span class="s2">&quot;/dev/ttyUSB0,baud=115200&quot;</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -178,7 +220,7 @@ $ mcumgr version
 <li><p>If you don’t get any response, replace the connstring to other USB instance appeared on your computer such as “/dev/ttyUSB1,baud=115200”.</p></li>
 <li><p>Assuming your USB device appeared on your computer is “/dev/ttyUSB0”, you can upload the image with the following command.</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mcumgr &lt;connection string&gt; image upload &lt;path-to-signed.bin&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>mcumgr<span class="w"> </span>&lt;connection<span class="w"> </span>string&gt;<span class="w"> </span>image<span class="w"> </span>upload<span class="w"> </span>&lt;path-to-signed.bin&gt;
 </pre></div>
 </div>
 <ul class="simple">
@@ -192,7 +234,7 @@ $ mcumgr version
 <ul class="simple">
 <li><p>You can check whether the image is uploaded succesfully by the following command.</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mcumgr &lt;connection string&gt; image list
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>mcumgr<span class="w"> </span>&lt;connection<span class="w"> </span>string&gt;<span class="w"> </span>image<span class="w"> </span>list
 </pre></div>
 </div>
 <img alt="../../../../_images/scout_v2.5_09.png" src="../../../../_images/scout_v2.5_09.png" />
@@ -205,21 +247,21 @@ $ mcumgr version
 <ul class="simple">
 <li><p>Now confirm the image by running the following command</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mcumgr &lt;connection string&gt; image confirm &lt;<span class="nb">hash</span> of image&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>mcumgr<span class="w"> </span>&lt;connection<span class="w"> </span>string&gt;<span class="w"> </span>image<span class="w"> </span>confirm<span class="w"> </span>&lt;<span class="nb">hash</span><span class="w"> </span>of<span class="w"> </span>image&gt;
 </pre></div>
 </div>
 <img alt="../../../../_images/scout_v2.5_10.png" src="../../../../_images/scout_v2.5_10.png" />
 <ul class="simple">
 <li><p>Reset by the following command</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mcumgr &lt;connection string&gt; reset
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>mcumgr<span class="w"> </span>&lt;connection<span class="w"> </span>string&gt;<span class="w"> </span>reset
 </pre></div>
 </div>
 <img alt="../../../../_images/scout_v2.5_11.png" src="../../../../_images/scout_v2.5_11.png" />
 <ul class="simple">
 <li><p>Wait for about 30 seconds and run the following command</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo mcumgr &lt;connection string&gt; image list
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>mcumgr<span class="w"> </span>&lt;connection<span class="w"> </span>string&gt;<span class="w"> </span>image<span class="w"> </span>list
 </pre></div>
 </div>
 <ul class="simple">
@@ -231,8 +273,8 @@ $ mcumgr version
 <li><p>After uploading the new firmware, if you would like to revert the previous firmware, the old firmware image should still be present in the board.</p></li>
 <li><p>To revert to this old firmware, confirm this old image again by repeating the last few steps and reset the board.</p></li>
 </ul>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

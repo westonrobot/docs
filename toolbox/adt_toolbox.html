@@ -1,19 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Weston Robot Asssisted Driving Toolbox (ADT) &mdash; Weston Robot v0.1 documentation</title><link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../_static/css/hacks.css" type="text/css" />
+  <title>Weston Robot Asssisted Driving Toolbox (ADT) &mdash; Weston Robot v0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/hacks.css?v=a7984756" />
+
+  
   <!--[if lt IE 9]>
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
-  <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4c0d86c8"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -90,36 +95,36 @@
              
   <blockquote>
 <div></div></blockquote>
-<div class="section" id="weston-robot-asssisted-driving-toolbox-adt">
-<h1>Weston Robot Asssisted Driving Toolbox (ADT)<a class="headerlink" href="#weston-robot-asssisted-driving-toolbox-adt" title="Permalink to this headline">¶</a></h1>
+<section id="weston-robot-asssisted-driving-toolbox-adt">
+<h1>Weston Robot Asssisted Driving Toolbox (ADT)<a class="headerlink" href="#weston-robot-asssisted-driving-toolbox-adt" title="Permalink to this heading"></a></h1>
 <p>Weston Robot proudly presents the Assisted Driving Toolbox (ADT), a teleoperation system designed and developed by Weston Robot for usage on multiple mobile robot platforms. The system allows the the control and operation of an robot through a shared network; with a wide coverage of its surroundings using mounted onboard camera modules.</p>
 <img alt="../_images/adt_01.png" src="../_images/adt_01.png" />
-<div class="section" id="assisted-driving-server-setup">
-<h2>Assisted Driving Server Setup<a class="headerlink" href="#assisted-driving-server-setup" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="service-management">
-<h3>Service Management<a class="headerlink" href="#service-management" title="Permalink to this headline">¶</a></h3>
+<section id="assisted-driving-server-setup">
+<h2>Assisted Driving Server Setup<a class="headerlink" href="#assisted-driving-server-setup" title="Permalink to this heading"></a></h2>
+<section id="service-management">
+<h3>Service Management<a class="headerlink" href="#service-management" title="Permalink to this heading"></a></h3>
 <p>The Assisted Driving Toolbox servers has been configured to startup upon the robot’s boot up as a systemd service.</p>
 <ul class="simple">
 <li><p>To restart the server</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo systemctl restart wr_adt_server.service
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>wr_adt_server.service
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>To stop the server (does not carry over through reboots)</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo systemctl stop wr_adt_server.service
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>wr_adt_server.service
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>To permanently enable/disable the server (carry over through reboot)</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo systemctl enable/disable wr_adt_server.service
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>enable/disable<span class="w"> </span>wr_adt_server.service
 </pre></div>
 </div>
-</div>
-<div class="section" id="video-streaming-configuration">
-<h3>Video Streaming Configuration<a class="headerlink" href="#video-streaming-configuration" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="video-streaming-configuration">
+<h3>Video Streaming Configuration<a class="headerlink" href="#video-streaming-configuration" title="Permalink to this heading"></a></h3>
 <p>The following parameters can be configured:</p>
 <ol class="arabic simple">
 <li><p>Camera (<strong>/opt/weston_robot/docker/wr_adt_server/config.yaml</strong>)</p>
@@ -136,35 +141,35 @@
 </li>
 </ol>
 <p>You can refer to comments inside the cooresponding configuration file for available options.</p>
-</div>
-</div>
-<div class="section" id="assisted-driving-client-setup">
-<h2>Assisted Driving Client Setup<a class="headerlink" href="#assisted-driving-client-setup" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="system-requirements">
-<h3>System Requirements<a class="headerlink" href="#system-requirements" title="Permalink to this headline">¶</a></h3>
+</section>
+</section>
+<section id="assisted-driving-client-setup">
+<h2>Assisted Driving Client Setup<a class="headerlink" href="#assisted-driving-client-setup" title="Permalink to this heading"></a></h2>
+<section id="system-requirements">
+<h3>System Requirements<a class="headerlink" href="#system-requirements" title="Permalink to this heading"></a></h3>
 <ol class="arabic simple">
 <li><p>Host computer running Ubuntu 18.04/20.04</p></li>
 <li><p>Joystick for control with the Assisted Driving Toolbox Client</p></li>
 <li><p>Shared network between the robot and host computer</p></li>
 </ol>
-</div>
-<div class="section" id="client-software-installation">
-<h3>Client Software Installation<a class="headerlink" href="#client-software-installation" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="client-software-installation">
+<h3>Client Software Installation<a class="headerlink" href="#client-software-installation" title="Permalink to this heading"></a></h3>
 <p>Follow the following commands in a terminal to install the Assisted Driving Toolbox Client on the host computer.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo apt-get install libglfw3-dev libyaml-cpp-dev libopencv-dev
-$ <span class="nb">echo</span> <span class="s2">&quot;deb https://westonrobot.jfrog.io/artifactory/wrtoolbox-release </span><span class="k">$(</span>lsb_release -cs<span class="k">)</span><span class="s2"> main&quot;</span> <span class="p">|</span> sudo tee /etc/apt/sources.list.d/weston-robot.list
-$ curl -sSL <span class="s1">&#39;https://westonrobot.jfrog.io/artifactory/api/security/keypair/wr-deb/public&#39;</span> <span class="p">|</span> sudo apt-key add -
-$ sudo apt-get update
-$ sudo apt-get install wr_assisted_teleop
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libglfw3-dev<span class="w"> </span>libyaml-cpp-dev<span class="w"> </span>libopencv-dev
+$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;deb https://westonrobot.jfrog.io/artifactory/wrtoolbox-release </span><span class="k">$(</span>lsb_release<span class="w"> </span>-cs<span class="k">)</span><span class="s2"> main&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/weston-robot.list
+$<span class="w"> </span>curl<span class="w"> </span>-sSL<span class="w"> </span><span class="s1">&#39;https://westonrobot.jfrog.io/artifactory/api/security/keypair/wr-deb/public&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>apt-key<span class="w"> </span>add<span class="w"> </span>-
+$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>wr_assisted_teleop
 </pre></div>
 </div>
 <p>Before continuing, retrieve the IP address of the robot’s wlan0 interface for client configuration later (see _configuration_ below).</p>
 <p>To add path to environment</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">echo</span> <span class="s1">&#39;export PATH=/opt/weston_robot/bin:$PATH&#39;</span> &gt;&gt; ~/.bashrc
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export PATH=/opt/weston_robot/bin:$PATH&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
 </pre></div>
 </div>
 <p>To (re)start the client</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ wr_assisted_teleop
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>wr_assisted_teleop
 </pre></div>
 </div>
 <ul class="simple">
@@ -205,9 +210,9 @@ $ sudo apt-get install wr_assisted_teleop
 <li><p>The Speedo- and Battery meter gauge displays the current speed and battery’s charge (Upcoming feature)</p></li>
 </ul>
 <img alt="../_images/adt_08.png" src="../_images/adt_08.png" />
-</div>
-<div class="section" id="client-configuration">
-<h3>Client Configuration<a class="headerlink" href="#client-configuration" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="client-configuration">
+<h3>Client Configuration<a class="headerlink" href="#client-configuration" title="Permalink to this heading"></a></h3>
 <dl class="simple">
 <dt>On client’s first startup, “Settings” popup will prompt user to input the relevant settings for teleoperation, key settings include</dt><dd><ul class="simple">
 <li><p>Control server IP and port numbers</p></li>
@@ -253,9 +258,9 @@ $ sudo apt-get install wr_assisted_teleop
 </li>
 </ul>
 <a class="reference internal image-reference" href="../_images/adt_12.png"><img alt="../_images/adt_12.png" src="../_images/adt_12.png" style="width: 450px;" /></a>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
