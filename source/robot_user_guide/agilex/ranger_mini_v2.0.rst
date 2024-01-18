@@ -61,6 +61,9 @@ The Ranger Mini 2.0 mobile robot is an independent four-wheeled differential dri
 4. Steering Motor Calibration
 =============================
 
+Manual Calibration
+------------------
+
 Turn off robot and controller. While robot is turned off, adjust the position of the steering wheels. 
 Using a long straight object to help straighten the wheels is generally sufficient.
 
@@ -72,3 +75,8 @@ Turn on robot and controller. With SWA flipped to down position, and VRA pushed 
 .. image:: figures/ranger_calibration_3.jpg
 
 The controller display should flash a error code for 1-2 seconds then return to normal. Calibration is completed.
+
+Autocalibration
+---------------
+
+Turn on robot and controller. With SWA flipped to down position, and VRA pushed to bottommost position, press KEY1.
