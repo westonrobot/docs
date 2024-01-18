@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Weston Robot WRL63 &mdash; Weston Robot v0.1 documentation</title>
+  <title>Z1 Robot Arm &mdash; Weston Robot v0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/hacks.css?v=a7984756" />
@@ -22,8 +22,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="xArm Manipulator Series" href="../ufactory/xarm.html" />
-    <link rel="prev" title="Weston Robot WR65" href="wr65.html" /> 
+    <link rel="next" title="Peripheral User Guide" href="../../periph_user_guide/periph_user_guide.html" />
+    <link rel="prev" title="xArm Manipulator Series" href="../ufactory/xarm.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -54,10 +54,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../ugv.html">Unmanned Ground Vehicles</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../quadruped.html">Quadruped Robots</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../manipulators.html">Robot Manipulators</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="wr65.html">Weston Robot WR65</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Weston Robot WRL63</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../westonrobot/wr65.html">Weston Robot WR65</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../westonrobot/wrl63.html">Weston Robot WRL63</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../ufactory/xarm.html">xArm Manipulator Series</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../unitree/z1.html">Z1 Robot Arm</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Z1 Robot Arm</a></li>
 </ul>
 </li>
 </ul>
@@ -89,9 +89,9 @@
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../robot_user_guide.html">Robot User Guide</a></li>
           <li class="breadcrumb-item"><a href="../manipulators.html">Robot Manipulators</a></li>
-      <li class="breadcrumb-item active">Weston Robot WRL63</li>
+      <li class="breadcrumb-item active">Z1 Robot Arm</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/robot_user_guide/westonrobot/wrl63.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/robot_user_guide/unitree/z1.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -101,8 +101,8 @@
              
   <blockquote>
 <div></div></blockquote>
-<section id="weston-robot-wrl63">
-<h1>Weston Robot WRL63<a class="headerlink" href="#weston-robot-wrl63" title="Permalink to this heading"></a></h1>
+<section id="z1-robot-arm">
+<h1>Z1 Robot Arm<a class="headerlink" href="#z1-robot-arm" title="Permalink to this heading"></a></h1>
 <section id="revision-history">
 <h2>Revision History<a class="headerlink" href="#revision-history" title="Permalink to this heading"></a></h2>
 <table class="docutils align-default">
@@ -115,7 +115,7 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>1</p></td>
-<td><p>27/09/2023</p></td>
+<td><p>17/01/2024</p></td>
 <td><p>Kang Wei</p></td>
 <td><p>Initial release</p></td>
 </tr>
@@ -124,7 +124,8 @@
 </section>
 <section id="overview">
 <h2>1. Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
-<p>The ultra-long 6-DOF WRL63 is a robot arm manipulator that provides solutions for industries such as automotive parts, 3C electronics, metal processing, food packaging, medical health, new retail, etc.</p>
+<a class="reference internal image-reference" href="../../_images/z1_arm.jpg"><img alt="../../_images/z1_arm.jpg" class="align-center" src="../../_images/z1_arm.jpg" style="width: 400px;" /></a>
+<p>The Z1 robot arm is a compact and lightweight 6-DOF manipulator that can cooperate with the Aliengo or B1 robot and other mobile robots for diversified application scenarios.</p>
 </section>
 <section id="specifications">
 <h2>2. Specifications<a class="headerlink" href="#specifications" title="Permalink to this heading"></a></h2>
@@ -138,131 +139,149 @@
 <tr class="row-odd"><td><p>Degree of Freedom</p></td>
 <td><p>6</p></td>
 </tr>
-<tr class="row-even"><td><p>Payload</p></td>
-<td><p>3 kg</p></td>
+<tr class="row-even"><td><p>Reach</p></td>
+<td><p>740mm</p></td>
 </tr>
-<tr class="row-odd"><td><p>Repeatability</p></td>
-<td><p>±0.05mm</p></td>
+<tr class="row-odd"><td><p>Repeatability [1]</p></td>
+<td><p>~0.1mm</p></td>
 </tr>
-<tr class="row-even"><td><p>Power Supply Voltage</p></td>
-<td><p>DC 20V to 30V, Rated DC 24V</p></td>
+<tr class="row-even"><td><p>Power Supply</p></td>
+<td><p>Voltage 24V, Current &gt; 20A</p></td>
 </tr>
-<tr class="row-odd"><td><p>Power Consumption</p></td>
-<td><p>Maximum ≤ 200 W, Comprehensive ≤ 100 W</p></td>
+<tr class="row-odd"><td><p>Interface</p></td>
+<td><p>Ethernet</p></td>
 </tr>
-<tr class="row-even"><td><p>Protection Level</p></td>
-<td><p>IP54 (Robotic Arm Body)</p></td>
+<tr class="row-even"><td><p>User Operating System</p></td>
+<td><p>Ubuntu</p></td>
 </tr>
-<tr class="row-odd"><td><p>Materials</p></td>
-<td><p>Aluminum Alloy</p></td>
+<tr class="row-odd"><td><p>Power</p></td>
+<td><p>MAX 500W</p></td>
 </tr>
-<tr class="row-even"><td><p>Controller</p></td>
-<td><p>Integrated</p></td>
+<tr class="row-even"><td><p>Force Feedback and Collision Detection</p></td>
+<td><p>Provided</p></td>
 </tr>
-<tr class="row-odd"><td><p>Communication Mode</p></td>
-<td><p>WiFi / Network Interface / Bluetooth / USB Serial Port / RS485</p></td>
-</tr>
-<tr class="row-even"><td><p>Control Mode</p></td>
-<td><p>Drag &amp; Drop Teaching / Teaching Pendant / API / JSON</p></td>
+<tr class="row-odd"><td><p>Control Interface [2]</p></td>
+<td><p>Position + Force Control</p></td>
 </tr>
 </tbody>
 </table>
+<p>[1] It depends on the actual test according to the use requirements (the test standards of manipulator vary greatly, and the accuracy varies greatly under different test conditions)</p>
+<p>[2] Since the reduction ratio used by each joint is relatively low, the position control stiffness of the whole machine is low. If the control mode is not optimized, there will be large position control error and shaking when the manipulator moves.</p>
 <table class="docutils align-default" id="id2">
 <caption><span class="caption-text">Specific Technical Specifications</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head"></th>
-<th class="head"><p>WRL63-B</p></th>
-<th class="head"><p>WRL63-ZF</p></th>
-<th class="head"><p>WRL63-6F</p></th>
+<th class="head"><p>Z1 Air</p></th>
+<th class="head"><p>Z1 Pro</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>Body Weight</p></td>
-<td><p>10.0kg</p></td>
-<td colspan="2"><p class="centered">
-<strong>10.1kg</strong></p></td>
+<tr class="row-even"><td><p>Weight</p></td>
+<td><p>4.3kg</p></td>
+<td><p>4.5kg</p></td>
 </tr>
-<tr class="row-odd"><td><p>Working Radius</p></td>
-<td><p>900mm</p></td>
-<td><p>908mm</p></td>
-<td><p>928.5mm</p></td>
-</tr>
-<tr class="row-even"><td><p>One-Axis Force Range</p></td>
-<td><p>NA</p></td>
-<td><p>200N</p></td>
-<td><p>200N / 7Nm</p></td>
-</tr>
-<tr class="row-odd"><td><p>One-Axis Force Accuracy</p></td>
-<td><p>NA</p></td>
-<td><p>&lt; 0.1% FS</p></td>
-<td><p>&lt; 0.1% FS</p></td>
+<tr class="row-odd"><td><p>Payload</p></td>
+<td><p>2.0kg</p></td>
+<td><p>≥3.0kg</p></td>
 </tr>
 </tbody>
 </table>
 <table class="docutils align-default" id="id3">
-<caption><span class="caption-text">Joint Maximum Speed</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
+<caption><span class="caption-text">Joint Motion Range</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
 <thead>
-<tr class="row-odd"><th class="head"></th>
-<th class="head"><p>WRL63-B</p></th>
-<th class="head"><p>WRL63-ZF</p></th>
-<th class="head"><p>WRL63-6F</p></th>
+<tr class="row-odd"><th class="head"><p>Joint</p></th>
+<th class="head"><p>Range</p></th>
+<th class="head"><p>Max Speed</p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td><p>J1 - J2</p></td>
-<td colspan="3"><p class="centered">
-<strong>180°/s</strong></p></td>
+<tr class="row-even"><td><p>J1</p></td>
+<td><p>±150°</p></td>
+<td><p>180°/s</p></td>
 </tr>
-<tr class="row-odd"><td><p>J3 - J6</p></td>
-<td colspan="3"><p class="centered">
-<strong>225°/s</strong></p></td>
+<tr class="row-odd"><td><p>J2</p></td>
+<td><p>0-180°</p></td>
+<td><p>180°/s</p></td>
 </tr>
-</tbody>
-</table>
-<table class="docutils align-default" id="id4">
-<caption><span class="caption-text">Joint Motion Range</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
-<thead>
-<tr class="row-odd"><th class="head"></th>
-<th class="head"><p>WRL63-B</p></th>
-<th class="head"><p>WRL63-ZF</p></th>
-<th class="head"><p>WRL63-6F</p></th>
+<tr class="row-even"><td><p>J3</p></td>
+<td><p>-165-0°</p></td>
+<td><p>180°/s</p></td>
 </tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Joint 1</p></td>
-<td colspan="3"><p class="centered">
-<strong>±178°</strong></p></td>
+<tr class="row-odd"><td><p>J4</p></td>
+<td><p>±80°</p></td>
+<td><p>180°/s</p></td>
 </tr>
-<tr class="row-odd"><td><p>Joint 2</p></td>
-<td colspan="3"><p class="centered">
-<strong>±178°</strong></p></td>
+<tr class="row-even"><td><p>J5</p></td>
+<td><p>±85°</p></td>
+<td><p>180°/s</p></td>
 </tr>
-<tr class="row-even"><td><p>Joint 3</p></td>
-<td colspan="3"><p class="centered">
-<strong>+145° to -178°</strong></p></td>
-</tr>
-<tr class="row-odd"><td><p>Joint 4</p></td>
-<td colspan="3"><p class="centered">
-<strong>±178°</strong></p></td>
-</tr>
-<tr class="row-even"><td><p>Joint 5</p></td>
-<td colspan="3"><p class="centered">
-<strong>±178°</strong></p></td>
-</tr>
-<tr class="row-odd"><td><p>Joint 6</p></td>
-<td colspan="3"><p class="centered">
-<strong>±360°</strong></p></td>
+<tr class="row-odd"><td><p>J6</p></td>
+<td><p>±160°</p></td>
+<td><p>180°/s</p></td>
 </tr>
 </tbody>
 </table>
 </section>
+<section id="end-effectors">
+<h2>3. End Effectors<a class="headerlink" href="#end-effectors" title="Permalink to this heading"></a></h2>
+<section id="gripper">
+<h3>Gripper<a class="headerlink" href="#gripper" title="Permalink to this heading"></a></h3>
+<a class="reference internal image-reference" href="../../_images/z1_robot_arm_gripper.jpg"><img alt="../../_images/z1_robot_arm_gripper.jpg" class="align-center" src="../../_images/z1_robot_arm_gripper.jpg" style="width: 200px;" /></a>
+<table class="docutils align-default" id="id4">
+<caption><span class="caption-text">Specifications</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Dimensions</p></td>
+<td><p>139mm x 80mm x 68mm</p></td>
+</tr>
+<tr class="row-even"><td><p>Weight</p></td>
+<td><p>700g - 750g</p></td>
+</tr>
+<tr class="row-odd"><td><p>Peak Grasp Force</p></td>
+<td><p>200N</p></td>
+</tr>
+<tr class="row-even"><td><p>Peak Clamp Force (at tip of opening)</p></td>
+<td><p>150N</p></td>
+</tr>
+<tr class="row-odd"><td><p>Rated Load</p></td>
+<td><p>2kg</p></td>
+</tr>
+<tr class="row-even"><td><p>Max Opening</p></td>
+<td><p>90°</p></td>
+</tr>
+<tr class="row-odd"><td><p>Opening/Closing Time</p></td>
+<td><p>0.5s</p></td>
+</tr>
+<tr class="row-even"><td><p>Voltage</p></td>
+<td><p>24V</p></td>
+</tr>
+<tr class="row-odd"><td><p>Peak Power</p></td>
+<td><p>70W</p></td>
+</tr>
+<tr class="row-even"><td><p>Communication Mode</p></td>
+<td><p>RS485</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
 <section id="resources">
-<h2>3. Resources<a class="headerlink" href="#resources" title="Permalink to this heading"></a></h2>
+<h2>4. Resources<a class="headerlink" href="#resources" title="Permalink to this heading"></a></h2>
+<section id="manual">
+<h3>Manual<a class="headerlink" href="#manual" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Z1 Manual: <a class="reference external" href="https://dev-z1.unitree.com/">PDF</a></p></li>
+</ul>
+</section>
 <section id="development">
 <h3>Development<a class="headerlink" href="#development" title="Permalink to this heading"></a></h3>
 <ul class="simple">
-<li><p>C++ SDK: <a class="reference external" href="https://github.com/westonrobot/wr_arm_sdk.git">wr_arm_sdk</a></p></li>
-<li><p>ROS Package: <a class="reference external" href="https://github.com/westonrobot/wrl63b_ros.git">wrl63b_ros</a></p></li>
+<li><p>Z1 Controller: <a class="reference external" href="https://github.com/westonrobot/z1_controller.git">z1_controller</a></p></li>
+<li><p>Z1 SDK: <a class="reference external" href="https://github.com/westonrobot/z1_sdk.git">z1_sdk</a></p></li>
+<li><p>ROS Package: <a class="reference external" href="https://github.com/westonrobot/unitree_ros.git">unitree_ros</a></p></li>
 </ul>
 </section>
 </section>
@@ -272,8 +291,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="wr65.html" class="btn btn-neutral float-left" title="Weston Robot WR65" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="../ufactory/xarm.html" class="btn btn-neutral float-right" title="xArm Manipulator Series" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../ufactory/xarm.html" class="btn btn-neutral float-left" title="xArm Manipulator Series" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../../periph_user_guide/periph_user_guide.html" class="btn btn-neutral float-right" title="Peripheral User Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
