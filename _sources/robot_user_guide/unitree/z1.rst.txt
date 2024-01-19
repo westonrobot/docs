@@ -116,7 +116,7 @@ Gripper
 Manual
 ------
 
-* Z1 Manual: `PDF <https://dev-z1.unitree.com/>`_
+* Z1 Manual: `Unitree <https://dev-z1.unitree.com/>`_
 
 Development
 -----------
