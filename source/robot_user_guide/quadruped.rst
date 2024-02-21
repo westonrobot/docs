@@ -10,3 +10,4 @@ Quadruped Robots
    /robot_user_guide/unitree/aliengo
    /robot_user_guide/unitree/b1
    /robot_user_guide/unitree/go2
+   /robot_user_guide/unitree/b2

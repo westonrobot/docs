@@ -1,0 +1,110 @@
+************
+B2 Robot Dog
+************
+
+Revision History
+================
+
++----------+-------------------+----------+------------------------------------------------------+
+| Revision | Date (DD/MM/YYYY) | Author   | Changes                                              |
++==========+===================+==========+======================================================+
+| 1        | 31/1/2024         | Kang Wei | Initial release                                      |
++----------+-------------------+----------+------------------------------------------------------+
+
+1. Overview
+===========
+
+.. image:: figures/B2_robot.png
+    :width: 300 px
+    :align: center
+
+2. Specifications
+=================
+.. list-table:: Dimensions
+   :widths: 25 25
+
+   * - Standing State
+     - 1098mm x 450mm x 645mm
+   * - Proning State
+     - 880mm x 460mm x 330mm
+   * - Net Weight (Incl. battery)
+     - Approx. 60kg
+   * - Degrees of Freedom
+     - 12
+   * - Maximum Speed
+     - > 6m/s (Limited for safety purposes)
+
+.. list-table:: Environment
+   :widths: 25 25
+
+   * - Operating Temperature
+     - -20℃ ~ 55℃, under good weather conditions
+   * - Slope Walking Ability
+     - > 45°
+   * - Maximum Step Height
+     - 20 ~ 25cm
+   * - Jumping Ditch Width
+     - 0.5 ~ 1.2m
+   * - Maximum Jumping Distance
+     - > 1.6m
+   * - Protection Level
+     - IP67 
+
+.. list-table:: Battery Information
+   :widths: 25 25
+
+   * - Model
+     - BT2-10
+   * - Weight
+     - 12.2kg
+   * - Capacity
+     - 45Ah (2268Wh)
+   * - Standard Voltage
+     - 50.4V
+   * - Charging Voltage
+     - 58.8V
+   * - Charging Current
+     - 15A
+   * - Operating Time
+     - 4 - 6h
+   * - Charging Time
+     - 3h 20m
+
+.. list-table:: Internal Components
+   :widths: 25 25
+
+   * - Control and Perception Computing Power [1]
+     - | Intel Core i5 ×1
+       | Intel Core i7 ×3
+       | Nvidia Jetson Orin NX ×1
+   * - Perception Sensor Configuration [1]
+     - | 3D LiDAR ×1
+       | Depth Camera ×2
+       | Optical Camera ×2
+   * - External Interfaces
+     - | 1000M-Base-Ethernet ×4
+       | USB3.0 ×4
+       | 12V ×4
+       | 5V ×1
+       | 24V ×4
+       | BAT ×1
+
+[1] Varies with different configurations
+
+3. Electrical Interfaces
+========================
+
+.. image:: figures/B2_electrical_interfaces.png
+    :width: 700 px
+    :align: center
+
+4. Resources
+============
+
+Manual
+------
+
+* B2 Manual: `Unitree <https://support.unitree.com/home/en/B2_developer/About%20B2>`_
+
+Development
+-----------
