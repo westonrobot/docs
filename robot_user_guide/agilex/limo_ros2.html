@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Limo &mdash; Weston Robot v0.1 documentation</title>
+  <title>Limo ROS2 &mdash; Weston Robot v0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/hacks.css?v=a7984756" />
@@ -22,8 +22,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Limo ROS2" href="limo_ros2.html" />
-    <link rel="prev" title="Ranger Mini V2.0" href="ranger_mini_v2.0.html" /> 
+    <link rel="next" title="Diablo" href="../directdrive/diablo.html" />
+    <link rel="prev" title="Limo" href="limo.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -62,8 +62,8 @@
 <li class="toctree-l3"><a class="reference internal" href="hunter_se.html">Hunter SE</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ranger_mini.html">Ranger Mini</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ranger_mini_v2.0.html">Ranger Mini V2.0</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Limo</a></li>
-<li class="toctree-l3"><a class="reference internal" href="limo_ros2.html">Limo ROS2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="limo.html">Limo</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Limo ROS2</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../directdrive/diablo.html">Diablo</a></li>
 </ul>
 </li>
@@ -98,9 +98,9 @@
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../robot_user_guide.html">Robot User Guide</a></li>
           <li class="breadcrumb-item"><a href="../ugv.html">Unmanned Ground Vehicles</a></li>
-      <li class="breadcrumb-item active">Limo</li>
+      <li class="breadcrumb-item active">Limo ROS2</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/robot_user_guide/agilex/limo.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/robot_user_guide/agilex/limo_ros2.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -110,8 +110,8 @@
              
   <blockquote>
 <div></div></blockquote>
-<section id="limo">
-<h1>Limo<a class="headerlink" href="#limo" title="Permalink to this heading"></a></h1>
+<section id="limo-ros2">
+<h1>Limo ROS2<a class="headerlink" href="#limo-ros2" title="Permalink to this heading"></a></h1>
 <section id="revision-history">
 <h2>Revision History<a class="headerlink" href="#revision-history" title="Permalink to this heading"></a></h2>
 <table class="docutils align-default">
@@ -124,8 +124,8 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>1</p></td>
-<td><p>02/11/2022</p></td>
-<td><p>Kee Jin</p></td>
+<td><p>21/2/2024</p></td>
+<td><p>Kang Wei</p></td>
 <td><p>Initial release</p></td>
 </tr>
 </tbody>
@@ -133,12 +133,13 @@
 </section>
 <section id="overview">
 <h2>1. Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
-<p>The Limo mobile robot is a four-wheeled drive platform that supports omni-wheel steering, tracked steering, differential steering and ackermann steering.</p>
+<a class="reference internal image-reference" href="../../_images/limo_ros2.png"><img alt="../../_images/limo_ros2.png" class="align-center" src="../../_images/limo_ros2.png" style="width: 300px;" /></a>
+<p>LIMO ROS2 robot features an Intel NUC i7 processor running ROS 2 on Ubuntu 22.04, providing an essential platform for autonomous mobile robot research and education.</p>
 </section>
 <section id="specifications">
 <h2>2. Specifications<a class="headerlink" href="#specifications" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id1">
-<caption><span class="caption-text">Technical Specifications</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Technical Specifications</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 50.0%" />
 <col style="width: 50.0%" />
@@ -147,26 +148,44 @@
 <tr class="row-odd"><td><p>Size</p></td>
 <td><p>322mm x 220mm x 251mm</p></td>
 </tr>
+<tr class="row-even"><td><p>Weight</p></td>
+<td><p>4.8kg</p></td>
+</tr>
+<tr class="row-odd"><td><p>Payload</p></td>
+<td><p>4kg</p></td>
+</tr>
 <tr class="row-even"><td><p>Minimum Ground Clearance</p></td>
 <td><p>24mm</p></td>
 </tr>
-<tr class="row-odd"><td><p>Operating Temperature</p></td>
-<td><p>-10 - 40 ℃</p></td>
+<tr class="row-odd"><td><p>Steering</p></td>
+<td><p>40Nm</p></td>
 </tr>
-<tr class="row-even"><td><p>IP Rating</p></td>
-<td><p>IP22</p></td>
+<tr class="row-even"><td><p>Display</p></td>
+<td><p>7-inch</p></td>
 </tr>
-<tr class="row-odd"><td><p>Maximum Speed</p></td>
-<td><p>1m/s</p></td>
+<tr class="row-odd"><td><p>IPC</p></td>
+<td><p>Intel NUC</p></td>
 </tr>
-<tr class="row-even"><td><p>Maximum Angle of Tilt</p></td>
-<td><p>&lt;25° (omni-wheel, differential, ackermann), &lt;40° (tracked)</p></td>
+<tr class="row-even"><td><p>Camera</p></td>
+<td><p>Orbbec DaBai</p></td>
 </tr>
-<tr class="row-odd"><td><p>Charging Time</p></td>
-<td><p>2h</p></td>
+<tr class="row-odd"><td><p>LiDAR</p></td>
+<td><p>EAI T-mini Pro</p></td>
 </tr>
-<tr class="row-even"><td><p>Weight</p></td>
-<td><p>4.8kg</p></td>
+<tr class="row-even"><td><p>Battery</p></td>
+<td><p>10Ah 12v</p></td>
+</tr>
+<tr class="row-odd"><td><p>Working Time</p></td>
+<td><p>2.5H</p></td>
+</tr>
+<tr class="row-even"><td><p>Standby</p></td>
+<td><p>4H</p></td>
+</tr>
+<tr class="row-odd"><td><p>OS</p></td>
+<td><p>Ubuntu 22.04</p></td>
+</tr>
+<tr class="row-even"><td><p>Version</p></td>
+<td><p>ROS2 Humble</p></td>
 </tr>
 </tbody>
 </table>
@@ -174,10 +193,8 @@
 <section id="resources">
 <h2>3. Resources<a class="headerlink" href="#resources" title="Permalink to this heading"></a></h2>
 <ul class="simple">
-<li><p>Limo Manual: <a class="reference external" href="https://github.com/agilexrobotics/limo-doc/blob/master/Limo%20user%20manual(EN).md">limo_manual</a></p></li>
-<li><p>ROS package: <a class="reference external" href="https://github.com/westonrobot/limo_ros">limo_ros</a></p></li>
-<li><p>ROS2 package: <a class="reference external" href="https://github.com/westonrobot/limo_ros2">limo_ros2</a></p></li>
-<li><p>CAD File: <a class="reference external" href="https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EQIjbmWe92FPu0OpIE4F8uUB9C8K2iun76aRf7QPEVYE3A?e=A2FixU">Limo STEP file</a></p></li>
+<li><p>Limo ROS2 Manual: <a class="reference external" href="https://github.com/agilexrobotics/limo_ros2_doc/blob/master/LIMO-ROS2-humble(EN).md">limo_ros2_manual</a></p></li>
+<li><p>ROS2 package: <a class="reference external" href="https://github.com/westonrobot/limo2_ros">limo_ros2</a></p></li>
 </ul>
 </section>
 </section>
@@ -186,8 +203,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="ranger_mini_v2.0.html" class="btn btn-neutral float-left" title="Ranger Mini V2.0" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="limo_ros2.html" class="btn btn-neutral float-right" title="Limo ROS2" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="limo.html" class="btn btn-neutral float-left" title="Limo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../directdrive/diablo.html" class="btn btn-neutral float-right" title="Diablo" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
