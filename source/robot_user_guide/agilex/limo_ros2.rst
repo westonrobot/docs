@@ -59,4 +59,4 @@ LIMO ROS2 robot features an Intel NUC i7 processor running ROS 2 on Ubuntu 22.04
 ============
 
 * Limo ROS2 Manual: `limo_ros2_manual <https://github.com/agilexrobotics/limo_ros2_doc/blob/master/LIMO-ROS2-humble(EN).md>`_
-* ROS2 package: `limo_ros2 <https://github.com/westonrobot/limo2_ros>`_
+* ROS2 package: `limo_ros2 <https://github.com/westonrobot/limo_ros2>`_
