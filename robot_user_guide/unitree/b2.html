@@ -215,7 +215,40 @@
 </tbody>
 </table>
 <table class="docutils align-default" id="id4">
-<caption><span class="caption-text">Internal Components</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
+<caption><span class="caption-text">Internal PC Information</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>Intel Core i5</p></td>
+<td><div class="line-block">
+<div class="line">OS: Ubuntu 20.04</div>
+<div class="line">RAM: 8GB</div>
+<div class="line">Hard Drive: 512GB</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>Intel Core i7</p></td>
+<td><div class="line-block">
+<div class="line">OS: Ubuntu 20.04</div>
+<div class="line">RAM: 32GB</div>
+<div class="line">Hard Drive: 512GB</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Nvidia Jetson Orin NX</p></td>
+<td><div class="line-block">
+<div class="line">OS: Ubuntu 20.04</div>
+<div class="line">RAM: 32GB</div>
+<div class="line">Hard Drive: 512GB</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="id5">
+<caption><span class="caption-text">Internal Components</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 50.0%" />
 <col style="width: 50.0%" />
@@ -223,9 +256,11 @@
 <tbody>
 <tr class="row-odd"><td><p>Control and Perception Computing Power [1]</p></td>
 <td><div class="line-block">
-<div class="line">Intel Core i5 ×1</div>
-<div class="line">Intel Core i7 ×3</div>
-<div class="line">Nvidia Jetson Orin NX ×1</div>
+<div class="line">PC1: Intel Core i5</div>
+<div class="line">PC2: Intel Core i7 / Nvidia Jetson Orin NX [2]</div>
+<div class="line">PC3: Intel Core i7 / Nvidia Jetson Orin NX [3]</div>
+<div class="line">PC4: Intel Core i7 / Nvidia Jetson Orin NX [3]</div>
+<div class="line">PC5: Intel Core i7 / Nvidia Jetson Orin NX [3]</div>
 </div>
 </td>
 </tr>
@@ -251,10 +286,226 @@
 </tbody>
 </table>
 <p>[1] Varies with different configurations</p>
+<p>[2] PC2 is a customizable option if navigation solution is not required</p>
+<p>[3] User customizable option for self development</p>
 </section>
 <section id="electrical-interfaces">
 <h2>3. Electrical Interfaces<a class="headerlink" href="#electrical-interfaces" title="Permalink to this heading"></a></h2>
 <a class="reference internal image-reference" href="../../_images/B2_electrical_interfaces.png"><img alt="../../_images/B2_electrical_interfaces.png" class="align-center" src="../../_images/B2_electrical_interfaces.png" style="width: 700px;" /></a>
+<p>There are 3 different connection interfaces (USB-C, 4-pin, and 10-pin)</p>
+<table class="docutils align-default" id="id6">
+<caption><span class="caption-text">Connection Interfaces</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><img alt="../../_images/B2_4_pin.png" src="../../_images/B2_4_pin.png" />
+</td>
+<td><div class="line-block">
+<div class="line">4-pin power interface:</div>
+<div class="line"><br /></div>
+<div class="line">1. Power -</div>
+<div class="line">2. 485A</div>
+<div class="line">3. 485B</div>
+<div class="line">4. Power +</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><img alt="../../_images/B2_10_pin.png" src="../../_images/B2_10_pin.png" />
+</td>
+<td><div class="line-block">
+<div class="line">10-pin ethernet interface:</div>
+<div class="line"><br /></div>
+<div class="line">1. Power -</div>
+<div class="line">2. 4N</div>
+<div class="line">3. 4P</div>
+<div class="line">4. 1P</div>
+<div class="line">5. 1N</div>
+<div class="line">6. 3N</div>
+<div class="line">7. 3P</div>
+<div class="line">8. 2N</div>
+<div class="line">9. 2P</div>
+<div class="line">10. Power +12V</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="id7">
+<caption><span class="caption-text">Interface Description</span><a class="headerlink" href="#id7" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">- Battery Charging Input [1]</div>
+<div class="line">- Top Power Board RS485 [1]</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Reserved 4-pin connector for wireless charging plate and</div>
+<div class="line">RS485 pins for communication with the power board.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">- PC3 Ethernet</div>
+<div class="line">- 12V Output</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">10-pin connector with direct ethernet connection to PC3 and</div>
+<div class="line">12V power supply</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">- PC2 Ethernet</div>
+<div class="line">- 12V Output</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">10-pin connector with direct ethernet connection to PC2 and</div>
+<div class="line">12V power supply</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>PC2 USB3.0</p></td>
+<td><p>USB-C connector with direct connection to PC2</p></td>
+</tr>
+<tr class="row-odd"><td><p>PC3 USB3.0</p></td>
+<td><p>USB-C connector with direct connection to PC3</p></td>
+</tr>
+<tr class="row-even"><td><p>PC1 USB2.0</p></td>
+<td><p>USB-C connector with direct connection to PC1</p></td>
+</tr>
+<tr class="row-odd"><td><p>PC1 USB3.0</p></td>
+<td><p>USB-C connector with direct connection to PC1</p></td>
+</tr>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">- Switch Ethernet</div>
+<div class="line">- 12V Output</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Connection to ethernet switch for communication between PCs and</div>
+<div class="line">12V power supply</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">- Switch Ethernet</div>
+<div class="line">- 12V UPS Input [2]</div>
+</div>
+</td>
+<td><div class="line-block">
+<div class="line">Connection to ethernet switch for communication between PCs and</div>
+<div class="line">12V UPS power input</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">- Battery Power [1]</div>
+<div class="line">- Wheels Motors RS485 [1]</div>
+</div>
+</td>
+<td><p>Reserved port for wheeled configuration</p></td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">- Battery Power [1]</div>
+<div class="line">- FR Leg RS485 [1]</div>
+</div>
+</td>
+<td><p>Reserved port for front right leg</p></td>
+</tr>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">- Battery Power [1]</div>
+<div class="line">- FL Leg RS485 [1]</div>
+</div>
+</td>
+<td><p>Reserved port for front left leg</p></td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">- EtherCAT</div>
+<div class="line">- 12V Output</div>
+</div>
+</td>
+<td><p>EtherCAT communication protocol and 12V power supply</p></td>
+</tr>
+<tr class="row-even"><td><p>PC4 USB3.0 (DP)</p></td>
+<td><p>Direct USB-C DisplayPort connection to PC4</p></td>
+</tr>
+<tr class="row-odd"><td><p>PC4 USB3.0</p></td>
+<td><p>USB-C connector with direct connection to PC4</p></td>
+</tr>
+<tr class="row-even"><td><p>PC5 USB3.0 (DP)</p></td>
+<td><p>Direct USB-C DisplayPort connection to PC5</p></td>
+</tr>
+<tr class="row-odd"><td><p>PC5 USB3.0</p></td>
+<td><p>USB-C connector with direct connection to PC5</p></td>
+</tr>
+<tr class="row-even"><td><p>Battery Input [1]</p></td>
+<td><p>Reserved port for internal electrical circuit</p></td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">- Battery Output</div>
+<div class="line">- CAN</div>
+</div>
+</td>
+<td><p>58V power supply and CAN communication protocol</p></td>
+</tr>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">- Battery Output</div>
+<div class="line">- RS485</div>
+</div>
+</td>
+<td><p>58V power supply and RS485 communication protocol</p></td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">- 24V Output</div>
+<div class="line">- RS485</div>
+</div>
+</td>
+<td><p>24V power supply and RS485 communication protocol</p></td>
+</tr>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">- 12V Output</div>
+<div class="line">- RS485</div>
+</div>
+</td>
+<td><p>12V power supply and RS485 communication protocol</p></td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">- 5V Output</div>
+<div class="line">- RS485</div>
+</div>
+</td>
+<td><p>5V power supply and RS485 communication protocol</p></td>
+</tr>
+<tr class="row-even"><td><div class="line-block">
+<div class="line">- Battery Power [1]</div>
+<div class="line">- RR Leg RS485 [1]</div>
+</div>
+</td>
+<td><p>Reserved port for rear right leg</p></td>
+</tr>
+<tr class="row-odd"><td><div class="line-block">
+<div class="line">- Battery Power [1]</div>
+<div class="line">- RL Leg RS485 [1]</div>
+</div>
+</td>
+<td><p>Reserved port for rear left leg</p></td>
+</tr>
+</tbody>
+</table>
+<p>[1] Reserved ports are designated solely for internal electrical circuit use only, not open for public acccess</p>
+<p>[2] The standard B2 robot dog does not come equipped with an Uninterruptible Power Supply (UPS). However, it is available as a customizable add-on feature.</p>
+<section id="user-interface-module">
+<h3>User Interface Module<a class="headerlink" href="#user-interface-module" title="Permalink to this heading"></a></h3>
+<p>The user interface module expands the interfaces available on the B2 body, allowing users to access the robot without needing to remove the panels.</p>
+</section>
 </section>
 <section id="resources">
 <h2>4. Resources<a class="headerlink" href="#resources" title="Permalink to this heading"></a></h2>
@@ -263,9 +514,6 @@
 <ul class="simple">
 <li><p>B2 Manual: <a class="reference external" href="https://support.unitree.com/home/en/B2_developer/About%20B2">Unitree</a></p></li>
 </ul>
-</section>
-<section id="development">
-<h3>Development<a class="headerlink" href="#development" title="Permalink to this heading"></a></h3>
 </section>
 </section>
 </section>
