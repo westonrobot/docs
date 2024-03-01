@@ -70,13 +70,31 @@ Revision History
    * - Charging Time
      - 3h 20m
 
+.. list-table:: Internal PC Information
+   :widths: 25 25
+
+   * - Intel Core i5
+     - | OS: Ubuntu 20.04
+       | RAM: 8GB
+       | Hard Drive: 512GB
+   * - Intel Core i7
+     - | OS: Ubuntu 20.04
+       | RAM: 32GB
+       | Hard Drive: 512GB
+   * - Nvidia Jetson Orin NX
+     - | OS: Ubuntu 20.04
+       | RAM: 32GB
+       | Hard Drive: 512GB
+
 .. list-table:: Internal Components
    :widths: 25 25
 
    * - Control and Perception Computing Power [1]
-     - | Intel Core i5 ×1
-       | Intel Core i7 ×3
-       | Nvidia Jetson Orin NX ×1
+     - | PC1: Intel Core i5
+       | PC2: Intel Core i7 / Nvidia Jetson Orin NX [2]
+       | PC3: Intel Core i7 / Nvidia Jetson Orin NX [3]
+       | PC4: Intel Core i7 / Nvidia Jetson Orin NX [3]
+       | PC5: Intel Core i7 / Nvidia Jetson Orin NX [3]
    * - Perception Sensor Configuration [1]
      - | 3D LiDAR ×1
        | Depth Camera ×2
@@ -91,12 +109,125 @@ Revision History
 
 [1] Varies with different configurations
 
+[2] PC2 is a customizable option if navigation solution is not required
+
+[3] User customizable option for self development
+
 3. Electrical Interfaces
 ========================
 
 .. image:: figures/B2_electrical_interfaces.png
     :width: 700 px
     :align: center
+
+There are 3 different connection interfaces (USB-C, 4-pin, and 10-pin)
+
+.. list-table:: Connection Interfaces
+   :widths: 25 25
+
+   * - .. image:: figures/B2_4_pin.png
+     - | 4-pin power interface: 
+       |
+       | 1. Power -
+       | 2. 485A
+       | 3. 485B
+       | 4. Power +
+   * - .. image:: figures/B2_10_pin.png
+     - | 10-pin ethernet interface: 
+       |
+       | 1. Power -
+       | 2. 4N
+       | 3. 4P
+       | 4. 1P
+       | 5. 1N
+       | 6. 3N
+       | 7. 3P
+       | 8. 2N
+       | 9. 2P
+       | 10. Power +12V
+
+.. list-table:: Interface Description
+   :widths: 25 25
+
+   * - | - Battery Charging Input [1]
+       | - Top Power Board RS485 [1]
+     - | Reserved 4-pin connector for wireless charging plate and 
+       | RS485 pins for communication with the power board.
+   * - | - PC3 Ethernet
+       | - 12V Output
+     - | 10-pin connector with direct ethernet connection to PC3 and 
+       | 12V power supply
+   * - | - PC2 Ethernet
+       | - 12V Output
+     - | 10-pin connector with direct ethernet connection to PC2 and 
+       | 12V power supply
+   * - PC2 USB3.0
+     - USB-C connector with direct connection to PC2
+   * - PC3 USB3.0
+     - USB-C connector with direct connection to PC3
+   * - PC1 USB2.0
+     - USB-C connector with direct connection to PC1
+   * - PC1 USB3.0
+     - USB-C connector with direct connection to PC1
+   * - | - Switch Ethernet
+       | - 12V Output
+     - | Connection to ethernet switch for communication between PCs and 
+       | 12V power supply
+   * - | - Switch Ethernet
+       | - 12V UPS Input [2]
+     - | Connection to ethernet switch for communication between PCs and 
+       | 12V UPS power input
+   * - | - Battery Power [1]
+       | - Wheels Motors RS485 [1]
+     - Reserved port for wheeled configuration
+   * - | - Battery Power [1]
+       | - FR Leg RS485 [1]
+     - Reserved port for front right leg
+   * - | - Battery Power [1]
+       | - FL Leg RS485 [1]
+     - Reserved port for front left leg
+   * - | - EtherCAT
+       | - 12V Output
+     - EtherCAT communication protocol and 12V power supply
+   * - PC4 USB3.0 (DP)
+     - Direct USB-C DisplayPort connection to PC4
+   * - PC4 USB3.0
+     - USB-C connector with direct connection to PC4
+   * - PC5 USB3.0 (DP)
+     - Direct USB-C DisplayPort connection to PC5
+   * - PC5 USB3.0
+     - USB-C connector with direct connection to PC5
+   * - Battery Input [1]
+     - Reserved port for internal electrical circuit
+   * - | - Battery Output
+       | - CAN
+     - 58V power supply and CAN communication protocol
+   * - | - Battery Output
+       | - RS485
+     - 58V power supply and RS485 communication protocol
+   * - | - 24V Output
+       | - RS485
+     - 24V power supply and RS485 communication protocol
+   * - | - 12V Output
+       | - RS485
+     - 12V power supply and RS485 communication protocol
+   * - | - 5V Output
+       | - RS485
+     - 5V power supply and RS485 communication protocol
+   * - | - Battery Power [1]
+       | - RR Leg RS485 [1]
+     - Reserved port for rear right leg
+   * - | - Battery Power [1]
+       | - RL Leg RS485 [1]
+     - Reserved port for rear left leg
+
+[1] Reserved ports are designated solely for internal electrical circuit use only, not open for public acccess
+
+[2] The standard B2 robot dog does not come equipped with an Uninterruptible Power Supply (UPS). However, it is available as a customizable add-on feature.
+
+User Interface Module
+----------------------
+The user interface module expands the interfaces available on the B2 body, allowing users to access the robot without needing to remove the panels.
 
 4. Resources
 ============
@@ -106,5 +237,5 @@ Manual
 
 * B2 Manual: `Unitree <https://support.unitree.com/home/en/B2_developer/About%20B2>`_
 
-Development
------------
+.. Development
+.. -----------
