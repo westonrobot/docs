@@ -73,11 +73,11 @@ Revision History
 .. list-table:: Internal PC Information
    :widths: 25 25
 
-   * - Intel Core i5
+   * - Intel Core i5-1235U
      - | OS: Ubuntu 20.04
        | RAM: 8GB
        | Hard Drive: 512GB
-   * - Intel Core i7
+   * - Intel Core i7-1255U / i7-1265U
      - | OS: Ubuntu 20.04
        | RAM: 32GB
        | Hard Drive: 512GB
@@ -119,32 +119,6 @@ Revision History
 .. image:: figures/B2_electrical_interfaces.png
     :width: 700 px
     :align: center
-
-There are 3 different connection interfaces (USB-C, 4-pin, and 10-pin)
-
-.. list-table:: Connection Interfaces
-   :widths: 25 25
-
-   * - .. image:: figures/B2_4_pin.png
-     - | 4-pin power interface: 
-       |
-       | 1. Power -
-       | 2. 485A
-       | 3. 485B
-       | 4. Power +
-   * - .. image:: figures/B2_10_pin.png
-     - | 10-pin ethernet interface: 
-       |
-       | 1. Power -
-       | 2. 4N
-       | 3. 4P
-       | 4. 1P
-       | 5. 1N
-       | 6. 3N
-       | 7. 3P
-       | 8. 2N
-       | 9. 2P
-       | 10. Power +12V
 
 .. list-table:: Interface Description
    :widths: 25 25
@@ -228,6 +202,56 @@ There are 3 different connection interfaces (USB-C, 4-pin, and 10-pin)
 User Interface Module
 ----------------------
 The user interface module expands the interfaces available on the B2 body, allowing users to access the robot without needing to remove the panels.
+
+(2+2) Power Line Interface
+--------------------------
+
+.. image:: figures/B2_4_pin.png
+    :width: 300 px
+    :align: center
+
++-----+-----------------+-------------------+
+| Pin |     Colour      | Interface         |
++=====+=================+===================+
+| 1   | Black (14AWG)   | Power-            |
++-----+-----------------+-------------------+
+| 2   | Red (24AWG)     | 485A              |
++-----+-----------------+-------------------+
+| 3   | Black (24AWG)   | 485B              |
++-----+-----------------+-------------------+
+| 4   | White (14AWG)   | Power+            |
++-----+-----------------+-------------------+
+
+(8+2) Signal Line Interface
+---------------------------
+
+.. image:: figures/B2_10_pin.png
+    :width: 300 px
+    :align: center
+
++----+--------+------------------+-----------------------------+
+| Pin| Colour | Interface Meaning| T568 Standard Ethernet Cable|
++====+========+==================+=============================+
+| 1  | Black  | Power-           |                             |
++----+--------+------------------+-----------------------------+
+| 2  | Orange | 4N               | Brown                       |
++----+--------+------------------+-----------------------------+
+| 3  | Purple | 4P               | White Brown                 |
++----+--------+------------------+-----------------------------+
+| 4  | Brown  | 1P               | White Orange                |
++----+--------+------------------+-----------------------------+
+| 5  | Blue   | 1N               | Orange                      |
++----+--------+------------------+-----------------------------+
+| 6  | White  | 3N               | Blue                        |
++----+--------+------------------+-----------------------------+
+| 7  | Green  | 3P               | White Blue                  |
++----+--------+------------------+-----------------------------+
+| 8  | Pink   | 2N               | Green                       |
++----+--------+------------------+-----------------------------+
+| 9  | Grey   | 2P               | White Green                 |
++----+--------+------------------+-----------------------------+
+| 10 | Red    | Power+(12V)      |                             |
++----+--------+------------------+-----------------------------+
 
 4. Resources
 ============
