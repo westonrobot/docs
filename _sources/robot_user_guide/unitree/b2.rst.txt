@@ -89,13 +89,13 @@ Revision History
 .. list-table:: Internal Components
    :widths: 25 25
 
-   * - Control and Perception Computing Power [1]
-     - | PC1: Intel Core i5
-       | PC2: Intel Core i7 / Nvidia Jetson Orin NX [2]
-       | PC3: Intel Core i7 / Nvidia Jetson Orin NX [3]
-       | PC4: Intel Core i7 / Nvidia Jetson Orin NX [3]
-       | PC5: Intel Core i7 / Nvidia Jetson Orin NX [3]
-   * - Perception Sensor Configuration [1]
+   * - Control and Perception Computing Power
+     - | PC1 [1]: Intel Core i5
+       | PC2 [2]: Intel Core i7
+       | PC3 [3]: Intel Core i7 / Nvidia Jetson Orin NX
+       | PC4 [3]: Intel Core i7 / Nvidia Jetson Orin NX
+       | PC5 [3]: Intel Core i7 / Nvidia Jetson Orin NX
+   * - Perception Sensor Configuration [4]
      - | 3D LiDAR ×1
        | Depth Camera ×2
        | Optical Camera ×2
@@ -107,11 +107,13 @@ Revision History
        | 24V ×4
        | BAT ×1
 
-[1] Varies with different configurations
+[1] Standard configuration
 
-[2] PC2 is a customizable option if navigation solution is not required
+[2] User development
 
-[3] User customizable option for self development
+[3] Optional configuration
+
+[4] Varies with different configurations
 
 3. Electrical Interfaces
 ========================
