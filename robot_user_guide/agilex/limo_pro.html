@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Bunker &mdash; Weston Robot v0.1 documentation</title>
+  <title>Limo PRO &mdash; Weston Robot v0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/hacks.css?v=a7984756" />
@@ -22,8 +22,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Tracer" href="tracer.html" />
-    <link rel="prev" title="Scout Mini" href="scout_mini.html" /> 
+    <link rel="next" title="Limo ROS2" href="limo_ros2.html" />
+    <link rel="prev" title="Limo" href="limo.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -55,7 +55,7 @@
 <li class="toctree-l3"><a class="reference internal" href="scout_v2.0.html">Scout V2.0</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../westonrobot/scout_wr_v2.5.html">Scout V2.5 (WR)</a></li>
 <li class="toctree-l3"><a class="reference internal" href="scout_mini.html">Scout Mini</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Bunker</a></li>
+<li class="toctree-l3"><a class="reference internal" href="bunker.html">Bunker</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tracer.html">Tracer</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tracer_mini.html">Tracer Mini</a></li>
 <li class="toctree-l3"><a class="reference internal" href="hunter_v2.0.html">Hunter V2.0</a></li>
@@ -63,7 +63,7 @@
 <li class="toctree-l3"><a class="reference internal" href="ranger_mini.html">Ranger Mini</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ranger_mini_v2.0.html">Ranger Mini V2.0</a></li>
 <li class="toctree-l3"><a class="reference internal" href="limo.html">Limo</a></li>
-<li class="toctree-l3"><a class="reference internal" href="limo_pro.html">Limo PRO</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Limo PRO</a></li>
 <li class="toctree-l3"><a class="reference internal" href="limo_ros2.html">Limo ROS2</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../directdrive/diablo.html">Diablo</a></li>
 </ul>
@@ -99,9 +99,9 @@
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../robot_user_guide.html">Robot User Guide</a></li>
           <li class="breadcrumb-item"><a href="../ugv.html">Unmanned Ground Vehicles</a></li>
-      <li class="breadcrumb-item active">Bunker</li>
+      <li class="breadcrumb-item active">Limo PRO</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../_sources/robot_user_guide/agilex/bunker.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../_sources/robot_user_guide/agilex/limo_pro.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -111,8 +111,8 @@
              
   <blockquote>
 <div></div></blockquote>
-<section id="bunker">
-<h1>Bunker<a class="headerlink" href="#bunker" title="Permalink to this heading"></a></h1>
+<section id="limo-pro">
+<h1>Limo PRO<a class="headerlink" href="#limo-pro" title="Permalink to this heading"></a></h1>
 <section id="revision-history">
 <h2>Revision History<a class="headerlink" href="#revision-history" title="Permalink to this heading"></a></h2>
 <table class="docutils align-default">
@@ -125,8 +125,8 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>1</p></td>
-<td><p>01/11/2022</p></td>
-<td><p>Kee Jin</p></td>
+<td><p>12/4/2024</p></td>
+<td><p>Kang Wei</p></td>
 <td><p>Initial release</p></td>
 </tr>
 </tbody>
@@ -134,67 +134,97 @@
 </section>
 <section id="overview">
 <h2>1. Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
-<p>The Bunker mobile robot is an tracked, differential steering, robot platform that can be used in numerous settings ranging from delivery to security inspection.</p>
+<a class="reference internal image-reference" href="../../_images/limo_pro.png"><img alt="../../_images/limo_pro.png" class="align-center" src="../../_images/limo_pro.png" style="width: 300px;" /></a>
+<p>The LIMO PRO robot is equipped with an Nvidia Orin Nano processor running ROS on Ubuntu 20.04, serving as a fundamental platform for autonomous mobile robot research
+and education. Users have the option to integrate a manipulator (Mycobot 280 M5), allowing for precise mobile grasping to fulfill diverse task requirements</p>
 </section>
 <section id="specifications">
 <h2>2. Specifications<a class="headerlink" href="#specifications" title="Permalink to this heading"></a></h2>
-<table class="docutils align-default" id="id1">
-<caption><span class="caption-text">Technical Specifications</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Technical Specifications</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 50.0%" />
 <col style="width: 50.0%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p>Steering</p></td>
-<td><p>Differential steering</p></td>
+<tr class="row-odd"><td><p>Size</p></td>
+<td><p>322mm x 220mm x 251mm</p></td>
 </tr>
-<tr class="row-even"><td><p>Size</p></td>
-<td><p>1023mm x 778mm x 400mm</p></td>
+<tr class="row-even"><td><p>Weight</p></td>
+<td><p>4.8kg</p></td>
 </tr>
-<tr class="row-odd"><td><p>Minimum Ground Clearance</p></td>
-<td><p>90mm</p></td>
+<tr class="row-odd"><td><p>Payload</p></td>
+<td><p>4kg</p></td>
 </tr>
-<tr class="row-even"><td><p>Operating Temperature</p></td>
-<td><p>-10 - 40 ℃</p></td>
+<tr class="row-even"><td><p>Minimum Ground Clearance</p></td>
+<td><p>24mm</p></td>
 </tr>
-<tr class="row-odd"><td><p>IP Rating</p></td>
-<td><p>IP44 (IP52, IP54 available upon request)</p></td>
+<tr class="row-odd"><td><p>Display</p></td>
+<td><p>7-inch 1024x600 IPS</p></td>
 </tr>
-<tr class="row-even"><td><p>Maximum Speed</p></td>
-<td><p>1.5m/s</p></td>
+<tr class="row-even"><td><p>IPC</p></td>
+<td><p>Jetson Orin Nano</p></td>
 </tr>
-<tr class="row-odd"><td><p>Maximum Angle of Tilt</p></td>
-<td><p>&lt;30° (without loading)</p></td>
+<tr class="row-odd"><td><p>Camera</p></td>
+<td><p>Orbbec DaBai</p></td>
 </tr>
-<tr class="row-even"><td><p>Encoder</p></td>
-<td><p>Magnetic 1024ppr</p></td>
+<tr class="row-even"><td><p>LiDAR</p></td>
+<td><p>EAI T-mini Pro</p></td>
 </tr>
-<tr class="row-odd"><td><p>Charging Time</p></td>
-<td><p>6.5h</p></td>
+<tr class="row-odd"><td><p>Battery</p></td>
+<td><p>10Ah 12v</p></td>
 </tr>
-<tr class="row-even"><td><p>User Power</p></td>
-<td><p>48V, 10A</p></td>
+<tr class="row-even"><td><p>Working Time</p></td>
+<td><p>2.5H</p></td>
 </tr>
+<tr class="row-odd"><td><p>Standby</p></td>
+<td><p>4H</p></td>
+</tr>
+<tr class="row-even"><td><p>OS</p></td>
+<td><p>Ubuntu 20.04</p></td>
+</tr>
+<tr class="row-odd"><td><p>Version</p></td>
+<td><p>ROS1 Focal</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="mycobot280-m5-manipulator">
+<h2>3. MyCobot280 M5 Manipulator<a class="headerlink" href="#mycobot280-m5-manipulator" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-text">Technical Specifications</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<tbody>
 <tr class="row-odd"><td><p>Weight</p></td>
-<td><p>145 - 150kg</p></td>
+<td><p>800g</p></td>
 </tr>
-<tr class="row-even"><td><p>Rated Load</p></td>
-<td><p>70kg</p></td>
+<tr class="row-even"><td><p>Payload</p></td>
+<td><p>250g</p></td>
 </tr>
-<tr class="row-odd"><td><p>Motor</p></td>
-<td><p>2 x 650W BLDC</p></td>
+<tr class="row-odd"><td><p>Model</p></td>
+<td><p>M5Stack-basic/Atom</p></td>
+</tr>
+<tr class="row-even"><td><p>Wireless</p></td>
+<td><p>2.4G 3D Antenna</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bluetooth</p></td>
+<td><p>2.4G/5G</p></td>
+</tr>
+<tr class="row-even"><td><p>Working Radius</p></td>
+<td><p>280mm</p></td>
 </tr>
 </tbody>
 </table>
 </section>
 <section id="resources">
-<h2>3. Resources<a class="headerlink" href="#resources" title="Permalink to this heading"></a></h2>
+<h2>4. Resources<a class="headerlink" href="#resources" title="Permalink to this heading"></a></h2>
 <ul class="simple">
-<li><p>Bunker Manual: <a class="reference external" href="https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EVLM0z8GU9tLjecXNcCBsVkBN_OOpSlf2LhN-A8zCjCiyw?e=0zbj87">PDF</a></p></li>
-<li><p>C++ SDK: <a class="reference external" href="https://github.com/westonrobot/ugv_sdk">ugv_sdk</a></p></li>
-<li><p>ROS package: <a class="reference external" href="https://github.com/westonrobot/bunker_ros">bunker_ros</a></p></li>
-<li><p>ROS2 package: <a class="reference external" href="https://github.com/westonrobot/bunker_ros2">bunker_ros2</a></p></li>
-<li><p>CAD File: <a class="reference external" href="https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/ET1HSS3CvShDgjTxQMAw13cBWn13ZJaM7IGK1v-9wJgjqg?e=P9Y4uT">Bunker STEP file</a></p></li>
+<li><p>Limo PRO Manual (EN): <a class="reference external" href="https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/ET1Kq-a-x_1Lg66P3V-p-pYBl_HD_IMGJ7xxw-RjiKmo2A?e=fGQ317">limo_pro_manual</a></p></li>
+<li><p>Limo PRO Manual (CN): <a class="reference external" href="https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/Ecuj0SjlKh1LrB_IIEU9w2UB83rLm9Gy3YABnEgupUwkQA?e=KEUDhW">limo_pro_manual</a></p></li>
+<li><p>Limo PRO Image: <a class="reference external" href="https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EZD8WoyBtypKlrB9FZW9De8BBTrrrAmZTF5lnoyfd9pB_g?e=aev4WM">limo_pro_img</a></p></li>
 </ul>
 </section>
 </section>
@@ -203,8 +233,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="scout_mini.html" class="btn btn-neutral float-left" title="Scout Mini" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="tracer.html" class="btn btn-neutral float-right" title="Tracer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="limo.html" class="btn btn-neutral float-left" title="Limo" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="limo_ros2.html" class="btn btn-neutral float-right" title="Limo ROS2" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
