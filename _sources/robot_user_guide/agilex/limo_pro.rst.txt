@@ -52,7 +52,7 @@ and education. Users have the option to integrate a manipulator (Mycobot 280 M5)
    * - OS
      - Ubuntu 20.04
    * - Version
-     - ROS1 Focal
+     - ROS1 Noetic
 
 3. MyCobot280 M5 Manipulator
 ============================
