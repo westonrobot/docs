@@ -1,6 +1,6 @@
-***************
-Development Kit
-***************
+******************
+WR Development Kit
+******************
 
 .. toctree::
    :maxdepth: 1
