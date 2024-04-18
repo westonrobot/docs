@@ -36,6 +36,13 @@ This website provides instructions and tutorials on the setup and software devel
 .. toctree::
    :maxdepth: 2
    
+   /wr_dev_kit/wr_dev_kit
+
+------------------------------------------------
+
+.. toctree::
+   :maxdepth: 2
+   
    /software/software
 
 ------------------------------------------------
