@@ -2,14 +2,14 @@
 Dev Kit Base
 ************
 
-Revision History
-================
+.. Revision History
+.. ================
 
-+----------+-------------------+----------+------------------------------------------------------+
-| Revision | Date (DD/MM/YYYY) | Author   | Changes                                              |
-+==========+===================+==========+======================================================+
-| 1        | 17/4/2024         | Kang Wei | Initial release                                      |
-+----------+-------------------+----------+------------------------------------------------------+
+.. +----------+-------------------+----------+------------------------------------------------------+
+.. | Revision | Date (DD/MM/YYYY) | Author   | Changes                                              |
+.. +==========+===================+==========+======================================================+
+.. | 1        | 17/4/2024         | Kang Wei | Initial release                                      |
+.. +----------+-------------------+----------+------------------------------------------------------+
 
 1. Overview
 ===========
@@ -42,9 +42,9 @@ Octa-core ARM SBC with expansion board connects to the base and power regulator 
         - OS: Ubuntu 22.04
 
 - Configuration:
-    user: wr
-    password: @westonrobot.com
-    ip address: 10.10.0.20
+    - user: wr
+    - password: @westonrobot.com
+    - ip address: 10.10.0.20
 
 For more details on the SBC refer to:
 https://wiki.friendlyelec.com/wiki/index.php/NanoPC-T6
@@ -80,9 +80,9 @@ Refer to:
 3. Resources
 ============
 
-* STEP File: 
+* STEP File: `wr_devkit_frame.step <https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/ESSh3kSet7lIrA2GDZ5hRpcBTJ-IbYX12QVHbQfLOz-1jg?e=qeuPiG>`_
 
-* NanoPC-T6 image: 
+* NanoPC-T6 image: *Available soon*
 
 4. Usage
 ========
