@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dev Kit Base &mdash; Weston Robot v0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/hacks.css?v=a7984756" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=4c0d86c8"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #323640" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting Started</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../robot_user_guide/robot_user_guide.html">Robot User Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../periph_user_guide/periph_user_guide.html">Peripheral User Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../wr_dev_kit.html">WR Development Kit</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/software.html">Software Package</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../toolbox/toolbox.html">Toolbox</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #323640" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Weston Robot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Dev Kit Base</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/wr_dev_kit/ugv_dev_kit/dev_kit_base.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <blockquote>
+<div></div></blockquote>
+<section id="dev-kit-base">
+<h1>Dev Kit Base<a class="headerlink" href="#dev-kit-base" title="Permalink to this heading"></a></h1>
+<section id="overview">
+<h2>1. Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>This Dev Kit base, together with a robot base, serves as the fundamental building block of a robot.
+Sensors can then be added based on the user’s application requirements.</p>
+<p>STEP files for the main frame is provided for users to customise their own sensors and configurations.</p>
+</section>
+<section id="specifications">
+<h2>2. Specifications<a class="headerlink" href="#specifications" title="Permalink to this heading"></a></h2>
+<p>This Dev Kit base consists of the following pre-configured components:</p>
+<section id="nanopc-t6-with-expansion-board">
+<h3>NanoPC-T6 with Expansion Board<a class="headerlink" href="#nanopc-t6-with-expansion-board" title="Permalink to this heading"></a></h3>
+<p>Octa-core ARM SBC with expansion board connects to the base and power regulator via CAN.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Specifications:</dt><dd><ul>
+<li><dl class="simple">
+<dt>Expansion board interfaces:</dt><dd><ul>
+<li><p>3 x CAN</p></li>
+<li><p>2 x RS232</p></li>
+<li><p>2 x RS485</p></li>
+<li><p>1 x I2C</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>NanoPC-T6:</dt><dd><ul>
+<li><p>CPU: Rockchip RK3588</p></li>
+<li><p>RAM: 8GB</p></li>
+<li><p>Storage: 64GB eMMC</p></li>
+<li><p>OS: Ubuntu 22.04</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Configuration:</dt><dd><ul>
+<li><p>user: wr</p></li>
+<li><p>password: &#64;westonrobot.com</p></li>
+<li><p>ip address: 10.10.0.20</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>For more details on the SBC refer to:
+<a class="reference external" href="https://wiki.friendlyelec.com/wiki/index.php/NanoPC-T6">https://wiki.friendlyelec.com/wiki/index.php/NanoPC-T6</a></p>
+</section>
+<section id="g-router">
+<h3>5G Router<a class="headerlink" href="#g-router" title="Permalink to this heading"></a></h3>
+<p>5G router with dual-SIM and dual-band Wi-Fi. Router is pre-configured on delivery. Users can change the configuration as needed.</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Specifications:</dt><dd><ul>
+<li><p>3 x LAN</p></li>
+<li><p>1 x WAN</p></li>
+<li><p>Dual-SIM 5G</p></li>
+<li><p>Dual-band Wi-Fi</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Network configuration:</dt><dd><ul>
+<li><dl class="simple">
+<dt>LAN:</dt><dd><ul>
+<li><p>Subnet: 10.10.0.1/24</p></li>
+<li><p>Gateway: 10.10.0.1</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>WIFI:</dt><dd><ul>
+<li><p>SSID: <span class="incremental">[configured on delivery]</span></p></li>
+<li><p>Password: <span class="incremental">&#64;westonrobot.com</span></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Admin:</dt><dd><ul>
+<li><p>Username: <span class="incremental">admin</span></p></li>
+<li><p>Password: <span class="incremental">westonrobot[last 2 digits of purchase year]</span></p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="power-regulator">
+<h3>Power Regulator<a class="headerlink" href="#power-regulator" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>Refer to:</dt><dd><ul class="simple">
+<li><p><a class="reference internal" href="../../periph_user_guide/westonrobot/power_regulator_v2.X.html"><span class="doc">Weston Robot Power Regulator V2.X</span></a></p></li>
+</ul>
+</dd>
+</dl>
+</section>
+</section>
+<section id="resources">
+<h2>3. Resources<a class="headerlink" href="#resources" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>STEP File: <a class="reference external" href="https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/ESSh3kSet7lIrA2GDZ5hRpcBTJ-IbYX12QVHbQfLOz-1jg?e=qeuPiG">wr_devkit_frame.step</a></p></li>
+<li><p>NanoPC-T6 image: <em>Available soon</em></p></li>
+</ul>
+</section>
+<section id="usage">
+<h2>4. Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h2>
+<p>The Dev Kit base is expected to be used with robot base and sensors.
+Refer to the steps below to control the robot base via /cmd_vel topic.</p>
+<section id="bringup-can-interface">
+<h3>Bringup CAN interface<a class="headerlink" href="#bringup-can-interface" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>can0<span class="w"> </span><span class="nb">type</span><span class="w"> </span>can<span class="w"> </span>bitrate<span class="w"> </span><span class="m">500000</span>
+sudo<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>can0<span class="w"> </span>txqueuelen<span class="w"> </span><span class="m">1000</span><span class="w"> </span><span class="c1"># optional to increase tx buffer</span>
+sudo<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>can0<span class="w"> </span>up
+</pre></div>
+</div>
+</section>
+<section id="refer-to-relevant-ros2-drivers-for-usage">
+<h3>Refer to relevant ROS2 drivers for usage<a class="headerlink" href="#refer-to-relevant-ros2-drivers-for-usage" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/westonrobot/ranger_ros2">Ranger/ Ranger Mini 2.0</a></p></li>
+<li><p><a class="reference external" href="https://github.com/westonrobot/scout_ros2">Scout/ Scout Mini</a></p></li>
+</ul>
+</section>
+<section id="publish-velocity-command">
+<h3>Publish velocity command<a class="headerlink" href="#publish-velocity-command" title="Permalink to this heading"></a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ros2<span class="w"> </span>topic<span class="w"> </span>pub<span class="w"> </span>/cmd_vel<span class="w"> </span>geometry_msgs/msg/Twist<span class="w"> </span><span class="s1">&#39;{linear: {x: 0.1, y: 0.0, z: 0.0}, angular: {x: 0.0, y: 0.0, z: 0.0}}&#39;</span><span class="w"> </span>-1
+
+<span class="c1"># or use teleop_twist_keyboard</span>
+ros2<span class="w"> </span>run<span class="w"> </span>teleop_twist_keyboard<span class="w"> </span>teleop_twist_keyboard
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Weston Robot Pte Ltd.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

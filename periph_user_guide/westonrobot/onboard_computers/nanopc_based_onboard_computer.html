@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NanoPC-based Onboard Computer &mdash; Weston Robot v0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/hacks.css?v=a7984756" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=4c0d86c8"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #323640" >
+
+          
+          
+          <a href="../../../index.html">
+            
+              <img src="../../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../getting_started/getting_started.html">Getting Started</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../robot_user_guide/robot_user_guide.html">Robot User Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../periph_user_guide.html">Peripheral User Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../wr_dev_kit/wr_dev_kit.html">WR Development Kit</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/software.html">Software Package</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../toolbox/toolbox.html">Toolbox</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #323640" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Weston Robot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">NanoPC-based Onboard Computer</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/periph_user_guide/westonrobot/onboard_computers/nanopc_based_onboard_computer.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <blockquote>
+<div></div></blockquote>
+<section id="nanopc-based-onboard-computer">
+<span id="ref-nanopc-based-onboard-computer"></span><h1>NanoPC-based Onboard Computer<a class="headerlink" href="#nanopc-based-onboard-computer" title="Permalink to this heading"></a></h1>
+<section id="revision-history">
+<h2>Revision History<a class="headerlink" href="#revision-history" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Revision</p></th>
+<th class="head"><p>Date (DD/MM/YYYY)</p></th>
+<th class="head"><p>Author</p></th>
+<th class="head"><p>Changes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>18/4/2024</p></td>
+<td><p>Ruixiang Du</p></td>
+<td><p>Initial release</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id1">
+<h2>NanoPC-based Onboard Computer<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p>This onboard computer is based on NanoPC-T6. We extended the board with industrial ports for easy and reliable interfacing with commonly used sensors and robot bases. Drivers to the ports are pre-configured under Ubuntu 22.04.</p>
+<a class="reference internal image-reference" href="../../../_images/nanopc.jpg"><img alt="../../../_images/nanopc.jpg" src="../../../_images/nanopc.jpg" style="width: 450px;" /></a>
+<section id="key-specifications">
+<h3>Key Specifications<a class="headerlink" href="#key-specifications" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>SoC: Rockchip RK3588</strong></p></li>
+<li><p><strong>RAM: 64-bit 8GB/16GB LPDDR4X at 2133MHz</strong></p></li>
+<li><p><strong>Flash: 128GB/256GB eMMC</strong></p></li>
+<li><p><strong>MicroSD</strong>: support up to SDR104 mode (microSD card not included)</p></li>
+<li><p><strong>Ethernet</strong>: 2x PCIe 2.5G Ethernet</p></li>
+<li><p><strong>USB-A</strong>: 1x USB 3.0 Type-A</p></li>
+<li><p><strong>USB-C</strong>: 1x Full function USB Type‑C port, support DP display up to 4Kp60, USB 3.0</p></li>
+<li><p><strong>Video</strong>: 1x Standard HDMI input port, up to 4Kp60, 2x Standard HDMI output ports</p></li>
+<li><p><strong>Audio</strong> 1x 3.5mm jack for stereo headphone output, 1x 2.0mm PH-2A connector for analog microphone input</p></li>
+<li><dl class="simple">
+<dt><strong>Industrial ports</strong></dt><dd><ul>
+<li><p>3x CAN interfaces (with transceivers)</p></li>
+<li><p>2x RS485 interfaces</p></li>
+<li><p>2x RS232 interfaces</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><strong>Active Cooling</strong>: 1x 5V Fan</p></li>
+<li><p><strong>Power supply</strong>: 5.5*2.1mm DC Jack, 5V~20V, 12V is recommended.</p></li>
+<li><p><strong>Ambient Operating Temperature</strong>: 0℃ to 70℃</p></li>
+<li><p><strong>OS</strong>: Ubuntu 22.04 (Linux kernel 5.10)</p></li>
+</ul>
+<p>You can find more information about the NanoPC-T6 base board (not including the extensions made by Weston Robot) from its official <a class="reference external" href="https://wiki.friendlyelec.com/wiki/index.php/NanoPC-T6">wiki page</a>.</p>
+</section>
+<section id="industrial-ports">
+<h3>Industrial Ports<a class="headerlink" href="#industrial-ports" title="Permalink to this heading"></a></h3>
+<a class="reference internal image-reference" href="../../../_images/nanopc_industrial_ports.png"><img alt="../../../_images/nanopc_industrial_ports.png" src="../../../_images/nanopc_industrial_ports.png" style="width: 450px;" /></a>
+<p>You can follow the silk screen on the board to connect your devices to the industrial ports.</p>
+<p>The RS232 and RS485 ports can be access at:</p>
+<ul class="simple">
+<li><p>RS232-1: <code class="docutils literal notranslate"><span class="pre">/dev/ttyS0</span></code></p></li>
+<li><p>RS232-2: <code class="docutils literal notranslate"><span class="pre">/dev/ttyS7</span></code></p></li>
+<li><p>RS485-1: <code class="docutils literal notranslate"><span class="pre">/dev/ttyS6</span></code></p></li>
+<li><p>RS485-2: <code class="docutils literal notranslate"><span class="pre">/dev/ttyS4</span></code></p></li>
+</ul>
+<p>You need to bring up the CAN interfaces before you can access them. Here is an example to bring up the CAN0 interface (you may adjust the bitrate according to your CAN devices):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>can0<span class="w"> </span>up<span class="w"> </span><span class="nb">type</span><span class="w"> </span>can<span class="w"> </span>bitrate<span class="w"> </span><span class="m">500000</span>
+$<span class="w"> </span>sudo<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>can0<span class="w"> </span>txqueuelen<span class="w"> </span><span class="m">1000</span>
+</pre></div>
+</div>
+<p>You can also add the following configuration to <code class="docutils literal notranslate"><span class="pre">/etc/network/interfaces</span></code> to make the CAN interface persistent:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>auto<span class="w"> </span>can0
+<span class="w">    </span>iface<span class="w"> </span>can0<span class="w"> </span>inet<span class="w"> </span>manual
+<span class="w">    </span>pre-up<span class="w"> </span>/sbin/ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>can0<span class="w"> </span><span class="nb">type</span><span class="w"> </span>can<span class="w"> </span>bitrate<span class="w"> </span><span class="m">500000</span>
+<span class="w">    </span>up<span class="w"> </span>/sbin/ifconfig<span class="w"> </span>can0<span class="w"> </span>up
+<span class="w">    </span>post-up<span class="w"> </span>/sbin/ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>can0<span class="w"> </span>txqueuelen<span class="w"> </span><span class="m">10000</span>
+<span class="w">    </span>down<span class="w"> </span>/sbin/ifconfig<span class="w"> </span>can0<span class="w"> </span>down
+
+auto<span class="w"> </span>can1
+<span class="w">    </span>iface<span class="w"> </span>can1<span class="w"> </span>inet<span class="w"> </span>manual
+<span class="w">    </span>pre-up<span class="w"> </span>/sbin/ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>can1<span class="w"> </span><span class="nb">type</span><span class="w"> </span>can<span class="w"> </span>bitrate<span class="w"> </span><span class="m">500000</span>
+<span class="w">    </span>up<span class="w"> </span>/sbin/ifconfig<span class="w"> </span>can1<span class="w"> </span>up
+<span class="w">    </span>post-up<span class="w"> </span>/sbin/ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>can1<span class="w"> </span>txqueuelen<span class="w"> </span><span class="m">10000</span>
+<span class="w">    </span>down<span class="w"> </span>/sbin/ifconfig<span class="w"> </span>can1<span class="w"> </span>down
+
+auto<span class="w"> </span>can2
+<span class="w">    </span>iface<span class="w"> </span>can2<span class="w"> </span>inet<span class="w"> </span>manual
+<span class="w">    </span>pre-up<span class="w"> </span>/sbin/ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>can2<span class="w"> </span><span class="nb">type</span><span class="w"> </span>can<span class="w"> </span>bitrate<span class="w"> </span><span class="m">500000</span>
+<span class="w">    </span>up<span class="w"> </span>/sbin/ifconfig<span class="w"> </span>can2<span class="w"> </span>up
+<span class="w">    </span>post-up<span class="w"> </span>/sbin/ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>can2<span class="w"> </span>txqueuelen<span class="w"> </span><span class="m">10000</span>
+<span class="w">    </span>down<span class="w"> </span>/sbin/ifconfig<span class="w"> </span>can2<span class="w"> </span>down
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You may toggle the dip switches to enable the termination resistors for the CAN and RS485 interfaces. The termination resistors are disabled by default.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Please note that the 5V output is limited by a resettable fuse rated at <strong>300mA</strong>. So please make sure the total current consumption of all devices connected to the 5V outputs does not exceed 300mA.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Weston Robot Pte Ltd.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
