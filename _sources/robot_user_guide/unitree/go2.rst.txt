@@ -166,7 +166,25 @@ The Go2 robot dog is a new and improved intelligent bionic quadruped robot empow
    |Charging Time        | 2 - 4h                  |0.8 - 1.5h                 |
    +---------------------+-------------------------+---------------------------+
 
-3. Resources
+3. Connection Mode
+==================
+.. table:: 
+
++---------------------+-------------------------------------------------------------------------------------------------------+------------------------+---------------------------------------------------------+
+|        Mode         |                      Description                                                                      | Communication Distance | Data Transfer Service [1]                               |
++=====================+=======================================================================================================+========================+=========================================================+
+|         AP          |  User device (APP) is connected to the hotspot broadcasted by the GO2                                 |          Near          |            No                                           |
++---------------------+-------------------------------------------------------------------------------------------------------+------------------------+---------------------------------------------------------+
+|     Wi-Fi (STA-L)   |  Both user device (APP) and GO2 are connected to the same Wi-Fi. Able to access local area network    |          Near          |            No                                           |
++---------------------+-------------------------------------------------------------------------------------------------------+------------------------+---------------------------------------------------------+
+|     Wi-Fi (STA-T)   |  User device (APP) and GO2 are both connected to different Wi-Fi. Both networks have external access  |          Far           | Yes, incurring cost for data transfer                   |
++---------------------+-------------------------------------------------------------------------------------------------------+------------------------+---------------------------------------------------------+
+|          4G         |  GO2 has network access through 4G sim card and user device (APP) is connected to a stable Wi-Fi      |          Far           | No, but sim card provider will charge for 4G data usage |
++---------------------+-------------------------------------------------------------------------------------------------------+------------------------+---------------------------------------------------------+
+
+[1] Server data transfer cost, allow user to access GO2 remotely
+
+4. Resources
 ============
 
 Manual
@@ -174,5 +192,12 @@ Manual
 
 * Go2 Manual: `Unitree <https://support.unitree.com/home/en/developer/about%20Go2>`_
 
-Development
------------
+.. Development
+.. -----------
+
+5. FAQ
+======
+1. | **Q: What is account insufficient?**
+   | A: Each new GO2 comes with a complimentary RMB120 credit, which can be utilized for data transfer and GPT services. Consult the **Connection Mode** table to determine which connection modes will utilize this credit. When the account balance is insufficient, the GO2 can only be connected via AP mode.
+2. | **Q: How can I recharge my account when the credit is insufficient?**
+   | A: Please contact Weston Robot business team for more information. 
