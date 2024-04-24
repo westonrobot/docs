@@ -54,6 +54,42 @@ and education. Users have the option to integrate a manipulator (Mycobot 280 M5)
    * - Version
      - ROS1 Noetic
 
+.. list-table:: In-Wheel Motor Specifications
+   :widths: 25 25
+  
+   * - No-load Speed
+     - 315rpm ± 10rpm
+   * - No-load Current
+     - ≤ 0.25A
+   * - Rated Speed
+     - 200rpm
+   * - Rated Torque
+     - 0.55Nm 
+   * - Rated Current
+     - 1.45A
+   * - Maxiumum Efficiency
+     - ≥ 50%
+   * - Stall Torque
+     - 1.1Nm
+   * - Stall Current
+     - ≤ 3.5A
+   * - Rated Voltage
+     - 18V DC
+   * - Constant Torque
+     - 0.37Nm/A
+   * - Constant Speed
+     - 17.5rpm/V
+   * - Working Environment
+     - -20°C ~ 45°C
+   * - Weight
+     - 300g 
+   * - Encoder Resolution
+     - 4096
+   * - Relative Accuracy
+     - 1024
+   * - Noise Level
+     - ≤ 52dB
+
 3. MyCobot280 M5 Manipulator
 ============================
 .. list-table:: Technical Specifications
@@ -77,4 +113,5 @@ and education. Users have the option to integrate a manipulator (Mycobot 280 M5)
 
 * Limo PRO Manual (EN): `limo_pro_manual <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/ET1Kq-a-x_1Lg66P3V-p-pYBl_HD_IMGJ7xxw-RjiKmo2A?e=fGQ317>`_
 * Limo PRO Manual (CN): `limo_pro_manual <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/Ecuj0SjlKh1LrB_IIEU9w2UB83rLm9Gy3YABnEgupUwkQA?e=KEUDhW>`_
+* Dabai Camera Manual (CN): `Orbbec Dabai <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EVS9VBsLvEtBuNYUANL1G2wBgxu5_oVS0oCqaTLwUgfJBQ?e=GWREwn>`_
 * Limo PRO Image: `limo_pro_img <https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EZD8WoyBtypKlrB9FZW9De8BBTrrrAmZTF5lnoyfd9pB_g?e=aev4WM>`_
