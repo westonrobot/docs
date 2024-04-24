@@ -55,8 +55,45 @@ LIMO ROS2 robot features an Intel NUC i7 processor running ROS 2 on Ubuntu 22.04
    * - Version
      - ROS2 Humble
 
+.. list-table:: In-Wheel Motor Specifications
+   :widths: 25 25
+  
+   * - No-load Speed
+     - 315rpm ± 10rpm
+   * - No-load Current
+     - ≤ 0.25A
+   * - Rated Speed
+     - 200rpm
+   * - Rated Torque
+     - 0.55Nm 
+   * - Rated Current
+     - 1.45A
+   * - Maxiumum Efficiency
+     - ≥ 50%
+   * - Stall Torque
+     - 1.1Nm
+   * - Stall Current
+     - ≤ 3.5A
+   * - Rated Voltage
+     - 18V DC
+   * - Constant Torque
+     - 0.37Nm/A
+   * - Constant Speed
+     - 17.5rpm/V
+   * - Working Environment
+     - -20°C ~ 45°C
+   * - Weight
+     - 300g 
+   * - Encoder Resolution
+     - 4096
+   * - Relative Accuracy
+     - 1024
+   * - Noise Level
+     - ≤ 52dB
+
 3. Resources
 ============
 
 * Limo ROS2 Manual: `limo_ros2_manual <https://github.com/agilexrobotics/limo_ros2_doc/blob/master/LIMO-ROS2-humble(EN).md>`_
+* Dabai Camera Manual (CN): `Orbbec Dabai <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EVS9VBsLvEtBuNYUANL1G2wBgxu5_oVS0oCqaTLwUgfJBQ?e=GWREwn>`_
 * ROS2 package: `limo_ros2 <https://github.com/westonrobot/limo_ros2>`_
