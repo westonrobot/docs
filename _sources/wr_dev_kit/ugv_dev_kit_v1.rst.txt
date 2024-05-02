@@ -10,6 +10,8 @@ Revision History
 +==========+===================+=============+========================+
 | 1        | 18/04/2024        | WR Dev Team | Initial release        |
 +----------+-------------------+-------------+------------------------+
+| 2        | 02/05/2024        | Andrew Chia | Hardware Configuration |
++----------+-------------------+-------------+------------------------+
 
 1. Overview
 ===========
@@ -64,6 +66,97 @@ The UGV development kit is pre-installed with the following software stacks:
     1. The ROS drivers are only for components that are part of the base configuration or extension modules supported by Weston Robot.
     2. The open-source mapping and navigation stacks are pre-installed **for demonstration purposes and are provided as is**. You can modify the software stack according to your requirements.
 
+|
+
 3. Hardware Configuration
 ==========================
+|
+.. image:: ugv_dev_kit/figures/base_iso.png
+    :width: 380 px
+    :class: largepadding
+|
 
+Basic Specifications
+--------------------
+
++-----------------------------------+-----------------------------------+
+| Dimensions                        | 310mm(L) x 280mm(B) x 200mm(H)    |
++-----------------------------------+-----------------------------------+
+| Dry Weight (Incl. Power           | ~3kg                              |
+| Regulator)                        |                                   |
++-----------------------------------+-----------------------------------+
+
+.. image:: ugv_dev_kit/figures/dimensions.png
+    :width: 720 px
+    :class: largepadding
+
+
+Power Module (In-built)
+-----------------------
+.. image:: ugv_dev_kit/figures/pwr_reg.png
+    :width: 720 px
+    :class: largepadding
+
++-----------------------+---------------+---------------+------------------------+------------+
+|         Port          |    Voltage    | Current (Max) |         Power          |   Fused    |
++=======================+===============+===============+========================+============+
+| Main input            | 18-32V        | 20A           | /                      | 20A fuse   |
++-----------------------+---------------+---------------+------------------------+------------+
+| Output - 19V          | 19V           | 8A            | 150W                   | 10A fuse   |
++-----------------------+---------------+---------------+------------------------+------------+
+| Output - 12V          | 12V           | 10A           | 120W                   | 15A fuse   |
++-----------------------+---------------+---------------+------------------------+------------+
+| Output - 5V isolated  | 5V            | 4A            | 20W                    | Resettable |
++-----------------------+---------------+---------------+------------------------+------------+
+| Output - 12V isolated | 12V           | 3.3A          | 40W                    | Resettable |
++-----------------------+---------------+---------------+------------------------+------------+
+| Output - extension    | Input voltage | /             | Limited by total power | /          |
++-----------------------+---------------+---------------+------------------------+------------+ 
+
+|
+|
+
+Removal of Front/Rear Latches
+-----------------------------
+-  Remove fasteners (2 x M5 bolts) from top of case.
+
+-  Tilt latch outwards.
+
+-  Lift latch to separate it from main frame.
+
+.. image:: ugv_dev_kit/figures/front_plate.png
+    :width: 720 px
+    
+Accessing Components in Kit
+---------------------------
+-  Internal hardware/wiring can either be accessed through the side or
+   by sliding out hardware rack
+
+-  To remove hardware rack:
+
+   -  Remove the locking thumb screw
+
+   -  Proceed to slide out rack
+
+
+.. image:: ugv_dev_kit/figures/rails.png
+    :width: 720 px
+
+.. note::
+    Please be reminded to remove connections such as power cables and connectivity ports before sliding out hardware rack!    
+    
+|
+
+Optional Modules & Accessories
+------------------------------
+
+**Base Kit with Livox Lidar and IMU**
+
+.. image:: ugv_dev_kit/figures/livox.png
+    :width: 300 px
+
+|
+**Base Kit with Ouster OS1 Lidar**
+
+.. image:: ugv_dev_kit/figures/ouster.png
+    :width: 300 px
