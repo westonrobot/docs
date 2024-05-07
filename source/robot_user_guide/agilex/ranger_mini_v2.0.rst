@@ -25,7 +25,7 @@ The Ranger Mini 2.0 mobile robot is an independent four-wheeled differential dri
    :widths: 25 25
 
    * - Steering
-     - Differential steering
+     - 4-wheel steering
    * - Size
      - 738mm x 500mm x 338mm	
    * - Minimum Ground Clearance
