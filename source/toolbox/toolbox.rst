@@ -1,6 +1,6 @@
-#######
-Toolbox
-#######
+#####################
+WR Toolbox User Guide
+#####################
 
 Here you can find user guides of robotic toolboxes developed by Weston Robot:
 

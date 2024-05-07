@@ -18,7 +18,7 @@ NanoPC-based Onboard Computer
 
 This onboard computer is based on NanoPC-T6. We extended the board with industrial ports for easy and reliable interfacing with commonly used sensors and robot bases. Drivers to the ports are pre-configured under Ubuntu 22.04.
 
-.. image:: /wr_dev_kit/ugv_dev_kit/figures/nanopc.jpg
+.. image:: /periph_user_guide/westonrobot/figures/nanopc_sbc.jpg
     :width: 450 px
 
 Key Specifications
@@ -26,7 +26,7 @@ Key Specifications
 
 * **SoC: Rockchip RK3588**
 * **RAM: 64-bit 8GB/16GB LPDDR4X at 2133MHz**
-* **Flash: 128GB/256GB eMMC**
+* **Storage: 128GB/256GB eMMC**
 * **MicroSD**: support up to SDR104 mode (microSD card not included)
 * **Ethernet**: 2x PCIe 2.5G Ethernet
 * **USB-A**: 1x USB 3.0 Type-A
@@ -47,7 +47,7 @@ You can find more information about the NanoPC-T6 base board (not including the 
 Industrial Ports
 ----------------
 
-.. image:: /wr_dev_kit/ugv_dev_kit/figures/nanopc_industrial_ports.png
+.. image:: /periph_user_guide/westonrobot/figures/nanopc_industrial_ports.png
     :width: 450 px
 
 You can follow the silk screen on the board to connect your devices to the industrial ports. 
@@ -96,4 +96,3 @@ You can also add the following configuration to ``/etc/network/interfaces`` to m
 
 .. warning::
     Please note that the 5V output is limited by a resettable fuse rated at **300mA**. So please make sure the total current consumption of all devices connected to the 5V outputs does not exceed 300mA.
-

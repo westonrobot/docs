@@ -20,7 +20,7 @@
 # -- Project information -----------------------------------------------------
 
 project = u'Weston Robot'
-copyright = u'2022, Weston Robot Pte Ltd'
+copyright = u'2024, Weston Robot Pte Ltd'
 author = u'Weston Robot Development Team'
 
 # The short X.Y version
