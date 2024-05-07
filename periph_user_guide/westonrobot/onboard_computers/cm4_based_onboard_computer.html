@@ -48,19 +48,19 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../getting_started/getting_started.html">Getting Started</a></li>
 </ul>
 <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../software/software.html">Software Package</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../wr_dev_kit/wr_dev_kit.html">WR Development Kit</a></li>
+</ul>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="../../../robot_user_guide/robot_user_guide.html">Robot User Guide</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../periph_user_guide.html">Peripheral User Guide</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../wr_dev_kit/wr_dev_kit.html">WR Development Kit</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../software/software.html">Software Package</a></li>
-</ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../../toolbox/toolbox.html">Toolbox</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../toolbox/toolbox.html">WR Toolbox User Guide</a></li>
 </ul>
 
         </div>
@@ -90,7 +90,51 @@
   <blockquote>
 <div></div></blockquote>
 <section id="cm4-based-onboard-computer">
-<h1>CM4-based Onboard Computer<a class="headerlink" href="#cm4-based-onboard-computer" title="Permalink to this heading"></a></h1>
+<span id="ref-cm4-based-onboard-computer"></span><h1>CM4-based Onboard Computer<a class="headerlink" href="#cm4-based-onboard-computer" title="Permalink to this heading"></a></h1>
+<section id="revision-history">
+<h2>Revision History<a class="headerlink" href="#revision-history" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Revision</p></th>
+<th class="head"><p>Date (DD/MM/YYYY)</p></th>
+<th class="head"><p>Author</p></th>
+<th class="head"><p>Changes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>07/05/2024</p></td>
+<td><p>Ruixiang Du</p></td>
+<td><p>Initial release</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id1">
+<h2>CM4-based Onboard Computer<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
+<p>This onboard computer is based on Raspberry Pi Computer Module 4 (CM4). We extended the board with CAN and RS485 ports for interfacing with the robot bases and sensors.</p>
+<a class="reference internal image-reference" href="../../../_images/cm4_sbc.jpg"><img alt="../../../_images/cm4_sbc.jpg" src="../../../_images/cm4_sbc.jpg" style="width: 450px;" /></a>
+<section id="key-specifications">
+<h3>Key Specifications<a class="headerlink" href="#key-specifications" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><strong>SoC: Broadcom BCM2711, quad core Cortex-A72 (ARM v8) 64-bit SoC &#64; 1.5GHz</strong></p></li>
+<li><p><strong>RAM: 4GB/8GB</strong></p></li>
+<li><p><strong>Storage: 32GB eMMC</strong></p></li>
+<li><p><strong>USB3.2 Gen1 * 2</strong></p></li>
+<li><p><strong>Gigabit Ethernet * 2</strong></p></li>
+<li><p><strong>HDMI 2.0 * 2</strong></p></li>
+<li><dl class="simple">
+<dt><strong>Industrial ports</strong></dt><dd><ul>
+<li><p>2x isolated CAN interfaces (with transceivers)</p></li>
+<li><p>1x isolated RS485 interfaces</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><strong>Power supply</strong>: 5.5*2.1mm DC Jack, 12V~29V, 12V is recommended.</p></li>
+</ul>
+</section>
+</section>
 </section>
 
 
@@ -101,7 +145,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Weston Robot Pte Ltd.</p>
+    <p>&#169; Copyright 2024, Weston Robot Pte Ltd.</p>
   </div>
 
    

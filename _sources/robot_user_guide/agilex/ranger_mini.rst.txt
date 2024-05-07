@@ -23,7 +23,7 @@ The Ranger Mini mobile robot is an independant four-wheeled differential drive p
    :widths: 25 25
 
    * - Steering
-     - Differential steering
+     - 4-wheel steering
    * - Size
      - 558mm x 492mm x 420mm	
    * - Minimum Ground Clearance
