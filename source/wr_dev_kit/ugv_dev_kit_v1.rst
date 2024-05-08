@@ -86,14 +86,14 @@ Basic Specifications
 | Regulator)                        |                                   |
 +-----------------------------------+-----------------------------------+
 
-.. image:: ugv_dev_kit/figures/dimensions.png
+.. image:: ugv_dev_kit/figures/dimensions.PNG
     :width: 720 px
     :class: largepadding
 
 
 Power Module (In-built)
 -----------------------
-.. image:: ugv_dev_kit/figures/pwr_reg.png
+.. image:: ugv_dev_kit/figures/pwr_reg.PNG
     :width: 720 px
     :class: largepadding
 
@@ -124,7 +124,7 @@ Removal of Front/Rear Latches
 
 -  Lift latch to separate it from main frame.
 
-.. image:: ugv_dev_kit/figures/front_plate.png
+.. image:: ugv_dev_kit/figures/front_plate.PNG
     :width: 720 px
     
 Accessing Components in Kit
