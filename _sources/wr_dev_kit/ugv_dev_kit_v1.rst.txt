@@ -18,7 +18,7 @@ Revision History
 
 The UGV development kit, together with a robot base, provide a powerful yet flexible mobile robot hardware platform for research and fast prototyping. The kit is designed to be compatible with a wide range of robot bases. Additional components can be easily added on top of the base frame according to application-specific requirements. The platform can be used to implement a wide range of applications, such as autonomous navigation, mapping, and object detection.
 
-.. image:: ugv_dev_kit/figures/ugv_dev_kit_overview.jpg
+.. image:: ugv_dev_kit_v1/figures/overview.jpg
     :width: 650 px
 
 This **base configuration** of the development kit consists of the following pre-configured components:
@@ -71,7 +71,7 @@ The UGV development kit is pre-installed with the following software stacks:
 3. Hardware Configuration
 ==========================
 |
-.. image:: ugv_dev_kit/figures/base_iso.png
+.. image:: ugv_dev_kit_v1/figures/base_iso.png
     :width: 380 px
     :class: largepadding
 |
@@ -86,14 +86,14 @@ Basic Specifications
 | Regulator)                        |                                   |
 +-----------------------------------+-----------------------------------+
 
-.. image:: ugv_dev_kit/figures/dimensions.PNG
+.. image:: ugv_dev_kit_v1/figures/dimensions.png
     :width: 720 px
     :class: largepadding
 
 
 Power Module (In-built)
 -----------------------
-.. image:: ugv_dev_kit/figures/pwr_reg.PNG
+.. image:: ugv_dev_kit_v1/figures/pwr_reg.png
     :width: 720 px
     :class: largepadding
 
@@ -124,7 +124,7 @@ Removal of Front/Rear Latches
 
 -  Lift latch to separate it from main frame.
 
-.. image:: ugv_dev_kit/figures/front_plate.PNG
+.. image:: ugv_dev_kit_v1/figures/front_plate.png
     :width: 720 px
     
 Accessing Components in Kit
@@ -139,7 +139,7 @@ Accessing Components in Kit
    -  Proceed to slide out rack
 
 
-.. image:: ugv_dev_kit/figures/rails.png
+.. image:: ugv_dev_kit_v1/figures/rails.png
     :width: 720 px
 
 .. note::
@@ -152,11 +152,11 @@ Optional Modules & Accessories
 
 **Base Kit with Livox Lidar and IMU**
 
-.. image:: ugv_dev_kit/figures/livox.png
+.. image:: ugv_dev_kit_v1/figures/livox.png
     :width: 300 px
 
 |
 **Base Kit with Ouster OS1 Lidar**
 
-.. image:: ugv_dev_kit/figures/ouster.png
+.. image:: ugv_dev_kit_v1/figures/ouster.png
     :width: 300 px
