@@ -186,11 +186,68 @@
 <tr class="row-odd"><td><p>Rated Load</p></td>
 <td><p>80kg</p></td>
 </tr>
+<tr class="row-even"><td><p>Remote Control Range</p></td>
+<td><p>50m</p></td>
+</tr>
+<tr class="row-odd"><td><p>Battery SoC (10% to 80%)</p></td>
+<td><p>55 minutes</p></td>
+</tr>
 </tbody>
 </table>
+<table class="docutils align-default" id="id3">
+<caption><span class="caption-text">Drift Specifications</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 33.3%" />
+<col style="width: 33.3%" />
+<col style="width: 33.3%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><strong>Motion Type</strong></p></td>
+<td><p><strong>Position Drift</strong></p></td>
+<td><p><strong>Orientation Drift</strong></p></td>
+</tr>
+<tr class="row-even"><td><p>Forward</p></td>
+<td><p>≤ 20cm</p></td>
+<td><p>≤ 3 degrees</p></td>
+</tr>
+<tr class="row-odd"><td><p>Side Slip</p></td>
+<td><p>≤ 30cm</p></td>
+<td><p>≤ 5 degrees</p></td>
+</tr>
+<tr class="row-even"><td><p>Turn</p></td>
+<td><p>–</p></td>
+<td><p>≤ 2 degrees</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The above data was obtained on a 10-meter standard testing ground in the laboratory. Actual data may vary due to on-site environmental conditions and road conditions.</p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="steering-motor-calibration">
+<h2>3. Steering Motor Calibration<a class="headerlink" href="#steering-motor-calibration" title="Permalink to this heading"></a></h2>
+<section id="autocalibration">
+<h3>Autocalibration<a class="headerlink" href="#autocalibration" title="Permalink to this heading"></a></h3>
+<p>Turn on robot and controller. With SWA flipped to down position, and VRA pushed to bottommost position, press KEY1.</p>
+<a class="reference internal image-reference" href="../../_images/ranger_auto_calibration_1.jpg"><img alt="../../_images/ranger_auto_calibration_1.jpg" src="../../_images/ranger_auto_calibration_1.jpg" style="width: 380px;" /></a>
+<a class="reference internal image-reference" href="../../_images/ranger_calibration_3.jpg"><img alt="../../_images/ranger_calibration_3.jpg" src="../../_images/ranger_calibration_3.jpg" style="width: 380px;" /></a>
+</section>
+<section id="manual-calibration">
+<h3>Manual Calibration<a class="headerlink" href="#manual-calibration" title="Permalink to this heading"></a></h3>
+<p>Turn off robot and controller. While robot is turned off, adjust the position of the steering wheels.
+Using a long straight object to help straighten the wheels is generally sufficient.</p>
+<a class="reference internal image-reference" href="../../_images/ranger_calibration_1.jpg"><img alt="../../_images/ranger_calibration_1.jpg" src="../../_images/ranger_calibration_1.jpg" style="width: 380px;" /></a>
+<p>Turn on robot and controller. With SWA flipped to down position, and VRA pushed to topmost position, press KEY1.</p>
+<a class="reference internal image-reference" href="../../_images/ranger_calibration_2.jpg"><img alt="../../_images/ranger_calibration_2.jpg" src="../../_images/ranger_calibration_2.jpg" style="width: 380px;" /></a>
+<p>The controller display should flash a error code for 1-2 seconds then return to normal. Calibration is completed.</p>
+</section>
 </section>
 <section id="resources">
-<h2>3. Resources<a class="headerlink" href="#resources" title="Permalink to this heading"></a></h2>
+<h2>4. Resources<a class="headerlink" href="#resources" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p>Ranger Mini 2.0 Manual (EN): <a class="reference external" href="https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/Eagd2Vrmnw9IiTzl4HaXjEwBuQJJ1unetL-IEpGHdBejag?e=YY4be5">PDF</a></p></li>
 <li><p>Ranger Mini 2.0 Manual (CN): <a class="reference external" href="https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EdlhLdKQBDlKlYL35YiVYDwBqyHDFgfliUiPDEmwy0WACA?e=TnIw9y">PDF</a></p></li>
@@ -208,23 +265,13 @@
 </li>
 <li><p>CAD File: <a class="reference external" href="https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/Efcf9NZa15JGkcNRaEoGLNsBfNuwNNzcgjNtEsDMMHAM4A?e=YcQ9AB">Ranger Mini 2.0 STEP file</a></p></li>
 </ul>
-</section>
-<section id="steering-motor-calibration">
-<h2>4. Steering Motor Calibration<a class="headerlink" href="#steering-motor-calibration" title="Permalink to this heading"></a></h2>
-<section id="manual-calibration">
-<h3>Manual Calibration<a class="headerlink" href="#manual-calibration" title="Permalink to this heading"></a></h3>
-<p>Turn off robot and controller. While robot is turned off, adjust the position of the steering wheels.
-Using a long straight object to help straighten the wheels is generally sufficient.</p>
-<img alt="../../_images/ranger_calibration_1.jpg" src="../../_images/ranger_calibration_1.jpg" />
-<p>Turn on robot and controller. With SWA flipped to down position, and VRA pushed to topmost position, press KEY1.</p>
-<img alt="../../_images/ranger_calibration_2.jpg" src="../../_images/ranger_calibration_2.jpg" />
-<img alt="../../_images/ranger_calibration_3.jpg" src="../../_images/ranger_calibration_3.jpg" />
-<p>The controller display should flash a error code for 1-2 seconds then return to normal. Calibration is completed.</p>
-</section>
-<section id="autocalibration">
-<h3>Autocalibration<a class="headerlink" href="#autocalibration" title="Permalink to this heading"></a></h3>
-<p>Turn on robot and controller. With SWA flipped to down position, and VRA pushed to bottommost position, press KEY1.</p>
-</section>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please refer to the <a class="reference internal" href="../../getting_started/basics/robot_firmware_upgrade/agilex/firmware_upgrade_tool.html"><span class="doc">Robot Upgrade Guide</span></a> for firmware upgrade instructions.</p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
 </section>
 </section>
 
