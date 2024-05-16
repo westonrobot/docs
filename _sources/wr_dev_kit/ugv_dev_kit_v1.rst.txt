@@ -25,7 +25,7 @@ This **base configuration** of the development kit consists of the following pre
 
 * :ref:`NanoPC-based Onboard Computer <ref_nanopc_based_onboard_computer>`
 * :doc:`Weston Robot Power Regulator V2.X </periph_user_guide/westonrobot/power_regulator_v2.X>`
-* Industrial 5G Router
+* :ref:`Industrial 5G/Wifi Router <ref_onboard_industrial_5g_wifi_router>`
 
 The following **extension modules** are available to be added to the base configuration:
 

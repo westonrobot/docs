@@ -107,15 +107,18 @@
 <td><p>Ruixiang Du</p></td>
 <td><p>Initial release</p></td>
 </tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>16/5/2024</p></td>
+<td><p>Ruixiang Du</p></td>
+<td><p>Added information about the RS232-2 port reconfiguration</p></td>
+</tr>
 </tbody>
 </table>
-</section>
-<section id="id1">
-<h2>NanoPC-based Onboard Computer<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h2>
 <p>This onboard computer is based on NanoPC-T6. We extended the board with industrial ports for easy and reliable interfacing with commonly used sensors and robot bases. Drivers to the ports are pre-configured under Ubuntu 22.04.</p>
 <a class="reference internal image-reference" href="../../../_images/nanopc_sbc.jpg"><img alt="../../../_images/nanopc_sbc.jpg" src="../../../_images/nanopc_sbc.jpg" style="width: 450px;" /></a>
+</section>
 <section id="key-specifications">
-<h3>Key Specifications<a class="headerlink" href="#key-specifications" title="Permalink to this heading"></a></h3>
+<h2>Key Specifications<a class="headerlink" href="#key-specifications" title="Permalink to this heading"></a></h2>
 <ul class="simple">
 <li><p><strong>SoC: Rockchip RK3588</strong></p></li>
 <li><p><strong>RAM: 64-bit 8GB/16GB LPDDR4X at 2133MHz</strong></p></li>
@@ -143,7 +146,7 @@
 <p>You can find more information about the NanoPC-T6 base board (not including the extensions made by Weston Robot) from its official <a class="reference external" href="https://wiki.friendlyelec.com/wiki/index.php/NanoPC-T6">wiki page</a>.</p>
 </section>
 <section id="industrial-ports">
-<h3>Industrial Ports<a class="headerlink" href="#industrial-ports" title="Permalink to this heading"></a></h3>
+<h2>Industrial Ports<a class="headerlink" href="#industrial-ports" title="Permalink to this heading"></a></h2>
 <a class="reference internal image-reference" href="../../../_images/nanopc_industrial_ports.png"><img alt="../../../_images/nanopc_industrial_ports.png" src="../../../_images/nanopc_industrial_ports.png" style="width: 450px;" /></a>
 <p>You can follow the silk screen on the board to connect your devices to the industrial ports.</p>
 <p>The RS232 and RS485 ports can be access at:</p>
@@ -153,6 +156,10 @@
 <li><p>RS485-1: <code class="docutils literal notranslate"><span class="pre">/dev/ttyS6</span></code></p></li>
 <li><p>RS485-2: <code class="docutils literal notranslate"><span class="pre">/dev/ttyS4</span></code></p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The RS232-2 port can be configured as a TTL UART port by re-configure the jumper solder pads (JP1 and JP2). If you bridge the pad in the middle and the side marked as “TTL”, the port will be configured as a TTL UART port. If you bridge the pad in the middle and the other side, the port will be configured as an RS232 port. Both TTL and RS232 UART port is accessed at <code class="docutils literal notranslate"><span class="pre">/dev/ttyS7</span></code>.If no bridge is made, the port only provides power and no signal is transmitted.</p>
+</div>
 <p>You need to bring up the CAN interfaces before you can access them. Here is an example to bring up the CAN0 interface (you may adjust the bitrate according to your CAN devices):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>can0<span class="w"> </span>up<span class="w"> </span><span class="nb">type</span><span class="w"> </span>can<span class="w"> </span>bitrate<span class="w"> </span><span class="m">500000</span>
 $<span class="w"> </span>sudo<span class="w"> </span>ip<span class="w"> </span>link<span class="w"> </span><span class="nb">set</span><span class="w"> </span>can0<span class="w"> </span>txqueuelen<span class="w"> </span><span class="m">1000</span>
@@ -189,7 +196,6 @@ auto<span class="w"> </span>can2
 <p class="admonition-title">Warning</p>
 <p>Please note that the 5V output is limited by a resettable fuse rated at <strong>300mA</strong>. So please make sure the total current consumption of all devices connected to the 5V outputs does not exceed 300mA.</p>
 </div>
-</section>
 </section>
 </section>
 

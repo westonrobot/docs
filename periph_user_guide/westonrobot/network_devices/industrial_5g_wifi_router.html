@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CM4-based Onboard Computer &mdash; Weston Robot v0.1 documentation</title>
+  <title>Industrial 5G/Wifi Router &mdash; Weston Robot v0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/hacks.css?v=a7984756" />
@@ -77,9 +77,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">CM4-based Onboard Computer</li>
+      <li class="breadcrumb-item active">Industrial 5G/Wifi Router</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="../../../_sources/periph_user_guide/westonrobot/onboard_computers/cm4_based_onboard_computer.rst.txt" rel="nofollow"> View page source</a>
+            <a href="../../../_sources/periph_user_guide/westonrobot/network_devices/industrial_5g_wifi_router.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -89,8 +89,8 @@
              
   <blockquote>
 <div></div></blockquote>
-<section id="cm4-based-onboard-computer">
-<span id="ref-cm4-based-onboard-computer"></span><h1>CM4-based Onboard Computer<a class="headerlink" href="#cm4-based-onboard-computer" title="Permalink to this heading"></a></h1>
+<section id="industrial-5g-wifi-router">
+<span id="ref-onboard-industrial-5g-wifi-router"></span><h1>Industrial 5G/Wifi Router<a class="headerlink" href="#industrial-5g-wifi-router" title="Permalink to this heading"></a></h1>
 <section id="revision-history">
 <h2>Revision History<a class="headerlink" href="#revision-history" title="Permalink to this heading"></a></h2>
 <table class="docutils align-default">
@@ -103,33 +103,41 @@
 </thead>
 <tbody>
 <tr class="row-even"><td><p>1</p></td>
-<td><p>07/05/2024</p></td>
+<td><p>16/05/2024</p></td>
 <td><p>Ruixiang Du</p></td>
 <td><p>Initial release</p></td>
 </tr>
 </tbody>
 </table>
-<p>This onboard computer is based on Raspberry Pi Computer Module 4 (CM4). We extended the board with CAN and RS485 ports for interfacing with the robot bases and sensors.</p>
-<a class="reference internal image-reference" href="../../../_images/cm4_sbc.jpg"><img alt="../../../_images/cm4_sbc.jpg" src="../../../_images/cm4_sbc.jpg" style="width: 450px;" /></a>
+<a class="reference internal image-reference" href="../../../_images/industrial_5g_wifi_router.jpg"><img alt="../../../_images/industrial_5g_wifi_router.jpg" src="../../../_images/industrial_5g_wifi_router.jpg" style="width: 450px;" /></a>
 </section>
 <section id="key-specifications">
 <h2>Key Specifications<a class="headerlink" href="#key-specifications" title="Permalink to this heading"></a></h2>
 <ul class="simple">
-<li><p><strong>SoC: Broadcom BCM2711, quad core Cortex-A72 (ARM v8) 64-bit SoC &#64; 1.5GHz</strong></p></li>
-<li><p><strong>RAM: 4GB/8GB</strong></p></li>
-<li><p><strong>Storage: 32GB eMMC</strong></p></li>
-<li><p><strong>USB3.2 Gen1 * 2</strong></p></li>
-<li><p><strong>Gigabit Ethernet * 2</strong></p></li>
-<li><p><strong>HDMI 2.0 * 2</strong></p></li>
 <li><dl class="simple">
-<dt><strong>Industrial ports</strong></dt><dd><ul>
-<li><p>2x isolated CAN interfaces (with transceivers)</p></li>
-<li><p>1x isolated RS485 interfaces</p></li>
+<dt><strong>Cellular</strong></dt><dd><ul>
+<li><p><strong>5G Standard</strong>: 3GPP R16, Sub-6 GHz</p></li>
+<li><p><strong>5G NR NSA</strong>: n1, n2, n3, n5, n7, n8, n12, n13, n14, n18, n20, n25, n26, n28, n29, n30, n38, n40, n41, n48, n66, n70, n71, n75, n76, n77, n78, n79</p></li>
+<li><p><strong>5G NR SA</strong>: n1, n2, n3, n5, n7, n8, n12, n13, n14, n18, n20, n25, n26, n28, n29, n30, n38, n40, n41, n48, n66, n70, n71, n75, n76, n77, n78, n79</p></li>
+<li><p><strong>LTE-FDD</strong>: B1, B2, B3, B4, B5, B7, B8, B12, B13, B14, B17, B18, B19, B20, B25, B26, B28, B29, B30, B32, B66, B71</p></li>
+<li><p><strong>LTE-TDD</strong>: B34, B38, B39, B40, B41, B42, B43, B48</p></li>
+<li><p>Refer to “RM520N-GL” datasheet for more technical details</p></li>
 </ul>
 </dd>
 </dl>
 </li>
-<li><p><strong>Power supply</strong>: 5.5*2.1mm DC Jack, 12V~29V, 12V is recommended.</p></li>
+<li><p><strong>Wifi:</strong> 2.4G/5G</p></li>
+<li><dl class="simple">
+<dt><strong>Ports</strong></dt><dd><ul>
+<li><p>1x Gigabit WAN/LAN port</p></li>
+<li><p>3x Gigabit LAN ports</p></li>
+<li><p>1x USB port</p></li>
+<li><p>2x SIM card slots</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p><strong>Power supply</strong>: 5-40V</p></li>
 </ul>
 </section>
 </section>

@@ -7,14 +7,13 @@ NanoPC-based Onboard Computer
 Revision History
 ================
 
-+----------+-------------------+-------------+------------------------------------------------------+
-| Revision | Date (DD/MM/YYYY) | Author      | Changes                                              |
-+==========+===================+=============+======================================================+
-| 1        | 18/4/2024         | Ruixiang Du | Initial release                                      |
-+----------+-------------------+-------------+------------------------------------------------------+
-
-NanoPC-based Onboard Computer
-=============================
++----------+-------------------+-------------+---------------------------------------------------------+
+| Revision | Date (DD/MM/YYYY) | Author      | Changes                                                 |
++==========+===================+=============+=========================================================+
+| 1        | 18/4/2024         | Ruixiang Du | Initial release                                         |
++----------+-------------------+-------------+---------------------------------------------------------+
+| 2        | 16/5/2024         | Ruixiang Du | Added information about the RS232-2 port reconfiguration|
++----------+-------------------+-------------+---------------------------------------------------------+
 
 This onboard computer is based on NanoPC-T6. We extended the board with industrial ports for easy and reliable interfacing with commonly used sensors and robot bases. Drivers to the ports are pre-configured under Ubuntu 22.04.
 
@@ -22,7 +21,7 @@ This onboard computer is based on NanoPC-T6. We extended the board with industri
     :width: 450 px
 
 Key Specifications
-------------------
+==================
 
 * **SoC: Rockchip RK3588**
 * **RAM: 64-bit 8GB/16GB LPDDR4X at 2133MHz**
@@ -45,7 +44,7 @@ Key Specifications
 You can find more information about the NanoPC-T6 base board (not including the extensions made by Weston Robot) from its official `wiki page <https://wiki.friendlyelec.com/wiki/index.php/NanoPC-T6>`_. 
 
 Industrial Ports
-----------------
+================
 
 .. image:: /periph_user_guide/westonrobot/figures/nanopc_industrial_ports.png
     :width: 450 px
@@ -58,6 +57,9 @@ The RS232 and RS485 ports can be access at:
 * RS232-2: ``/dev/ttyS7``
 * RS485-1: ``/dev/ttyS6``
 * RS485-2: ``/dev/ttyS4``
+
+.. note::
+    The RS232-2 port can be configured as a TTL UART port by re-configure the jumper solder pads (JP1 and JP2). If you bridge the pad in the middle and the side marked as "TTL", the port will be configured as a TTL UART port. If you bridge the pad in the middle and the other side, the port will be configured as an RS232 port. Both TTL and RS232 UART port is accessed at ``/dev/ttyS7``.If no bridge is made, the port only provides power and no signal is transmitted. 
 
 You need to bring up the CAN interfaces before you can access them. Here is an example to bring up the CAN0 interface (you may adjust the bitrate according to your CAN devices):
 
