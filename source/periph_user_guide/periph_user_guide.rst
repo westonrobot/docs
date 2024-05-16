@@ -16,4 +16,5 @@ Here you can find user guides giving detailed information about a specific perip
    /periph_user_guide/westonrobot/roger_robot_hand
    /periph_user_guide/westonrobot/xnergy_wireless_charger
    /periph_user_guide/westonrobot/onboard_computers
+   /periph_user_guide/westonrobot/network_devices
    
