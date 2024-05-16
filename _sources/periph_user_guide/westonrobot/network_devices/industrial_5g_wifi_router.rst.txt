@@ -27,9 +27,10 @@ Key Specifications
     * **LTE-TDD**: B34, B38, B39, B40, B41, B42, B43, B48
     * Refer to "RM520N-GL" datasheet for more technical details
 * **Wifi:** 2.4G/5G
-* **Ports**
+* **Network Ports**
     * 1x Gigabit WAN/LAN port
     * 3x Gigabit LAN ports
-    * 1x USB port
-    * 2x SIM card slots
-* **Power supply**: 5-40V
+* **2x SIM card slots**: supports network switching between SIM cards
+* **Hardware watchdog**
+* **Operating temperature**: -40°C to 75°C
+* **Power supply**: 5-40V (DC2.1/2-pin Phoenix connector)
