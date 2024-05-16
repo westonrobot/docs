@@ -13,16 +13,13 @@ Revision History
 | 1        | 07/05/2024        | Ruixiang Du | Initial release                                      |
 +----------+-------------------+-------------+------------------------------------------------------+
 
-CM4-based Onboard Computer
-==========================
-
 This onboard computer is based on Raspberry Pi Computer Module 4 (CM4). We extended the board with CAN and RS485 ports for interfacing with the robot bases and sensors. 
 
 .. image:: /periph_user_guide/westonrobot/figures/cm4_sbc.jpg
     :width: 450 px
 
 Key Specifications
-------------------
+==================
 
 * **SoC: Broadcom BCM2711, quad core Cortex-A72 (ARM v8) 64-bit SoC @ 1.5GHz**
 * **RAM: 4GB/8GB**
