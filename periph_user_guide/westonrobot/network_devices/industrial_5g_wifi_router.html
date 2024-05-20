@@ -107,6 +107,11 @@
 <td><p>Ruixiang Du</p></td>
 <td><p>Initial release</p></td>
 </tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>17/05/2024</p></td>
+<td><p>Hans Kurnia</p></td>
+<td><p>Add common configuration section</p></td>
+</tr>
 </tbody>
 </table>
 <a class="reference internal image-reference" href="../../../_images/industrial_5g_wifi_router.jpg"><img alt="../../../_images/industrial_5g_wifi_router.jpg" src="../../../_images/industrial_5g_wifi_router.jpg" style="width: 450px;" /></a>
@@ -140,6 +145,63 @@
 <li><p><strong>Operating temperature</strong>: -40°C to 75°C</p></li>
 <li><p><strong>Power supply</strong>: 5-40V (DC2.1/2-pin Phoenix connector)</p></li>
 </ul>
+</section>
+<section id="common-configurations">
+<h2>Common Configurations<a class="headerlink" href="#common-configurations" title="Permalink to this heading"></a></h2>
+<section id="using-the-industrial-5g-wifi-router-as-an-access-point-ap-client">
+<h3>Using the Industrial 5G/Wifi Router as an Access Point (AP) Client<a class="headerlink" href="#using-the-industrial-5g-wifi-router-as-an-access-point-ap-client" title="Permalink to this heading"></a></h3>
+<p>The router can be configured to connect to an existing Wifi network as an AP client, after which it can provide internet access (assuming the existing network already has internet) to devices connected to its LAN ports.</p>
+<p>To configure the router as an AP client, follow these steps:</p>
+<ol class="arabic simple">
+<li><p>Connect to the router’s web interface by entering the router’s IP address in a web browser. The default IP address is usually “10.10.0.1”.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/home_page.png"><img alt="../../../_images/home_page.png" class="align-center" src="../../../_images/home_page.png" style="width: 450px;" /></a>
+<ol class="arabic simple" start="2">
+<li><p>Click into the AP client configuration page.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/ap_client_tab.png"><img alt="../../../_images/ap_client_tab.png" class="align-center" src="../../../_images/ap_client_tab.png" style="width: 450px;" /></a>
+<ol class="arabic" start="3">
+<li><p>Change “Wireless Operation Mode” to “AP-Client + AP” or “AP-Client (AP is disabled)”</p>
+<blockquote>
+<div><p><strong>Note</strong>: The difference between the 2 modes is whether the router will also broadcast its own Wifi network. If you want the router to broadcast its own Wifi network, choose “AP-Client + AP”.</p>
+</div></blockquote>
+</li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/operation_mode.png"><img alt="../../../_images/operation_mode.png" class="align-center" src="../../../_images/operation_mode.png" style="width: 450px;" /></a>
+<ol class="arabic simple" start="4">
+<li><p>Configure the Wifi network settings of the <strong>existing network</strong> to connect and click “Apply”</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/ap_settings.png"><img alt="../../../_images/ap_settings.png" class="align-center" src="../../../_images/ap_settings.png" style="width: 450px;" /></a>
+<ol class="arabic simple" start="5">
+<li><p>After applying the settings, the router will attempt to connect to the existing Wifi network. You can check the connection status on the “Status” page.</p></li>
+</ol>
+<section id="for-5ghz-network">
+<h4>For 5Ghz network<a class="headerlink" href="#for-5ghz-network" title="Permalink to this heading"></a></h4>
+<p>The router supports both 5Ghz and 2.4Ghz networks, you can configure the router to connect to a 5Ghz network by clicking the “Go to 5Ghz Setting” button and repeat the steps above.</p>
+<a class="reference internal image-reference" href="../../../_images/5ghz_setting.png"><img alt="../../../_images/5ghz_setting.png" class="align-center" src="../../../_images/5ghz_setting.png" style="width: 450px;" /></a>
+</section>
+</section>
+<section id="changing-the-router-s-lan-ip-address">
+<h3>Changing the Router’s LAN IP Address<a class="headerlink" href="#changing-the-router-s-lan-ip-address" title="Permalink to this heading"></a></h3>
+<p>The router’s LAN IP address range can be changed to fit your network configuration.</p>
+<p>To change the LAN IP address, follow these steps:</p>
+<ol class="arabic simple">
+<li><p>Connect to the router’s web interface by entering the router’s IP address in a web browser. The default IP address is usually “10.10.0.1”.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/home_page.png"><img alt="../../../_images/home_page.png" class="align-center" src="../../../_images/home_page.png" style="width: 450px;" /></a>
+<ol class="arabic simple" start="2">
+<li><p>Click into the “LAN” configuration tab.</p></li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/lan_config_tab.png"><img alt="../../../_images/lan_config_tab.png" class="align-center" src="../../../_images/lan_config_tab.png" style="width: 450px;" /></a>
+<ol class="arabic">
+<li><p>Adjust the LAN settings as needed and click “Apply”.</p>
+<blockquote>
+<div><p><strong>Note</strong>: DHCP server settings should be adjusted automatically to suit the new LAN settings.</p>
+</div></blockquote>
+</li>
+</ol>
+<a class="reference internal image-reference" href="../../../_images/lan_settings.png"><img alt="../../../_images/lan_settings.png" class="align-center" src="../../../_images/lan_settings.png" style="width: 450px;" /></a>
+</section>
 </section>
 </section>
 
