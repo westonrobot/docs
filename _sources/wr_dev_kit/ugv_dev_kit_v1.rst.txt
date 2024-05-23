@@ -29,7 +29,7 @@ This **base configuration** of the development kit consists of the following pre
 
 The following **extension modules** are available to be added to the base configuration:
 
-* Livox Mid-360 Lidar + IMU
+* :ref:`Livox Mid-360 Lidar + IMU <ref_ugv_devkit_livox_mid360_imu_extension>`
 
 2. Software Configuration
 =========================
