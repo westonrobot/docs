@@ -52,4 +52,40 @@ Key Specifications
 Reference Frames
 ================
 
-The reference frames for the Livox Mid360 and IMU sensors are shown as follows:
+The reference frames for the Livox Mid-360 lidar and IMU sensor follow the Right Hand Rule convention and are point cloud-centric frames of reference. They also follow Robotics convention with the X-axis pointing forwards.
+
+The Cartesian coordinates O-XYZ of the components are defined as below: Point O of the Top Plate is the origin, and O-XYZ is the point cloud coordinates of the module.
+
+.. image:: figures/reference_frames_simplified_view.png
+    :width: 960 px
+    :class: largepadding
+
+
+
+
+**Relationship between sensors**
+
+Taking the Top Plate as the reference link for this extension, the relative position of the IMU Sensor and Lidar are as follows:
+
+    * IMU Sensor: x= 35.4mm, y: 0.0mm, z: 21.3mm
+    * Lidar: x= 35.4mm, y: 0.0mm, z: 65.4mm
+
+
+.. image:: figures/top_side_views.png
+    :width: 720 px
+    :class: largepadding
+
+
+
+
+
+
+
+
+
+
+
+.. note::
+    Do note that the Lidar has an additional integrated IMU chip (with a 3-axis accelerometer and a 3-axis gyroscope). More information can be found `here <https://terra-1-g.djicdn.com/851d20f7b9f64838a34cd02351370894/Livox/Livox_Mid-360_User_Manual_EN.pdf>`_
+
+
