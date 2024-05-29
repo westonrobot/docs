@@ -1,8 +1,8 @@
-********************************************
-Weston Robot Asssisted Driving Toolbox (ADT)
-********************************************
+**********************************************
+Weston Robot Assisted Driving Toolbox (ADT) V1
+**********************************************
 
-Weston Robot proudly presents the Assisted Driving Toolbox (ADT), a teleoperation system designed and developed by Weston Robot for usage on multiple mobile robot platforms. The system allows the the control and operation of an robot through a shared network; with a wide coverage of its surroundings using mounted onboard camera modules.
+Weston Robot proudly presents the Assisted Driving Toolbox (ADT) V1, a teleoperation system designed and developed by Weston Robot for usage on multiple mobile robot platforms. The system allows the the control and operation of an robot through a shared network; with a wide coverage of its surroundings using mounted onboard camera modules.
 
 .. image:: figures/adt_01.png
 
