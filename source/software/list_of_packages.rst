@@ -18,12 +18,12 @@ C++ SDK
 ROS Package
 ===========
 
-* **Weston Robot Platofrom ROS Support Package (wrp_ros)**
+* **Weston Robot Platform ROS Support Package (wrp_ros)**
 
   - This package provides a light wrapper around wrp_sdk for ROS1
   - Github: https://github.com/westonrobot/wrp_ros
   
-* **Weston Robot Platofrom ROS2 Support Package (wrp_ros2)**
+* **Weston Robot Platform ROS2 Support Package (wrp_ros2)**
 
   - This package provides a light wrapper around wrp_sdk for ROS2
   - Github: https://github.com/westonrobot/wrp_ros2
