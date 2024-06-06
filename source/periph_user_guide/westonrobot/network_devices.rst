@@ -7,5 +7,5 @@ Router and switch are the two most common network devices used on a robot. Route
 :ref:`Industrial 5G/Wifi Router <ref_onboard_industrial_5g_wifi_router>`
 ========================================================================
 
-.. image:: /periph_user_guide/westonrobot/figures/industrial_5g_wifi_router.jpg
+.. image:: /periph_user_guide/westonrobot/figures/5g_router/industrial_5g_wifi_router.jpg
     :width: 450 px
