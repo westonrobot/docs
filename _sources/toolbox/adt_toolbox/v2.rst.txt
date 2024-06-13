@@ -1,0 +1,99 @@
+**********************************************
+Weston Robot Assisted Driving Toolbox (ADT) V2
+**********************************************
+
+Weston Robot proudly presents the Assisted Driving Toolbox (ADT) V2, a teleoperation system designed and developed by Weston Robot for usage on multiple mobile robot platforms. The system allows the the control and operation of an robot through a shared network; with a wide coverage of its surroundings using mounted onboard camera modules.
+
+Assisted Driving Client Setup
+=============================
+
+System Requirements
+-------------------
+
+1. Host computer running Ubuntu 20.04/22.04
+2. Joystick for control via the Assisted Driving Toolbox Client
+3. Shared network between the robot and host computer
+
+Client Software Installation
+----------------------------
+
+.. note::
+   We updated our apt-get server in July 2023. If you've added Weston Robot's old apt source before, you will need to remove it first.
+
+    .. code-block:: bash
+
+        $ sudo rm /etc/apt/sources.list.d/weston-robot.list
+
+Follow these steps to install the Assisted Driving Toolbox Client on the host computer. If you have installed packages from the Weston Robot repository before, you can skip to step 3.
+
+1. Follow the instructions `here <https://docs.westonrobot.com/software/installation_guide.html#add-weston-robot-s-apt-source>`_ to add the Weston Robot package source to your system's software repository list. 
+
+2. Now you can update the apt index and install the ADT package with "apt-get" command. 
+
+.. code-block:: bash
+
+    $ sudo apt-get update
+    $ sudo apt-get install wr-ad-toolbox
+
+**Note:** Installation of additional third-party dependency packages may be required for this package.
+
+TLS Certificate Installation
+----------------------------
+To run the Assisted Driving Toolbox Client, you need to install a set of TLS certificates. These certificates are used to establish a secure connection between the client and the robot 
+for control. You should have received a password-protected zip file containing the certificates from Weston Robot.
+
+1. Extract the zip file to a location of your choice.
+2. Open a terminal and navigate to the directory where you extracted the zip file.
+3. Run the following command to install the certificates:
+
+.. code-block:: bash
+
+    $ sudo ./install_certificates.sh
+
+Running the Assisted Driving Toolbox Client
+-------------------------------------------
+To open the application, locate the Assisted Driving Toolbox Client in the application menu:
+
+- Press the Windows key on your keyboard to open the application search bar. Search for "WR Assisted Driving Toolbox".
+- Click on the application icon to open the Assisted Driving Toolbox Client.
+
+.. image:: figures/adt_v2_01.png
+   :alt: Launching Assisted Driving Toolbox Client
+
+The Assisted Driving Toolbox Client will open with the following screen:
+
+.. image:: figures/adt_v2_02.png
+   :alt: Assisted Driving Toolbox Client Start Screen
+
+Click on the "Login" button. A new browser window will open with the following login page:
+
+.. image:: figures/adt_v2_03.png
+   :alt: Assisted Driving Toolbox Client Login Page
+
+Login with your credentials. After successful login, the Assisted Driving Toolbox Client will prompt you to select the robot you want to control:
+
+.. image:: figures/adt_v2_04.png
+   :alt: Assisted Driving Toolbox Client Robot Selection
+
+If this is your first time using the Assisted Driving Toolbox Client, a settings menu will automatically open for you to configure the joystick and camera settings.
+
+Key Application Features
+------------------------
+
+Teleoperation Panel
+~~~~~~~~~~~~~~~~~~~
+
+The teleoperation panel serves as the main control interface for the robot. It allows you to control the robot's movement and observe the robot's surroundings through 
+the robot's onboard cameras in real-time.
+
+.. image:: figures/adt_v2_05.png
+   :alt: Teleoperation Panel
+
+Settings Menu
+~~~~~~~~~~~~~
+
+.. image:: figures/adt_v2_06.png
+   :alt: Settings Menu
+
+The settings menu allows you to configure the joystick and camera settings. You can access the settings menu by clicking on the gear icon in the bottom right corner 
+of the Assisted Driving Toolbox Client, or via the top menu bar by selecting "File" > "Settings".

@@ -258,10 +258,13 @@ The user interface module expands the interfaces available on the B2 body, allow
 4. Resources
 ============
 
-Manual
+Basic Guides
 ------
 
-* B2 Manual: `Unitree <https://support.unitree.com/home/en/B2_developer/About%20B2>`_
+* Manual: `Unitree <https://support.unitree.com/home/en/B2_developer/About%20B2>`_
 
-.. Development
-.. -----------
+Development
+-----------
+
+* SDK Support: `unitree_sdk2 <https://github.com/unitreerobotics/unitree_sdk2>`_
+* ROS2 Support: `unitree_ros2 <https://github.com/unitreerobotics/unitree_ros2>`_

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weston Robot Assisted Driving Toolbox (ADT) V1 &mdash; Weston Robot v0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/hacks.css?v=a7984756" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=4c0d86c8"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Weston Robot Assisted Driving Toolbox (ADT) V2" href="v2.html" />
+    <link rel="prev" title="Weston Robot Assisted Driving Toolbox (ADT)" href="adt_toolbox.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #323640" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting Started</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/software.html">Software Package</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../wr_dev_kit/wr_dev_kit.html">WR Development Kit</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../robot_user_guide/robot_user_guide.html">Robot User Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../periph_user_guide/periph_user_guide.html">Peripheral User Guide</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../toolbox.html">WR Toolbox User Guide</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="adt_toolbox.html">Weston Robot Assisted Driving Toolbox (ADT)</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Weston Robot Assisted Driving Toolbox (ADT) V1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="v2.html">Weston Robot Assisted Driving Toolbox (ADT) V2</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #323640" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Weston Robot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../toolbox.html">WR Toolbox User Guide</a></li>
+          <li class="breadcrumb-item"><a href="adt_toolbox.html">Weston Robot Assisted Driving Toolbox (ADT)</a></li>
+      <li class="breadcrumb-item active">Weston Robot Assisted Driving Toolbox (ADT) V1</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/toolbox/adt_toolbox/v1.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <blockquote>
+<div></div></blockquote>
+<section id="weston-robot-assisted-driving-toolbox-adt-v1">
+<h1>Weston Robot Assisted Driving Toolbox (ADT) V1<a class="headerlink" href="#weston-robot-assisted-driving-toolbox-adt-v1" title="Permalink to this heading"></a></h1>
+<p>Weston Robot proudly presents the Assisted Driving Toolbox (ADT) V1, a teleoperation system designed and developed by Weston Robot for usage on multiple mobile robot platforms. The system allows the the control and operation of an robot through a shared network; with a wide coverage of its surroundings using mounted onboard camera modules.</p>
+<img alt="../../_images/adt_01.png" src="../../_images/adt_01.png" />
+<section id="assisted-driving-server-setup">
+<h2>Assisted Driving Server Setup<a class="headerlink" href="#assisted-driving-server-setup" title="Permalink to this heading"></a></h2>
+<section id="service-management">
+<h3>Service Management<a class="headerlink" href="#service-management" title="Permalink to this heading"></a></h3>
+<p>The Assisted Driving Toolbox servers has been configured to startup upon the robot’s boot up as a systemd service.</p>
+<ul class="simple">
+<li><p>To restart the server</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>wr_adt_server.service
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>To stop the server (does not carry over through reboots)</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>stop<span class="w"> </span>wr_adt_server.service
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>To permanently enable/disable the server (carry over through reboot)</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>systemctl<span class="w"> </span>enable/disable<span class="w"> </span>wr_adt_server.service
+</pre></div>
+</div>
+</section>
+<section id="video-streaming-configuration">
+<h3>Video Streaming Configuration<a class="headerlink" href="#video-streaming-configuration" title="Permalink to this heading"></a></h3>
+<p>The following parameters can be configured:</p>
+<ol class="arabic simple">
+<li><p>Camera (<strong>/opt/weston_robot/docker/wr_adt_server/config.yaml</strong>)</p>
+<ul class="simple">
+<li><p>Image resolution</p></li>
+<li><p>Compression rate</p></li>
+<li><p>Video stream endpoints</p></li>
+</ul>
+</li>
+<li><p>Server (<strong>/opt/weston_robot/docker/wr_adt_server/docker-compose.yaml</strong>)</p>
+<ul class="simple">
+<li><p>Streaming ip address</p></li>
+</ul>
+</li>
+</ol>
+<p>You can refer to comments inside the cooresponding configuration file for available options.</p>
+</section>
+</section>
+<section id="assisted-driving-client-setup">
+<h2>Assisted Driving Client Setup<a class="headerlink" href="#assisted-driving-client-setup" title="Permalink to this heading"></a></h2>
+<section id="system-requirements">
+<h3>System Requirements<a class="headerlink" href="#system-requirements" title="Permalink to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>Host computer running Ubuntu 18.04/20.04</p></li>
+<li><p>Joystick for control with the Assisted Driving Toolbox Client</p></li>
+<li><p>Shared network between the robot and host computer</p></li>
+</ol>
+</section>
+<section id="client-software-installation">
+<h3>Client Software Installation<a class="headerlink" href="#client-software-installation" title="Permalink to this heading"></a></h3>
+<p>Follow the following commands in a terminal to install the Assisted Driving Toolbox Client on the host computer.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libglfw3-dev<span class="w"> </span>libyaml-cpp-dev<span class="w"> </span>libopencv-dev
+$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;deb https://westonrobot.jfrog.io/artifactory/wrtoolbox-release </span><span class="k">$(</span>lsb_release<span class="w"> </span>-cs<span class="k">)</span><span class="s2"> main&quot;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>tee<span class="w"> </span>/etc/apt/sources.list.d/weston-robot.list
+$<span class="w"> </span>curl<span class="w"> </span>-sSL<span class="w"> </span><span class="s1">&#39;https://westonrobot.jfrog.io/artifactory/api/security/keypair/wr-deb/public&#39;</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sudo<span class="w"> </span>apt-key<span class="w"> </span>add<span class="w"> </span>-
+$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
+$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>wr_assisted_teleop
+</pre></div>
+</div>
+<p>Before continuing, retrieve the IP address of the robot’s wlan0 interface for client configuration later (see _configuration_ below).</p>
+<p>To add path to environment</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;export PATH=/opt/weston_robot/bin:$PATH&#39;</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>~/.bashrc
+</pre></div>
+</div>
+<p>To (re)start the client</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>wr_assisted_teleop
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The icons below show the status of the control and video streaming servers. The icons on the left screenshot indicates the services are online, while the one on the right indicates the services offline.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/adt_02.png"><img alt="../../_images/adt_02.png" src="../../_images/adt_02.png" style="width: 300px;" /></a>
+<a class="reference internal image-reference" href="../../_images/adt_03.png"><img alt="../../_images/adt_03.png" src="../../_images/adt_03.png" style="width: 313px;" /></a>
+<ul class="simple">
+<li><p>If system has been configured before, camera streams will automatically be enabled. To toggle individual camera streams, use the buttons below</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/adt_04.png"><img alt="../../_images/adt_04.png" src="../../_images/adt_04.png" style="width: 350px;" /></a>
+<ul>
+<li><p>To toggle control of the robot (control disabled by default) and to view the status of attached joystick, use the buttons below</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>NOTE</strong>: Set height to the neutral position (50%) and check joystick behaviour (see below) before enabling control to avoid sudden movements.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/adt_05.png"><img alt="../../_images/adt_05.png" src="../../_images/adt_05.png" style="width: 350px;" /></a>
+<ul>
+<li><p>The joystick gauge displays the current state of the attached controlling joystick.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Please ensure that the joystick behaves as expected before enabling control of the robot.</strong></p></li>
+<li><p><strong>If behaviour is incorrect, configure the joystick in the client’s settings menu.</strong></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<img alt="../../_images/adt_06.png" src="../../_images/adt_06.png" />
+<ul class="simple">
+<li><p>The obstacle detection gauge displays the current feedback on any range finders in the system (when applicable)</p></li>
+</ul>
+<img alt="../../_images/adt_07.png" src="../../_images/adt_07.png" />
+<ul class="simple">
+<li><p>The Speedo- and Battery meter gauge displays the current speed and battery’s charge (Upcoming feature)</p></li>
+</ul>
+<img alt="../../_images/adt_08.png" src="../../_images/adt_08.png" />
+</section>
+<section id="client-configuration">
+<h3>Client Configuration<a class="headerlink" href="#client-configuration" title="Permalink to this heading"></a></h3>
+<dl class="simple">
+<dt>On client’s first startup, “Settings” popup will prompt user to input the relevant settings for teleoperation, key settings include</dt><dd><ul class="simple">
+<li><p>Control server IP and port numbers</p></li>
+<li><p>Streaming server IP and port numbers</p></li>
+<li><p>Joystick mapping settings</p></li>
+</ul>
+</dd>
+</dl>
+<img alt="../../_images/adt_09.png" src="../../_images/adt_09.png" />
+<ul class="simple">
+<li><p>To change settings after first startup, click the settings button at the bottom right of the client to access settings</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/adt_10.png"><img alt="../../_images/adt_10.png" src="../../_images/adt_10.png" style="width: 350px;" /></a>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Changing the IP address and ports of the Servers is as simple as changing the values below</dt><dd><ul>
+<li><p>This IP address should correspond to the robot’s wlan0 interface IP address by default</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/adt_11.png"><img alt="../../_images/adt_11.png" src="../../_images/adt_11.png" style="width: 450px;" /></a>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Changing the joystick mapping is as simple as changing the values below</dt><dd><ul>
+<li><dl class="simple">
+<dt>Mappings</dt><dd><ul>
+<li><p>Linear X - Forward/Reverse movement</p></li>
+<li><p>Linear Y - Side-Side movement</p></li>
+<li><p>Linear Z - Body height adjustment</p></li>
+<li><p>Angular X - Body roll</p></li>
+<li><p>Angular Y - Body pitch</p></li>
+<li><p>Angular Z - Yaw movement</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Below shows an example configuration using Logitech’s Extreme3DPro joystick</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/adt_12.png"><img alt="../../_images/adt_12.png" src="../../_images/adt_12.png" style="width: 450px;" /></a>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="adt_toolbox.html" class="btn btn-neutral float-left" title="Weston Robot Assisted Driving Toolbox (ADT)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="v2.html" class="btn btn-neutral float-right" title="Weston Robot Assisted Driving Toolbox (ADT) V2" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Weston Robot Pte Ltd.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

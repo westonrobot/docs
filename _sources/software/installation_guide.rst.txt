@@ -14,8 +14,11 @@ Debian Repository
 
 C++ libraries and binaries (including the widget apps) are provided as ".deb" installation packages. There are two methods you can aquire and install the released debian packages:
 
-* Download the ".deb" packages from the cooresponding github repository and install with the "dpkg" command, e.g., $ sudo dpkg -i <package_name>.deb
+* Download the ".deb" packages from the corresponding github repository and install with the "dpkg" command, e.g., $ sudo dpkg -i <package_name>.deb
 * Install the packages from Weston Robot's apt-get server
+
+Add Weston Robot's apt source
+-----------------------------
 
 Here are the steps you can follow to add the Weston Robot package source:
 
