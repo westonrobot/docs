@@ -26,30 +26,9 @@ Client Software Installation
 
 Follow these steps to install the Assisted Driving Toolbox Client on the host computer. If you have installed packages from the Weston Robot repository before, you can skip to step 3.
 
-1. Add the GPG key for the Weston Robot repository:
+1. Follow the instructions `here <https://docs.westonrobot.com/software/installation_guide.html#add-weston-robot-s-apt-source>`_ to add the Weston Robot package source to your system's software repository list. 
 
-.. code-block:: bash
-
-    $ sudo install -m 0755 -d /etc/apt/keyrings
-    $ sudo apt install curl
-    $ curl -fsSL http://deb.westonrobot.net/signing.key | sudo gpg --dearmor -o /etc/apt/keyrings/weston-robot.gpg
-    $ sudo chmod a+r /etc/apt/keyrings/weston-robot.gpg
-
-2. Add the Weston Robot repository to your system's software repository list:
-
-.. code-block:: bash
-
-    $ echo \
-        "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/weston-robot.gpg] http://deb.westonrobot.net/$(lsb_release -cs) $(lsb_release -cs) main" | \
-        sudo tee /etc/apt/sources.list.d/weston-robot.list > /dev/null
-
-3. Add the universe repository to your system's software repository list:
-
-.. code-block:: bash
-
-    $ sudo apt-add-repository universe
-
-4. Now you can update the apt index and install the ADT package with "apt-get" command. 
+2. Now you can update the apt index and install the ADT package with "apt-get" command. 
 
 .. code-block:: bash
 
@@ -57,6 +36,19 @@ Follow these steps to install the Assisted Driving Toolbox Client on the host co
     $ sudo apt-get install wr-ad-toolbox
 
 **Note:** Installation of additional third-party dependency packages may be required for this package.
+
+TLS Certificate Installation
+----------------------------
+To run the Assisted Driving Toolbox Client, you need to install a set of TLS certificates. These certificates are used to establish a secure connection between the client and the robot 
+for control. You should have received a password-protected zip file containing the certificates from Weston Robot.
+
+1. Extract the zip file to a location of your choice.
+2. Open a terminal and navigate to the directory where you extracted the zip file.
+3. Run the following command to install the certificates:
+
+.. code-block:: bash
+
+    $ sudo ./install_certificates.sh
 
 Running the Assisted Driving Toolbox Client
 -------------------------------------------
@@ -87,4 +79,21 @@ If this is your first time using the Assisted Driving Toolbox Client, a settings
 
 Key Application Features
 ------------------------
-WIP.
+
+Teleoperation Panel
+~~~~~~~~~~~~~~~~~~~
+
+The teleoperation panel serves as the main control interface for the robot. It allows you to control the robot's movement and observe the robot's surroundings through 
+the robot's onboard cameras in real-time.
+
+.. image:: figures/adt_v2_05.png
+   :alt: Teleoperation Panel
+
+Settings Menu
+~~~~~~~~~~~~~
+
+.. image:: figures/adt_v2_06.png
+   :alt: Settings Menu
+
+The settings menu allows you to configure the joystick and camera settings. You can access the settings menu by clicking on the gear icon in the bottom right corner 
+of the Assisted Driving Toolbox Client, or via the top menu bar by selecting "File" > "Settings".
