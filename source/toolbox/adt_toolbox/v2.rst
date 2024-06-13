@@ -17,13 +17,6 @@ System Requirements
 Client Software Installation
 ----------------------------
 
-.. note::
-   We updated our apt-get server in July 2023. If you've added Weston Robot's old apt source before, you will need to remove it first.
-
-    .. code-block:: bash
-
-        $ sudo rm /etc/apt/sources.list.d/weston-robot.list
-
 Follow these steps to install the Assisted Driving Toolbox Client on the host computer. If you have installed packages from the Weston Robot repository before, you can skip to step 3.
 
 1. Follow the instructions `here <https://docs.westonrobot.com/software/installation_guide.html#add-weston-robot-s-apt-source>`_ to add the Weston Robot package source to your system's software repository list. 
