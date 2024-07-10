@@ -41,6 +41,7 @@ release = u'v0.1'
 extensions = [
     'sphinx.ext.todo',
     'sphinx.ext.githubpages',
+    'sphinx.ext.autosectionlabel',
     # "sphinx_rtd_theme",
 ]
 

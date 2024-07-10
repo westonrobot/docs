@@ -10,6 +10,8 @@ Revision History
 +==========+===================+==========+======================================================+
 | 1        | 31/1/2024         | Kang Wei | Initial release                                      |
 +----------+-------------------+----------+------------------------------------------------------+
+| 2        | 8/7/2024          | Karthee  | Update Specifications & FAQ                          |
++----------+-------------------+----------+------------------------------------------------------+
 
 1. Overview
 ===========
@@ -34,15 +36,16 @@ Revision History
    * - Maximum Speed
      - > 6m/s (Limited for safety purposes)
 
-.. list-table:: Environment
+.. list-table:: Operational Specifications **(AI Mode)**
    :widths: 25 25
 
    * - Operating Temperature
      - -20℃ ~ 55℃, under good weather conditions
    * - Slope Walking Ability
-     - > 45°
+     - | < 45° (Low Speed)
+       | < 30° (High Speed)
    * - Maximum Step Height
-     - 20 ~ 25cm
+     - < 25cm
    * - Jumping Ditch Width
      - 0.5 ~ 1.2m
    * - Maximum Jumping Distance
@@ -127,8 +130,10 @@ Revision History
 
    * - | - Battery Charging Input [1]
        | - Top Power Board RS485 [1]
+       | - Emergency Stop Interface [2]
      - | Reserved 4-pin connector for wireless charging plate and 
        | RS485 pins for communication with the power board.
+       | Emergency stop interface is **NOT READY** for use.
    * - | - PC3 Ethernet
        | - 12V Output
      - | 10-pin connector with direct ethernet connection to PC3 and 
@@ -147,10 +152,12 @@ Revision History
      - USB-C connector with direct connection to PC1
    * - | - Switch Ethernet
        | - 12V Output
-     - | Connection to ethernet switch for communication between PCs and 
+     - | Connection to ethernet switch for communication between PCs
        | 12V power supply
+       | Maximum current rating: 10A
+       | Surge current protection: 20A
    * - | - Switch Ethernet
-       | - 12V UPS Input [2]
+       | - 12V UPS Input [3]
      - | Connection to ethernet switch for communication between PCs and 
        | 12V UPS power input
    * - | - Battery Power [1]
@@ -175,15 +182,16 @@ Revision History
      - USB-C connector with direct connection to PC5
    * - Battery Input [1]
      - Reserved port for internal electrical circuit
-   * - | - Battery Output
-       | - CAN
-     - 58V power supply and CAN communication protocol
+   * - Battery Output
+     - 58V power supply
    * - | - Battery Output
        | - RS485
      - 58V power supply and RS485 communication protocol
    * - | - 24V Output
        | - RS485
-     - 24V power supply and RS485 communication protocol
+     - | 24V power supply and RS485 communication protocol
+       | Maximum current rating: 10A
+       | Surge current protection: 20A
    * - | - 12V Output
        | - RS485
      - 12V power supply and RS485 communication protocol
@@ -199,7 +207,9 @@ Revision History
 
 [1] Reserved ports are designated solely for internal electrical circuit use only, not open for public acccess
 
-[2] The standard B2 robot dog does not come equipped with an Uninterruptible Power Supply (UPS). However, it is available as a customizable add-on feature.
+[2] E-Stop interface is still in development and the use of this interface can damage the B2's main control board.
+
+[3] The standard B2 robot dog does not come equipped with an Uninterruptible Power Supply (UPS). However, it is available as a customizable add-on feature.
 
 User Interface Module
 ----------------------
@@ -259,12 +269,29 @@ The user interface module expands the interfaces available on the B2 body, allow
 ============
 
 Basic Guides
-------
+------------
 
-* Manual: `Unitree <https://support.unitree.com/home/en/B2_developer/About%20B2>`_
+* B2 Manual: `Unitree <https://support.unitree.com/home/en/B2_developer/About%20B2>`_
+* Training Slides: `B2 Customer Training <https://tangrobot.sharepoint.com/:p:/s/Public-Outgoing/Ef2w_exJ67hLi1Xqsv0VjosBtS1pz0ZjTdHZcyOrTAc-mA?e=XiMFoT>`_
 
 Development
 -----------
 
 * SDK Support: `unitree_sdk2 <https://github.com/unitreerobotics/unitree_sdk2>`_
 * ROS2 Support: `unitree_ros2 <https://github.com/unitreerobotics/unitree_ros2>`_
+
+
+5. FAQ
+============
+
+* Can the ports on the side of the B2 be used?
+   - Yes, the ports on the side of the B2 robot are accessible for use. However, we strongly recommend using the ports located on the :ref:`User Interface Module<3. Electrical Interfaces>` whenever possible. This is because using the side ports could compromise the robot's waterproof capabilities. Users are urged to be familiar of the different ports before using them.
+* What is the default speed of the B2 in AI mode?
+   - The default is Low speed. Double click L1 to switch to High Speed.
+* Can the RealSense cameras on the B2 be used for secondary development?
+   - No, the RealSense cameras on the B2 robot are currently not accessible for users to directly control or integrate into their own development projects. These cameras are primarily used by the manufacturer to power the robot's built-in perception features.
+* Can the contact charger be used outdoors?
+   - This contact charger is designed for indoor use. Avoid using it in wet or humid environments to prevent the risk of short circuits. Moisture can damage the charger and potentially pose a safety hazard.
+* What does first foot control and second foot control represent?
+   - First Foot control represents Normal mode, while Second Foot control reprensents AI mode. When switched on, the B2 is in AI mode (Second Foot control) by default.
+
