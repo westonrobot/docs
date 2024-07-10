@@ -269,12 +269,16 @@ The user interface module expands the interfaces available on the B2 body, allow
 ============
 
 Basic Guides
-------
+------------
 
 * B2 Manual: `Unitree <https://support.unitree.com/home/en/B2_developer/About%20B2>`_
-* SDK: `unitree_sdk2 <https://github.com/unitreerobotics/unitree_sdk2>`_
-* ROS2: `unitree_ros2 <https://github.com/unitreerobotics/unitree_ros2>`_
 * Training Slides: `B2 Customer Training <https://tangrobot.sharepoint.com/:p:/s/Public-Outgoing/Ef2w_exJ67hLi1Xqsv0VjosBtS1pz0ZjTdHZcyOrTAc-mA?e=XiMFoT>`_
+
+Development
+-----------
+
+* SDK Support: `unitree_sdk2 <https://github.com/unitreerobotics/unitree_sdk2>`_
+* ROS2 Support: `unitree_ros2 <https://github.com/unitreerobotics/unitree_ros2>`_
 
 
 5. FAQ
@@ -291,8 +295,3 @@ Basic Guides
 * What does first foot control and second foot control represent?
    - First Foot control represents Normal mode, while Second Foot control reprensents AI mode. When switched on, the B2 is in AI mode (Second Foot control) by default.
 
-Development
------------
-
-* SDK Support: `unitree_sdk2 <https://github.com/unitreerobotics/unitree_sdk2>`_
-* ROS2 Support: `unitree_ros2 <https://github.com/unitreerobotics/unitree_ros2>`_
