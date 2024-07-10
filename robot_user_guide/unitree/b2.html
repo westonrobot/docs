@@ -124,6 +124,11 @@
 <td><p>Kang Wei</p></td>
 <td><p>Initial release</p></td>
 </tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>8/7/2024</p></td>
+<td><p>Karthee</p></td>
+<td><p>Update Specifications &amp; FAQ</p></td>
+</tr>
 </tbody>
 </table>
 </section>
@@ -158,7 +163,7 @@
 </tbody>
 </table>
 <table class="docutils align-default" id="id2">
-<caption><span class="caption-text">Environment</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
+<caption><span class="caption-text">Operational Specifications <strong>(AI Mode)</strong></span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
 <colgroup>
 <col style="width: 50.0%" />
 <col style="width: 50.0%" />
@@ -168,10 +173,14 @@
 <td><p>-20℃ ~ 55℃, under good weather conditions</p></td>
 </tr>
 <tr class="row-even"><td><p>Slope Walking Ability</p></td>
-<td><p>&gt; 45°</p></td>
+<td><div class="line-block">
+<div class="line">&lt; 45° (Low Speed)</div>
+<div class="line">&lt; 30° (High Speed)</div>
+</div>
+</td>
 </tr>
 <tr class="row-odd"><td><p>Maximum Step Height</p></td>
-<td><p>20 ~ 25cm</p></td>
+<td><p>&lt; 25cm</p></td>
 </tr>
 <tr class="row-even"><td><p>Jumping Ditch Width</p></td>
 <td><p>0.5 ~ 1.2m</p></td>
@@ -306,11 +315,13 @@
 <tr class="row-odd"><td><div class="line-block">
 <div class="line">- Battery Charging Input [1]</div>
 <div class="line">- Top Power Board RS485 [1]</div>
+<div class="line">- Emergency Stop Interface [2]</div>
 </div>
 </td>
 <td><div class="line-block">
 <div class="line">Reserved 4-pin connector for wireless charging plate and</div>
 <div class="line">RS485 pins for communication with the power board.</div>
+<div class="line">Emergency stop interface is <strong>NOT READY</strong> for use.</div>
 </div>
 </td>
 </tr>
@@ -354,14 +365,16 @@
 </div>
 </td>
 <td><div class="line-block">
-<div class="line">Connection to ethernet switch for communication between PCs and</div>
+<div class="line">Connection to ethernet switch for communication between PCs</div>
 <div class="line">12V power supply</div>
+<div class="line">Maximum current rating: 10A</div>
+<div class="line">Surge current protection: 20A</div>
 </div>
 </td>
 </tr>
 <tr class="row-odd"><td><div class="line-block">
 <div class="line">- Switch Ethernet</div>
-<div class="line">- 12V UPS Input [2]</div>
+<div class="line">- 12V UPS Input [3]</div>
 </div>
 </td>
 <td><div class="line-block">
@@ -413,12 +426,8 @@
 <tr class="row-even"><td><p>Battery Input [1]</p></td>
 <td><p>Reserved port for internal electrical circuit</p></td>
 </tr>
-<tr class="row-odd"><td><div class="line-block">
-<div class="line">- Battery Output</div>
-<div class="line">- CAN</div>
-</div>
-</td>
-<td><p>58V power supply and CAN communication protocol</p></td>
+<tr class="row-odd"><td><p>Battery Output</p></td>
+<td><p>58V power supply</p></td>
 </tr>
 <tr class="row-even"><td><div class="line-block">
 <div class="line">- Battery Output</div>
@@ -432,7 +441,12 @@
 <div class="line">- RS485</div>
 </div>
 </td>
-<td><p>24V power supply and RS485 communication protocol</p></td>
+<td><div class="line-block">
+<div class="line">24V power supply and RS485 communication protocol</div>
+<div class="line">Maximum current rating: 10A</div>
+<div class="line">Surge current protection: 20A</div>
+</div>
+</td>
 </tr>
 <tr class="row-even"><td><div class="line-block">
 <div class="line">- 12V Output</div>
@@ -465,7 +479,8 @@
 </tbody>
 </table>
 <p>[1] Reserved ports are designated solely for internal electrical circuit use only, not open for public acccess</p>
-<p>[2] The standard B2 robot dog does not come equipped with an Uninterruptible Power Supply (UPS). However, it is available as a customizable add-on feature.</p>
+<p>[2] E-Stop interface is still in development and the use of this interface can damage the B2’s main control board.</p>
+<p>[3] The standard B2 robot dog does not come equipped with an Uninterruptible Power Supply (UPS). However, it is available as a customizable add-on feature.</p>
 <section id="user-interface-module">
 <h3>User Interface Module<a class="headerlink" href="#user-interface-module" title="Permalink to this heading"></a></h3>
 <p>The user interface module expands the interfaces available on the B2 body, allowing users to access the robot without needing to remove the panels.</p>
@@ -571,7 +586,8 @@
 <section id="basic-guides">
 <h3>Basic Guides<a class="headerlink" href="#basic-guides" title="Permalink to this heading"></a></h3>
 <ul class="simple">
-<li><p>Manual: <a class="reference external" href="https://support.unitree.com/home/en/B2_developer/About%20B2">Unitree</a></p></li>
+<li><p>B2 Manual: <a class="reference external" href="https://support.unitree.com/home/en/B2_developer/About%20B2">Unitree</a></p></li>
+<li><p>Training Slides: <a class="reference external" href="https://tangrobot.sharepoint.com/:p:/s/Public-Outgoing/Ef2w_exJ67hLi1Xqsv0VjosBtS1pz0ZjTdHZcyOrTAc-mA?e=XiMFoT">B2 Customer Training</a></p></li>
 </ul>
 </section>
 <section id="development">
@@ -581,6 +597,46 @@
 <li><p>ROS2 Support: <a class="reference external" href="https://github.com/unitreerobotics/unitree_ros2">unitree_ros2</a></p></li>
 </ul>
 </section>
+</section>
+<section id="faq">
+<h2>5. FAQ<a class="headerlink" href="#faq" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Can the ports on the side of the B2 be used?</dt><dd><ul>
+<li><p>Yes, the ports on the side of the B2 robot are accessible for use. However, we strongly recommend using the ports located on the <a class="reference internal" href="#electrical-interfaces"><span class="std std-ref">User Interface Module</span></a> whenever possible. This is because using the side ports could compromise the robot’s waterproof capabilities. Users are urged to be familiar of the different ports before using them.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>What is the default speed of the B2 in AI mode?</dt><dd><ul>
+<li><p>The default is Low speed. Double click L1 to switch to High Speed.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Can the RealSense cameras on the B2 be used for secondary development?</dt><dd><ul>
+<li><p>No, the RealSense cameras on the B2 robot are currently not accessible for users to directly control or integrate into their own development projects. These cameras are primarily used by the manufacturer to power the robot’s built-in perception features.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Can the contact charger be used outdoors?</dt><dd><ul>
+<li><p>This contact charger is designed for indoor use. Avoid using it in wet or humid environments to prevent the risk of short circuits. Moisture can damage the charger and potentially pose a safety hazard.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>What does first foot control and second foot control represent?</dt><dd><ul>
+<li><p>First Foot control represents Normal mode, while Second Foot control reprensents AI mode. When switched on, the B2 is in AI mode (Second Foot control) by default.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
 </section>
 </section>
 
