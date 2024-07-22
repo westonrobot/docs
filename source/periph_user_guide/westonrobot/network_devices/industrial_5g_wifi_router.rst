@@ -66,7 +66,7 @@ To configure the router as an AP client, follow these steps:
     :width: 450 px
     :align: center
 
-4. Configure the Wifi network settings of the **existing network** to connect and click "Apply"
+4. Switch Role to "WAN (Wireless ISP)", configure the Wifi network settings of the **existing network** to connect and click "Apply"
 
 .. image:: /periph_user_guide/westonrobot/figures/5g_router/ap_settings.png
     :width: 450 px
