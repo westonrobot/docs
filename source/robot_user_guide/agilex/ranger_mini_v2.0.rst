@@ -35,21 +35,21 @@ The Ranger Mini 2.0 mobile robot is an independent four-wheeled differential dri
    * - IP Rating
      - IP54
    * - Maximum Speed
-     - 5.4m/s	
+     - 5.4km/h	
    * - Maximum Angle of Tilt
      - <15° (with loading)
    * - Charging Time
      - 1.5h
    * - User Power
-     - 48V, 15A
+     - 48V, 24AH
    * - Weight
      - 64.5kg
    * - Rated Load
      - 80kg
    * - Remote Control Range
-     - 50m
-   * - Battery SoC (10% to 80%)
-     - 55 minutes
+     - 2.4G / 200m
+   * - Charging Time
+     - 1.5h
 
 .. list-table:: Drift Specifications
    :widths: 25 25 25
