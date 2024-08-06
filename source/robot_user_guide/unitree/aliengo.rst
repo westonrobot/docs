@@ -10,6 +10,8 @@ Revision History
 +==========+===================+==========+========================+
 | 1        | 14/11/2022        | Kee Jin  | Initial release        |
 +----------+-------------------+----------+------------------------+
+| 2        | 06/08/2024        | Kang Wei | Update resources       |
++----------+-------------------+----------+------------------------+
 
 1. Overview
 ===========
@@ -57,7 +59,15 @@ The Aliengo robot dog is a 12 DOF, quadruped robot.
 4. Resources
 ============
 
-.. * User guide: :download:`Getting Started with Aliengo <manual/Aliengo_slides.pdf>`
+Manual
+------
+
+* User Guide: `Aliengo Customer Training <https://tangrobot.sharepoint.com/:p:/s/Public-Outgoing/EWNsvihdq5ZGnz_-aCQ1VYQBTr-Acrkiyw9ftrPl2UbYrg?e=aGFdCY>`_
+* User Manual: `Aliengo User Manual v1.1 <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EbZGsQIYYu1Isftjk1X0DSgBksRBoYoCE9zKjrSbd_vyKg?e=4dJlfh>`_
+* Software Guide: `Aliengo Software Guide v2.0 <https://unitree-docs.readthedocs.io/en/latest/Aliengo/AlienGo.html#>`_
+
+Development
+-----------
 
 * SDK: `unitree_legged_sdk <https://github.com/westonrobot/unitree_legged_sdk>`_
 * ROS simulation package: `unitree_ros <https://github.com/westonrobot/unitree_ros>`_
