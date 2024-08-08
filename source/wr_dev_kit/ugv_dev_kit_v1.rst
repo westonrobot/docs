@@ -31,6 +31,8 @@ The following **extension modules** are available to be added to the base config
 
 * :ref:`Livox Mid-360 Lidar + IMU <ref_ugv_devkit_livox_mid360_imu_extension>`
 
+* :ref:`Vision Sensor Kit <ref_ugv_devkit_vision_extension>`
+
 2. Software Configuration
 =========================
 
