@@ -35,11 +35,12 @@ Additional computers can be added to the base configuration to support more comp
 The following **extension modules** are available to be added to the base configuration:
 
 * :ref:`Livox Mid-360 Lidar + IMU <ref_ugv_devkit_livox_mid360_imu_extension>`
+* :ref:`Vision Sensor Kit <ref_ugv_devkit_vision_extension>`
 * :ref:`Ouster OS1 Lidar + IMU <ref_ugv_devkit_ouster_os1_imu_extension>`
 * :ref:`RTK/GNSS Module <ref_ugv_devkit_rtk_gnss_extension>`
 * :ref:`Ultrasonic Sensor Array <ref_ugv_devkit_ultrasonic_sensor_array_extension>`
-* :ref:`USB Camera Modules <ref_ugv_devkit_camera_module_extension>`
-* :ref:`RGB-D Camera Modules <ref_ugv_devkit_rgbd_camera_module_extension>`
+.. * :ref:`USB Camera Modules <ref_ugv_devkit_camera_module_extension>`
+.. * :ref:`RGB-D Camera Modules <ref_ugv_devkit_rgbd_camera_module_extension>`
 
 Besides the official extension modules, the development kit can be further customized with additional components of your choice. Please feel free to check with us if you have any customization requirements (contact@westonrobot.com).
 
@@ -76,6 +77,7 @@ Dimensions
 
 Power Module (In-built)
 -----------------------
+
 .. image:: ugv_dev_kit_v1/figures/pwr_reg.png
     :width: 720 px
 
@@ -136,4 +138,3 @@ The UGV development kit is pre-installed with the following software stacks:
     1. The ROS drivers are only for components that are part of the base configuration or extension modules supported by Weston Robot.
     2. The open-source mapping and navigation stacks are pre-installed **for demonstration purposes and are provided as is**. You can modify the software stack according to your requirements.
 
-|
