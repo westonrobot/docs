@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>UGV Development Kit V1.0 &mdash; Weston Robot v0.1 documentation</title>
+  <title>UGV Development Kit V1 &mdash; Weston Robot v0.1 documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
       <link rel="stylesheet" type="text/css" href="../_static/css/hacks.css?v=a7984756" />
@@ -54,11 +54,11 @@
 </ul>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="wr_dev_kit.html">WR Development Kit</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">UGV Development Kit V1.0</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">UGV Development Kit V1</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#revision-history">Revision History</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#overview">1. Overview</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#software-configuration">2. Software Configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#hardware-configuration">3. Hardware Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hardware">2. Hardware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#software">3. Software</a></li>
 </ul>
 </li>
 </ul>
@@ -89,7 +89,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="wr_dev_kit.html">WR Development Kit</a></li>
-      <li class="breadcrumb-item active">UGV Development Kit V1.0</li>
+      <li class="breadcrumb-item active">UGV Development Kit V1</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../_sources/wr_dev_kit/ugv_dev_kit_v1.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -101,8 +101,8 @@
              
   <blockquote>
 <div></div></blockquote>
-<section id="ugv-development-kit-v1-0">
-<h1>UGV Development Kit V1.0<a class="headerlink" href="#ugv-development-kit-v1-0" title="Permalink to this heading"></a></h1>
+<section id="ugv-development-kit-v1">
+<h1>UGV Development Kit V1<a class="headerlink" href="#ugv-development-kit-v1" title="Permalink to this heading"></a></h1>
 <section id="revision-history">
 <h2>Revision History<a class="headerlink" href="#revision-history" title="Permalink to this heading"></a></h2>
 <table class="docutils align-default">
@@ -137,68 +137,26 @@
 <li><p><a class="reference internal" href="../periph_user_guide/westonrobot/power_regulator_v2.X.html"><span class="doc">Weston Robot Power Regulator V2.X</span></a></p></li>
 <li><p><a class="reference internal" href="../periph_user_guide/westonrobot/network_devices/industrial_5g_wifi_router.html#ref-onboard-industrial-5g-wifi-router"><span class="std std-ref">Industrial 5G/Wifi Router</span></a></p></li>
 </ul>
+<p>Additional computers can be added to the base configuration to support more complex applications:</p>
+<ul class="simple">
+<li><p><span class="xref std std-ref">Jetson Orin NX</span></p></li>
+<li><p><span class="xref std std-ref">Mini PC (Intel Core i7)</span></p></li>
+</ul>
 <p>The following <strong>extension modules</strong> are available to be added to the base configuration:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="ugv_dev_kit_v1/ugv_devkit_mid360_extension.html#ref-ugv-devkit-livox-mid360-imu-extension"><span class="std std-ref">Livox Mid-360 Lidar + IMU</span></a></p></li>
+<li><p><span class="xref std std-ref">Ouster OS1 Lidar + IMU</span></p></li>
+<li><p><span class="xref std std-ref">RTK/GNSS Module</span></p></li>
+<li><p><span class="xref std std-ref">Ultrasonic Sensor Array</span></p></li>
+<li><p><span class="xref std std-ref">USB Camera Modules</span></p></li>
+<li><p><span class="xref std std-ref">RGB-D Camera Modules</span></p></li>
 </ul>
+<p>Besides the official extension modules, the development kit can be further customized with additional components of your choice. Please feel free to check with us if you have any customization requirements (<a class="reference external" href="mailto:contact&#37;&#52;&#48;westonrobot&#46;com">contact<span>&#64;</span>westonrobot<span>&#46;</span>com</a>).</p>
 </section>
-<section id="software-configuration">
-<h2>2. Software Configuration<a class="headerlink" href="#software-configuration" title="Permalink to this heading"></a></h2>
-<section id="network">
-<h3>Network<a class="headerlink" href="#network" title="Permalink to this heading"></a></h3>
-<p>The router is pre-configured to use the IP range 10.10.0.0/24.</p>
-<p>The IP addresses are assigned as follows:</p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Device Type</p></th>
-<th class="head"><p>IP Range</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>onboard computers</p></td>
-<td><p>10.10.0.10-10.10.0.20/24</p></td>
-</tr>
-<tr class="row-odd"><td><p>navigation sensors</p></td>
-<td><p>10.10.0.30-10.10.0.40/24</p></td>
-</tr>
-<tr class="row-even"><td><p>application sensors</p></td>
-<td><p>10.10.0.100-10.10.0.120/24</p></td>
-</tr>
-</tbody>
-</table>
-<p>It’s recommended but not mandatory to follow the above IP assignment rules. You can change the IP addresses according to your requirements. We follow this convention to configure the development kit by default. Please refer to the delivery note for the actual IP assignment on your robot.</p>
-</section>
-<section id="software-setup">
-<h3>Software Setup<a class="headerlink" href="#software-setup" title="Permalink to this heading"></a></h3>
-<p>The UGV development kit is pre-installed with the following software stacks:</p>
-<ul class="simple">
-<li><p>ROS2 driver for the robot base and sensors</p></li>
-<li><p><a class="reference external" href="https://github.com/westonrobot/wr_devkit_mapping">LIO-SAM 3D Mapping Sample Setup</a></p></li>
-<li><p><a class="reference external" href="https://github.com/westonrobot/wr_devkit_navigation">ROS2 Navigation Sample Setup</a></p></li>
-</ul>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<ol class="arabic simple">
-<li><p>The ROS drivers are only for components that are part of the base configuration or extension modules supported by Weston Robot.</p></li>
-<li><p>The open-source mapping and navigation stacks are pre-installed <strong>for demonstration purposes and are provided as is</strong>. You can modify the software stack according to your requirements.</p></li>
-</ol>
-</div>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-</section>
-</section>
-<section id="hardware-configuration">
-<h2>3. Hardware Configuration<a class="headerlink" href="#hardware-configuration" title="Permalink to this heading"></a></h2>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<a class="largepadding reference internal image-reference" href="../_images/base_iso.png"><img alt="../_images/base_iso.png" class="largepadding" src="../_images/base_iso.png" style="width: 380px;" /></a>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<section id="basic-specifications">
-<h3>Basic Specifications<a class="headerlink" href="#basic-specifications" title="Permalink to this heading"></a></h3>
+<section id="hardware">
+<h2>2. Hardware<a class="headerlink" href="#hardware" title="Permalink to this heading"></a></h2>
+<section id="dimensions">
+<h3>Dimensions<a class="headerlink" href="#dimensions" title="Permalink to this heading"></a></h3>
 <table class="docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p>Dimensions</p></td>
@@ -210,11 +168,10 @@ Regulator)</p></td>
 </tr>
 </tbody>
 </table>
-<a class="largepadding reference internal image-reference" href="../_images/dimensions.png"><img alt="../_images/dimensions.png" class="largepadding" src="../_images/dimensions.png" style="width: 720px;" /></a>
 </section>
 <section id="power-module-in-built">
 <h3>Power Module (In-built)<a class="headerlink" href="#power-module-in-built" title="Permalink to this heading"></a></h3>
-<a class="largepadding reference internal image-reference" href="../_images/pwr_reg.png"><img alt="../_images/pwr_reg.png" class="largepadding" src="../_images/pwr_reg.png" style="width: 720px;" /></a>
+<a class="reference internal image-reference" href="../_images/pwr_reg.png"><img alt="../_images/pwr_reg.png" src="../_images/pwr_reg.png" style="width: 720px;" /></a>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Port</p></th>
@@ -263,50 +220,57 @@ Regulator)</p></td>
 </tr>
 </tbody>
 </table>
-<div class="line-block">
-<div class="line"><br /></div>
-<div class="line"><br /></div>
-</div>
-</section>
-<section id="removal-of-front-rear-latches">
-<h3>Removal of Front/Rear Latches<a class="headerlink" href="#removal-of-front-rear-latches" title="Permalink to this heading"></a></h3>
+<p>You can find more information about how to reconfigure the internal components of the UGV development kit in the</p>
 <ul class="simple">
-<li><p>Remove fasteners (2 x M5 bolts) from top of case.</p></li>
-<li><p>Tilt latch outwards.</p></li>
-<li><p>Lift latch to separate it from main frame.</p></li>
+<li><p><a class="reference internal" href="ugv_dev_kit_v1/component_reconfiguration.html#ref-ugv-devkit-component-reconfiguration"><span class="std std-ref">Component Re-configuration Guide</span></a></p></li>
 </ul>
-<a class="reference internal image-reference" href="../_images/front_plate.png"><img alt="../_images/front_plate.png" src="../_images/front_plate.png" style="width: 720px;" /></a>
 </section>
-<section id="accessing-components-in-kit">
-<h3>Accessing Components in Kit<a class="headerlink" href="#accessing-components-in-kit" title="Permalink to this heading"></a></h3>
+</section>
+<section id="software">
+<h2>3. Software<a class="headerlink" href="#software" title="Permalink to this heading"></a></h2>
+<p>We have pre-configured the network settings and installed necessary driver software on the NanoPC-based onboard computer. A few sample applications are also pre-installed to help you get started with the development kit.</p>
+<section id="network">
+<h3>Network<a class="headerlink" href="#network" title="Permalink to this heading"></a></h3>
+<p>The router is pre-configured to use the IP range 10.10.0.0/24.</p>
+<p>The IP addresses are assigned as follows:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Device Type</p></th>
+<th class="head"><p>IP Range</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>onboard computers</p></td>
+<td><p>10.10.0.10-10.10.0.20/24</p></td>
+</tr>
+<tr class="row-odd"><td><p>navigation sensors</p></td>
+<td><p>10.10.0.30-10.10.0.40/24</p></td>
+</tr>
+<tr class="row-even"><td><p>application sensors</p></td>
+<td><p>10.10.0.100-10.10.0.120/24</p></td>
+</tr>
+</tbody>
+</table>
+<p>It’s recommended but not mandatory to follow the above IP assignment rules. You can change the IP addresses according to your requirements. We follow this convention to configure the development kit by default. Please refer to the delivery note for the actual IP assignment on your robot.</p>
+</section>
+<section id="software-setup">
+<h3>Software Setup<a class="headerlink" href="#software-setup" title="Permalink to this heading"></a></h3>
+<p>The UGV development kit is pre-installed with the following software stacks:</p>
 <ul class="simple">
-<li><p>Internal hardware/wiring can either be accessed through the side or
-by sliding out hardware rack</p></li>
-<li><p>To remove hardware rack:</p>
-<ul>
-<li><p>Remove the locking thumb screw</p></li>
-<li><p>Proceed to slide out rack</p></li>
+<li><p>ROS2 driver for the robot base and sensors</p></li>
+<li><p><a class="reference external" href="https://github.com/westonrobot/wr_devkit_mapping">LIO-SAM 3D Mapping Sample Setup</a></p></li>
+<li><p><a class="reference external" href="https://github.com/westonrobot/wr_devkit_navigation">ROS2 Navigation Sample Setup</a></p></li>
 </ul>
-</li>
-</ul>
-<a class="reference internal image-reference" href="../_images/rails.png"><img alt="../_images/rails.png" src="../_images/rails.png" style="width: 720px;" /></a>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Please be reminded to remove connections such as power cables and connectivity ports before sliding out hardware rack!</p>
+<ol class="arabic simple">
+<li><p>The ROS drivers are only for components that are part of the base configuration or extension modules supported by Weston Robot.</p></li>
+<li><p>The open-source mapping and navigation stacks are pre-installed <strong>for demonstration purposes and are provided as is</strong>. You can modify the software stack according to your requirements.</p></li>
+</ol>
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</section>
-<section id="optional-modules-accessories">
-<h3>Optional Modules &amp; Accessories<a class="headerlink" href="#optional-modules-accessories" title="Permalink to this heading"></a></h3>
-<p><strong>Base Kit with Livox Lidar and IMU</strong></p>
-<a class="reference internal image-reference" href="../_images/livox.png"><img alt="../_images/livox.png" src="../_images/livox.png" style="width: 300px;" /></a>
-<div class="line-block">
-<div class="line"><br /></div>
-</div>
-<p><strong>Base Kit with Ouster OS1 Lidar</strong></p>
-<a class="reference internal image-reference" href="../_images/ouster.png"><img alt="../_images/ouster.png" src="../_images/ouster.png" style="width: 300px;" /></a>
 </section>
 </section>
 </section>

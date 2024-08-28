@@ -1,6 +1,6 @@
-************************
-UGV Development Kit V1.0
-************************
+**********************
+UGV Development Kit V1
+**********************
 
 Revision History
 ================
@@ -27,12 +27,82 @@ This **base configuration** of the development kit consists of the following pre
 * :doc:`Weston Robot Power Regulator V2.X </periph_user_guide/westonrobot/power_regulator_v2.X>`
 * :ref:`Industrial 5G/Wifi Router <ref_onboard_industrial_5g_wifi_router>`
 
+Additional computers can be added to the base configuration to support more complex applications:
+
+* :ref:`Jetson Orin NX <ref_jetson_orin_nx>`
+* :ref:`Mini PC (Intel Core i7) <ref_mini_pc_x86>`
+
 The following **extension modules** are available to be added to the base configuration:
 
 * :ref:`Livox Mid-360 Lidar + IMU <ref_ugv_devkit_livox_mid360_imu_extension>`
+* :ref:`Ouster OS1 Lidar + IMU <ref_ugv_devkit_ouster_os1_imu_extension>`
+* :ref:`RTK/GNSS Module <ref_ugv_devkit_rtk_gnss_extension>`
+* :ref:`Ultrasonic Sensor Array <ref_ugv_devkit_ultrasonic_sensor_array_extension>`
+* :ref:`USB Camera Modules <ref_ugv_devkit_camera_module_extension>`
+* :ref:`RGB-D Camera Modules <ref_ugv_devkit_rgbd_camera_module_extension>`
 
-2. Software Configuration
-=========================
+Besides the official extension modules, the development kit can be further customized with additional components of your choice. Please feel free to check with us if you have any customization requirements (contact@westonrobot.com).
+
+2. Hardware
+===========
+
+Dimensions
+----------
+
++-----------------------------------+-----------------------------------+
+| Dimensions                        | 310mm(L) x 280mm(B) x 200mm(H)    |
++-----------------------------------+-----------------------------------+
+| Dry Weight (Incl. Power           | ~3kg                              |
+| Regulator)                        |                                   |
++-----------------------------------+-----------------------------------+
+
+.. **Base Kit with Livox Lidar and IMU**
+
+.. .. image:: ugv_dev_kit_v1/figures/livox.png
+..     :width: 300 px
+
+.. |
+.. **Base Kit with Ouster OS1 Lidar**
+
+.. .. image:: ugv_dev_kit_v1/figures/ouster.png
+..     :width: 300 px
+
+.. .. image:: ugv_dev_kit_v1/figures/base_iso.png
+..     :width: 380 px
+
+.. .. image:: ugv_dev_kit_v1/figures/dimensions.png
+..     :width: 720 px
+
+
+Power Module (In-built)
+-----------------------
+.. image:: ugv_dev_kit_v1/figures/pwr_reg.png
+    :width: 720 px
+
++-----------------------+---------------+---------------+------------------------+------------+
+|         Port          |    Voltage    | Current (Max) |         Power          |   Fused    |
++=======================+===============+===============+========================+============+
+| Main input            | 18-32V        | 20A           | /                      | 20A fuse   |
++-----------------------+---------------+---------------+------------------------+------------+
+| Output - 19V          | 19V           | 8A            | 150W                   | 10A fuse   |
++-----------------------+---------------+---------------+------------------------+------------+
+| Output - 12V          | 12V           | 10A           | 120W                   | 15A fuse   |
++-----------------------+---------------+---------------+------------------------+------------+
+| Output - 5V isolated  | 5V            | 4A            | 20W                    | Resettable |
++-----------------------+---------------+---------------+------------------------+------------+
+| Output - 12V isolated | 12V           | 3.3A          | 40W                    | Resettable |
++-----------------------+---------------+---------------+------------------------+------------+
+| Output - extension    | Input voltage | /             | Limited by total power | /          |
++-----------------------+---------------+---------------+------------------------+------------+ 
+
+You can find more information about how to reconfigure the internal components of the UGV development kit in the 
+
+* :ref:`Component Re-configuration Guide <ref_ugv_devkit_component_reconfiguration>`
+
+3. Software
+===========
+
+We have pre-configured the network settings and installed necessary driver software on the NanoPC-based onboard computer. A few sample applications are also pre-installed to help you get started with the development kit.
 
 Network 
 -------
@@ -67,96 +137,3 @@ The UGV development kit is pre-installed with the following software stacks:
     2. The open-source mapping and navigation stacks are pre-installed **for demonstration purposes and are provided as is**. You can modify the software stack according to your requirements.
 
 |
-
-3. Hardware Configuration
-==========================
-|
-.. image:: ugv_dev_kit_v1/figures/base_iso.png
-    :width: 380 px
-    :class: largepadding
-|
-
-Basic Specifications
---------------------
-
-+-----------------------------------+-----------------------------------+
-| Dimensions                        | 310mm(L) x 280mm(B) x 200mm(H)    |
-+-----------------------------------+-----------------------------------+
-| Dry Weight (Incl. Power           | ~3kg                              |
-| Regulator)                        |                                   |
-+-----------------------------------+-----------------------------------+
-
-.. image:: ugv_dev_kit_v1/figures/dimensions.png
-    :width: 720 px
-    :class: largepadding
-
-
-Power Module (In-built)
------------------------
-.. image:: ugv_dev_kit_v1/figures/pwr_reg.png
-    :width: 720 px
-    :class: largepadding
-
-+-----------------------+---------------+---------------+------------------------+------------+
-|         Port          |    Voltage    | Current (Max) |         Power          |   Fused    |
-+=======================+===============+===============+========================+============+
-| Main input            | 18-32V        | 20A           | /                      | 20A fuse   |
-+-----------------------+---------------+---------------+------------------------+------------+
-| Output - 19V          | 19V           | 8A            | 150W                   | 10A fuse   |
-+-----------------------+---------------+---------------+------------------------+------------+
-| Output - 12V          | 12V           | 10A           | 120W                   | 15A fuse   |
-+-----------------------+---------------+---------------+------------------------+------------+
-| Output - 5V isolated  | 5V            | 4A            | 20W                    | Resettable |
-+-----------------------+---------------+---------------+------------------------+------------+
-| Output - 12V isolated | 12V           | 3.3A          | 40W                    | Resettable |
-+-----------------------+---------------+---------------+------------------------+------------+
-| Output - extension    | Input voltage | /             | Limited by total power | /          |
-+-----------------------+---------------+---------------+------------------------+------------+ 
-
-|
-|
-
-Removal of Front/Rear Latches
------------------------------
--  Remove fasteners (2 x M5 bolts) from top of case.
-
--  Tilt latch outwards.
-
--  Lift latch to separate it from main frame.
-
-.. image:: ugv_dev_kit_v1/figures/front_plate.png
-    :width: 720 px
-    
-Accessing Components in Kit
----------------------------
--  Internal hardware/wiring can either be accessed through the side or
-   by sliding out hardware rack
-
--  To remove hardware rack:
-
-   -  Remove the locking thumb screw
-
-   -  Proceed to slide out rack
-
-
-.. image:: ugv_dev_kit_v1/figures/rails.png
-    :width: 720 px
-
-.. note::
-    Please be reminded to remove connections such as power cables and connectivity ports before sliding out hardware rack!    
-    
-|
-
-Optional Modules & Accessories
-------------------------------
-
-**Base Kit with Livox Lidar and IMU**
-
-.. image:: ugv_dev_kit_v1/figures/livox.png
-    :width: 300 px
-
-|
-**Base Kit with Ouster OS1 Lidar**
-
-.. image:: ugv_dev_kit_v1/figures/ouster.png
-    :width: 300 px
