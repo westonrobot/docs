@@ -40,8 +40,10 @@ The Ranger Mini 2.0 mobile robot is an independent four-wheeled differential dri
      - <15° (with loading)
    * - Charging Time
      - 1.5h
-   * - User Power
+   * - Battery
      - 48V, 24AH
+   * - User Power Supply
+     - 48V, 15A (Max) 
    * - Weight
      - 64.5kg
    * - Rated Load
