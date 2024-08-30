@@ -190,6 +190,7 @@ The Go2 robot dog is a new and improved intelligent bionic quadruped robot empow
 Manual
 ------
 
+* User Guide: `Go2 User Guide <https://tangrobot.sharepoint.com/:p:/s/Public-Outgoing/Ef6xB-mt-TtAhu_S81nDoWsBk9wlDtic3VEzey2Nu4hBBg?e=eVifVB>`_
 * Go2 Manual: `Unitree <https://support.unitree.com/home/en/developer/about%20Go2>`_
 
 .. Development
