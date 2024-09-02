@@ -94,6 +94,7 @@ LIMO ROS2 robot features an Intel NUC i7 processor running ROS 2 on Ubuntu 22.04
 3. Resources
 ============
 
-* Limo ROS2 Manual: `limo_ros2_manual <https://github.com/agilexrobotics/limo_ros2_doc/blob/master/LIMO-ROS2-humble(EN).md>`_
+* Limo ROS2 Manual (EN): `limo_ros2_manual <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/Ed5PELl-TB1GhYgJFkq8V2YBW73jHMA6TS9qep4yI8I7Pg?e=wBuOOy>`_
+* Limo ROS2 Manual (CN): `limo_ros2_manual <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/ER8sgxhrOItFj4X2oGesC-ABnNvLCxx2Ldk91HMsnufDhA?e=vnz3ig>`_
 * Dabai Camera Manual (CN): `Orbbec Dabai <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EVS9VBsLvEtBuNYUANL1G2wBgxu5_oVS0oCqaTLwUgfJBQ?e=GWREwn>`_
-* ROS2 package: `limo_ros2 <https://github.com/westonrobot/limo_ros2>`_
+.. * ROS2 package: `limo_ros2 <https://github.com/westonrobot/limo_ros2>`_
