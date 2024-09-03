@@ -114,44 +114,56 @@
 </section>
 <section id="client-software-installation">
 <h3>Client Software Installation<a class="headerlink" href="#client-software-installation" title="Permalink to this heading"></a></h3>
-<p>Follow these steps to install the Assisted Driving Toolbox Client on the host computer. If you have installed packages from the Weston Robot repository before, you can skip to step 3.</p>
-<ol class="arabic simple">
+<p>Follow these steps to install the Assisted Driving Toolbox Client on the host computer. If you have installed packages from the Weston Robot repository before, you can skip to step 2.</p>
+<ol class="arabic">
 <li><p>Follow the instructions <a class="reference external" href="https://docs.westonrobot.com/software/installation_guide.html#add-weston-robot-s-apt-source">here</a> to add the Weston Robot package source to your system’s software repository list.</p></li>
-<li><p>Now you can update the apt index and install the ADT package with “apt-get” command.</p></li>
-</ol>
+<li><p>Now you can update the apt index and install the ADT package with “apt-get” command.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Installation of additional third-party dependency packages may be required for this package.</p>
+</div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>update
 $<span class="w"> </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>wr-ad-toolbox
 </pre></div>
 </div>
-<p><strong>Note:</strong> Installation of additional third-party dependency packages may be required for this package.</p>
+</li>
+</ol>
 </section>
 <section id="tls-certificate-installation">
 <h3>TLS Certificate Installation<a class="headerlink" href="#tls-certificate-installation" title="Permalink to this heading"></a></h3>
 <p>To run the Assisted Driving Toolbox Client, you need to install a set of TLS certificates. These certificates are used to establish a secure connection between the client and the robot
 for control. You should have received a password-protected zip file containing the certificates from Weston Robot.</p>
-<ol class="arabic simple">
+<ol class="arabic">
 <li><p>Extract the zip file to a location of your choice.</p></li>
 <li><p>Open a terminal and navigate to the directory where you extracted the zip file.</p></li>
-<li><p>Run the following command to install the certificates:</p></li>
-</ol>
+<li><p>Run the following command to install the certificates:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>./install_certificates.sh
 </pre></div>
 </div>
+</li>
+</ol>
 </section>
 <section id="running-the-assisted-driving-toolbox-client">
 <h3>Running the Assisted Driving Toolbox Client<a class="headerlink" href="#running-the-assisted-driving-toolbox-client" title="Permalink to this heading"></a></h3>
 <p>To open the application, locate the Assisted Driving Toolbox Client in the application menu:</p>
-<ul class="simple">
+<ul>
 <li><p>Press the Windows key on your keyboard to open the application search bar. Search for “WR Assisted Driving Toolbox”.</p></li>
-<li><p>Click on the application icon to open the Assisted Driving Toolbox Client.</p></li>
-</ul>
+<li><p>Click on the application icon to open the Assisted Driving Toolbox Client.</p>
 <img alt="Launching Assisted Driving Toolbox Client" src="../../_images/adt_v2_01.png" />
+</li>
+</ul>
 <p>The Assisted Driving Toolbox Client will open with the following screen:</p>
-<img alt="Assisted Driving Toolbox Client Start Screen" src="../../_images/adt_v2_02.png" />
+<blockquote>
+<div><img alt="Assisted Driving Toolbox Client Start Screen" src="../../_images/adt_v2_02.png" />
+</div></blockquote>
 <p>Click on the “Login” button. A new browser window will open with the following login page:</p>
-<img alt="Assisted Driving Toolbox Client Login Page" src="../../_images/adt_v2_03.png" />
+<blockquote>
+<div><img alt="Assisted Driving Toolbox Client Login Page" src="../../_images/adt_v2_03.png" />
+</div></blockquote>
 <p>Login with your credentials. After successful login, the Assisted Driving Toolbox Client will prompt you to select the robot you want to control:</p>
-<img alt="Assisted Driving Toolbox Client Robot Selection" src="../../_images/adt_v2_04.png" />
+<blockquote>
+<div><img alt="Assisted Driving Toolbox Client Robot Selection" src="../../_images/adt_v2_04.png" />
+</div></blockquote>
 <p>If this is your first time using the Assisted Driving Toolbox Client, a settings menu will automatically open for you to configure the joystick and camera settings.</p>
 </section>
 <section id="key-application-features">
@@ -160,14 +172,51 @@ for control. You should have received a password-protected zip file containing t
 <h4>Teleoperation Panel<a class="headerlink" href="#teleoperation-panel" title="Permalink to this heading"></a></h4>
 <p>The teleoperation panel serves as the main control interface for the robot. It allows you to control the robot’s movement and observe the robot’s surroundings through
 the robot’s onboard cameras in real-time.</p>
-<img alt="Teleoperation Panel" src="../../_images/adt_v2_05.png" />
+<blockquote>
+<div><img alt="Teleoperation Panel" src="../../_images/adt_v2_05.png" />
+</div></blockquote>
 </section>
 <section id="settings-menu">
 <h4>Settings Menu<a class="headerlink" href="#settings-menu" title="Permalink to this heading"></a></h4>
-<img alt="Settings Menu" src="../../_images/adt_v2_06.png" />
+<blockquote>
+<div><img alt="Settings Menu" src="../../_images/adt_v2_06.png" />
+</div></blockquote>
 <p>The settings menu allows you to configure the joystick and camera settings. You can access the settings menu by clicking on the gear icon in the bottom right corner
-of the Assisted Driving Toolbox Client, or via the top menu bar by selecting “File” &gt; “Settings”.</p>
+of the Assisted Driving Toolbox Client.</p>
 </section>
+</section>
+<section id="manual-control-with-wireless-ps4-controller">
+<h3>Manual Control with Wireless PS4 Controller<a class="headerlink" href="#manual-control-with-wireless-ps4-controller" title="Permalink to this heading"></a></h3>
+<p>To start manually controlling the robot, at least 1 controller (joystick, gamepad, etc.) must be connected. To connect a Bluetooth PS4 gamepad to the Ubuntu system,
+you may follow these general steps:</p>
+<ol class="arabic">
+<li><p>Open Bluetooth settings window. Click the top right corner of your screen to open the toolbar menu. Subsequently select “Bluetooth Settings”.</p>
+<img alt="Bluetooth Settings" src="../../_images/adt_v2_07.png" />
+</li>
+<li><p>Turn on Bluetooth pairing mode of the PS4 controller by <strong>holding onto the PlayStation button and “Share” button simultaneously</strong> until a flashing blue light is observed on the PS4 gamepad’s LED.​</p>
+<img alt="PS4 Controller Pairing" src="../../_images/adt_v2_08.png" />
+</li>
+<li><p>On the Ubuntu system’s Bluetooth settings, find the device named “Wireless Controller” and connect to it.</p>
+<img alt="Connecting to bluetooth controller" src="../../_images/adt_v2_09.png" />
+</li>
+<li><p>Upon successful connection to the gamepad, you should see the following icon in the teleoperation panel of the user application. The LED on the controller should also turn <strong>solid blue</strong>.</p>
+<img alt="Connected PS4 Controller on UI" src="../../_images/adt_v2_10.png" />
+</li>
+<li><p>After switching to the teleoperation panel, request for control from the robot by clicking the following toggle switch.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do check your settings to ensure that the joystick is properly configured before requesting control.</p>
+</div>
+<img alt="Requesting Control" src="../../_images/adt_v2_11.png" />
+</li>
+<li><p>Upon successfully obtaining robot control, the robot may be controlled as follows: ​</p>
+<ul class="simple">
+<li><p>Left Joystick: Moves the robot forward and backwards.​</p></li>
+<li><p>Right Joystick: Rotates the robot right and left.</p></li>
+</ul>
+<img alt="Joystick Control" src="../../_images/adt_v2_12.png" />
+</li>
+</ol>
 </section>
 </section>
 </section>
