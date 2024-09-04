@@ -50,8 +50,6 @@ The Ranger Mini 2.0 mobile robot is an independent four-wheeled differential dri
      - 80kg
    * - Remote Control Range
      - 2.4G / 200m
-   * - Charging Time
-     - 1.5h
 
 .. list-table:: Drift Specifications
    :widths: 25 25 25
@@ -74,7 +72,7 @@ The Ranger Mini 2.0 mobile robot is an independent four-wheeled differential dri
 
 |
 
-3. Steering Motor Calibration
+1. Steering Motor Calibration
 =============================
 
 Autocalibration
