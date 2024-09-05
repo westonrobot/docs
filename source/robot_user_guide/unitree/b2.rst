@@ -280,6 +280,10 @@ Development
 * SDK Support: `unitree_sdk2 <https://github.com/unitreerobotics/unitree_sdk2>`_
 * ROS2 Support: `unitree_ros2 <https://github.com/unitreerobotics/unitree_ros2>`_
 
+Mechanical
+----------
+
+* User Interface Module CAD: `B2 User Interface Module STEP <https://tangrobot.sharepoint.com/:u:/s/ProductDevelopment/EaH5OYxj8glKjJ10s0Xm2ooBU7ncVzAkqjGGkULEB9O_jA?e=uJayCQ>`_
 
 5. FAQ
 ============
