@@ -132,7 +132,8 @@ The UGV development kit is pre-installed with the following software stacks:
 
 * ROS2 driver for the robot base and sensors
 * `LIO-SAM 3D Mapping Sample Setup <https://github.com/westonrobot/wr_devkit_mapping>`_
-* `ROS2 Navigation Sample Setup <https://github.com/westonrobot/wr_devkit_navigation>`_
+* :ref:`ROS2 Navigation Sample Setup <ugv_devkit_ros2_navigation_sample_setup_guide>`
+..  * `ROS2 Navigation Sample Setup <https://github.com/westonrobot/wr_devkit_navigation>`_
 
 .. note::
     1. The ROS drivers are only for components that are part of the base configuration or extension modules supported by Weston Robot.
