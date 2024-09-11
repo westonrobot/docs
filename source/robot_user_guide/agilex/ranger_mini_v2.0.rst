@@ -1,3 +1,5 @@
+.. _ref_ranger_mini_v2:
+
 ****************
 Ranger Mini V2.0
 ****************
