@@ -34,7 +34,7 @@ Tutorials
 
 .. _ref_cartographer:
 
-1. Cartographer Mapping and Navigation
+2. Cartographer Mapping and Navigation
 ======================================
 
 Cartographer is a system that provides real-time simultaneous localization and mapping (SLAM) in 2D and 3D across multiple platforms and sensor configurations. For autonomous navigation through complex environments, cartographer is integrated with `Nav2 Navigation Stack <https://docs.nav2.org/>`_ by `Open Navigation <https://www.opennav.org/>`_.
