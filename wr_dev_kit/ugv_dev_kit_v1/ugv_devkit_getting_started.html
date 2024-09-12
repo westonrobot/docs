@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting Started &mdash; Weston Robot v0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/hacks.css?v=a7984756" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=4c0d86c8"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #323640" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting Started</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/software.html">Software Package</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../wr_dev_kit.html">WR Development Kit</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../robot_user_guide/robot_user_guide.html">Robot User Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../periph_user_guide/periph_user_guide.html">Peripheral User Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../toolbox/toolbox.html">WR Toolbox User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #323640" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Weston Robot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Getting Started</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/wr_dev_kit/ugv_dev_kit_v1/ugv_devkit_getting_started.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <blockquote>
+<div></div></blockquote>
+<section id="getting-started">
+<span id="ref-ugv-devkit-getting-started"></span><h1>Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this heading"></a></h1>
+<section id="connecting-the-robot-pc-to-your-wifi-network">
+<h2>Connecting the Robot PC to your WiFi Network<a class="headerlink" href="#connecting-the-robot-pc-to-your-wifi-network" title="Permalink to this heading"></a></h2>
+<p>The devkit is equipped with an Industrial 5G/WiFi Router and can act as an AP client to provide internet connectivity. Review the following guide and configure your router to connect to an existing WiFi network.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../periph_user_guide/westonrobot/network_devices/industrial_5g_wifi_router.html#ref-onboard-industrial-5g-wifi-router"><span class="std std-ref">Industrial 5G/WiFi Router</span></a></p></li>
+</ul>
+</section>
+<section id="connecting-your-pc-to-the-robot-pc-via-ssh">
+<h2>Connecting your PC to the Robot PC via SSH<a class="headerlink" href="#connecting-your-pc-to-the-robot-pc-via-ssh" title="Permalink to this heading"></a></h2>
+<p>You can control, deploy, launch, and debug applications from your PC. Alternatively, you can develop your applications directly on the robot PC by connecting a display, keyboard, and mouse to the robot PC or use a remote desktop application to access.</p>
+<ol class="arabic">
+<li><p>Connect to the WiFi broadcasted by the <a class="reference internal" href="../../periph_user_guide/westonrobot/network_devices/industrial_5g_wifi_router.html#ref-onboard-industrial-5g-wifi-router"><span class="std std-ref">Industrial 5G/WiFi Router</span></a> in the devkit.</p></li>
+<li><p>From your PC, open a terminal and run the following command to SSH into the robot PC. Enter the robot PC password when prompted (Refer to the handover note for the login credentials and the IP address of the Robot PC).</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">&lt;</span><span class="n">USER</span><span class="o">&gt;@&lt;</span><span class="n">ROBOT_PC_IP</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Replace <code class="docutils literal notranslate"><span class="pre">&lt;USER&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;ROBOT_PC_IP&gt;</span></code> with the values for your robot. For example, <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">wr&#64;10.10.0.20</span></code></p>
+</div>
+</section>
+<section id="camera-configuration">
+<h2>Camera Configuration<a class="headerlink" href="#camera-configuration" title="Permalink to this heading"></a></h2>
+<p>The devkit supports the installation of up to four cameras, which can be mounted at the front, rear, left, and right positions of the <a class="reference internal" href="ugv_devkit_vision_extension.html#ref-ugv-devkit-vision-extension"><span class="std std-ref">Vision Sensor Kit</span></a>. The supported camera types include RGB USB camera and RealSense D435i. Navigate to the <code class="docutils literal notranslate"><span class="pre">src/kits/top/perception_sensor_kit_bringup/config</span></code> folder. The configuration files are named according to the camera position and type. For example, the configuration file for the front RealSense D435i camera is named <code class="docutils literal notranslate"><span class="pre">front_d435i.param.yaml</span></code>. The following folder structure shows
+the relevant files for configuring the cameras:</p>
+<div class="line-block">
+<div class="line">config</div>
+<div class="line">├── front_d435i.param.yaml</div>
+<div class="line">├── rear_d435i.param.yaml</div>
+<div class="line">├── left_d435i.param.yaml</div>
+<div class="line">├── right_d435i.param.yaml</div>
+<div class="line">└── rgb_camera.yaml</div>
+</div>
+<p>Based on the camera(s) you have installed, open the corresponding configuration file and adjust the parameters as necessary.</p>
+<section id="realsense-camera">
+<h3>RealSense Camera<a class="headerlink" href="#realsense-camera" title="Permalink to this heading"></a></h3>
+<p>For example, if you have a RealSense D435i connected at the front position, open the <code class="docutils literal notranslate"><span class="pre">front_d435i.param.yaml</span></code> file and replace <code class="docutils literal notranslate"><span class="pre">serial_no</span></code> with the serial number of your RealSense camera. To find the serial number of your RealSense camera(s) connected, enter <code class="docutils literal notranslate"><span class="pre">rs-enumerate-devices</span> <span class="pre">-s</span></code> in the terminal.</p>
+<a class="reference internal image-reference" href="../../_images/camera_configuration_1.jpg"><img alt="../../_images/camera_configuration_1.jpg" class="align-center" src="../../_images/camera_configuration_1.jpg" style="width: 500px;" /></a>
+</section>
+<section id="rgb-camera">
+<h3>RGB Camera<a class="headerlink" href="#rgb-camera" title="Permalink to this heading"></a></h3>
+<p>For example, if you have an RGB USB camera connected and mounted at the left position, open the <code class="docutils literal notranslate"><span class="pre">rgb_camera.yaml</span></code> file and enter the camera device file with its ID assigned by the kernel.</p>
+<a class="reference internal image-reference" href="../../_images/camera_configuration_2.jpg"><img alt="../../_images/camera_configuration_2.jpg" class="align-center" src="../../_images/camera_configuration_2.jpg" style="width: 500px;" /></a>
+<p>To find the device file ID, enter <code class="docutils literal notranslate"><span class="pre">v4l2-ctl</span> <span class="pre">--list-devices</span></code> in the terminal. If <code class="docutils literal notranslate"><span class="pre">v4l-utils</span></code> package is not installed, run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">v4l-utils</span></code> to install it.</p>
+<a class="reference internal image-reference" href="../../_images/camera_configuration_3.jpg"><img alt="../../_images/camera_configuration_3.jpg" class="align-center" src="../../_images/camera_configuration_3.jpg" style="width: 400px;" /></a>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Weston Robot Pte Ltd.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

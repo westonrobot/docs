@@ -1,3 +1,5 @@
+.. _ref_scout_mini:
+
 **********
 Scout Mini
 **********
