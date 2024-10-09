@@ -5,11 +5,13 @@ Ranger Mini V3.0
 Revision History
 ================
 
-+----------+-------------------+-----------+------------------------------------+
-| Revision | Date (DD/MM/YYYY) | Author    | Changes                            |
-+==========+===================+===========+====================================+
-| 1        | 02/09/2024        | Kang Wei  | Initial release                    |
-+----------+-------------------+---------+-+------------------------------------+
++----------+-------------------+----------+-----------------------+
+| Revision | Date (DD/MM/YYYY) | Author   | Changes               |
++==========+===================+==========+=======================+
+| 1        | 02/09/2024        | Kang Wei | Initial release       |
++----------+-------------------+----------+-----------------------+
+| 2        | 09/10/2024        | Hans     | Update manual version |
++----------+-------------------+----------+-----------------------+
 
 1. Overview
 ===========
@@ -81,7 +83,7 @@ The Ranger Mini 3.0 mobile robot is an independent four-wheeled differential dri
 
 3. Resources
 ============
-* Ranger Mini 3.0 Manual (EN): `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EUXTEdF8y0JIkeVJ-foULMYB4ohYh-EBQzmZO7pBfAsjLQ?e=YJGnHM>`_
+* Ranger Mini 3.0 Manual (EN): `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EUjRgOZIXK9KnW006BR8w3sB2jU6vFv3z7WgxDFmJ_PPQQ?e=mcYaJs>`_
 * C++ SDK: `ugv_sdk <https://github.com/westonrobot/ugv_sdk>`_
 * ROS1 package: `ranger_ros <https://github.com/westonrobot/ranger_ros>`_
 * ROS2 package: `ranger_ros2 <https://github.com/westonrobot/ranger_ros2>`_
