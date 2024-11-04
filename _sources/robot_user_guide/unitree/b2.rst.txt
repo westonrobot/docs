@@ -27,14 +27,14 @@ Revision History
 
    * - Standing State
      - 1098mm x 450mm x 645mm
-   * - Proning State
+   * - Folded State
      - 880mm x 460mm x 330mm
    * - Net Weight (Incl. battery)
      - Approx. 60kg
    * - Degrees of Freedom
      - 12
    * - Maximum Speed
-     - > 6m/s (Limited for safety purposes)
+     - 3.5m/s (Limited for safety purposes)
 
 .. list-table:: Operational Specifications **(AI Mode)**
    :widths: 25 25
@@ -101,7 +101,7 @@ Revision History
    * - Perception Sensor Configuration [4]
      - | 3D LiDAR ×1
        | Depth Camera ×2
-       | Optical Camera ×2
+       | Optical Camera ×2 / 1280 x 720 / 15Hz
    * - External Interfaces
      - | 1000M-Base-Ethernet ×4
        | USB3.0 ×4
