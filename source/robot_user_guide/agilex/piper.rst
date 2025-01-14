@@ -67,6 +67,11 @@ Manuals
 * User Manual (CN): `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EasMrjngL_pNmaawLe8mlCgBTgPMNG1hp6PRw32CDxccow?e=7q5abC>`_
 * Quick Start Guide (CN): `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EQBRJZsY1gdDg_do070o2goBCWjyDwGL9dohA4xCFqkNog?e=38opB8>`_
 
+Software
+--------
+* Windows Application: `APP <https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EUN0qfdCSLVCqZPctXXr_SwB6CCPON8HHcWR5ybNwy1aOQ?e=zekJyS>`_
+* CAN Communication Protocol (CN): `CAN Protocol <https://tangrobot.sharepoint.com/:x:/s/Public-Outgoing/EXt0lngMwfpEuhgttEqFuYIBtMUkrF6Ou1ovQOHQbsWm8A?e=2FoZtv>`_ 
+
 Development
 -----------
 * SDK: `piper_sdk <https://github.com/agilexrobotics/piper_sdk>`_
