@@ -196,7 +196,11 @@ Manual
 .. Development
 .. -----------
 
-5. FAQ
+5. After-Sales Support
+======================
+* Expansion Dock Reflash Guide: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EQgnsMxDTfdOlWHUoETWYkYB7cmSS-xbkRdxM9eZCDr2Yw?e=RWjG1o>`_
+
+6. FAQ
 ======
 1. | **Q: What is account insufficient?**
    | A: Each new GO2 comes with a complimentary RMB120 credit, which can be utilized for data transfer and GPT services. Consult the **Connection Mode** table to determine which connection modes will utilize this credit. When the account balance is insufficient, the GO2 can only be connected via AP mode.
