@@ -198,7 +198,7 @@ Manual
 
 5. After-Sales Support
 ======================
-* Expansion Dock Reflash Guide: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EQgnsMxDTfdOlWHUoETWYkYB7cmSS-xbkRdxM9eZCDr2Yw?e=RWjG1o>`_
+* Expansion Dock Reflash Guide: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/ER0sT6qrBg1Ov2v5fgrAyl4BAPBwzDyp-zBWq4nfGK8YLg?e=xCHa4b>`_
 
 6. FAQ
 ======
