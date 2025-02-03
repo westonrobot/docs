@@ -5,11 +5,13 @@ Go2 Robot Dog
 Revision History
 ================
 
-+----------+-------------------+----------+------------------------------------------------------+
-| Revision | Date (DD/MM/YYYY) | Author   | Changes                                              |
-+==========+===================+==========+======================================================+
-| 1        | 19/1/2024         | Kang Wei | Initial release                                      |
-+----------+-------------------+----------+------------------------------------------------------+
++----------+-------------------+-------------+------------------------------------------------------+
+| Revision | Date (DD/MM/YYYY) | Author      | Changes                                              |
++==========+===================+=============+======================================================+
+| 1        | 19/1/2024         | Kang Wei    | Initial release                                      |
++----------+-------------------+-------------+------------------------------------------------------+
+| 2        | 3/2/2025          | Owen Izairi | Added expansion dock release guide                   |
++----------+-------------------+-------------+------------------------------------------------------+
 
 1. Overview
 ===========
@@ -198,7 +200,7 @@ Manual
 
 5. After-Sales Support
 ======================
-* Expansion Dock Reflash Guide: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/ER0sT6qrBg1Ov2v5fgrAyl4BAPBwzDyp-zBWq4nfGK8YLg?e=xCHa4b>`_
+* Expansion Dock Reflash Guide: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EcQ3PHojLhZBsDg1oBpvPPIBWyJiSJPyAZMsk91ZnXbBJg?e=YaKBgf>`_
 
 6. FAQ
 ======
