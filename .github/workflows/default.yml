@@ -17,7 +17,7 @@ jobs:
         docs-folder: "."
     # Great extra actions to compose with:
     # Create an artifact of the html output.
-    - uses: actions/upload-artifact@v4-node20
+    - uses: actions/upload-artifact@v4
       with:
         name: DocumentationHTML
         path: build/html/
