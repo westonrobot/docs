@@ -113,7 +113,7 @@ The DIABLO is a super agile & stylish two-wheeled-leg robot.
    * - Cycle Life
      - It retains more than 80% of its initial capacity after 1000 cycles
 
-1. Resources
+3. Resources
 ============
 
 * Diablo Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EY0YfbjbE29BkQdulKqsnIoBaJntmiJzG3AzVbQ4OMixhA?e=HW3dnc>`_
