@@ -20,3 +20,4 @@ Unmanned Ground Vehicles
    /robot_user_guide/agilex/limo_pro
    /robot_user_guide/agilex/limo_ros2
    /robot_user_guide/directdrive/diablo
+   /robot_user_guide/directdrive/tita
