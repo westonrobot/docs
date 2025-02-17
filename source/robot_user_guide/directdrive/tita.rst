@@ -61,10 +61,28 @@ The Tita is a super agile & stylish two-wheeled-leg robot.
 Manual
 ------
 
-* Tutorials & Videos: `Link <https://shop.directdrive.com/pages/discover-tita-how-to-videos-and-tutorials>`_
+* Tutorials Videos: `YouTube <https://www.youtube.com/watch?v=8iZGSCG_5XY&list=PLLRFrIsAHEJSiqjMOlg6Oeut3G8YRiBY1>`_
+* User Manual (EN): `Link <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EQqCucr2eOJAqE535rc9RusB_Hc2h1IfedtzKxyg6YBM2w?e=A5sNd9>`_
+* User Manual (CN): `Link <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EQ0IIV1K2PdDjalxXZcVapQBOVPxfgACKEg6FUKW3Jf3EQ?e=dpumCk>`_
 
 Development
 -----------
 
+* Development Manual: `Link <https://tita-ubuntu-manual-english.readthedocs.io/en/latest/>`_
 * ROS2: `TITA-SDK-ROS2 <https://github.com/DDTRobot/TITA-SDK-ROS2>`_
-* Quick Start: `Link <https://tita-ubuntu-manual-english.readthedocs.io/en/latest/pages/quickstart.html>`_
+
+Image
+-----
+
+* Image: `Link <https://tangrobot.sharepoint.com/:f:/s/Public-Outgoing/ElU0LLmQDHJJhXXDH16zPREB9GNdQRZgapYr90TNV5JHig?e=niG6Ew>`_
+* Reflash Guide: `Link <https://tita-ubuntu-manual-english.readthedocs.io/en/latest/pages/ubuntu-flash.html>`_
+
+4. Q&A
+======
+1. | **Q: Why is camera point_cloud topic empty?**
+   | A: Camera pointcloud node is not running. Run the following command:
+   |    - $ source /opt/tita/ros2/setup.bash
+   |    - $ ros2 launch engine_manager engine_manager.launch.py
+   .. image:: figures/tita_q&a_1.png
+       :width: 800 px
+       :align: center
