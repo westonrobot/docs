@@ -79,7 +79,10 @@ Image
 
 4. Q&A
 ======
-1. | **Q: Why is camera point_cloud topic empty?**
+1. | **Q: How to activate e-stop?**
+   | A: Refer to this video `link <https://tangrobot.sharepoint.com/:v:/s/Public-Outgoing/EdZH9y7tTC9Its0TW-c4wlwBb-KhwMxc5sHlU81hZX3DdA?e=38J7CM>`_
+
+2. | **Q: Why is camera point_cloud topic empty?**
    | A: Camera pointcloud node is not running. Run the following command:
    |    - $ source /opt/tita/ros2/setup.bash
    |    - $ ros2 launch engine_manager engine_manager.launch.py
