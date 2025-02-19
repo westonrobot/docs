@@ -90,16 +90,18 @@ The ultra-long 6-DOF WRL63 is a robot arm manipulator that provides solutions fo
 3. Resources
 ============
 
-.. Manuals
-.. -------
+Manuals
+-------
 
-.. * WRL63 Manual: `PDF <>`_
-.. * SDK Manual: `PDF <>`_
-.. * ROS Manual: `PDF <>`_
-.. * JSON Protocol Manual: `PDF <>`_
+* WRL63 Manual: `PDF <https://tangrobot.sharepoint.com/:f:/s/Public-Outgoing/Eki4t2rSYfZJj0C1oM8muAYBSaEVZZLccVLizd3KZ0QOnA?e=fCpuuF>`_
+* SDK Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EZ16f6SHNoxNvpkJ8o1ijTMBhU4XZkE8KfvYXObn9SeuCA?e=ZVbTYn>`_
+* ROS1 Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/ET4USOMo1wBJo1MX9l_mMJEBZ_7MkDZKw51P5VzWy0ydeA?e=DL1nBT>`_
+* ROS2 Manual: `PDF <https://tangrobot.sharepoint.com/:f:/s/Public-Outgoing/EkJTVQwtYqpJohPR-o-jFrABCfdmQFwSOrEVZ-JEdJPDcg?e=Wcc9cQ>`_
+* JSON Protocol Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EZ7t0oc9qnBDpLFsvta_lS4BvWJMEUFE7YfafvXfA6m0Bw?e=UxWjki>`_
 
 Development
 -----------
 
 * C++ SDK: `wr_arm_sdk <https://github.com/westonrobot/wr_arm_sdk.git>`_
 * ROS Package: `wrl63b_ros <https://github.com/westonrobot/wrl63b_ros.git>`_
+* ROS2 Package: `wr_arm_ros2 <https://github.com/westonrobot/wr_arm_ros2.git>`_
