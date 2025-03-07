@@ -8,3 +8,4 @@ Weston Robot provides a series of development platforms that are designed to hel
    :maxdepth: 1
 
    /wr_dev_kit/ugv_dev_kit_v1
+   /wr_dev_kit/ugv_dev_kit_v1.2
