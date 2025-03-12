@@ -1,0 +1,301 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UGV Development Kit V1.0 &mdash; Weston Robot v0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/hacks.css?v=a7984756" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=4c0d86c8"></script>
+      <script src="../_static/doctools.js?v=888ff710"></script>
+      <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="UGV Development Kit V1.1" href="ugv_dev_kit_v1.1.html" />
+    <link rel="prev" title="WR Development Kit" href="wr_dev_kit.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #323640" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started/getting_started.html">Getting Started</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../software/software.html">Software Package</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="wr_dev_kit.html">WR Development Kit</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">UGV Development Kit V1.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#revision-history">Revision History</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#overview">1. Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#hardware">1. Hardware</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#software">3. Software</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="ugv_dev_kit_v1.1.html">UGV Development Kit V1.1</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../robot_user_guide/robot_user_guide.html">Robot User Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../periph_user_guide/periph_user_guide.html">Peripheral User Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../toolbox/toolbox.html">WR Toolbox User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #323640" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Weston Robot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="wr_dev_kit.html">WR Development Kit</a></li>
+      <li class="breadcrumb-item active">UGV Development Kit V1.0</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/wr_dev_kit/ugv_dev_kit_v1.0.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <blockquote>
+<div></div></blockquote>
+<section id="ugv-development-kit-v1-0">
+<h1>UGV Development Kit V1.0<a class="headerlink" href="#ugv-development-kit-v1-0" title="Permalink to this heading"></a></h1>
+<section id="revision-history">
+<h2>Revision History<a class="headerlink" href="#revision-history" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Revision</p></th>
+<th class="head"><p>Date (DD/MM/YYYY)</p></th>
+<th class="head"><p>Author</p></th>
+<th class="head"><p>Changes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>18/04/2024</p></td>
+<td><p>WR Dev Team</p></td>
+<td><p>Initial release</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>02/05/2024</p></td>
+<td><p>Andrew Chia</p></td>
+<td><p>Hardware Configuration</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="overview">
+<h2>1. Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>The UGV development kit, together with a robot base, provide a powerful yet flexible mobile robot hardware platform for research and fast prototyping. The kit is designed to be compatible with a wide range of robot bases. Additional components can be easily added on top of the base frame according to application-specific requirements. The platform can be used to implement a wide range of applications, such as autonomous navigation, mapping, and object detection.</p>
+<a class="reference internal image-reference" href="../_images/overview.jpg"><img alt="../_images/overview.jpg" src="../_images/overview.jpg" style="width: 650px;" /></a>
+<p>This <strong>base configuration</strong> of the development kit consists of the following pre-configured components:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../periph_user_guide/westonrobot/onboard_computers/nanopc_based_onboard_computer.html#ref-nanopc-based-onboard-computer"><span class="std std-ref">NanoPC-based Onboard Computer</span></a></p></li>
+<li><p><a class="reference internal" href="../periph_user_guide/westonrobot/power_regulator_v2.X.html"><span class="doc">Weston Robot Power Regulator V2.X</span></a></p></li>
+<li><p><a class="reference internal" href="../periph_user_guide/westonrobot/network_devices/industrial_5g_wifi_router.html#ref-onboard-industrial-5g-wifi-router"><span class="std std-ref">Industrial 5G/Wifi Router</span></a></p></li>
+</ul>
+<p>Additional computers can be added to the base configuration to support more complex applications:</p>
+<ul class="simple">
+<li><p><span class="xref std std-ref">Jetson Orin NX</span></p></li>
+<li><p><span class="xref std std-ref">Mini PC (Intel Core i7)</span></p></li>
+</ul>
+<p>The following <strong>extension modules</strong> are available to be added to the base configuration:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="ugv_dev_kit_v1.0/ugv_devkit_mid360_extension.html#ref-ugv-devkit-livox-mid360-imu-extension"><span class="std std-ref">Livox Mid-360 Lidar + IMU</span></a></p></li>
+<li><p><a class="reference internal" href="ugv_dev_kit_v1.0/ugv_devkit_vision_extension.html#ref-ugv-devkit-vision-extension"><span class="std std-ref">Vision Sensor Kit</span></a></p></li>
+<li><p><span class="xref std std-ref">Ouster OS1 Lidar + IMU</span></p></li>
+<li><p><span class="xref std std-ref">RTK/GNSS Module</span></p></li>
+<li><p><span class="xref std std-ref">Ultrasonic Sensor Array</span></p></li>
+</ul>
+<p>Besides the official extension modules, the development kit can be further customized with additional components of your choice. Please feel free to check with us if you have any customization requirements (<a class="reference external" href="mailto:contact&#37;&#52;&#48;westonrobot&#46;com">contact<span>&#64;</span>westonrobot<span>&#46;</span>com</a>).</p>
+</section>
+<section id="hardware">
+<h2>1. Hardware<a class="headerlink" href="#hardware" title="Permalink to this heading"></a></h2>
+<section id="dimensions">
+<h3>Dimensions<a class="headerlink" href="#dimensions" title="Permalink to this heading"></a></h3>
+<table class="docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p>Dimensions</p></td>
+<td><p>310mm(L) x 280mm(B) x 200mm(H)</p></td>
+</tr>
+<tr class="row-even"><td><p>Dry Weight (Incl. Power
+Regulator)</p></td>
+<td><p>~3kg</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="power-module-in-built">
+<h3>Power Module (In-built)<a class="headerlink" href="#power-module-in-built" title="Permalink to this heading"></a></h3>
+<a class="reference internal image-reference" href="../_images/pwr_reg.png"><img alt="../_images/pwr_reg.png" src="../_images/pwr_reg.png" style="width: 720px;" /></a>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Port</p></th>
+<th class="head"><p>Voltage</p></th>
+<th class="head"><p>Current (Max)</p></th>
+<th class="head"><p>Power</p></th>
+<th class="head"><p>Fused</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Main input</p></td>
+<td><p>18-32V</p></td>
+<td><p>20A</p></td>
+<td><p>/</p></td>
+<td><p>20A fuse</p></td>
+</tr>
+<tr class="row-odd"><td><p>Output - 19V</p></td>
+<td><p>19V</p></td>
+<td><p>8A</p></td>
+<td><p>150W</p></td>
+<td><p>10A fuse</p></td>
+</tr>
+<tr class="row-even"><td><p>Output - 12V</p></td>
+<td><p>12V</p></td>
+<td><p>10A</p></td>
+<td><p>120W</p></td>
+<td><p>15A fuse</p></td>
+</tr>
+<tr class="row-odd"><td><p>Output - 5V isolated</p></td>
+<td><p>5V</p></td>
+<td><p>4A</p></td>
+<td><p>20W</p></td>
+<td><p>Resettable</p></td>
+</tr>
+<tr class="row-even"><td><p>Output - 12V isolated</p></td>
+<td><p>12V</p></td>
+<td><p>3.3A</p></td>
+<td><p>40W</p></td>
+<td><p>Resettable</p></td>
+</tr>
+<tr class="row-odd"><td><p>Output - extension</p></td>
+<td><p>Input voltage</p></td>
+<td><p>/</p></td>
+<td><p>Limited by total power</p></td>
+<td><p>/</p></td>
+</tr>
+</tbody>
+</table>
+<p>You can find more information about how to reconfigure the internal components of the UGV development kit in the</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="ugv_dev_kit_v1.0/component_reconfiguration.html#ref-ugv-devkit-component-reconfiguration"><span class="std std-ref">Component Re-configuration Guide</span></a></p></li>
+</ul>
+</section>
+</section>
+<section id="software">
+<h2>3. Software<a class="headerlink" href="#software" title="Permalink to this heading"></a></h2>
+<p>We have pre-configured the network settings and installed necessary driver software on the NanoPC-based onboard computer. A few sample applications are also pre-installed to help you get started with the development kit.</p>
+<section id="network">
+<h3>Network<a class="headerlink" href="#network" title="Permalink to this heading"></a></h3>
+<p>The router is pre-configured to use the IP range 10.10.0.0/24.</p>
+<p>The IP addresses are assigned as follows:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Device Type</p></th>
+<th class="head"><p>IP Range</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>onboard computers</p></td>
+<td><p>10.10.0.10-10.10.0.20/24</p></td>
+</tr>
+<tr class="row-odd"><td><p>navigation sensors</p></td>
+<td><p>10.10.0.30-10.10.0.40/24</p></td>
+</tr>
+<tr class="row-even"><td><p>application sensors</p></td>
+<td><p>10.10.0.100-10.10.0.120/24</p></td>
+</tr>
+</tbody>
+</table>
+<p>It’s recommended but not mandatory to follow the above IP assignment rules. You can change the IP addresses according to your requirements. We follow this convention to configure the development kit by default. Please refer to the delivery note for the actual IP assignment on your robot.</p>
+</section>
+<section id="software-setup">
+<h3>Software Setup<a class="headerlink" href="#software-setup" title="Permalink to this heading"></a></h3>
+<p>The UGV development kit is pre-installed with the following software stacks:</p>
+<ul class="simple">
+<li><p>ROS2 driver for the robot base and sensors</p></li>
+<li><p><a class="reference external" href="https://github.com/westonrobot/wr_devkit_mapping">LIO-SAM 3D Mapping Sample Setup</a></p></li>
+<li><p><a class="reference internal" href="ugv_dev_kit_v1.0/ugv_devkit_ros2_navigation_sample_setup_guide.html#ugv-devkit-ros2-navigation-sample-setup-guide"><span class="std std-ref">ROS2 Navigation Sample Setup</span></a></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<ol class="arabic simple">
+<li><p>The ROS drivers are only for components that are part of the base configuration or extension modules supported by Weston Robot.</p></li>
+<li><p>The open-source mapping and navigation stacks are pre-installed <strong>for demonstration purposes and are provided as is</strong>. You can modify the software stack according to your requirements.</p></li>
+</ol>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="wr_dev_kit.html" class="btn btn-neutral float-left" title="WR Development Kit" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ugv_dev_kit_v1.1.html" class="btn btn-neutral float-right" title="UGV Development Kit V1.1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Weston Robot Pte Ltd.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,233 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UGV Devkit - Livox Mid360 + IMU Extension &mdash; Weston Robot v0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/hacks.css?v=a7984756" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=4c0d86c8"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #323640" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting Started</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/software.html">Software Package</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../wr_dev_kit.html">WR Development Kit</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../robot_user_guide/robot_user_guide.html">Robot User Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../periph_user_guide/periph_user_guide.html">Peripheral User Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../toolbox/toolbox.html">WR Toolbox User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #323640" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Weston Robot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">UGV Devkit - Livox Mid360 + IMU Extension</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/wr_dev_kit/ugv_dev_kit_v1.0/ugv_devkit_mid360_extension.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <blockquote>
+<div></div></blockquote>
+<section id="ugv-devkit-livox-mid360-imu-extension">
+<span id="ref-ugv-devkit-livox-mid360-imu-extension"></span><h1>UGV Devkit - Livox Mid360 + IMU Extension<a class="headerlink" href="#ugv-devkit-livox-mid360-imu-extension" title="Permalink to this heading"></a></h1>
+<section id="revision-history">
+<h2>Revision History<a class="headerlink" href="#revision-history" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Revision</p></th>
+<th class="head"><p>Date (DD/MM/YYYY)</p></th>
+<th class="head"><p>Author</p></th>
+<th class="head"><p>Changes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>16/05/2024</p></td>
+<td><p>WR Dev Team</p></td>
+<td><p>Initial release</p></td>
+</tr>
+</tbody>
+</table>
+<p>This extension module for the UGV development kit consists of a Livox Mid360 LiDAR sensor and an IMU sensor. It is designed to provide a cost-effective solution for mobile robot 3D navigation and obstacle avoidance.</p>
+</section>
+<section id="key-specifications">
+<h2>Key Specifications<a class="headerlink" href="#key-specifications" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Livox Mid-360 LiDAR</dt><dd><ul>
+<li><p>Laser safety: Class 1</p></li>
+<li><dl class="simple">
+<dt>Detection range (&#64;100 klx)</dt><dd><ul>
+<li><p>40 m &#64; 10% reflectivity</p></li>
+<li><p>70 m &#64; 80% reflectivity</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>FOV: Horizontal: 360°, Vertical: -7°~52°</p></li>
+<li><p>Range precision: ≤ 2cm (&#64;10m), ≤ 3cm (&#64;0.2m)</p></li>
+<li><p>Angular precision: &lt; 0.15º</p></li>
+<li><p>Frame rate: 10Hz (typical)</p></li>
+<li><p>Data port: 100 BASE-TX Ethernet</p></li>
+<li><p>Data synchronization: IEEE 1588-2008 (PTPv2), GPS</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>IMU sensor</dt><dd><ul>
+<li><dl class="simple">
+<dt>Output data</dt><dd><ul>
+<li><p>Calibrated data from 3-axis gyroscope, 3-axis accelerometer, 3-axis magnetometer</p></li>
+<li><p>Orientation in quaternion (up to 500Hz)</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Accelerometer</dt><dd><ul>
+<li><p>Range: ±16g</p></li>
+<li><p>Resolution: 0.001g</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Gyroscope</dt><dd><ul>
+<li><p>Range: ±2000°/s</p></li>
+<li><p>Resolution: 0.001°/s</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Magnetometer</dt><dd><ul>
+<li><p>Range: ±8 Gauss</p></li>
+<li><p>Resolution: 0.25 Gauss</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Fusion performance:</dt><dd><ul>
+<li><p>Pitch/roll (static): 0.1°</p></li>
+<li><p>Pitch/roll (dynamic): 0.1°</p></li>
+<li><p>Heading drift (static, 6DOF): 0.12°/h</p></li>
+<li><p>Heading drift (dynamic, 6DOF): &lt; 5°</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>Communication interface: RS232</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="reference-frames">
+<h2>Reference Frames<a class="headerlink" href="#reference-frames" title="Permalink to this heading"></a></h2>
+<p>The reference frames for the Livox Mid-360 lidar and IMU sensor follow the Right Hand Rule convention and are point cloud-centric frames of reference. They also follow Robotics convention with the X-axis pointing forwards.</p>
+<p>The Cartesian coordinates O-XYZ of the components are defined as below: Point O of the Top Plate is the origin, and O-XYZ is the point cloud coordinates of the module.</p>
+<a class="largepadding reference internal image-reference" href="../../_images/reference_frames_simplified_view.png"><img alt="../../_images/reference_frames_simplified_view.png" class="largepadding" src="../../_images/reference_frames_simplified_view.png" style="width: 960px;" /></a>
+<p><strong>Relationship between sensors</strong></p>
+<p>Taking the Top Plate as the reference link for this extension, the relative position of the IMU Sensor and Lidar are as follows:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>IMU Sensor: x= 35.4mm, y: 0.0mm, z: 21.3mm</p></li>
+<li><p>Lidar: x= 35.4mm, y: 0.0mm, z: 65.4mm</p></li>
+</ul>
+</div></blockquote>
+<a class="largepadding reference internal image-reference" href="../../_images/top_side_views.png"><img alt="../../_images/top_side_views.png" class="largepadding" src="../../_images/top_side_views.png" style="width: 720px;" /></a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Do note that the Lidar has an additional integrated IMU chip (with a 3-axis accelerometer and a 3-axis gyroscope). More information can be found <a class="reference external" href="https://terra-1-g.djicdn.com/851d20f7b9f64838a34cd02351370894/Livox/Livox_Mid-360_User_Manual_EN.pdf">here</a></p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Weston Robot Pte Ltd.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,170 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>UGV Devkit - Component Re-configuration &mdash; Weston Robot v0.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/hacks.css?v=a7984756" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=4c0d86c8"></script>
+      <script src="../../_static/doctools.js?v=888ff710"></script>
+      <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #323640" >
+
+          
+          
+          <a href="../../index.html">
+            
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started/getting_started.html">Getting Started</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../software/software.html">Software Package</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../wr_dev_kit.html">WR Development Kit</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../robot_user_guide/robot_user_guide.html">Robot User Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../periph_user_guide/periph_user_guide.html">Peripheral User Guide</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../toolbox/toolbox.html">WR Toolbox User Guide</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #323640" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Weston Robot</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">UGV Devkit - Component Re-configuration</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/wr_dev_kit/ugv_dev_kit_v1.0/component_reconfiguration.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <blockquote>
+<div></div></blockquote>
+<section id="ugv-devkit-component-re-configuration">
+<span id="ref-ugv-devkit-component-reconfiguration"></span><h1>UGV Devkit - Component Re-configuration<a class="headerlink" href="#ugv-devkit-component-re-configuration" title="Permalink to this heading"></a></h1>
+<section id="revision-history">
+<h2>Revision History<a class="headerlink" href="#revision-history" title="Permalink to this heading"></a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Revision</p></th>
+<th class="head"><p>Date (DD/MM/YYYY)</p></th>
+<th class="head"><p>Author</p></th>
+<th class="head"><p>Changes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>16/05/2024</p></td>
+<td><p>WR Dev Team</p></td>
+<td><p>Initial release</p></td>
+</tr>
+</tbody>
+</table>
+<section id="main-frame-for-component-mounting">
+<h3>Main Frame for Component Mounting<a class="headerlink" href="#main-frame-for-component-mounting" title="Permalink to this heading"></a></h3>
+<a class="reference internal image-reference" href="../../_images/base_iso.png"><img alt="../../_images/base_iso.png" src="../../_images/base_iso.png" style="width: 380px;" /></a>
+<a class="reference internal image-reference" href="../../_images/dimensions.png"><img alt="../../_images/dimensions.png" src="../../_images/dimensions.png" style="width: 720px;" /></a>
+</section>
+<section id="removal-of-front-rear-latches">
+<h3>Removal of Front/Rear Latches<a class="headerlink" href="#removal-of-front-rear-latches" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Remove fasteners (2 x M5 bolts) from top of case.</p></li>
+<li><p>Tilt latch outwards.</p></li>
+<li><p>Lift latch to separate it from main frame.</p></li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/front_plate.png"><img alt="../../_images/front_plate.png" src="../../_images/front_plate.png" style="width: 720px;" /></a>
+</section>
+<section id="accessing-components-in-kit">
+<h3>Accessing Components in Kit<a class="headerlink" href="#accessing-components-in-kit" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>Internal hardware/wiring can either be accessed through the side or
+by sliding out hardware rack</p></li>
+<li><p>To remove hardware rack:</p>
+<ul>
+<li><p>Remove the locking thumb screw</p></li>
+<li><p>Proceed to slide out rack</p></li>
+</ul>
+</li>
+</ul>
+<a class="reference internal image-reference" href="../../_images/rails.png"><img alt="../../_images/rails.png" src="../../_images/rails.png" style="width: 720px;" /></a>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Please be reminded to remove connections such as power cables and connectivity ports before sliding out hardware rack!</p>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Weston Robot Pte Ltd.</p>
+  </div>
+
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
