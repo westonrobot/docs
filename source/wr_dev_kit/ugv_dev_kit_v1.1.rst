@@ -1,6 +1,6 @@
-**********************
-UGV Development Kit V1
-**********************
+************************
+UGV Development Kit V1.1
+************************
 
 Revision History
 ================
@@ -8,9 +8,7 @@ Revision History
 +----------+-------------------+-------------+------------------------+
 | Revision | Date (DD/MM/YYYY) |    Author   | Changes                |
 +==========+===================+=============+========================+
-| 1        | 18/04/2024        | WR Dev Team | Initial release        |
-+----------+-------------------+-------------+------------------------+
-| 2        | 02/05/2024        | Andrew Chia | Hardware Configuration |
+| 1        | 10/03/2025        | Andrew Chia | Initial release        |
 +----------+-------------------+-------------+------------------------+
 
 1. Overview
@@ -18,7 +16,7 @@ Revision History
 
 The UGV development kit, together with a robot base, provide a powerful yet flexible mobile robot hardware platform for research and fast prototyping. The kit is designed to be compatible with a wide range of robot bases. Additional components can be easily added on top of the base frame according to application-specific requirements. The platform can be used to implement a wide range of applications, such as autonomous navigation, mapping, and object detection.
 
-.. image:: ugv_dev_kit_v1/figures/overview.jpg
+.. image:: figures/overview2.png
     :width: 650 px
 
 This **base configuration** of the development kit consists of the following pre-configured components:
@@ -34,13 +32,12 @@ Additional computers can be added to the base configuration to support more comp
 
 The following **extension modules** are available to be added to the base configuration:
 
-* :ref:`Livox Mid-360 Lidar + IMU <ref_ugv_devkit_livox_mid360_imu_extension>`
-* :ref:`Vision Sensor Kit <ref_ugv_devkit_vision_extension>`
+* :ref:`Livox Mid-360 Lidar + IMU <ref_ugv_devkit_livox_mid360_imu_extension_v1.1>`
+* :ref:`Vision Sensor Kit <ref_ugv_devkit_vision_extension_v1.1>`
 * :ref:`Ouster OS1 Lidar + IMU <ref_ugv_devkit_ouster_os1_imu_extension>`
 * :ref:`RTK/GNSS Module <ref_ugv_devkit_rtk_gnss_extension>`
 * :ref:`Ultrasonic Sensor Array <ref_ugv_devkit_ultrasonic_sensor_array_extension>`
-.. * :ref:`USB Camera Modules <ref_ugv_devkit_camera_module_extension>`
-.. * :ref:`RGB-D Camera Modules <ref_ugv_devkit_rgbd_camera_module_extension>`
+
 
 Besides the official extension modules, the development kit can be further customized with additional components of your choice. Please feel free to check with us if you have any customization requirements (contact@westonrobot.com).
 
@@ -51,34 +48,18 @@ Dimensions
 ----------
 
 +-----------------------------------+-----------------------------------+
-| Dimensions                        | 310mm(L) x 280mm(B) x 200mm(H)    |
+| Dimensions                        || 300mm(L) x 304mm(B) x 250mm(H)   | 
+|                                   || 300mm(L) x 345mm(B) x 366mm(H)   |
+|                                   || (With extension layer)           |
 +-----------------------------------+-----------------------------------+
-| Dry Weight (Incl. Power           | ~3kg                              |
+| Dry Weight (Incl. Power           | ~3kg to 4kg with extension layer  |
 | Regulator)                        |                                   |
 +-----------------------------------+-----------------------------------+
-
-.. **Base Kit with Livox Lidar and IMU**
-
-.. .. image:: ugv_dev_kit_v1/figures/livox.png
-..     :width: 300 px
-
-.. |
-.. **Base Kit with Ouster OS1 Lidar**
-
-.. .. image:: ugv_dev_kit_v1/figures/ouster.png
-..     :width: 300 px
-
-.. .. image:: ugv_dev_kit_v1/figures/base_iso.png
-..     :width: 380 px
-
-.. .. image:: ugv_dev_kit_v1/figures/dimensions.png
-..     :width: 720 px
-
 
 Power Module (In-built)
 -----------------------
 
-.. image:: ugv_dev_kit_v1/figures/pwr_reg.png
+.. image:: figures/pwr_reg2.png
     :width: 720 px
 
 +-----------------------+---------------+---------------+------------------------+------------+
@@ -99,7 +80,7 @@ Power Module (In-built)
 
 You can find more information about how to reconfigure the internal components of the UGV development kit in the 
 
-* :ref:`Component Re-configuration Guide <ref_ugv_devkit_component_reconfiguration>`
+* :ref:`Component Re-configuration Guide <ref_ugv_devkit_component_reconfiguration_v1.1>`
 
 3. Software
 ===========
@@ -132,8 +113,8 @@ The UGV development kit is pre-installed with the following software stacks:
 
 * ROS2 driver for the robot base and sensors
 * `LIO-SAM 3D Mapping Sample Setup <https://github.com/westonrobot/wr_devkit_mapping>`_
-* :ref:`ROS2 Navigation Sample Setup <ugv_devkit_ros2_navigation_sample_setup_guide>`
-..  * `ROS2 Navigation Sample Setup <https://github.com/westonrobot/wr_devkit_navigation>`_
+* :ref:`ROS2 Navigation Sample Setup <ugv_devkit_ros2_navigation_sample_setup_guide_v1.1>`
+
 
 .. note::
     1. The ROS drivers are only for components that are part of the base configuration or extension modules supported by Weston Robot.

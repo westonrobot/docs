@@ -18,10 +18,10 @@ This sensor kit or extension module for the UGV development kit provides a layer
 
 This kit consists of a Base Module where different camera types can be mounted in various combinations to the development kit. The camera modules are shown in the image below;
 
-.. image:: figures/base_module.png
+.. image:: ../figures/base_module.png
     :width: 960 px
     :class: largepadding
-.. image:: figures/camera_modules.png
+.. image:: ../figures/camera_modules.png
     :width: 960 px
     :class: largepadding
 
@@ -66,7 +66,7 @@ There are a total of 4 compartments in the Base Module, in which either camera m
 
 Please refer to the images below for more information.
 
-.. image:: figures/orientation_of_modules.png
+.. image:: ../figures/orientation_of_modules.png
     :width: 960 px
     :class: largepadding
 
@@ -78,7 +78,7 @@ The reference frames for the cameras follow the Right Hand Rule convention and a
 The Cartesian coordinates O-XYZ of the components are defined as below: 
 Point O of the Top Plate is the origin, and O-XYZ is the point cloud coordinates of the module.
 
-.. image:: figures/ref_frame_vision.png
+.. image:: ../figures/ref_frame_vision.png
     :width: 960 px
     :class: largepadding
 
@@ -87,7 +87,7 @@ Point O of the Top Plate is the origin, and O-XYZ is the point cloud coordinates
 
 Taking the Top Plate as the reference link for this extension, the relative position of both cameras are provided in the table below based on the different possible configurations:
 
-.. image:: figures/vision_kit_relative_position_table.png
+.. image:: ../figures/vision_kit_relative_position_table.png
     :width: 720 px
     :class: largepadding
 

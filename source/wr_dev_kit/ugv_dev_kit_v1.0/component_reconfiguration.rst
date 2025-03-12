@@ -16,10 +16,10 @@ Revision History
 Main Frame for Component Mounting
 ---------------------------------
 
-.. image:: figures/base_iso.png
+.. image:: ../figures/base_iso.png
     :width: 380 px
 
-.. image:: figures/dimensions.png
+.. image:: ../figures/dimensions.png
     :width: 720 px
 
 Removal of Front/Rear Latches
@@ -30,7 +30,7 @@ Removal of Front/Rear Latches
 
 -  Lift latch to separate it from main frame.
 
-.. image:: figures/front_plate.png
+.. image:: ../figures/front_plate.png
     :width: 720 px
     
 Accessing Components in Kit
@@ -45,7 +45,7 @@ Accessing Components in Kit
    -  Proceed to slide out rack
 
 
-.. image:: figures/rails.png
+.. image:: ../figures/rails.png
     :width: 720 px
 
 .. note::

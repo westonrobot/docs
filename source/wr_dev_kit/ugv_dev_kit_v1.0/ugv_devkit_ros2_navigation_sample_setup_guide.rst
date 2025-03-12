@@ -68,7 +68,7 @@ Mapping
 
    Once RVIZ2 is open, you will see the default display. On the left panel, under the "Displays" section, click on the "Add" button. In the "By display type" tab, scroll down and select "Map" under the "rviz_default_plugins" category. Click "OK" to add the Map display. You should now see the map being visualized in RVIZ2 as the mapping process occurs.
 
-   .. image:: figures/cartographer_mapping_rviz.png
+   .. image:: ../figures/cartographer_mapping_rviz.png
       :width: 800 px
       :align: center
 
@@ -105,23 +105,23 @@ Navigation
 
   The map to odom frame will not be published until you provide an initial pose estimate. Click on the ``2D Pose Estimate`` button. Then, on the map, click on the location where the robot is located, and drag the arrow to the direction the robot is facing.
    
-  .. image:: figures/cartographer_navigation_rviz.png
+  .. image:: ../figures/cartographer_navigation_rviz.png
       :width: 800 px
       :align: center
 
 4. Generally, the laser scan display does not overlap with the map. To correct this, use the ``2D Pose Estimate`` tool to provide an estimated position for the robot. Repeat this process as necessary until the laser scan display aligns accurately with the map.
 
-  .. image:: figures/cartographer_navigation.png
+  .. image:: ../figures/cartographer_navigation.png
      :width: 800 px
      :align: center
 
-  .. image:: figures/cartographer_navigation_pose_estimate.png
+  .. image:: ../figures/cartographer_navigation_pose_estimate.png
      :width: 800 px
      :align: center
   
 5. With an accurate estimation of the robot's location, we can now set a navigation goal for the robot to move toward. Click on the ``Nav2 Goal`` button, then click on the location on the map where you want the robot to move to, and drag the arrow to set the orientation. The robot should start moving towards the goal.
 
-  .. image:: figures/cartographer_navigation_goal.png
+  .. image:: ../figures/cartographer_navigation_goal.png
     :width: 800 px
     :align: center
 
@@ -167,7 +167,7 @@ Mapping
    | false                     | RVIZ will not be launched, but it can be opened on another PC with the same ROS_DOMAIN_ID   |      
    +---------------------------+---------------------------------------------------------------------------------------------+
 
-   .. image:: figures/rtabmap_mapping_rviz.png
+   .. image:: ../figures/rtabmap_mapping_rviz.png
      :width: 800 px
      :align: center
 
@@ -197,7 +197,7 @@ Navigation
       ::
         ros2 launch nav2_bringup rviz_launch.py
 
-   .. image:: figures/rtabmap_navigation_rviz.png
+   .. image:: ../figures/rtabmap_navigation_rviz.png
      :width: 800 px
      :align: center
 
@@ -206,6 +206,6 @@ Navigation
 
 5. To set a navigation goal, click on the ``Nav2 Goal`` button, then click on the location on the map where you want the robot to move to, and drag the arrow to set the orientation. The robot should start moving towards the goal.
 
-   .. image:: figures/rtabmap_navigation_goal.png
+   .. image:: ../figures/rtabmap_navigation_goal.png
       :width: 800 px
       :align: center

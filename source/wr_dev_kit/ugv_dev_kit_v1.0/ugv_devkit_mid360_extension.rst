@@ -56,7 +56,7 @@ The reference frames for the Livox Mid-360 lidar and IMU sensor follow the Right
 
 The Cartesian coordinates O-XYZ of the components are defined as below: Point O of the Top Plate is the origin, and O-XYZ is the point cloud coordinates of the module.
 
-.. image:: figures/reference_frames_simplified_view.png
+.. image:: ../figures/reference_frames_simplified_view.png
     :width: 960 px
     :class: largepadding
 
@@ -71,7 +71,7 @@ Taking the Top Plate as the reference link for this extension, the relative posi
     * Lidar: x= 35.4mm, y: 0.0mm, z: 65.4mm
 
 
-.. image:: figures/top_side_views.png
+.. image:: ../figures/top_side_views.png
     :width: 720 px
     :class: largepadding
 
