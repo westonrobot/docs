@@ -56,24 +56,6 @@ Dimensions
 | Regulator)                        |                                   |
 +-----------------------------------+-----------------------------------+
 
-.. **Base Kit with Livox Lidar and IMU**
-
-.. .. image:: figures/livox.png
-..     :width: 300 px
-
-.. |
-.. **Base Kit with Ouster OS1 Lidar**
-
-.. .. image:: figures/ouster.png
-..     :width: 300 px
-
-.. .. image:: figures/base_iso.png
-..     :width: 380 px
-
-.. .. image:: figures/dimensions.png
-..     :width: 720 px
-
-
 Power Module (In-built)
 -----------------------
 
