@@ -93,7 +93,8 @@ The ultralightweight 6-DOF WR65 is a robot arm manipulator that provides solutio
 Manuals
 -------
 
-* WR65 Manual: `PDF <https://tangrobot.sharepoint.com/:f:/s/Public-Outgoing/Eki4t2rSYfZJj0C1oM8muAYBSaEVZZLccVLizd3KZ0QOnA?e=fCpuuF>`_
+* WR65 Manual (EN): `PDF <https://tangrobot.sharepoint.com/:f:/s/Public-Outgoing/Eki4t2rSYfZJj0C1oM8muAYBSaEVZZLccVLizd3KZ0QOnA?e=fCpuuF>`_
+* WR65 Manual (CN): `PDF <https://tangrobot.sharepoint.com/:f:/s/Public-Outgoing/EsX7ahL2QwlJpUZvi-B5peIBLllti9KVbqd4ZK0kSwMKsg?e=bAlbLE>`_
 * SDK Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EZ16f6SHNoxNvpkJ8o1ijTMBhU4XZkE8KfvYXObn9SeuCA?e=ZVbTYn>`_
 * ROS1 Manual: `PDF <https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/ET4USOMo1wBJo1MX9l_mMJEBZ_7MkDZKw51P5VzWy0ydeA?e=DL1nBT>`_
 * ROS2 Manual: `PDF <https://tangrobot.sharepoint.com/:f:/s/Public-Outgoing/EkJTVQwtYqpJohPR-o-jFrABCfdmQFwSOrEVZ-JEdJPDcg?e=Wcc9cQ>`_
@@ -102,6 +103,7 @@ Manuals
 Development
 -----------
 
+* RM API: `Sample Examples <https://tangrobot.sharepoint.com/:f:/s/Public-Outgoing/EiDbCkGaSA5CgOpQ8tcnw1IBrzKiorH_cXctCj9KcP5dmA?e=OZItiH>`_
 * C++ SDK: `wr_arm_sdk <https://github.com/westonrobot/wr_arm_sdk.git>`_
 * ROS Package: `wr65b_ros <https://github.com/westonrobot/wr65b_ros.git>`_
 * ROS2 Package: `wr_arm_ros2 <https://github.com/westonrobot/wr_arm_ros2.git>`_
