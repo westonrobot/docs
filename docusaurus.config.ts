@@ -6,7 +6,7 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Weston Robot Documentation',
-  tagline: 'Robots are cool',
+  tagline: 'Official documentation for Weston Robot products.',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -142,7 +142,7 @@ const config: Config = {
             docId: 'guide-intro',
             docsPluginId: 'guide',
             position: 'left',
-            label: 'Guide',
+            label: 'User Guide',
         },
         // {
         //   type: 'docSidebar',
@@ -153,17 +153,17 @@ const config: Config = {
         {
             href: 'https://forms.office.com/r/UXzrrsgEyW',
             label: 'Support',
-            position: 'left',
+            position: 'right',
         },
         // {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/westonrobot',
           label: 'GitHub',
-          position: 'left',
+          position: 'right',
         },
         {
           href: 'https://www.westonrobot.com',
-          label: 'Weston Robot Homepage',
+          label: 'Homepage',
           position: 'right',
         },
       ],
