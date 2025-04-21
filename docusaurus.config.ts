@@ -39,25 +39,10 @@ const config: Config = {
           sidebarPath: './sidebars.ts',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
-        blog: false,
-        // blog: {
-        //   showReadingTime: true,
-        //   feedOptions: {
-        //     type: ['rss', 'atom'],
-        //     xslt: true,
-        //   },
-        //   // Please change this to your repo.
-        //   // Remove this to remove the "edit this page" links.
         //   editUrl:
         //     'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        //   // Useful options to enforce blogging best practices
-        //   onInlineTags: 'warn',
-        //   onInlineAuthors: 'warn',
-        //   onUntruncatedBlogPosts: 'warn',
-        // },
+        },
+        blog: false,
         theme: {
           customCss: './src/css/custom.css',
         },
@@ -72,8 +57,43 @@ const config: Config = {
         id: 'general',
         path: 'general',
         routeBasePath: 'general',
-        // sidebarPath: undefined
         sidebarPath: './sidebars-general.ts',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'robot',
+        path: 'robot',
+        routeBasePath: 'robot',
+        sidebarPath: './sidebars-robot.ts',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'peripheral',
+        path: 'peripheral',
+        routeBasePath: 'peripheral',
+        sidebarPath: './sidebars-peripheral.ts',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'kit',
+        path: 'kit',
+        routeBasePath: 'kit',
+        sidebarPath: './sidebars-kit.ts',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'guide',
+        path: 'guide',
+        routeBasePath: 'guide',
+        sidebarPath: './sidebars-guide.ts',
       },
     ],
   ],
@@ -88,7 +108,7 @@ const config: Config = {
         src: 'img/wr-logo.png',
       },
       items: [
-        { to: '/', label: 'Home', position: 'left' },
+        // { to: '/', label: 'Home', position: 'left' },
         {
           type: 'doc',
           docId: 'operational-safety',
@@ -97,20 +117,53 @@ const config: Config = {
           label: 'General',
         },
         {
-          type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
-          position: 'left',
-          label: 'Tutorial',
+            type: 'doc',
+            docId: 'robot-intro',
+            docsPluginId: 'robot',
+            position: 'left',
+            label: 'Robot',
         },
+        {
+            type: 'doc',
+            docId: 'peripheral-intro',
+            docsPluginId: 'peripheral',
+            position: 'left',
+            label: 'Peripheral',
+        },
+        {
+            type: 'doc',
+            docId: 'kit-intro',
+            docsPluginId: 'kit',
+            position: 'left',
+            label: 'Development Kit',
+        },
+        {
+            type: 'doc',
+            docId: 'guide-intro',
+            docsPluginId: 'guide',
+            position: 'left',
+            label: 'Guide',
+        },
+        // {
+        //   type: 'docSidebar',
+        //   sidebarId: 'tutorialSidebar',
+        //   position: 'left',
+        //   label: 'Tutorial',
+        // },
         {
             href: 'https://forms.office.com/r/UXzrrsgEyW',
             label: 'Support',
-            position: 'right',
+            position: 'left',
         },
         // {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/westonrobot',
           label: 'GitHub',
+          position: 'left',
+        },
+        {
+          href: 'https://www.westonrobot.com',
+          label: 'Weston Robot Homepage',
           position: 'right',
         },
       ],
