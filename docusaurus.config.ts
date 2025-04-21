@@ -42,25 +42,39 @@ const config: Config = {
           editUrl:
             'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
-        blog: {
-          showReadingTime: true,
-          feedOptions: {
-            type: ['rss', 'atom'],
-            xslt: true,
-          },
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-          // Useful options to enforce blogging best practices
-          onInlineTags: 'warn',
-          onInlineAuthors: 'warn',
-          onUntruncatedBlogPosts: 'warn',
-        },
+        blog: false,
+        // blog: {
+        //   showReadingTime: true,
+        //   feedOptions: {
+        //     type: ['rss', 'atom'],
+        //     xslt: true,
+        //   },
+        //   // Please change this to your repo.
+        //   // Remove this to remove the "edit this page" links.
+        //   editUrl:
+        //     'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+        //   // Useful options to enforce blogging best practices
+        //   onInlineTags: 'warn',
+        //   onInlineAuthors: 'warn',
+        //   onUntruncatedBlogPosts: 'warn',
+        // },
         theme: {
           customCss: './src/css/custom.css',
         },
       } satisfies Preset.Options,
+    ],
+  ],
+
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'general',
+        path: 'general',
+        routeBasePath: 'general',
+        // sidebarPath: undefined
+        sidebarPath: './sidebars-general.ts',
+      },
     ],
   ],
 
@@ -70,15 +84,28 @@ const config: Config = {
     navbar: {
       title: 'Weston Robot',
       logo: {
-        alt: 'Weston Robot Logo',
+        alt: 'Logo',
         src: 'img/wr-logo.png',
       },
       items: [
+        { to: '/', label: 'Home', position: 'left' },
+        {
+          type: 'doc',
+          docId: 'operational-safety',
+          docsPluginId: 'general',
+          position: 'left',
+          label: 'General',
+        },
         {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
           label: 'Tutorial',
+        },
+        {
+            href: 'https://forms.office.com/r/UXzrrsgEyW',
+            label: 'Support',
+            position: 'right',
         },
         // {to: '/blog', label: 'Blog', position: 'left'},
         {
