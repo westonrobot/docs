@@ -6,6 +6,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Heading from '@theme/Heading';
+import { FaShieldAlt, FaRobot, FaPlug, FaTools, FaBook, FaHeadset } from 'react-icons/fa';
 
 import styles from './index.module.css';
 
@@ -23,12 +24,13 @@ function HomepageHeader() {
   );
 }
 
-function DocSection({title, description, to, buttonText = 'View Documentation'}) {
+function DocSection({title, description, to, buttonText = 'View Documentation', icon: Icon}) {
   return (
     <div className={clsx('col col--4', styles.docSection)}>
       <div className="card-demo margin-bottom--md">
-        <div className="card">
-          <div className="card__header">
+        <div className={clsx('card', styles.sectionCard)}>
+          <div className={clsx('card__header', styles.cardHeader)}>
+            {Icon && <Icon className={styles.sectionIcon} />}
             <h3>{title}</h3>
           </div>
           <div className="card__body">
@@ -61,36 +63,42 @@ export default function Home(): React.ReactNode {
                 description="Essential safety guidelines, maintenance procedures, and general information about Weston Robot products."
                 to="/general/operational-safety"
                 buttonText="Learn More"
+                icon={FaShieldAlt}
               />
               <DocSection
                 title="Robots"
                 description="Comprehensive documentation for our robot platforms including UGVs, quadrupeds, and manipulators."
                 to="/robot/robot-intro"
                 buttonText="Learn More"
+                icon={FaRobot}
               />
               <DocSection
                 title="Peripherals"
                 description="Information about robot peripherals such as power regulators, robot hands, wireless chargers, and other peripheral devices."
                 to="/peripheral/peripheral-intro"
                 buttonText="Learn More"
+                icon={FaPlug}
               />
               <DocSection
                 title="Development Kit"
                 description="Resources and guides for the Weston Robot Development Kit to help you build custom solutions."
                 to="/kit/kit-intro"
                 buttonText="Learn More"
+                icon={FaTools}
               />
               <DocSection
                 title="User Guide"
                 description="Step-by-step guides and tutorials for getting started with Weston Robot products."
                 to="/guide/guide-intro"
                 buttonText="Learn More"
+                icon={FaBook}
               />
               <DocSection
                 title="Support"
                 description="Submit a support request through our online form to get assistance from our technical team."
                 to="https://forms.office.com/r/UXzrrsgEyW"
                 buttonText="Submit Request"
+                icon={FaHeadset}
               />
             </div>
           </div>
