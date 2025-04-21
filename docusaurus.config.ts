@@ -10,15 +10,15 @@ const config: Config = {
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
-  url: 'https://docs.westonrobot.com/',
+  url: 'https://westonrobot.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
-  baseUrl: '/',
+  baseUrl: '/docs-next/',
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: 'WestonRobot', // Usually your GitHub org/user name.
-  projectName: 'wr-docs', // Usually your repo name.
+  organizationName: 'westonrobot', // Usually your GitHub org/user name.
+  projectName: 'docs-next', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
