@@ -1,0 +1,8 @@
+{
+  "label": "Humanoid Robots",
+  "position": 4,
+  "link": {
+    "type": "generated-index",
+    "description": "Humanoid Robots."
+  }
+}

@@ -2,4 +2,4 @@
 sidebar_position: 1
 ---
 
-# Systems
+# Ranger Mini V2
