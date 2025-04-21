@@ -109,7 +109,7 @@ const config: Config = {
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/docusaurus-social-card.jpg',
+    image: 'img/wr-social-card.png',
     navbar: {
       title: 'Weston Robot',
       logo: {
