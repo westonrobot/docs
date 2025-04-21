@@ -6,7 +6,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import HomepageFeatures from '@site/src/components/HomepageFeatures';
 import Heading from '@theme/Heading';
-import { FaShieldAlt, FaRobot, FaPlug, FaTools, FaBook, FaHeadset } from 'react-icons/fa';
+import { FaShieldAlt, FaRobot, FaPlug, FaTools, FaBook, FaHeadset, FaMicrochip, FaCode } from 'react-icons/fa';
 
 import styles from './index.module.css';
 
@@ -58,16 +58,16 @@ export default function Home(): React.ReactNode {
         <div className={styles.docSections}>
           <div className="container">
             <div className="row">
-              <DocSection
+              {/* <DocSection
                 title="General"
                 description="Essential safety guidelines, maintenance procedures, and general information about Weston Robot products."
                 to="/general/operational-safety"
                 buttonText="Learn More"
                 icon={FaShieldAlt}
-              />
+              /> */}
               <DocSection
                 title="Robots"
-                description="Comprehensive documentation for our robot platforms including UGVs, quadrupeds, and manipulators."
+                description="Information and resources for our robot platforms including UGVs, quadrupeds, humanoids and manipulators."
                 to="/robot/robot-intro"
                 buttonText="Learn More"
                 icon={FaRobot}
@@ -80,16 +80,23 @@ export default function Home(): React.ReactNode {
                 icon={FaPlug}
               />
               <DocSection
-                title="Development Kit"
-                description="Resources and guides for the Weston Robot Development Kit to help you build custom solutions."
-                to="/kit/kit-intro"
+                title="Systems"
+                description="Resources and guides for integrated systems such as UGV development kit that help you build custom solutions."
+                to="/system/system-intro"
                 buttonText="Learn More"
-                icon={FaTools}
+                icon={FaMicrochip}
               />
               <DocSection
-                title="User Guide"
+                title="Software"
+                description="Documentation for our SDKs, and software tools to help you develop applications."
+                to="/software/software-intro"
+                buttonText="Learn More"
+                icon={FaCode}
+              />
+              <DocSection
+                title="Tutorials"
                 description="Step-by-step guides and tutorials for getting started with Weston Robot products."
-                to="/guide/guide-intro"
+                to="/tutorial/tutorial-intro"
                 buttonText="Learn More"
                 icon={FaBook}
               />
