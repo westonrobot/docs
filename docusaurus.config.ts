@@ -52,6 +52,16 @@ const config: Config = {
 
   plugins: [
     [
+      require.resolve('docusaurus-lunr-search'),
+      {
+        // Options
+        languages: ['en'],
+        indexDocs: true,
+        indexBlog: false,
+        indexPages: true
+      }
+    ],
+    [
       '@docusaurus/plugin-content-docs',
       {
         id: 'general',
