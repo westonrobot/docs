@@ -1,4 +1,4 @@
-# UGV Devkit - ROS2 Navigation Sample Setup
+# UGV Devkit Nav2 Sample Setup
 
 ## 1. Overview
 

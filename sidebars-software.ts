@@ -10,6 +10,13 @@ const sidebarsSoftware: SidebarsConfig = {
         'installation/apt_source',
       ],
     },
+    {
+      type: 'category',
+      label: 'Software Toolbox',
+      items: [
+        'toolbox/assisted_driving_toolbox',
+      ],
+    },
   ],
 };
 
