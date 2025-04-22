@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-import GO2_IMG from '/img/robot/unitree/Go2_robot.png';
+import GO2_IMG from '../img/unitree/Go2_robot.png';
 
 # GO2
 

@@ -2,8 +2,8 @@
 sidebar_position: 1
 ---
 
-import NANOPC_IMG from '/img/peripheral/westonrobot/nanopc_sbc.jpg';
-import NANOPC_PORTS from '/img/peripheral/westonrobot/nanopc_industrial_ports.png';
+import NANOPC_IMG from '../img/westonrobot/nanopc_sbc.jpg';
+import NANOPC_PORTS from '../img/westonrobot/nanopc_industrial_ports.png';
 
 # NanoPC-based Onboard Computer
 

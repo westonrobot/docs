@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-import CM4_IMG from '/img/peripheral/westonrobot/cm4_sbc.jpg';
+import CM4_IMG from '../img/westonrobot/cm4_sbc.jpg';
 
 # CM4-based Onboard Computer
 

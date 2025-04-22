@@ -2,11 +2,11 @@
 sidebar_position: 2
 ---
 
-import RM2_IMG from '/img/robot/agilex/ranger_mini_v2.png';
-import RM_AUTO_CALIB_IMG1 from '/img/robot/agilex/ranger_auto_calibration_1.jpg';
-import RM_AUTO_CALIB_IMG2 from '/img/robot/agilex/ranger_auto_calibration_2.jpg';
-import RM_MANUAL_CALIB_IMG1 from '/img/robot/agilex/ranger_calibration_1.jpg';
-import RM_MANUAL_CALIB_IMG2 from '/img/robot/agilex/ranger_calibration_2.jpg';
+import RM2_IMG from '../img/agilex/ranger_mini_v2.png';
+import RM_AUTO_CALIB_IMG1 from '../img/agilex/ranger_auto_calibration_1.jpg';
+import RM_AUTO_CALIB_IMG2 from '../img/agilex/ranger_auto_calibration_2.jpg';
+import RM_MANUAL_CALIB_IMG1 from '../img/agilex/ranger_calibration_1.jpg';
+import RM_MANUAL_CALIB_IMG2 from '../img/agilex/ranger_calibration_2.jpg';
 
 # Ranger Mini 2.0
 
@@ -36,8 +36,8 @@ The Ranger Mini 2.0 mobile robot is a four-wheel swerve-drive platform.
 
 Turn on robot and controller. With SWA flipped to down position, and VRA pushed to bottommost position, press KEY1.
 
-<!-- ![](/img/robot/agilex/ranger_auto_calibration_1.jpg)
-![](/img/robot/agilex/ranger_auto_calibration_2.jpg) -->
+<!-- ![](../img/agilex/ranger_auto_calibration_1.jpg)
+![](../img/agilex/ranger_auto_calibration_2.jpg) -->
 <img src={RM_AUTO_CALIB_IMG1} alt="RM auto calibration" style={{height: 380}} />
 <img src={RM_AUTO_CALIB_IMG2} alt="RM auto calibration" style={{height: 380}} />
 
@@ -45,12 +45,12 @@ Turn on robot and controller. With SWA flipped to down position, and VRA pushed 
 
 Turn off robot and controller. While robot is turned off, adjust the position of the steering wheels. Using a long straight object to help straighten the wheels is generally sufficient.
 
-<!-- ![](/img/robot/agilex/ranger_calibration_1.jpg) -->
+<!-- ![](../img/agilex/ranger_calibration_1.jpg) -->
 <img src={RM_MANUAL_CALIB_IMG1} alt="RM auto calibration" style={{width: 500}} />
 
 Turn on robot and controller. With SWA flipped to down position, and VRA pushed to topmost position, press KEY1.
 
-<!-- ![](/img/robot/agilex/ranger_calibration_2.jpg) -->
+<!-- ![](../img/agilex/ranger_calibration_2.jpg) -->
 <img src={RM_MANUAL_CALIB_IMG2} alt="RM auto calibration" style={{width: 500}} />
 
 The controller display should flash a error code for 1-2 seconds then return to normal. Calibration is completed.

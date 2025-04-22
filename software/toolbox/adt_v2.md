@@ -44,19 +44,19 @@ To open the application, locate the Assisted Driving Toolbox Client in the appli
 - Press the Windows key on your keyboard to open the application search bar. Search for "WR Assisted Driving Toolbox".
 - Click on the application icon to open the Assisted Driving Toolbox Client.
 
-![Launching Assisted Driving Toolbox Client](/img/software/toolbox/adt/adt_v2_01.png)
+![Launching Assisted Driving Toolbox Client](./img/adt/adt_v2_01.png)
 
 The Assisted Driving Toolbox Client will open with the following screen:
 
-![Assisted Driving Toolbox Client Start Screen](/img/software/toolbox/adt/adt_v2_02.png)
+![Assisted Driving Toolbox Client Start Screen](./img/adt/adt_v2_02.png)
 
 Click on the "Login" button. A new browser window will open with the following login page:
 
-![Assisted Driving Toolbox Client Login Page](/img/software/toolbox/adt/adt_v2_03.png)
+![Assisted Driving Toolbox Client Login Page](./img/adt/adt_v2_03.png)
 
 Login with your credentials. After successful login, the Assisted Driving Toolbox Client will prompt you to select the robot you want to control:
 
-![Assisted Driving Toolbox Client Robot Selection](/img/software/toolbox/adt/adt_v2_04.png)
+![Assisted Driving Toolbox Client Robot Selection](./img/adt/adt_v2_04.png)
 
 If this is your first time using the Assisted Driving Toolbox Client, a settings menu will automatically open for you to configure the joystick and camera settings.
 
@@ -66,11 +66,11 @@ If this is your first time using the Assisted Driving Toolbox Client, a settings
 
 The teleoperation panel serves as the main control interface for the robot. It allows you to control the robot's movement and observe the robot's surroundings through the robot's onboard cameras in real-time.
 
-![Teleoperation Panel](/img/software/toolbox/adt/adt_v2_05.png)
+![Teleoperation Panel](./img/adt/adt_v2_05.png)
 
 ### Settings Menu
 
-![Settings Menu](/img/software/toolbox/adt/adt_v2_06.png)
+![Settings Menu](./img/adt/adt_v2_06.png)
 
 The settings menu allows you to configure the joystick and camera settings. You can access the settings menu by clicking on the gear icon in the bottom right corner of the Assisted Driving Toolbox Client.
 
@@ -80,29 +80,29 @@ To start manually controlling the robot, at least 1 controller (joystick, gamepa
 
 1. Open Bluetooth settings window. Click the top right corner of your screen to open the toolbar menu. Subsequently select "Bluetooth Settings".
 
-    ![Bluetooth Settings](/img/software/toolbox/adt/adt_v2_07.png)
+    ![Bluetooth Settings](./img/adt/adt_v2_07.png)
 
 2. Turn on Bluetooth pairing mode of the PS4 controller by **holding onto the PlayStation button and "Share" button simultaneously** until a flashing blue light is observed on the PS4 gamepad's LED.
 
-    ![PS4 Controller Pairing](/img/software/toolbox/adt/adt_v2_08.png)
+    ![PS4 Controller Pairing](./img/adt/adt_v2_08.png)
 
 3. On the Ubuntu system's Bluetooth settings, find the device named "Wireless Controller" and connect to it.
 
-    ![Connecting to bluetooth controller](/img/software/toolbox/adt/adt_v2_09.png)
+    ![Connecting to bluetooth controller](./img/adt/adt_v2_09.png)
 
 4. Upon successful connection to the gamepad, you should see the following icon in the teleoperation panel of the user application. The LED on the controller should also turn **solid blue**.
 
-    ![Connected PS4 Controller on UI](/img/software/toolbox/adt/adt_v2_10.png)
+    ![Connected PS4 Controller on UI](./img/adt/adt_v2_10.png)
 
 5. After switching to the teleoperation panel, request for control from the robot by clicking the following toggle switch.
 
     > **Note:** Do check your settings to ensure that the joystick is properly configured before requesting control.
 
-    ![Requesting Control](/img/software/toolbox/adt/adt_v2_11.png)
+    ![Requesting Control](./img/adt/adt_v2_11.png)
 
 6. Upon successfully obtaining robot control, the robot may be controlled as follows:
 
     - Left Joystick: Moves the robot forward and backwards.
     - Right Joystick: Rotates the robot right and left.
 
-    ![Joystick Control](/img/software/toolbox/adt/adt_v2_12.png)
+    ![Joystick Control](./img/adt/adt_v2_12.png)

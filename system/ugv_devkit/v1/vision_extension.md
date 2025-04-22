@@ -4,9 +4,9 @@ This sensor kit or extension module for the UGV development kit provides a layer
 
 This kit consists of a Base Module where different camera types can be mounted in various combinations to the development kit. The camera modules are shown in the image below;
 
-![Base Module](/img/system/ugv_devkit/base_module.png)
+![Base Module](../img/base_module.png)
 
-![Camera Modules](/img/system/ugv_devkit/camera_modules.png)
+![Camera Modules](../img/camera_modules.png)
 
 ## Key Specifications
 
@@ -47,7 +47,7 @@ There are a total of 4 compartments in the Base Module, in which either camera m
 
 Please refer to the images below for more information.
 
-![Orientation of Modules](/img/system/ugv_devkit/orientation_of_modules.png)
+![Orientation of Modules](../img/orientation_of_modules.png)
 
 ## Reference Frames
 
@@ -56,13 +56,13 @@ The reference frames for the cameras follow the Right Hand Rule convention and a
 The Cartesian coordinates O-XYZ of the components are defined as below: 
 Point O of the Top Plate is the origin, and O-XYZ is the point cloud coordinates of the module.
 
-![Reference Frame Vision](/img/system/ugv_devkit/ref_frame_vision.png)
+![Reference Frame Vision](../img/ref_frame_vision.png)
 
 **Relationship between sensors**
 
 Taking the Top Plate as the reference link for this extension, the relative position of both cameras are provided in the table below based on the different possible configurations:
 
-![Vision Kit Relative Position Table](/img/system/ugv_devkit/vision_kit_relative_position_table.png)
+![Vision Kit Relative Position Table](../img/vision_kit_relative_position_table.png)
 
 > **Note**  
 > More information on the D435i Depth camera can be found [here](https://github.com/IntelRealSense/realsense-ros?tab=readme-ov-file#ros2robot-vs-opticalcamera-coordination-systems)

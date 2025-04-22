@@ -2,7 +2,7 @@
 sidebar_position: 5
 ---
 
-import PIPER_IMG from '/img/robot/agilex/piper.png';
+import PIPER_IMG from '../img/agilex/piper.png';
 
 
 # PiPER 6DOF

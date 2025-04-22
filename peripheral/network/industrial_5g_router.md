@@ -2,7 +2,7 @@
 sidebar_position: 2
 ---
 
-import ROUTER_5G_IMG from '/img/peripheral/westonrobot/5g_router/industrial_5g_wifi_router.jpg';
+import ROUTER_5G_IMG from '../img/westonrobot/5g_router/industrial_5g_wifi_router.jpg';
 
 # Industrial 5G Router
 
@@ -36,21 +36,21 @@ To configure the router as an AP client, follow these steps:
 
 1. Connect to the router's web interface by entering the router's IP address in a web browser. The default IP address is usually "10.10.0.1".
 
-   ![Home Page](/img/peripheral/westonrobot/5g_router/home_page.png)
+   ![Home Page](../img/westonrobot/5g_router/home_page.png)
 
 2. Click into the AP client configuration page.
 
-   ![AP Client Tab](/img/peripheral/westonrobot/5g_router/ap_client_tab.png)
+   ![AP Client Tab](../img/westonrobot/5g_router/ap_client_tab.png)
 
 3. Change "Wireless Operation Mode" to "AP-Client + AP" or "AP-Client (AP is disabled)"
 
    **Note**: The difference between the 2 modes is whether the router will also broadcast its own Wifi network. If you want the router to broadcast its own Wifi network, choose "AP-Client + AP".
 
-   ![Operation Mode](/img/peripheral/westonrobot/5g_router/operation_mode.png)
+   ![Operation Mode](../img/westonrobot/5g_router/operation_mode.png)
 
 4. Switch Role to "WAN (Wireless ISP)", configure the Wifi network settings of the **existing network** to connect and click "Apply"
 
-   ![AP Settings](/img/peripheral/westonrobot/5g_router/ap_settings.png)
+   ![AP Settings](../img/westonrobot/5g_router/ap_settings.png)
 
 5. After applying the settings, the router will attempt to connect to the existing Wifi network. You can check the connection status on the "Status" page.
 
@@ -58,7 +58,7 @@ To configure the router as an AP client, follow these steps:
 
 The router supports both 5Ghz and 2.4Ghz networks, you can configure the router to connect to a 5Ghz network by clicking the "Go to 5Ghz Setting" button and repeat the steps above.
 
-![5Ghz Setting](/img/peripheral/westonrobot/5g_router/5ghz_setting.png)
+![5Ghz Setting](../img/westonrobot/5g_router/5ghz_setting.png)
 
 ### Changing the Router's LAN IP Address
 
@@ -68,14 +68,14 @@ To change the LAN IP address, follow these steps:
 
 1. Connect to the router's web interface by entering the router's IP address in a web browser. The default IP address is usually "10.10.0.1".
 
-   ![Home Page](/img/peripheral/westonrobot/5g_router/home_page.png)
+   ![Home Page](../img/westonrobot/5g_router/home_page.png)
 
 2. Click into the "LAN" configuration tab.
   
-   ![LAN Config Tab](/img/peripheral/westonrobot/5g_router/lan_config_tab.png)
+   ![LAN Config Tab](../img/westonrobot/5g_router/lan_config_tab.png)
 
 3. Adjust the LAN settings as needed and click "Apply".
     
    **Note**: DHCP server settings should be adjusted automatically to suit the new LAN settings.
 
-   ![LAN Settings](/img/peripheral/westonrobot/5g_router/lan_settings.png)
+   ![LAN Settings](../img/westonrobot/5g_router/lan_settings.png)
