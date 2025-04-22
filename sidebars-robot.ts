@@ -7,6 +7,7 @@ const sidebarsRobot: SidebarsConfig = {
       type: 'category',
       label: 'UGVs',
       items: [
+        'ugv/scout-mini',
         'ugv/ranger-mini-v2',
         'ugv/ranger-mini-v3'],
     },
@@ -30,6 +31,9 @@ const sidebarsRobot: SidebarsConfig = {
       type: 'category',
       label: 'Manipulators',
       items: [
+        'manipulator/wr65',
+        'manipulator/wrl63',
+        'manipulator/xarm',
         'manipulator/z1',
         'manipulator/piper',
       ],
