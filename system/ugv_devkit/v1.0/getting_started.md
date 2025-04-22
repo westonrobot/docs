@@ -3,7 +3,7 @@
 ## Connecting the Robot PC to your WiFi Network
 The devkit is equipped with an Industrial 5G/WiFi Router and can act as an AP client to provide internet connectivity. Review the following guide and configure your router to connect to an existing WiFi network.
 
-* [Industrial 5G/WiFi Router](/peripheral/network/industrial_5g_wifi_router)
+* [Industrial 5G/WiFi Router](/peripheral/network/industrial_5g_router)
 
 ## Connecting your PC to the Robot PC via SSH
 You can control, deploy, launch, and debug applications from your PC. Alternatively, you can develop your applications directly on the robot PC by connecting a display, keyboard, and mouse to the robot PC or use a remote desktop application to access. 
