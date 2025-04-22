@@ -20,6 +20,11 @@
   --ifm-navbar-background-color: rgba(255, 255, 255, 0.95);
   --ifm-card-background-color: #ffffff;
   --ifm-footer-background-color: #1a202c;
+  
+  /* Custom link colors */
+  --ifm-link-color: #1a56db;
+  --ifm-link-hover-color: #1e429f;
+  --ifm-link-decoration: none;
 }
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
@@ -40,4 +45,22 @@
   --ifm-color-emphasis-700: #9ca3af;
   --ifm-color-emphasis-800: #d1d5db;
   --ifm-color-emphasis-900: #f3f4f6;
+  
+  /* Custom link colors for dark mode */
+  --ifm-link-color: #60a5fa;
+  --ifm-link-hover-color: #93c5fd;
+  --ifm-link-decoration: none;
+}
+
+/* Only add underlines to links in content/markdown areas */
+.markdown a {
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.markdown a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: all 0.2s ease;
 }

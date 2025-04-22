@@ -8,7 +8,7 @@ import GO2_IMG from '/img/robot/unitree/Go2_robot.png';
 
 ## 1. Overview
 
-<img src={GO2_IMG} alt="Go2 robot" style={{width: 300}} />
+<img src={GO2_IMG} alt="Go2 robot" style={{width: 350}} />
 
 The Go2 robot dog is a new and improved intelligent bionic quadruped robot empowered with AI. The Go2 has Unitree's self-developed 4D LIDAR L1 with 360°x90° hemispherical ultra-wide recognition to make Go2 traverse complex terrain.
 
