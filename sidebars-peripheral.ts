@@ -2,7 +2,7 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 
 const sidebarsPeripheral: SidebarsConfig = {
   peripheralSidebar: [
-    'peripheral-intro',
+    'intro',
     {
       type: 'category',
       label: 'Onboard Computers',
