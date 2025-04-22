@@ -9,6 +9,8 @@ import B2_IMG from '/img/robot/unitree/B2_robot.png';
 
 # Robots
 
+We offer a range of robotic platforms, each designed to meet specific needs and applications. Our robots are equipped with advanced features and capabilities, making them suitable for various tasks in different environments. You can find more detailed information about each robot model in the navigation menu on the left side of this page. 
+
 :::warning Safety Warning
 
 Operating robotics equipment involves inherent risks, including
@@ -19,8 +21,6 @@ training before operating any robotics machinery. Failure to comply with
 these precautions can result in severe injury or damage.
 
 :::
-
-You can find all robot models from the list on the left. The following are the most common models:
 
 <div className="row">
     <div className="col col--6">
