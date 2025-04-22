@@ -111,7 +111,7 @@ Once finished the installation, you can find the executable of the widget at `/o
 
 Run the widget and you should see the GUI like this:
 
-![Regulator Widget GUI](/img/peripheral/westonrobot/regulator_v2.1_01.png)
+![Regulator Widget GUI](../img/westonrobot/regulator_v2.1_01.png)
 
 ## 5. Configuration
 

@@ -68,35 +68,35 @@ export default function Home(): React.ReactNode {
               <DocSection
                 title="Robots"
                 description="Information and resources for our robot platforms including UGVs, quadrupeds, humanoids and manipulators."
-                to="/robot/robot-intro"
+                to="/robot/intro"
                 buttonText="Learn More"
                 icon={FaRobot}
               />
               <DocSection
                 title="Peripherals"
                 description="Information about robot peripherals such as power regulators, robot hands, wireless chargers, and other peripheral devices."
-                to="/peripheral/peripheral-intro"
+                to="/peripheral/intro"
                 buttonText="Learn More"
                 icon={FaPlug}
               />
               <DocSection
                 title="Systems"
                 description="Resources and guides for integrated systems such as UGV development kit that help you build custom solutions."
-                to="/system/system-intro"
+                to="/system/intro"
                 buttonText="Learn More"
                 icon={FaMicrochip}
               />
               <DocSection
                 title="Software"
                 description="Documentation for our SDKs, and software tools to help you develop applications."
-                to="/software/software-intro"
+                to="/software/intro"
                 buttonText="Learn More"
                 icon={FaCode}
               />
               <DocSection
                 title="Tutorials"
                 description="Step-by-step guides and tutorials for getting started with Weston Robot products."
-                to="/tutorial/tutorial-intro"
+                to="/tutorial/intro"
                 buttonText="Learn More"
                 icon={FaBook}
               />

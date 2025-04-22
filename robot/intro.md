@@ -2,10 +2,10 @@
 sidebar_position: 1
 ---
 
-import SCOUT_MINI_IMG from '/img/robot/agilex/scout_mini.png';
-import RM3_IMG from '/img/robot/agilex/ranger_mini_v3.png';
-import GO2_IMG from '/img/robot/unitree/Go2_robot.png';
-import B2_IMG from '/img/robot/unitree/B2_robot.png';
+import SCOUT_MINI_IMG from './img/agilex/scout_mini.png';
+import RM3_IMG from './img/agilex/ranger_mini_v3.png';
+import GO2_IMG from './img/unitree/Go2_robot.png';
+import B2_IMG from './img/unitree/B2_robot.png';
 
 # Robots
 

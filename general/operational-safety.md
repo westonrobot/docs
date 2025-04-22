@@ -38,7 +38,7 @@ It's recommend to put the robot on a stable stool or bench that lifts the
 robot up so that you don't get unanticipated robot movement even when
 wrong motion commands are sent to the robot.
 
-![Alt text for accessibility](/img/general/robot_on_stool.jpg)
+![Alt text for accessibility](./img/robot_on_stool.jpg)
 
 Keep the RC controller off when you're not intending to control the
 robot. Mishandling of the remote controller may lead to unexpected robot

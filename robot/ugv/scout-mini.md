@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-import SCOUT_MINI_IMG from '/img/robot/agilex/scout_mini.png';
+import SCOUT_MINI_IMG from '../img/agilex/scout_mini.png';
 
 # Scout Mini
 

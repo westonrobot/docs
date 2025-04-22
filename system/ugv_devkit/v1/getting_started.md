@@ -34,13 +34,13 @@ Based on the camera(s) you have installed, open the corresponding configuration 
 ### RealSense Camera
 For example, if you have a RealSense D435i connected at the front position, open the `front_d435i.param.yaml` file and replace `serial_no` with the serial number of your RealSense camera. To find the serial number of your RealSense camera(s) connected, enter `rs-enumerate-devices -s` in the terminal.
 
-![Camera Configuration 1](/img/system/ugv_devkit/camera_configuration_1.jpg)
+![Camera Configuration 1](../img/camera_configuration_1.jpg)
 
 ### RGB Camera
 For example, if you have an RGB USB camera connected and mounted at the left position, open the `rgb_camera.yaml` file and enter the camera device file with its ID assigned by the kernel.
 
-![Camera Configuration 2](/img/system/ugv_devkit/camera_configuration_2.jpg)
+![Camera Configuration 2](../img/camera_configuration_2.jpg)
 
 To find the device file ID, enter `v4l2-ctl --list-devices` in the terminal. If `v4l-utils` package is not installed, run `sudo apt-get install v4l-utils` to install it.
 
-![Camera Configuration 3](/img/system/ugv_devkit/camera_configuration_3.jpg)
+![Camera Configuration 3](../img/camera_configuration_3.jpg)

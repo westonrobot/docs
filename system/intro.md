@@ -2,7 +2,7 @@
 sidebar_position: 1
 ---
 
-import UGV_DEVKIT_IMG from '/img/system/ugv_devkit/v1.1/overview2.png';
+import UGV_DEVKIT_IMG from './ugv_devkit/img/v1.1/overview2.png';
 
 # Systems
 

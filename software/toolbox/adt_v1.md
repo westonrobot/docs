@@ -2,7 +2,7 @@
 
 Weston Robot proudly presents the Assisted Driving Toolbox (ADT) V1, a teleoperation system designed and developed by Weston Robot for usage on multiple mobile robot platforms. The system allows the control and operation of a robot through a shared network, with a wide coverage of its surroundings using mounted onboard camera modules.
 
-![ADT Overview](/img/software/toolbox/adt/adt_01.png)
+![ADT Overview](./img/adt/adt_01.png)
 
 ## Assisted Driving Server Setup
 
@@ -80,33 +80,33 @@ wr_assisted_teleop
 
 - The icons below show the status of the control and video streaming servers. The icons on the left screenshot indicates the services are online, while the one on the right indicates the services offline.
 
-![Services Online](/img/software/toolbox/adt/adt_02.png)
-![Services Offline](/img/software/toolbox/adt/adt_03.png)
+![Services Online](./img/adt/adt_02.png)
+![Services Offline](./img/adt/adt_03.png)
 
 - If system has been configured before, camera streams will automatically be enabled. To toggle individual camera streams, use the buttons below:
 
-![Camera Stream Controls](/img/software/toolbox/adt/adt_04.png)
+![Camera Stream Controls](./img/adt/adt_04.png)
 
 - To toggle control of the robot (control disabled by default) and to view the status of attached joystick, use the buttons below:
    
    - **NOTE**: Set height to the neutral position (50%) and check joystick behaviour (see below) before enabling control to avoid sudden movements.
 
-![Control Toggle](/img/software/toolbox/adt/adt_05.png)
+![Control Toggle](./img/adt/adt_05.png)
 
 - The joystick gauge displays the current state of the attached controlling joystick.
    
    - **Please ensure that the joystick behaves as expected before enabling control of the robot.**
    - **If behaviour is incorrect, configure the joystick in the client's settings menu.**
 
-![Joystick Gauge](/img/software/toolbox/adt/adt_06.png)
+![Joystick Gauge](./img/adt/adt_06.png)
 
 - The obstacle detection gauge displays the current feedback on any range finders in the system (when applicable):
 
-![Obstacle Detection](/img/software/toolbox/adt/adt_07.png)
+![Obstacle Detection](./img/adt/adt_07.png)
 
 - The Speedo- and Battery meter gauge displays the current speed and battery's charge (Upcoming feature):
 
-![Speed and Battery](/img/software/toolbox/adt/adt_08.png)
+![Speed and Battery](./img/adt/adt_08.png)
 
 ### Client Configuration
 
@@ -115,16 +115,16 @@ On client's first startup, "Settings" popup will prompt user to input the releva
   - Streaming server IP and port numbers
   - Joystick mapping settings
 
-![Settings Popup](/img/software/toolbox/adt/adt_09.png)
+![Settings Popup](./img/adt/adt_09.png)
 
 - To change settings after first startup, click the settings button at the bottom right of the client to access settings:
 
-![Settings Button](/img/software/toolbox/adt/adt_10.png)
+![Settings Button](./img/adt/adt_10.png)
 
 - Changing the IP address and ports of the Servers is as simple as changing the values below:
    - This IP address should correspond to the robot's wlan0 interface IP address by default
 
-![Server Settings](/img/software/toolbox/adt/adt_11.png)
+![Server Settings](./img/adt/adt_11.png)
 
 - Changing the joystick mapping is as simple as changing the values below:
    - Mappings:
@@ -136,4 +136,4 @@ On client's first startup, "Settings" popup will prompt user to input the releva
       - Angular Z - Yaw movement 
    - Below shows an example configuration using Logitech's Extreme3DPro joystick:
 
-![Joystick Mapping](/img/software/toolbox/adt/adt_12.png)
+![Joystick Mapping](./img/adt/adt_12.png)

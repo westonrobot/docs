@@ -48,7 +48,7 @@ You can find more information on [ROS2 Workshop](https://ros2-industrial-worksho
 
     Once RVIZ2 is open, you will see the default display. On the left panel, under the "Displays" section, click on the "Add" button. In the "By display type" tab, scroll down and select "Map" under the "rviz_default_plugins" category. Click "OK" to add the Map display. You should now see the map being visualized in RVIZ2 as the mapping process occurs.
 
-    ![Cartographer Mapping in RVIZ](/img/system/ugv_devkit/cartographer_mapping_rviz.png)
+    ![Cartographer Mapping in RVIZ](../img/cartographer_mapping_rviz.png)
 
     Control the robot around the environement using the remote controller or teleoperation by running `ros2 run teleop_twist_keyboard teleop_twist_keyboard.py`. The speed should be slow throughout the mapping process. If the speed is too fast, the map quality may be affected.
 
@@ -84,17 +84,17 @@ You can find more information on [ROS2 Workshop](https://ros2-industrial-worksho
 
     The map to odom frame will not be published until you provide an initial pose estimate. Click on the `2D Pose Estimate` button. Then, on the map, click on the location where the robot is located, and drag the arrow to the direction the robot is facing.
     
-    ![Cartographer Navigation in RVIZ](/img/system/ugv_devkit/cartographer_navigation_rviz.png)
+    ![Cartographer Navigation in RVIZ](../img/cartographer_navigation_rviz.png)
 
 4. Generally, the laser scan display does not overlap with the map. To correct this, use the `2D Pose Estimate` tool to provide an estimated position for the robot. Repeat this process as necessary until the laser scan display aligns accurately with the map.
 
-    ![Cartographer Navigation](/img/system/ugv_devkit/cartographer_navigation.png)
+    ![Cartographer Navigation](../img/cartographer_navigation.png)
 
-    ![Cartographer Navigation Pose Estimate](/img/system/ugv_devkit/cartographer_navigation_pose_estimate.png)
+    ![Cartographer Navigation Pose Estimate](../img/cartographer_navigation_pose_estimate.png)
   
 5. With an accurate estimation of the robot's location, we can now set a navigation goal for the robot to move toward. Click on the `Nav2 Goal` button, then click on the location on the map where you want the robot to move to, and drag the arrow to set the orientation. The robot should start moving towards the goal.
 
-    ![Cartographer Navigation Goal](/img/system/ugv_devkit/cartographer_navigation_goal.png)
+    ![Cartographer Navigation Goal](../img/cartographer_navigation_goal.png)
 
 ## 3. RTAB-Map and Navigation
 
@@ -127,7 +127,7 @@ Review the Camera Configuration section in UGV Devkit Getting Started to configu
     | true                | Launch RVIZ to visualize the mapping process and assess the quality of the map |
     | false               | RVIZ will not be launched, but it can be opened on another PC with the same ROS_DOMAIN_ID |
 
-    ![RTAB-Map Mapping in RVIZ](/img/system/ugv_devkit/rtabmap_mapping_rviz.png)
+    ![RTAB-Map Mapping in RVIZ](../img/rtabmap_mapping_rviz.png)
 
     After building the map, you can exit the program directly. The map will automatically save as `rtabmap.db` in the main directory under `.ros`.
 
@@ -159,10 +159,10 @@ Review the Camera Configuration section in UGV Devkit Getting Started to configu
       ros2 launch nav2_bringup rviz_launch.py
       ```
 
-    ![RTAB-Map Navigation in RVIZ](/img/system/ugv_devkit/rtabmap_navigation_rviz.png)
+    ![RTAB-Map Navigation in RVIZ](../img/rtabmap_navigation_rviz.png)
 
     > **Note:** During initialization, the robot may need to detect additional visual features before it can accurately localize itself. To facilitate this, drive the robot around until it appears correctly positioned in RVIZ.
 
 5. To set a navigation goal, click on the `Nav2 Goal` button, then click on the location on the map where you want the robot to move to, and drag the arrow to set the orientation. The robot should start moving towards the goal.
 
-    ![RTAB-Map Navigation Goal](/img/system/ugv_devkit/rtabmap_navigation_goal.png)
+    ![RTAB-Map Navigation Goal](../img/rtabmap_navigation_goal.png)
