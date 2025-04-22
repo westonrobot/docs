@@ -96,7 +96,7 @@ export default function Home(): React.ReactNode {
               <DocSection
                 title="Tutorials"
                 description="Step-by-step guides and tutorials for getting started with Weston Robot products."
-                to="/tutorial/tutorial-intro"
+                to="/tutorial/intro"
                 buttonText="Learn More"
                 icon={FaBook}
               />
