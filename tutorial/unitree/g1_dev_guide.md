@@ -178,3 +178,75 @@ The [Electrical Interface section](https://support.unitree.com/home/en/G1_develo
 :::info Note
 While you can connect an external computer to the development computer using port [9] with a Type-C to **HDMI & Ethernet** adapter, this approach is **not recommended**. The physical connection with an adapter on the Type-C port is less reliable than using the dedicated RJ45 ports. Additionally, the Ethernet connection through Type-C requires extra configuration steps that necessitate using the HDMI output for setup. Port [9] should be considered primarily for temporary scenarios like debugging or troubleshooting (for instance, when ports [4] or [5] connectivity fails).
 :::
+
+## 2. Get Started with G1 Software
+
+### 2.1 Network Configuration
+
+Onboard network devices on the G1 robot are connected through an internal **L2 Ethernet switch**. When you plug your external computer to port [4] or [5], you are also connected to the same network. By default, Unitree configures the devices to be in the **192.168.123.0/24** subnet (for example, a valid IP could be 192.168.123.199 with subnet 255.255.255.0). 
+
+There is no router integrated into the system, which implies that:
+
+* There is no DHCP server on the robot. You need to manually configure the IP address of any computer you connect to the robot.
+
+For G1 robot, the network devices are assigned the following IP addresses:
+
+| Device Name          | IP Address      | Subnet Mask   | Username/Password |
+| -------------------- | --------------- | ------------- | ----------------- |
+| Locomotion Computer  | 192.168.123.161 | 255.255.255.0 | not open for user |
+| Development Computer | 192.168.123.164 | 255.255.255.0 | unitree/123       |
+| Livx Mid-360 Lidar   | 192.168.123.20  | 255.255.255.0 | N/A               |
+
+With the above information, it should be quite straightforward if you want to get the development computer on G1 to have Internet access. You can achieve it in two ways:
+
+* Connect a USB wireless network adapter to the development computer directly to port [6]/[7]/[8] (you may need a type-C to type-A adapter). This is the easiest way to get internet access. 
+* Connect an ethernet cable from the development computer to a router. The router should be connected to the Internet AND its LAN should be configured to use 192.168.123.1/24 network. Please note that with this setup, all onboard network devices will get access to the Internet, including the locomotion computer.
+
+:::warning Security Warning
+Please change the password of the development computer if you intend to keep the robot connected to the Internet. The default password is weak and should not be used in production environments.
+:::
+
+### 2.2 Software Architecture
+
+The Unitree proprietary software stack runs on the onboard locomotion computer. It is responsible for low-level control of the robot, including motor control, sensor data processing, and communication with the development computer. It exposes a set of APIs for users to interact with the robot using the CycloneDDS middleware. The `unitree_sdk2` allows you to talk with the locomotion computer directly using DDS. Since CycloneDDS and ROS2 are compatible at the DDS level, you can also use the ROS2 package `unitree_ros2` to communicate with the robot. The relationship between the different software components is illustrated in the diagram below:
+
+```mermaid
+flowchart TB
+    LC["Locomotion Computer"] --> |"DDS"| SDL["unitree_sdk2 (C++ Library)"]
+    SDL --> APP["User C++ Applications"]
+    
+    LC --> |"DDS"| RMW["ROS2 RMW Layer"]
+    RMW --> UR2["unitree_ros2 (ROS2 Package)"]
+    UR2 --> ROS["ROS2 Applications"]
+    
+    APP -->|"Runs on"| DC["Development Computer"]
+    ROS -->|"Runs on"| DC
+    
+    subgraph "Direct SDK Approach"
+        SDL
+        APP
+    end
+    
+    subgraph "ROS 2 Approach"
+        RMW
+        UR2
+        ROS
+    end
+```
+
+The `unitree_sdk2` C++ library and `unitree_ros2` ROS2 package are used to acess the robot "built-in" functionalities. From the programming perspective, the robotic hands and other peripherals such as the Livox Lidar are treated as third-party add-ons. As a result, you will have to set up the driver for each peripheral separately.
+
+Take the "Inspire DFX Dexterous Hand" as an example. The following diagram illustrates the software architecture for the example setup given in this [Unitree documentation page](https://support.unitree.com/home/en/G1_developer/inspire_dfx_dexterous_hand):
+
+```mermaid
+flowchart LR
+    subgraph DC["Development Computer"]
+        UA
+        DR
+    end
+
+    UA["User Application (h1_hand_example)"] --> |"DDS"| DR["Hand Driver (inspire_hand)"]
+    DR --> |"RS485-TO-USB"| HD["Inspire DFX Hand"]
+```
+
+While Unitree's documentation refers to the application as `h1_hand_example`, it's important to understand this is a customizable user application that interfaces with the `inspire_hand` driver - not a core component of the Unitree SDK. This driver functions as a middleware layer that handles the communication protocol between higher-level DDS network commands and the hand's low-level RS485 interface. Essentially, it translates bidirectional data between DDS messages and the RS485-TO-USB connection required by the Inspire DFX hand, allowing you to modify and extend the hand's functionality according to your specific requirements. 
