@@ -64,3 +64,49 @@
   text-underline-offset: 3px;
   transition: all 0.2s ease;
 }
+
+/* Compact tables styling */
+.markdown table {
+  font-size: 0.9em;
+  border-collapse: collapse;
+  width: auto;
+  margin-bottom: 1rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Center tables on the page */
+.markdown > table {
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Center table container if it exists */
+div:has(> .markdown table) {
+  text-align: center;
+}
+
+.markdown div.table-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.markdown table th,
+.markdown table td {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--ifm-table-border-color);
+}
+
+.markdown table td:not(:first-child) {
+  text-align: center;
+}
+
+/* Responsive tables on small screens */
+@media (max-width: 768px) {
+  .markdown table {
+    display: block;
+    overflow-x: auto;
+  }
+}
