@@ -10,6 +10,7 @@ import INSPIRE_DFX_IMG from './img/inspire_dfx_hand.png';
 import INSPIRE_FTP_IMG from './img/inspire_ftp_hand.png';
 import DEX3_1_IMG from './img/dex3_1_hand.png';
 import LIVOX_AND_REALSENSE_IMG from './img/livox_and_realsense.png';
+import DEV_PC_HW_IF_IMG from './img/dev_pc_hw_interface.jpg';
 
 # G1 Development Guide
 
@@ -126,3 +127,54 @@ You can use the table below to find out the specific model of the robotic hand y
 
 Note that G1 also includes built-in IMU, microphone array and speaker. You can refer to the Unitree documentation for more information on how to interact with these components. 
 
+### 1.3 Electrical Connectivity
+The electrical connectivity of the G1 robot follows a hierarchical architecture as illustrated below. The locomotion computer and its connected components function as a closed system that users cannot directly access. Think of this as a black box with protected internals. Nevertheless, you can still utilize these components' capabilities through the provided SDK. The development computer serves as your primary gateway for programming and controlling the robot.
+
+```mermaid
+flowchart TD
+    A[Joint Motors] --> B[Locomotion Computer]
+    B --> D[IMU]
+    B --> E[Microphone Array]
+    B --> F[Speaker]
+    B --> G[RealSense]
+    B -->|Ethernet| S[Internal Ethernet Switch]
+    S -->|Ethernet| C[**Development Computer**]
+    S -->|Ethernet| H[Lidar]
+    C -->|RS485| I[Robotic Hand]
+```
+
+* **Locomotion computer** is referred as **operation and control computing unit** in the Unitree documentation. It communicates with the motor drivers and other low-level devices inside the robot directly. Unitree locomotion controller runs on this computer. This computer is not accessible to users.
+* **Development computer** is referred as **development computing unit** in the Unitree documentation. User can use this computer to run their own code. Both low-level (joint control) and high-level (speed control with the robot as a mobile base) code can run on this computer. 
+
+:::info Note
+The development computer features an **Nvidia Jetson Orin NX** module installed on a custom Unitree carrier board. This requires a specific BSP (Board Support Package) for proper driver support and device tree configurations. Do not attempt to flash the Orin NX module with any third-party images, as this could render the system inoperable.
+:::
+
+The carrier board provides the following interfaces:
+
+<div align="center">
+    <img src={DEV_PC_HW_IF_IMG} alt="Development PC Hardware Interface" style={{ height: 400 }} />
+</div>
+
+
+| No. | Connector Name | Interface Description | Interface specification                                           |
+| --- | -------------- | --------------------- | ----------------------------------------------------------------- |
+| 1   | XT30UPB-F      | VBAT                  | 58V/5A Battery power output (directly connected to battery power) |
+| 2   | XT30UPB-F      | 24V                   | 24V/5A power output                                               |
+| 3   | XT30UPB-F      | 12V                   | 12V/5A power output                                               |
+| 4   | RJ45           | 1000 BASE-T           | GbE (gigabit Ethernet)                                            |
+| 5   | RJ45           | 1000 BASE-T           | GbE (gigabit Ethernet)                                            |
+| 6   | Type-C         | Type-C                | Support USB3.0 host, 5V/1.5A power output                         |
+| 7   | Type-C         | Type-C                | Support USB3.0 host, 5V/1.5A power output                         |
+| 8   | Type-C         | Type-C                | Support USB3.0 host, 5V/1.5A power output                         |
+| 9   | Type-C         | Alt Mode Type-C       | Supports USB3.2 host and DP1.4                                    |
+| 10  | 5577           | I/O OUT               | 12V: 12V/3A power output                                          |
+
+The [Electrical Interface section](https://support.unitree.com/home/en/G1_developer/about_G1) from Unitree documentation provides additional information. But the above information should be sufficient for you to get started. Notablly, you need to know the following key points:
+
+* You can directly access the development computer by connecting a Type-C to HDMI adapter to port [9] (adapter not included, requires separate purchase). This allows you to connect a monitor and keyboard to the development computer.
+* The recommended method for accessing the development computer is connecting an external computer (like a development laptop) via Ethernet using port [4] or [5].
+
+:::info Note
+While you can connect an external computer to the development computer using port [9] with a Type-C to **HDMI & Ethernet** adapter, this approach is **not recommended**. The physical connection with an adapter on the Type-C port is less reliable than using the dedicated RJ45 ports. Additionally, the Ethernet connection through Type-C requires extra configuration steps that necessitate using the HDMI output for setup. Port [9] should be considered primarily for temporary scenarios like debugging or troubleshooting (for instance, when ports [4] or [5] connectivity fails).
+:::
