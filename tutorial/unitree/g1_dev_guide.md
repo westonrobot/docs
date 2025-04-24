@@ -296,3 +296,27 @@ Unitree provides a way to disable its locomotion controller by getting the robot
 
 ## 3. Run the First Example
 
+With the background information described in the previous sections, you should be ready to run your first example on the robot. We will use the "Quick Development" example provided by Unitree. This example demonstrates how to run the ankle swing low-level control example (g1_ankle_swing_example) from the `unitree_sdk2` library on the G1 robot. 
+
+You can run this example on the development computer or on an external computer. The following diagram illustrates the two options:
+
+1. Build and run the example on the user laptop (external computer)
+
+```mermaid
+flowchart LR
+    A[User Laptop 192.168.123.222] -->|"Ethernet"| B[G1 Port 4/5]
+    B -->|"Internal Network"| D[Locomotion Computer 192.168.123.161]
+```
+
+2. Build and run the example on the development computer (internal computer) 
+
+```mermaid
+flowchart LR
+    A[User Laptop 192.168.123.222] -->|"Ethernet"| B[G1 Port 4/5]
+    B -->|"ssh"| C[Development Computer 192.168.123.164]
+    C -->|"Internal Network"| D[Locomotion Computer 192.168.123.161]
+```
+
+In the second option, you can also plug a type-C to HDMI adapter to port [9] and connect a monitor and keyboard to the development computer. This allows you to run the example directly on the development computer without needing to SSH from an external computer.
+
+In this specific case, the command issued by `g1_ankle_swing_example` does not interfere with the Unitree locomotion controller. Therefore, the example functions correctly whether or not the robot is in debug mode. However, for other examples that might conflict with the locomotion controller, it is necessary to switch the robot to debug mode before execution.
