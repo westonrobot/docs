@@ -188,7 +188,7 @@ While you can connect an external computer to the development computer using por
 
 ### 2.1 Network Configuration
 
-Onboard network devices on the G1 robot are connected through an internal **L2 Ethernet switch**. When you plug your external computer to port [4] or [5], you are also connected to the same network. By default, Unitree configures the devices to be in the **192.168.123.0/24** subnet (for example, a valid IP could be 192.168.123.199 with subnet 255.255.255.0). 
+Onboard network devices on the G1 robot are connected through an internal **L2 Ethernet switch**. When you plug your external computer to port [4] or [5], you are also connected to the same network. By default, Unitree configures the devices to be in the **192.168.123.1/24** subnet (for example, a valid IP could be 192.168.123.199 with netmask 255.255.255.0). 
 
 There is no router integrated into the system, which implies that:
 
