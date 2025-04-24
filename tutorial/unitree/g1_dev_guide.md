@@ -2,6 +2,8 @@
 sidebar_position: 1
 ---
 
+import ReactPlayer from 'react-player'
+
 import G1_EDU_IMG from './img/g1_joints.png';
 import G1_EDU_ZERO_JOINT_IMG from './img/zero_joint_state.png';
 import G1_WAIST_JOINT_IMG from './img/waist_joint_control.png';
@@ -13,6 +15,7 @@ import LIVOX_AND_REALSENSE_IMG from './img/livox_and_realsense.png';
 import DEV_PC_HW_IF_IMG from './img/dev_pc_hw_interface.jpg';
 import DEBUG_MODE1_IMG from './img/debug_mode_1.jpg';
 import DEBUG_MODE2_IMG from './img/debug_mode_2.jpg';
+import HW_IF_REAL_IMG from './img/hw_interface_real.jpg';
 
 # G1 Development Guide
 
@@ -296,7 +299,7 @@ Unitree provides a way to disable its locomotion controller by getting the robot
 
 ## 3. Run the First Example
 
-With the background information described in the previous sections, you should be ready to run your first example on the robot. We will use the "Quick Development" example provided by Unitree. This example demonstrates how to run the ankle swing low-level control example (g1_ankle_swing_example) from the `unitree_sdk2` library on the G1 robot. 
+With the background information described in the previous sections, you should be ready to run your first example on the robot. We will use the [Quick Development](https://support.unitree.com/home/en/G1_developer/quick_development) example provided by Unitree as a case study. This example demonstrates how to run the ankle swing low-level control example (g1_ankle_swing_example) from the `unitree_sdk2` library on the G1 robot. You should still refer to that page for the detailed instructions. The rest of this section will provide complementary information to help you relate the example to the concepts discussed in the previous sections. 
 
 You can run this example on the development computer or on an external computer. The following diagram illustrates the two options:
 
@@ -319,4 +322,24 @@ flowchart LR
 
 In the second option, you can also plug a type-C to HDMI adapter to port [9] and connect a monitor and keyboard to the development computer. This allows you to run the example directly on the development computer without needing to SSH from an external computer.
 
+:::tip Tip
+The **takeaway point** is that you can run Unitree SDK or ROS examples to control the built-in functionalities (e.g. joint control) of the robot from any computer that can communicate with the robot locomotion computer at 192.168.123.161. This also applies to any third-party peripherals that use the Ethernet interface and are connected to the same network. However, it is **NOT** the case if you want to control the robotic hand or other peripherals that uses a dedicated port (such as USB, UART etc.). For these peripherals, you need to run the driver on the same computer that is connected to the peripheral. 
+:::
+
+You can use either port [4] or [5] to connect your external computer. Both ports are connected to the same internal network. 
+
+<div align="center">
+    <img src={HW_IF_REAL_IMG} alt="Hardware Interface" style={{ height: 400 }} />
+</div>
+
 In this specific case, the command issued by `g1_ankle_swing_example` does not interfere with the Unitree locomotion controller. Therefore, the example functions correctly whether or not the robot is in debug mode. However, for other examples that might conflict with the locomotion controller, it is necessary to switch the robot to debug mode before execution.
+
+Here is a video showing the ankle swing example running on the G1 robot:
+
+<div align="center">
+<ReactPlayer playing controls url='https://youtube.com/shorts/e9L8aEecLY8?feature=share' />
+</div>
+
+## 4. Summary
+
+This guide has introduced you to the G1 EDU humanoid robot's hardware and software fundamentals. We've covered the joint configuration with its 29 DOFs, available peripherals (robotic hands, LIDAR, RGB-D camera), and electrical connectivity architecture. You've learned about the development computer (Jetson Orin NX) interfaces and network configuration, along with understanding the software framework that includes unitree_sdk2 for direct C++ development and unitree_ros2 for ROS2 integration. The guide explained high-level versus low-level control considerations and showed how to enable debug mode for full control. By following the example case study, you should now be able to run your first control applications on the robot and understand how to interact with both built-in functionalities and third-party peripherals. This foundation will serve as your starting point for more complex G1 development projects.
