@@ -11,6 +11,8 @@ import INSPIRE_FTP_IMG from './img/inspire_ftp_hand.png';
 import DEX3_1_IMG from './img/dex3_1_hand.png';
 import LIVOX_AND_REALSENSE_IMG from './img/livox_and_realsense.png';
 import DEV_PC_HW_IF_IMG from './img/dev_pc_hw_interface.jpg';
+import DEBUG_MODE1_IMG from './img/debug_mode_1.jpg';
+import DEBUG_MODE2_IMG from './img/debug_mode_2.jpg';
 
 # G1 Development Guide
 
@@ -178,3 +180,143 @@ The [Electrical Interface section](https://support.unitree.com/home/en/G1_develo
 :::info Note
 While you can connect an external computer to the development computer using port [9] with a Type-C to **HDMI & Ethernet** adapter, this approach is **not recommended**. The physical connection with an adapter on the Type-C port is less reliable than using the dedicated RJ45 ports. Additionally, the Ethernet connection through Type-C requires extra configuration steps that necessitate using the HDMI output for setup. Port [9] should be considered primarily for temporary scenarios like debugging or troubleshooting (for instance, when ports [4] or [5] connectivity fails).
 :::
+
+## 2. Get Started with G1 Software
+
+### 2.1 Network Configuration
+
+Onboard network devices on the G1 robot are connected through an internal **L2 Ethernet switch**. When you plug your external computer to port [4] or [5], you are also connected to the same network. By default, Unitree configures the devices to be in the **192.168.123.0/24** subnet (for example, a valid IP could be 192.168.123.199 with subnet 255.255.255.0). 
+
+There is no router integrated into the system, which implies that:
+
+* There is no DHCP server on the robot. You need to manually configure the IP address of any computer you connect to the robot.
+
+For G1 robot, the network devices are assigned the following IP addresses:
+
+| Device Name          | IP Address      | Subnet Mask   | Username/Password |
+| -------------------- | --------------- | ------------- | ----------------- |
+| Locomotion Computer  | 192.168.123.161 | 255.255.255.0 | not open to user  |
+| Development Computer | 192.168.123.164 | 255.255.255.0 | unitree/123       |
+| Livx Mid-360 Lidar   | 192.168.123.20  | 255.255.255.0 | N/A               |
+
+With the above information, it should be quite straightforward if you want to get the development computer on G1 to have Internet access. You can achieve it in two ways:
+
+* Connect a USB wireless network adapter to the development computer directly to port [6]/[7]/[8] (you may need a type-C to type-A adapter). This is the easiest way to get internet access. 
+* Connect an ethernet cable from the development computer to a router. The router should be connected to the Internet AND its LAN should be configured to use 192.168.123.1/24 network. Please note that with this setup, all onboard network devices will get access to the Internet, including the locomotion computer.
+
+:::warning Security Warning
+Please change the password of the development computer if you intend to keep the robot connected to the Internet. The default password is weak and should not be used in production environments.
+:::
+
+### 2.2 Software Architecture
+
+The Unitree proprietary software stack runs on the onboard locomotion computer. It is responsible for low-level control of the robot, including motor control, sensor data processing, and communication with the development computer. It exposes a set of APIs for users to interact with the robot using the CycloneDDS middleware. The `unitree_sdk2` allows you to talk with the locomotion computer directly using DDS. Since CycloneDDS and ROS2 are compatible at the DDS level, you can also use the ROS2 package `unitree_ros2` to communicate with the robot. The relationship between the different software components is illustrated in the diagram below:
+
+```mermaid
+flowchart LR
+    LC["Locomotion Computer"] --> |"DDS"| SDL["unitree_sdk2 (C++ Library)"]
+    SDL --> APP["User C++ Applications"]
+    
+    LC --> |"DDS"| RMW["ROS2 RMW Layer"]
+    RMW --> UR2["unitree_ros2 (ROS2 Package)"]
+    UR2 --> ROS["ROS2 Applications"]
+    
+    APP -->|"Runs on"| DC["Development Computer"]
+    ROS -->|"Runs on"| DC
+    
+    subgraph "Direct SDK Approach"
+        SDL
+        APP
+    end
+    
+    subgraph "ROS 2 Approach"
+        RMW
+        UR2
+        ROS
+    end
+```
+
+The `unitree_sdk2` C++ library and `unitree_ros2` ROS2 package are used to access the robot "built-in" functionalities. **From the programming perspective, the robotic hands and other peripherals such as the Livox Lidar are treated as third-party add-ons. As a result, you will have to set up the driver for each peripheral separately.**
+
+Take the "Inspire DFX Dexterous Hand" as an example. The following diagram illustrates the software architecture for the example setup given in this [Unitree documentation page](https://support.unitree.com/home/en/G1_developer/inspire_dfx_dexterous_hand):
+
+```mermaid
+flowchart LR
+    subgraph DC["Development Computer"]
+        UA
+        DR
+    end
+
+    UA["User Application (h1_hand_example)"] <--> |"DDS"| DR["Hand Driver (inspire_hand)"]
+    DR <--> |"USB-RS485"| HD["Inspire DFX Hand"]
+```
+
+While Unitree's documentation refers to the application as `h1_hand_example`, it's important to understand this is a customizable user application that interfaces with the `inspire_hand` driver - not a core component of the Unitree SDK. This driver functions as a middleware layer that handles the communication protocol between higher-level DDS network commands and the hand's low-level RS485 interface. Essentially, it translates bidirectional data between DDS messages and the USB-RS485 connection required by the Inspire DFX hand, allowing you to modify and extend the hand's functionality according to your specific requirements. That's why the sample is more hand-specific rather than robot-specific.
+
+Another concept you may encounter when working with the SDK or ROS driver is the "high-level" and "low-level" control. The high-level control refers to the control of the robot as a whole, while the low-level control refers to the control of each joint or motor individually. The `unitree_sdk2` and `unitree_ros2` packages provide both high-level and low-level APIs for controlling the robot. Note that the "high-level" control for the G1 robot is mainly for lower-body joints and it's the Unitree locomotion controller that takes care of the low-level control to keep the robot balanced and be capable of dynamic movements (with a limited number of pre-defined upper-body motions). For the upper-body joints, you will have to implement your own low-level control algorithms. From the programming perspective, if you want to utilize the Unitree locomotion controller, you can think of the G1 robot as a mobile manipulation platform that has two arms installed on top of a mobile base that moves with legs. Of course, you can also develop your own controller that coordinates all joints together to take full advantage of the robot's capabilities with a full low-level control setup. 
+
+With the high-level and low-level control concept in mind, you may have realized that there are possibilities when conflicting commands are sent to the robot. For example, if both Unitree's locomotion controller and your own controller are trying to control the same joint, the result may be unpredictable. This may be better safeguarded by the Unitree software in future releases. For now, you should be mindful of this issue and implement your control behavior carefully.
+
+```mermaid
+flowchart LR
+    UC["Unitree Locomotion Controller"]
+    YC["Your Custom Controller"]
+    
+    UC -->|"Low-level control"| CMD1["Conflicting Command 1"]
+    
+    YC --> |"High-level control"| UC
+    YC --> |"Low-level control"| CMD2["Conflicting Command 2"]
+    
+    CMD1 --> |"Executed"| LJ["Leg Joints"]
+    CMD2 --> |"Executed"| LJ
+
+    LJ -->|"Result"| UB["Unpredictable Behavior"]
+    
+    style CMD1 fill:#f55,stroke:#333,stroke-width:2px
+    style CMD2 fill:#f55,stroke:#333,stroke-width:2px
+    style UB fill:#f55,stroke:#333,stroke-width:2px
+```
+
+Unitree provides a way to disable its locomotion controller by getting the robot into **Debug Mode**. This allows user to take full control of the robot.
+
+* When G1 is suspended and in damping state, press the remote control L2 + R2 combination, G1 will enter debug mode. 
+* Now press L2 + A, G1 will enter the position mode and pose a specific diagnostic position.
+* You can press L2 + B to let G1 to enter the damping state again. You may use this to confirm whether G1 has successfully entered debug mode.
+  
+<div style={{ display: 'flex', justifyContent: 'center', gap: '100px', flexWrap: 'wrap', marginTop: '20px', marginBottom: '20px' }}>
+    <div style={{ textAlign: 'center' }}>
+        <img src={DEBUG_MODE1_IMG} alt="diagnostic position" style={{ height: 400 }} />
+        <p><em>Diagnostic Position</em></p>
+    </div>
+    <div style={{ textAlign: 'center' }}>
+        <img src={DEBUG_MODE2_IMG} alt="damping state" style={{ height: 400 }} />
+        <p><em>Damping State</em></p>
+    </div>
+</div>
+
+## 3. Run the First Example
+
+With the background information described in the previous sections, you should be ready to run your first example on the robot. We will use the "Quick Development" example provided by Unitree. This example demonstrates how to run the ankle swing low-level control example (g1_ankle_swing_example) from the `unitree_sdk2` library on the G1 robot. 
+
+You can run this example on the development computer or on an external computer. The following diagram illustrates the two options:
+
+1. Build and run the example on the user laptop (external computer)
+
+```mermaid
+flowchart LR
+    A[User Laptop 192.168.123.222] -->|"Ethernet"| B[G1 Port 4/5]
+    B -->|"Internal Network"| D[Locomotion Computer 192.168.123.161]
+```
+
+2. Build and run the example on the development computer (internal computer) 
+
+```mermaid
+flowchart LR
+    A[User Laptop 192.168.123.222] -->|"Ethernet"| B[G1 Port 4/5]
+    B -->|"ssh"| C[Development Computer 192.168.123.164]
+    C -->|"Internal Network"| D[Locomotion Computer 192.168.123.161]
+```
+
+In the second option, you can also plug a type-C to HDMI adapter to port [9] and connect a monitor and keyboard to the development computer. This allows you to run the example directly on the development computer without needing to SSH from an external computer.
+
+In this specific case, the command issued by `g1_ankle_swing_example` does not interfere with the Unitree locomotion controller. Therefore, the example functions correctly whether or not the robot is in debug mode. However, for other examples that might conflict with the locomotion controller, it is necessary to switch the robot to debug mode before execution.
