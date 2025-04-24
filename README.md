@@ -1,41 +1,58 @@
-# Website
+# Weston Robot Public Documentation
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+This repository contains source files for generating documentation using [Docusaurus](https://docusaurus.io/).
 
-### Installation
+## Develop with Docker
 
-```
-$ yarn
-```
+Make sure you have docker and docker compose set up properly. You can refer to the instructions [here](https://docs.docker.com/engine/install/ubuntu/). Then you can build and run the app:
 
-### Local Development
-
-```
-$ yarn start
+```bash
+docker compose up
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
+You should be able to access the site at: http://localhost:3000/docs-next/
 
-### Build
+## Develop in the host
 
+### Set Up Environment
+
+1. Follow instructions on [this page](https://nodejs.org/en/download/) to install Node.js and npm. Docusaurus requires Node.js version 18.0 or higher.
+
+```bash
+# Download and install nvm:
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.2/install.sh | bash
+
+# in lieu of restarting the shell
+\. "$HOME/.nvm/nvm.sh"
+
+# Download and install Node.js:
+nvm install 22
+
+# Verify the Node.js version:
+node -v # Should print "v22.15.0".
+nvm current # Should print "v22.15.0".
 ```
-$ yarn build
+
+```bash
+# Install npm
+sudo apt install npm
+
+# Verify npm version:
+npm -v 
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
+### Run the local server
 
-### Deployment
+Set up the development repository and install dependencies.
 
-Using SSH:
-
-```
-$ USE_SSH=true yarn deploy
-```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
+```bash
+$ cd <this-repository>
+$ npm install 
+$ npm run build
 ```
 
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
+Then you can build and serve the documentation locally.
+
+```bash
+$ npm run start
+```
