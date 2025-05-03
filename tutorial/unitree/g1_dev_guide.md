@@ -337,7 +337,7 @@ In this specific case, the command issued by `g1_ankle_swing_example` does not i
 Here is a video showing the ankle swing example running on the G1 robot:
 
 <div align="center">
-<ReactPlayer playing controls url='https://youtube.com/shorts/e9L8aEecLY8?feature=share' />
+<ReactPlayer controls url='https://youtube.com/shorts/e9L8aEecLY8?feature=share' />
 </div>
 
 ## 4. Summary

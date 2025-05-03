@@ -194,7 +194,7 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://https://westonrobot.github.io/docs',
+          href: 'https://westonrobot.github.io/docs-legacy/',
           label: 'Legacy Doc',
           position: 'right',
         },

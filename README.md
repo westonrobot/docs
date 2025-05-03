@@ -10,7 +10,7 @@ Make sure you have docker and docker compose set up properly. You can refer to t
 docker compose up
 ```
 
-You should be able to access the site at: http://localhost:3000/docs-next/
+You should be able to access the site at: http://localhost:3000
 
 ## Develop in the host
 
