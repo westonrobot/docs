@@ -194,10 +194,15 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://www.westonrobot.com',
-          label: 'Homepage',
+          href: 'https://https://westonrobot.github.io/docs',
+          label: 'Legacy Doc',
           position: 'right',
         },
+        // {
+        //   href: 'https://www.westonrobot.com',
+        //   label: 'Homepage',
+        //   position: 'right',
+        // },
       ],
     },
     footer: {
