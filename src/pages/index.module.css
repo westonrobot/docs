@@ -163,3 +163,137 @@
 .sectionCard:hover .sectionIcon {
   transform: scale(1.1);
 }
+
+/* Decision Tree Navigation Styles */
+.decisionTree {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.questionBox {
+  background-color: var(--ifm-color-primary);
+  color: white;
+  padding: 1.5rem 2rem;
+  border-radius: 8px;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.questionIcon {
+  font-size: 2rem;
+  margin-right: 1rem;
+}
+
+.questionBox h2 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.optionsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.optionCard {
+  background-color: var(--ifm-card-background-color);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+.optionCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
+}
+
+.optionLink, 
+.optionButton {
+  display: block;
+  text-decoration: none;
+  color: var(--ifm-font-color-base);
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.optionContent {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.optionIcon {
+  font-size: 2rem;
+  color: var(--ifm-color-primary);
+  margin-bottom: 1rem;
+}
+
+.optionCard h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1.4rem;
+  color: var(--ifm-color-primary);
+}
+
+.optionCard p {
+  color: var(--ifm-color-emphasis-700);
+  margin-bottom: 1.5rem;
+}
+
+.goArrow {
+  color: var(--ifm-color-primary);
+  font-size: 1.2rem;
+  margin-top: auto;
+  align-self: flex-end;
+}
+
+.backButton {
+  grid-column: 1 / -1;
+  background-color: var(--ifm-color-emphasis-100);
+}
+
+.backButton .optionButton {
+  padding: 1rem;
+}
+
+.backButtonContent {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.backIcon {
+  margin-right: 1rem;
+  font-size: 1.2rem;
+}
+
+.backButton .optionButton span {
+  font-size: 1.2rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .questionBox {
+    padding: 1.2rem;
+  }
+  
+  .questionBox h2 {
+    font-size: 1.4rem;
+  }
+  
+  .optionsContainer {
+    grid-template-columns: 1fr;
+  }
+}
