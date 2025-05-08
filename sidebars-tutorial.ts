@@ -5,9 +5,16 @@ const sidebarsTutorial: SidebarsConfig = {
     'intro',
     {
       type: 'category',
-      label: 'Unitree Tutorials',
+      label: 'Humanoid Tutorials',
       items: [
         'unitree/g1_dev_guide'
+      ],
+    },
+    {
+      type: 'category',
+      label: 'UGV Tutorials',
+      items: [
+        'agilex/ugv_base_control'
       ],
     },
   ],
