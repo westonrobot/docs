@@ -24,7 +24,7 @@ these precautions can result in severe injury or damage.
 
 :::
 
-You can find more detailed information about each robot model in the navigation menu on the left side of this page.  The following are the latest models we have:
+You can find more detailed information about each robot model in the navigation menu on the left side of this page. **The following are the latest models we have**:
 
 <div className="row">
     <div className="col col--6">

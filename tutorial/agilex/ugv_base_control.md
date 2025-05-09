@@ -1,6 +1,6 @@
 # Robot Base Control
 
-Various mobile robot bases may appear very different but their controls are similar. You may refer to the user guide of a specific robot for all the details. This article aims at providing a general view of the robot control.
+Various mobile robot bases may appear very different but their controls are similar. You may refer to the user guide of a specific robot for all the details. This article aims at providing a general view of the robot control applicable to most of our UGV platforms.
 
 ## 1. Manual Control
 
