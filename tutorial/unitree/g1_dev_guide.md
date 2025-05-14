@@ -141,10 +141,10 @@ flowchart TD
     B --> D[IMU]
     B --> E[Microphone Array]
     B --> F[Speaker]
-    B --> G[RealSense]
     B -->|Ethernet| S[Internal Ethernet Switch]
     S -->|Ethernet| C[**Development Computer**]
     S -->|Ethernet| H[Lidar]
+    C -->|USB| G[RealSense]
     C -->|RS485| I[Robotic Hand]
 ```
 
@@ -152,7 +152,8 @@ flowchart TD
 * **Development computer** is referred as **development computing unit** in the Unitree documentation. User can use this computer to run their own code. Both low-level (joint control) and high-level (speed control with the robot as a mobile base) code can run on this computer. 
 
 :::info Note
-The development computer features an **Nvidia Jetson Orin NX** module installed on a custom Unitree carrier board. This requires a specific BSP (Board Support Package) for proper driver support and device tree configurations. Do not attempt to flash the Orin NX module with any third-party images, as this could render the system inoperable.
+1. In earlier batches of G1, the RealSense camera was connected to the locomotion computer via internal USB ports. In later batches, the RealSense camera is connected to the development computer. 
+2. The development computer features an **Nvidia Jetson Orin NX** module installed on a custom Unitree carrier board. This requires a specific BSP (Board Support Package) for proper driver support and device tree configurations. Do not attempt to flash the Orin NX module with any third-party images, as this could render the system inoperable.
 :::
 
 The carrier board provides the following interfaces:
