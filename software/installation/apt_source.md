@@ -32,13 +32,23 @@ sudo chmod a+r /etc/apt/keyrings/weston-robot.gpg
 
 2. Add the Weston Robot repository to your system's software repository
 
+**main** channel (the default channel for released packages)
+
 ```bash
 echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/weston-robot.gpg] http://deb.westonrobot.net/$(lsb_release -cs) $(lsb_release -cs) main" | \
   sudo tee /etc/apt/sources.list.d/weston-robot.list > /dev/null
 ```
 
-3. Now you can update the index and install packages with "apt-get" command. 
+**next** channel (the channel for upcoming packages, potentially unstable)
+
+```bash
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/weston-robot.gpg] http://deb.westonrobot.net/$(lsb_release -cs) $(lsb_release -cs) next" | \
+  sudo tee -a /etc/apt/sources.list.d/weston-robot.list > /dev/null
+```
+
+1. Now you can update the index and install packages with "apt-get" command. 
 
 ```bash
 $ sudo apt-get update
