@@ -7,13 +7,22 @@ The second method configures a host computer to connect to the internal developm
 
 ## Method 1: Connect Internal Development PC to WiFi
 
-1. Show Network Devices
+1. Connect to the internal development PC via LAN using **port 4 or 5** on the G1 electrical interface.
+[![lshw -C network output](./img/dev_pc_hw_interface.jpg)](./img/dev_pc_hw_interface.jpg)
+
+2. ssh into the internal development PC
+```bash
+ssh unitree@192.168.123.164
+Password: 123
+```
+
+3. Show Network Devices
 ```bash
 lshw -C network
 ```
 [![lshw -C network output](./img/lshw.png)](./img/lshw.png)
 
-2. Check Wi-Fi Block Status
+4. Check Wi-Fi Block Status
 ```bash
 sudo rfkill list
 ```
@@ -23,20 +32,23 @@ If Wi-Fi is blocked, unblock it:
 ```bash
 sudo rfkill unblock wlan
 ```
-3. Enable WiFi
+5. Enable WiFi
 ```bash
 sudo nmcli radio wifi on
 ```
-4. Connect to a WiFi Network
+6. Connect to a WiFi Network
 ```bash
 sudo nmcli device wifi connect <SSID> password <password>
 ```
-5. Test
+7. Test
 ```bash
 ping 8.8.8.8
 ```
 
 ## Method 2: Network Sharing Between Host and Internal Development PC
+
+Connect to the internal development PC via a USB-hub using **port 9** on the G1 electrical interface.
+[![lshw -C network output](./img/dev_pc_hw_interface.jpg)](./img/dev_pc_hw_interface.jpg)
 
 ### Step 1: Configure Static IP on Robot (Internal Development PC)
 
