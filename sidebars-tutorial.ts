@@ -15,7 +15,8 @@ const sidebarsTutorial: SidebarsConfig = {
       label: 'Humanoid Tutorials',
       items: [
         'unitree/g1_dev_guide',
-        'unitree/g1_diag_guide'
+        'unitree/g1_diag_guide',
+        'unitree/g1_internet_guide'
       ],
     },
   ],
