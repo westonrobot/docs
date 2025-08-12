@@ -22,6 +22,12 @@ const sidebarsPeripheral: SidebarsConfig = {
       items: [
         'power/power_regulator_v2'],
     },
+    {
+      type: 'category',
+      label: 'Sensors',
+      items: [
+        'sensor/manifold_pocket'],
+    },
   ],
 };
 

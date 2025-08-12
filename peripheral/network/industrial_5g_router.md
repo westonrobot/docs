@@ -6,7 +6,9 @@ import ROUTER_5G_IMG from '../img/westonrobot/5g_router/industrial_5g_wifi_route
 
 # Industrial 5G Router
 
+<div style={{textAlign: 'center'}}>
 <img src={ROUTER_5G_IMG} alt="Ranger Mini robot" style={{width: 350}} />
+</div>
 
 ## 1. Key Specifications
 
