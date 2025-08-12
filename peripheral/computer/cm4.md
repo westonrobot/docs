@@ -8,7 +8,9 @@ import CM4_IMG from '../img/westonrobot/cm4_sbc.jpg';
 
 This onboard computer is based on Raspberry Pi Computer Module 4 (CM4). We extended the board with CAN and RS485 ports for interfacing with the robot bases and sensors. 
 
+<div style={{textAlign: 'center'}}>
 <img src={CM4_IMG} alt="Ranger Mini robot" style={{width: 350}} />
+</div>
 
 ## Key Specifications
 

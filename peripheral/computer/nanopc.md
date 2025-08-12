@@ -9,7 +9,9 @@ import NANOPC_PORTS from '../img/westonrobot/nanopc_industrial_ports.png';
 
 This onboard computer is based on NanoPC-T6. We extended the board with industrial ports for easy and reliable interfacing with commonly used sensors and robot bases. Drivers to the ports are pre-configured under Ubuntu 22.04.
 
+<div style={{textAlign: 'center'}}>
 <img src={NANOPC_IMG} alt="NanoPC-T6" style={{width: 350}} />
+</div>
 
 ## Key Specifications
 
