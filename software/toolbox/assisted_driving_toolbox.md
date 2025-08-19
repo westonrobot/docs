@@ -8,3 +8,4 @@ Weston Robot proudly presents the Assisted Driving Toolbox (ADT), a teleoperatio
 
 * [ADT V1](/software/toolbox/adt_v1)
 * [ADT V2](/software/toolbox/adt_v2)
+* [ADT V3](/software/toolbox/adt_v3)

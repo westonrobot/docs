@@ -1,12 +1,12 @@
-# Weston Robot Assisted Driving Toolbox (ADT) V2
+# Weston Robot Assisted Driving Toolbox (ADT) V3
 
-Weston Robot proudly presents the Assisted Driving Toolbox (ADT) V2, a teleoperation system designed and developed by Weston Robot for usage on multiple mobile robot platforms. The system allows the control and operation of a robot through a shared network, with a wide coverage of its surroundings using mounted onboard camera modules.
+Weston Robot proudly presents the Assisted Driving Toolbox (ADT) V3, a teleoperation system designed and developed by Weston Robot for usage on multiple mobile robot platforms. The system allows the control and operation of a robot through a shared network, with a wide coverage of its surroundings using mounted onboard camera modules.
 
 ## Assisted Driving Client Setup
 
 ### System Requirements
 
-1. Host computer running Ubuntu 20.04/22.04
+1. Host computer running Ubuntu 22.04
 2. Joystick for control via the Assisted Driving Toolbox Client
 3. Shared network between the robot and host computer
 
@@ -22,33 +22,21 @@ Follow these steps to install the Assisted Driving Toolbox Client on the host co
 
     ```bash
     $ sudo apt-get update
-    $ sudo apt-get install wr-ad-toolbox
-    ```
-
-### TLS Certificate Installation
-
-To run the Assisted Driving Toolbox Client, you need to install a set of TLS certificates. These certificates are used to establish a secure connection between the client and the robot for control. You should have received a password-protected zip file containing the certificates from Weston Robot.
-
-1. Extract the zip file to a location of your choice.
-2. Open a terminal and navigate to the directory where you extracted the zip file.
-3. Run the following command to install the certificates:
-
-    ```bash
-    $ sudo ./install_certificates.sh
+    $ sudo apt-get install wr-mission-control
     ```
 
 ### Running the Assisted Driving Toolbox Client
 
 To open the application, locate the Assisted Driving Toolbox Client in the application menu:
 
-- Press the Windows key on your keyboard to open the application search bar. Search for "WR Assisted Driving Toolbox".
+- Press the Windows key on your keyboard to open the application search bar. Search for "WR Mission Control".
 - Click on the application icon to open the Assisted Driving Toolbox Client.
 
-![Launching Assisted Driving Toolbox Client](./img/adt/adt_v2_01.png)
+![Launching Assisted Driving Toolbox Client](./img/adt/adt_v3_01.png)
 
 The Assisted Driving Toolbox Client will open with the following screen:
 
-![Assisted Driving Toolbox Client Start Screen](./img/adt/adt_v2_02.png)
+![Assisted Driving Toolbox Client Start Screen](./img/adt/adt_v3_02.png)
 
 Click on the "Login" button. A new browser window will open with the following login page:
 
@@ -56,9 +44,7 @@ Click on the "Login" button. A new browser window will open with the following l
 
 Login with your credentials. After successful login, the Assisted Driving Toolbox Client will prompt you to select the robot you want to control:
 
-![Assisted Driving Toolbox Client Robot Selection](./img/adt/adt_v2_04.png)
-
-If this is your first time using the Assisted Driving Toolbox Client, a settings menu will automatically open for you to configure the joystick and camera settings.
+![Assisted Driving Toolbox Client Robot Selection](./img/adt/adt_v3_03.png)
 
 ## Key Application Features
 
@@ -66,13 +52,13 @@ If this is your first time using the Assisted Driving Toolbox Client, a settings
 
 The teleoperation panel serves as the main control interface for the robot. It allows you to control the robot's movement and observe the robot's surroundings through the robot's onboard cameras in real-time.
 
-![Teleoperation Panel](./img/adt/adt_v2_05.png)
+![Teleoperation Panel](./img/adt/adt_v3_04.png)
 
 ### Settings Menu
 
-![Settings Menu](./img/adt/adt_v2_06.png)
+![Settings Menu](./img/adt/adt_v3_05.png)
 
-The settings menu allows you to configure the joystick and camera settings. You can access the settings menu by clicking on the gear icon in the bottom right corner of the Assisted Driving Toolbox Client.
+The settings menu allows you to configure the joystick and camera settings. You can access the settings menu by clicking on the gear icon at the left side of the Assisted Driving Toolbox Client.
 
 ## Manual Control with Wireless PS4 Controller
 
@@ -92,13 +78,13 @@ To start manually controlling the robot, at least 1 controller (joystick, gamepa
 
 4. Upon successful connection to the gamepad, you should see the following icon in the teleoperation panel of the user application. The LED on the controller should also turn **solid blue**.
 
-    ![Connected PS4 Controller on UI](./img/adt/adt_v2_10.png)
+    ![Connected PS4 Controller on UI](./img/adt/adt_v3_06.png)
 
 5. After switching to the teleoperation panel, request for control from the robot by clicking the following toggle switch.
 
     > **Note:** Do check your settings to ensure that the joystick is properly configured before requesting control.
 
-    ![Requesting Control](./img/adt/adt_v2_11.png)
+    ![Requesting Control](./img/adt/adt_v3_07.png)
 
 6. Upon successfully obtaining robot control, the robot may be controlled as follows:
 
