@@ -6,8 +6,9 @@ import G1_APP_CONN_01_IMG from './img/g1_app_conn_01.jpg';
 import G1_APP_CONN_02_IMG from './img/g1_app_conn_02.jpg';
 import G1_APP_CONN_03_IMG from './img/g1_app_conn_03.jpg';
 import G1_APP_CONN_04_IMG from './img/g1_app_conn_04.jpg';
-import G1_APP_CONN_05_IMG from './img/g1_app_conn_05.jpg';    
+import G1_APP_CONN_05_IMG from './img/g1_app_conn_05.jpg';
 import G1_APP_CONN_06_IMG from './img/g1_app_conn_06.jpg';
+import G1_SN_IMG from './img/unitree_robot_sn.png';
 
 # G1 Diagnostics Guide
 
@@ -51,13 +52,13 @@ To acquire the robot's diagnostic information, you need to connect your mobile d
     <div className="col col--6">
         <div style={{ textAlign: 'center' }}>
             <img src={G1_APP_CONN_03_IMG} alt="Go2 robot"  />
-            <p>Step 3. Select the Robot</p>
+            <p>Step 3. Create the Robot's AP Password</p>
         </div>
     </div>
     <div className="col col--6">
         <div style={{ textAlign: 'center' }}>
             <img src={G1_APP_CONN_04_IMG} alt="B2 robot"  />
-            <p>Step 4. Choose AP Mode</p>
+            <p>Step 4. Wait for AP Creation</p>
         </div>
     </div>    
 </div>
@@ -65,13 +66,13 @@ To acquire the robot's diagnostic information, you need to connect your mobile d
     <div className="col col--6">
         <div style={{ textAlign: 'center' }}>
             <img src={G1_APP_CONN_05_IMG} alt="Go2 robot"  />
-            <p>Step 5. Connect to Robot Access Point</p>
+            <p>Step 5. Connect Device to the Robot's AP</p>
         </div>
     </div>
     <div className="col col--6">
         <div style={{ textAlign: 'center' }}>
             <img src={G1_APP_CONN_06_IMG} alt="B2 robot"  />
-            <p>Step 6. Wait until Successful Connection</p>
+            <p>Step 6. Wait for Successful Connection</p>
         </div>
     </div>    
 </div>
@@ -101,9 +102,12 @@ When reaching out to our support team, please provide a structured and detailed 
 
 * What actions or commands were executed just before the issue occurred?
 * How did the robot behave during and immediately after the incident?
-* Were there any error messages, warning tones, or abnormal movements?
+* Were there any error messages, warning tones, or abnormal movements? (*Alarms may be reset when the robot is restarted.*)
 * Are there any visible signs of physical damage or wear?
 
 Please attach screenshots taken from the mobile app, including diagnostic data and alarm information. If available, include relevant video footage. This helps us understand and reproduce the issue more effectively. 
 
 Understanding and documenting the issue clearly will help prevent further damage and ensure safe continuation of your development or testing efforts.
+
+***Note**: Serial Number of the robot is located in the battery compartment and through the app.*
+<img src={G1_SN_IMG} alt="G1 SN" style={{width: 600}} />   

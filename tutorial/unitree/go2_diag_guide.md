@@ -6,7 +6,7 @@ import GO2_APP_CONN_01_IMG from './img/go2_app_conn_01.jpg';
 import GO2_APP_CONN_02_IMG from './img/go2_app_conn_02.jpg';
 import GO2_APP_CONN_03_IMG from './img/go2_app_conn_03.jpg';
 import GO2_APP_CONN_04_IMG from './img/go2_app_conn_04.jpg';
-import GO2_STARTUP_IMG from './img/Go2_startup_position.png';
+import GO2_STARTUP_IMG from './img/go2_startup_position.png';
 import GO2_FIRMWARE_IMG from './img/unitree_firmware_update.png';
 import GO2_CALIBRATION_IMG from './img/quadruped_calibration.png';
 import GO2_SN_IMG from './img/unitree_robot_sn.png';
@@ -105,10 +105,12 @@ This guide provides general instructions to troubleshoot, identify, and resolve 
     - Check for robot updates and upgrade to the latest firmware for bug fixes and new features.
         <img src={GO2_FIRMWARE_IMG} alt="Go2 firmware check" style={{width: 600}} />
         
-        *Note: For EDU versions, updates may affect software development. Refer to [Unitree Go2 Documentation](https://support.unitree.com/home/en/developer/about_Go2) for more information.*
+        ***Note**: For EDU versions, updates may affect software development. Refer to [Unitree Go2 Documentation](https://support.unitree.com/home/en/developer/about_Go2) for more information.*
 
     - Calibrate the **IMU** and **motors** only when deemed necessary *(e.g., robot unable to walk in a straight line, limping, or tilted)*. Refer to the [official tutorial videos](https://www.unitree.com/app/go2).
-        <img src={GO2_CALIBRATION_IMG} alt="Go2 calibration" style={{width: 600}} />   
+        <img src={GO2_CALIBRATION_IMG} alt="Go2 calibration" style={{width: 600}} />
+
+    - Adjust the payload configuration [`Device`->`Data`] if additional components or devices are mounted onto the robot.
 
 3. **Hardware Check**
     - Replace any foot pads with bald spots or excessive wear.
@@ -128,5 +130,5 @@ Please attach screenshots taken from the mobile app, including diagnostic data a
 
 Understanding and documenting the issue clearly will help prevent further damage and ensure safe continuation of your development or testing efforts.
 
-*Note: Serial Number of the robot is located in the battery compartment and through the app.*
+***Note**: Serial Number of the robot is located in the battery compartment and through the app.*
 <img src={GO2_SN_IMG} alt="Go2 SN" style={{width: 600}} />   
