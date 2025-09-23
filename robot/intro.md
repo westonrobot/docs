@@ -69,7 +69,7 @@ You can find more detailed information about each robot model in the navigation 
     <div className="col col--6">
         <div style={{ textAlign: 'center' }}>
             <img src={H1_2_IMG} alt="H1-2 robot" style={{ height: 200 }} />
-            <p><a href="humanoid/h1-2">B2</a></p>
+            <p><a href="humanoid/h1-2">H1-2</a></p>
         </div>
     </div>    
 </div>

@@ -4,7 +4,7 @@ sidebar_position: 1
 
 import GO2_IMG from '../img/unitree/Go2_robot.png';
 
-# GO2
+# Go2
 
 ## 1. Overview
 
@@ -15,8 +15,8 @@ The Go2 robot dog is a new and improved intelligent bionic quadruped robot empow
 ## 2. Resources
 
 * User Guide: [Go2 User Guide](https://tangrobot.sharepoint.com/:p:/s/Public-Outgoing/ESCOlfuKT5lPkwCnOFUoYbwB5Jr5o4meAyXd2lpGB09W5w?e=ixXe5e)
-* Go2 Manual: [Unitree](https://support.unitree.com/home/en/developer/about%20Go2)
-* Expansion Dock Reflash Guide: [PDF](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EcQ3PHojLhZBsDg1oBpvPPIBWyJiSJPyAZMsk91ZnXbBJg?e=YaKBgf)
+* Unitree Support Page: [Unitree](https://support.unitree.com/home/en/developer/about_Go2)
+* Go2 App, Robot Features, Tutorial Videos, Manuals: [Go2 Features](https://www.unitree.com/app/go2) 
 
 ## 3. FAQ
 
@@ -25,3 +25,10 @@ The Go2 robot dog is a new and improved intelligent bionic quadruped robot empow
 
 2. **Q: How can I recharge my account when the credit is insufficient?**  
     A: Please contact Weston Robot business team for more information.
+
+3. **Q: How often do I need to lubricate the joints?**  
+    A: If you encounter motor issues, stiffness or loosening of joints, please contact [Weston Robot Support Team](https://forms.office.com/pages/responsepage.aspx?id=NTNVCC0zFkWzGo_3Vcs_4KxdsbBJKHVIkFlOJLtAMMlUQkJZMU8wM1EyTkRUVUJCVzA2WVdQNzBSMCQlQCN0PWcu&route=shorturl).
+    The *Serial Number (SN)* of the robot is located in the battery compartment. The SN (and the *Model*) can also be found in the app in `Device -> Robot Settings`.
+
+4. **Q: How do I reflash the Expansion Dock?**   
+    A: Expansion Dock Reflash Guide: [PDF](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EcQ3PHojLhZBsDg1oBpvPPIBWyJiSJPyAZMsk91ZnXbBJg?e=YaKBgf)
