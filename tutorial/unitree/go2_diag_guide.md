@@ -26,14 +26,14 @@ If the event was not recorded, you can still examine the robot post-incident for
 * **Cables and Connectors**: Inspect for loose plugs, frayed wires, or damaged insulation. Confirm that all connections are secure and seated properly.
 * **Battery**: Look for signs of swelling, leakage, or deformation. Ensure the battery is correctly installed and shows no abnormal wear.
 * **LED Indicators**: Observe the head pilot lamp for status indication:
-  - **Green flash**: Switching on
-  - **Green solid**: Powered on, obstacle avoidance enabled  
-  - **Blue solid**: Obstacle avoidance disabled
-  - **Purple solid**: Companion mode
-  - **Blue slow flash**: Motor & IMU calibration in progress
-  - **Yellow slow flash**: Low battery warning (will crouch within 10 minutes)
-  - **Red slow flash**: System abnormality, boot failure, hardware failure
-  - **Red fast flash**: Motor & IMU calibration failed
+  - **Green Flash**: Switching on
+  - **Green Solid**: Powered on, obstacle avoidance enabled  
+  - **Blue Solid**: Obstacle avoidance disabled
+  - **Purple Solid**: Companion mode
+  - **Blue Slow Flash**: Motor & IMU calibration in progress
+  - **Yellow Slow Flash**: Low battery warning (will crouch within 10 minutes)
+  - **Red Slow Flash**: System abnormality, boot failure, hardware failure
+  - **Red Fast Flash**: Motor & IMU calibration failed
 
 ## Mobile App Diagnostics Data
 

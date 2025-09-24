@@ -66,7 +66,7 @@ To acquire the robot's diagnostic information, you need to connect your mobile d
 <div className="row">
     <div className="col col--6">
         <div style={{ textAlign: 'center' }}>
-            <img src={B2_APP_CONN_05_IMG} alt="Go2 robot"  />
+            <img src={B2_APP_CONN_05_IMG} alt="B2 robot"  />
             <p>Step 5. Connect Device to the Robot's AP</p>
         </div>
     </div>

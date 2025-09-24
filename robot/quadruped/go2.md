@@ -17,7 +17,7 @@ The Go2 robot dog is a new and improved intelligent bionic quadruped robot empow
 ### 2.1 Electrical Interfaces
 
 ![](../img/unitree/Go2_expansion_dock_specs.png)
-> **Note**: The expansion dock module is only available for the Edu version.
+> **Note**: The expansion dock module is only available for the Go2 Edu and not compatible with Go2 Air or Go2 Pro.
 
 ![](../img/unitree/Go2_electrical_interfaces.png)
 > **Note**: The output power interface voltage is from the battery.
@@ -25,7 +25,7 @@ The Go2 robot dog is a new and improved intelligent bionic quadruped robot empow
 
 ### 2.2 On-board Computer
 
-Go2 Edu has 1 onboard computer (expansion dock module):
+Go2 Edu has 1 built-in computer and 1 onboard computer (expansion dock module):
 
 - Operation & Control computing unit (Not accessible to public)
     - IP: 192.168.123.161
@@ -44,8 +44,8 @@ Go2 Edu has 1 onboard computer (expansion dock module):
 * **Python SDK**: [unitree_sdk2_python](https://github.com/unitreerobotics/unitree_sdk2_python)
 * **ROS2 Package**: [unitree_ros2](https://github.com/unitreerobotics/unitree_ros2)
 * **Go2 App, Robot Features, Tutorial Videos, Manuals**: [Go2 Features](https://www.unitree.com/app/go2) 
-* **Other Information**: [Other Information](https://support.unitree.com/home/en/developer/Obtain%20SDK)
-* **Tutorials Page**: [Link](/tutorial/intro)
+* **Other Information**: [URDF/CAD](https://support.unitree.com/home/en/developer/Obtain%20SDK)
+* **Tutorials Page**: [Diagnostic Guide](/tutorial/intro)
 
 ## 4. FAQ
 
@@ -65,8 +65,17 @@ Go2 Edu has 1 onboard computer (expansion dock module):
 5. **Q: Does the robot support wireless development?**   
     A: Currently, the robot does not support wireless connection to internal computers.
 
-6. **Q: Is the robot waterproof?**   
+6. **Q: Does the robot support 4G?**   
+    A: Yes, users may insert the their desired SIM card into the SIM card slot![](../img/unitree/Go2_simcard_slot.png)
+
+7. **Q: Is the robot waterproof?**   
     A: No, the Go2 is not waterproof.
 
-7. **Q: Does the robot have follow-me function?**   
+8. **Q: Why does the robot enter into damping mode suddenly?**   
+    A: The robot will enter into damping mode when the motors overheat. Do not use the locked stand mode for extended periods as it will cause the motors to overheat.
+
+9. **Q: Does the robot have follow-me function?**   
     A: Yes, please refer to [usage guide](https://support.unitree.com/home/en/developer/UWB%20Application) and [Accompanying Mode video](https://www.unitree.com/app/go2).
+
+10. **Q: What happens when the robot rolls over/falls and does not respond to remote control commands?**   
+    A: If the `Recover From Fall` command does not work or it is unsafe to do so, check and screenshot the mobile app for any warnings or errors displayed. Power off the robot and carry the robot to a flat and levelled ground. Inspect the robot for any damages (e.g., loose/damaged wiring). Please contact [Weston Robot Support Team](https://forms.office.com/pages/responsepage.aspx?id=NTNVCC0zFkWzGo_3Vcs_4KxdsbBJKHVIkFlOJLtAMMlUQkJZMU8wM1EyTkRUVUJCVzA2WVdQNzBSMCQlQCN0PWcu&route=shorturl) if the robot is unable to be powered on or start up.
