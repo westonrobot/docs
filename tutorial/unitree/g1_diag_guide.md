@@ -116,5 +116,6 @@ Please attach screenshots taken from the mobile app, including diagnostic data a
 
 Understanding and documenting the issue clearly will help prevent further damage and ensure safe continuation of your development or testing efforts.
 
-***Note**: Serial Number of the robot is located in the battery compartment and through the app.*
-<img src={G1_SN_IMG} alt="G1 SN" style={{width: 600}} />   
+> Before transporting the robot to Weston Robot Office for servicing, please **unbind** the robot from your mobile app account.   
+> ***Note**: Serial Number of the robot is located in the battery compartment and through the app.*
+> <img src={G1_SN_IMG} alt="G1 SN" style={{width: 600}} />   
