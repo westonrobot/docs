@@ -69,7 +69,7 @@ network:
       nameservers:
         addresses: [8.8.8.8, 8.8.4.4]
 ```
-*Note: The internal development PC has 2 ethernet interfaces (eth0 and eth1). One of the interfaces will already be assigned an IP of 192.168.123.164. **Please do not configure this interface in the netplan config file, instead use the UNASSIGNED interface.***
+***Note**: The internal development PC has 2 ethernet interfaces (eth0 and eth1). One of the interfaces will already be assigned an IP of 192.168.123.164. **Please do not configure this interface in the netplan config file, instead use the UNASSIGNED interface.***
 
 Test the Netplan configuration
 ```bash

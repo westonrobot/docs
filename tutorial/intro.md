@@ -10,8 +10,13 @@ In addition to the resource provided on the product pages, we also prepare more 
 
 * [UGV Robot Base Control Guide](agilex/ugv_base_control)
 
-## Unitree Legged Robots
+## Unitree Humanoid Robots
 
 * [G1 Development Guide](unitree/g1_dev_guide)
 * [G1 Diagnostics Guide](unitree/g1_diag_guide)
 * [G1 Internet Connection Guide](unitree/g1_internet_guide)
+
+## Unitree Quadruped Robots
+
+* [Go2 Diagnostics Guide](unitree/go2_diag_guide)
+* [B2 Diagnostics Guide](unitree/b2_diag_guide)

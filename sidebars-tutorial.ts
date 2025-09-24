@@ -19,6 +19,14 @@ const sidebarsTutorial: SidebarsConfig = {
         'unitree/g1_internet_guide'
       ],
     },
+    {
+      type: 'category',
+      label: 'Quadruped Tutorials',
+      items: [
+        'unitree/go2_diag_guide',
+        'unitree/b2_diag_guide'
+      ],
+    },
   ],
 };
 

@@ -46,13 +46,13 @@ npm -v
 Set up the development repository and install dependencies.
 
 ```bash
-$ cd <this-repository>
-$ npm install 
-$ npm run build
+cd <this-repository>
+npm install 
+npm run build
 ```
 
 Then you can build and serve the documentation locally.
 
 ```bash
-$ npm run start
+npm run start
 ```
