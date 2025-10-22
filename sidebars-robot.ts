@@ -36,6 +36,7 @@ const sidebarsRobot: SidebarsConfig = {
         'manipulator/xarm',
         'manipulator/z1',
         'manipulator/piper',
+        'manipulator/kinova-gen3-lite'
       ],
     },
   ],
