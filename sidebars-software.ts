@@ -17,6 +17,13 @@ const sidebarsSoftware: SidebarsConfig = {
         'toolbox/assisted_driving_toolbox',
       ],
     },
+    {
+      type: 'category',
+      label: 'Unitree SLAM Guide',
+      items: [
+        'SLAM/SLAM',
+      ],
+    },
   ],
 };
 
