@@ -46,6 +46,7 @@ Go2 Edu has 1 built-in computer and 1 onboard computer (expansion dock module):
 * **Go2 App, Robot Features, Tutorial Videos, Manuals**: [Go2 Features](https://www.unitree.com/app/go2) 
 * **Other Information**: [URDF/CAD](https://support.unitree.com/home/en/developer/Obtain%20SDK)
 * **Tutorials Page**: [Diagnostic Guide](/tutorial/intro)
+* **Simultaneous Localization and Mapping Guide**: [SLAM Guide](/software/slam/go2_slam)
 
 ## 4. FAQ
 
