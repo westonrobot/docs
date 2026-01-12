@@ -8,7 +8,8 @@ const sidebarsPeripheral: SidebarsConfig = {
       label: 'Onboard Computers',
       items: [
         'computer/nanopc',
-        'computer/cm4'],
+        'computer/cm4',
+        'computer/j4012'],
     },
     {
       type: 'category',
