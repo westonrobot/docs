@@ -174,11 +174,11 @@ Before jumping into SLAM, ensure that all required configurations are set up on 
 - **`cd unitree/module/unitree_slam/rviz2/`**  
 - **`rviz2 -d mapping.rviz`**  
 - This allows monitoring of the mapping process.  
-- You may also run **`rviz2 -d relocation.rviz`** to monitor the relocation process.
+- You may also run **`rviz2 -d relocation.rviz`** to monitor the relocation and localization process.
 
 ---
 
-> The following steps involve robot manipulation using the <u>RC (remote controller)</u> and interaction with Terminal 3.
+> The following steps involve robot manipulation using the <u>RC (remote controller)</u> and interaction with <u>Terminal</u> 3.
 
 #### Mapping
 - Press **Q** to start mapping.  
@@ -198,15 +198,15 @@ Before jumping into SLAM, ensure that all required configurations are set up on 
 	- Due to the LiDAR field of view, obstacles should be at least <u>20 cm</u> high.  
 	- Avoid sharp turns.
 	- Turn off the obstacle avoidance mode that comes with the robot, and the head light will turn blue.
-- After saving all desired nodes, press any other key in Terminal 3 to exit SLAM navigation mode.
+- After saving all desired nodes, press any other key in <u>Terminal 3</u> to exit SLAM navigation mode.
 
 #### Localization
 - Return the robot to the exact position and orientation of the original start location.  
 - Review the map and relocation process on the User PC.  
-- On Terminal 3, press **A** to localize.  
+- On <u>Terminal 3</u>, press **A** to localize.  
 - Press **D** to start the navigation loop.  
 - After completing all saved nodes, the robot will return to the original start location.  
 - Robot will move along the nodes in order and return to original position with reverse order e.g. 1-->2-->3-->2-->1 (repeats until stopped)  
 - **Note:**  
-	- To pause navigation, press **Z** on Terminal 3, then press **CTRL+C** on all terminals.  
+	- To pause navigation, press **Z** on <u>Terminal 3</u>, then press **CTRL+C** on all terminals.  
 	- Using the RC will immediately stop SLAM navigation and takes precedence.
