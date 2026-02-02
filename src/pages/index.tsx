@@ -125,7 +125,7 @@ const decisionTree = {
       }, 
       {
         text: "Contact Support",
-        destination: "https://forms.office.com/r/UXzrrsgEyW",
+        destination: "https://forms.office.com/r/qELKzYF33W",
         description: "Submit a support request to our team",
         icon: FaHeadset
       },
