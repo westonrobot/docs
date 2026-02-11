@@ -102,7 +102,7 @@ Improper modification or control of the robot joints can lead to serious damage 
 3. Always have an emergency stop **procedure** ready
 4. Ensure proper clearance around the robot during operation
 
-If you're uncertain about any aspect of joint operation or control, please reach out to [Weston Robot Support](https://forms.office.com/r/UXzrrsgEyW) for assistance before proceeding.
+If you're uncertain about any aspect of joint operation or control, please reach out to [Weston Robot Support](https://forms.office.com/r/qELKzYF33W) for assistance before proceeding.
 
 :::
 

@@ -185,7 +185,7 @@ const config: Config = {
         //   label: 'Tutorial',
         // },
         {
-            href: 'https://forms.office.com/r/UXzrrsgEyW',
+            href: 'https://forms.office.com/r/qELKzYF33W',
             label: 'Support',
             position: 'right',
         },
