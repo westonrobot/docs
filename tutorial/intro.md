@@ -20,3 +20,4 @@ In addition to the resource provided on the product pages, we also prepare more 
 
 * [Go2 Diagnostics Guide](unitree/go2_diag_guide)
 * [B2 Diagnostics Guide](unitree/b2_diag_guide)
+* [Go2 & Go2-W Unitree SLAM Guide](/software/slam/go2_slam)
