@@ -5,6 +5,14 @@ const sidebarsTutorial: SidebarsConfig = {
     'intro',
     {
       type: 'category',
+      label: 'Before You Operate',
+      items: [
+        'operational-safety',
+        'robot-maintenance',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Software Setup',
       items: [
         'installation/apt_source',

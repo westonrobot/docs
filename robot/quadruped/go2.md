@@ -59,10 +59,10 @@ Task guides tagged for the Go2, kept up to date automatically as new guides are 
     A: Each new GO2 comes with a complimentary RMB120 credit, which can be utilized for data transfer and GPT services. Consult the **Connection Mode** table to determine which connection modes will utilize this credit. When the account balance is insufficient, the GO2 can only be connected via AP mode.
 
 2. **Q: How can I recharge my account when the credit is insufficient?**  
-    A: Please contact [Weston Robot Support Team](https://forms.office.com/pages/responsepage.aspx?id=NTNVCC0zFkWzGo_3Vcs_4KxdsbBJKHVIkFlOJLtAMMlUQkJZMU8wM1EyTkRUVUJCVzA2WVdQNzBSMCQlQCN0PWcu&route=shorturl) for more information.
+    A: Please contact [Weston Robot Support Team](/support/before-you-contact-us) for more information.
 
 3. **Q: How often do I need to lubricate the joints?**  
-    A: If you encounter motor issues, stiffness or loosening of joints, please contact [Weston Robot Support Team](https://forms.office.com/pages/responsepage.aspx?id=NTNVCC0zFkWzGo_3Vcs_4KxdsbBJKHVIkFlOJLtAMMlUQkJZMU8wM1EyTkRUVUJCVzA2WVdQNzBSMCQlQCN0PWcu&route=shorturl).
+    A: If you encounter motor issues, stiffness or loosening of joints, please contact [Weston Robot Support Team](/support/before-you-contact-us).
     The *Serial Number (SN)* of the robot is located in the battery compartment. The SN (and the *Model*) can also be found in the app in `Device -> Robot Settings`.
 
 4. **Q: How do I reflash the Expansion Dock?**   
@@ -84,4 +84,4 @@ Task guides tagged for the Go2, kept up to date automatically as new guides are 
     A: Yes, please refer to [usage guide](https://support.unitree.com/home/en/developer/UWB%20Application) and [Accompanying Mode video](https://www.unitree.com/app/go2).
 
 10. **Q: What happens when the robot rolls over/falls and does not respond to remote control commands?**   
-    A: If the `Recover From Fall` command does not work or it is unsafe to do so, check and screenshot the mobile app for any warnings or errors displayed. Power off the robot and carry the robot to a flat and levelled ground. Inspect the robot for any damages (e.g., loose/damaged wiring). Please contact [Weston Robot Support Team](https://forms.office.com/pages/responsepage.aspx?id=NTNVCC0zFkWzGo_3Vcs_4KxdsbBJKHVIkFlOJLtAMMlUQkJZMU8wM1EyTkRUVUJCVzA2WVdQNzBSMCQlQCN0PWcu&route=shorturl) if the robot is unable to be powered on or start up.
+    A: If the `Recover From Fall` command does not work or it is unsafe to do so, check and screenshot the mobile app for any warnings or errors displayed. Power off the robot and carry the robot to a flat and levelled ground. Inspect the robot for any damages (e.g., loose/damaged wiring). Please contact [Weston Robot Support Team](/support/before-you-contact-us) if the robot is unable to be powered on or start up.

@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 description: "Routine maintenance procedures to keep a Weston Robot platform in service."
+tags: [maintenance, safety]
 ---
 
 # Robot Maintenance

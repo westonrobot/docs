@@ -29,10 +29,16 @@ Every guide is tagged with the models it applies to, so you can start from the r
 | map and move autonomously | [SLAM](/tutorial/tags/slam) · [Navigation](/tutorial/tags/navigation) |
 | talk to the base over CAN | [CAN bus](/tutorial/tags/can-bus) |
 | install our packages | [Installation](/tutorial/tags/installation) |
+| operate safely, or maintain the robot | [Safety](/tutorial/tags/safety) · [Maintenance](/tutorial/tags/maintenance) |
 
 [Browse all tags](/tutorial/tags)
 
 ## All guides
+
+### Before you operate
+
+* [Operational Safety](/tutorial/operational-safety) — read this before running any platform
+* [Robot Maintenance](/tutorial/robot-maintenance)
 
 ### Software setup
 
@@ -56,4 +62,4 @@ Every guide is tagged with the models it applies to, so you can start from the r
 
 ---
 
-Looking for a complete deployed capability rather than a single task? See [Solutions](/solution/intro).
+Looking for a complete deployed capability rather than a single task? See [Solutions](/solution/intro). Something wrong, or need to reach us? See [Support](/support/intro).

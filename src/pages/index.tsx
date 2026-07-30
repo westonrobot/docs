@@ -117,6 +117,12 @@ const decisionTree = {
     question: "How can we further help you?",
     options: [     
       {
+        text: "Support Centre",
+        destination: "/support/intro",
+        description: "Identify your unit, FAQ, fault codes, warranty and RMA",
+        icon: FaHeadset
+      },
+      {
         text: "Legacy Product Docs",
         destination: "https://westonrobot.github.io/docs-legacy/",
         description: "Information of older products and systems",
@@ -124,9 +130,9 @@ const decisionTree = {
       }, 
       {
         text: "Contact Support",
-        destination: "https://forms.office.com/r/qELKzYF33W",
-        description: "Submit a support request to our team",
-        icon: FaHeadset
+        destination: "/support/before-you-contact-us",
+        description: "What to collect first, then submit a request",
+        icon: FaQuestion
       },
       {
         text: "Go Back",

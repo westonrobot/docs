@@ -129,7 +129,7 @@ Before jumping into SLAM, ensure that all required configurations are set up on 
   </div>
 </div>
 
-- Acquire the YSN value. If not available, please contact [Weston Robot Support Team](https://forms.office.com/pages/responsepage.aspx?id=NTNVCC0zFkWzGo_3Vcs_4KxdsbBJKHVIkFlOJLtAMMlUQkJZMU8wM1EyTkRUVUJCVzA2WVdQNzBSMCQlQCN0PWcu&route=shorturl).  
+- Acquire the YSN value. If not available, please contact [Weston Robot Support Team](/support/before-you-contact-us).  
 - Using the Robot's PC, enter the following commands to view the SLAM interface parameters.   
 	- **`cd /unitree/module/unitree_slam/config/slam_interfaces_server_config`**  
 	- **`sudo vim param.yaml`**

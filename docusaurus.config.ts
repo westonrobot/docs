@@ -75,6 +75,11 @@ const config: Config = {
           {from: '/software/installation/apt_source', to: '/tutorial/installation/apt_source'},
           {from: '/software/slam/go2_slam', to: '/tutorial/unitree/go2_slam'},
           {from: '/software/intro', to: '/solution/intro'},
+          // Safety and maintenance are procedures you follow, which makes
+          // them Guides rather than Support. Support is scoped to "something
+          // is wrong or I need a human".
+          {from: '/general/operational-safety', to: '/tutorial/operational-safety'},
+          {from: '/general/robot-maintenance', to: '/tutorial/robot-maintenance'},
         ],
       },
     ],
@@ -91,10 +96,10 @@ const config: Config = {
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'general',
-        path: 'general',
-        routeBasePath: 'general',
-        sidebarPath: './sidebars-general.ts',
+        id: 'support',
+        path: 'support',
+        routeBasePath: 'support',
+        sidebarPath: './sidebars-support.ts',
         editUrl,
         showLastUpdateTime: true,
         onInlineTags: 'throw',
@@ -201,18 +206,11 @@ const config: Config = {
             label: 'Guides',
         },
         {
-            // Operational safety and maintenance. These pages were built and
-            // published but reachable from neither the navbar nor the homepage.
             type: 'doc',
-            docId: 'operational-safety',
-            docsPluginId: 'general',
+            docId: 'intro',
+            docsPluginId: 'support',
             position: 'left',
-            label: 'Safety & Maintenance',
-        },
-        {
-            href: 'https://forms.office.com/r/qELKzYF33W',
             label: 'Support',
-            position: 'right',
         },
         {
           href: 'https://github.com/westonrobot',

@@ -86,3 +86,11 @@ installation:
   label: Installation
   permalink: /installation
   description: Installing packages and setting up a development environment.
+safety:
+  label: Safety
+  permalink: /safety
+  description: Operating safely and avoiding damage to people or equipment.
+maintenance:
+  label: Maintenance
+  permalink: /maintenance
+  description: Routine upkeep and servicing.
