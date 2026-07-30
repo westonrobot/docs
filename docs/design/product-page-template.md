@@ -6,23 +6,42 @@ Companion to [`ia-proposal.md`](./ia-proposal.md) §4 and §8. The worked exampl
 
 This doubles as the **definition of done** for a product page (D8).
 
+## The point of a product page
+
+**Most platforms on this site are partner hardware** — Unitree, AgileX, UFactory, Kinova. Those vendors already publish specifications, API references and tutorials, and they maintain them. Restating that material creates two problems: it goes stale silently, and it buries the part only we can write.
+
+So a product page for a partner platform is **not a datasheet**. Its job is:
+
+| Do | Do not |
+| --- | --- |
+| Describe the unit **as we configure and supply it** — fitted sensors, IP addresses, credentials, pre-installed software | Restate degrees of freedom, torque, battery capacity |
+| Provide a **guided path** — what to do in what order, and which upstream document to open at each step | Mirror the vendor's tutorials |
+| State what **we have verified** on units we ship | Copy the vendor manual |
+| **Curate** upstream references — say what each one is good for | Dump a list of vendor links |
+| Answer questions **our customers actually ask us** | Duplicate the vendor FAQ |
+
+The test: if a sentence would still be true for a unit bought directly from the vendor, and the vendor already says it, it probably does not belong here.
+
+### Weston Robot's own products are the exception
+
+For [WR65](../../robot/manipulator/wr65.md), [WRL63](../../robot/manipulator/wrl63.md) and anything else we manufacture, **we are upstream**. There is no official page to defer to, so those pages do need full specifications — reach, payload, repeatability, mounting, control interface. They are currently the thinnest pages on the site at 83 words each, which is the inverse of where the detail should sit.
+
 ## Section order
 
 The order is deliberate and follows the audience decision in `ia-proposal.md` §0: this site serves customers who already own the hardware. They do not need persuading — they need to confirm *which* unit they have, then get it working. Marketing-shaped prose belongs on `westonrobot.com`.
 
 | # | Section | Required | Purpose |
 | --- | --- | --- | --- |
-| — | Title, hero image, orienting paragraph | yes | What it is, what it ships with, how you work with it |
+| — | Title, hero split | yes | High-level description + official vendor links, image on the right |
 | 1 | **What are you here to do?** | yes | Routing table: intent → destination. The most valuable block on the page |
-| 2 | **At a glance** | yes | Verified figures, plus a pointer to the vendor sheet for the rest |
-| 3 | **Identify your unit** | yes | Serial number location, and why it matters |
-| 4 | **Getting started** | yes | The first-run sequence in outline, linking the guide that does it properly |
-| 5 | **Specifications** | yes | Electrical interfaces and onboard computer, each with prose saying what to use it for |
-| 6 | **Guides for this product** | yes | Table: guide · what it covers · when to reach for it. Plus the tag page |
-| 7 | **Solutions for this platform** | if any | Only when a solution genuinely supports the platform |
-| 8 | **Troubleshooting & FAQ** | yes | Model-specific answers; shared ones linked by anchor |
-| 9 | **Downloads and software** | yes | One table: resource · what it is · where |
-| 10 | **Support** | yes | Route into the Support section, with why it helps |
+| 2 | **Identify your unit** | yes | Serial number location, and why it matters |
+| 3 | **Getting started** | yes | The first-run sequence in outline, linking the guide that does it properly |
+| 4 | **Specifications** | yes | Fitted hardware and how to connect to it — **not** a spec sheet. Defer dimensions and ratings to the vendor |
+| 5 | **Guides for this product** | yes | Table: guide · what it covers · when to reach for it. Plus the tag page |
+| 6 | **Solutions for this platform** | if any | Only when a solution genuinely supports the platform |
+| 7 | **Troubleshooting & FAQ** | yes | Model-specific answers; shared ones linked by anchor |
+| 8 | **Downloads and software** | yes | One table: resource · what it is · where |
+| 9 | **Support** | yes | Route into the Support section, with why it helps |
 
 ### Avoid the bare-bones failure mode
 
@@ -40,11 +59,11 @@ Ten headings with two lines under each reads as unfinished, however accurate it 
 
 **Never invent a specification.** A plausible wrong figure is worse than no figure — on a hardware site it can cause a bad purchase or a damaged robot.
 
-Handle the gap as a **pointer, not an apology**. Under the At a glance table, write one line naming what is not covered and where the authoritative sheet is:
+For a partner platform this is not a gap to apologise for — it is the division of labour. State it plainly at the head of the Specifications section:
 
-> For the complete specification sheet — degrees of freedom, joint torques, payload, battery capacity and runtime — see the [vendor documentation](...). We list above only what we have verified on the units we supply.
+> These are the figures we have verified on the units we supply. Degrees of freedom, joint torques, payload, battery capacity and runtime are published by \<vendor\> — see the links at the top of this page rather than a second-hand copy here.
 
-That is a normal documentation pattern and reads as deliberate. An admonition block announcing missing data reads as unfinished, which was the first attempt at this page and the wrong call.
+An admonition block announcing missing data reads as unfinished. A sentence explaining who owns which numbers reads as deliberate, and it is also true.
 
 **No manual heading numbers.** `## 1. Overview` produces the anchor `#1-overview`, which breaks the moment a section is inserted above it — silently invalidating every anchor a support engineer has pasted into a ticket. See `ia-proposal.md` §8.
 
@@ -131,16 +150,6 @@ shapes how you work with it — e.g. wired-only development, or a CAN interface.
 | Find my serial number | [Identify your unit](#identify-your-unit) |
 | Download a manual, CAD model or the SDK | [Downloads and software](#downloads-and-software) |
 | Contact Weston Robot | [Support](#support) |
-
-## At a glance
-
-| | |
-| --- | --- |
-| <row> | <value> |
-
-For the complete specification sheet — <name what is missing> — see
-<[vendor documentation](...)>. We list above only what we have verified on the
-units we supply.
 
 ## Identify your unit
 
