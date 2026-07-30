@@ -426,4 +426,62 @@ includes the commands to gather it.
 | `robot/manipulator/piper` | Manipulator | ✅ converted |
 | `robot/manipulator/kinova-gen3-lite` | Manipulator | ✅ converted — emoji headings removed |
 
-Peripherals and systems need their own variant of this template. The section order mostly carries over, but what belongs under Key information differs — a power regulator has wiring and output configuration where a robot has logins and a network layout.
+Systems still need their own variant. See below for peripherals.
+
+## Peripheral pages
+
+Most rules above carry over unchanged — the three supply tiers, sentence-case headings, no routing table, serial numbers centralised, `<Figure>` over raw `<img>`. What differs is **which questions the page has to answer**.
+
+A robot is the thing the customer bought. A peripheral is a **part**, and the questions follow from that:
+
+| A robot page answers | A peripheral page answers |
+| --- | --- |
+| How do I bring it up? | What does it attach to, and will it work with my platform? |
+| What are the logins and IP addresses? | Same — for anything with an OS or a web UI |
+| Where are the electrical interfaces? | What are its ports, **and how do they appear to software**? |
+| What guides exist for it? | Same |
+| — | What are its limits, and what happens when I exceed them? |
+
+### Section order
+
+| # | Section | Required | Purpose |
+| --- | --- | --- | --- |
+| — | Hero split | yes | What it is, what it is for, vendor links if tier 1 or 2 |
+| 1 | **Fitting it** | yes | Power, connectors, mounting, and which platforms it is used with. The peripheral-specific section |
+| 2 | **Key information** | yes | Related resources · Logins and addresses (if it has any) · Interfaces and device nodes · Specifications |
+| 3 | **Common configurations** | if any | Short inline procedures — routine tasks, not a full guide |
+| 4 | **Guides for this product** | if any | Same as a robot page |
+| 5 | **Troubleshooting & FAQ** | yes | Same |
+| 6 | **Support** | yes | Same. Currently missing from every peripheral page |
+
+### Interfaces means device nodes, not just connectors
+
+This is where a peripheral page earns its place, and it is the one thing no vendor datasheet gives you. `nanopc.md` already does it well:
+
+- **the mapping from silkscreen to `/dev`** — `RS485-1` is `/dev/ttyS6`, and nothing on the board says so
+- **the command to bring an interface up** — CAN needs `ip link set can0 up type can bitrate 500000` before it exists to software
+- **jumper and DIP switch meaning** — which pad selects RS232 vs TTL, which switch enables termination
+- **the limits that bite** — the 5 V rail is behind a 300 mA resettable fuse
+
+A customer can read a pin count off the vendor's datasheet. They cannot guess `/dev/ttyS4`.
+
+Limits like that fuse belong in a `:::warning`, not a trailing blockquote. It was the last line of the page, below three other notes.
+
+### Specifications: the same deferral rule, applied harder
+
+Peripheral pages are currently the worst offenders on this site. `j4012.md` was 46 lines of transcribed Seeed datasheet — H.265 decode rates, vibration tolerance in Grms — for a device whose actual support questions are "what is flashed on it", "which ports are broken out" and "what voltage does the robot feed it". `industrial_5g_router.md` listed roughly sixty 5G band designations, then pointed at the module datasheet for the real detail.
+
+Keep a specification only if it answers **will this work in my situation**: power input range, operating temperature, physical size and mounting, port counts, what is fitted on the unit we ship (RAM, storage, OS). Send everything else to the vendor.
+
+For tier 3 carrier boards — the CM4 and NanoPC computers — the vendor link covers the **base board only**. Scope it explicitly, the way `nanopc.md` does: "not including the extensions made by Weston Robot". Our ports are the reason the product exists and are ours to document in full.
+
+### Rollout status
+
+| Page | Tier | Status |
+| --- | --- | --- |
+| `peripheral/computer/nanopc` | 3 — our carrier on a FriendlyELEC SBC | ✅ exemplar |
+| `peripheral/computer/j4012` | 1 — Seeed reComputer | ✅ converted — datasheet transcription cut back |
+| `peripheral/computer/cm4` | 3 — our carrier on a Raspberry Pi CM4 | ⬜ 124 words, spec list only; needs device nodes and fitting |
+| `peripheral/network/industrial_5g_router` | 2 — rebadged, Quectel RM520N-GL module | ⬜ vendor unidentified; default IP buried in a procedure; no credentials |
+| `peripheral/power/power_regulator_v2` | 3 — our design | ⬜ richest page; needs section rename and a Support section |
+| `peripheral/sensor/manifold_pocket` | 1 — Manifold | ⬜ 227 words; no fitting or integration detail |

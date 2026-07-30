@@ -1,67 +1,94 @@
 ---
 sidebar_position: 1
-description: "NanoPC-based onboard computer: specifications, interfaces and configuration."
+description: "NanoPC-based onboard computer: fitting, industrial port device nodes, CAN bring-up and configuration."
 ---
 
-import NANOPC_IMG from '../img/westonrobot/nanopc_sbc.jpg';
-import NANOPC_PORTS from '../img/westonrobot/nanopc_industrial_ports.png';
+# NanoPC-based onboard computer
 
-# NanoPC-based Onboard Computer
+<Split ratio="wide-narrow">
 
-This onboard computer is based on NanoPC-T6. We extended the board with industrial ports for easy and reliable interfacing with commonly used sensors and robot bases. Drivers to the ports are pre-configured under Ubuntu 22.04.
+<div>
 
-<div style={{textAlign: 'center'}}>
-<img src={NANOPC_IMG} alt="NanoPC-T6" style={{width: 350}} />
+An onboard computer for our robot platforms, built on the FriendlyELEC **NanoPC-T6** (Rockchip RK3588). We extended the base board with industrial ports — CAN, RS485 and RS232 — so it can interface directly with robot bases and the sensors commonly fitted alongside them, without a USB adapter in the path.
+
+Drivers for those ports are pre-configured under Ubuntu 22.04, so the interfaces are present on first boot. What is *not* obvious from the board itself is how each port appears to software; that mapping is in [Interfaces and device nodes](#interfaces-and-device-nodes) and is the main reason to read this page.
+
+FriendlyELEC's [NanoPC-T6 wiki](https://wiki.friendlyelec.com/wiki/index.php/NanoPC-T6) documents the **base board only** — it does not cover the industrial port extensions we add, which are documented here.
+
 </div>
 
-## Key Specifications
+<Figure
+  src={require('../img/westonrobot/nanopc_sbc.jpg').default}
+  alt="NanoPC-based onboard computer single-board computer"
+  size="hero" />
 
-* **SoC: Rockchip RK3588**
-* **RAM: 64-bit 8GB/16GB LPDDR4X at 2133MHz**
-* **Storage: 128GB/256GB eMMC**
-* **MicroSD**: support up to SDR104 mode (microSD card not included)
-* **Ethernet**: 2x PCIe 2.5G Ethernet
-* **USB-A**: 1x USB 3.0 Type-A
-* **USB-C**: 1x Full function USB Type‑C port, support DP display up to 4Kp60, USB 3.0
-* **Video**: 1x Standard HDMI input port, up to 4Kp60, 2x Standard HDMI output ports
-* **Audio** 1x 3.5mm jack for stereo headphone output, 1x 2.0mm PH-2A connector for analog microphone input
-* **Industrial ports**
-    * 3x CAN interfaces (with transceivers)
-    * 2x RS485 interfaces
-    * 2x RS232 interfaces
-* **Active Cooling**: 1x 5V Fan
-* **Power supply**: 5.5*2.1mm DC Jack, 5V~20V, 12V is recommended.
-* **Ambient Operating Temperature**: 0℃ to 70℃
-* **OS**: Ubuntu 22.04 (Linux kernel 5.10)
+</Split>
 
-You can find more information about the NanoPC-T6 base board (not including the extensions made by Weston Robot) from its official [wiki page](https://wiki.friendlyelec.com/wiki/index.php/NanoPC-T6).
+## Fitting it
 
-## Industrial Ports
+| | |
+| --- | --- |
+| **Power input** | 5.5 × 2.1 mm DC jack, 5–20 V. **12 V recommended** |
+| **Operating temperature** | 0 °C to 70 °C |
+| **Cooling** | Active — 1 × 5 V fan |
+| **Operating system** | Ubuntu 22.04, Linux kernel 5.10, industrial port drivers pre-configured |
 
-<img src={NANOPC_PORTS} alt="Ranger Mini robot" style={{width: 350}} />
+Most robot bases we supply can feed 12 V directly. Where the platform's rail is higher, or shared with motors that pull it down under load, take the computer from a regulated output instead — the [Power Regulator v2](/peripheral/power/power_regulator_v2) exists for this.
 
-You can follow the silk screen on the board to connect your devices to the industrial ports. 
+## Key information
 
-The RS232 and RS485 ports can be access at:
+### Related resources
 
-* RS232-1: `/dev/ttyS0`
-* RS232-2: `/dev/ttyS7`
-* RS485-1: `/dev/ttyS6`
-* RS485-2: `/dev/ttyS4`
+| Resource | What it is | Where |
+| --- | --- | --- |
+| Base board wiki | FriendlyELEC's NanoPC-T6 documentation — base board only, not our extensions | [NanoPC-T6 wiki](https://wiki.friendlyelec.com/wiki/index.php/NanoPC-T6) |
 
-> **Note**
-> The RS232-2 port can be configured as a TTL UART port by re-configure the jumper solder pads (JP1 and JP2). If you bridge the pad in the middle and the side marked as "TTL", the port will be configured as a TTL UART port. If you bridge the pad in the middle and the other side, the port will be configured as an RS232 port. Both TTL and RS232 UART port is accessed at `/dev/ttyS7`. If no bridge is made, the port only provides power and no signal is transmitted.
+Installing Weston Robot packages on the computer? Add our package repository first: [Weston Robot Apt Source](/tutorial/installation/apt_source).
 
-You need to bring up the CAN interfaces before you can access them. Here is an example to bring up the CAN0 interface (you may adjust the bitrate according to your CAN devices):
+### Interfaces and device nodes
+
+The silkscreen labels the ports; it does not tell you which device node each one is. Follow the silkscreen to wire your devices, then use the mapping below to reach them.
+
+<Figure
+  src={require('../img/westonrobot/nanopc_industrial_ports.png').default}
+  alt="Industrial port locations on the NanoPC-based onboard computer, labelled by silkscreen"
+  framed
+  size="lg"
+  caption="Industrial port locations. Click to enlarge." />
+
+#### Serial ports
+
+| Silkscreen | Device node |
+| --- | --- |
+| RS232-1 | `/dev/ttyS0` |
+| RS232-2 | `/dev/ttyS7` |
+| RS485-1 | `/dev/ttyS6` |
+| RS485-2 | `/dev/ttyS4` |
+
+:::note RS232-2 can be switched to TTL UART
+
+The jumper solder pads **JP1** and **JP2** select the signalling on RS232-2:
+
+- bridge the middle pad to the side marked **TTL** — TTL UART
+- bridge the middle pad to the **other** side — RS232
+- **no bridge** — the port provides power only, and no signal is transmitted
+
+Either way the port is reached at `/dev/ttyS7`. If a device on RS232-2 is powered but silent, check this first.
+
+:::
+
+#### CAN interfaces
+
+Three CAN interfaces are fitted, with transceivers. They exist as network interfaces and must be brought up before use — adjust the bitrate to match your devices:
 
 ```bash
-$ sudo ip link set can0 up type can bitrate 500000
-$ sudo ip link set can0 txqueuelen 1000
+sudo ip link set can0 up type can bitrate 500000
+sudo ip link set can0 txqueuelen 1000
 ```
 
-You can also add the following configuration to `/etc/network/interfaces` to make the CAN interface persistent:
+To bring them up automatically at boot, add this to `/etc/network/interfaces`:
 
-```bash
+```bash title="/etc/network/interfaces"
 auto can0
     iface can0 inet manual
     pre-up /sbin/ip link set can0 type can bitrate 500000
@@ -84,8 +111,53 @@ auto can2
     down /sbin/ifconfig can2 down
 ```
 
-> **Note**
-> You may toggle the dip switches to enable the termination resistors for the CAN and RS485 interfaces. The termination resistors are disabled by default.
+:::note Termination resistors are off by default
 
-> **Warning**
-> Please note that the 5V output is limited by a resettable fuse rated at **300mA**. So please make sure the total current consumption of all devices connected to the 5V outputs does not exceed 300mA.
+CAN and RS485 termination is selected by DIP switch and is **disabled** on delivery. A bus that works over a short bench cable and fails on the robot is usually missing termination.
+
+:::
+
+:::warning The 5 V output is fused at 300 mA
+
+The 5 V output rail sits behind a **resettable fuse rated at 300 mA**. Keep the total draw of everything you power from it under that figure, or the rail will cut out and reset — which presents as an intermittent sensor rather than a power fault.
+
+:::
+
+### Specifications
+
+Figures for the unit as we supply it. Anything not listed here is on the [base board wiki](https://wiki.friendlyelec.com/wiki/index.php/NanoPC-T6).
+
+| | |
+| --- | --- |
+| SoC | Rockchip RK3588 |
+| RAM | 8 GB or 16 GB LPDDR4X (64-bit) |
+| Storage | 128 GB or 256 GB eMMC, plus microSD (card not included) |
+| Ethernet | 2 × 2.5 GbE (PCIe) |
+| USB | 1 × USB 3.0 Type-A · 1 × full-function USB Type-C (USB 3.0, DP out to 4Kp60) |
+| Video | 1 × HDMI input (to 4Kp60) · 2 × HDMI output |
+| Audio | 3.5 mm stereo output · 2.0 mm PH-2A analogue microphone input |
+| Industrial ports | 3 × CAN (with transceivers) · 2 × RS485 · 2 × RS232 |
+
+## Troubleshooting & FAQ
+
+### A device on RS232-2 has power but no data
+
+The JP1/JP2 jumper is either unbridged, or bridged for the wrong signalling. See [the note above](#serial-ports).
+
+### A CAN interface does not appear
+
+CAN interfaces have to be brought up explicitly — `ip link set can0 up` — and do not persist across a reboot unless you have configured `/etc/network/interfaces`. See [CAN interfaces](#can-interfaces).
+
+### A sensor works on the bench but drops out on the robot
+
+Two common causes: missing bus termination (off by default), or the 5 V rail's 300 mA fuse tripping under the combined load.
+
+For fault and alarm codes, see [Fault codes](/support/fault-codes). General questions are answered on the [Support FAQ](/support/faq).
+
+## Support
+
+Collect the serial number, OS image version and logs before raising a ticket — [Before you contact us](/support/before-you-contact-us) lists what helps and includes the commands to gather it.
+
+- [Support centre](/support/intro) — all support resources
+- [Identify your product](/support/identify-your-product) — where to find the serial number
+- [Warranty and RMA](/support/warranty-and-rma) — repairs, replacements and returns
