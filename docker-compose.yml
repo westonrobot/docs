@@ -13,6 +13,16 @@ services:
       # dev server starts with nothing installed. Run `docker compose build`
       # after changing dependencies.
       - /app/node_modules
+      # NOTE: .docusaurus/ is deliberately NOT a volume. Docusaurus writes
+      # absolute paths into .docusaurus/client-modules.js, so the host and the
+      # container cannot share that cache: whichever wrote it last wins, and
+      # the other side fails with "Module not found". Mounting a volume over it
+      # does not help either — an anonymous volume nested inside the `.:/app`
+      # bind mount makes Docker create the host mount point as root, which then
+      # breaks host-side `npm run build` with EACCES instead.
+      # So: use the container or the host, not both. Run
+      #   rm -rf .docusaurus build
+      # when switching between them. See README.
     environment:
       - NODE_ENV=development
     restart: unless-stopped
