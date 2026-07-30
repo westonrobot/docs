@@ -10,12 +10,8 @@ The WRL63 is Weston Robot's ultra-long 6-DOF manipulator, built for applications
 :::info We manufacture the WRL63
 
 There is no third-party vendor page to defer to — Weston Robot is the source for this
-product. The manuals linked below are the authoritative reference, and this page is
-the entry point to them.
-
-**Specifications are not yet published here.** Reach, payload, repeatability, mounting
-pattern and tool-flange I/O currently live only in the manual. They belong on this
-page, and filling them in is tracked work.
+product, so the specifications below are published here rather than linked elsewhere.
+The manuals go further; this page is the entry point to them.
 
 :::
 
@@ -35,6 +31,49 @@ The [SDK manual](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EZ16f6SH
 ## Key information
 
 A quick reference for the things you reach for most often. Values are as configured on the units we supply.
+
+### Specifications
+
+We manufacture the WRL63, so these figures are ours — recovered from our own
+documentation rather than a vendor sheet.
+
+| | |
+| --- | --- |
+| Degrees of freedom | 6 |
+| Payload | 3 kg |
+| Repeatability | ±0.05 mm |
+| Power supply | DC 20–30 V, rated 24 V |
+| Power consumption | ≤ 200 W maximum, ≤ 100 W comprehensive |
+| Protection level | IP54 (arm body) |
+| Materials | Aluminium alloy |
+| Controller | Integrated |
+| Communication | WiFi · network interface · Bluetooth · USB serial · RS485 |
+| Control modes | Drag-and-drop teaching · teaching pendant · API · JSON |
+
+#### By variant
+
+The WRL63 ships in three variants. **WRL63-B carries no force sensing**; the
+other two do, which is what you need for contact tasks like assembly or polishing.
+
+| | WRL63-B | WRL63-ZF | WRL63-6F |
+| --- | --- | --- | --- |
+| Body weight | 10.0 kg | 10.1 kg | 10.1 kg |
+| Working radius | 900 mm | 908 mm | 928.5 mm |
+| One-axis force range | — | 200 N | 200 N / 7 Nm |
+| One-axis force accuracy | — | < 0.1 % FS | < 0.1 % FS |
+
+#### Joint limits and speeds
+
+Identical across all three variants.
+
+| Joint | Motion range | Maximum speed |
+| --- | --- | --- |
+| J1 | ±178° | 180°/s |
+| J2 | ±178° | 180°/s |
+| J3 | +145° to −178° | 225°/s |
+| J4 | ±178° | 225°/s |
+| J5 | ±178° | 225°/s |
+| J6 | ±360° | 225°/s |
 
 ### Related resources
 
