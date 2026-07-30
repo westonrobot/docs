@@ -83,6 +83,9 @@ const config: Config = {
         ],
       },
     ],
+    // Click any content image to enlarge it. Connector pinouts and interface
+    // photos are unreadable at inline size, and there was no way to enlarge them.
+    'docusaurus-plugin-image-zoom',
     [
       require.resolve('docusaurus-lunr-search'),
       {
@@ -170,6 +173,12 @@ const config: Config = {
   themeConfig: {
     // Replace with your project's social card
     image: 'img/wr-social-card.png',
+    zoom: {
+      // Content images only — not the navbar logo, and not images that are
+      // themselves links (where clicking should navigate, not zoom).
+      selector: '.markdown :not(a) > img',
+      background: {light: 'rgba(255, 255, 255, 0.95)', dark: 'rgba(16, 19, 23, 0.95)'},
+    },
     navbar: {
       title: 'Weston Robot',
       logo: {

@@ -1,0 +1,58 @@
+.figure {
+  margin: 1.5rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.figure img {
+  width: 100%;
+  height: auto;
+}
+
+/* Opt-in frame for screenshots. Transparent cutouts must not use this. */
+.framed img {
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 6px;
+  background: var(--ifm-background-surface-color);
+}
+
+.figure figcaption {
+  font-size: 0.87rem;
+  line-height: 1.5;
+  color: var(--ifm-color-emphasis-700);
+  text-align: center;
+  max-width: 60ch;
+}
+
+/* Named widths, so pages stay consistent instead of carrying 55 different
+   inline pixel values. They are max-widths: a smaller image is never upscaled. */
+.sm { max-width: 260px; }
+.md { max-width: 420px; }
+.lg { max-width: 680px; }
+.full { max-width: 100%; }
+
+.grid {
+  display: grid;
+  gap: 1rem;
+  margin: 1.5rem 0;
+  grid-template-columns: 1fr;
+}
+
+.grid .figure {
+  margin: 0;
+  max-width: 100%;
+}
+
+/* Collapse to a single column on narrow screens rather than overflowing, which
+   is what the `<div>` and table-based grids did. */
+@media (min-width: 700px) {
+  .grid[data-columns='2'] { grid-template-columns: repeat(2, 1fr); }
+  .grid[data-columns='3'] { grid-template-columns: repeat(3, 1fr); }
+  .grid[data-columns='4'] { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1000px) {
+  .grid[data-columns='4'] { grid-template-columns: repeat(4, 1fr); }
+}

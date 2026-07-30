@@ -113,3 +113,63 @@ div:has(> .markdown table) {
     overflow-x: auto;
   }
 }
+
+/* ---------------------------------------------------------------------------
+   Images
+   ---------------------------------------------------------------------------
+   Markdown has no syntax for image size, which is why 69 images across this
+   site were converted to JSX with an `import` and an inline style just to
+   constrain them. These defaults remove the need for most of that.
+
+   Deliberately NO border or background by default: a lot of the images here are
+   transparent product cutouts, and framing one puts a box around empty space.
+   Screenshots that need separation opt in with <Figure framed>.
+   --------------------------------------------------------------------------- */
+
+.markdown img {
+  /* Never overflow the column, whatever the intrinsic size. */
+  max-width: 100%;
+  height: auto;
+  /* Keep a tall photo from owning the whole viewport. 70vh was too generous —
+     a hero shot pushed the actual content below the fold. */
+  max-height: 420px;
+  object-fit: contain;
+}
+
+/* An image alone in its paragraph is a figure: centre it, but do not give it
+   so much margin that it reads as detached from the text. */
+.markdown p > img:only-child {
+  display: block;
+  margin: 1.25rem auto;
+}
+
+/* medium-zoom marks attached images with this class and sets cursor: zoom-in
+   itself; the rule here only ensures the cursor survives our own img styles. */
+.markdown img.medium-zoom-image {
+  cursor: zoom-in;
+}
+
+/* Zoomed images should not inherit the inline height cap, or the enlarged view
+   is no bigger than the thumbnail. */
+.markdown img.medium-zoom-image--opened,
+img.medium-zoom-image--opened {
+  max-height: none;
+  max-width: none;
+}
+
+/* Images inside table cells are thumbnails — the diagnostics guides use tables
+   as ad-hoc image grids. Keep them from bursting the cell. */
+.markdown td > img,
+.markdown th > img {
+  max-height: 200px;
+  margin: 0;
+}
+
+/* Diagrams are not photos: no height cap, full width so Mermaid text stays
+   legible, and never a frame. */
+.markdown .docusaurus-mermaid-container svg,
+.markdown img[src$=".svg"] {
+  max-height: none;
+  border: none;
+  background: none;
+}
