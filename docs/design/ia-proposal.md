@@ -81,16 +81,20 @@ Docusaurus validates only *internal* links. Two links written as fully-qualified
 
 See §10 for what is now real and what is still a scaffold.
 
-### 2.7 Two different support forms are in use ⚠️ open, needs an owner
+### 2.7 Two different support forms were in use ✅ resolved
 
-Eight content links pointed at a long-form Office Forms URL; the navbar and homepage used a short link. Resolving them shows they are **different forms**:
+Eight content links pointed at a long-form Office Forms URL while the navbar and homepage used a short link. They resolved to **different forms**:
 
 ```
-navbar short link  →  form id 8X3_nKqqIk-No-SG1IYN…
-content long URL   →  form id NTNVCC0zFkWzGo_3Vcs_4K…
+short link  →  form id 8X3_nKqqIk-No-SG1IYN…   ← newer, canonical
+long URL    →  form id NTNVCC0zFkWzGo_3Vcs_4K…  ← superseded
 ```
 
-The eight content links now point at `/support/before-you-contact-us` instead, so a customer collects diagnostics before reaching any form. **Which form is correct is a question for whoever owns the support inbox** — they have not been merged.
+**Canonical support form: `https://forms.office.com/r/qELKzYF33W`** (confirmed 2026-07-30). The superseded long URL appears nowhere on the site any more.
+
+The eight content links now point at `/support/before-you-contact-us` rather than at a form directly, so a customer collects the serial number, firmware version and logs before they get to the form. Only three places link the form itself: `support/intro`, `support/before-you-contact-us`, and one in-context reference in `g1_dev_guide`.
+
+That drift is the reason to keep form links few and named in one place. If the form changes again, those three are the only edits.
 
 ---
 
@@ -329,7 +333,7 @@ Also worth measuring: **how do customers reach the site** — bookmark, emailed 
 | D8 | Doc review owner; definition of done for a product page | **open** — needed before Phase 6 |
 | D9 | Is SDK / API reference coming to this site | **open** — if yes, a `Develop` tab returns; if no, 16 repos stay on GitHub |
 | D10 | Solution overviews here or on the marketing site | **resolved by D0** — outcome and proof on marketing, deployment and config here |
-| D11 | Which of the two support forms is correct | **open, new** — see §2.7 |
+| D11 | Which of the two support forms is correct | **resolved** — the short link `forms.office.com/r/qELKzYF33W` is the newer one and is now the only form on the site; see §2.7 |
 
 ---
 
