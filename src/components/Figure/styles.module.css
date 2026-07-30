@@ -28,6 +28,19 @@
 
 /* Named widths, so pages stay consistent instead of carrying 55 different
    inline pixel values. They are max-widths: a smaller image is never upscaled. */
+/* Hero product shots: constrain height so different robot proportions still
+   look like the same size. Trim padding from the source file too — CSS cannot
+   crop transparent margins baked into an image. */
+.hero {
+  max-width: 100%;
+}
+
+.hero img {
+  width: auto;
+  max-height: 260px;
+  margin: 0 auto;
+}
+
 .sm { max-width: 260px; }
 .md { max-width: 420px; }
 .lg { max-width: 680px; }

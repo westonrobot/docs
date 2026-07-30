@@ -12,8 +12,12 @@ type FigureProps = {
   alt: string;
   /** Rendered under the image. Omit for a plain image. */
   caption?: ReactNode;
-  /** Named widths keep pages consistent; `full` is the default. */
-  size?: 'sm' | 'md' | 'lg' | 'full';
+  /**
+   * Named widths keep pages consistent. `hero` is special: it constrains
+   * HEIGHT, not width, so a tall humanoid and a wide quadruped occupy the same
+   * visual weight on their respective pages.
+   */
+  size?: 'sm' | 'md' | 'lg' | 'full' | 'hero';
   /**
    * Draw a hairline border and surface background. Use for screenshots, whose
    * white background otherwise bleeds into the page. Do NOT use for transparent

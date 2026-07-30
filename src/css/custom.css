@@ -173,3 +173,28 @@ img.medium-zoom-image--opened {
   border: none;
   background: none;
 }
+
+/* ---------------------------------------------------------------------------
+   Tables
+   ---------------------------------------------------------------------------
+   Infima ships `display: block; width: max-content` so wide tables scroll. The
+   side effect is that every ordinary table shrinks to its content and sits
+   centred, leaving dead space beside it. These pages use tables heavily for
+   routing and specifications, where full width reads far better.
+   --------------------------------------------------------------------------- */
+
+.markdown > table,
+.markdown > div > table {
+  display: table;
+  width: 100%;
+  table-layout: auto;
+}
+
+/* With display:table the block-level overflow scroll is gone, so long cell
+   content must wrap instead of forcing the page wider. */
+.markdown > table td,
+.markdown > table th,
+.markdown > div > table td,
+.markdown > div > table th {
+  overflow-wrap: break-word;
+}
