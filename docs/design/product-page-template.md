@@ -22,11 +22,21 @@ So a product page for a partner platform is **not a datasheet**. Its job is:
 
 The test: if a sentence would still be true for a unit bought directly from the vendor, and the vendor already says it, it probably does not belong here.
 
-### Weston Robot's own products invert the rule
+### Three supply relationships, not two
 
-For [WR65](../../robot/manipulator/wr65.md), [WRL63](../../robot/manipulator/wrl63.md) and anything else we manufacture, **we are upstream**. There is no official page to defer to, so those pages do need full specifications — reach, payload, repeatability, mounting, tool-flange I/O.
+How much a page defers upstream depends on **who made the hardware and whose name is on it**. These are not the same question, and conflating them produced a real error: the WR65 and WRL63 pages were written asserting "we manufacture these, there is no vendor page to defer to" when both are in fact OEM Realman arms.
 
-They are structurally converted but the specifications are still missing, and here an explicit gap admonition **is** correct — the opposite of the partner-platform rule. On a partner page a missing figure is a division of labour and saying so reads as deliberate. On our own page it is simply absent, and pretending otherwise would leave a customer hunting a vendor site that does not exist.
+| Tier | What it is | Examples | What the page does |
+| --- | --- | --- | --- |
+| **1 — Partner platform** | Vendor's hardware, vendor's name | G1, Go2, B2, Z1, xArm, Piper, Kinova | Defer. Link the vendor, add what we configure and verify |
+| **2 — OEM under our name** | Vendor's hardware, our name | WR65 ↔ Realman RM65, WRL63 ↔ Realman RML63 | Defer **and** publish the correspondence |
+| **3 — Our own design** | We designed it | Power Regulator, CM4 / NanoPC carrier boards | We are upstream; publish in full |
+
+**Tier 2 is the one that needs care.** A customer holding a WR65 cannot find Realman's documentation, because Realman have never heard of the WR65 — so the page must state the mapping explicitly, near the top, and again in the variant table. That is the one thing only we can write, and it is worth more than any specification.
+
+Tier 2 is also the only case where a specification table earns its place, as a bridge between our part number and theirs. It comes with a condition: **date it and caveat it.** Our WR65 figures came from a 2023 manual, and by the time they were recovered Realman had dropped a variant, shortened the force-sensing reach from 638.5 mm to 627 mm, and restated sensor accuracy from < 0.1 % FS to ±0.5 % FS. Publishing them unqualified would have handed customers three wrong numbers with our name on them. Cross-check against the vendor's current page before publishing any spec table, and say which values you could not reconcile.
+
+Tier 3 is where an explicit gap admonition **is** correct — the opposite of the tier 1 rule. On a partner page a missing figure is a division of labour and reads as deliberate. On our own page it is simply absent, and pretending otherwise sends a customer hunting a vendor site that does not exist.
 
 ## Section order
 
@@ -204,7 +214,28 @@ Tables are the default here because most product-page content is genuinely tabul
 | **`react-player`** | installed, used once | Vendor videos, demonstrations |
 | Code blocks with `title=` and line highlighting | built-in, unused | Config files, showing which line to change |
 
-Not installed, worth considering: an image-zoom plugin. The pinout and interface photos on product pages are currently unclickable, and a connector pinout is exactly the image someone needs to enlarge.
+`docusaurus-plugin-image-zoom` is now installed and wired to `.markdown :not(a) > img`, so pinout and interface photos enlarge on click — a connector pinout is exactly the image someone needs to zoom. Say so in the caption ("Click either image to enlarge") where it is not obvious.
+
+### Product images: sourcing and provenance
+
+Hero images are almost always **the vendor's copyright**, not ours. As their distributor or OEM partner we very likely have the right to use them, but that is a commercial question about a specific agreement, not something to assume silently. So:
+
+- **Prefer an officially supplied asset pack** over anything scraped from a web page. Ask the vendor; under an OEM agreement they usually have one.
+- **Record where every image came from** in the table below, so the rights position for any given file can be checked later instead of reconstructed.
+- **Never crop out a watermark or a vendor logo to make an image look like ours.** Removing a badge that sits *beside* the product in a composite render is fine; removing branding *from* the product is not.
+
+| File | Product | Source | Notes |
+| --- | --- | --- | --- |
+| `robot/img/realman/wr65.png` | WR65 | Realman [RM65 product page](https://www.realman-robotics.com/en/products/rm65.html) (`RM65-标准版`) | Vendor render. Alpha-trimmed, downscaled to 720 px tall |
+| `robot/img/realman/wrl63.png` | WRL63 | Realman [RML63 product page](https://www.realman-robotics.com/en/products/rml63.html) (`RML63-标准版`) | Vendor render. Alpha-trimmed, downscaled to 720 px tall |
+| `robot/img/ufactory/xarm.png` | xArm 6 | UFactory [xArm 6 product page](https://www.ufactory.cc/product-page/ufactory-xarm-6/) (`xarm56-1305_画板-1-副本-2.png`) | Vendor render. A UFACTORY badge occupying the top 14 % of the canvas, separate from the arm, was masked out; the arm itself is untouched |
+
+All three are **pending confirmation** that our agreements cover documentation use. Replace with vendor-supplied assets if that is cleaner.
+
+Two mechanical notes learned doing these:
+
+- **Trim transparent padding in the file, not with CSS.** `size="hero"` constrains height to 260 px, so baked-in padding shrinks the product. The WR65 render was 66 % padding before trimming.
+- **Check the image on a dark background before committing it.** A render with an opaque light-grey studio backdrop looks fine in light mode and like a glowing box in dark mode. Keying a uniform background to transparency works; flood-filling a *gradient* studio floor does not, because a white product against a light floor has no edge to stop at.
 
 ### When a diagram beats a table
 
@@ -388,9 +419,9 @@ includes the commands to gather it.
 | `robot/ugv/scout-mini` | UGV | ✅ converted — no onboard computer, so Logins and Network layout omitted |
 | `robot/ugv/ranger-mini-v2` | UGV | ✅ converted — calibration extracted to a shared guide |
 | `robot/ugv/ranger-mini-v3` | UGV | ✅ converted — calibration extracted to a shared guide |
-| `robot/manipulator/wr65` | Manipulator | ✅ structure converted — **specifications still needed**, we are upstream |
-| `robot/manipulator/wrl63` | Manipulator | ✅ structure converted — **specifications still needed**, we are upstream |
-| `robot/manipulator/xarm` | Manipulator | ✅ converted — fixed a 404 vendor link; no product image available |
+| `robot/manipulator/wr65` | Manipulator (tier 2) | ✅ converted — reframed as OEM Realman RM65; specs recovered from the 2023 archive and cross-checked, two values could not be reconciled |
+| `robot/manipulator/wrl63` | Manipulator (tier 2) | ✅ converted — reframed as OEM Realman RML63, same cross-check |
+| `robot/manipulator/xarm` | Manipulator | ✅ converted — fixed a 404 vendor link, then a second link that pointed at the downloads page rather than the product page; image added |
 | `robot/manipulator/z1` | Manipulator | ✅ converted |
 | `robot/manipulator/piper` | Manipulator | ✅ converted |
 | `robot/manipulator/kinova-gen3-lite` | Manipulator | ✅ converted — emoji headings removed |

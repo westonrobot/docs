@@ -5,14 +5,28 @@ description: "UFactory xArm manipulator: setup, control interface, resources and
 
 # xArm
 
+<Split ratio="wide-narrow">
+
+<div>
+
 The xArm is UFactory's industrial manipulator family, available in 5, 6 and 7 degree-of-freedom variants. It is controlled over Ethernet and supplied as a development platform for machine tending, laboratory automation and light industrial work.
 
 This page does not repeat or replace UFactory's documentation. It highlights the information you reach for most often, and supplements it with what we have learned from supplying and supporting these units — configuration, verified values, and our own guides.
 
 UFactory's own documentation:
 
-* [Official product page](https://www.ufactory.cc/download)
+* [Official product page](https://www.ufactory.cc/xarm-collaborative-robot/)
 * [Official documentation](https://docs.ufactory.cc/)
+
+</div>
+
+<Figure
+  src={require('../img/ufactory/xarm.png').default}
+  alt="UFactory xArm 6 six-axis manipulator on its base"
+  size="hero"
+  caption="xArm 6 shown." />
+
+</Split>
 
 ## Getting started
 
