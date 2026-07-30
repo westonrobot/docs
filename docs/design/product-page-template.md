@@ -33,7 +33,7 @@ The order is deliberate and follows the audience decision in `ia-proposal.md` §
 | # | Section | Required | Purpose |
 | --- | --- | --- | --- |
 | — | Hero split | yes | High-level description + official vendor links, image on the right |
-| 1 | **What are you here to do?** | yes | Routing table: intent → destination |
+| 1 | Routing table (**no heading**) | yes | `I want to… / Start here`. The columns self-label it, so a heading would only add a redundant TOC entry above a table already at the top of the page |
 | 2 | **Identify your unit** | yes | Serial number location and variant, and why it is asked for |
 | 3 | **Getting started** | yes | The first-run sequence in outline, linking the guide that does it properly |
 | 4 | **As supplied** | yes | What the unit carries and how each part is reached |
@@ -151,8 +151,6 @@ description: "<Vendor> <Model> <class>: setup, interfaces, guides and support re
 <Two or three sentences: what it is, what it ships with, and the one thing that
 shapes how you work with it — e.g. wired-only development, or a CAN interface.>
 
-## What are you here to do?
-
 | I want to… | Start here |
 | --- | --- |
 | Set it up and run something | [Getting started](#getting-started) → [<bring-up guide>](...) |
@@ -234,7 +232,7 @@ includes the commands to gather it.
 
 **Structure**
 - [ ] Frontmatter has a `description`
-- [ ] Routing table present, and every in-page anchor in it resolves
+- [ ] Routing table present directly under the hero, with no heading of its own, and every in-page anchor in it resolves
 - [ ] Section order matches the table above
 - [ ] No manual heading numbers
 
