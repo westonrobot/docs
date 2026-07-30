@@ -33,14 +33,53 @@ The order is deliberate and follows the audience decision in `ia-proposal.md` §
 | # | Section | Required | Purpose |
 | --- | --- | --- | --- |
 | — | Hero split | yes | High-level description + official vendor links, image on the right |
-| 1 | Routing table (**no heading**) | yes | `I want to… / Start here`. The columns self-label it, so a heading would only add a redundant TOC entry above a table already at the top of the page |
-| 2 | **Getting started** | yes | The first-run sequence in outline, linking the guide that does it properly |
-| 3 | **Key information** | yes | Access credentials, network layout, electrical interfaces. A scannable summary, not an exclusive one |
-| 4 | **Guides for this product** | yes | Table: guide · what it covers · when to reach for it. Plus the tag page |
-| 5 | **Solutions for this platform** | if any | Only when a solution genuinely supports the platform |
-| 6 | **Troubleshooting & FAQ** | yes | Model-specific answers; shared ones linked by anchor |
-| 7 | **Downloads and software** | yes | One table: resource · what it is · where |
-| 8 | **Support** | yes | Route into the Support section, with why it helps |
+| 1 | **Getting started** | yes | The first-run sequence in outline, linking the guide that does it properly |
+| 2 | **Key information** | yes | Access credentials, network layout, electrical interfaces. A scannable summary, not an exclusive one |
+| 3 | **Guides for this product** | yes | Table: guide · what it covers · when to reach for it. Plus the tag page |
+| 4 | **Solutions for this platform** | if any | Only when a solution genuinely supports the platform |
+| 5 | **Troubleshooting & FAQ** | yes | Model-specific answers; shared ones linked by anchor |
+| 6 | **Downloads and software** | yes | One table: resource · what it is · where |
+| 7 | **Support** | yes | Route into the Support section, with why it helps |
+
+### Serial numbers live in one central place
+
+There is **no "Identify your unit" section** on a product page. Serial number
+locations for every platform live on [`/support/identify-your-product`](../../support/identify-your-product.md),
+which is where a reader arrives when they are raising a ticket.
+
+Duplicating it per product meant the same two sentences on 13 pages, each free to
+drift from the others and from the central page. Where a product page needs to
+mention it — for example because the model designation determines what is fitted
+— state the fact inline in **As supplied** and link the central page.
+
+The central page links back to each product page it covers, so the relationship
+is navigable both ways.
+
+### There is no routing table
+
+Earlier drafts of the G1 page opened with an "I want to… / Start here" table. It
+was removed, because it duplicated the table of contents.
+
+Measured against the finished page, **7 of its 8 rows pointed at a section already
+listed in the TOC**, and the eighth pointed at the diagnostics guide, which the
+Guides for this product section already lists with a "reach for it when" column.
+Docusaurus also renders the TOC on mobile as a collapsible "On this page", so the
+table was not earning its place on small screens either.
+
+Its one genuine contribution was **intent phrasing** — "find the default login" is
+easier to spot than "Access". Keep that value by naming sections concretely enough
+that the TOC reads as a set of intents. `Logins and IP addresses` beats `Access`
+for exactly this reason.
+
+Two lessons worth keeping:
+
+- A routing table only pays for itself when the page is long enough that the TOC
+  is hard to scan, or when the destinations are mostly *off* the page. Neither is
+  true of a product page with seven sections.
+- The table originally justified itself by presenting a lifecycle order different
+  from the page's section order. Once the sections were reordered to match that
+  lifecycle, the table had nothing left to add. Aligning the two removed the need
+  for one of them.
 
 ### Serial numbers live in one central place
 
@@ -240,17 +279,6 @@ in full, and is the reference for anything beyond the basics:
 
 </Split>
 
-| I want to… | Start here |
-| --- | --- |
-| check what my unit includes | [As supplied](#as-supplied) |
-| set it up for the first time | [Getting started](#getting-started) → [<bring-up guide>](...) |
-| reach its onboard computer, or get it online | [Network layout](#network-layout) → [<networking guide>](...) |
-| wire a payload, or find a connector pinout | [Electrical interfaces](#electrical-interfaces) |
-| do something specific with it | [Guides for this product](#guides-for-this-product) |
-| work out why something is wrong | [<diagnostics guide>](...) → [Troubleshooting & FAQ](#troubleshooting--faq) |
-| get a manual, CAD model or the SDK | [Downloads and software](#downloads-and-software) |
-| contact Weston Robot | [Support](#support) |
-
 ## Getting started
 
 Read [Operational Safety](/tutorial/operational-safety) before powering the robot
@@ -336,9 +364,8 @@ includes the commands to gather it.
 
 **Structure**
 - [ ] Frontmatter has a `description`
-- [ ] Routing table present directly under the hero, with no heading of its own
-- [ ] Rows match the canonical set, in canonical order, lowercase continuations
-- [ ] Every in-page anchor in the routing table resolves
+- [ ] Section names are concrete enough that the TOC reads as a set of intents
+- [ ] Every in-page anchor resolves
 - [ ] Section order matches the table above
 - [ ] No manual heading numbers
 
