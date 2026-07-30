@@ -34,14 +34,13 @@ The order is deliberate and follows the audience decision in `ia-proposal.md` §
 | --- | --- | --- | --- |
 | — | Hero split | yes | High-level description + official vendor links, image on the right |
 | 1 | Routing table (**no heading**) | yes | `I want to… / Start here`. The columns self-label it, so a heading would only add a redundant TOC entry above a table already at the top of the page |
-| 2 | **As supplied** | yes | What the unit carries and how each part is reached |
-| 3 | **Getting started** | yes | The first-run sequence in outline, linking the guide that does it properly |
-| 4 | **Connecting to it** | yes | Network layout, credentials, electrical interfaces and pinouts |
-| 5 | **Guides for this product** | yes | Table: guide · what it covers · when to reach for it. Plus the tag page |
-| 6 | **Solutions for this platform** | if any | Only when a solution genuinely supports the platform |
-| 7 | **Troubleshooting & FAQ** | yes | Model-specific answers; shared ones linked by anchor |
-| 8 | **Downloads and software** | yes | One table: resource · what it is · where |
-| 9 | **Support** | yes | Route into the Support section, with why it helps |
+| 2 | **Getting started** | yes | The first-run sequence in outline, linking the guide that does it properly |
+| 3 | **Key information** | yes | Access credentials, network layout, electrical interfaces — the facts the vendor does not publish |
+| 4 | **Guides for this product** | yes | Table: guide · what it covers · when to reach for it. Plus the tag page |
+| 5 | **Solutions for this platform** | if any | Only when a solution genuinely supports the platform |
+| 6 | **Troubleshooting & FAQ** | yes | Model-specific answers; shared ones linked by anchor |
+| 7 | **Downloads and software** | yes | One table: resource · what it is · where |
+| 8 | **Support** | yes | Route into the Support section, with why it helps |
 
 ### Serial numbers live in one central place
 
@@ -70,7 +69,7 @@ give the same sequence.
 
 | # | I want to… | Destination | Omit when |
 | --- | --- | --- | --- |
-| 1 | check what my unit includes | `#as-supplied` | never |
+| 1 | find the default login or IP addresses | `#access` | platform has no onboard computer |
 | 2 | set it up for the first time | `#getting-started` → bring-up guide | never |
 | 3 | reach its onboard computer, or get it online | `#network-layout` → networking guide | platform has no onboard computer |
 | 4 | wire a payload, or find a connector pinout | `#electrical-interfaces` | no published interface diagram |
@@ -100,7 +99,7 @@ the reader is finishing.
 the section orients you and the guide does the work. Use it when the destination
 is a two-step path, not as decoration.
 
-### There is deliberately no "Specifications" section
+### One "Key information" section, not a specifications section
 
 That heading is what caused the inconsistency it was meant to solve. Audited across the 13 robot pages it meant two unrelated things:
 
@@ -109,7 +108,13 @@ That heading is what caused the inconsistency it was meant to solve. Audited acr
 | Vendor datasheet — dimensions, mass, payload, temperature, IP rating, materials | `xarm` (25 rows), `scout-mini` (13), `kinova-gen3-lite` (11) | **defer to vendor** |
 | How you connect — interface photos, pinouts, onboard computer IPs and credentials | `g1`, `go2`, `b2`, `h1-2` (no datasheet table at all) | **keep — this is ours** |
 
-Splitting it into **As supplied** and **Connecting to it** removes the ambiguity: neither name invites copying a datasheet, and both describe something the vendor cannot write because it is about the unit *we* ship.
+Both are replaced by a single **Key information** section holding only what the vendor does not publish:
+
+- **Access** — default credentials and IP addresses. On a partner platform this is the single most useful block on the page: it is what a customer cannot look up anywhere else, and it is what support gets asked for most.
+- **Network layout** — which computer is theirs, and how the parts connect.
+- **Electrical interfaces** — locations and pinouts, for mounting a payload.
+
+An earlier draft also had an "As supplied" section listing fitted hardware in a four-row table. It was cut: the *existence* of a LiDAR is close to a vendor spec, and stating it in a table gave it the same weight as the credentials. Which bus each sensor is on is worth one sentence, not a table row.
 
 ### Avoid the bare-bones failure mode
 
@@ -236,19 +241,6 @@ the reference for specifications and API detail:
 | get a manual, CAD model or the SDK | [Downloads and software](#downloads-and-software) |
 | contact Weston Robot | [Support](#support) |
 
-## As supplied
-
-What a Weston Robot <Model> carries when it arrives, and how each part is reached.
-<Vendor> publishes the dimensions and ratings — see the [official product
-page](...) rather than a second-hand copy here.
-
-| Fitted | What it is | How you reach it |
-| --- | --- | --- |
-| | | |
-
-<If the model ships in variants, say so and link
-[Identify your product](/support/identify-your-product).>
-
 ## Getting started
 
 Read [Operational Safety](/tutorial/operational-safety) before powering the robot
@@ -260,12 +252,27 @@ outline:
 1. <step>
 2. <step>
 
-## Connecting to it
+## Key information
+
+The things you need that <Vendor>'s documentation does not cover, because they
+describe the unit as *we* supply it.
+
+### Access
+
+| Computer | Address | Credentials | What it is |
+| --- | --- | --- | --- |
+| **<name>** | `<ip>` | `<user>` / `<pass>` | <role> |
+
+<How you reach it, and any constraint — wired only, and so on.>
+
+<One sentence on fitted sensors and which bus each is on.>
+
+<If the model ships in variants, say so and link
+[Identify your product](/support/identify-your-product).>
 
 ### Network layout
 
-<Which computer is the user's. A Mermaid diagram if there is more than one, or a
-switch, or a fixed subnet.>
+<A Mermaid diagram if there is more than one computer, a switch, or a fixed subnet.>
 
 ### Electrical interfaces
 
