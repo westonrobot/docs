@@ -1,27 +1,28 @@
-FROM node:20-slim
+FROM node:22-slim
 
 WORKDIR /app
 
-# Install necessary dependencies
+# git is needed by Docusaurus to read last-updated timestamps from history
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     git \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Docusaurus dependencies without mounting the repo yet
-COPY package*.json ./
-RUN npm install
+# Install from the lockfile (npm ci, not npm install) so the container resolves
+# exactly what CI resolves. Copied before the source so the layer stays cached
+# until package.json/package-lock.json change.
+COPY package.json package-lock.json ./
+RUN npm ci
 
-# Install mermaid theme
-RUN npm install @docusaurus/theme-mermaid --save
+# Run as the image's built-in unprivileged "node" user (uid 1000). The compose
+# service bind-mounts the repository, so running as root here creates
+# root-owned .docusaurus/ and build/ directories on the host, which then break
+# host-side `npm run build` with EACCES.
+USER node
 
-# Expose the port Docusaurus uses
 EXPOSE 3000
 
-# Set environment variable to allow host connections
 ENV HOST=0.0.0.0
-ENV DOCUSAURUS_BASE_URL=/docs-next/
 
-# Command to run when container starts - will be overridden by docker-compose
-CMD ["npm", "start", "--", "--host", "0.0.0.0"] 
+CMD ["npm", "start", "--", "--host", "0.0.0.0", "--port", "3000"]

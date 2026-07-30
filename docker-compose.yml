@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   docs:
     build:
@@ -8,10 +6,13 @@ services:
     ports:
       - "3000:3000"
     volumes:
+      # Bind-mount the source so edits hot-reload.
       - .:/app
-    command: bash -c "npm install && npm start -- --host 0.0.0.0 --port 3000"
+      # Keep node_modules inside the container. Without this, the bind mount
+      # above shadows the modules installed during the image build and the
+      # dev server starts with nothing installed. Run `docker compose build`
+      # after changing dependencies.
+      - /app/node_modules
     environment:
       - NODE_ENV=development
-      - DOCUSAURUS_BASE_URL=/docs-next/
-    network_mode: "host"
-    restart: unless-stopped 
+    restart: unless-stopped
