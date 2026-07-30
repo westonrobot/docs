@@ -44,6 +44,38 @@ The order is deliberate and follows the audience decision in `ia-proposal.md` §
 | 9 | **Downloads and software** | yes | One table: resource · what it is · where |
 | 10 | **Support** | yes | Route into the Support section, with why it helps |
 
+### The routing table has a canonical row set
+
+The rows are the same on every product page, in the same order, so a reader who
+has used one page can scan the next without re-reading it. Omit a row only when
+the destination genuinely does not exist for that platform; never reorder.
+
+The order is the customer's lifecycle: *what have I got* → *identify it* → *set it
+up* → *connect to it* → *extend it* → *use it* → *fix it* → *reference* → *help*.
+
+| # | I want to… | Destination | Omit when |
+| --- | --- | --- | --- |
+| 1 | check what my unit includes | `#as-supplied` | never |
+| 2 | find my serial number or model | `#identify-your-unit` | never |
+| 3 | set it up for the first time | `#getting-started` → bring-up guide | never |
+| 4 | reach its onboard computer, or get it online | `#network-layout` → networking guide | platform has no onboard computer |
+| 5 | wire a payload, or find a connector pinout | `#electrical-interfaces` | no published interface diagram |
+| 6 | do something specific with it | `#guides-for-this-product` | no guides tagged yet |
+| 7 | work out why something is wrong | diagnostics guide → `#troubleshooting--faq` | never |
+| 8 | get a manual, CAD model or the SDK | `#downloads-and-software` | never |
+| 9 | contact Weston Robot | `#support` | never |
+
+Two conventions that matter:
+
+**The left cell completes the header.** The header is "I want to…", so cells are
+lowercase verb phrases — "set it up for the first time", not "Set It Up For The
+First Time". Sentence-case cells read as a list of titles rather than a sentence
+the reader is finishing.
+
+**An arrow means "and then".** `#getting-started` → `G1 Development Guide` says
+the section orients you and the guide does the work. Use it when the destination
+is a two-step path, not as decoration.
+
 ### There is deliberately no "Specifications" section
 
 That heading is what caused the inconsistency it was meant to solve. Audited across the 13 robot pages it meant two unrelated things:
@@ -153,13 +185,15 @@ shapes how you work with it — e.g. wired-only development, or a CAN interface.
 
 | I want to… | Start here |
 | --- | --- |
-| Set it up and run something | [Getting started](#getting-started) → [<bring-up guide>](...) |
-| Wire a payload, or find a pinout | [Electrical interfaces](#electrical-interfaces) |
-| Reach its computer, or get it online | [Onboard computer](#onboard-computer) |
-| Work out why something is wrong | [<diagnostics guide>](...) → [Troubleshooting & FAQ](#troubleshooting--faq) |
-| Find my serial number | [Identify your unit](#identify-your-unit) |
-| Download a manual, CAD model or the SDK | [Downloads and software](#downloads-and-software) |
-| Contact Weston Robot | [Support](#support) |
+| check what my unit includes | [As supplied](#as-supplied) |
+| find my serial number or model | [Identify your unit](#identify-your-unit) |
+| set it up for the first time | [Getting started](#getting-started) → [<bring-up guide>](...) |
+| reach its onboard computer, or get it online | [Network layout](#network-layout) → [<networking guide>](...) |
+| wire a payload, or find a connector pinout | [Electrical interfaces](#electrical-interfaces) |
+| do something specific with it | [Guides for this product](#guides-for-this-product) |
+| work out why something is wrong | [<diagnostics guide>](...) → [Troubleshooting & FAQ](#troubleshooting--faq) |
+| get a manual, CAD model or the SDK | [Downloads and software](#downloads-and-software) |
+| contact Weston Robot | [Support](#support) |
 
 ## Identify your unit
 
@@ -232,7 +266,9 @@ includes the commands to gather it.
 
 **Structure**
 - [ ] Frontmatter has a `description`
-- [ ] Routing table present directly under the hero, with no heading of its own, and every in-page anchor in it resolves
+- [ ] Routing table present directly under the hero, with no heading of its own
+- [ ] Rows match the canonical set, in canonical order, lowercase continuations
+- [ ] Every in-page anchor in the routing table resolves
 - [ ] Section order matches the table above
 - [ ] No manual heading numbers
 
