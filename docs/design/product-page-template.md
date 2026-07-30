@@ -22,9 +22,11 @@ So a product page for a partner platform is **not a datasheet**. Its job is:
 
 The test: if a sentence would still be true for a unit bought directly from the vendor, and the vendor already says it, it probably does not belong here.
 
-### Weston Robot's own products are the exception
+### Weston Robot's own products invert the rule
 
-For [WR65](../../robot/manipulator/wr65.md), [WRL63](../../robot/manipulator/wrl63.md) and anything else we manufacture, **we are upstream**. There is no official page to defer to, so those pages do need full specifications — reach, payload, repeatability, mounting, control interface. They are currently the thinnest pages on the site at 83 words each, which is the inverse of where the detail should sit.
+For [WR65](../../robot/manipulator/wr65.md), [WRL63](../../robot/manipulator/wrl63.md) and anything else we manufacture, **we are upstream**. There is no official page to defer to, so those pages do need full specifications — reach, payload, repeatability, mounting, tool-flange I/O.
+
+They are structurally converted but the specifications are still missing, and here an explicit gap admonition **is** correct — the opposite of the partner-platform rule. On a partner page a missing figure is a division of labour and saying so reads as deliberate. On our own page it is simply absent, and pretending otherwise would leave a customer hunting a vendor site that does not exist.
 
 ## Section order
 
@@ -384,10 +386,10 @@ includes the commands to gather it.
 | `robot/quadruped/go2` | Quadruped | ✅ converted |
 | `robot/quadruped/b2` | Quadruped | ✅ converted — 197 lines of pinout tables passed through untouched |
 | `robot/ugv/scout-mini` | UGV | ✅ converted — no onboard computer, so Logins and Network layout omitted |
-| `robot/ugv/ranger-mini-v2` | UGV | ⏳ partial — guides section only |
-| `robot/ugv/ranger-mini-v3` | UGV | ⏳ partial — guides section only |
-| `robot/manipulator/wr65` | Manipulator | ⏳ — thinnest page on the site, 83 words |
-| `robot/manipulator/wrl63` | Manipulator | ⏳ — 83 words |
+| `robot/ugv/ranger-mini-v2` | UGV | ✅ converted — calibration extracted to a shared guide |
+| `robot/ugv/ranger-mini-v3` | UGV | ✅ converted — calibration extracted to a shared guide |
+| `robot/manipulator/wr65` | Manipulator | ✅ structure converted — **specifications still needed**, we are upstream |
+| `robot/manipulator/wrl63` | Manipulator | ✅ structure converted — **specifications still needed**, we are upstream |
 | `robot/manipulator/xarm` | Manipulator | ✅ converted — fixed a 404 vendor link; no product image available |
 | `robot/manipulator/z1` | Manipulator | ✅ converted |
 | `robot/manipulator/piper` | Manipulator | ✅ converted |

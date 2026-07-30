@@ -23,6 +23,7 @@ const sidebarsTutorial: SidebarsConfig = {
       label: 'UGV Guides',
       items: [
         'agilex/ugv_base_control',
+        'agilex/ranger_mini_calibration',
       ],
     },
     {

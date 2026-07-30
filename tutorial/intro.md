@@ -28,6 +28,7 @@ Every guide is tagged with the models it applies to, so you can start from the r
 | write software against it | [Development](/tutorial/tags/development) |
 | map and move autonomously | [SLAM](/tutorial/tags/slam) · [Navigation](/tutorial/tags/navigation) |
 | talk to the base over CAN | [CAN bus](/tutorial/tags/can-bus) |
+| calibrate steering or joints | [Calibration](/tutorial/tags/calibration) |
 | install our packages | [Installation](/tutorial/tags/installation) |
 | operate safely, or maintain the robot | [Safety](/tutorial/tags/safety) · [Maintenance](/tutorial/tags/maintenance) |
 
@@ -47,6 +48,7 @@ Every guide is tagged with the models it applies to, so you can start from the r
 ### AgileX UGVs
 
 * [Robot Base Control](/tutorial/agilex/ugv_base_control) — manual and programmatic control over CAN
+* [Ranger Mini Steering Calibration](/tutorial/agilex/ranger_mini_calibration) — re-establish the steering zero on a swerve-drive base
 
 ### Unitree quadrupeds
 

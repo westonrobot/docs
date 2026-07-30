@@ -94,3 +94,7 @@ maintenance:
   label: Maintenance
   permalink: /maintenance
   description: Routine upkeep and servicing.
+calibration:
+  label: Calibration
+  permalink: /calibration
+  description: Calibrating steering, joints and sensors.
