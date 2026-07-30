@@ -178,7 +178,15 @@ someone needs them, not by how reference-like they feel:
 **Point at the vendor's documentation without ranking it against ours.** One line,
 no annotation:
 
-> `<Vendor>'s own documentation: [product page](...) · [developer documentation](...)`
+> `This page does not repeat or replace <Vendor>'s documentation. It highlights the
+information you reach for most often, and supplements it with what we have learned
+from supplying and supporting these units — configuration, verified values, and our
+own guides.
+
+<Vendor>'s own documentation:
+
+* [Official product page](...)
+* [Official documentation](...)
 
 Two failure modes to avoid, both of which this wording sidesteps:
 
@@ -189,9 +197,8 @@ Two failure modes to avoid, both of which this wording sidesteps:
 - **Implying a depth hierarchy.** An earlier draft said the vendor "is the reference
   for anything beyond the basics", which casts our own content as the shallow end —
   untrue when it includes a 3,500-word development guide, diagnostics guides and
-  verified configuration. The split is *scope*, not depth: they document the
-  platform, we document the units we supply and how to work with them. Say neither
-  is deeper than the other, because neither is.
+  verified configuration. The split is *scope*, not depth. "Supplement" carries that;
+  "beyond the basics" does not.
 
 **Do not claim exclusivity you have not checked.** An early draft of the G1 page
 said Key information covered "the things Unitree's documentation does not cover".
