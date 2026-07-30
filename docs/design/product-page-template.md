@@ -380,7 +380,7 @@ includes the commands to gather it.
 | Page | Class | Hub applied |
 | --- | --- | --- |
 | `robot/humanoid/g1` | Humanoid | ✅ exemplar |
-| `robot/humanoid/h1-2` | Humanoid | ⏳ |
+| `robot/humanoid/h1-2` | Humanoid | ✅ converted — no guides tagged, so that section is omitted |
 | `robot/quadruped/go2` | Quadruped | ⏳ partial — guides section only |
 | `robot/quadruped/b2` | Quadruped | ⏳ partial — guides section only |
 | `robot/ugv/scout-mini` | UGV | ⏳ partial — guides section only |
