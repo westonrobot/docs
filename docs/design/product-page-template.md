@@ -32,16 +32,28 @@ The order is deliberate and follows the audience decision in `ia-proposal.md` §
 
 | # | Section | Required | Purpose |
 | --- | --- | --- | --- |
-| — | Title, hero split | yes | High-level description + official vendor links, image on the right |
-| 1 | **What are you here to do?** | yes | Routing table: intent → destination. The most valuable block on the page |
-| 2 | **Identify your unit** | yes | Serial number location, and why it matters |
+| — | Hero split | yes | High-level description + official vendor links, image on the right |
+| 1 | **What are you here to do?** | yes | Routing table: intent → destination |
+| 2 | **Identify your unit** | yes | Serial number location and variant, and why it is asked for |
 | 3 | **Getting started** | yes | The first-run sequence in outline, linking the guide that does it properly |
-| 4 | **Specifications** | yes | Fitted hardware and how to connect to it — **not** a spec sheet. Defer dimensions and ratings to the vendor |
-| 5 | **Guides for this product** | yes | Table: guide · what it covers · when to reach for it. Plus the tag page |
-| 6 | **Solutions for this platform** | if any | Only when a solution genuinely supports the platform |
-| 7 | **Troubleshooting & FAQ** | yes | Model-specific answers; shared ones linked by anchor |
-| 8 | **Downloads and software** | yes | One table: resource · what it is · where |
-| 9 | **Support** | yes | Route into the Support section, with why it helps |
+| 4 | **As supplied** | yes | What the unit carries and how each part is reached |
+| 5 | **Connecting to it** | yes | Network layout, credentials, electrical interfaces and pinouts |
+| 6 | **Guides for this product** | yes | Table: guide · what it covers · when to reach for it. Plus the tag page |
+| 7 | **Solutions for this platform** | if any | Only when a solution genuinely supports the platform |
+| 8 | **Troubleshooting & FAQ** | yes | Model-specific answers; shared ones linked by anchor |
+| 9 | **Downloads and software** | yes | One table: resource · what it is · where |
+| 10 | **Support** | yes | Route into the Support section, with why it helps |
+
+### There is deliberately no "Specifications" section
+
+That heading is what caused the inconsistency it was meant to solve. Audited across the 13 robot pages it meant two unrelated things:
+
+| Meaning | Pages | Verdict |
+| --- | --- | --- |
+| Vendor datasheet — dimensions, mass, payload, temperature, IP rating, materials | `xarm` (25 rows), `scout-mini` (13), `kinova-gen3-lite` (11) | **defer to vendor** |
+| How you connect — interface photos, pinouts, onboard computer IPs and credentials | `g1`, `go2`, `b2`, `h1-2` (no datasheet table at all) | **keep — this is ours** |
+
+Splitting it into **As supplied** and **Connecting to it** removes the ambiguity: neither name invites copying a datasheet, and both describe something the vendor cannot write because it is about the unit *we* ship.
 
 ### Avoid the bare-bones failure mode
 
