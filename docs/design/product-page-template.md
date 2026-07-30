@@ -381,16 +381,16 @@ includes the commands to gather it.
 | --- | --- | --- |
 | `robot/humanoid/g1` | Humanoid | ✅ exemplar |
 | `robot/humanoid/h1-2` | Humanoid | ✅ converted — no guides tagged, so that section is omitted |
-| `robot/quadruped/go2` | Quadruped | ⏳ partial — guides section only |
-| `robot/quadruped/b2` | Quadruped | ⏳ partial — guides section only |
-| `robot/ugv/scout-mini` | UGV | ⏳ partial — guides section only |
+| `robot/quadruped/go2` | Quadruped | ✅ converted |
+| `robot/quadruped/b2` | Quadruped | ✅ converted — 197 lines of pinout tables passed through untouched |
+| `robot/ugv/scout-mini` | UGV | ✅ converted — no onboard computer, so Logins and Network layout omitted |
 | `robot/ugv/ranger-mini-v2` | UGV | ⏳ partial — guides section only |
 | `robot/ugv/ranger-mini-v3` | UGV | ⏳ partial — guides section only |
 | `robot/manipulator/wr65` | Manipulator | ⏳ — thinnest page on the site, 83 words |
 | `robot/manipulator/wrl63` | Manipulator | ⏳ — 83 words |
-| `robot/manipulator/xarm` | Manipulator | ⏳ |
-| `robot/manipulator/z1` | Manipulator | ⏳ |
-| `robot/manipulator/piper` | Manipulator | ⏳ |
-| `robot/manipulator/kinova-gen3-lite` | Manipulator | ⏳ |
+| `robot/manipulator/xarm` | Manipulator | ✅ converted — fixed a 404 vendor link; no product image available |
+| `robot/manipulator/z1` | Manipulator | ✅ converted |
+| `robot/manipulator/piper` | Manipulator | ✅ converted |
+| `robot/manipulator/kinova-gen3-lite` | Manipulator | ✅ converted — emoji headings removed |
 
 Peripherals and systems need their own variant of this template. The section order mostly carries over, but what belongs under Key information differs — a power regulator has wiring and output configuration where a robot has logins and a network layout.
