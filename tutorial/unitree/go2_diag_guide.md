@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 description: "Diagnose a Unitree Go2 using the robot interface and the Unitree mobile app."
+tags: [unitree, go2, diagnostics]
 ---
 
 import GO2_APP_CONN_01_IMG from './img/go2_app_conn_01.jpg';    

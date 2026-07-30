@@ -86,7 +86,7 @@ sudo apt-get install -y pkg-config liblely-coapp-dev liblely-co-tools
 
 #### Install the SDK
 
-Please add the debian repository to your apt-get source list first. Refer to this [guide](/software/installation/apt_source) for more details.
+Please add the debian repository to your apt-get source list first. Refer to this [guide](/tutorial/installation/apt_source) for more details.
 
 ```bash
 sudo apt-get install wrp_sdk

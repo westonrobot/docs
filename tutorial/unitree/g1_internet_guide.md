@@ -1,5 +1,6 @@
 ---
 description: "Connect the Unitree G1 development PC to a WiFi network for internet access."
+tags: [unitree, g1, networking]
 ---
 
 # G1 Internet Access Guide

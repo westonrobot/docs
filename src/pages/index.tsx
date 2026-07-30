@@ -89,15 +89,15 @@ const decisionTree = {
     question: "What development resources do you need?",
     options: [      
       {
-        text: "SDKs & Tools",
-        destination: "/software/intro",
-        description: "Development tools to build applications",
+        text: "Solutions",
+        destination: "/solution/intro",
+        description: "Complete capabilities we deploy on a robot platform",
         icon: FaCode
-      },      
+      },
       {
-        text: "Tutorials & Guides",
+        text: "Guides",
         destination: "/tutorial/intro",
-        description: "Step-by-step guides for getting started",
+        description: "Task guides for setup, development and diagnostics",
         icon: FaBook
       },
       {

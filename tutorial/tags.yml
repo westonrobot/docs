@@ -1,0 +1,88 @@
+# Declared tag vocabulary for the Guides section.
+#
+# onInlineTags: 'throw' is set on this plugin instance in docusaurus.config.ts,
+# so a tag that is not declared here fails the build rather than quietly
+# creating a near-duplicate tag page. Add new tags here first.
+#
+# Four facets: model, vendor, solution, topic. Keep them flat — Docusaurus tags
+# have no hierarchy — and prefer adding to an existing facet over inventing one.
+
+# --- model -------------------------------------------------------------------
+g1:
+  label: G1
+  permalink: /g1
+  description: Guides that apply to the Unitree G1 humanoid.
+h1-2:
+  label: H1-2
+  permalink: /h1-2
+  description: Guides that apply to the Unitree H1-2 humanoid.
+go2:
+  label: Go2
+  permalink: /go2
+  description: Guides that apply to the Unitree Go2 and Go2-W quadrupeds.
+b2:
+  label: B2
+  permalink: /b2
+  description: Guides that apply to the Unitree B2 quadruped.
+scout-mini:
+  label: Scout Mini
+  permalink: /scout-mini
+  description: Guides that apply to the AgileX Scout Mini.
+ranger-mini:
+  label: Ranger Mini
+  permalink: /ranger-mini
+  description: Guides that apply to the AgileX Ranger Mini 2.0 and 3.0.
+ugv-devkit:
+  label: UGV Development Kit
+  permalink: /ugv-devkit
+  description: Guides that apply to the UGV Development Kit.
+
+# --- vendor ------------------------------------------------------------------
+unitree:
+  label: Unitree
+  permalink: /unitree
+  description: Guides for Unitree platforms.
+agilex:
+  label: AgileX
+  permalink: /agilex
+  description: Guides for AgileX platforms.
+weston-robot:
+  label: Weston Robot
+  permalink: /weston-robot
+  description: Guides for Weston Robot's own products and software.
+
+# --- solution ----------------------------------------------------------------
+adt:
+  label: Assisted Driving Toolbox
+  permalink: /adt
+  description: Guides related to the Assisted Driving Toolbox.
+
+# --- topic -------------------------------------------------------------------
+diagnostics:
+  label: Diagnostics
+  permalink: /diagnostics
+  description: Identifying faults and reading diagnostic information.
+networking:
+  label: Networking
+  permalink: /networking
+  description: Network configuration, connectivity and internet access.
+slam:
+  label: SLAM
+  permalink: /slam
+  description: Simultaneous localisation and mapping.
+navigation:
+  label: Navigation
+  permalink: /navigation
+  description: Autonomous navigation and path planning.
+can-bus:
+  label: CAN bus
+  permalink: /can-bus
+  description: CAN interface setup and low-level base control.
+development:
+  label: Development
+  permalink: /development
+  description: SDKs, APIs and writing software against a platform.
+installation:
+  label: Installation
+  permalink: /installation
+  description: Installing packages and setting up a development environment.

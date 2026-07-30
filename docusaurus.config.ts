@@ -61,6 +61,24 @@ const config: Config = {
 
   plugins: [
     [
+      '@docusaurus/plugin-client-redirects',
+      {
+        // The Software section was dissolved: its pages were a solution (ADT)
+        // and two task guides, none of which belonged in a section of their
+        // own. These redirects keep old URLs working, which matters because
+        // support engineers paste them into tickets.
+        redirects: [
+          {from: '/software/toolbox/assisted_driving_toolbox', to: '/solution/adt/intro'},
+          {from: '/software/toolbox/adt_v1', to: '/solution/adt/v1'},
+          {from: '/software/toolbox/adt_v2', to: '/solution/adt/v2'},
+          {from: '/software/toolbox/adt_v3', to: '/solution/adt/v3'},
+          {from: '/software/installation/apt_source', to: '/tutorial/installation/apt_source'},
+          {from: '/software/slam/go2_slam', to: '/tutorial/unitree/go2_slam'},
+          {from: '/software/intro', to: '/solution/intro'},
+        ],
+      },
+    ],
+    [
       require.resolve('docusaurus-lunr-search'),
       {
         // Options
@@ -79,6 +97,7 @@ const config: Config = {
         sidebarPath: './sidebars-general.ts',
         editUrl,
         showLastUpdateTime: true,
+        onInlineTags: 'throw',
       },
     ],
     [
@@ -90,6 +109,7 @@ const config: Config = {
         sidebarPath: './sidebars-robot.ts',
         editUrl,
         showLastUpdateTime: true,
+        onInlineTags: 'throw',
       },
     ],
     [
@@ -101,6 +121,7 @@ const config: Config = {
         sidebarPath: './sidebars-peripheral.ts',
         editUrl,
         showLastUpdateTime: true,
+        onInlineTags: 'throw',
       },
     ],
     [
@@ -112,17 +133,19 @@ const config: Config = {
         sidebarPath: './sidebars-system.ts',
         editUrl,
         showLastUpdateTime: true,
+        onInlineTags: 'throw',
       },
     ],
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'software',
-        path: 'software',
-        routeBasePath: 'software',
-        sidebarPath: './sidebars-software.ts',
+        id: 'solution',
+        path: 'solution',
+        routeBasePath: 'solution',
+        sidebarPath: './sidebars-solution.ts',
         editUrl,
         showLastUpdateTime: true,
+        onInlineTags: 'throw',
       },
     ],
     [
@@ -134,6 +157,7 @@ const config: Config = {
         sidebarPath: './sidebars-tutorial.ts',
         editUrl,
         showLastUpdateTime: true,
+        onInlineTags: 'throw',
       },
     ],
   ],
@@ -148,41 +172,33 @@ const config: Config = {
         src: 'img/wr-logo.png',
       },
       items: [
-        // { to: '/', label: 'Home', position: 'left' },
+        // The top level runs on a single axis: what you own, what capability
+        // you deploy, what you want to do, and reference. It previously mixed
+        // product taxonomy (Robots/Peripherals/Systems) with document type
+        // (Software/Tutorials), which is why nothing was findable.
         {
-            type: 'doc',
-            docId: 'intro',
-            docsPluginId: 'robot',
+            type: 'dropdown',
+            label: 'Products',
             position: 'left',
-            label: 'Robots',
+            items: [
+                {type: 'doc', docId: 'intro', docsPluginId: 'robot', label: 'Robots'},
+                {type: 'doc', docId: 'intro', docsPluginId: 'peripheral', label: 'Peripherals'},
+                {type: 'doc', docId: 'intro', docsPluginId: 'system', label: 'Systems'},
+            ],
         },
         {
             type: 'doc',
             docId: 'intro',
-            docsPluginId: 'peripheral',
+            docsPluginId: 'solution',
             position: 'left',
-            label: 'Peripherals',
-        },
-        {
-            type: 'doc',
-            docId: 'intro',
-            docsPluginId: 'system',
-            position: 'left',
-            label: 'Systems',
-        },
-        {
-            type: 'doc',
-            docId: 'intro',
-            docsPluginId: 'software',
-            position: 'left',
-            label: 'Software',
+            label: 'Solutions',
         },
         {
             type: 'doc',
             docId: 'intro',
             docsPluginId: 'tutorial',
             position: 'left',
-            label: 'Tutorials',
+            label: 'Guides',
         },
         {
             // Operational safety and maintenance. These pages were built and

@@ -1,6 +1,7 @@
 ---
 sidebar_position: 1
 description: "Run Unitree SLAM mapping and navigation on the Go2 and Go2-W."
+tags: [unitree, go2, slam, navigation]
 ---
 
 # Go2 & Go2-W

@@ -1,5 +1,6 @@
 ---
 description: "Control an AgileX UGV base manually and programmatically over CAN."
+tags: [agilex, scout-mini, ranger-mini, can-bus, development]
 ---
 
 # Robot Base Control

@@ -17,6 +17,10 @@ The Ranger Mini 3.0 mobile robot is a four-wheel swerve-drive platform.
 
 <img src={RM3_IMG} alt="Ranger Mini robot" style={{width: 350}} />
 
+## Guides for this product
+
+Task guides tagged for the Ranger Mini, kept up to date automatically as new guides are published: **[all Ranger Mini guides](/tutorial/tags/ranger-mini)**
+
 ## Resources
 
 - **Manual**: [Ranger Mini 3.0 Manual (EN)](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EUjRgOZIXK9KnW006BR8w3sB2jU6vFv3z7WgxDFmJ_PPQQ?e=mcYaJs)

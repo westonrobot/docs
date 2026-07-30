@@ -36,6 +36,10 @@ Go2 Edu has 1 built-in computer and 1 onboard computer (expansion dock module):
     - Username: unitree
     - Password: 123
 
+## Guides for this product
+
+Task guides tagged for the Go2, kept up to date automatically as new guides are published: **[all Go2 guides](/tutorial/tags/go2)**
+
 ## Resources
 
 * **User Guide**: [Go2 User Guide](https://tangrobot.sharepoint.com/:p:/s/Public-Outgoing/ESCOlfuKT5lPkwCnOFUoYbwB5Jr5o4meAyXd2lpGB09W5w?e=ixXe5e)
@@ -47,7 +51,7 @@ Go2 Edu has 1 built-in computer and 1 onboard computer (expansion dock module):
 * **Go2 App, Robot Features, Tutorial Videos, Manuals**: [Go2 Features](https://www.unitree.com/app/go2) 
 * **Other Information**: [URDF/CAD](https://support.unitree.com/home/en/developer/Obtain%20SDK)
 * **Diagnostics Guide**: [Go2 Diagnostics Guide](/tutorial/unitree/go2_diag_guide)
-* **Simultaneous Localization and Mapping Guide**: [Unitree SLAM Guide](/software/slam/go2_slam)
+* **Simultaneous Localization and Mapping Guide**: [Unitree SLAM Guide](/tutorial/unitree/go2_slam)
 
 ## FAQ
 

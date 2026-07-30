@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 description: "Diagnose a Unitree G1 using the robot interface and the Unitree mobile app."
+tags: [unitree, g1, diagnostics]
 ---
 
 import G1_APP_CONN_01_IMG from './img/g1_app_conn_01.jpg';    
