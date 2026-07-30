@@ -20,7 +20,8 @@ FriendlyELEC's [NanoPC-T6 wiki](https://wiki.friendlyelec.com/wiki/index.php/Nan
 <Figure
   src={require('../img/westonrobot/nanopc_sbc.jpg').default}
   alt="NanoPC-based onboard computer single-board computer"
-  size="hero" />
+  size="hero"
+  framed />
 
 </Split>
 
