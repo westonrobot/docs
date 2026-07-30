@@ -56,14 +56,23 @@ up* → *connect to it* → *extend it* → *use it* → *fix it* → *reference
 | # | I want to… | Destination | Omit when |
 | --- | --- | --- | --- |
 | 1 | check what my unit includes | `#as-supplied` | never |
-| 2 | find my serial number or model | `#identify-your-unit` | never |
-| 3 | set it up for the first time | `#getting-started` → bring-up guide | never |
-| 4 | reach its onboard computer, or get it online | `#network-layout` → networking guide | platform has no onboard computer |
-| 5 | wire a payload, or find a connector pinout | `#electrical-interfaces` | no published interface diagram |
-| 6 | do something specific with it | `#guides-for-this-product` | no guides tagged yet |
-| 7 | work out why something is wrong | diagnostics guide → `#troubleshooting--faq` | never |
-| 8 | get a manual, CAD model or the SDK | `#downloads-and-software` | never |
-| 9 | contact Weston Robot | `#support` | never |
+| 2 | set it up for the first time | `#getting-started` → bring-up guide | never |
+| 3 | reach its onboard computer, or get it online | `#network-layout` → networking guide | platform has no onboard computer |
+| 4 | wire a payload, or find a connector pinout | `#electrical-interfaces` | no published interface diagram |
+| 5 | do something specific with it | `#guides-for-this-product` | no guides tagged yet |
+| 6 | work out why something is wrong | diagnostics guide → `#troubleshooting--faq` | never |
+| 7 | get a manual, CAD model or the SDK | `#downloads-and-software` | never |
+| 8 | contact Weston Robot | `#support` | never |
+
+**There is deliberately no "find my serial number" row.** Identify your unit is
+already the first section and the first TOC entry, As supplied links to it inline,
+and the Support row leads to `before-you-contact-us` where the serial number is
+the first checklist item. A row for it sat next to "check what my unit includes"
+answering the same question twice.
+
+The routing table earns its place by being short enough to scan. Every row added
+makes the remaining ones less likely to be read, so a destination reachable three
+other ways does not need one.
 
 Two conventions that matter:
 
@@ -186,7 +195,6 @@ shapes how you work with it — e.g. wired-only development, or a CAN interface.
 | I want to… | Start here |
 | --- | --- |
 | check what my unit includes | [As supplied](#as-supplied) |
-| find my serial number or model | [Identify your unit](#identify-your-unit) |
 | set it up for the first time | [Getting started](#getting-started) → [<bring-up guide>](...) |
 | reach its onboard computer, or get it online | [Network layout](#network-layout) → [<networking guide>](...) |
 | wire a payload, or find a connector pinout | [Electrical interfaces](#electrical-interfaces) |
