@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: "NanoPC-based onboard computer: specifications, interfaces and configuration."
 ---
 
 import NANOPC_IMG from '../img/westonrobot/nanopc_sbc.jpg';

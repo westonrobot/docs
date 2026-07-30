@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: "AgileX Scout Mini UGV: specifications, SDK and ROS packages."
 ---
 
 import SCOUT_MINI_IMG from '../img/agilex/scout_mini.png';

@@ -1,5 +1,6 @@
 ---
 sidebar_position: 4
+description: "Kinova Gen3 Lite manipulator: specifications, interfaces and resources."
 ---
 
 import kinova_IMG from '../img/kinova/kinova-gen3-lite.jpg';

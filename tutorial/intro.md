@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: "Step-by-step guides for setting up, developing with and diagnosing Weston Robot platforms."
 ---
 
 # Tutorials

@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: "Safety requirements and precautions for operating Weston Robot platforms."
 ---
 
 # Operational Safety

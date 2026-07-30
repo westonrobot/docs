@@ -1,5 +1,6 @@
 ---
 sidebar_position: 5
+description: "AgileX PiPER 6-DOF manipulator: manuals, software and development resources."
 ---
 
 import PIPER_IMG from '../img/agilex/piper.png';

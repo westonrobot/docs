@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: "Power Regulator v2.X: wiring, output configuration, control and diagnostics."
 ---
 
 # Power Regulator V2

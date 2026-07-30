@@ -1,3 +1,7 @@
+---
+description: "Assisted Driving Toolbox v3: installation, configuration and operation."
+---
+
 # Weston Robot Assisted Driving Toolbox (ADT) V3
 
 Weston Robot proudly presents the Assisted Driving Toolbox (ADT) V3, a teleoperation system designed and developed by Weston Robot for usage on multiple mobile robot platforms. The system allows the control and operation of a robot through a shared network, with a wide coverage of its surroundings using mounted onboard camera modules.
@@ -14,7 +18,7 @@ Weston Robot proudly presents the Assisted Driving Toolbox (ADT) V3, a teleopera
 
 Follow these steps to install the Assisted Driving Toolbox Client on the host computer. If you have installed packages from the Weston Robot repository before, you can skip to step 2.
 
-1. Follow the instructions [here](https://docs.westonrobot.com/software/installation/apt_source) to add the Weston Robot package source to your system's software repository list.
+1. Follow the instructions [here](/software/installation/apt_source) to add the Weston Robot package source to your system's software repository list.
 
 2. Now you can update the apt index and install the ADT package with "apt-get" command.
 

@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: "Add the Weston Robot apt package source so you can install our Debian packages."
 ---
 
 # Weston Robot Apt Source

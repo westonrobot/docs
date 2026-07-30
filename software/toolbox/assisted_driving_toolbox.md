@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: "Assisted Driving Toolbox: teleoperation for Weston Robot mobile platforms."
 ---
 
 # Assisted Driving Toolbox

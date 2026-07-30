@@ -1,5 +1,6 @@
 ---
 sidebar_position: 3
+description: "UFactory xArm manipulator: specifications, joint limits and resources."
 ---
 
 # xArm

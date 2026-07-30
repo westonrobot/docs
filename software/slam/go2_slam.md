@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: "Run Unitree SLAM mapping and navigation on the Go2 and Go2-W."
 ---
 
 # Go2 & Go2-W
@@ -55,10 +56,10 @@ Before jumping into SLAM, ensure that all required configurations are set up on 
 ### 2.1 Wired Connection  
 
 - Make sure the User PC is connected to the Expansion Dock on the Go2/Go2-W as shown below.  
-![](https://doc-cdn.unitree.com/static/2024/1/4/a33bd756cb124c718ec7a0932aa2fd71_1417x1075.png)
+![User PC connected to the expansion dock on the Go2](https://doc-cdn.unitree.com/static/2024/1/4/a33bd756cb124c718ec7a0932aa2fd71_1417x1075.png)
 
 - Ensure that the network interface connected to the robot is configured with the following settings.  
-![](./img/wired_connection.png)
+![Network interface settings for the wired connection to the robot](./img/wired_connection.png)
 
 - In the terminal:
 	- Verify the connection by running:  
@@ -69,7 +70,7 @@ Before jumping into SLAM, ensure that all required configurations are set up on 
 		- **`source unitree_ros2/setup.sh`**  
 		- **`ros2 topic list`**
 	- Expected output:  
-	![](https://doc-cdn.unitree.com/static/2023/8/9/8ba3181e1f1446d784e8e40b21968db3_610x640.png)
+	![Expected output of ros2 topic list after sourcing the ROS 2 setup](https://doc-cdn.unitree.com/static/2023/8/9/8ba3181e1f1446d784e8e40b21968db3_610x640.png)
 
 ---
 
@@ -132,12 +133,12 @@ Before jumping into SLAM, ensure that all required configurations are set up on 
 	- **`cd /unitree/module/unitree_slam/config/slam_interfaces_server_config`**  
 	- **`sudo vim param.yaml`**
 - Move your arrow keys to the desired field and press the "i" key on your keyboard to enter edit mode. Enter the desired LiDAR model and YSN value. After editing, press the "esc" key to exit editing mode and press the ":", "w" then "q" buttons in order to save and exit. Type ":", "q" then "a" to exit without saving. Please refer to below example.  
-![](./img/lidar_para_config.png)  
+![SLAM interface LiDAR parameters in param.yaml](./img/lidar_para_config.png)  
 - Using the Robot's PC, enter the following commands to view the Gridmap Configurations.  
 	- **`cd /unitree/module/unitree_slam/config/gridmap_config`**
 	- **`sudo vim config.yaml`**  
 - Move your arrow keys to the desired field and press the "i" key on your keyboard to enter edit mode. Comment out the line which coresponds to the non-desired LiDAR model by adding "#" to the start of the line and remove the "#" from the line with the desired LiDAR model. After editing, press the "esc" key to exit editing mode and press the ":", "w" then "q" buttons in order to save and exit. Type ":", "q" then "a" to exit without saving. Please refer to below example.  
-![](./img/gridmap_config.png)  
+![Gridmap settings in config.yaml](./img/gridmap_config.png)  
 
 ### 2.4 SLAM Usage  
 
@@ -162,7 +163,7 @@ Before jumping into SLAM, ensure that all required configurations are set up on 
 - **`cd /unitree/module/unitree_slam/bin`**  
 - **`sudo ./keyDemo eth0`**  
 - The terminal should display the following output:  
-![](./img/terminal_output.png)
+![Expected terminal output from the keyDemo command](./img/terminal_output.png)
 
 ---
 

@@ -1,5 +1,6 @@
 ---
 sidebar_position: 3
+description: "AgileX Ranger Mini 3.0 UGV: steering motor calibration and resources."
 ---
 
 import RM3_IMG from '../img/agilex/ranger_mini_v3.png';
@@ -34,19 +35,19 @@ Turn on robot and controller. With SWA flipped to down position, and VRA pushed 
 
 <!-- ![](../img/agilex/ranger_auto_calibration_1.jpg)
 ![](../img/agilex/ranger_auto_calibration_2.jpg) -->
-<img src={RM_AUTO_CALIB_IMG1} alt="RM auto calibration" style={{height: 380}} />
-<img src={RM_AUTO_CALIB_IMG2} alt="RM auto calibration" style={{height: 380}} />
+<img src={RM_AUTO_CALIB_IMG1} alt="Ranger Mini autocalibration, controller switch positions" style={{height: 380}} />
+<img src={RM_AUTO_CALIB_IMG2} alt="Ranger Mini autocalibration, controller switch positions" style={{height: 380}} />
 
 ### Manual Calibration
 
 Turn off robot and controller. While robot is turned off, adjust the position of the steering wheels. Using a long straight object to help straighten the wheels is generally sufficient.
 
 <!-- ![](../img/agilex/ranger_calibration_1.jpg) -->
-<img src={RM_MANUAL_CALIB_IMG1} alt="RM auto calibration" style={{width: 500}} />
+<img src={RM_MANUAL_CALIB_IMG1} alt="Ranger Mini manual calibration, straightening the steering wheels" style={{width: 500}} />
 
 Turn on robot and controller. With SWA flipped to down position, and VRA pushed to topmost position, press KEY1.
 
 <!-- ![](../img/agilex/ranger_calibration_2.jpg) -->
-<img src={RM_MANUAL_CALIB_IMG2} alt="RM auto calibration" style={{width: 500}} />
+<img src={RM_MANUAL_CALIB_IMG2} alt="Ranger Mini manual calibration, controller switch positions" style={{width: 500}} />
 
 The controller display should flash a error code for 1-2 seconds then return to normal. Calibration is completed.

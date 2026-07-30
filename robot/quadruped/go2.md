@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: "Unitree Go2 quadruped: specifications, electrical interfaces, onboard computer and FAQ."
 ---
 
 import GO2_IMG from '../img/unitree/Go2_robot.png';
@@ -16,10 +17,10 @@ The Go2 robot dog is a new and improved intelligent bionic quadruped robot empow
 
 ### 2.1 Electrical Interfaces
 
-![](../img/unitree/Go2_expansion_dock_specs.png)
+![Go2 expansion dock specifications](../img/unitree/Go2_expansion_dock_specs.png)
 > **Note**: The expansion dock module is only available for the Go2 Edu and not compatible with Go2 Air or Go2 Pro.
 
-![](../img/unitree/Go2_electrical_interfaces.png)
+![Go2 electrical interface locations](../img/unitree/Go2_electrical_interfaces.png)
 > **Note**: The output power interface voltage is from the battery.
 
 
@@ -45,7 +46,7 @@ Go2 Edu has 1 built-in computer and 1 onboard computer (expansion dock module):
 * **ROS2 Package**: [unitree_ros2](https://github.com/unitreerobotics/unitree_ros2)
 * **Go2 App, Robot Features, Tutorial Videos, Manuals**: [Go2 Features](https://www.unitree.com/app/go2) 
 * **Other Information**: [URDF/CAD](https://support.unitree.com/home/en/developer/Obtain%20SDK)
-* **Tutorials Page**: [Diagnostic Guide](/tutorial/intro)
+* **Diagnostics Guide**: [Go2 Diagnostics Guide](/tutorial/unitree/go2_diag_guide)
 * **Simultaneous Localization and Mapping Guide**: [Unitree SLAM Guide](/software/slam/go2_slam)
 
 ## 4. FAQ
@@ -67,7 +68,7 @@ Go2 Edu has 1 built-in computer and 1 onboard computer (expansion dock module):
     A: Currently, the robot does not support wireless connection to internal computers.
 
 6. **Q: Does the robot support 4G?**   
-    A: Yes, users may insert the their desired SIM card into the SIM card slot![](../img/unitree/Go2_simcard_slot.png)
+    A: Yes, users may insert the their desired SIM card into the SIM card slot![Go2 SIM card slot location](../img/unitree/Go2_simcard_slot.png)
 
 7. **Q: Is the robot waterproof?**   
     A: No, the Go2 is not waterproof.

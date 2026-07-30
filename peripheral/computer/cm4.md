@@ -1,5 +1,6 @@
 ---
 sidebar_position: 2
+description: "CM4-based onboard computer: key specifications and interfaces."
 ---
 
 import CM4_IMG from '../img/westonrobot/cm4_sbc.jpg';

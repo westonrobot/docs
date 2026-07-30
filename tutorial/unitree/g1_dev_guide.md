@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: "Develop on the Unitree G1: environment setup, SDK, networking and motion control."
 ---
 
 import ReactPlayer from 'react-player'

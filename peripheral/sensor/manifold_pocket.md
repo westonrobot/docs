@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: "Manifold Pocket Scanner: specifications and integration resources."
 ---
 
 

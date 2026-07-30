@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: "Integrated systems from Weston Robot, including the UGV Development Kit."
 ---
 
 import UGV_DEVKIT_IMG from './ugv_devkit/img/v1.1/overview2.png';

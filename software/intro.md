@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: "Software from Weston Robot: SDKs, drivers, toolboxes and installation guides."
 ---
 
 # Software

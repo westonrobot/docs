@@ -1,5 +1,6 @@
 ---
 sidebar_position: 2
+description: "Industrial 5G and WiFi router: configuration and connectivity for robot deployments."
 ---
 
 import ROUTER_5G_IMG from '../img/westonrobot/5g_router/industrial_5g_wifi_router.jpg';

@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: "Peripherals for Weston Robot platforms: onboard computers, network devices, power modules and sensors."
 ---
 
 # Peripheral

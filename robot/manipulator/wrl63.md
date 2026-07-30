@@ -1,5 +1,6 @@
 ---
 sidebar_position: 2
+description: "Weston Robot WRL63 manipulator: manuals, SDK and ROS packages."
 ---
 
 # WRL63

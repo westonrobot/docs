@@ -1,3 +1,7 @@
+---
+description: "Cartographer and RTAB-Map mapping with Nav2 navigation on the UGV Development Kit."
+---
+
 # UGV Devkit Nav2 Sample Setup
 
 ## 1. Overview

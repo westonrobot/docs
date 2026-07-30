@@ -1,5 +1,6 @@
 ---
 sidebar_position: 1
+description: "Robot platforms supported by Weston Robot: UGVs, quadrupeds, humanoids and manipulators."
 ---
 
 import SCOUT_MINI_IMG from './img/agilex/scout_mini.png';
