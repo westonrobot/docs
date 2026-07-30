@@ -23,11 +23,13 @@ Applies to Go2. Other platforms have their own thermal behaviour; check the prod
 
 ## Development access
 
-### Does the robot support wireless development?
+### Can I develop over WiFi instead of a wired connection?
 
-No, on any current platform. The onboard computers require a wired connection for development.
+Technically yes, and it is fine for high-level work — logging in, editing code, pulling packages, reading topics. **Do not use it for low-level control.**
 
-The G1 is a partial exception: its internal development PC can join a WiFi network for *internet access* — see the [G1 Internet Connection Guide](/tutorial/unitree/g1_internet_guide) — but development itself is still wired.
+WiFi introduces latency spikes and occasional dropouts. A low-level control loop that misses its deadline does not degrade gracefully: on a legged platform the robot can lose balance and fall, taking the joints and any mounted payload with it. A wired link to the robot's internal network does not have that failure mode.
+
+Use a cable for anything touching joint-level or balance control. WiFi is reasonable for everything above that, and for internet access — see the [G1 Internet Connection Guide](/tutorial/unitree/g1_internet_guide) for how to set that up.
 
 ## Environment
 

@@ -69,7 +69,7 @@ Task guides tagged for the Go2, kept up to date automatically as new guides are 
     A: Expansion Dock Reflash Guide: [PDF](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EcQ3PHojLhZBsDg1oBpvPPIBWyJiSJPyAZMsk91ZnXbBJg?e=YaKBgf)
 
 5. **Q: Does the robot support wireless development?**   
-    A: Currently, the robot does not support wireless connection to internal computers.
+    A: You can reach the internal computers over WiFi for high-level work, but not for low-level control — a dropout or latency spike can stall the control loop and the Go2 can fall as a result. Use a wired connection for anything joint-level or balance-related. See [the full answer](/support/faq#can-i-develop-over-wifi-instead-of-a-wired-connection).
 
 6. **Q: Does the robot support 4G?**   
     A: Yes, users may insert the their desired SIM card into the SIM card slot![Go2 SIM card slot location](../img/unitree/Go2_simcard_slot.png)
