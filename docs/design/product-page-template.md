@@ -32,6 +32,8 @@ Ten headings with two lines under each reads as unfinished, however accurate it 
 
 **Prefer tables that carry a "when you need this" column** over bare bullet lists of links. `Guide · what it covers · reach for it when` orients someone who does not yet know which guide they want; a list of three link titles does not.
 
+**Use a diagram where the relationship matters more than the values.** See "Beyond tables" below — Mermaid is enabled site-wide and barely used.
+
 **Explain what existing facts mean.** The G1's two onboard computers with fixed IPs are genuinely confusing on first contact — saying plainly that your code goes on the second one is not new information, it is the existing information made usable. This is where most of the substance comes from, and it invents nothing.
 
 ## Rules
@@ -53,6 +55,44 @@ That is a normal documentation pattern and reads as deliberate. An admonition bl
 **The tag page is the canonical guide list.** Naming the guides inline is good for readers; the tag link is what stops the list rotting. Include both.
 
 **Tags must be declared** in `tutorial/tags.yml` before use. `onInlineTags: 'throw'` fails the build on an undeclared tag.
+
+## Beyond tables: diagrams and other elements
+
+Tables are the default here because most product-page content is genuinely tabular. Where it is not, these are all available and mostly unused.
+
+### What is already installed
+
+| Element | Status | Use it for |
+| --- | --- | --- |
+| **Mermaid** (` ```mermaid `) | enabled site-wide; 6 diagrams in `g1_dev_guide.md`, 1 on the G1 product page | Anything with a *topology* or a *sequence* — network layout, wiring, data flow, decision paths |
+| **Admonitions** (`:::note`, `:::warning`, `:::danger`, `:::tip`, `:::caution`) | in use across 9 files | Safety warnings, prerequisites, gotchas |
+| **Tabs** (`@theme/Tabs`, `@theme/TabItem`) | available from `preset-classic`, **unused** | Per-model or per-revision variants of the same procedure — the mechanism `ia-proposal.md` §7 specifies |
+| **`<details>`** | MDX built-in, **unused** | Long output dumps, optional detail, per-model spec tables you do not want dominating the page |
+| **`react-player`** | installed, used once | Vendor videos, demonstrations |
+| Code blocks with `title=` and line highlighting | built-in, unused | Config files, showing which line to change |
+
+Not installed, worth considering: an image-zoom plugin. The pinout and interface photos on product pages are currently unclickable, and a connector pinout is exactly the image someone needs to enlarge.
+
+### When a diagram beats a table
+
+Reach for Mermaid when the relationship between things matters more than their attributes:
+
+- **Network and wiring topology.** The G1 has two computers on an internal subnet reached through a switch. A table lists them; a diagram shows that you SSH to one and it talks to the other. See `robot/humanoid/g1.md`.
+- **Sequences.** First-run order, recovery procedures, RMA process.
+- **Decision paths.** "Which variant do I have", "which guide do I need".
+- **Architecture.** Which layer runs where — the dev guide's SDK-versus-ROS 2 diagram is a good example.
+
+Keep a table when the reader wants to *look up a value* — specifications, pinouts, IP addresses, credentials. Often both is right: the G1 page carries the topology diagram *and* the address table, because one orients and the other is a reference.
+
+### Mermaid notes specific to this site
+
+Mermaid renders **client-side**. The diagram source ships in the JS bundle, not the static HTML, so `grep`ping `build/*.html` for it finds nothing — that is expected, not a failure. To verify a diagram, open the page in a browser.
+
+Escape `&` as `&amp;` inside node labels, or the label truncates.
+
+Diagram colours should come from the site palette rather than Mermaid defaults if you style at all — `#0f6e78` for emphasis is what the G1 diagram uses to mark the computer the reader actually works on.
+
+Mermaid supports far more than flowcharts: sequence, state, entity-relationship, C4 architecture, block, timeline, mindmap and quadrant diagrams are all available without installing anything.
 
 ## Specification blocks by class
 
@@ -182,6 +222,8 @@ includes the commands to gather it.
 - [ ] Guides are in a table with a "reach for it when" column, not a bare link list
 - [ ] Downloads say what each resource is for, not just its name
 - [ ] Anything genuinely confusing about the hardware is explained, not merely stated
+- [ ] Anything with a topology or a sequence is a diagram, not a paragraph
+- [ ] Per-model or per-revision variants use `<Tabs>` rather than repeated sections
 
 **Accuracy**
 - [ ] No specification present that is not verified
