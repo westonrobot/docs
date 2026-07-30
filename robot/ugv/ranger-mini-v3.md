@@ -11,13 +11,13 @@ import RM_MANUAL_CALIB_IMG2 from '../img/agilex/ranger_calibration_2.jpg';
 
 # Ranger Mini 3.0
 
-## 1. Overview
+## Overview
 
 The Ranger Mini 3.0 mobile robot is a four-wheel swerve-drive platform.
 
 <img src={RM3_IMG} alt="Ranger Mini robot" style={{width: 350}} />
 
-## 2. Resources
+## Resources
 
 - **Manual**: [Ranger Mini 3.0 Manual (EN)](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EUjRgOZIXK9KnW006BR8w3sB2jU6vFv3z7WgxDFmJ_PPQQ?e=mcYaJs)
 - **C++ SDK**: [ugv_sdk](https://github.com/westonrobot/ugv_sdk)
@@ -27,7 +27,7 @@ The Ranger Mini 3.0 mobile robot is a four-wheel swerve-drive platform.
     - [V6.0.5](https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/ET8rMyZGlnxBha4NuIoY3IYB3Cc9yJJ1DvJQ5UmqF_8MgQ?e=xVwAza)
 - **CAD Model**: [Ranger Mini 3.0 STEP file](https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EcOIV7nLuutLoPvKU2WfbkIBu7Izpp4fykdaXQnlAck0dw?e=85bhT2)
 
-## 3. Steering Motor Calibration
+## Steering Motor Calibration
 
 ### Autocalibration
 

@@ -7,13 +7,13 @@ import kinova_IMG from '../img/kinova/kinova-gen3-lite.jpg';
 
 # Kinova Gen3 Lite
 
-## 1. Overview
+## Overview
 
 <img src={kinova_IMG} alt="Kinova Gen3 Lite" style={{width: 350}} />
 
 The Kinova Gen3 Lite is a lightweight robotic manipulator designed for education, research, and light industrial tasks.
 
-## 2. Specifications
+## Specifications
 
 ## ⚙️ General Specifications
 
@@ -45,7 +45,7 @@ The Kinova Gen3 Lite is a lightweight robotic manipulator designed for education
 | **High-Level Control** | Cartesian Position / Velocity, Joint Position / Velocity |
 
 
-## 3. Resources
+## Resources
 
 ### Videos
 * Kortex Video Tutorial: [**Kortex How-To Series**](https://www.youtube.com/watch?v=zQewb08M4sA&list=PLz1XwEYRuku5rZjJWBr6SDi93jgWZ4FHL)

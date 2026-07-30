@@ -5,10 +5,10 @@ description: "Weston Robot WRL63 manipulator: manuals, SDK and ROS packages."
 
 # WRL63
 
-## 1. Overview
+## Overview
 The ultra-long 6-DOF WRL63 is a robot arm manipulator that provides solutions for industries such as automotive parts, 3C electronics, metal processing, food packaging, medical health, new retail, etc.
 
-## 2. Resources
+## Resources
 
 ### Manuals
 * [WRL63 Manual (EN)](https://tangrobot.sharepoint.com/:f:/s/Public-Outgoing/Eki4t2rSYfZJj0C1oM8muAYBSaEVZZLccVLizd3KZ0QOnA?e=fCpuuF)

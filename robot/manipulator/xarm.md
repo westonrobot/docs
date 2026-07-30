@@ -5,10 +5,10 @@ description: "UFactory xArm manipulator: specifications, joint limits and resour
 
 # xArm
 
-## 1. Overview
+## Overview
 The xArm is a multi-DOF robot arm manipulator with use cases ranging from machine tending to industrial automation.
 
-## 2. Specifications
+## Specifications
 
 ### Common Technical Specifications
 
@@ -49,7 +49,7 @@ The xArm is a multi-DOF robot arm manipulator with use cases ranging from machin
 | Joint 6 | NA | ±360° | -97° - 180° |
 | Joint 7 | NA | NA | ±360° |
 
-## 3. Resources
+## Resources
 
 * Manuals, Software, 3D models: [xArm Download Page](https://www.ufactory.cc/download-xarm-robot)
 * Python SDK: [xArm-Python-SDK](https://github.com/xArm-Developer/xArm-Python-SDK)

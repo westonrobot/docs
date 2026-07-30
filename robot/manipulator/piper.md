@@ -8,13 +8,13 @@ import PIPER_IMG from '../img/agilex/piper.png';
 
 # PiPER 6DOF
 
-## 1. Overview
+## Overview
 
 <img src={PIPER_IMG} alt="PiPER robot" style={{width: 350}} />
 
 PiPER by AgileX Robotics is a powerful lightweight robotic arm that excels in precision, speed, and adaptability. Compact and user-friendly, it seamlessly fits into any environment, empowering users to innovate and achieve more with ease.
 
-## 2. Resources
+## Resources
 
 ### Videos
 * Unboxing (CN): [Video Link](https://www.bilibili.com/video/BV1KcmKYWE6L/?spm_id_from=333.999.0.0)

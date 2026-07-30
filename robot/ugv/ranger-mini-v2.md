@@ -11,13 +11,13 @@ import RM_MANUAL_CALIB_IMG2 from '../img/agilex/ranger_calibration_2.jpg';
 
 # Ranger Mini 2.0
 
-## 1. Overview
+## Overview
 
 The Ranger Mini 2.0 mobile robot is a four-wheel swerve-drive platform.
 
 <img src={RM2_IMG} alt="Ranger Mini robot" style={{width: 350}} />
 
-## 2. Resources
+## Resources
 
 * **Manual**: 
   * [Ranger Mini 2.0 Manual (EN) PDF](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/Eagd2Vrmnw9IiTzl4HaXjEwBuQJJ1unetL-IEpGHdBejag?e=YY4be5)
@@ -31,7 +31,7 @@ The Ranger Mini 2.0 mobile robot is a four-wheel swerve-drive platform.
     * [V5.9.1](https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EasKzBaC07dIrhxGs9_4_WEBY-2gf81qeoZFdDFCFB0Ibw?e=CFUJ6T) (E-stop parks)
 * **CAD Model**: [Ranger Mini 2.0 STEP file](https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/Efcf9NZa15JGkcNRaEoGLNsBfNuwNNzcgjNtEsDMMHAM4A?e=YcQ9AB)
 
-## 3. Steering Motor Calibration
+## Steering Motor Calibration
 
 ### Autocalibration
 

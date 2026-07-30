@@ -7,13 +7,13 @@ import SCOUT_MINI_IMG from '../img/agilex/scout_mini.png';
 
 # Scout Mini
 
-## 1. Overview
+## Overview
 
 The Scout Mini mobile robot is a four wheel differential drive platform.
 
 <img src={SCOUT_MINI_IMG} alt="Scout Mini" style={{width: 350}} />
 
-## 2. Specifications
+## Specifications
 
 | Specification | Value |
 | ------------- | ----- |
@@ -30,7 +30,7 @@ The Scout Mini mobile robot is a four wheel differential drive platform.
 | Rated Load | Standard wheel: 10kg, Mecanum wheel: 20kg |
 | Motor | BLDC (gear ratio: 1:4.3) |
 
-## 3. Resources
+## Resources
 
 * Scout Mini Manual: [PDF](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/Eaq4LPW9NHFGjSprGPEiaGABftfiJ52k6Z4gkE8ylW1HVQ?e=E01Woq)
 * C++ SDK: [wrp_sdk](https://github.com/westonrobot/wrp_sdk)

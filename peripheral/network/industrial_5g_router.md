@@ -11,7 +11,7 @@ import ROUTER_5G_IMG from '../img/westonrobot/5g_router/industrial_5g_wifi_route
 <img src={ROUTER_5G_IMG} alt="Ranger Mini robot" style={{width: 350}} />
 </div>
 
-## 1. Key Specifications
+## Key Specifications
 
 * **Cellular**
     * **5G Standard**: 3GPP R16, Sub-6 GHz
@@ -29,7 +29,7 @@ import ROUTER_5G_IMG from '../img/westonrobot/5g_router/industrial_5g_wifi_route
 * **Operating temperature**: -40°C to 75°C
 * **Power supply**: 5-40V (DC2.1/2-pin Phoenix connector)
 
-## 2. Common Configurations
+## Common Configurations
 
 ### Using the Industrial 5G/Wifi Router as an Access Point (AP) Client
 

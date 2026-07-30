@@ -5,11 +5,11 @@ description: "Run Unitree SLAM mapping and navigation on the Go2 and Go2-W."
 
 # Go2 & Go2-W
 
-## 1. Setup  
+## Setup
 
 Before jumping into SLAM, ensure that all required configurations are set up on the User PC.
 
-### 1.1 What You Need  
+### What You Need
 
 - **User PC** running Ubuntu 20.04 or 22.04  
 	- Ubuntu 22.04 is recommended.  
@@ -28,7 +28,7 @@ Before jumping into SLAM, ensure that all required configurations are set up on 
 	- Used to connect the laptop to the Robot's PC.  
 	- A cable longer than 5 meters is recommended.
 
-### 1.2 Additional Preparation  
+### Additional Preparation
 
 - **Payload Installation**  
 	- You may refer to the [Payload Installation Guide](https://support.unitree.com/home/en/developer/Payload).  
@@ -36,7 +36,7 @@ Before jumping into SLAM, ensure that all required configurations are set up on 
 - **SLAM Service Expansion Dock Module Update Package**  
 	- You may refer to the [Expansion Dock Configuration Guide](https://support.unitree.com/home/en/developer/module_update).
 
-### 1.3 Notes  
+### Notes
 
 - The RViz configuration files can be found in the **Expansion Dock Module Update Package** installed in the previous steps.
 - **Robot's PC details:**  
@@ -51,9 +51,9 @@ Before jumping into SLAM, ensure that all required configurations are set up on 
 
 ---
 
-## 2. Configuration  
+## Configuration
 
-### 2.1 Wired Connection  
+### Wired Connection
 
 - Make sure the User PC is connected to the Expansion Dock on the Go2/Go2-W as shown below.  
 ![User PC connected to the expansion dock on the Go2](https://doc-cdn.unitree.com/static/2024/1/4/a33bd756cb124c718ec7a0932aa2fd71_1417x1075.png)
@@ -74,7 +74,7 @@ Before jumping into SLAM, ensure that all required configurations are set up on 
 
 ---
 
-### 2.2 Expansion Dock Configuration for SLAM
+### Expansion Dock Configuration for SLAM
 
 - Check that the Power Mode of the Robot's PC is set to 0:MAXN by passing the command **sudo /usr/sbin/nvpmodel -q**. If it is not the desired Power Mode, then pass the command **sudo /usr/sbin/nvpmodel -m 0** to set it.   
 - Modify the Maximum Receive Buffer Size in the cyclonedds by passing the following command to the Robot's PC:
@@ -84,8 +84,8 @@ Before jumping into SLAM, ensure that all required configurations are set up on 
 	- **`sysctl -p`**  
 	- **`exit`**
 	- **`sudo chmod 777 -R /unitree/module/unitree_slam`**  
-- Make sure you have the [Unitree Software Development Kit](#12-additional-preparation) installed.  
-- Make sure the [SLAM Service Expansion Dock Module Update Package](#12-additional-preparation) is installed.  
+- Make sure you have the [Unitree Software Development Kit](#additional-preparation) installed.  
+- Make sure the [SLAM Service Expansion Dock Module Update Package](#additional-preparation) is installed.  
 - In the User PC, clone the Unitree Software Development Kit repository.
 	- **`sudo git clone https://github.com/unitreerobotics/unitree_sdk2.git`**  
 - Transfer the Software Development Kit from User PC to the Robot's PC.
@@ -101,7 +101,7 @@ Before jumping into SLAM, ensure that all required configurations are set up on 
 	- **`sudo cmake -Dunitree_sdk2_DIR=/home/unitree/unitree_sdk2/build/unitree_sdk2 ..`**
 	- **`sudo make`**
 
-### 2.3 LiDAR Parameter Configuration
+### LiDAR Parameter Configuration
 
 - Check for the model of the external LiDAR installed.      
 <div className="row">
@@ -140,9 +140,9 @@ Before jumping into SLAM, ensure that all required configurations are set up on 
 - Move your arrow keys to the desired field and press the "i" key on your keyboard to enter edit mode. Comment out the line which coresponds to the non-desired LiDAR model by adding "#" to the start of the line and remove the "#" from the line with the desired LiDAR model. After editing, press the "esc" key to exit editing mode and press the ":", "w" then "q" buttons in order to save and exit. Type ":", "q" then "a" to exit without saving. Please refer to below example.  
 ![Gridmap settings in config.yaml](./img/gridmap_config.png)  
 
-### 2.4 SLAM Usage  
+### SLAM Usage
 
-> The following steps are performed on the Go2/Go2-W PC via [Secure Shell](#13-notes).
+> The following steps are performed on the Go2/Go2-W PC via [Secure Shell](#notes).
 
 #### Run SLAM
 - Open a terminal (Terminal 1).  

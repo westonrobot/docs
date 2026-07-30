@@ -8,7 +8,7 @@ import MANIFOLD_POCKET_SCANNER_IMG from '../img/manifold/pocket.png';
 
 # Manifold Pocket Scanner
 
-## 1. Overview
+## Overview
 
 <div style={{textAlign: 'center'}}>
 <img src={MANIFOLD_POCKET_SCANNER_IMG} alt="Manifold Pocket Scanner" style={{width: 350}} />
@@ -16,7 +16,7 @@ import MANIFOLD_POCKET_SCANNER_IMG from '../img/manifold/pocket.png';
 
 The Pocket is a highly compact and modular 3D data collection device, purpose‑built for seamless integration into handheld workflows and robotic platforms. It combines dual industrial-grade fisheye cameras with global shutter capability for true‑color imaging, alongside a 40‑line LiDAR system delivering dense, real‑time point clouds. The system supports live preview and on‑the‑fly edits through the MindCloud‑GO app, all housed within a lightweight (560 g), palm‑sized enclosure with approximately 2 hours of battery life.
 
-## 2. Specifications
+## Specifications
 
 | Specification | Value |
 |--------------|-------|
@@ -30,7 +30,7 @@ The Pocket is a highly compact and modular 3D data collection device, purpose‑
 | Dimensions (Main Unit) | 115 mm X 110 mm X 83 mm |
 | Weight (Main Unit) | 560 g |
 
-## 3. Resources
+## Resources
 
 * MindCloud GO User Manual: [PDF](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EXVPAz1fy0dEmuplUSErgX8BZrLj6EK2IC621P0m_sSpow?e=cWhO5P)
 * MindCloud User Manual: [PDF](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EQCjHhhVamtNuHzNLNt-J1oBzEU-H3OIJ6Gbclk3GRVqZA?e=avRo4H)

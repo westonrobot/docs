@@ -5,7 +5,7 @@ description: "Power Regulator v2.X: wiring, output configuration, control and di
 
 # Power Regulator V2
 
-## 1. Overview
+## Overview
 
 The power management unit is designed by Weston Robot for mobile robot applications. It has the following features:
 
@@ -16,7 +16,7 @@ The power management unit is designed by Weston Robot for mobile robot applicati
 - The output ports can be controlled individually (on/off) for finer boot sequence control
 - Output voltage and current feedback via CAN/RS485 communication port
 
-## 2. Specifications
+## Specifications
 
 ### Power Module
 
@@ -36,9 +36,9 @@ The power management unit is designed by Weston Robot for mobile robot applicati
 | CAN   | CANopen  | monitoring and control, firmware upgrade    |
 | RS485 | /        | firmware upgrade (backup), future extension |
 
-## 3. Hardware Setup
+## Hardware Setup
 
-### 3.1 Startup and Operation
+### Startup and Operation
 
 #### LED Status Indicators
 
@@ -58,21 +58,21 @@ The power management unit is designed by Weston Robot for mobile robot applicati
 - After calibration, the unit enters operational state, with the red LED turned off while the green LED blinks.
 - During firmware upgrades, the green LED turns off while the red LED blinks.
 
-### 3.2 Output Connection
+### Output Connection
 
 The output ports of the power module are exposed with **Molex Megafit** connectors. For each port, 2 or 4 channels are provided. Note that the channels are interconnected internally, thus the total power consumption should not exceed the power ratings of the port.  
 
 **Note**: The operation of the fan is dependent on the state of the 12V channel, it will operate only when the 12V channel is on.
 The fan will be switched on once the temperature reaches 28°C, with fan speed reaching a maximum when the temperature rises to 45°C and above.
 
-## 4. Software Setup
+## Software Setup
 
 The power regulator uses CANopen to communication with a computer. The CANopen driver for the power regulator is supported by wrp_sdk since version 1.0.0. 
 
 * If you want to interact with the power regulator from your C++ program, you need to install the SDK.
 * If you only need to monitor and control the power regulator with a GUI, you just need to install the widget. 
 
-### 4.1 Install SDK
+### Install SDK
 
 Follow the instructions to install the latest SDK.
 
@@ -92,7 +92,7 @@ Please add the debian repository to your apt-get source list first. Refer to thi
 sudo apt-get install wrp_sdk
 ```
 
-### 4.2 Install the Widget
+### Install the Widget
 
 Please make sure you have added the debian source.
 
@@ -114,7 +114,7 @@ Run the widget and you should see the GUI like this:
 
 ![Regulator Widget GUI](../img/westonrobot/regulator_v2.1_01.png)
 
-## 5. Configuration
+## Configuration
 
 ### Setting Default State for Channels
 
@@ -157,7 +157,7 @@ You can customize the default output state of each channel to be ON or OFF upon 
 
 The example code below demonstrates how to set all output channels to be ON by default. 
 
-Note that you will have to finish the configuration steps in Section 5 to execute the code below successfully. And you also need to modify the path of the eds file ("EDS" variable) from the SDK.  
+Note that you will have to finish the steps in the Configuration section to execute the code below successfully. And you also need to modify the path of the eds file ("EDS" variable) from the SDK.  
 
 ```python
 import canopen
