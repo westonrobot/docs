@@ -34,15 +34,28 @@ The order is deliberate and follows the audience decision in `ia-proposal.md` §
 | --- | --- | --- | --- |
 | — | Hero split | yes | High-level description + official vendor links, image on the right |
 | 1 | Routing table (**no heading**) | yes | `I want to… / Start here`. The columns self-label it, so a heading would only add a redundant TOC entry above a table already at the top of the page |
-| 2 | **Identify your unit** | yes | Serial number location and variant, and why it is asked for |
+| 2 | **As supplied** | yes | What the unit carries and how each part is reached |
 | 3 | **Getting started** | yes | The first-run sequence in outline, linking the guide that does it properly |
-| 4 | **As supplied** | yes | What the unit carries and how each part is reached |
-| 5 | **Connecting to it** | yes | Network layout, credentials, electrical interfaces and pinouts |
-| 6 | **Guides for this product** | yes | Table: guide · what it covers · when to reach for it. Plus the tag page |
-| 7 | **Solutions for this platform** | if any | Only when a solution genuinely supports the platform |
-| 8 | **Troubleshooting & FAQ** | yes | Model-specific answers; shared ones linked by anchor |
-| 9 | **Downloads and software** | yes | One table: resource · what it is · where |
-| 10 | **Support** | yes | Route into the Support section, with why it helps |
+| 4 | **Connecting to it** | yes | Network layout, credentials, electrical interfaces and pinouts |
+| 5 | **Guides for this product** | yes | Table: guide · what it covers · when to reach for it. Plus the tag page |
+| 6 | **Solutions for this platform** | if any | Only when a solution genuinely supports the platform |
+| 7 | **Troubleshooting & FAQ** | yes | Model-specific answers; shared ones linked by anchor |
+| 8 | **Downloads and software** | yes | One table: resource · what it is · where |
+| 9 | **Support** | yes | Route into the Support section, with why it helps |
+
+### Serial numbers live in one central place
+
+There is **no "Identify your unit" section** on a product page. Serial number
+locations for every platform live on [`/support/identify-your-product`](../../support/identify-your-product.md),
+which is where a reader arrives when they are raising a ticket.
+
+Duplicating it per product meant the same two sentences on 13 pages, each free to
+drift from the others and from the central page. Where a product page needs to
+mention it — for example because the model designation determines what is fitted
+— state the fact inline in **As supplied** and link the central page.
+
+The central page links back to each product page it covers, so the relationship
+is navigable both ways.
 
 ### The routing table has a canonical row set
 
@@ -50,8 +63,10 @@ The rows are the same on every product page, in the same order, so a reader who
 has used one page can scan the next without re-reading it. Omit a row only when
 the destination genuinely does not exist for that platform; never reorder.
 
-The order is the customer's lifecycle: *what have I got* → *identify it* → *set it
-up* → *connect to it* → *extend it* → *use it* → *fix it* → *reference* → *help*.
+The order is the customer's lifecycle — *what have I got* → *set it up* → *connect
+to it* → *extend it* → *use it* → *fix it* → *reference* → *help* — and the page's
+own sections follow the same order, so scanning the table and scrolling the page
+give the same sequence.
 
 | # | I want to… | Destination | Omit when |
 | --- | --- | --- | --- |
@@ -187,10 +202,28 @@ description: "<Vendor> <Model> <class>: setup, interfaces, guides and support re
 
 # <Model>
 
-![<what the image actually shows>](../img/<vendor>/<file>)
+<Split ratio="wide-narrow">
 
-<Two or three sentences: what it is, what it ships with, and the one thing that
-shapes how you work with it — e.g. wired-only development, or a CAN interface.>
+<div>
+
+<One or two sentences: what it is and how you work with it. No specifications —
+those belong to the vendor.>
+
+**This page covers what is specific to a Weston Robot supplied unit** — how it
+arrives configured, how to reach it, and the guides we maintain. <Vendor> remains
+the reference for specifications and API detail:
+
+- [Official product page](...) — specifications, features
+- [Official developer documentation](...) — SDK reference, CAD, vendor tutorials
+
+</div>
+
+<Figure
+  src={require('../img/<vendor>/<file>').default}
+  alt="<what the image actually shows>"
+  size="hero" />
+
+</Split>
 
 | I want to… | Start here |
 | --- | --- |
@@ -203,11 +236,18 @@ shapes how you work with it — e.g. wired-only development, or a CAN interface.
 | get a manual, CAD model or the SDK | [Downloads and software](#downloads-and-software) |
 | contact Weston Robot | [Support](#support) |
 
-## Identify your unit
+## As supplied
 
-<Where the serial number is, and why it is asked for.>
+What a Weston Robot <Model> carries when it arrives, and how each part is reached.
+<Vendor> publishes the dimensions and ratings — see the [official product
+page](...) rather than a second-hand copy here.
 
-For other platforms, see [Identify your product](/support/identify-your-product).
+| Fitted | What it is | How you reach it |
+| --- | --- | --- |
+| | | |
+
+<If the model ships in variants, say so and link
+[Identify your product](/support/identify-your-product).>
 
 ## Getting started
 
@@ -220,16 +260,20 @@ outline:
 1. <step>
 2. <step>
 
-## Specifications
+## Connecting to it
+
+### Network layout
+
+<Which computer is the user's. A Mermaid diagram if there is more than one, or a
+switch, or a fixed subnet.>
 
 ### Electrical interfaces
 
 <What these are for — mounting a payload, wiring something in — then the images.>
 
-### Onboard computer
-
-<What the reader needs to know to reach it and put code on it. If there is more
-than one computer, say plainly which one is theirs.>
+<FigureGrid columns={2}>
+  <Figure src={require('...').default} alt="..." framed caption="..." />
+</FigureGrid>
 
 ## Guides for this product
 
@@ -292,7 +336,7 @@ includes the commands to gather it.
 - [ ] No specification present that is not verified
 - [ ] Missing figures handled as a vendor pointer, not an admonition
 - [ ] Every image has meaningful alt text — not empty, not "image", not a position like "Left Top"
-- [ ] Serial number location stated, or `TODO` on `/support/identify-your-product`
+- [ ] Serial number location recorded on `/support/identify-your-product`, **not** on the product page
 
 **Wiring**
 - [ ] Model has a declared tag in `tutorial/tags.yml`
