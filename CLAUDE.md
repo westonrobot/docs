@@ -10,16 +10,16 @@ This is a Docusaurus v3 documentation site for Weston Robot products, built with
 
 ### Development
 ```bash
-# Install dependencies
-npm install
+# Install dependencies from the lockfile (Node version is pinned in .nvmrc)
+npm ci
 
 # Start development server (available at http://localhost:3000)
 npm run start
 
-# Build for production
+# Build for production (also what catches broken links and anchors)
 npm run build
 
-# Type checking
+# Type checking (enforced in CI; `docusaurus build` does not typecheck)
 npm run typecheck
 
 # Serve production build locally

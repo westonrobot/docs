@@ -16,15 +16,20 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version-file: '.nvmrc'
           cache: 'npm'
 
       - name: Install dependencies
         run: npm ci
 
+      # `docusaurus build` does not typecheck, so TS errors in the config,
+      # the sidebars or src/ would otherwise ship unnoticed.
+      - name: Typecheck
+        run: npm run typecheck
+
       - name: Build website
         run: npm run build
-        
+
       - name: Upload build artifact
         if: github.event_name != 'pull_request'
         uses: actions/upload-artifact@v4

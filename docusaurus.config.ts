@@ -4,23 +4,28 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
+// Base for the "Edit this page" links. Docusaurus appends each doc's path
+// relative to the repository root, e.g. <base>/robot/humanoid/g1.md
+const editUrl = 'https://github.com/westonrobot/docs/edit/main/';
+
 const config: Config = {
   title: 'Weston Robot Documentation',
   tagline: 'Official documentation for Weston Robot products.',
   favicon: 'img/favicon.png',
 
-  // Set the production url of your site here
-  url: 'https://westonrobot.github.io',
+  // Production url of the site. This must match the domain the site is actually
+  // served from: it is what canonical tags, og:image/og:url and sitemap.xml are
+  // built from. The custom domain is configured at the GitHub Pages level.
+  url: 'https://docs.westonrobot.com',
   // Set the /<baseUrl>/ pathname under which your site is served
-  // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
 
   // GitHub pages deployment config.
-  // If you aren't using GitHub pages, you don't need these.
   organizationName: 'westonrobot', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
 
   onBrokenLinks: 'throw',
+  onBrokenAnchors: 'throw',
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -34,7 +39,7 @@ const config: Config = {
   markdown: {
     mermaid: true,
     hooks: {
-      onBrokenMarkdownLinks: 'warn',
+      onBrokenMarkdownLinks: 'throw',
     },
   },
   themes: ['@docusaurus/theme-mermaid'],
@@ -43,13 +48,9 @@ const config: Config = {
     [
       'classic',
       {
-        docs: {
-          sidebarPath: './sidebars.ts',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-        //   editUrl:
-        //     'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        },
+        // All documentation lives in the six explicit plugin instances declared
+        // below, so the preset's default docs instance stays disabled.
+        docs: false,
         blog: false,
         theme: {
           customCss: './src/css/custom.css',
@@ -76,6 +77,7 @@ const config: Config = {
         path: 'general',
         routeBasePath: 'general',
         sidebarPath: './sidebars-general.ts',
+        editUrl,
       },
     ],
     [
@@ -85,6 +87,7 @@ const config: Config = {
         path: 'robot',
         routeBasePath: 'robot',
         sidebarPath: './sidebars-robot.ts',
+        editUrl,
       },
     ],
     [
@@ -94,6 +97,7 @@ const config: Config = {
         path: 'peripheral',
         routeBasePath: 'peripheral',
         sidebarPath: './sidebars-peripheral.ts',
+        editUrl,
       },
     ],
     [
@@ -103,6 +107,7 @@ const config: Config = {
         path: 'system',
         routeBasePath: 'system',
         sidebarPath: './sidebars-system.ts',
+        editUrl,
       },
     ],
     [
@@ -112,6 +117,7 @@ const config: Config = {
         path: 'software',
         routeBasePath: 'software',
         sidebarPath: './sidebars-software.ts',
+        editUrl,
       },
     ],
     [
@@ -121,6 +127,7 @@ const config: Config = {
         path: 'tutorial',
         routeBasePath: 'tutorial',
         sidebarPath: './sidebars-tutorial.ts',
+        editUrl,
       },
     ],
   ],
@@ -178,18 +185,11 @@ const config: Config = {
             position: 'left',
             label: 'Tutorials',
         },
-        // {
-        //   type: 'docSidebar',
-        //   sidebarId: 'tutorialSidebar',
-        //   position: 'left',
-        //   label: 'Tutorial',
-        // },
         {
             href: 'https://forms.office.com/r/qELKzYF33W',
             label: 'Support',
             position: 'right',
         },
-        // {to: '/blog', label: 'Blog', position: 'left'},
         {
           href: 'https://github.com/westonrobot',
           label: 'GitHub',
@@ -209,47 +209,7 @@ const config: Config = {
     },
     footer: {
       style: 'dark',
-      links: [
-        // {
-        //   title: 'Docs',
-        //   items: [
-        //     {
-        //       label: 'Tutorial',
-        //       to: '/docs/intro',
-        //     },
-        //   ],
-        // },
-        // {
-        //   title: 'Community',
-        //   items: [
-        //     {
-        //       label: 'Stack Overflow',
-        //       href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-        //     },
-        //     {
-        //       label: 'Discord',
-        //       href: 'https://discordapp.com/invite/docusaurus',
-        //     },
-        //     {
-        //       label: 'X',
-        //       href: 'https://x.com/docusaurus',
-        //     },
-        //   ],
-        // },
-        // {
-        //   title: 'More',
-        //   items: [
-        //     {
-        //       label: 'Blog',
-        //       to: '/blog',
-        //     },
-        //     {
-        //       label: 'GitHub',
-        //       href: 'https://github.com/facebook/docusaurus',
-        //     },
-        //   ],
-        // },
-      ],
+      links: [],
       copyright: `Copyright © ${new Date().getFullYear()} Weston Robot Pte. Ltd. All rights reserved.`,
     },
     prism: {
