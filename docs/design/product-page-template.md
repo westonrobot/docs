@@ -12,23 +12,37 @@ The order is deliberate and follows the audience decision in `ia-proposal.md` §
 
 | # | Section | Required | Purpose |
 | --- | --- | --- | --- |
-| — | Title, hero image, one-line description | yes | What it is, in one sentence |
-| 1 | **At a glance** | yes | The figures someone checks before reading anything else |
-| 2 | **Identify your unit** | yes | Serial number location; revision/variant if applicable |
-| 3 | **Getting started** | yes | Link the bring-up guide; do not duplicate it |
-| 4 | **Specifications** | yes | Electrical interfaces, onboard computer, dimensions |
-| 5 | **Guides for this product** | yes | Named guides plus the tag page |
-| 6 | **Solutions for this platform** | if any | Only when a solution actually supports the platform |
-| 7 | **Troubleshooting & FAQ** | yes | Model-specific only; link shared answers |
-| 8 | **Downloads** | yes | Manuals, CAD/STEP, training material |
-| 9 | **Software** | yes | SDKs, ROS packages, vendor docs |
-| 10 | **Support** | yes | Route to the Support section |
+| — | Title, hero image, orienting paragraph | yes | What it is, what it ships with, how you work with it |
+| 1 | **What are you here to do?** | yes | Routing table: intent → destination. The most valuable block on the page |
+| 2 | **At a glance** | yes | Verified figures, plus a pointer to the vendor sheet for the rest |
+| 3 | **Identify your unit** | yes | Serial number location, and why it matters |
+| 4 | **Getting started** | yes | The first-run sequence in outline, linking the guide that does it properly |
+| 5 | **Specifications** | yes | Electrical interfaces and onboard computer, each with prose saying what to use it for |
+| 6 | **Guides for this product** | yes | Table: guide · what it covers · when to reach for it. Plus the tag page |
+| 7 | **Solutions for this platform** | if any | Only when a solution genuinely supports the platform |
+| 8 | **Troubleshooting & FAQ** | yes | Model-specific answers; shared ones linked by anchor |
+| 9 | **Downloads and software** | yes | One table: resource · what it is · where |
+| 10 | **Support** | yes | Route into the Support section, with why it helps |
 
-Downloads and Software are separated because they answer different questions — "send me the PDF" versus "what do I build against".
+### Avoid the bare-bones failure mode
+
+Ten headings with two lines under each reads as unfinished, however accurate it is. Two rules keep a page substantial without padding it:
+
+**Every section opens by saying what it is for.** Not "here are the interfaces" but "use these when mounting a payload or wiring anything to the robot". The reader should be able to tell from the first sentence whether this section is the one they need.
+
+**Prefer tables that carry a "when you need this" column** over bare bullet lists of links. `Guide · what it covers · reach for it when` orients someone who does not yet know which guide they want; a list of three link titles does not.
+
+**Explain what existing facts mean.** The G1's two onboard computers with fixed IPs are genuinely confusing on first contact — saying plainly that your code goes on the second one is not new information, it is the existing information made usable. This is where most of the substance comes from, and it invents nothing.
 
 ## Rules
 
-**Never invent a specification.** If a figure is not documented, say so in a `:::note Not yet documented` block naming the authoritative external source. A visible gap is actionable; a plausible wrong number is worse than nothing, and on a hardware site it can cause a bad purchase or a damaged robot.
+**Never invent a specification.** A plausible wrong figure is worse than no figure — on a hardware site it can cause a bad purchase or a damaged robot.
+
+Handle the gap as a **pointer, not an apology**. Under the At a glance table, write one line naming what is not covered and where the authoritative sheet is:
+
+> For the complete specification sheet — degrees of freedom, joint torques, payload, battery capacity and runtime — see the [vendor documentation](...). We list above only what we have verified on the units we supply.
+
+That is a normal documentation pattern and reads as deliberate. An admonition block announcing missing data reads as unfinished, which was the first attempt at this page and the wrong call.
 
 **No manual heading numbers.** `## 1. Overview` produces the anchor `#1-overview`, which breaks the moment a section is inserted above it — silently invalidating every anchor a support engineer has pasted into a ticket. See `ia-proposal.md` §8.
 
@@ -42,7 +56,7 @@ Downloads and Software are separated because they answer different questions —
 
 ## Specification blocks by class
 
-Include the rows you have; omit rows you do not, and list the omissions in the "Not yet documented" note.
+Include the rows you have verified. Do not add a row you cannot fill — instead name the omissions in the vendor-pointer line beneath the table.
 
 | Class | Rows |
 | --- | --- |
@@ -56,14 +70,27 @@ Include the rows you have; omit rows you do not, and list the omissions in the "
 ```markdown
 ---
 sidebar_position: 1
-description: "<Vendor> <Model> <class>: identifying your unit, getting started, specifications and guides."
+description: "<Vendor> <Model> <class>: setup, interfaces, guides and support resources."
 ---
 
 # <Model>
 
-![<what the image shows>](../img/<vendor>/<file>)
+![<what the image actually shows>](../img/<vendor>/<file>)
 
-<One or two sentences. What it is and what it ships with.>
+<Two or three sentences: what it is, what it ships with, and the one thing that
+shapes how you work with it — e.g. wired-only development, or a CAN interface.>
+
+## What are you here to do?
+
+| I want to… | Start here |
+| --- | --- |
+| Set it up and run something | [Getting started](#getting-started) → [<bring-up guide>](...) |
+| Wire a payload, or find a pinout | [Electrical interfaces](#electrical-interfaces) |
+| Reach its computer, or get it online | [Onboard computer](#onboard-computer) |
+| Work out why something is wrong | [<diagnostics guide>](...) → [Troubleshooting & FAQ](#troubleshooting--faq) |
+| Find my serial number | [Identify your unit](#identify-your-unit) |
+| Download a manual, CAD model or the SDK | [Downloads and software](#downloads-and-software) |
+| Contact Weston Robot | [Support](#support) |
 
 ## At a glance
 
@@ -71,69 +98,100 @@ description: "<Vendor> <Model> <class>: identifying your unit, getting started, 
 | --- | --- |
 | <row> | <value> |
 
-:::note Not yet documented
-
-<Figures not recorded here.> Until they are, <authoritative external source> is
-the reference.
-
-:::
+For the complete specification sheet — <name what is missing> — see
+<[vendor documentation](...)>. We list above only what we have verified on the
+units we supply.
 
 ## Identify your unit
 
-<Where the serial number is.> See [Identify your product](/support/identify-your-product).
+<Where the serial number is, and why it is asked for.>
+
+For other platforms, see [Identify your product](/support/identify-your-product).
 
 ## Getting started
 
-<Link the bring-up guide.>
+Read [Operational Safety](/tutorial/operational-safety) before powering the robot
+for the first time. <One sentence on the platform-specific risk.>
 
-Before operating for the first time, read [Operational Safety](/tutorial/operational-safety).
+The first-run sequence is covered end to end in **[<bring-up guide>](...)**. In
+outline:
+
+1. <step>
+2. <step>
 
 ## Specifications
 
 ### Electrical interfaces
 
+<What these are for — mounting a payload, wiring something in — then the images.>
+
 ### Onboard computer
+
+<What the reader needs to know to reach it and put code on it. If there is more
+than one computer, say plainly which one is theirs.>
 
 ## Guides for this product
 
-* [<Guide>](/tutorial/<path>) — <what it covers>
+| Guide | What it covers | Reach for it when |
+| --- | --- | --- |
+| [<Guide>](...) | <scope> | <trigger> |
 
 **[All <Model> guides](/tutorial/tags/<tag>)** — generated from the `<tag>` tag,
-so newly published guides appear there without this page being edited.
+so anything published later appears there without this page being edited.
 
 ## Troubleshooting & FAQ
 
 ### <Model-specific question>
 
-### Questions that apply to more than one platform
+### Questions that apply across our platforms
 
-Answered on the [Support FAQ](/support/faq) rather than repeated here:
+These are answered once on the [Support FAQ](/support/faq) rather than repeated
+per model:
 
-* [<Question>](/support/faq#<anchor>)
+- [<Question>](/support/faq#<anchor>) — <one clause on the answer>
 
-## Downloads
+For fault and alarm codes, see [Fault codes](/support/fault-codes).
 
-## Software
+## Downloads and software
+
+| Resource | What it is | Where |
+| --- | --- | --- |
+| <name> | <what it is for> | [<link>](...) |
 
 ## Support
 
-Before raising a ticket, collect the serial number, firmware version and logs —
-see [Before you contact us](/support/before-you-contact-us).
+Collect the serial number, firmware version and logs before raising a ticket —
+[Before you contact us](/support/before-you-contact-us) lists what helps and
+includes the commands to gather it.
 
-* [Support centre](/support/intro)
-* [Fault codes](/support/fault-codes)
-* [Warranty and RMA](/support/warranty-and-rma)
+- [Support centre](/support/intro) — all support resources
+- [Fault codes](/support/fault-codes) — what an error or alarm code means
+- [Warranty and RMA](/support/warranty-and-rma) — repairs, replacements, returns
 ```
 
 ## Checklist
 
+**Structure**
 - [ ] Frontmatter has a `description`
+- [ ] Routing table present, and every in-page anchor in it resolves
+- [ ] Section order matches the table above
 - [ ] No manual heading numbers
+
+**Substance — the anti-bare-bones checks**
+- [ ] Every section's first sentence says what the section is for
+- [ ] Guides are in a table with a "reach for it when" column, not a bare link list
+- [ ] Downloads say what each resource is for, not just its name
+- [ ] Anything genuinely confusing about the hardware is explained, not merely stated
+
+**Accuracy**
+- [ ] No specification present that is not verified
+- [ ] Missing figures handled as a vendor pointer, not an admonition
 - [ ] Every image has meaningful alt text — not empty, not "image", not a position like "Left Top"
-- [ ] Undocumented specifications are named in a "Not yet documented" note, not omitted silently
 - [ ] Serial number location stated, or `TODO` on `/support/identify-your-product`
-- [ ] Guides listed inline **and** the tag page linked
+
+**Wiring**
 - [ ] Model has a declared tag in `tutorial/tags.yml`
+- [ ] Tag page linked as well as guides named inline
 - [ ] Shared FAQ answers linked by anchor, not copied
 - [ ] `npm run build` passes — this is what validates links, anchors and tags
 
