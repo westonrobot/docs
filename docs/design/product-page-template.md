@@ -35,7 +35,7 @@ The order is deliberate and follows the audience decision in `ia-proposal.md` §
 | — | Hero split | yes | High-level description + official vendor links, image on the right |
 | 1 | Routing table (**no heading**) | yes | `I want to… / Start here`. The columns self-label it, so a heading would only add a redundant TOC entry above a table already at the top of the page |
 | 2 | **Getting started** | yes | The first-run sequence in outline, linking the guide that does it properly |
-| 3 | **Key information** | yes | Access credentials, network layout, electrical interfaces — the facts the vendor does not publish |
+| 3 | **Key information** | yes | Access credentials, network layout, electrical interfaces. A scannable summary, not an exclusive one |
 | 4 | **Guides for this product** | yes | Table: guide · what it covers · when to reach for it. Plus the tag page |
 | 5 | **Solutions for this platform** | if any | Only when a solution genuinely supports the platform |
 | 6 | **Troubleshooting & FAQ** | yes | Model-specific answers; shared ones linked by anchor |
@@ -108,9 +108,9 @@ That heading is what caused the inconsistency it was meant to solve. Audited acr
 | Vendor datasheet — dimensions, mass, payload, temperature, IP rating, materials | `xarm` (25 rows), `scout-mini` (13), `kinova-gen3-lite` (11) | **defer to vendor** |
 | How you connect — interface photos, pinouts, onboard computer IPs and credentials | `g1`, `go2`, `b2`, `h1-2` (no datasheet table at all) | **keep — this is ours** |
 
-Both are replaced by a single **Key information** section holding only what the vendor does not publish:
+Both are replaced by a single **Key information** section — a TL;DR of what a reader reaches for most:
 
-- **Access** — default credentials and IP addresses. On a partner platform this is the single most useful block on the page: it is what a customer cannot look up anywhere else, and it is what support gets asked for most.
+- **Access** — default credentials and IP addresses. The most-used block on the page, and what support gets asked for most often.
 - **Network layout** — which computer is theirs, and how the parts connect.
 - **Electrical interfaces** — locations and pinouts, for mounting a payload.
 
@@ -129,6 +129,16 @@ Ten headings with two lines under each reads as unfinished, however accurate it 
 **Explain what existing facts mean.** The G1's two onboard computers with fixed IPs are genuinely confusing on first contact — saying plainly that your code goes on the second one is not new information, it is the existing information made usable. This is where most of the substance comes from, and it invents nothing.
 
 ## Rules
+
+**Do not claim exclusivity you have not checked.** An early draft of the G1 page
+said Key information covered "the things Unitree's documentation does not cover".
+That was asserted rather than verified, and it was mostly false — Unitree publishes
+the IP addresses, credentials, network layout and interface diagrams too.
+
+The honest value is **curation, not exclusivity**: it is collected, short, scannable
+with the robot in front of you, and true of the units we ship. That is worth saying
+and it does not require a claim about what the vendor omits. If you do want to say
+something is undocumented upstream, check first.
 
 **Never invent a specification.** A plausible wrong figure is worse than no figure — on a hardware site it can cause a bad purchase or a damaged robot.
 
@@ -214,9 +224,9 @@ description: "<Vendor> <Model> <class>: setup, interfaces, guides and support re
 <One or two sentences: what it is and how you work with it. No specifications —
 those belong to the vendor.>
 
-**This page covers what is specific to a Weston Robot supplied unit** — how it
-arrives configured, how to reach it, and the guides we maintain. <Vendor> remains
-the reference for specifications and API detail:
+**This page is the short path** — the essentials for getting a Weston Robot
+supplied unit running, plus the guides we maintain. <Vendor> documents the platform
+in full, and is the reference for anything beyond the basics:
 
 - [Official product page](...) — specifications, features
 - [Official developer documentation](...) — SDK reference, CAD, vendor tutorials
@@ -254,8 +264,9 @@ outline:
 
 ## Key information
 
-The things you need that <Vendor>'s documentation does not cover, because they
-describe the unit as *we* supply it.
+A quick reference for what you reach for most often. <Vendor> documents all of
+this in more depth — collected here so you can scan it with the robot in front of
+you. Values below are as configured on the units we supply.
 
 ### Access
 
@@ -341,6 +352,7 @@ includes the commands to gather it.
 
 **Accuracy**
 - [ ] No specification present that is not verified
+- [ ] No claim that the vendor omits something, unless checked
 - [ ] Missing figures handled as a vendor pointer, not an admonition
 - [ ] Every image has meaningful alt text — not empty, not "image", not a position like "Left Top"
 - [ ] Serial number location recorded on `/support/identify-your-product`, **not** on the product page
