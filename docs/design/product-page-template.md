@@ -34,12 +34,11 @@ The order is deliberate and follows the audience decision in `ia-proposal.md` §
 | --- | --- | --- | --- |
 | — | Hero split | yes | High-level description + official vendor links, image on the right |
 | 1 | **Getting started** | yes | The first-run sequence in outline, linking the guide that does it properly |
-| 2 | **Key information** | yes | Access credentials, network layout, electrical interfaces. A scannable summary, not an exclusive one |
+| 2 | **Key information** | yes | Downloads and SDKs, credentials, network layout, electrical interfaces. A scannable summary, not an exclusive one |
 | 3 | **Guides for this product** | yes | Table: guide · what it covers · when to reach for it. Plus the tag page |
 | 4 | **Solutions for this platform** | if any | Only when a solution genuinely supports the platform |
 | 5 | **Troubleshooting & FAQ** | yes | Model-specific answers; shared ones linked by anchor |
-| 6 | **Downloads and software** | yes | One table: resource · what it is · where |
-| 7 | **Support** | yes | Route into the Support section, with why it helps |
+| 6 | **Support** | yes | Route into the Support section, with why it helps |
 
 ### Serial numbers live in one central place
 
@@ -168,6 +167,13 @@ Ten headings with two lines under each reads as unfinished, however accurate it 
 **Explain what existing facts mean.** The G1's two onboard computers with fixed IPs are genuinely confusing on first contact — saying plainly that your code goes on the second one is not new information, it is the existing information made usable. This is where most of the substance comes from, and it invents nothing.
 
 ## Rules
+
+**Downloads leads Key information.** SDKs, CAD models and training material are
+among the first things a developer reaches for, and they were originally near the
+bottom of the page — after troubleshooting. Order the subsections by how early
+someone needs them, not by how reference-like they feel:
+
+> Downloads and software → Logins and IP addresses → Network layout → Electrical interfaces
 
 **Point at the vendor's documentation without ranking it against ours.** One line,
 no annotation:
@@ -309,7 +315,13 @@ A quick reference for what you reach for most often. <Vendor> documents all of
 this in more depth — collected here so you can scan it with the robot in front of
 you. Values below are as configured on the units we supply.
 
-### Access
+### Downloads and software
+
+| Resource | What it is | Where |
+| --- | --- | --- |
+| <name> | <what it is for> | [<link>](...) |
+
+### Logins and IP addresses
 
 | Computer | Address | Credentials | What it is |
 | --- | --- | --- | --- |
@@ -355,12 +367,6 @@ per model:
 - [<Question>](/support/faq#<anchor>) — <one clause on the answer>
 
 For fault and alarm codes, see [Fault codes](/support/fault-codes).
-
-## Downloads and software
-
-| Resource | What it is | Where |
-| --- | --- | --- |
-| <name> | <what it is for> | [<link>](...) |
 
 ## Support
 
