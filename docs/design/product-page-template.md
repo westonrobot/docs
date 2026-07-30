@@ -169,6 +169,13 @@ Ten headings with two lines under each reads as unfinished, however accurate it 
 
 ## Rules
 
+**Do not annotate the two official links.** They read as "Official product page"
+and "Official developer documentation" on all 13 pages. Appending "— specifications,
+features" to each is boilerplate a reader learns to skip after the second product
+page, and it is 26 more strings to keep consistent for no gain. Elsewhere a link
+*should* say what it is for; the difference is that these two are identical
+everywhere, so the label already carries the meaning.
+
 **Do not claim exclusivity you have not checked.** An early draft of the G1 page
 said Key information covered "the things Unitree's documentation does not cover".
 That was asserted rather than verified, and it was mostly false — Unitree publishes
@@ -267,8 +274,8 @@ those belong to the vendor.>
 supplied unit running, plus the guides we maintain. <Vendor> documents the platform
 in full, and is the reference for anything beyond the basics:
 
-- [Official product page](...) — specifications, features
-- [Official developer documentation](...) — SDK reference, CAD, vendor tutorials
+- [Official product page](...)
+- [Official developer documentation](...)
 
 </div>
 
