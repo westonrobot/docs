@@ -169,12 +169,23 @@ Ten headings with two lines under each reads as unfinished, however accurate it 
 
 ## Rules
 
-**Do not annotate the two official links.** They read as "Official product page"
-and "Official developer documentation" on all 13 pages. Appending "— specifications,
-features" to each is boilerplate a reader learns to skip after the second product
-page, and it is 26 more strings to keep consistent for no gain. Elsewhere a link
-*should* say what it is for; the difference is that these two are identical
-everywhere, so the label already carries the meaning.
+**Point at the vendor's documentation without ranking it against ours.** One line,
+no annotation:
+
+> `<Vendor>'s own documentation: [product page](...) · [developer documentation](...)`
+
+Two failure modes to avoid, both of which this wording sidesteps:
+
+- **Annotating each link.** The labels are identical on all 13 pages, so "—
+  specifications, features" is boilerplate a reader skips after the second product
+  page, and 26 more strings to keep consistent. Elsewhere a link *should* say what
+  it is for; these two are the same everywhere, so the label already carries it.
+- **Implying a depth hierarchy.** An earlier draft said the vendor "is the reference
+  for anything beyond the basics", which casts our own content as the shallow end —
+  untrue when it includes a 3,500-word development guide, diagnostics guides and
+  verified configuration. The split is *scope*, not depth: they document the
+  platform, we document the units we supply and how to work with them. Say neither
+  is deeper than the other, because neither is.
 
 **Do not claim exclusivity you have not checked.** An early draft of the G1 page
 said Key information covered "the things Unitree's documentation does not cover".
@@ -270,12 +281,7 @@ description: "<Vendor> <Model> <class>: setup, interfaces, guides and support re
 <One or two sentences: what it is and how you work with it. No specifications —
 those belong to the vendor.>
 
-**This page is the short path** — the essentials for getting a Weston Robot
-supplied unit running, plus the guides we maintain. <Vendor> documents the platform
-in full, and is the reference for anything beyond the basics:
-
-- [Official product page](...)
-- [Official developer documentation](...)
+<Vendor>'s own documentation: [product page](...) · [developer documentation](...)
 
 </div>
 
