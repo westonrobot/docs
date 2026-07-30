@@ -78,6 +78,7 @@ const config: Config = {
         routeBasePath: 'general',
         sidebarPath: './sidebars-general.ts',
         editUrl,
+        showLastUpdateTime: true,
       },
     ],
     [
@@ -88,6 +89,7 @@ const config: Config = {
         routeBasePath: 'robot',
         sidebarPath: './sidebars-robot.ts',
         editUrl,
+        showLastUpdateTime: true,
       },
     ],
     [
@@ -98,6 +100,7 @@ const config: Config = {
         routeBasePath: 'peripheral',
         sidebarPath: './sidebars-peripheral.ts',
         editUrl,
+        showLastUpdateTime: true,
       },
     ],
     [
@@ -108,6 +111,7 @@ const config: Config = {
         routeBasePath: 'system',
         sidebarPath: './sidebars-system.ts',
         editUrl,
+        showLastUpdateTime: true,
       },
     ],
     [
@@ -118,6 +122,7 @@ const config: Config = {
         routeBasePath: 'software',
         sidebarPath: './sidebars-software.ts',
         editUrl,
+        showLastUpdateTime: true,
       },
     ],
     [
@@ -128,6 +133,7 @@ const config: Config = {
         routeBasePath: 'tutorial',
         sidebarPath: './sidebars-tutorial.ts',
         editUrl,
+        showLastUpdateTime: true,
       },
     ],
   ],
@@ -143,13 +149,6 @@ const config: Config = {
       },
       items: [
         // { to: '/', label: 'Home', position: 'left' },
-        // {
-        //   type: 'doc',
-        //   docId: 'operational-safety',
-        //   docsPluginId: 'general',
-        //   position: 'left',
-        //   label: 'General',
-        // },
         {
             type: 'doc',
             docId: 'intro',
@@ -184,6 +183,15 @@ const config: Config = {
             docsPluginId: 'tutorial',
             position: 'left',
             label: 'Tutorials',
+        },
+        {
+            // Operational safety and maintenance. These pages were built and
+            // published but reachable from neither the navbar nor the homepage.
+            type: 'doc',
+            docId: 'operational-safety',
+            docsPluginId: 'general',
+            position: 'left',
+            label: 'Safety & Maintenance',
         },
         {
             href: 'https://forms.office.com/r/qELKzYF33W',

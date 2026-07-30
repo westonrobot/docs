@@ -12,9 +12,14 @@ const sidebarsSoftware: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'Software Toolbox',
+      label: 'Assisted Driving Toolbox',
+      // The versioned ADT pages were previously reachable only from inline
+      // links on the parent page, so they appeared nowhere in the navigation.
+      link: {type: 'doc', id: 'toolbox/assisted_driving_toolbox'},
       items: [
-        'toolbox/assisted_driving_toolbox',
+        'toolbox/adt_v3',
+        'toolbox/adt_v2',
+        'toolbox/adt_v1',
       ],
     },
     {
