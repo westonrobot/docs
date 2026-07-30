@@ -34,7 +34,7 @@ The order is deliberate and follows the audience decision in `ia-proposal.md` §
 | --- | --- | --- | --- |
 | — | Hero split | yes | High-level description + official vendor links, image on the right |
 | 1 | **Getting started** | yes | The first-run sequence in outline, linking the guide that does it properly |
-| 2 | **Key information** | yes | Downloads and SDKs, credentials, network layout, electrical interfaces. A scannable summary, not an exclusive one |
+| 2 | **Key information** | yes | Related resources, credentials, network layout, electrical interfaces. A scannable summary, not an exclusive one |
 | 3 | **Guides for this product** | yes | Table: guide · what it covers · when to reach for it. Plus the tag page |
 | 4 | **Solutions for this platform** | if any | Only when a solution genuinely supports the platform |
 | 5 | **Troubleshooting & FAQ** | yes | Model-specific answers; shared ones linked by anchor |
@@ -49,7 +49,7 @@ which is where a reader arrives when they are raising a ticket.
 Duplicating it per product meant the same two sentences on 13 pages, each free to
 drift from the others and from the central page. Where a product page needs to
 mention it — for example because the model designation determines what is fitted
-— state the fact inline in **As supplied** and link the central page.
+— state the fact inline in **Key information** and link the central page.
 
 The central page links back to each product page it covers, so the relationship
 is navigable both ways.
@@ -79,63 +79,6 @@ Two lessons worth keeping:
   from the page's section order. Once the sections were reordered to match that
   lifecycle, the table had nothing left to add. Aligning the two removed the need
   for one of them.
-
-### Serial numbers live in one central place
-
-There is **no "Identify your unit" section** on a product page. Serial number
-locations for every platform live on [`/support/identify-your-product`](../../support/identify-your-product.md),
-which is where a reader arrives when they are raising a ticket.
-
-Duplicating it per product meant the same two sentences on 13 pages, each free to
-drift from the others and from the central page. Where a product page needs to
-mention it — for example because the model designation determines what is fitted
-— state the fact inline in **As supplied** and link the central page.
-
-The central page links back to each product page it covers, so the relationship
-is navigable both ways.
-
-### The routing table has a canonical row set
-
-The rows are the same on every product page, in the same order, so a reader who
-has used one page can scan the next without re-reading it. Omit a row only when
-the destination genuinely does not exist for that platform; never reorder.
-
-The order is the customer's lifecycle — *what have I got* → *set it up* → *connect
-to it* → *extend it* → *use it* → *fix it* → *reference* → *help* — and the page's
-own sections follow the same order, so scanning the table and scrolling the page
-give the same sequence.
-
-| # | I want to… | Destination | Omit when |
-| --- | --- | --- | --- |
-| 1 | find the default login or IP addresses | `#access` | platform has no onboard computer |
-| 2 | set it up for the first time | `#getting-started` → bring-up guide | never |
-| 3 | reach its onboard computer, or get it online | `#network-layout` → networking guide | platform has no onboard computer |
-| 4 | wire a payload, or find a connector pinout | `#electrical-interfaces` | no published interface diagram |
-| 5 | do something specific with it | `#guides-for-this-product` | no guides tagged yet |
-| 6 | work out why something is wrong | diagnostics guide → `#troubleshooting--faq` | never |
-| 7 | get a manual, CAD model or the SDK | `#downloads-and-software` | never |
-| 8 | contact Weston Robot | `#support` | never |
-
-**There is deliberately no "find my serial number" row.** Identify your unit is
-already the first section and the first TOC entry, As supplied links to it inline,
-and the Support row leads to `before-you-contact-us` where the serial number is
-the first checklist item. A row for it sat next to "check what my unit includes"
-answering the same question twice.
-
-The routing table earns its place by being short enough to scan. Every row added
-makes the remaining ones less likely to be read, so a destination reachable three
-other ways does not need one.
-
-Two conventions that matter:
-
-**The left cell completes the header.** The header is "I want to…", so cells are
-lowercase verb phrases — "set it up for the first time", not "Set It Up For The
-First Time". Sentence-case cells read as a list of titles rather than a sentence
-the reader is finishing.
-
-**An arrow means "and then".** `#getting-started` → `G1 Development Guide` says
-the section orients you and the guide does the work. Use it when the destination
-is a two-step path, not as decoration.
 
 ### One "Key information" section, not a specifications section
 
@@ -168,12 +111,28 @@ Ten headings with two lines under each reads as unfinished, however accurate it 
 
 ## Rules
 
-**Downloads leads Key information.** SDKs, CAD models and training material are
-among the first things a developer reaches for, and they were originally near the
+**Related resources leads Key information.** SDKs, CAD models and training material
+are among the first things a developer reaches for, and they were originally near the
 bottom of the page — after troubleshooting. Order the subsections by how early
 someone needs them, not by how reference-like they feel:
 
-> Downloads and software → Logins and IP addresses → Network layout → Electrical interfaces
+> Related resources → Logins and IP addresses → Network layout → Electrical interfaces
+
+**Give it an explicit scope, or it becomes the old catch-all.** Twelve of the 13
+robot pages still carry a `## Resources` section, and between them those sections
+grew six ad-hoc sub-groupings — Basic Guides, CAD Models, Development, Manuals,
+Software, Videos — with nothing defining what belonged where.
+
+The name was never the problem; the missing scope was. So this section opens by
+saying what it holds, and the two sentences after the table say what it does *not*:
+
+> Files and repositories you clone or download to work with the robot.
+>
+> …vendor manuals, videos and the mobile app are on the official pages linked at the
+> top of this page.
+
+Guides live in their own section, vendor product information lives with the vendor.
+Anything that fits neither belongs in one of those, not here.
 
 **Point at the vendor's documentation without ranking it against ours.** One line,
 no annotation:
@@ -322,7 +281,7 @@ A quick reference for what you reach for most often. <Vendor> documents all of
 this in more depth — collected here so you can scan it with the robot in front of
 you. Values below are as configured on the units we supply.
 
-### Downloads and software
+### Related resources
 
 | Resource | What it is | Where |
 | --- | --- | --- |
@@ -434,4 +393,4 @@ includes the commands to gather it.
 | `robot/manipulator/piper` | Manipulator | ⏳ |
 | `robot/manipulator/kinova-gen3-lite` | Manipulator | ⏳ |
 
-Peripherals and systems need their own variant of this template; the section order mostly carries over, but "Identify your unit" and the specification block differ.
+Peripherals and systems need their own variant of this template. The section order mostly carries over, but what belongs under Key information differs — a power regulator has wiring and output configuration where a robot has logins and a network layout.
