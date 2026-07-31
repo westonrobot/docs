@@ -5,23 +5,31 @@ description: "What to include in a support request so we can answer in one reply
 
 # Before you contact us
 
-Nearly every request comes back to the same few questions, and each round trip to ask them can cost hours or even days. Sending them up front is usually the difference between one reply and a week of messages.
+Nearly every request comes back to the same few questions, and each round trip to ask them can cost hours or even days. Sending them up front helps us to answer your request more quickly and accurately.
 
 ## What to include
 
 Two things matter most.
 
-### 1. Which unit — the serial number
+<KeyPoints>
 
-It tells us the model and variant, the batch it was built in, and anything already known against that batch. Often that alone is enough for us to recognise the problem. Add the firmware version if you have it.
+<KeyPoint marker="1" title="Which unit" lede="The serial number, and the firmware version if you have it.">
 
-### 2. What happened — as a sequence, not a conclusion
+It tells us the model and variant, the batch it was built in, and anything already known against that batch. Often that alone is enough for us to recognise the problem.
+
+</KeyPoint>
+
+<KeyPoint marker="2" title="What happened" lede="As a sequence, not a conclusion.">
 
 What the robot was doing **just before**, what happened **at the moment**, and what it did **immediately after**.
 
 > *Driving at walking pace on flat concrete, ten minutes in. Stopped dead and went limp, no warning. Limp for about 30 seconds, then responded again.*
 
 That points at thermal protection. "The robot keeps failing" points nowhere.
+
+</KeyPoint>
+
+</KeyPoints>
 
 ### Anything else you can add
 

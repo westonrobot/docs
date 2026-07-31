@@ -4,6 +4,7 @@ import TabItem from '@theme/TabItem';
 import {Figure, FigureGrid} from '@site/src/components/Figure';
 import {Split} from '@site/src/components/Split';
 import {ProductCard, ProductGrid} from '@site/src/components/ProductCard';
+import {KeyPoint, KeyPoints} from '@site/src/components/KeyPoint';
 
 /**
  * Components available in every .md and .mdx file without an import.
@@ -19,6 +20,8 @@ export default {
   Split,
   ProductCard,
   ProductGrid,
+  KeyPoint,
+  KeyPoints,
   Tabs,
   TabItem,
 };
