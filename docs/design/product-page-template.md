@@ -230,10 +230,24 @@ Hero images are almost always **the vendor's copyright**, not ours. As their dis
 | `robot/img/realman/wrl63.png` | WRL63 | Realman [RML63 product page](https://www.realman-robotics.com/en/products/rml63.html) (`RML63-标准版`) | Vendor render. Alpha-trimmed, downscaled to 720 px tall |
 | `robot/img/ufactory/xarm.png` | xArm 6 | UFactory [xArm 6 product page](https://www.ufactory.cc/product-page/ufactory-xarm-6/) (`xarm56-1305_画板-1-副本-2.png`) | Vendor render. A UFACTORY badge occupying the top 14 % of the canvas, separate from the arm, was masked out; the arm itself is untouched |
 | `peripheral/img/westonrobot/power_regulator_v2.jpg` | Power Regulator v2 | Photographed in-house | **Ours — no rights question.** Cropped to the unit and downscaled. The serial-number label is legible when zoomed; redact it if that matters |
+| `robot/img/agilex/ranger_mini_v3.png` | Ranger Mini 3.0 | AgileX [Ranger Mini 3 product page](https://global.agilex.ai/products/ranger-mini-3) (`Rangermini3.0__3.png`) | Vendor render. Alpha-trimmed and downscaled. Replaced a 321 × 195 image that was being **upscaled** to fill the hero |
 
 The three vendor renders are **pending confirmation** that our agreements cover documentation use. Replace with vendor-supplied assets if that is cleaner. The regulator photo is our own and needs no such check.
 
-Two mechanical notes learned doing these:
+### Size images to how they are displayed
+
+A hero renders at **260 px tall**; a hub card tile is **160 px**. Source files were running far ahead of that — `Go2_robot.png` was 3773 × 3507 and **7 MB** for a 260 px slot, and five hero images together came to 11 MB.
+
+Cap the long edge at around **1400 px**. That is roughly 5× the hero height, which leaves click-to-zoom something to work with while keeping the file sane. Those five went from 11 MB to 1.5 MB with no visible change at any size they are actually displayed at.
+
+Check the other direction too. `ranger_mini_v3.png` was 321 × 195 — **smaller than its own display size**, so the browser was upscaling it.
+
+Two exceptions worth remembering:
+
+- An image also used **full width** elsewhere needs the resolution for that use, not for the hero. `adt_v3_04.png` is a card image *and* a full-width screenshot, so it stays large.
+- **Palette quantisation is for line art only.** It saved 60 % on the devkit drawings and only 5 % on a photographic render, where it also risks banding gradients.
+
+### Two mechanical notes learned doing these:
 
 - **Trim transparent padding in the file, not with CSS.** `size="hero"` constrains height to 260 px, so baked-in padding shrinks the product. The WR65 render was 66 % padding before trimming.
 - **Check the image on a dark background before committing it.** A render with an opaque light-grey studio backdrop looks fine in light mode and like a glowing box in dark mode. Keying a uniform background to transparency works; flood-filling a *gradient* studio floor does not, because a white product against a light floor has no edge to stop at.
