@@ -16,6 +16,7 @@ const sidebarsRobot: SidebarsConfig = {
       items: [
         'quadruped/go2',
         'quadruped/b2',
+        'quadruped/a2',
       ],
     },
     {
@@ -24,6 +25,8 @@ const sidebarsRobot: SidebarsConfig = {
       items: [
         'humanoid/g1',
         'humanoid/h1-2',
+        'humanoid/r1',
+        'humanoid/h2',
       ],
     },
     {

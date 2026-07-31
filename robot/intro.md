@@ -34,6 +34,8 @@ particular can fall without warning during development.
 
 <ProductCard to="/robot/quadruped/b2" src={require('./img/unitree/B2_robot.png').default} alt="Unitree B2 industrial quadruped" title="B2">Large industrial quadruped for payload-carrying and outdoor inspection.</ProductCard>
 
+<ProductCard to="/robot/quadruped/a2" title="A2">Unitree's A2 quadruped. Documentation in preparation.</ProductCard>
+
 </ProductGrid>
 
 ## Humanoids
@@ -43,6 +45,10 @@ particular can fall without warning during development.
 <ProductCard to="/robot/humanoid/g1" src={require('./img/unitree/G1_robot.png').default} alt="Unitree G1 humanoid" title="G1">Full-size bipedal humanoid. The most thoroughly documented platform on this site.</ProductCard>
 
 <ProductCard to="/robot/humanoid/h1-2" src={require('./img/unitree/H1-2_robot.png').default} alt="Unitree H1-2 humanoid" title="H1-2">180 cm general-purpose humanoid, an upgrade of the original H1.</ProductCard>
+
+<ProductCard to="/robot/humanoid/r1" title="R1">Unitree's R1 humanoid. Documentation in preparation.</ProductCard>
+
+<ProductCard to="/robot/humanoid/h2" title="H2">Unitree's full-size H2 humanoid. Documentation in preparation.</ProductCard>
 
 </ProductGrid>
 
