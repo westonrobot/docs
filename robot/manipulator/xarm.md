@@ -24,7 +24,7 @@ UFactory's own documentation:
   src={require('../img/ufactory/xarm.png').default}
   alt="UFactory xArm 6 six-axis manipulator on its base"
   size="hero"
-  caption="xArm 6 shown." />
+  caption="xArm 6" />
 
 </Split>
 

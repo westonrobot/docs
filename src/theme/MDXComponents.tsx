@@ -3,6 +3,7 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {Figure, FigureGrid} from '@site/src/components/Figure';
 import {Split} from '@site/src/components/Split';
+import {ProductCard, ProductGrid} from '@site/src/components/ProductCard';
 
 /**
  * Components available in every .md and .mdx file without an import.
@@ -16,6 +17,8 @@ export default {
   Figure,
   FigureGrid,
   Split,
+  ProductCard,
+  ProductGrid,
   Tabs,
   TabItem,
 };

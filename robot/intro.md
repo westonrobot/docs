@@ -3,75 +3,69 @@ sidebar_position: 1
 description: "Robot platforms supported by Weston Robot: UGVs, quadrupeds, humanoids and manipulators."
 ---
 
-import SCOUT_MINI_IMG from './img/agilex/scout_mini.png';
-import RM3_IMG from './img/agilex/ranger_mini_v3.png';
-import GO2_IMG from './img/unitree/Go2_robot.png';
-import B2_IMG from './img/unitree/B2_robot.png';
-import G1_IMG from './img/unitree/G1_robot.png';
-import H1_2_IMG from './img/unitree/H1-2_robot.png';
-
 # Robots
 
-We offer a range of robotic platforms, each designed to meet specific needs and applications. Our robots are equipped with advanced features and capabilities, making them suitable for various tasks in different environments. 
+Pick the platform you are working with. Each page covers setup, logins and interfaces, the guides we publish for it, and how to reach support.
 
-:::warning Safety Warning
+:::warning Read the safety guidance before operating any platform
 
-Operating robotics equipment involves inherent risks, including
-potential harm to operators or bystanders if not handled properly. It is
-essential for all users, both new and experienced, to thoroughly read
-and understand the manufacturer's documentation and receive proper
-training before operating any robotics machinery. Failure to comply with
-these precautions can result in severe injury or damage.
+These are powered machines that can injure people and damage themselves. Read
+[Operational Safety](/tutorial/operational-safety) and the manufacturer's documentation,
+and make sure operators are trained, before the first power-on. Legged platforms in
+particular can fall without warning during development.
 
 :::
 
-You can find more detailed information about each robot model in the navigation menu on the left side of this page. **The following are the latest models we have**:
+## UGVs
 
-<div className="row">
-    <div className="col col--6">
-        <div style={{ textAlign: 'center' }}>
-            <img src={SCOUT_MINI_IMG} alt="Scout Mini robot" style={{ height: 200 }} />
-            <p><a href="ugv/scout-mini">Scout Mini</a></p>
-        </div>
-    </div>
-    <div className="col col--6">
-        <div style={{ textAlign: 'center' }}>
-            <img src={RM3_IMG} alt="Ranger Mini V3 robot" style={{ height: 200 }} />
-            <p><a href="ugv/ranger-mini-v3">Ranger Mini V3</a></p>
-        </div>
-    </div>
-    <!-- <div className="col col--6">
-        <div style={{ textAlign: 'center' }}>
-            {/* Placeholder for future robot */}
-        </div>
-    </div> -->
-</div>
-<div className="row">
-    <div className="col col--6">
-        <div style={{ textAlign: 'center' }}>
-            <img src={GO2_IMG} alt="Go2 robot" style={{ height: 160 }} />
-            <p><a href="quadruped/go2">Go2</a></p>
-        </div>
-    </div>
-    <div className="col col--6">
-        <div style={{ textAlign: 'center' }}>
-            <img src={B2_IMG} alt="B2 robot" style={{ height: 160 }} />
-            <p><a href="quadruped/b2">B2</a></p>
-        </div>
-    </div>    
-</div>
-<div className="row">
-    <div className="col col--6">
-        <div style={{ textAlign: 'center' }}>
-            <img src={G1_IMG} alt="G1 robot" style={{ height: 200 }} />
-            <p><a href="humanoid/g1">G1</a></p>
-        </div>
-    </div>
-    <div className="col col--6">
-        <div style={{ textAlign: 'center' }}>
-            <img src={H1_2_IMG} alt="H1-2 robot" style={{ height: 200 }} />
-            <p><a href="humanoid/h1-2">H1-2</a></p>
-        </div>
-    </div>    
-</div>
+<ProductGrid columns={3}>
 
+<ProductCard to="/robot/ugv/scout-mini" src={require('./img/agilex/scout_mini.png').default} alt="Scout Mini four-wheel UGV" title="Scout Mini">Compact four-wheel skid-steer base for indoor and light outdoor work.</ProductCard>
+
+<ProductCard to="/robot/ugv/ranger-mini-v3" src={require('./img/agilex/ranger_mini_v3.png').default} alt="Ranger Mini V3 four-wheel-steering UGV" title="Ranger Mini V3">Four-wheel-steering base with omnidirectional modes. Current generation.</ProductCard>
+
+<ProductCard to="/robot/ugv/ranger-mini-v2" src={require('./img/agilex/ranger_mini_v2.png').default} alt="Ranger Mini V2 four-wheel-steering UGV" title="Ranger Mini V2">The previous generation. Calibration differs from the V3.</ProductCard>
+
+</ProductGrid>
+
+## Quadrupeds
+
+<ProductGrid columns={3}>
+
+<ProductCard to="/robot/quadruped/go2" src={require('./img/unitree/Go2_robot.png').default} alt="Unitree Go2 quadruped" title="Go2">Compact quadruped supplied as a development platform, with LiDAR and an expansion dock.</ProductCard>
+
+<ProductCard to="/robot/quadruped/b2" src={require('./img/unitree/B2_robot.png').default} alt="Unitree B2 industrial quadruped" title="B2">Large industrial quadruped for payload-carrying and outdoor inspection.</ProductCard>
+
+</ProductGrid>
+
+## Humanoids
+
+<ProductGrid columns={3}>
+
+<ProductCard to="/robot/humanoid/g1" src={require('./img/unitree/G1_robot.png').default} alt="Unitree G1 humanoid" title="G1">Full-size bipedal humanoid. The most thoroughly documented platform on this site.</ProductCard>
+
+<ProductCard to="/robot/humanoid/h1-2" src={require('./img/unitree/H1-2_robot.png').default} alt="Unitree H1-2 humanoid" title="H1-2">180 cm general-purpose humanoid, an upgrade of the original H1.</ProductCard>
+
+</ProductGrid>
+
+## Manipulators
+
+<ProductGrid columns={3}>
+
+<ProductCard to="/robot/manipulator/wr65" src={require('./img/realman/wr65.png').default} alt="WR65 six-axis manipulator" title="WR65">Ultralightweight 6-DOF arm, 5 kg payload. OEM Realman RM65.</ProductCard>
+
+<ProductCard to="/robot/manipulator/wrl63" src={require('./img/realman/wrl63.png').default} alt="WRL63 long-reach six-axis manipulator" title="WRL63">Long-reach 6-DOF arm, 900 mm radius, 3 kg payload. OEM Realman RML63.</ProductCard>
+
+<ProductCard to="/robot/manipulator/xarm" src={require('./img/ufactory/xarm.png').default} alt="UFactory xArm manipulator" title="xArm">UFactory's industrial arm family, in 5, 6 and 7-axis variants.</ProductCard>
+
+<ProductCard to="/robot/manipulator/z1" src={require('./img/unitree/z1_arm.png').default} alt="Unitree Z1 manipulator" title="Z1">Unitree's 6-DOF arm, sized for mounting on their quadrupeds.</ProductCard>
+
+<ProductCard to="/robot/manipulator/piper" src={require('./img/agilex/piper.png').default} alt="AgileX Piper manipulator" title="Piper">AgileX's lightweight 6-DOF arm for research and light handling.</ProductCard>
+
+<ProductCard to="/robot/manipulator/kinova-gen3-lite" src={require('./img/kinova/kinova-gen3-lite.jpg').default} alt="Kinova Gen3 Lite manipulator" title="Kinova Gen3 Lite">Kinova's compact 6-DOF research arm.</ProductCard>
+
+</ProductGrid>
+
+---
+
+Components that mount on these platforms are under [Peripherals](/peripheral/intro). Complete kits are under [Systems](/system/intro).

@@ -55,14 +55,16 @@
   --ifm-link-decoration: none;
 }
 
-/* Only add underlines to links in content/markdown areas */
-.markdown a {
+/* Only add underlines to links in content/markdown areas.
+   Product cards are excluded: the whole card is one link, so this rule would
+   underline its title and description as if they were body-text links. */
+.markdown a:not(.product-card) {
   font-weight: 500;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
-.markdown a:hover {
+.markdown a:not(.product-card):hover {
   text-decoration: underline;
   text-underline-offset: 3px;
   transition: all 0.2s ease;
