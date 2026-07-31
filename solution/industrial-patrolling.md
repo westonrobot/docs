@@ -16,11 +16,18 @@ Delete this admonition before publishing.
 
 :::
 
-## At a glance
+## Getting started
 
-<!-- maturity (alpha / beta / GA) · current version · supported platforms in one line -->
+<!-- What you need, installing it, and first run on a supported platform. Link
+     /tutorial/installation/apt_source rather than repeating the apt setup. -->
 
-## Supported platforms
+## Key information
+
+### Related resources
+
+<!-- Packages, repositories, anything the customer downloads. -->
+
+### Supported platforms
 
 <!-- The most important table on the page: a customer needs to know whether this
      runs on the robot they already own, and what else they have to buy. -->
@@ -29,26 +36,22 @@ Delete this admonition before publishing.
 | --- | --- | --- | --- |
 | | | | |
 
-## Deployment
-
-<!-- Installing and bringing up on a supported platform. Link to
-     /tutorial/installation/apt_source rather than repeating the apt setup. -->
-
-## Configuration
+### Configuration
 
 <!-- The settings a customer must change for their own site. -->
 
-## Operating it
+### Versions
 
-<!-- Day-to-day use and monitoring. -->
+<!-- Comparison table if more than one version is in service. Versions are tabs
+     on this page, not separate pages — see the Assisted Driving Toolbox. -->
 
-## Integration
+### Integration
 
 <!-- API, MQTT, or other hooks, if applicable. Remove if not. -->
 
-## Release notes
+## Using it
 
-<!-- What changed between versions. Newest first. -->
+<!-- Day-to-day operation and monitoring. -->
 
 ## Known limitations
 
@@ -56,10 +59,10 @@ Delete this admonition before publishing.
      surface types, environments that defeat it. This section prevents both bad
      deployments and the support tickets that follow them. -->
 
-## Troubleshooting
+## Troubleshooting & FAQ
 
 <!-- Symptom -> cause -> fix. -->
 
 ## Support
 
-<!-- Where to find the serial number, and how to contact us. -->
+<!-- What to tell us, and how to reach us. -->

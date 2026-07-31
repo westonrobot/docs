@@ -35,8 +35,11 @@
   max-width: 100%;
 }
 
+/* max-width matters: `width: auto` alone lets a wide image (a 16:9 screenshot,
+   say) exceed its column and overflow the grid it sits in. */
 .hero img {
   width: auto;
+  max-width: 100%;
   max-height: 260px;
   margin: 0 auto;
 }

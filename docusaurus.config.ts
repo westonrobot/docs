@@ -69,9 +69,14 @@ const config: Config = {
         // support engineers paste them into tickets.
         redirects: [
           {from: '/software/toolbox/assisted_driving_toolbox', to: '/solution/adt/intro'},
-          {from: '/software/toolbox/adt_v1', to: '/solution/adt/v1'},
-          {from: '/software/toolbox/adt_v2', to: '/solution/adt/v2'},
-          {from: '/software/toolbox/adt_v3', to: '/solution/adt/v3'},
+          {from: '/software/toolbox/adt_v1', to: '/solution/adt/intro'},
+          {from: '/software/toolbox/adt_v2', to: '/solution/adt/intro'},
+          {from: '/software/toolbox/adt_v3', to: '/solution/adt/intro'},
+          // ADT v1/v2/v3 were three pages, v2 and v3 75% identical. Now one
+          // page tabbed by version.
+          {from: '/solution/adt/v1', to: '/solution/adt/intro'},
+          {from: '/solution/adt/v2', to: '/solution/adt/intro'},
+          {from: '/solution/adt/v3', to: '/solution/adt/intro'},
           {from: '/software/installation/apt_source', to: '/tutorial/installation/apt_source'},
           {from: '/software/slam/go2_slam', to: '/tutorial/unitree/go2_slam'},
           {from: '/software/intro', to: '/solution/intro'},

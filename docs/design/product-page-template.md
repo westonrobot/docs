@@ -552,3 +552,43 @@ These drawings are black line art on white and are **not** keyed to transparency
 The sidebar previously listed only the two version pages, leaving four guides reachable only through inline links and **`getting_started` reachable from nowhere at all** — 428 words with no inbound link from any page or sidebar. All five now appear under the category, which itself links to the product page.
 
 Open gap: no serial-number location for the devkit on [Identify your product](../../support/identify-your-product.md).
+
+## Solution pages
+
+A solution is software we develop and deploy, not hardware you own. Most of the skeleton still carries over; two sections are specific to software.
+
+| # | Section | Required | Difference from a product page |
+| --- | --- | --- | --- |
+| 1 | **Getting started** | yes | What you need, install, first run. Was `Deployment` |
+| 2 | **Key information** | yes | Related resources · Supported platforms · Configuration · Versions · Integration |
+| 3 | **Using it** | yes | **Solution-only.** Day-to-day operation. Hardware sends this to guides; for software it *is* the documentation |
+| 4 | **Known limitations** | yes | **Solution-only.** Where it does not work. Prevents bad deployments and the tickets that follow |
+| 5 | **Troubleshooting & FAQ** | yes | Same |
+| 6 | **Support** | yes | Same |
+
+`Supported platforms` is the most important table on a solution page: a customer needs to know whether it runs on the robot they already own, and what else they must buy.
+
+Two sections were dropped from the earlier scaffold. `At a glance` went for the same reason it went from robot pages — it duplicated content below it and dated quickly. `Release notes` folded into `Key information › Versions`, because with versions as tabs the comparison table *is* the release note.
+
+### Versions are tabs here too
+
+ADT shipped as `intro` plus `v1`, `v2` and `v3`, with **v2 and v3 75 % identical**. The real delta was small and specific: the package was renamed `wr-ad-toolbox` → `wr-mission-control`, the separate TLS certificate install was dropped, and the settings gear moved. Three pages carried that.
+
+It is now one page with **five linked tab groups** sharing `groupId="adt-version"` — hero, Getting started, teleoperation panel, Settings, and gamepad pairing. Choosing a version once selects it in all five, so a v1 operator reads a v1 page end to end without re-choosing. Verified in the browser: one click switches all five groups and only that version's images render.
+
+v1 is a genuinely different architecture — a server on the robot, and a client pointed at an IP address rather than logging in — and tabs absorb that unevenness fine. That is what they are for.
+
+**All six old URLs redirect.** Note the trap: `/software/toolbox/adt_v1` already redirected to `/solution/adt/v1`. Client-side redirects **do not chain**, so deleting `v1` would have left that pointing at a 404. Existing redirects had to be repointed at the new target, not stacked on top.
+
+### Rollout status
+
+| Page | Status |
+| --- | --- |
+| `solution/intro` | ✅ product cards; its "what each page covers" table now describes what the pages actually contain |
+| `solution/adt/intro` | ✅ v1/v2/v3 merged into one tabbed page; six redirects |
+| `solution/navigation` | ⬜ draft scaffold, vocabulary aligned |
+| `solution/industrial-patrolling` | ⬜ draft scaffold, vocabulary aligned |
+
+The hub previously promised a section list — Supported platforms, Deployment, Configuration, Release notes, Known limitations — that only the two unpublished drafts followed. The one live solution used a completely different shape, so the promise was false for everything a customer could actually reach.
+
+Open gaps: ADT has **no `Supported platforms` table** and no `Known limitations` section, both of which need product knowledge. v1's install instructions also predate our apt-source guide and originally hardcoded the repository URL with the deprecated `apt-key add`; they now link [Apt Source](../../tutorial/installation/apt_source.md), which should be confirmed as correct for v1.
