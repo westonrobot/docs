@@ -1,47 +1,134 @@
 ---
 sidebar_position: 1
-description: "Safety requirements and precautions for operating Weston Robot platforms."
+description: "Safety practices for operating Weston Robot platforms: wheeled bases, quadrupeds, humanoids and manipulators."
 tags: [safety]
 ---
 
 # Operational Safety
 
-:::warning Safety Warning
+Read this before powering a robot for the first time, and again before letting anyone new operate one.
 
-Operating robotics equipment involves inherent risks, including
-potential harm to operators or bystanders if not handled properly. It is
-essential for all users, both new and experienced, to thoroughly read
-and understand the manufacturer's documentation and receive proper
-training before operating any robotics machinery. Failure to comply with
-these precautions can result in severe injury or damage.
+Everything below is deliberately on one page rather than split by platform. Safety guidance you have to click to find is safety guidance nobody reads — start with the sections that apply to every platform, then the section for the type you have.
+
+:::danger These machines can injure people
+
+Every platform here carries a battery and powered motors, and can move without
+warning if it receives a bad command, loses its network link, or is left in the
+wrong mode. Legged robots fall. Arms swing through a larger volume than you expect.
+A wheeled base does not stop at the top of a staircase unless something tells it to.
+
+None of that is unusual or a defect. It just means the robot needs the same respect
+as any other powered machine on a factory floor.
 
 :::
 
-Operation Environment
----------------------
+## Before you power on
 
-Most robots contain batteries, motors, and other electrical components
-that can be hazardous if not handled properly. It is essential to
-operate the robot in a safe environment to prevent accidents and damage
-to the robot. The following guidelines should be followed when operating
-the robot:
+Every time, on every platform. It takes under a minute.
 
--   Do not place the robot near heaters or heating elements
--   Do not use the robot in an environment with corrosive and flammable
-    gases or combustible substances
--   Unless specially customized, the general robot models are not
-    waterproof and shall not be operated in places with excessive
-    humidity
+1. **Find the emergency stop and test it.** On most platforms this is a physical button on the robot, a control on the RC transmitter, or both. Press it once, confirm the robot goes limp or cuts drive, then release it. If you cannot find an emergency stop on your unit, [ask us](/support/before-you-contact-us) before operating it.
+2. **Clear the area.** Nobody within reach of the robot's movement, no cables or tools underneath it, nothing on the floor it could run over or trip on.
+3. **Check the robot itself.** Loose fasteners, damaged wiring, a swollen battery, anything hanging off a payload mount. Fix it before powering on, not after.
+4. **Know how you will stop it** — not just the e-stop, but which command, which key, which switch.
+5. **Turn the RC controller off when you are not driving.** A transmitter in a bag or under a laptop is the most common cause of a robot moving when nobody expected it to.
 
-Software Development
---------------------
+## Where you can operate
 
-It's recommend to put the robot on a stable stool or bench that lifts the
-robot up so that you don't get unanticipated robot movement even when
-wrong motion commands are sent to the robot.
+- **Assume the robot is not waterproof.** Unless yours was specifically customised, keep it out of rain, puddles, wash-down areas and high humidity. See the [ratings by platform](/support/faq#is-the-robot-waterproof).
+- **No heaters, no open flame, no flammable or corrosive gas.** Lithium batteries and hot motors do not belong near any of those.
+- **Operate on a surface the robot can handle.** Loose gravel, deep pile carpet, gratings and wet tiles all reduce traction or trap feet and wheels.
+- **Watch for drop-offs.** Stair heads, loading docks, mezzanine edges and open pits. A robot under manual control has no idea they are there.
+- **Give it ventilation.** Motors and onboard computers throttle or shut down when they overheat, and a robot that stops mid-task can stop somewhere inconvenient.
 
-![A quadruped robot raised on a stool so its legs hang clear of the ground](./img/robot_on_stool.jpg)
+## While you are developing
 
-Keep the RC controller off when you're not intending to control the
-robot. Mishandling of the remote controller may lead to unexpected robot
-movement and cause damage to the robot or its surrounding properties.
+This is when most damage happens — not during normal operation, but while someone is testing code that has never run before.
+
+**Raise the robot off the ground.** For legged platforms and arms, put the robot on a stable stool or bench so its feet or tool hang clear. A bad motion command then costs you nothing.
+
+<Figure
+  src={require('./img/robot_on_stool.jpg').default}
+  alt="A quadruped robot raised on a stool so its legs hang clear of the ground"
+  size="lg"
+  framed
+  caption="A quadruped raised so its legs cannot drive it off the bench." />
+
+**Use a wired connection for anything touching low-level control.** WiFi is fine for high-level work and for internet access. It is not fine for joint-level or balance control: a latency spike or a dropped packet can stall the control loop, and a legged robot that stalls mid-step falls. See [the full answer](/support/faq#can-i-develop-over-wifi-instead-of-a-wired-connection).
+
+**Start slow and low.** Reduced speed and reduced torque for the first run of any new motion code. Bring it up once you have watched it behave.
+
+**Test your limits before you trust them.** Joint limits, speed caps and workspace boundaries should be verified with the robot raised or the arm clear, not discovered when it hits something.
+
+**Never leave a powered robot unattended.** Power it down if you are stepping away, even briefly.
+
+## By platform
+
+The universal sections above still apply. These are the additional hazards specific to each type.
+
+### Wheeled bases
+
+Scout Mini, Ranger Mini — see [UGVs](/robot/intro#ugvs).
+
+- **Keep hands and cables away from the wheels.** The gap between wheel and chassis is a pinch point, and it is at exactly the height where a trailing cable gets pulled in.
+- **Do not assume it drives like a car.** The Ranger Mini has four-wheel steering with omnidirectional modes: it can crab sideways and rotate on the spot. If you are used to differential drive, the first sideways move is a surprise. Know which mode it is in.
+- **Slopes and edges.** A base under manual control will drive off a ledge. On a slope it can also keep rolling after you stop commanding it.
+- **Mind the payload.** A tall or heavy payload raises the centre of gravity and makes the base easier to tip, particularly during a fast turn or an emergency stop.
+
+### Quadrupeds
+
+Go2, B2 — see [Quadrupeds](/robot/intro#quadrupeds).
+
+- **Stay out of the leg envelope.** The legs sweep through a much larger volume than the robot's standing footprint, and they move fast.
+- **Watch your hands when powering on or off.** Legs can snap to a default position as the controller takes over or releases.
+- **They fall.** Uneven ground, an obstacle mid-step or a lost network link can all put one down. Do not stand where a falling robot lands, and do not try to catch it.
+- **Let overheated motors cool.** If the robot suddenly goes limp into damping mode, the motors have overheated and that is protective, not a fault. Holding a locked standing pose for long periods is the most common cause — see [the Go2 FAQ](/robot/quadruped/go2#why-does-the-robot-suddenly-enter-damping-mode).
+- **The B2 is an industrial machine.** It is substantially heavier than a Go2, and everything above matters more. Treat clearances generously.
+
+### Humanoids
+
+G1, H1-2 — see [Humanoids](/robot/intro#humanoids).
+
+Everything in the quadruped section applies, plus:
+
+- **A biped is less stable than a quadruped and falls further.** The [H1-2](/robot/humanoid/h1-2) is 180 cm tall; when it goes over it does so with the reach and force you would expect from something that size.
+- **Support it during early testing.** A gantry, hoist or harness during first motion runs prevents most of the damage people do to these robots. Do not rely on catching it by hand.
+- **Keep the falling radius clear** — roughly its standing height in every direction, not just its footprint.
+- **Two people for handling.** Moving, mounting or recovering a full-size humanoid is not a one-person job.
+
+### Manipulators
+
+WR65, WRL63, xArm, Z1, Piper, Kinova Gen3 Lite — see [Manipulators](/robot/intro#manipulators).
+
+- **Stay out of the working envelope while it is powered.** An arm moving under program control is a crush hazard, and it does not know you are there.
+- **The reach is larger than it looks.** The [WRL63](/robot/manipulator/wrl63) sweeps a 900 mm radius — check what is inside that sphere, including your monitor, before the first move.
+- **Mount to structure, not to a panel.** The arm applies real reaction forces to its base, and more of them the further it reaches. A base that flexes turns into a base that walks.
+- **Find out what happens when power is removed.** Not every joint necessarily holds position. Realman list mechanical brakes on **J1–J3** for the RM65 (our [WR65](/robot/manipulator/wr65)) and **J1–J4** for the RML63 (our [WRL63](/robot/manipulator/wrl63)) — confirm the behaviour of the remaining joints, and of whatever else you have fitted, before you assume the arm will stay where it is. Support the arm and the payload before cutting power.
+- **Account for the end effector.** A gripper, camera or tool changes the reach, the mass, the pinch points and the moment on the base. Re-check your limits after fitting one.
+- **Reduced speed for teaching and first runs.** Then raise it.
+
+## Batteries and charging
+
+- **Charge in a clear area** on a non-flammable surface, not on carpet, not in a cupboard, not on the robot's shipping foam.
+- **Do not leave charging unattended overnight.**
+- **Stop using a battery that is swollen, dented, punctured or has been dropped hard.** Isolate it and [contact us](/support/before-you-contact-us). Do not charge it to "test" it.
+- **Use the supplied charger.** Voltage and chemistry have to match.
+- **Do not deep-discharge or store fully charged for months.** See [Robot Maintenance](/tutorial/robot-maintenance) for storage guidance.
+- **Check shipping rules before transporting.** Lithium batteries are restricted on aircraft and in some freight.
+
+## If something goes wrong
+
+**The robot is moving and should not be** — hit the emergency stop. If that fails, cut power. Do not try to physically restrain it.
+
+**A legged robot has fallen and will not respond** — follow the [recovery sequence](/support/faq#the-robot-has-fallen-over-and-does-not-respond-to-the-controller). In short: screenshot any errors first, power it off, carry it to flat ground, inspect for damage.
+
+**The robot went limp on its own** — usually protective, and usually thermal. Let it cool before restarting, and look at what it was doing beforehand.
+
+**Something smells hot, is smoking, or the battery is swelling** — cut power, move people away, and do not attempt to charge or restart. [Contact us](/support/before-you-contact-us).
+
+**Anything was damaged, or anyone was hurt** — stop, and tell us what happened. Photographs and the logs from around the incident are the most useful things you can send.
+
+## Support
+
+- [Before you contact us](/support/before-you-contact-us) — what to collect, and the commands to collect it
+- [Support FAQ](/support/faq) — waterproofing, joint lubrication, fall recovery
+- [Robot Maintenance](/tutorial/robot-maintenance) — tyres, batteries and routine checks
