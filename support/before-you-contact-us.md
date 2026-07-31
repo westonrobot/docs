@@ -17,15 +17,13 @@ Two things matter most.
 
 It tells us the model and variant, the batch it was built in, and anything already known against that batch. Often that alone is enough for us to recognise the problem.
 
+Not sure which number it is? Photograph the sticker on the robot or on the remote controller and send that — we can read it from there.
+
 </KeyPoint>
 
 <KeyPoint marker="2" title="What happened" lede="As a sequence, not a conclusion.">
 
-What the robot was doing **just before**, what happened **at the moment**, and what it did **immediately after**.
-
-> *Driving at walking pace on flat concrete, ten minutes in. Stopped dead and went limp, no warning. Limp for about 30 seconds, then responded again.*
-
-That points at thermal protection. "The robot keeps failing" points nowhere.
+What the robot was doing **just before**, what happened **at the moment**, and what it did **immediately after**. Stopped, kept moving, powered off, recovered on its own.
 
 </KeyPoint>
 
@@ -38,6 +36,14 @@ That points at thermal protection. "The robot keeps failing" points nowhere.
 - **What changed recently** — firmware, packages, payload, site, transport. "Nothing" is a real answer.
 - **Logs, starting with your own program's** — the output of whatever was driving the robot is the one thing we cannot get any other way. Send text as text, not a photo of a terminal.
 - **Photos or video** — especially of how payloads are mounted, or ten seconds of the fault if it is a movement.
+
+:::tip What a useful description looks like
+
+> *Driving at walking pace on flat concrete, ten minutes in. Stopped dead and went limp, no warning. Limp for about 30 seconds, then responded again.*
+
+Three sentences, and it already points at thermal protection. "The robot keeps failing" points nowhere.
+
+:::
 
 ## Then contact us
 
