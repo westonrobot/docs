@@ -48,7 +48,7 @@ Three sentences, and it already points at thermal protection. "The robot keeps f
 Send what you have gathered. The more your first message carries, the sooner we can work on the problem itself instead of asking about it.
 
 <a
-  className="button button--primary button--lg button--block margin-top--md"
+  className="button button--primary button--lg margin-top--sm"
   href="https://forms.office.com/r/qELKzYF33W"
   target="_blank"
   rel="noopener noreferrer">
