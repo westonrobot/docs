@@ -1,208 +1,143 @@
-import React, { useState } from 'react';
-import type {ReactNode} from 'react';
-import clsx from 'clsx';
+import React from 'react';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
-import { 
-  FaRobot, 
-  FaPlug, 
-  FaMicrochip, 
-  FaCode, 
-  FaBook, 
-  FaHeadset, 
-  FaQuestion,
-  FaArrowRight,
-  FaArrowLeft,
-  FaTools,
-  FaLaptopCode,
-  FaHandsHelping,
-  FaPuzzlePiece,
-  FaCog
+import {
+  FaSearch,
+  FaShieldAlt,
+  FaBoxOpen,
+  FaTerminal,
+  FaQuestionCircle,
+  FaExclamationTriangle,
+  FaHeadset,
 } from 'react-icons/fa';
 
+import {ProductCard, ProductGrid} from '@site/src/components/ProductCard';
 import styles from './index.module.css';
 
-function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+/**
+ * The landing page for a site whose readers already own the hardware.
+ *
+ * It replaced a two-step decision tree in which nothing was reachable in one
+ * click, the first click revealed nothing ("Hardware & Information" is not
+ * information), and the sub-steps lived in React state — so they had no URLs,
+ * broke the back button, and were invisible to search indexing.
+ *
+ * Everything here is a real destination, visible without interaction.
+ */
+
+const FAMILIES = [
+  {
+    to: '/robot/intro',
+    src: require('@site/robot/img/unitree/Go2_robot.png').default,
+    alt: 'Robot platforms',
+    title: 'Robots',
+    body: 'UGVs, quadrupeds, humanoids and manipulators — 13 platforms.',
+  },
+  {
+    to: '/peripheral/intro',
+    src: require('@site/peripheral/img/westonrobot/j4012.png').default,
+    alt: 'Peripherals',
+    title: 'Peripherals',
+    body: 'Onboard computers, networking, power and sensors.',
+  },
+  {
+    to: '/system/ugv_devkit',
+    src: require('@site/system/ugv_devkit/img/devkit_views_standard.png').default,
+    alt: 'Integrated systems',
+    title: 'Systems',
+    body: 'Pre-integrated kits that mount on a robot base.',
+  },
+  {
+    to: '/solution/intro',
+    src: require('@site/solution/adt/img/adt/adt_v3_04.png').default,
+    alt: 'Solutions',
+    title: 'Solutions',
+    body: 'Capabilities we develop and deploy on a platform.',
+  },
+];
+
+const FIRST_RUN = [
+  {
+    to: '/tutorial/operational-safety',
+    icon: FaShieldAlt,
+    title: 'Operational Safety',
+    body: 'Read before powering anything for the first time.',
+  },
+  {
+    to: '/support/identify-your-product',
+    icon: FaBoxOpen,
+    title: 'Identify your product',
+    body: 'Which model you have, and where the serial number is.',
+  },
+  {
+    to: '/tutorial/installation/apt_source',
+    icon: FaTerminal,
+    title: 'Add our package source',
+    body: 'Needed before installing any Weston Robot package.',
+  },
+];
+
+const WHEN_STUCK = [
+  {
+    to: '/support/faq',
+    icon: FaQuestionCircle,
+    title: 'Support FAQ',
+    body: 'Waterproofing, joint wear, thermal behaviour, wired vs WiFi.',
+  },
+  {
+    to: '/support/fault-codes',
+    icon: FaExclamationTriangle,
+    title: 'Fault codes',
+    body: 'What an error or alarm code means.',
+  },
+  {
+    to: '/support/before-you-contact-us',
+    icon: FaHeadset,
+    title: 'Contact support',
+    body: 'What to collect first, and the commands to collect it.',
+  },
+];
+
+/**
+ * A large target that hands off to the real search in the navbar.
+ *
+ * Rendering a second <SearchBar> here does not work: docusaurus-lunr-search
+ * binds its autocomplete to `#search_input_react`, so a second instance
+ * duplicates that id (invalid HTML) and only the first one in the DOM — the
+ * navbar's — is ever wired up. The hero box looked fine and did nothing.
+ */
+function SearchPrompt() {
+  const focusNavbarSearch = () => {
+    const input = document.querySelector<HTMLInputElement>('.navbar__search-input');
+    input?.focus();
+  };
   return (
-    <header className={clsx('hero hero--primary', styles.heroBanner)}>
-      <div className="container">
-        <Heading as="h1" className="hero__title">
-          {siteConfig.title}
-        </Heading>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-      </div>
-    </header>
+    <button
+      type="button"
+      className={styles.searchPrompt}
+      onClick={focusNavbarSearch}
+      aria-label="Search the documentation">
+      <FaSearch className={styles.searchPromptIcon} aria-hidden="true" />
+      <span className={styles.searchPromptText}>Search the documentation</span>
+      <kbd className={styles.searchPromptKbd}>Ctrl K</kbd>
+    </button>
   );
 }
 
-// Decision tree component data structure
-const decisionTree = {
-  root: {
-    question: "How can we guide you today?",
-    options: [
-      {
-        text: "Hardware & Information",
-        nextNode: "hardware"
-      },
-      {
-        text: "Software & Development",
-        nextNode: "software"
-      },
-      {
-        text: "Questions & Support",
-        nextNode: "support"
-      }
-    ]
-  },
-  hardware: {
-    question: "Which type of hardware?",
-    options: [
-      {
-        text: "Robot Platforms",
-        destination: "/robot/intro",
-        description: "UGVs, quadrupeds, humanoids and manipulators",
-        icon: FaRobot
-      },
-      {
-        text: "Robot Peripherals",
-        destination: "/peripheral/intro",
-        description: "Power regulators, robot hands, wireless chargers, etc.",
-        icon: FaPlug
-      },
-      {
-        text: "Integrated Systems",
-        destination: "/system/intro",
-        description: "UGV development kits and custom solutions",
-        icon: FaMicrochip
-      },
-      {
-        text: "Go Back",
-        nextNode: "root",
-        isBackButton: true
-      }
-    ]
-  },
-  software: {
-    question: "What development resources do you need?",
-    options: [      
-      {
-        text: "Solutions",
-        destination: "/solution/intro",
-        description: "Complete capabilities we deploy on a robot platform",
-        icon: FaCode
-      },
-      {
-        text: "Guides",
-        destination: "/tutorial/intro",
-        description: "Task guides for setup, development and diagnostics",
-        icon: FaBook
-      },
-      {
-        text: "Integration & Customization",
-        destination: "/system/intro",
-        description: "Instructions for system integration",
-        icon: FaCog
-      },
-      {
-        text: "Go Back",
-        nextNode: "root",
-        isBackButton: true
-      }
-    ]
-  },
-  support: {
-    question: "How can we further help you?",
-    options: [     
-      {
-        text: "Support Centre",
-        destination: "/support/intro",
-        description: "Identify your unit, FAQ, fault codes, warranty and RMA",
-        icon: FaHeadset
-      },
-      {
-        text: "Legacy Product Docs",
-        destination: "https://westonrobot.github.io/docs-legacy/",
-        description: "Information of older products and systems",
-        icon: FaBook
-      }, 
-      {
-        text: "Contact Support",
-        destination: "/support/before-you-contact-us",
-        description: "What to collect first, then submit a request",
-        icon: FaQuestion
-      },
-      {
-        text: "Go Back",
-        nextNode: "root",
-        isBackButton: true
-      }
-    ]
-  }
-};
-
-function DecisionTreeNavigation() {
-  const [currentNode, setCurrentNode] = useState('root');
-  const node = decisionTree[currentNode];
-
+function TaskList({items}: {items: typeof FIRST_RUN}) {
   return (
-    <div className={styles.decisionTree}>
-      <div className={styles.questionBox}>
-        {/* <FaQuestion className={styles.questionIcon} /> */}
-        <h2>{node.question}</h2>
-      </div>
-      <div className={styles.optionsContainer}>
-        {node.options.map((option, index) => (
-          <div 
-            key={index} 
-            className={clsx(
-              styles.optionCard, 
-              option.isBackButton && styles.backButton
-            )}
-          >
-            {option.destination ? (
-              // Destination link
-              <Link 
-                to={option.destination} 
-                className={styles.optionLink}
-              >
-                <div className={styles.optionContent}>
-                  {option.icon && <option.icon className={styles.optionIcon} />}
-                  <h3>{option.text}</h3>
-                  {option.description && <p>{option.description}</p>}
-                  <div className={styles.goArrow}>
-                    <FaArrowRight />
-                  </div>
-                </div>
-              </Link>
-            ) : (
-              // Navigation button
-              <button 
-                onClick={() => setCurrentNode(option.nextNode)}
-                className={styles.optionButton}
-              >
-                <div className={styles.optionContent}>
-                  {option.isBackButton ? (
-                    <div className={styles.backButtonContent}>
-                      <FaArrowLeft className={styles.backIcon} />
-                      <span>{option.text}</span>
-                    </div>
-                  ) : (
-                    <>
-                      <h3>{option.text}</h3>
-                      <div className={styles.goArrow}>
-                        <FaArrowRight />
-                      </div>
-                    </>
-                  )}
-                </div>
-              </button>
-            )}
-          </div>
-        ))}
-      </div>
+    <div className={styles.taskGrid}>
+      {items.map(({to, icon: Icon, title, body}) => (
+        <Link key={to} to={to} className={styles.taskCard}>
+          <Icon className={styles.taskIcon} aria-hidden="true" />
+          <span className={styles.taskText}>
+            <span className={styles.taskTitle}>{title}</span>
+            <span className={styles.taskBody}>{body}</span>
+          </span>
+        </Link>
+      ))}
     </div>
   );
 }
@@ -212,12 +147,48 @@ export default function Home(): React.ReactNode {
   return (
     <Layout
       title={siteConfig.title}
-      description="Documentation for Weston Robot products and solutions">
-      <HomepageHeader />
-      <main>
-        <div className="container margin-top--lg">
-          <DecisionTreeNavigation />
+      description="Setup, interfaces and support for Weston Robot platforms, peripherals and systems.">
+      <header className={styles.hero}>
+        <div className="container">
+          <Heading as="h1" className={styles.heroTitle}>
+            Weston Robot Documentation
+          </Heading>
+          <p className={styles.heroSubtitle}>
+            Setup, interfaces and support for the hardware you own.
+          </p>
+          <div className={styles.heroSearch}>
+            <SearchPrompt />
+          </div>
         </div>
+      </header>
+
+      <main className="container margin-vert--lg">
+        <section className={styles.section}>
+          <Heading as="h2" className={styles.sectionTitle}>
+            Find your product
+          </Heading>
+          <ProductGrid columns={4}>
+            {FAMILIES.map(({to, src, alt, title, body}) => (
+              <ProductCard key={to} to={to} src={src} alt={alt} title={title}>
+                {body}
+              </ProductCard>
+            ))}
+          </ProductGrid>
+        </section>
+
+        <section className={styles.section}>
+          <Heading as="h2" className={styles.sectionTitle}>
+            First time with a new unit
+          </Heading>
+          <TaskList items={FIRST_RUN} />
+        </section>
+
+        <section className={styles.section}>
+          <Heading as="h2" className={styles.sectionTitle}>
+            Something not working
+          </Heading>
+          <TaskList items={WHEN_STUCK} />
+        </section>
       </main>
     </Layout>
   );

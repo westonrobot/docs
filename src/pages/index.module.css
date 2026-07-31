@@ -1,307 +1,164 @@
-/**
- * CSS files with the .module.css suffix will be treated as CSS modules
- * and scoped locally.
- */
+/* Landing page.
+   Deliberately restrained: this site's readers already own the hardware and
+   arrive with a task, so the page is a set of doors rather than a pitch. */
 
-.heroBanner {
-  padding: 4rem 0;
+.hero {
+  padding: 3rem 0 2.5rem;
   text-align: center;
-  position: relative;
-  overflow: hidden;
+  background: var(--ifm-color-primary-darkest);
+  color: #fff;
 }
 
-@media screen and (max-width: 996px) {
-  .heroBanner {
-    padding: 2rem;
-  }
+.heroTitle {
+  font-size: 2.4rem;
+  margin-bottom: 0.5rem;
 }
 
-.buttons {
+.heroSubtitle {
+  font-size: 1.1rem;
+  opacity: 0.85;
+  margin-bottom: 1.75rem;
+}
+
+.heroSearch {
   display: flex;
-  align-items: center;
   justify-content: center;
 }
 
-.docSections {
-  padding: 4rem 0;
-  position: relative;
-}
-
-.docSections::before {
-  display: none;
-}
-
-.docSections .row {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 -1rem;
-}
-
-.docSection {
-  flex: 0 0 33.333333%;
-  padding: 1rem;
-  margin-bottom: 0;
-  display: flex;
-}
-
-.docSection .card-demo {
-  width: 100%;
-  margin-bottom: 0 !important;
-}
-
-.docSection .card {
-  height: 100%;
-  min-height: 250px;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--ifm-card-background-color);
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  transition: all 0.2s ease;
-  border: 1px solid var(--ifm-color-emphasis-100);
-  border-radius: 8px;
-  padding: 1.5rem;
-}
-
-.docSection .card__header {
-  padding: 0;
-  margin-bottom: 1rem;
-}
-
-.docSection .card__header h3 {
-  margin: 0;
-  color: var(--ifm-color-emphasis-900);
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  line-height: 1.4;
-}
-
-.docSection .card__body {
-  padding: 0;
-  flex: 1 1 auto;
-  display: flex;
-  align-items: flex-start;
-}
-
-.docSection .card__body p {
-  margin: 0;
-  flex: 1;
-}
-
-.docSection .card__footer {
-  padding: 0;
-  margin-top: 1.5rem;
-}
-
-.docSection .card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-color: var(--ifm-color-emphasis-200);
-}
-
-.docSection p {
-  font-size: 0.9375rem;
-  margin: 0;
-  color: var(--ifm-color-emphasis-700);
-  line-height: 1.6;
-}
-
-@media screen and (max-width: 996px) {
-  .docSection {
-    flex: 0 0 50%;
-  }
-}
-
-@media screen and (max-width: 576px) {
-  .docSection {
-    flex: 0 0 100%;
-  }
-}
-
-.sectionCard {
-  height: 100%;
-  min-height: 250px;
-  display: flex;
-  flex-direction: column;
-  background-color: var(--ifm-card-background-color);
-  border: 1px solid var(--ifm-color-emphasis-100);
-  border-radius: 8px;
-  padding: 1.5rem;
-  transition: all 0.2s ease;
-}
-
-.cardHeader {
+/* Styled as a field but rendered as a button, because it hands off to the
+   navbar's search rather than being an input of its own — see SearchPrompt. */
+.searchPrompt {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0;
-  margin-bottom: 1rem;
-}
-
-.cardHeader h3 {
-  margin: 0;
-  color: var(--ifm-color-emphasis-900);
-  font-size: 1.25rem;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  line-height: 1.4;
-}
-
-.sectionIcon {
-  font-size: 1.5rem;
-  color: var(--ifm-color-primary);
-  transition: transform 0.2s ease;
-  flex-shrink: 0;
-}
-
-.sectionCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-  border-color: var(--ifm-color-emphasis-200);
-}
-
-.sectionCard:hover .sectionIcon {
-  transform: scale(1.1);
-}
-
-/* Decision Tree Navigation Styles */
-.decisionTree {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem 1rem;
-}
-
-.questionBox {
-  background: linear-gradient(135deg, var(--ifm-color-primary), var(--ifm-color-primary-dark));
-  color: white;
-  padding: 1.5rem 2rem;
-  border-radius: 8px;
-  margin-bottom: 2rem;
-  display: flex;
-  align-items: center;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.questionIcon {
-  font-size: 2rem;
-  margin-right: 1rem;
-}
-
-.questionBox h2 {
-  margin: 0;
-  font-size: 1.8rem;
-}
-
-.optionsContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1.5rem;
-}
-
-.optionCard {
-  background-color: var(--ifm-card-background-color);
-  border: 1px solid var(--ifm-color-emphasis-200);
-  border-radius: 8px;
-  overflow: hidden;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
-  position: relative;
-}
-
-.optionCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
-  border-color: var(--ifm-color-primary);
-}
-
-.optionLink, 
-.optionButton {
-  display: block;
-  text-decoration: none;
-  color: var(--ifm-font-color-base);
+  gap: 0.7rem;
   width: 100%;
-  height: 100%;
-  background: none;
-  border: none;
-  padding: 0;
+  max-width: 560px;
+  height: 3rem;
+  padding: 0 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
   cursor: pointer;
+  transition: background 200ms ease, border-color 200ms ease;
+}
+
+.searchPrompt:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.searchPrompt:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.searchPromptIcon {
+  flex: none;
+  opacity: 0.85;
+}
+
+.searchPromptText {
+  flex: 1;
   text-align: left;
 }
 
-.optionContent {
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+.searchPromptKbd {
+  flex: none;
+  font-size: 0.75rem;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.1);
+  color: inherit;
+  box-shadow: none;
 }
 
-.optionIcon {
-  font-size: 2rem;
-  color: var(--ifm-color-primary);
+@media (max-width: 768px) {
+  .hero {
+    padding: 2rem 0 1.75rem;
+  }
+  .heroTitle {
+    font-size: 1.75rem;
+  }
+}
+
+.section {
+  margin-bottom: 2.5rem;
+}
+
+.sectionTitle {
+  font-size: 1.35rem;
   margin-bottom: 1rem;
 }
 
-.optionCard h3 {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
-  font-size: 1.4rem;
-  color: var(--ifm-color-primary);
+/* Task shortcuts: icon + label + one line of what it is for. Same card
+   treatment as ProductCard so the page reads as one set. */
+.taskGrid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
 }
 
-.optionCard p {
-  color: var(--ifm-color-emphasis-700);
-  margin-bottom: 1.5rem;
+@media (min-width: 700px) {
+  .taskGrid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
 
-.goArrow {
-  color: var(--ifm-color-primary);
-  font-size: 1.2rem;
-  margin-top: auto;
-  align-self: flex-end;
-}
-
-.backButton {
-  grid-column: 1 / -1;
-  background-color: var(--ifm-color-emphasis-100);
-  border-color: var(--ifm-color-emphasis-200);
-}
-
-[data-theme='dark'] .backButton {
-  background-color: var(--ifm-color-emphasis-100);
-  border-color: var(--ifm-color-emphasis-200);
-}
-
-.backButton .optionButton {
-  padding: 1rem;
-}
-
-.backButtonContent {
+.taskCard {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  gap: 0.9rem;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+  transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
 }
 
-.backIcon {
-  margin-right: 1rem;
-  font-size: 1.2rem;
+.taskCard,
+.taskCard:hover {
+  color: var(--ifm-font-color-base);
+  text-decoration: none;
 }
 
-.backButton .optionButton span {
-  font-size: 1.2rem;
+.taskCard:hover {
+  border-color: var(--ifm-color-primary);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
 }
 
-/* Responsive Adjustments */
-@media (max-width: 768px) {
-  .questionBox {
-    padding: 1.2rem;
+@media (prefers-reduced-motion: reduce) {
+  .taskCard {
+    transition: none;
   }
-  
-  .questionBox h2 {
-    font-size: 1.4rem;
+  .taskCard:hover {
+    transform: none;
   }
-  
-  .optionsContainer {
-    grid-template-columns: 1fr;
-  }
+}
+
+.taskIcon {
+  flex: none;
+  font-size: 1.25rem;
+  margin-top: 0.15rem;
+  color: var(--ifm-color-primary);
+}
+
+.taskText {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.taskTitle {
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.taskBody {
+  font-size: 0.87rem;
+  line-height: 1.45;
+  color: var(--ifm-color-emphasis-700);
 }
