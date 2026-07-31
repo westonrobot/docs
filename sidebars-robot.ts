@@ -14,10 +14,11 @@ const sidebarsRobot: SidebarsConfig = {
       type: 'category',
       label: 'Quadrupeds',
       items: [
+        // ordered by size, smallest first
         'quadruped/go2',
-        'quadruped/b2',
-        'quadruped/a2',
         'quadruped/as2',
+        'quadruped/a2',
+        'quadruped/b2',
       ],
     },
     {
