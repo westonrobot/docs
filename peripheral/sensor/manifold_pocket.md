@@ -76,12 +76,11 @@ industrial sites rather than the headline one.
 
 Expected — see the note above. Dark and matte materials return far less light, so effective range drops well below the headline figure. Work closer to them.
 
-For fault and alarm codes, see [Fault codes](/support/fault-codes). General questions are answered on the [Support FAQ](/support/faq).
+General questions are answered on the [Support FAQ](/support/faq).
 
 ## Support
 
 Collect the serial number and the app and firmware versions before raising a ticket — [Before you contact us](/support/before-you-contact-us) lists what helps.
 
 - [Support centre](/support/intro) — all support resources
-- [Identify your product](/support/identify-your-product) — where to find the serial number
 - [Warranty and RMA](/support/warranty-and-rma) — repairs, replacements and returns

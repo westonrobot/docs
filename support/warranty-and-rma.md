@@ -68,4 +68,4 @@ TODO
 
 ---
 
-Before raising a warranty request, have your [serial number](/support/identify-your-product) and the information in [Before you contact us](/support/before-you-contact-us) ready.
+Before raising a warranty request, have your serial number and the information in [Before you contact us](/support/before-you-contact-us) ready.

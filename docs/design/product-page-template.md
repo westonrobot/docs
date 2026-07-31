@@ -52,19 +52,26 @@ The order is deliberate and follows the audience decision in `ia-proposal.md` §
 | 5 | **Troubleshooting & FAQ** | yes | Model-specific answers; shared ones linked by anchor |
 | 6 | **Support** | yes | Route into the Support section, with why it helps |
 
-### Serial numbers live in one central place
+### Serial numbers live on the product page
 
-There is **no "Identify your unit" section** on a product page. Serial number
-locations for every platform live on [`/support/identify-your-product`](../../support/identify-your-product.md),
-which is where a reader arrives when they are raising a ticket.
+**This reverses an earlier decision.** Serial-number locations were centralised on
+`/support/identify-your-product`, on the reasoning that repeating two sentences
+across 13 pages invites drift.
 
-Duplicating it per product meant the same two sentences on 13 pages, each free to
-drift from the others and from the central page. Where a product page needs to
-mention it — for example because the model designation determines what is fitted
-— state the fact inline in **Key information** and link the central page.
+That was the wrong trade. The location of a serial number is a **per-product
+physical fact**, like a connector type or a status LED, so the page that owns the
+product is the page that should own it. Centralising produced a page that was 13
+rows of which 11 said `TODO`, and every product page sent readers a hop to it to
+find nothing.
 
-The central page links back to each product page it covers, so the relationship
-is navigable both ways.
+It has the same shape as the `fault-codes` removal: content that varies per
+vendor or per model does not belong in one site-wide table. Put it under **Key
+information** as a `Serial number` subsection, next to the other physical facts
+about the unit.
+
+Drift is a real cost, but a wrong answer on one page beats a right answer nobody
+can reach.
+
 
 ### There is no routing table
 
@@ -346,7 +353,6 @@ you. Values below are as configured on the units we supply.
 <One sentence on fitted sensors and which bus each is on.>
 
 <If the model ships in variants, say so and link
-[Identify your product](/support/identify-your-product).>
 
 ### Network layout
 
@@ -380,7 +386,6 @@ per model:
 
 - [<Question>](/support/faq#<anchor>) — <one clause on the answer>
 
-For fault and alarm codes, see [Fault codes](/support/fault-codes).
 
 ## Support
 
@@ -389,7 +394,6 @@ Collect the serial number, firmware version and logs before raising a ticket —
 includes the commands to gather it.
 
 - [Support centre](/support/intro) — all support resources
-- [Fault codes](/support/fault-codes) — what an error or alarm code means
 - [Warranty and RMA](/support/warranty-and-rma) — repairs, replacements, returns
 ```
 
@@ -415,7 +419,7 @@ includes the commands to gather it.
 - [ ] No claim that the vendor omits something, unless checked
 - [ ] Missing figures handled as a vendor pointer, not an admonition
 - [ ] Every image has meaningful alt text — not empty, not "image", not a position like "Left Top"
-- [ ] Serial number location recorded on `/support/identify-your-product`, **not** on the product page
+- [ ] Serial number location recorded on the product page under Key information
 
 **Wiring**
 - [ ] Model has a declared tag in `tutorial/tags.yml`
@@ -565,7 +569,7 @@ These drawings are black line art on white and are **not** keyed to transparency
 
 The sidebar previously listed only the two version pages, leaving four guides reachable only through inline links and **`getting_started` reachable from nowhere at all** — 428 words with no inbound link from any page or sidebar. All five now appear under the category, which itself links to the product page.
 
-Open gap: no serial-number location for the devkit on [Identify your product](../../support/identify-your-product.md).
+Open gap: no serial-number location documented for the devkit.
 
 ## Solution pages
 

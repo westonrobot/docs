@@ -69,12 +69,11 @@ Confirm which variant you have before writing motion code: the xArm 5, 6 and 7 d
 
 ## Troubleshooting & FAQ
 
-For fault and alarm codes, see [Fault codes](/support/fault-codes). General questions are answered on the [Support FAQ](/support/faq).
+General questions are answered on the [Support FAQ](/support/faq).
 
 ## Support
 
 Collect the serial number, firmware version and logs before raising a ticket — [Before you contact us](/support/before-you-contact-us) lists what helps and includes the commands to gather it.
 
 - [Support centre](/support/intro) — all support resources
-- [Identify your product](/support/identify-your-product) — where to find the serial number
 - [Warranty and RMA](/support/warranty-and-rma) — repairs, replacements and returns

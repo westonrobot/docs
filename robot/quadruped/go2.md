@@ -62,6 +62,10 @@ Installing Weston Robot packages on the robot or your host? Add our package repo
 
 Vendor manuals, videos and the mobile app are on the official pages linked at the top of this page.
 
+### Serial number
+
+The serial number and model designation are in the **battery compartment**, and in the mobile app under `Device → Robot Settings`. The app is usually faster and gives you both at once.
+
 ### Logins and IP addresses
 
 | Computer | Address | Credentials | What it is |
@@ -157,12 +161,10 @@ These are answered once on the [Support FAQ](/support/faq) rather than repeated 
 - [How often do I need to lubricate the joints?](/support/faq#how-often-do-i-need-to-lubricate-the-joints) — and what to do about stiffness or play
 - [The robot has fallen over and does not respond to the controller](/support/faq#the-robot-has-fallen-over-and-does-not-respond-to-the-controller) — the recovery sequence
 
-For fault and alarm codes, see [Fault codes](/support/fault-codes).
 
 ## Support
 
 Collect the serial number, firmware version and logs before raising a ticket — [Before you contact us](/support/before-you-contact-us) lists what helps and includes the commands to gather it.
 
 - [Support centre](/support/intro) — all support resources
-- [Identify your product](/support/identify-your-product) — where to find the serial number
 - [Warranty and RMA](/support/warranty-and-rma) — repairs, replacements and returns

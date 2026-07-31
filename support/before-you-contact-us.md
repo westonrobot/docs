@@ -9,7 +9,6 @@ Almost every support exchange starts with us asking for the same few things. Col
 
 ## Checklist
 
-- [ ] **Serial number and model** — see [Identify your product](/support/identify-your-product)
 - [ ] **Firmware / software version** of the robot and of any Weston Robot packages you have installed
 - [ ] **What you were doing** when the problem appeared, in enough detail that we can try it
 - [ ] **What changed recently** — a firmware update, a new payload, a package upgrade, a different environment, a transport

@@ -11,7 +11,7 @@ Questions that apply to more than one platform. Model-specific questions stay on
 
 ### How often do I need to lubricate the joints?
 
-There is no fixed schedule. If you encounter motor issues, stiffness, or loosening of joints, contact support rather than servicing the joints yourself — have your [serial number](/support/identify-your-product) ready.
+There is no fixed schedule. If you encounter motor issues, stiffness, or loosening of joints, contact support rather than servicing the joints yourself — have your serial number ready.
 
 Applies to G1, Go2 and B2.
 
@@ -57,10 +57,6 @@ Check the product page before deploying anywhere wet. An IP rating assumes cover
 6. If it will not power on or start up, [contact support](/support/before-you-contact-us).
 
 Applies to G1, Go2 and B2.
-
-### I am seeing an error or fault code
-
-See [Fault codes](/support/fault-codes).
 
 ## Commercial
 

@@ -91,8 +91,7 @@ Go2, B2, G1, H1-2 — see [Quadrupeds](/robot/intro#quadrupeds) and [Humanoids](
 :::caution Do not service the joints yourself
 
 If you meet stiffness, play, unusual noise or motor faults in a joint, **[contact us](/support/before-you-contact-us)**
-with your [serial number](/support/identify-your-product) rather than opening or
-lubricating it. There is no owner-serviceable lubrication schedule on these
+with your serial number rather than opening or lubricating it. There is no owner-serviceable lubrication schedule on these
 platforms, and a joint opened incorrectly is an expensive repair. See the
 [FAQ](/support/faq#how-often-do-i-need-to-lubricate-the-joints).
 
@@ -143,11 +142,10 @@ Stop and [contact us](/support/before-you-contact-us) rather than continuing:
 - Damage found after a fall, collision or transport
 - Repeatability or odometry that has drifted and does not come back after a recalibration
 
-Have the [serial number](/support/identify-your-product), firmware version and any error codes ready — [Before you contact us](/support/before-you-contact-us) lists what else helps and the commands to gather it.
+Have the serial number, firmware version and any error codes ready — [Before you contact us](/support/before-you-contact-us) lists what else helps and the commands to gather it.
 
 ## Support
 
 - [Operational Safety](/tutorial/operational-safety) — read before working on a robot
 - [Before you contact us](/support/before-you-contact-us) — what to collect
 - [Support FAQ](/support/faq) — waterproofing, joint lubrication, thermal behaviour
-- [Identify your product](/support/identify-your-product) — where to find the serial number

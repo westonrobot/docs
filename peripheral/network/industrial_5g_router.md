@@ -136,12 +136,11 @@ Either the address has been changed on this unit, or your machine is not on its 
 
 Confirm the network it joined actually has internet, and that **Role** is set to `WAN (Wireless ISP)` — in the other roles the router will associate but not route.
 
-For fault and alarm codes, see [Fault codes](/support/fault-codes). General questions are answered on the [Support FAQ](/support/faq).
+General questions are answered on the [Support FAQ](/support/faq).
 
 ## Support
 
 Collect the serial number, firmware version and the configuration you are using before raising a ticket — [Before you contact us](/support/before-you-contact-us) lists what helps.
 
 - [Support centre](/support/intro) — all support resources
-- [Identify your product](/support/identify-your-product) — where to find the serial number
 - [Warranty and RMA](/support/warranty-and-rma) — repairs, replacements and returns

@@ -81,6 +81,10 @@ The fan starts at **28 °C** and reaches full speed at **45 °C** and above.
 
 :::
 
+### Serial number
+
+On a white label on the **top face**, in the corner beside the logo. It carries the serial number and a QR code.
+
 ### Control interface
 
 The unit speaks **CANopen** and appears as **node ID 30**. The driver is in `wrp_sdk` from version 1.0.0 — use that from C++, or drive it over `canopen` in Python for one-off configuration.
@@ -253,12 +257,11 @@ The fan is tied to the 12 V channel. If that channel is switched off, the fan wi
 
 The isolated 5 V and 12 V outputs are protected by resettable fuses, which cut and re-close rather than failing permanently — so an over-current shows up as an intermittent load, not a dead rail. Check the draw against the ratings in [Specifications](#specifications), remembering that channels on the same port share that port's budget.
 
-For fault and alarm codes, see [Fault codes](/support/fault-codes). General questions are answered on the [Support FAQ](/support/faq).
+General questions are answered on the [Support FAQ](/support/faq).
 
 ## Support
 
 Collect the hardware revision (V2.1 or V2.2), firmware version and logs before raising a ticket — [Before you contact us](/support/before-you-contact-us) lists what helps and includes the commands to gather it.
 
 - [Support centre](/support/intro) — all support resources
-- [Identify your product](/support/identify-your-product) — where to find the serial number
 - [Warranty and RMA](/support/warranty-and-rma) — repairs, replacements and returns

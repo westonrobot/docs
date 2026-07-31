@@ -91,12 +91,11 @@ CAN interfaces have to be brought up explicitly and do not persist across a rebo
 
 The CM4 board is smaller and its CAN and RS485 ports are isolated. The [NanoPC](/peripheral/computer/nanopc) has substantially more compute, three CAN interfaces rather than two, and both RS485 and RS232. For anything involving perception or a GPU, neither is the right answer — see the [reComputer J4012](/peripheral/computer/j4012).
 
-For fault and alarm codes, see [Fault codes](/support/fault-codes). General questions are answered on the [Support FAQ](/support/faq).
+General questions are answered on the [Support FAQ](/support/faq).
 
 ## Support
 
 Collect the serial number, OS image version and logs before raising a ticket — [Before you contact us](/support/before-you-contact-us) lists what helps and includes the commands to gather it.
 
 - [Support centre](/support/intro) — all support resources
-- [Identify your product](/support/identify-your-product) — where to find the serial number
 - [Warranty and RMA](/support/warranty-and-rma) — repairs, replacements and returns
