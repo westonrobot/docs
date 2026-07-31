@@ -35,22 +35,6 @@ That points at thermal protection. "The robot keeps failing" points nowhere.
 
 **Photos and video** — the robot, any damage, how payloads are mounted. Ten seconds of video beats a paragraph when the problem is a movement.
 
-<details>
-<summary>System log commands, if you are on a Linux onboard computer</summary>
-
-```bash
-journalctl -b --no-pager > journal.txt          # system log, current boot
-dmesg > dmesg.txt                               # USB, CAN and power problems
-dpkg -l | grep -i -E 'wr|weston' > packages.txt # our package versions
-candump -l can0                                 # CAN bus capture, needs can-utils
-```
-
-Capture before rebooting if you safely can — `journalctl -b` covers the current boot only. Use `journalctl -b -1` if you have already rebooted.
-
-See [Robot Base Control](/tutorial/agilex/ugv_base_control) for CAN interface setup.
-
-</details>
-
 ## Then contact us
 
 [Submit a support request](https://forms.office.com/r/qELKzYF33W).
