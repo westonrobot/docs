@@ -261,5 +261,4 @@ The isolated 5 V and 12 V outputs are protected by resettable fuses, which cut a
 
 Collect the hardware revision (V2.1 or V2.2), firmware version and logs before raising a ticket — [Before you contact us](/support/before-you-contact-us) lists what helps and includes the commands to gather it.
 
-- [Support centre](/support/intro) — all support resources
-- [Warranty and RMA](/support/warranty-and-rma) — repairs, replacements and returns
+[Submit a support request](https://forms.office.com/r/qELKzYF33W).

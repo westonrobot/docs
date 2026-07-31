@@ -265,11 +265,11 @@ Per §0 this is the highest-value section on the site. Every page is one a suppo
 | `faq` | **complete** | — |
 | ~~`identify-your-product`~~ | **removed** | Serial-number location is a per-product physical fact; it now lives on each product page under Key information |
 | ~~`fault-codes`~~ | **removed** | A single site-wide code list was the wrong shape. Fault and alarm codes are per firmware, so they belong on the robot family or vendor page that owns that firmware |
-| `warranty-and-rma` | **scaffold only** | Coverage period, exclusions, RMA process, shipping, third-party split |
+| ~~`warranty-and-rma`~~ | **removed** | Never written — warranty terms are commercial commitments. Warranty questions go through the support form like anything else |
 
 `identify-your-product` was removed. It ended up 13 rows of which 11 said `TODO`, and every product page sent readers a hop to it to find nothing. The two facts that were real — the Unitree battery-compartment location, and the Power Regulator label — moved onto the pages that own those products. Same reasoning as `fault-codes`: content that varies per vendor or model does not belong in one site-wide table.
 
-`warranty-and-rma` carries a prominent admonition saying nothing on it is authoritative yet, and states exactly what input it needs — warranty terms are commercial commitments, and inventing them would promise something Weston Robot has not agreed to.
+`warranty-and-rma` was removed rather than completed. It never carried anything authoritative — warranty terms are commercial commitments, and inventing them would promise something Weston Robot has not agreed to. Support is now deliberately two things: what to collect, and where to send it. A placeholder page that says "contact support" is a hop, not an answer.
 
 `fault-codes` was removed rather than filled in. Codes come from firmware, so one site-wide list would have had to span every vendor and every revision, and a wrong entry sends a customer down the wrong diagnostic path. They will be documented per robot family or vendor instead, on the page that owns that firmware.
 

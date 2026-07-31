@@ -5,7 +5,6 @@ tags: [unitree, g1, networking]
 
 # G1 Internet Access Guide
 
-
 This guide details 2 methods to provide the internal development PC (192.168.123.164) internet access.
 The first method utilises the WiFi card onboard the internal development PC to connect to a WiFi Access Point with internet access.
 The second method configures a host computer to connect to the internal development PC using a static IP over Ethernet and share internet access from the host.

@@ -137,5 +137,4 @@ The WRL63 is the **long-reach** member of the range. If reach matters less than 
 
 Collect the serial number, firmware version and logs before raising a ticket — [Before you contact us](/support/before-you-contact-us) lists what helps and includes the commands to gather it.
 
-- [Support centre](/support/intro) — all support resources
-- [Warranty and RMA](/support/warranty-and-rma) — repairs, replacements and returns
+[Submit a support request](https://forms.office.com/r/qELKzYF33W).

@@ -413,10 +413,8 @@ Control is disabled by default and has to be requested or toggled on. Confirm th
 
 Check the installed package: `wr_assisted_teleop` is v1, `wr-ad-toolbox` is v2, `wr-mission-control` is v3. See [Versions](#versions).
 
-
 ## Support
 
 Tell us which ADT version you are running and which robot you were connecting to — [Before you contact us](/support/before-you-contact-us) lists what else helps.
 
-- [Support centre](/support/intro) — all support resources
-- [Warranty and RMA](/support/warranty-and-rma) — repairs, replacements and returns
+[Submit a support request](https://forms.office.com/r/qELKzYF33W).

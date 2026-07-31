@@ -50,7 +50,6 @@ Now follow the steps below to setup the repository.
       sudo tee -a /etc/apt/sources.list.d/weston-robot.list > /dev/null
     ```
 
-
 Now you can update the index and install packages with "apt-get" command. 
 
 ```bash

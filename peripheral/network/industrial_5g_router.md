@@ -140,5 +140,4 @@ Confirm the network it joined actually has internet, and that **Role** is set to
 
 Collect the serial number, firmware version and the configuration you are using before raising a ticket — [Before you contact us](/support/before-you-contact-us) lists what helps.
 
-- [Support centre](/support/intro) — all support resources
-- [Warranty and RMA](/support/warranty-and-rma) — repairs, replacements and returns
+[Submit a support request](https://forms.office.com/r/qELKzYF33W).

@@ -164,7 +164,6 @@ The carrier board provides the following interfaces:
     <img src={DEV_PC_HW_IF_IMG} alt="Development PC Hardware Interface" style={{ height: 400 }} />
 </div>
 
-
 | No. | Connector Name | Interface Description | Interface specification                                           |
 | --- | -------------- | --------------------- | ----------------------------------------------------------------- |
 | 1   | XT30UPB-F      | VBAT                  | 58V/5A Battery power output (directly connected to battery power) |

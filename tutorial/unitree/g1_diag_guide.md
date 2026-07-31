@@ -104,7 +104,6 @@ Once connected, you can access the robot's diagnostic information by navigating 
 | ![Left Bottom](./img/g1_state_03.jpg) | ![Middle Bottom](./img/g1_state_04.jpg) |
 | ![Left Top](./img/g1_state_05.jpg)    | ![Middle Top](./img/g1_state_06.jpg)    |
 
-
 ## Reporting the Issue
 
 When reaching out to our support team, please provide a structured and detailed account of the problem. Please consider the following questions when reporting the issue:

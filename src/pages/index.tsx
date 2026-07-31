@@ -5,7 +5,6 @@ import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 import {
   FaShieldAlt,
-  FaBoxOpen,
   FaTerminal,
   FaQuestionCircle,
   FaWrench,
@@ -86,24 +85,18 @@ const SECTIONS = [
   },
   {
     lead: 'Support',
-    to: '/support/intro',
+    to: '/support/before-you-contact-us',
     links: [
       {
-        to: '/support/intro',
-        text: 'Support centre',
-        body: 'Everything support-related in one place',
+        to: '/support/before-you-contact-us',
+        text: 'Before you contact us',
+        body: 'What to collect, and the commands for it',
         icon: FaQuestionCircle,
       },
       {
-        to: '/support/warranty-and-rma',
-        text: 'Warranty & RMA',
-        body: 'Repairs, replacements and returns',
-        icon: FaBoxOpen,
-      },
-      {
-        to: '/support/before-you-contact-us',
-        text: 'Contact us',
-        body: 'What to collect before raising a ticket',
+        to: 'https://forms.office.com/r/qELKzYF33W',
+        text: 'Submit a request',
+        body: 'Opens our support form',
         icon: FaHeadset,
       },
     ],

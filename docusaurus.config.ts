@@ -242,7 +242,7 @@ const config: Config = {
         },
         {
             type: 'doc',
-            docId: 'intro',
+            docId: 'before-you-contact-us',
             docsPluginId: 'support',
             position: 'left',
             label: 'Support',

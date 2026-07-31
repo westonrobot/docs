@@ -64,4 +64,4 @@ Every guide is tagged with the models it applies to, so you can start from the r
 
 ---
 
-Looking for a complete deployed capability rather than a single task? See [Solutions](/solution/intro). Something wrong, or need to reach us? See [Support](/support/intro).
+Looking for a complete deployed capability rather than a single task? See [Solutions](/solution/intro). Something wrong, or need to reach us? See [Support](/support/before-you-contact-us).
