@@ -4,7 +4,6 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import Heading from '@theme/Heading';
 import {
-  FaSearch,
   FaShieldAlt,
   FaBoxOpen,
   FaTerminal,
@@ -111,31 +110,6 @@ const SECTIONS = [
   },
 ];
 
-/**
- * A large target that hands off to the real search in the navbar.
- *
- * Rendering a second <SearchBar> here does not work: docusaurus-lunr-search
- * binds its autocomplete to `#search_input_react`, so a second instance
- * duplicates that id (invalid HTML) and only the first one in the DOM — the
- * navbar's — is ever wired up. The hero box looked fine and did nothing.
- */
-function SearchPrompt() {
-  const focusNavbarSearch = () => {
-    document.querySelector<HTMLInputElement>('.navbar__search-input')?.focus();
-  };
-  return (
-    <button
-      type="button"
-      className={styles.searchPrompt}
-      onClick={focusNavbarSearch}
-      aria-label="Search the documentation">
-      <FaSearch className={styles.searchPromptIcon} aria-hidden="true" />
-      <span className={styles.searchPromptText}>Search the documentation</span>
-      <kbd className={styles.searchPromptKbd}>Ctrl K</kbd>
-    </button>
-  );
-}
-
 export default function Home(): React.ReactNode {
   const {siteConfig} = useDocusaurusContext();
   return (
@@ -152,9 +126,6 @@ export default function Home(): React.ReactNode {
             <p className={styles.heroSubtitle}>
               Setup, interfaces and support for the hardware you own.
             </p>
-            <div className={styles.heroSearch}>
-              <SearchPrompt />
-            </div>
           </div>
         </header>
 

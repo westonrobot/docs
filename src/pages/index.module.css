@@ -17,77 +17,22 @@
 }
 
 .hero {
-  padding: clamp(1.6rem, 3.3vh, 3.25rem) 0 clamp(1.4rem, 2.9vh, 2.75rem);
+  padding: clamp(2.2rem, 4.6vh, 4.5rem) 0 clamp(2.1rem, 4.4vh, 4.25rem);
   text-align: center;
   background: var(--ifm-color-primary-darkest);
   color: #fff;
 }
 
 .heroTitle {
-  font-size: clamp(1.85rem, 3.8vh, 2.6rem);
+  font-size: clamp(2.1rem, 4.6vh, 3.4rem);
   line-height: 1.2;
-  margin-bottom: 0.35rem;
+  margin-bottom: clamp(0.4rem, 1vh, 0.75rem);
 }
 
 .heroSubtitle {
-  font-size: clamp(1rem, 1.9vh, 1.15rem);
-  opacity: 0.85;
-  margin-bottom: clamp(1rem, 2.1vh, 1.9rem);
-}
-
-.heroSearch {
-  display: flex;
-  justify-content: center;
-}
-
-/* Styled as a field but rendered as a button, because it hands off to the
-   navbar's search rather than being an input of its own — see SearchPrompt. */
-.searchPrompt {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  width: 100%;
-  max-width: 520px;
-  height: clamp(2.6rem, 5.4vh, 3.25rem);
-  padding: 0 0.9rem;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.12);
-  color: rgba(255, 255, 255, 0.9);
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: background 200ms ease, border-color 200ms ease;
-}
-
-.searchPrompt:hover {
-  background: rgba(255, 255, 255, 0.18);
-  border-color: rgba(255, 255, 255, 0.45);
-}
-
-.searchPrompt:focus-visible {
-  outline: 2px solid #fff;
-  outline-offset: 2px;
-}
-
-.searchPromptIcon {
-  flex: none;
-  opacity: 0.85;
-}
-
-.searchPromptText {
-  flex: 1;
-  text-align: left;
-}
-
-.searchPromptKbd {
-  flex: none;
-  font-size: 0.72rem;
-  padding: 0.12rem 0.4rem;
-  border-radius: 4px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  background: rgba(255, 255, 255, 0.1);
-  color: inherit;
-  box-shadow: none;
+  font-size: clamp(1.05rem, 2.15vh, 1.4rem);
+  opacity: 0.88;
+  margin-bottom: 0;
 }
 
 .main {
