@@ -56,15 +56,16 @@
 }
 
 /* Only add underlines to links in content/markdown areas.
-   Product cards are excluded: the whole card is one link, so this rule would
-   underline its title and description as if they were body-text links. */
-.markdown a:not(.product-card) {
+   Two exclusions: a product card is one link wrapping a whole card, and a
+   button is already styled as an affordance — underlining either makes it look
+   like body text that has gone wrong. */
+.markdown a:not(.product-card):not(.button) {
   font-weight: 500;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
-.markdown a:not(.product-card):hover {
+.markdown a:not(.product-card):not(.button):hover {
   text-decoration: underline;
   text-underline-offset: 3px;
   transition: all 0.2s ease;
