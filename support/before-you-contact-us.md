@@ -13,7 +13,7 @@ Two things matter most.
 
 <KeyPoints>
 
-<KeyPoint marker="1" title="Which unit" lede="The serial number, and the firmware version if you have it.">
+<KeyPoint marker="1" title="Which unit" lede="The robot model and serial number.">
 
 Not sure which number it is? Photograph the sticker on the robot or on the remote controller and send that — we can read it from there.
 
@@ -29,11 +29,11 @@ What the robot was doing **just before**, what happened **at the moment**, and w
 
 ### Anything else you can add
 
+- **Photos or video** — especially of how payloads are mounted, or ten seconds of the fault if it is a movement.
 - **What you observed** — exact error text, which lights and what colour, whether the joints were stiff or limp.
 - **Whether it reproduces** — every time, sometimes, or once. If it is safe to try: with nothing mounted, on flat ground, after a power cycle?
 - **What changed recently** — firmware, packages, payload, site, transport. "Nothing" is a real answer.
 - **Logs, starting with your own program's** — the output of whatever was driving the robot is the one thing we cannot get any other way. Send text as text, not a photo of a terminal.
-- **Photos or video** — especially of how payloads are mounted, or ten seconds of the fault if it is a movement.
 
 :::tip What a useful description looks like
 
