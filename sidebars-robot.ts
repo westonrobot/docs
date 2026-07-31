@@ -38,6 +38,7 @@ const sidebarsRobot: SidebarsConfig = {
         'manipulator/wr65',
         'manipulator/wrl63',
         'manipulator/xarm',
+        'manipulator/nero',
         'manipulator/z1',
         'manipulator/piper',
         'manipulator/kinova-gen3-lite'

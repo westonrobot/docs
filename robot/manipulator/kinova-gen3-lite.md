@@ -1,5 +1,5 @@
 ---
-sidebar_position: 6
+sidebar_position: 7
 description: "Kinova Gen3 Lite manipulator: setup, control interface, resources and support."
 ---
 

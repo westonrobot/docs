@@ -64,6 +64,8 @@ particular can fall without warning during development.
 
 <ProductCard to="/robot/manipulator/xarm" src={require('./img/ufactory/xarm.png').default} alt="UFactory xArm manipulator" title="xArm">UFactory's industrial arm family, in 5, 6 and 7-axis variants.</ProductCard>
 
+<ProductCard to="/robot/manipulator/nero" src={require('./img/agilex/nero.png').default} alt="AgileX NERO seven-axis manipulator" title="NERO">AgileX's 7-DOF research arm. Documentation in preparation.</ProductCard>
+
 <ProductCard to="/robot/manipulator/z1" src={require('./img/unitree/z1_arm.png').default} alt="Unitree Z1 manipulator" title="Z1">Unitree's 6-DOF arm, sized for mounting on their quadrupeds.</ProductCard>
 
 <ProductCard to="/robot/manipulator/piper" src={require('./img/agilex/piper.png').default} alt="AgileX Piper manipulator" title="Piper">AgileX's lightweight 6-DOF arm for research and light handling.</ProductCard>
