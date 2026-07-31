@@ -1,23 +1,34 @@
 /* Landing page.
-   Deliberately restrained: this site's readers already own the hardware and
-   arrive with a task, so the page is a set of doors rather than a pitch. */
+   Two rules: it fits in one viewport without scrolling, and everything on it is
+   a real destination. Readers already own the hardware and arrive with a task,
+   so this is a set of doors rather than a pitch.
+
+   Vertical budget is tight — a 1366x768 laptop leaves roughly 640px once the
+   browser chrome and navbar are gone — so sizes here are deliberately smaller
+   than the in-page equivalents. */
+
+.page {
+  display: flex;
+  flex-direction: column;
+}
 
 .hero {
-  padding: 3rem 0 2.5rem;
+  padding: 1.6rem 0 1.4rem;
   text-align: center;
   background: var(--ifm-color-primary-darkest);
   color: #fff;
 }
 
 .heroTitle {
-  font-size: 2.4rem;
-  margin-bottom: 0.5rem;
+  font-size: 1.85rem;
+  line-height: 1.2;
+  margin-bottom: 0.35rem;
 }
 
 .heroSubtitle {
-  font-size: 1.1rem;
+  font-size: 1rem;
   opacity: 0.85;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1rem;
 }
 
 .heroSearch {
@@ -32,14 +43,14 @@
   align-items: center;
   gap: 0.7rem;
   width: 100%;
-  max-width: 560px;
-  height: 3rem;
+  max-width: 520px;
+  height: 2.6rem;
   padding: 0 0.9rem;
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.12);
   color: rgba(255, 255, 255, 0.9);
-  font-size: 1rem;
+  font-size: 0.95rem;
   cursor: pointer;
   transition: background 200ms ease, border-color 200ms ease;
 }
@@ -66,8 +77,8 @@
 
 .searchPromptKbd {
   flex: none;
-  font-size: 0.75rem;
-  padding: 0.15rem 0.45rem;
+  font-size: 0.72rem;
+  padding: 0.12rem 0.4rem;
   border-radius: 4px;
   border: 1px solid rgba(255, 255, 255, 0.35);
   background: rgba(255, 255, 255, 0.1);
@@ -75,90 +86,129 @@
   box-shadow: none;
 }
 
-@media (max-width: 768px) {
-  .hero {
-    padding: 2rem 0 1.75rem;
-  }
-  .heroTitle {
-    font-size: 1.75rem;
-  }
+.main {
+  padding: 1.15rem 0 0.9rem;
 }
 
-.section {
-  margin-bottom: 2.5rem;
+/* Shorter tiles than a hub page uses, to keep the whole layout above the fold.
+   ProductCard reads this variable. */
+.families {
+  --product-card-media-height: 98px;
 }
 
-.sectionTitle {
-  font-size: 1.35rem;
-  margin-bottom: 1rem;
+.families :global(.margin-vert--lg) {
+  margin: 0;
 }
 
-/* Task shortcuts: icon + label + one line of what it is for. Same card
-   treatment as ProductCard so the page reads as one set. */
-.taskGrid {
+/* Two labelled groups of compact tiles. The grouping is the guidance cue —
+   "which of these is my situation" — and the tiles keep the same card language
+   as the product row above without repeating its weight. */
+.sections {
   display: grid;
-  gap: 1rem;
+  gap: 1.25rem 2rem;
   grid-template-columns: 1fr;
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--ifm-color-emphasis-200);
 }
 
-@media (min-width: 700px) {
-  .taskGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+@media (min-width: 997px) {
+  .sections {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-.taskCard {
+.sectionGroup {
+  min-width: 0;
+}
+
+.sectionLead {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+  color: var(--ifm-color-emphasis-800);
+}
+
+.sectionTiles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.6rem;
+}
+
+.sectionTile {
   display: flex;
   align-items: flex-start;
-  gap: 0.9rem;
-  padding: 1rem 1.1rem;
+  gap: 0.5rem;
+  min-width: 0;
+  padding: 0.5rem 0.65rem;
   border: 1px solid var(--ifm-color-emphasis-200);
   border-radius: 8px;
   background: var(--ifm-background-surface-color);
+  font-size: 0.85rem;
+  line-height: 1.25;
   transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
 }
 
-.taskCard,
-.taskCard:hover {
+.sectionTile,
+.sectionTile:hover {
   color: var(--ifm-font-color-base);
   text-decoration: none;
 }
 
-.taskCard:hover {
+.sectionTile:hover {
   border-color: var(--ifm-color-primary);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  transform: translateY(-1px);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .taskCard {
+  .sectionTile {
     transition: none;
   }
-  .taskCard:hover {
+  .sectionTile:hover {
     transform: none;
   }
 }
 
-.taskIcon {
+.sectionIcon {
   flex: none;
-  font-size: 1.25rem;
-  margin-top: 0.15rem;
+  font-size: 1rem;
+  margin-top: 0.12rem;
   color: var(--ifm-color-primary);
 }
 
-.taskText {
+@media (max-width: 996px) {
+  .hero {
+    padding: 1.5rem 0 1.25rem;
+  }
+  .heroTitle {
+    font-size: 1.6rem;
+  }
+  .heroSubtitle {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .sectionTiles {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sectionText {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
+  gap: 0.1rem;
+  min-width: 0;
 }
 
-.taskTitle {
+.sectionTitle {
   font-weight: 600;
-  line-height: 1.3;
+  line-height: 1.25;
 }
 
-.taskBody {
-  font-size: 0.87rem;
-  line-height: 1.45;
+.sectionBody {
+  font-size: 0.78rem;
+  line-height: 1.35;
   color: var(--ifm-color-emphasis-700);
 }

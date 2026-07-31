@@ -9,7 +9,7 @@ import {
   FaBoxOpen,
   FaTerminal,
   FaQuestionCircle,
-  FaExclamationTriangle,
+  FaWrench,
   FaHeadset,
 } from 'react-icons/fa';
 
@@ -19,12 +19,11 @@ import styles from './index.module.css';
 /**
  * The landing page for a site whose readers already own the hardware.
  *
- * It replaced a two-step decision tree in which nothing was reachable in one
- * click, the first click revealed nothing ("Hardware & Information" is not
- * information), and the sub-steps lived in React state — so they had no URLs,
- * broke the back button, and were invisible to search indexing.
- *
- * Everything here is a real destination, visible without interaction.
+ * Two constraints shape it. It fits in one viewport without scrolling, and
+ * everything on it is a real destination — it replaced a decision tree where
+ * nothing was reachable in one click, the sub-steps lived in React state so
+ * they had no URLs and broke the back button, and search indexing saw only the
+ * opening question.
  */
 
 const FAMILIES = [
@@ -33,70 +32,82 @@ const FAMILIES = [
     src: require('@site/robot/img/unitree/Go2_robot.png').default,
     alt: 'Robot platforms',
     title: 'Robots',
-    body: 'UGVs, quadrupeds, humanoids and manipulators — 13 platforms.',
+    body: 'UGVs, quadrupeds, humanoids, manipulators',
   },
   {
     to: '/peripheral/intro',
     src: require('@site/peripheral/img/westonrobot/j4012.png').default,
     alt: 'Peripherals',
     title: 'Peripherals',
-    body: 'Onboard computers, networking, power and sensors.',
+    body: 'Computers, networking, power, sensors',
   },
   {
     to: '/system/ugv_devkit',
     src: require('@site/system/ugv_devkit/img/devkit_views_standard.png').default,
     alt: 'Integrated systems',
     title: 'Systems',
-    body: 'Pre-integrated kits that mount on a robot base.',
+    body: 'Pre-integrated kits for a robot base',
   },
   {
     to: '/solution/intro',
     src: require('@site/solution/adt/img/adt/adt_v3_04.png').default,
     alt: 'Solutions',
     title: 'Solutions',
-    body: 'Capabilities we develop and deploy on a platform.',
+    body: 'Capabilities we deploy on a platform',
   },
 ];
 
-const FIRST_RUN = [
+/* The top row covers Products and Solutions; these are the other two navbar
+   sections. Each entry carries one line of what it actually contains, so a
+   first-time reader can tell whether it is the page they want before clicking. */
+const SECTIONS = [
   {
-    to: '/tutorial/operational-safety',
-    icon: FaShieldAlt,
-    title: 'Operational Safety',
-    body: 'Read before powering anything for the first time.',
+    lead: 'Guides',
+    to: '/tutorial/intro',
+    links: [
+      {
+        to: '/tutorial/operational-safety',
+        text: 'Operational safety',
+        body: 'Read before the first power-on',
+        icon: FaShieldAlt,
+      },
+      {
+        to: '/tutorial/robot-maintenance',
+        text: 'Robot maintenance',
+        body: 'Tyres, batteries, joints, storage',
+        icon: FaWrench,
+      },
+      {
+        to: '/tutorial/installation/apt_source',
+        text: 'Package source',
+        body: 'Add before installing our packages',
+        icon: FaTerminal,
+      },
+    ],
   },
   {
-    to: '/support/identify-your-product',
-    icon: FaBoxOpen,
-    title: 'Identify your product',
-    body: 'Which model you have, and where the serial number is.',
-  },
-  {
-    to: '/tutorial/installation/apt_source',
-    icon: FaTerminal,
-    title: 'Add our package source',
-    body: 'Needed before installing any Weston Robot package.',
-  },
-];
-
-const WHEN_STUCK = [
-  {
-    to: '/support/faq',
-    icon: FaQuestionCircle,
-    title: 'Support FAQ',
-    body: 'Waterproofing, joint wear, thermal behaviour, wired vs WiFi.',
-  },
-  {
-    to: '/support/fault-codes',
-    icon: FaExclamationTriangle,
-    title: 'Fault codes',
-    body: 'What an error or alarm code means.',
-  },
-  {
-    to: '/support/before-you-contact-us',
-    icon: FaHeadset,
-    title: 'Contact support',
-    body: 'What to collect first, and the commands to collect it.',
+    lead: 'Support',
+    to: '/support/intro',
+    links: [
+      {
+        to: '/support/faq',
+        text: 'FAQ',
+        body: 'Waterproofing, wear, wired vs WiFi',
+        icon: FaQuestionCircle,
+      },
+      {
+        to: '/support/warranty-and-rma',
+        text: 'Warranty & RMA',
+        body: 'Repairs, replacements and returns',
+        icon: FaBoxOpen,
+      },
+      {
+        to: '/support/before-you-contact-us',
+        text: 'Contact us',
+        body: 'What to collect before raising a ticket',
+        icon: FaHeadset,
+      },
+    ],
   },
 ];
 
@@ -110,8 +121,7 @@ const WHEN_STUCK = [
  */
 function SearchPrompt() {
   const focusNavbarSearch = () => {
-    const input = document.querySelector<HTMLInputElement>('.navbar__search-input');
-    input?.focus();
+    document.querySelector<HTMLInputElement>('.navbar__search-input')?.focus();
   };
   return (
     <button
@@ -126,70 +136,62 @@ function SearchPrompt() {
   );
 }
 
-function TaskList({items}: {items: typeof FIRST_RUN}) {
-  return (
-    <div className={styles.taskGrid}>
-      {items.map(({to, icon: Icon, title, body}) => (
-        <Link key={to} to={to} className={styles.taskCard}>
-          <Icon className={styles.taskIcon} aria-hidden="true" />
-          <span className={styles.taskText}>
-            <span className={styles.taskTitle}>{title}</span>
-            <span className={styles.taskBody}>{body}</span>
-          </span>
-        </Link>
-      ))}
-    </div>
-  );
-}
-
 export default function Home(): React.ReactNode {
   const {siteConfig} = useDocusaurusContext();
   return (
     <Layout
       title={siteConfig.title}
       description="Setup, interfaces and support for Weston Robot platforms, peripherals and systems.">
-      <header className={styles.hero}>
-        <div className="container">
-          <Heading as="h1" className={styles.heroTitle}>
-            Weston Robot Documentation
-          </Heading>
-          <p className={styles.heroSubtitle}>
-            Setup, interfaces and support for the hardware you own.
-          </p>
-          <div className={styles.heroSearch}>
-            <SearchPrompt />
+      <div className={styles.page}>
+        <header className={styles.hero}>
+          <div className="container">
+            <Heading as="h1" className={styles.heroTitle}>
+              Weston Robot Documentation
+            </Heading>
+            <p className={styles.heroSubtitle}>
+              Setup, interfaces and support for the hardware you own.
+            </p>
+            <div className={styles.heroSearch}>
+              <SearchPrompt />
+            </div>
           </div>
-        </div>
-      </header>
+        </header>
 
-      <main className="container margin-vert--lg">
-        <section className={styles.section}>
-          <Heading as="h2" className={styles.sectionTitle}>
-            Find your product
-          </Heading>
-          <ProductGrid columns={4}>
-            {FAMILIES.map(({to, src, alt, title, body}) => (
-              <ProductCard key={to} to={to} src={src} alt={alt} title={title}>
-                {body}
-              </ProductCard>
-            ))}
-          </ProductGrid>
-        </section>
+        <main className={styles.main}>
+          <div className="container">
+            <div className={styles.families}>
+              <ProductGrid columns={4}>
+                {FAMILIES.map(({to, src, alt, title, body}) => (
+                  <ProductCard key={to} to={to} src={src} alt={alt} title={title}>
+                    {body}
+                  </ProductCard>
+                ))}
+              </ProductGrid>
+            </div>
 
-        <section className={styles.section}>
-          <Heading as="h2" className={styles.sectionTitle}>
-            First time with a new unit
-          </Heading>
-          <TaskList items={FIRST_RUN} />
-        </section>
-
-        <section className={styles.section}>
-          <Heading as="h2" className={styles.sectionTitle}>
-            Something not working
-          </Heading>
-          <TaskList items={WHEN_STUCK} />
-        </section>
-      </main>
+            <div className={styles.sections}>
+              {SECTIONS.map(({lead, to, links}) => (
+                <section key={lead} className={styles.sectionGroup}>
+                  <h2 className={styles.sectionLead}>
+                    <Link to={to}>{lead}</Link>
+                  </h2>
+                  <div className={styles.sectionTiles}>
+                    {links.map(({to: href, text, body, icon: Icon}) => (
+                      <Link key={href} to={href} className={styles.sectionTile}>
+                        <Icon className={styles.sectionIcon} aria-hidden="true" />
+                        <span className={styles.sectionText}>
+                          <span className={styles.sectionTitle}>{text}</span>
+                          <span className={styles.sectionBody}>{body}</span>
+                        </span>
+                      </Link>
+                    ))}
+                  </div>
+                </section>
+              ))}
+            </div>
+          </div>
+        </main>
+      </div>
     </Layout>
   );
 }
