@@ -21,16 +21,34 @@ The frame is what everything mounts to, and what determines where an added compo
 <Tabs groupId="devkit-generation">
 <TabItem value="v11" label="v1.1" default>
 
-![UGV Devkit v1.1 standard configuration, multiple views](./img/devkit_views_standard.png)
-
-![UGV Devkit v1.1 extension configuration, multiple views](./img/devkit_views_extension.png)
+<FigureGrid columns={2}>
+  <Figure
+    src={require('./img/devkit_views_standard.png').default}
+    alt="UGV Devkit v1.1 standard configuration, isometric with front and side views"
+    framed
+    caption="Standard kit." />
+  <Figure
+    src={require('./img/devkit_views_extension.png').default}
+    alt="UGV Devkit v1.1 with the extension layer, isometric with front and side views"
+    framed
+    caption="With the extension layer." />
+</FigureGrid>
 
 </TabItem>
 <TabItem value="v10" label="v1.0">
 
-![UGV Devkit v1.0 main frame, isometric view](./img/base_iso.png)
-
-![UGV Devkit v1.0 main frame dimensions](./img/dimensions.png)
+<FigureGrid columns={2}>
+  <Figure
+    src={require('./img/base_iso.png').default}
+    alt="UGV Devkit v1.0 main frame, isometric view"
+    framed
+    caption="Main frame." />
+  <Figure
+    src={require('./img/dimensions.png').default}
+    alt="UGV Devkit v1.0 main frame dimensions"
+    framed
+    caption="Frame dimensions." />
+</FigureGrid>
 
 </TabItem>
 </Tabs>
@@ -46,12 +64,20 @@ Identical on both generations:
 <Tabs groupId="devkit-generation">
 <TabItem value="v11" label="v1.1" default>
 
-![Front latch separated from the main frame](./img/v1.1/front_plate2.png)
+<Figure
+  src={require('./img/v1.1/front_plate2.png').default}
+  alt="Front latch separated from the main frame"
+  size="lg"
+  framed />
 
 </TabItem>
 <TabItem value="v10" label="v1.0">
 
-![Front latch separated from the main frame](./img/front_plate.png)
+<Figure
+  src={require('./img/front_plate.png').default}
+  alt="Front latch separated from the main frame"
+  size="lg"
+  framed />
 
 </TabItem>
 </Tabs>
@@ -68,19 +94,34 @@ Internal hardware and wiring can be reached either from the side, or by sliding 
 <Tabs groupId="devkit-generation">
 <TabItem value="v11" label="v1.1" default>
 
-![Hardware rack slid out on its rails](./img/v1.1/rails2.png)
+<Figure
+  src={require('./img/v1.1/rails2.png').default}
+  alt="Hardware rack slid out on its rails"
+  size="lg"
+  framed
+  caption="Hardware rack on its rails." />
 
 **To remove a side door** — v1.1 only:
 
 1. Remove the locking thumb screws.
 2. Lift the door away.
 
-![Side door removed from the main frame](./img/side_doors.png)
+<Figure
+  src={require('./img/side_doors.png').default}
+  alt="Side door removed from the main frame"
+  size="lg"
+  framed
+  caption="Side door removed." />
 
 </TabItem>
 <TabItem value="v10" label="v1.0">
 
-![Hardware rack slid out on its rails](./img/rails.png)
+<Figure
+  src={require('./img/rails.png').default}
+  alt="Hardware rack slid out on its rails"
+  size="lg"
+  framed
+  caption="Hardware rack on its rails." />
 
 The v1.0 frame has no removable side doors — access is through the open sides or by sliding the rack out.
 

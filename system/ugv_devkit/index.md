@@ -17,11 +17,26 @@ Two generations are in the field. The quickest way to tell them apart is the onb
 
 </div>
 
+<Tabs groupId="devkit-generation">
+<TabItem value="v11" label="v1.1" default>
+
 <Figure
-  src={require('./img/overview.jpg').default}
-  alt="UGV Development Kits mounted on robot bases"
+  src={require('./img/devkit_views_standard.png').default}
+  alt="UGV Development Kit v1.1 enclosure, isometric with front and side views"
   size="hero"
   framed />
+
+</TabItem>
+<TabItem value="v10" label="v1.0">
+
+<Figure
+  src={require('./img/base_iso.png').default}
+  alt="UGV Development Kit v1.0 enclosure, isometric view"
+  size="hero"
+  framed />
+
+</TabItem>
+</Tabs>
 
 </Split>
 
@@ -60,7 +75,9 @@ not as a supported product.
 
 **Base configuration**, pre-integrated and wired:
 
-* **Onboard computer** — [NanoPC](/peripheral/computer/nanopc) on v1.0, [reComputer J4012](/peripheral/computer/j4012) on v1.1
+* **Onboard computer**:
+  * [NanoPC](/peripheral/computer/nanopc) on v1.0
+  * [reComputer J4012](/peripheral/computer/j4012) on v1.1
 * [Power Regulator v2.X](/peripheral/power/power_regulator_v2)
 * [Industrial 5G / WiFi router](/peripheral/network/industrial_5g_router)
 
@@ -117,12 +134,22 @@ Input is 18–32 V at up to 20 A. Fusing, connector types, the CANopen control i
 <Tabs groupId="devkit-generation">
 <TabItem value="v11" label="v1.1" default>
 
-![Power regulator as fitted in the v1.1 kit](./img/v1.1/pwr_reg2.png)
+<Figure
+  src={require('./img/v1.1/pwr_reg2.png').default}
+  alt="Power regulator as fitted in the v1.1 kit"
+  size="lg"
+  framed
+  caption="Regulator position in the v1.1 kit. Click to enlarge." />
 
 </TabItem>
 <TabItem value="v10" label="v1.0">
 
-![Power regulator as fitted in the v1.0 kit](./img/pwr_reg.png)
+<Figure
+  src={require('./img/pwr_reg.png').default}
+  alt="Power regulator as fitted in the v1.0 kit"
+  size="lg"
+  framed
+  caption="Regulator position in the v1.0 kit. Click to enlarge." />
 
 </TabItem>
 </Tabs>

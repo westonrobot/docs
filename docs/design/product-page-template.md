@@ -523,6 +523,23 @@ This is the mechanism `ia-proposal.md` §7 specifies for per-revision variants, 
 
 Reach for a version table when differences are a handful of values; tabs when they are blocks of content; separate pages only when the versions genuinely diverge in what you *do* with them.
 
+### Tabbed images must be trimmed, or they look mis-sized
+
+Two images of the same thing rarely carry the same margin. Across the devkit set, padding ranged from 4 % (`base_iso`) to 62 % (`front_plate`), so at equal display width the content inside one could appear half the size of its counterpart — switching tabs looked like a zoom change rather than a version change.
+
+**Trim every tabbed image to its content.** Nothing else is needed: once content fills the frame, a width-constrained image renders its content at the same width in both tabs, and a height-constrained one (`size="hero"`) at the same height. Padding to a shared aspect ratio is not required and costs resolution.
+
+Measured on the devkit page after trimming:
+
+| | v1.1 | v1.0 |
+| --- | --- | --- |
+| Hero (`size="hero"`, height-capped) | 256 × **260** | 280 × **260** |
+| Regulator (`size="lg"`, width-capped) | **680** × 363 | **680** × 314 |
+
+Pair images of like kind, too. The devkit hero pairs two isometric CAD drawings; pairing a photograph against a line drawing looks mismatched however carefully it is sized.
+
+These drawings are black line art on white and are **not** keyed to transparency — black strokes on a transparent background disappear in dark mode. They keep their white background and use `framed`. Quantising them to a 256-colour palette is visually lossless and cut the set from 1472 KB to 595 KB; do **not** do this to screenshots or photographs, which need thousands of colours and will band.
+
 ### Rollout status
 
 | Page | Status |
