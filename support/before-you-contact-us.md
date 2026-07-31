@@ -15,8 +15,6 @@ Two things matter most.
 
 <KeyPoint marker="1" title="Which unit" lede="The serial number, and the firmware version if you have it.">
 
-It tells us the model and variant, the batch it was built in, and anything already known against that batch. Often that alone is enough for us to recognise the problem.
-
 Not sure which number it is? Photograph the sticker on the robot or on the remote controller and send that — we can read it from there.
 
 </KeyPoint>
