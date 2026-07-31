@@ -39,4 +39,4 @@ That points at thermal protection. "The robot keeps failing" points nowhere.
 
 [Submit a support request](https://forms.office.com/r/qELKzYF33W) with what you have gathered — attach the files rather than describing them, and put anything safety-related in the first line.
 
-If you take nothing else from this page: **"the robot does not work" cannot be acted on.** A request like that gets a reply asking for the serial number and what you saw, and the real work starts a day later. The serial number and a few sentences of what actually happened are enough for us to begin.
+The more of the above your first message carries, the sooner we can work on the problem itself instead of asking about it.
