@@ -504,3 +504,34 @@ Open gaps across the set, all needing domain knowledge rather than editing:
 - **No device-node mapping for the CM4.** The NanoPC page has one and it is the most valuable thing on it; the CM4's is simply not written down anywhere.
 - **The router's manufacturer is unidentified.** It is tier 2, so there should be a vendor to point at; only the cellular module (Quectel RM520N-GL) is known.
 - **Compatibility is unstated everywhere.** No peripheral page says which platforms it is used with, which is the first question a "will this work with my robot" reader has.
+
+## System pages
+
+A system is several peripherals supplied pre-integrated. The page uses the **same sections as a robot page**, with one addition — **`What's in the kit`** under Key information, listing the base configuration, optional computers and extension modules, each linking to its own peripheral page.
+
+The deferral rule applies internally as well as to vendors: the devkit page gives the regulator's **output rails**, because that is what you wire a payload to, and links the [Power Regulator page](../../peripheral/power/power_regulator_v2.md) for fusing, connectors, CANopen and channel behaviour. It previously restated the whole port table, creating a second copy to drift.
+
+### Versions are tabs, not pages
+
+The UGV devkit shipped as `v1.0.md` and `v1.1.md`, **76 % identical line for line**. Every edit had to be made twice, and had not been: v1.1 had drifted to using `#` for all its sections, giving it four `<h1>`s.
+
+They are now one page. The real differences — onboard computer, dimensions, extension layer, side doors — are a **six-row comparison table**, which answers "which one do I have" better than two pages ever did. Bulky per-version content (frame photos, the reconfiguration procedure) uses `<Tabs groupId="devkit-generation">`; the shared `groupId` means choosing v1.0 in one place selects it everywhere on the page, and the choice persists across pages.
+
+This is the mechanism `ia-proposal.md` §7 specifies for per-revision variants, previously unused.
+
+**Both old URLs redirect**, because customers and support tickets carry them.
+
+Reach for a version table when differences are a handful of values; tabs when they are blocks of content; separate pages only when the versions genuinely diverge in what you *do* with them.
+
+### Rollout status
+
+| Page | Status |
+| --- | --- |
+| `system/intro` | ✅ product cards |
+| `system/ugv_devkit` | ✅ v1.0 and v1.1 merged; comparison table plus tabs; four redirects added |
+| `system/ugv_devkit/component_reconfiguration` | ✅ two near-identical pages merged, tabbed by generation |
+| `system/ugv_devkit/v1/*` | ⬜ four guides, still in their original shape |
+
+The sidebar previously listed only the two version pages, leaving four guides reachable only through inline links and **`getting_started` reachable from nowhere at all** — 428 words with no inbound link from any page or sidebar. All five now appear under the category, which itself links to the product page.
+
+Open gap: no serial-number location for the devkit on [Identify your product](../../support/identify-your-product.md).

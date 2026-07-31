@@ -80,6 +80,19 @@ const config: Config = {
           // is wrong or I need a human".
           {from: '/general/operational-safety', to: '/tutorial/operational-safety'},
           {from: '/general/robot-maintenance', to: '/tutorial/robot-maintenance'},
+          // The two UGV devkit version pages were 76% identical. They are now
+          // one page whose differences are a comparison table and a few tabbed
+          // images. Both old URLs are in circulation with customers.
+          {from: '/system/ugv_devkit/v1.0', to: '/system/ugv_devkit'},
+          {from: '/system/ugv_devkit/v1.1', to: '/system/ugv_devkit'},
+          {
+            from: '/system/ugv_devkit/v1.0/component_reconfiguration',
+            to: '/system/ugv_devkit/component_reconfiguration',
+          },
+          {
+            from: '/system/ugv_devkit/v1.1/component_reconfiguration',
+            to: '/system/ugv_devkit/component_reconfiguration',
+          },
         ],
       },
     ],

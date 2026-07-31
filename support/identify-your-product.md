@@ -52,8 +52,7 @@ The app route is usually faster, and it gives you the model designation at the s
 
 | Product | Serial number location |
 | --- | --- |
-| [UGV Development Kit v1.0](/system/ugv_devkit/v1.0) | **TODO** |
-| [UGV Development Kit v1.1](/system/ugv_devkit/v1.1) | **TODO** |
+| [UGV Development Kit](/system/ugv_devkit) | **TODO**. To tell the generation apart: a NanoPC onboard computer is v1.0, a reComputer J4012 is v1.1 |
 | [Power Regulator v2.X](/peripheral/power/power_regulator_v2) | White label on the **top face**, in the corner beside the logo. Carries the serial number and a QR code |
 | Onboard computers | **TODO** |
 
