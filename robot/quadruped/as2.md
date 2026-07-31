@@ -1,21 +1,21 @@
 ---
-sidebar_position: 3
-description: "Unitree A2 quadruped: setup, logins, interfaces and support resources."
+sidebar_position: 4
+description: "Unitree As2 compact industrial quadruped: setup, logins, interfaces and support resources."
 ---
 
-# A2
+# As2
 
-Unitree's A2 quadruped, supplied as a development platform. Unitree's control stack handles locomotion; you write your application against it over the robot's internal network, wired for anything touching low-level control.
+Unitree's As2, a compact industrial quadruped, supplied as a development platform. Unitree's control stack handles locomotion; you write your application against it over the robot's internal network, wired for anything touching low-level control.
 
 This page does not repeat or replace Unitree's documentation. It highlights the information you reach for most often, and supplements it with what we have learned from supplying and supporting these units — configuration, verified values, and our own guides.
 
 Unitree's own documentation:
 
-* [Official product page](https://www.unitree.com/A2)
-* [Official documentation](https://support.unitree.com/home/en/A2_SDK_Development_Guide)
+* [Official product page](https://www.unitree.com/As2)
+* [Official documentation](https://support.unitree.com/home/en/AS2_SDK_Development_Guide)
 
-Not the robot you have? The [As2](/robot/quadruped/as2) is Unitree's compact
-industrial quadruped and is documented separately.
+A wheeled variant, the [As2-W](https://www.unitree.com/As2-W), is also listed by
+Unitree. **TODO** — confirm whether we supply it, and whether it needs its own page.
 
 :::caution This page is in preparation
 
@@ -50,8 +50,8 @@ Files and repositories you clone or download to work with the robot.
 
 | Resource | What it is | Where |
 | --- | --- | --- |
-| SDK development guide | Unitree's A2 SDK documentation | [A2 SDK Development Guide](https://support.unitree.com/home/en/A2_SDK_Development_Guide) |
-| C++ SDK | **TODO** — confirm which SDK applies to the A2 | |
+| SDK development guide | Unitree's As2 SDK documentation | [AS2 SDK Development Guide](https://support.unitree.com/home/en/AS2_SDK_Development_Guide) |
+| C++ SDK | **TODO** — confirm which SDK applies to the As2 | |
 | ROS 2 package | **TODO** | |
 | URDF / CAD | **TODO** | |
 

@@ -36,6 +36,8 @@ particular can fall without warning during development.
 
 <ProductCard to="/robot/quadruped/a2" title="A2">Unitree's A2 quadruped. Documentation in preparation.</ProductCard>
 
+<ProductCard to="/robot/quadruped/as2" title="As2">Unitree's compact industrial quadruped. Documentation in preparation.</ProductCard>
+
 </ProductGrid>
 
 ## Humanoids

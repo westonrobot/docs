@@ -17,6 +17,7 @@ const sidebarsRobot: SidebarsConfig = {
         'quadruped/go2',
         'quadruped/b2',
         'quadruped/a2',
+        'quadruped/as2',
       ],
     },
     {
