@@ -1,74 +1,39 @@
 ---
 sidebar_position: 2
-description: "What to collect before raising a support ticket, so we can answer in one reply instead of several."
+description: "What to include in a support request so we can answer in one reply instead of several."
 ---
 
 # Before you contact us
 
-Collecting a few things first usually turns a multi-day back-and-forth into a single reply.
+Nearly every request comes back to the same few questions, and each round trip to ask them costs a day. Sending them up front is usually the difference between one reply and a week of messages.
 
 :::danger If the robot is unsafe, say so first
 
-Damaged wiring, a swollen battery, anything smoking or smelling hot, or a robot
-that moves when it should not: **power it down, leave it down**, and put that in
-the first line of your request. Do not keep testing to gather more detail.
+Damaged wiring, a swollen battery, anything smoking or hot, or a robot moving
+when it should not: **power it down, leave it down**, and put that in the first
+line. Do not keep testing to gather detail.
 
 :::
 
-## Copy this into the request
+## What to include
 
-Fill in what you can. A blank is fine — knowing you *did not* see an error is itself useful.
+**Which unit** — model and serial number, plus firmware version if you have it. Several platforms ship in variants that differ in what is fitted.
 
-```text
-PRODUCT
-  Model / serial number:
-  Firmware version:
+**What went wrong, as a sequence** rather than a conclusion: what the robot was doing **just before**, what happened **at the moment**, and what it did **immediately after** — stopped, kept moving, powered off, recovered on its own.
 
-WHAT HAPPENED
-  Just before:                (what the robot was doing, what you had just done)
-  At the moment it went wrong:
-  Immediately after:          (did it stop, keep moving, power off, recover?)
+> *Driving at walking pace on flat concrete, ten minutes in. Stopped dead and went limp, no warning. Limp for about 30 seconds, then responded again.*
 
-WHAT YOU OBSERVED
-  Error or warning shown:     (exact text, or "none")
-  Lights / sounds:
-  Were the motors powered:    (stiff, limp, or unknown)
+That points at thermal protection. "The robot keeps failing" points nowhere.
 
-REPRODUCING IT
-  Happens:                    (every time / sometimes / once only)
-  Steps to reproduce:         1.
-                              2.
-  Still happens with nothing mounted / on flat ground / after a reboot?
+**What you observed** — exact error text, which lights and what colour, any sounds, whether the joints were stiff or limp. Send your theory too if you have one, just label which is which.
 
-WHAT CHANGED RECENTLY
-  (firmware, packages, payload, site, transport — or "nothing")
+**Whether it reproduces** — every time, sometimes, or once. If it is safe to try: does it still happen with nothing mounted, on flat ground, after a power cycle, with a different battery or cable?
 
-ATTACHED
-  (logs, photos, video, screenshots)
-```
+**What changed recently** — firmware, packages, payload, site, transport. "Nothing" is a real answer.
 
-## Writing a useful description
+**Logs, starting with your own program's.** The output of whatever was driving the robot is usually the most useful thing in the request, and the one thing we cannot get any other way. Then ROS logs, anything the robot reported in its app or on the controller, and system logs if you can reach the onboard computer. Send text as text — a photo of a terminal is the one attachment we cannot search.
 
-**Describe it as a sequence, not a conclusion.** Compare:
-
-> Driving forward at walking pace on flat concrete, ten minutes in. It stopped dead and went limp with no warning. Stayed limp about 30 seconds, then responded again.
-
-That already points at thermal protection. "The robot keeps failing" points nowhere.
-
-**Separate what you saw from what you think caused it.** Send both — just label which is which. Exact error text, which light and what colour, whether the joints were stiff or limp: those are the things we can act on.
-
-**Narrow it before you write, if it is safe to.** Does it still happen with nothing mounted? On flat, clear ground? After a full power cycle? With a different battery or cable? Each "no" removes a whole branch.
-
-## Logs
-
-**Send whatever your setup already produces.** In rough order of usefulness:
-
-- **Your own application's output** — the program that was driving the robot when it went wrong. Its log, or the terminal output, is usually the most informative thing in the whole ticket, and it is the one thing we cannot get any other way.
-- **ROS logs**, if you are running ROS — `~/.ros/log/` for the relevant run.
-- **Anything the robot itself reports** — messages in the vendor's mobile app, on the controller, or in its own log or diagnostic view.
-- **System logs**, if the robot runs on a computer you can reach.
-
-Send text as text. A photograph of a terminal is the one attachment we cannot search or quote.
+**Photos and video** — the robot, any damage, how payloads are mounted. Ten seconds of video beats a paragraph when the problem is a movement.
 
 <details>
 <summary>System log commands, if you are on a Linux onboard computer</summary>
@@ -80,15 +45,11 @@ dpkg -l | grep -i -E 'wr|weston' > packages.txt # our package versions
 candump -l can0                                 # CAN bus capture, needs can-utils
 ```
 
-Capture before rebooting if you safely can — `journalctl -b` covers the current boot only. If you have already rebooted, `journalctl -b -1` gets the previous one.
+Capture before rebooting if you safely can — `journalctl -b` covers the current boot only. Use `journalctl -b -1` if you have already rebooted.
 
 See [Robot Base Control](/tutorial/agilex/ugv_base_control) for CAN interface setup.
 
 </details>
-
-## Also worth attaching
-
-Photos of the robot and of how any payload is mounted; a short video if the problem is a movement rather than a message; screenshots of any warning.
 
 ## Then contact us
 
