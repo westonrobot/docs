@@ -37,4 +37,6 @@ That points at thermal protection. "The robot keeps failing" points nowhere.
 
 ## Then contact us
 
-[Submit a support request](https://forms.office.com/r/qELKzYF33W).
+[Submit a support request](https://forms.office.com/r/qELKzYF33W) with what you have gathered — attach the files rather than describing them, and put anything safety-related in the first line.
+
+Do not wait until you have everything. Send what you have, note what you could not get and why, and we will work from there.
