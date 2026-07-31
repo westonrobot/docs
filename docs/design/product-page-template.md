@@ -229,7 +229,7 @@ Hero images are almost always **the vendor's copyright**, not ours. As their dis
 | `robot/img/realman/wr65.png` | WR65 | Realman [RM65 product page](https://www.realman-robotics.com/en/products/rm65.html) (`RM65-标准版`) | Vendor render. Alpha-trimmed, downscaled to 720 px tall |
 | `robot/img/realman/wrl63.png` | WRL63 | Realman [RML63 product page](https://www.realman-robotics.com/en/products/rml63.html) (`RML63-标准版`) | Vendor render. Alpha-trimmed, downscaled to 720 px tall |
 | `robot/img/ufactory/xarm.png` | xArm 6 | UFactory [xArm 6 product page](https://www.ufactory.cc/product-page/ufactory-xarm-6/) (`xarm56-1305_画板-1-副本-2.png`) | Vendor render. A UFACTORY badge occupying the top 14 % of the canvas, separate from the arm, was masked out; the arm itself is untouched |
-| `peripheral/img/westonrobot/power_regulator_v2.jpg` | Power Regulator v2 | Photographed in-house | **Ours — no rights question.** Cropped to the unit and downscaled. The serial-number label is legible when zoomed; redact it if that matters |
+| `peripheral/img/westonrobot/regulator_v2.jpg` | Power Regulator v2 | Photographed in-house | **Ours — no rights question.** Cropped to the unit and downscaled. The serial-number label is legible when zoomed; redact it if that matters |
 | `robot/img/agilex/ranger_mini_v3.png` | Ranger Mini 3.0 | AgileX [Ranger Mini 3 product page](https://global.agilex.ai/products/ranger-mini-3) (`Rangermini3.0__3.png`) | Vendor render. Alpha-trimmed and downscaled. Replaced a 321 × 195 image that was being **upscaled** to fill the hero |
 
 The three vendor renders are **pending confirmation** that our agreements cover documentation use. Replace with vendor-supplied assets if that is cleaner. The regulator photo is our own and needs no such check.

@@ -16,7 +16,7 @@ We designed this unit, so this page is the full reference for it rather than a p
 </div>
 
 <Figure
-  src={require('../img/westonrobot/power_regulator_v2.jpg').default}
+  src={require('../img/westonrobot/regulator_v2.jpg').default}
   alt="Power Regulator v2 showing the output ports and DC input on the front face"
   size="hero"
   framed />
@@ -166,6 +166,15 @@ Run it with:
 ```
 
 If that path is not present on your install, the binary may be `/opt/weston_robot/bin/regulator_widget` directly — check which of the two your package produced.
+
+The widget opens with a channel-by-channel view of output state, voltage and current:
+
+<Figure
+  src={require('../img/westonrobot/regulator_v2.1_01.png').default}
+  alt="Power Regulator widget showing per-channel output state, voltage and current"
+  size="lg"
+  framed
+  caption="The regulator widget. Click to enlarge." />
 
 ### Set the default state of each channel
 

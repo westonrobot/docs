@@ -33,7 +33,7 @@ If you are holding a board and are not sure which one it is, match it to a pictu
 
 <ProductGrid columns={3}>
 
-<ProductCard to="/peripheral/power/power_regulator_v2" src={require('./img/westonrobot/power_regulator_v2.jpg').default} alt="Power Regulator v2" title="Power Regulator v2.X">Switchable, regulated output rails for powering payloads from the robot's battery.</ProductCard>
+<ProductCard to="/peripheral/power/power_regulator_v2" src={require('./img/westonrobot/regulator_v2.jpg').default} alt="Power Regulator v2" title="Power Regulator v2.X">Switchable, regulated output rails for powering payloads from the robot's battery.</ProductCard>
 
 </ProductGrid>
 
