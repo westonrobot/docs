@@ -111,7 +111,11 @@ const config: Config = {
         languages: ['en'],
         indexDocs: true,
         indexBlog: false,
-        indexPages: true
+        indexPages: true,
+        // The plugin does not honour `unlisted: true` front matter, so an
+        // unlisted page still turns up in site search unless named here.
+        // Keep this in step with any page carrying that flag.
+        excludeRoutes: ['**/robot/ugv/ranger-mini-v2']
       }
     ],
     [

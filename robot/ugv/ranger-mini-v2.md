@@ -1,9 +1,18 @@
 ---
+unlisted: true
 sidebar_position: 2
 description: "AgileX Ranger Mini 2.0 UGV: setup, CAN control, firmware, calibration and support."
 ---
 
 # Ranger Mini 2.0
+
+:::note Superseded by the Ranger Mini 3.0
+
+This page is kept for owners of existing units. New deployments should use the
+[Ranger Mini 3.0](/robot/ugv/ranger-mini-v3) — [contact us](/support/before-you-contact-us)
+if you need something that is not here.
+
+:::
 
 <Split ratio="wide-narrow">
 

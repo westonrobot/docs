@@ -8,7 +8,6 @@ const sidebarsRobot: SidebarsConfig = {
       label: 'UGVs',
       items: [
         'ugv/scout-mini',
-        'ugv/ranger-mini-v2',
         'ugv/ranger-mini-v3'],
     },
     {

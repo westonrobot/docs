@@ -22,9 +22,7 @@ particular can fall without warning during development.
 
 <ProductCard to="/robot/ugv/scout-mini" src={require('./img/agilex/scout_mini.png').default} alt="Scout Mini four-wheel UGV" title="Scout Mini">Compact four-wheel skid-steer base for indoor and light outdoor work.</ProductCard>
 
-<ProductCard to="/robot/ugv/ranger-mini-v3" src={require('./img/agilex/ranger_mini_v3.png').default} alt="Ranger Mini V3 four-wheel-steering UGV" title="Ranger Mini V3">Four-wheel-steering base with omnidirectional modes. Current generation.</ProductCard>
-
-<ProductCard to="/robot/ugv/ranger-mini-v2" src={require('./img/agilex/ranger_mini_v2.png').default} alt="Ranger Mini V2 four-wheel-steering UGV" title="Ranger Mini V2">The previous generation. Calibration differs from the V3.</ProductCard>
+<ProductCard to="/robot/ugv/ranger-mini-v3" src={require('./img/agilex/ranger_mini_v3.png').default} alt="Ranger Mini V3 four-wheel-steering UGV" title="Ranger Mini V3">Four-wheel-steering base with omnidirectional modes.</ProductCard>
 
 </ProductGrid>
 
