@@ -14,7 +14,6 @@ If you are looking for how to *do* something — operate safely, maintain the ro
 | If you… | Go to |
 | --- | --- |
 | are about to raise a ticket | [Before you contact us](/support/before-you-contact-us) — collect this first and we can usually answer in one reply |
-| have a question that might be common | [FAQ](/support/faq) |
 | need a repair, replacement or return | [Warranty and RMA](/support/warranty-and-rma) |
 
 ## Contact us

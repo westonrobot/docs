@@ -104,13 +104,11 @@ Use a **wired** connection for anything touching low-level control — WiFi drop
 
 ### Questions that apply across our platforms
 
-These are answered once on the [Support FAQ](/support/faq) rather than repeated per model:
+These are answered in the guides rather than repeated on every product page:
 
-- [Is the robot waterproof?](/support/faq#is-the-robot-waterproof) — and what the ratings mean across platforms
-- [How often do I need to lubricate the joints?](/support/faq#how-often-do-i-need-to-lubricate-the-joints) — and what to do about stiffness or play
-- [The robot has fallen over and does not respond to the controller](/support/faq#the-robot-has-fallen-over-and-does-not-respond-to-the-controller) — the recovery sequence
-
-General questions are answered on the [Support FAQ](/support/faq).
+- [Is the robot waterproof?](/tutorial/operational-safety#where-you-can-operate) — and what the ratings mean across platforms
+- [How often do I need to lubricate the joints?](/tutorial/robot-maintenance#quadrupeds-and-humanoids) — and what to do about stiffness or play
+- [The robot has fallen over and does not respond to the controller](/tutorial/operational-safety#if-something-goes-wrong) — the recovery sequence
 
 ## Support
 

@@ -4,7 +4,6 @@ const sidebarsSupport: SidebarsConfig = {
   supportSidebar: [
     'intro',
     'before-you-contact-us',
-    'faq',
     'warranty-and-rma',
   ],
 };

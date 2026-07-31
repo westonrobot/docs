@@ -89,9 +89,9 @@ const SECTIONS = [
     to: '/support/intro',
     links: [
       {
-        to: '/support/faq',
-        text: 'FAQ',
-        body: 'Waterproofing, wear, wired vs WiFi',
+        to: '/support/intro',
+        text: 'Support centre',
+        body: 'Everything support-related in one place',
         icon: FaQuestionCircle,
       },
       {

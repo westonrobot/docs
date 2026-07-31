@@ -155,8 +155,6 @@ CAN interfaces have to be brought up explicitly — `ip link set can0 up` — an
 
 Two common causes: missing bus termination (off by default), or the 5 V rail's 300 mA fuse tripping under the combined load.
 
-General questions are answered on the [Support FAQ](/support/faq).
-
 ## Support
 
 Collect the serial number, OS image version and logs before raising a ticket — [Before you contact us](/support/before-you-contact-us) lists what helps and includes the commands to gather it.

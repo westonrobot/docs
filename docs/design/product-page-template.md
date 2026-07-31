@@ -200,7 +200,13 @@ An admonition block announcing missing data reads as unfinished. A sentence expl
 
 **Do not duplicate a guide.** Link it. The bring-up procedure lives in the guide; the product page points at it.
 
-**Shared FAQ answers live once**, on [`/support/faq`](../../support/faq.md). Keep only model-specific questions on the product page, and link the shared ones by anchor. Anchors are validated at build time by `onBrokenAnchors: 'throw'`.
+**FAQs are per model.** Each product page owns its own Troubleshooting & FAQ section; there is no shared FAQ page.
+
+This reverses an earlier decision. A `/support/faq` page held the cross-platform answers — waterproofing, joint wear, fall recovery, wired versus WiFi — and product pages linked them by anchor. It was removed because the questions customers actually ask are model-specific, and a shared page meant every answer had to be hedged with "applies to G1, Go2 and B2".
+
+The four genuinely cross-cutting answers were not deleted with it. They moved into the two guides that already summarised and linked them: waterproofing, the WiFi-versus-wired reasoning and fall recovery into [Operational Safety](../../tutorial/operational-safety.md), joint wear into [Robot Maintenance](../../tutorial/robot-maintenance.md). Those are where a reader looking for safety or upkeep would go anyway.
+
+Anchors into them are still validated at build time by `onBrokenAnchors: 'throw'`.
 
 **The tag page is the canonical guide list.** Naming the guides inline is good for readers; the tag link is what stops the list rotting. Include both.
 
@@ -382,10 +388,8 @@ so anything published later appears there without this page being edited.
 
 ### Questions that apply across our platforms
 
-These are answered once on the [Support FAQ](/support/faq) rather than repeated
 per model:
 
-- [<Question>](/support/faq#<anchor>) — <one clause on the answer>
 
 
 ## Support

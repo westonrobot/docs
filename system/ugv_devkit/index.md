@@ -193,8 +193,6 @@ The ranges above are a convention, not a guarantee. Use the addresses on your ha
 
 Look at the onboard computer: a [NanoPC](/peripheral/computer/nanopc) is v1.0, a [reComputer J4012](/peripheral/computer/j4012) is v1.1. The frame is the other tell — v1.1 has removable side doors and can take an extension layer.
 
-General questions are answered on the [Support FAQ](/support/faq).
-
 ## Support
 
 Collect the serial number, the handover note and logs before raising a ticket — [Before you contact us](/support/before-you-contact-us) lists what helps and includes the commands to gather it.

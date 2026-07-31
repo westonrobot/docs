@@ -413,7 +413,6 @@ Control is disabled by default and has to be requested or toggled on. Confirm th
 
 Check the installed package: `wr_assisted_teleop` is v1, `wr-ad-toolbox` is v2, `wr-mission-control` is v3. See [Versions](#versions).
 
-General questions are answered on the [Support FAQ](/support/faq).
 
 ## Support
 

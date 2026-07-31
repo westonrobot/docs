@@ -136,8 +136,6 @@ Either the address has been changed on this unit, or your machine is not on its 
 
 Confirm the network it joined actually has internet, and that **Role** is set to `WAN (Wireless ISP)` — in the other roles the router will associate but not route.
 
-General questions are answered on the [Support FAQ](/support/faq).
-
 ## Support
 
 Collect the serial number, firmware version and the configuration you are using before raising a ticket — [Before you contact us](/support/before-you-contact-us) lists what helps.

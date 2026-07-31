@@ -69,8 +69,6 @@ Confirm which variant you have before writing motion code: the xArm 5, 6 and 7 d
 
 ## Troubleshooting & FAQ
 
-General questions are answered on the [Support FAQ](/support/faq).
-
 ## Support
 
 Collect the serial number, firmware version and logs before raising a ticket — [Before you contact us](/support/before-you-contact-us) lists what helps and includes the commands to gather it.

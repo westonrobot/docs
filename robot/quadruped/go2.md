@@ -151,16 +151,15 @@ Yes. See Unitree's [UWB application guide](https://support.unitree.com/home/en/d
 
 ### Can I develop over WiFi instead of a wired connection?
 
-Technically yes, and it is fine for high-level work. **Not for low-level control** — a WiFi latency spike or dropout can stall the control loop and the Go2 can fall as a result. Use a cable for anything joint-level or balance-related. See [the full answer](/support/faq#can-i-develop-over-wifi-instead-of-a-wired-connection).
+Technically yes, and it is fine for high-level work. **Not for low-level control** — a WiFi latency spike or dropout can stall the control loop and the Go2 can fall as a result. Use a cable for anything joint-level or balance-related. See [the full answer](/tutorial/operational-safety#while-you-are-developing).
 
 ### Questions that apply across our platforms
 
-These are answered once on the [Support FAQ](/support/faq) rather than repeated per model:
+These are answered in the guides rather than repeated on every product page:
 
-- [Is the robot waterproof?](/support/faq#is-the-robot-waterproof) — no, and what the ratings mean across platforms
-- [How often do I need to lubricate the joints?](/support/faq#how-often-do-i-need-to-lubricate-the-joints) — and what to do about stiffness or play
-- [The robot has fallen over and does not respond to the controller](/support/faq#the-robot-has-fallen-over-and-does-not-respond-to-the-controller) — the recovery sequence
-
+- [Is the robot waterproof?](/tutorial/operational-safety#where-you-can-operate) — no, and what the ratings mean across platforms
+- [How often do I need to lubricate the joints?](/tutorial/robot-maintenance#quadrupeds-and-humanoids) — and what to do about stiffness or play
+- [The robot has fallen over and does not respond to the controller](/tutorial/operational-safety#if-something-goes-wrong) — the recovery sequence
 
 ## Support
 

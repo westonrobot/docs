@@ -48,7 +48,7 @@ Doing it the other way round can arc the connector.
 
 ## Cleaning
 
-**Assume the robot is not waterproof.** Unless yours was specifically customised, no hose, no pressure washer, no submersion. See the [ratings by platform](/support/faq#is-the-robot-waterproof).
+**Assume the robot is not waterproof.** Unless yours was specifically customised, no hose, no pressure washer, no submersion. See the [ratings by platform](/tutorial/operational-safety#where-you-can-operate).
 
 - A dry brush or compressed air for dust; a **barely damp** cloth for the shell.
 - No solvents on plastics or painted surfaces.
@@ -92,8 +92,10 @@ Go2, B2, G1, H1-2 — see [Quadrupeds](/robot/intro#quadrupeds) and [Humanoids](
 
 If you meet stiffness, play, unusual noise or motor faults in a joint, **[contact us](/support/before-you-contact-us)**
 with your serial number rather than opening or lubricating it. There is no owner-serviceable lubrication schedule on these
-platforms, and a joint opened incorrectly is an expensive repair. See the
-[FAQ](/support/faq#how-often-do-i-need-to-lubricate-the-joints).
+platforms, and a joint opened incorrectly is an expensive repair.
+
+There is no fixed lubrication schedule to follow — stiffness, play, noise or a
+motor fault is the trigger, not an interval. Applies to the G1, Go2 and B2.
 
 :::
 
@@ -148,4 +150,3 @@ Have the serial number, firmware version and any error codes ready — [Before y
 
 - [Operational Safety](/tutorial/operational-safety) — read before working on a robot
 - [Before you contact us](/support/before-you-contact-us) — what to collect
-- [Support FAQ](/support/faq) — waterproofing, joint lubrication, thermal behaviour

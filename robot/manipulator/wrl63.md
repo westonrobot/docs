@@ -133,8 +133,6 @@ The WRL63 is the **long-reach** member of the range. If reach matters less than 
 
 ## Troubleshooting & FAQ
 
-General questions are answered on the [Support FAQ](/support/faq).
-
 ## Support
 
 Collect the serial number, firmware version and logs before raising a ticket — [Before you contact us](/support/before-you-contact-us) lists what helps and includes the commands to gather it.

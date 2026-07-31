@@ -86,8 +86,6 @@ Reach, payload, repeatability and joint limits are published on AgileX's [produc
 
 **TODO** — questions customers actually ask about this arm.
 
-General questions are answered on the [Support FAQ](/support/faq).
-
 ## Support
 
 Collect the serial number, firmware version and logs before raising a ticket — [Before you contact us](/support/before-you-contact-us) lists what helps and includes the commands to gather it.
