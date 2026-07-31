@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-description: "Industrial 5G and WiFi router: fitting, default address, AP-client configuration and LAN setup."
+description: "Industrial 5G and WiFi router: setup, default address, AP-client configuration and LAN setup."
 ---
 
 # Industrial 5G / WiFi router
@@ -25,18 +25,14 @@ It can also run as a **WiFi client**, joining an existing network and sharing th
 
 </Split>
 
-## Fitting it
+## Getting started
 
-| | |
-| --- | --- |
-| **Power input** | 5–40 V, DC 2.1 barrel or 2-pin Phoenix connector |
-| **Operating temperature** | −40 °C to 75 °C |
-| **Network ports** | 1 × Gigabit WAN/LAN, 3 × Gigabit LAN |
-| **SIM** | 2 slots, with switching between them |
-| **WiFi** | 2.4 GHz and 5 GHz |
-| **Watchdog** | Hardware |
+1. **Mount it** somewhere the antennas are not enclosed in metal.
+2. **Power it** — 5–40 V, through either the DC 2.1 barrel jack or the 2-pin Phoenix connector. The wide range means it can usually run straight from the platform's battery rail without a regulated supply.
+3. **Insert a SIM** if you are using cellular. There are two slots, and the router can switch between them.
+4. **Connect a machine to a LAN port** and open the web interface at `http://10.10.0.1` — see [Logins and IP addresses](#logins-and-ip-addresses).
 
-The wide input range means it can usually run straight from the platform's battery rail without a regulated supply.
+From there, the two things most people need are in [Common configurations](#common-configurations).
 
 ## Key information
 
@@ -46,19 +42,35 @@ The wide input range means it can usually run straight from the platform's batte
 | --- | --- | --- |
 | Cellular module datasheet | Supported 5G NR and LTE bands, in full | [Quectel RM520N series](https://www.quectel.com/product/5g-rm520n-series/) |
 
-### Default address
+### Logins and IP addresses
 
 | | |
 | --- | --- |
 | **Web interface** | `http://10.10.0.1` |
 
-Everything below is done through that web interface. If the router has already been deployed, its address may have been changed — see [Changing the LAN IP address](#changing-the-lan-ip-address).
+Everything in [Common configurations](#common-configurations) is done through that web interface. If the router has already been deployed, its address may have been changed — see [Changing the LAN IP address](#changing-the-lan-ip-address).
 
-### Cellular bands
+### Electrical interfaces
+
+| Interface | Count | Notes |
+| --- | --- | --- |
+| Ethernet | 1 × Gigabit WAN/LAN, 3 × Gigabit LAN | |
+| SIM | 2 slots | Supports switching between them |
+| WiFi | 2.4 GHz and 5 GHz | Configured separately — see the AP-client procedure |
+| Power input | DC 2.1 barrel or 2-pin Phoenix | 5–40 V |
+
+### Specifications
 
 The 5G NR and LTE band support comes from the **Quectel RM520N-GL** module. The full band list is long and belongs with the module rather than here — see the [Quectel RM520N series datasheet](https://www.quectel.com/product/5g-rm520n-series/).
 
-What matters when deploying: it is a **Sub-6 GHz, 3GPP Release 16** module supporting both 5G NR standalone and non-standalone, with LTE-FDD and LTE-TDD fallback. Check your carrier's bands against the datasheet before committing to a region.
+| | |
+| --- | --- |
+| Cellular | 5G Sub-6 GHz, 3GPP Release 16. NR standalone and non-standalone, with LTE-FDD and LTE-TDD fallback |
+| Module | Quectel RM520N-GL |
+| Operating temperature | −40 °C to 75 °C |
+| Watchdog | Hardware |
+
+Check your carrier's bands against the module datasheet before committing to a region.
 
 ## Common configurations
 

@@ -443,19 +443,30 @@ A robot is the thing the customer bought. A peripheral is a **part**, and the qu
 | What guides exist for it? | Same |
 | — | What are its limits, and what happens when I exceed them? |
 
-### Section order
+### Section order — the same titles as a robot page
 
-| # | Section | Required | Purpose |
+Peripheral pages use the **same section titles** as robot pages wherever they carry the same kind of content. A reader moving between a robot page and a peripheral page should not have to learn a second vocabulary, and "where are the credentials" should have one answer across the site.
+
+An earlier draft invented `Fitting it` and `Interfaces and device nodes`. Both were renamed: the content maps cleanly onto `Getting started` and `Electrical interfaces`, so the new names bought nothing and cost consistency.
+
+| # | Section | Required | Difference from a robot page |
 | --- | --- | --- | --- |
-| — | Hero split | yes | What it is, what it is for, vendor links if tier 1 or 2 |
-| 1 | **Fitting it** | yes | Power, connectors, mounting, and which platforms it is used with. The peripheral-specific section |
-| 2 | **Key information** | yes | Related resources · Logins and addresses (if it has any) · Interfaces and device nodes · Specifications |
-| 3 | **Common configurations** | if any | Short inline procedures — routine tasks, not a full guide |
-| 4 | **Guides for this product** | if any | Same as a robot page |
+| — | Hero split | yes | Same. Vendor links for tier 1 and 2 |
+| 1 | **Getting started** | yes | A fitting and bring-up sequence — mount, power, wire, bring the interfaces up |
+| 2 | **Key information** | yes | Same container, different subsections available |
+| 2a | → **Related resources** | yes | Same, and still first |
+| 2b | → **Logins and IP addresses** | if it has any | Same title. Applies to the router's web UI and to the onboard computers |
+| 2c | → **Electrical interfaces** | yes | Same title, wider scope — includes power input and **device nodes** |
+| 2d | → **Control interface** | if it has one | Same title already used on `wr65` and `xarm` |
+| 2e | → **Specifications** | yes | As-supplied figures, per the deferral rule below |
+| 3 | **Common configurations** | if any | **Peripheral-only.** Short inline procedures. Robot pages send these to `/tutorial/` guides; these are too small to extract |
+| 4 | **Guides for this product** | if any | Same |
 | 5 | **Troubleshooting & FAQ** | yes | Same |
-| 6 | **Support** | yes | Same. Currently missing from every peripheral page |
+| 6 | **Support** | yes | Same |
 
-### Interfaces means device nodes, not just connectors
+`Network layout` has no peripheral equivalent so far. A device-specific subsection is fine where the hardware needs one — `Status LEDs` on the regulator is diagnostic reference you reach for with the unit in front of you, which is exactly what Key information is for.
+
+### Electrical interfaces means device nodes, not just connectors
 
 This is where a peripheral page earns its place, and it is the one thing no vendor datasheet gives you. `nanopc.md` already does it well:
 

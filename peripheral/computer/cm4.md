@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-description: "CM4-based onboard computer: fitting, isolated CAN and RS485 interfaces, and specifications."
+description: "CM4-based onboard computer: setup, isolated CAN and RS485 interfaces, and specifications."
 ---
 
 # CM4-based onboard computer
@@ -11,7 +11,7 @@ description: "CM4-based onboard computer: fitting, isolated CAN and RS485 interf
 
 A compact onboard computer built on the **Raspberry Pi Compute Module 4**. We extended the carrier board with CAN and RS485 so it can talk to robot bases and sensors directly, without a USB adapter in the path.
 
-It is the smaller sibling of the [NanoPC](/peripheral/computer/nanopc): fewer ports and less compute, but a smaller footprint and the Raspberry Pi software ecosystem. Choose it when the workload is light — teleoperation, a sensor bridge, or a base driver — rather than perception.
+It is the smaller sibling of the [NanoPC](/peripheral/computer/nanopc): fewer ports and less compute, but a smaller footprint, isolated buses, and the Raspberry Pi software ecosystem. Choose it when the workload is light — teleoperation, a sensor bridge, or a base driver — rather than perception.
 
 Raspberry Pi's [Compute Module documentation](https://www.raspberrypi.com/documentation/computers/compute-module.html) covers the **module only**. The carrier board, and everything on it described below, is ours.
 
@@ -25,12 +25,12 @@ Raspberry Pi's [Compute Module documentation](https://www.raspberrypi.com/docume
 
 </Split>
 
-## Fitting it
+## Getting started
 
-| | |
-| --- | --- |
-| **Power input** | 5.5 × 2.1 mm DC jack, 12–29 V. **12 V recommended** |
-| **Storage** | 32 GB eMMC, on-module |
+1. **Mount the board** and give it airflow.
+2. **Power it** through the 5.5 × 2.1 mm DC jack. It accepts 12–29 V; **12 V is recommended**.
+3. **Wire your devices** to the CAN and RS485 ports.
+4. **Bring the CAN interfaces up** before use — see [Electrical interfaces](#electrical-interfaces).
 
 ## Key information
 
@@ -42,7 +42,7 @@ Raspberry Pi's [Compute Module documentation](https://www.raspberrypi.com/docume
 
 Installing Weston Robot packages on the computer? Add our package repository first: [Weston Robot Apt Source](/tutorial/installation/apt_source).
 
-### Interfaces
+### Electrical interfaces
 
 | Interface | Count | Notes |
 | --- | --- | --- |
@@ -51,6 +51,7 @@ Installing Weston Robot packages on the computer? Add our package repository fir
 | Ethernet | 2 × Gigabit | |
 | USB | 2 × USB 3.2 Gen1 | |
 | Video out | 2 × HDMI 2.0 | |
+| Power input | 5.5 × 2.1 mm DC jack, 12–29 V | 12 V recommended |
 
 :::note The CAN and RS485 ports here are isolated
 
@@ -84,7 +85,7 @@ Figures for the unit as we supply it.
 
 ### A CAN interface does not appear
 
-CAN interfaces have to be brought up explicitly and do not persist across a reboot unless configured — see [Interfaces](#interfaces).
+CAN interfaces have to be brought up explicitly and do not persist across a reboot unless configured — see [Electrical interfaces](#electrical-interfaces).
 
 ### Should I use this or the NanoPC?
 

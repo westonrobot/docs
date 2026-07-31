@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-description: "Manifold Pocket Scanner: fitting, capture planning, specifications and software."
+description: "Manifold Pocket Scanner: setup, capture planning, specifications and software."
 ---
 
 # Manifold Pocket Scanner
@@ -26,17 +26,14 @@ This page does not repeat or replace Manifold's documentation — the manuals be
 
 </Split>
 
-## Fitting it
+## Getting started
 
-Nothing to fit — it is handheld and battery-powered. What constrains a session:
+There is nothing to fit — it is handheld and battery-powered. What there is to plan:
 
-| | |
-| --- | --- |
-| **Battery life** | About 2 hours |
-| **Weight** | 560 g (main unit) |
-| **Dimensions** | 115 × 110 × 83 mm (main unit) |
-
-Two hours is the practical planning unit. A site needing longer than that has to be split into sessions, so decide where the seams fall before you start rather than after the battery goes.
+1. **Charge it.** A full battery is about **2 hours** of capture.
+2. **Install MindCloud GO** on an Android device for live preview and field edits, and **MindCloud** on Windows for processing. Both are in [Related resources](#related-resources).
+3. **Plan the session around the battery.** Two hours is the practical unit — a site needing longer has to be split, so decide where the seams fall before you start rather than after the battery goes.
+4. **Check what you are scanning.** Effective range depends heavily on surface reflectivity; see the note under [Specifications](#specifications).
 
 ## Key information
 

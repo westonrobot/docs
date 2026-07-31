@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-description: "Power Regulator v2.X: wiring, output ports, CANopen control, channel defaults and diagnostics."
+description: "Power Regulator v2.X: setup, output ports, CANopen control, channel defaults and diagnostics."
 ---
 
 # Power Regulator v2.X
@@ -31,7 +31,27 @@ What it gives you over wiring straight to the battery:
 - **Voltage and current feedback per channel** over CAN or RS485
 - **Temperature monitoring** with active fan cooling
 
-## Fitting it
+## Getting started
+
+1. **Mount it** where the fan is not obstructed.
+2. **Connect the battery** to the XT60 input, labelled `DC IN 24V` on the case.
+3. **Wire your loads** to the Mega-Fit output ports — see [Electrical interfaces](#electrical-interfaces) for the layout and the per-port budgets.
+4. **Connect CAN** and confirm the unit appears at node 30 — see [Control interface](#control-interface).
+5. **Switch the channels you need on.** Everything is off by default at power-on, so a freshly wired robot will appear dead until you do this or set the power-on defaults. See [Set the default state of each channel](#set-the-default-state-of-each-channel).
+
+## Key information
+
+### Related resources
+
+| Resource | What it is | Where |
+| --- | --- | --- |
+| `wrp_sdk` | CANopen driver, from version 1.0.0 | Install from our Debian repository |
+| `wr_regulator_widget` | GUI for monitoring and switching channels | Install from our Debian repository |
+| EDS file | CANopen object dictionary, needed by `canopen` in Python | Ships with the SDK at `/opt/weston_robot/share/wrp_sdk/eds/westonrobot/regulator/` |
+
+Add our package repository before installing either: [Weston Robot Apt Source](/tutorial/installation/apt_source).
+
+### Electrical interfaces
 
 | | |
 | --- | --- |
@@ -60,38 +80,6 @@ the unit loses active cooling while the other rails keep supplying current.
 The fan starts at **28 °C** and reaches full speed at **45 °C** and above.
 
 :::
-
-## Key information
-
-### Related resources
-
-| Resource | What it is | Where |
-| --- | --- | --- |
-| `wrp_sdk` | CANopen driver, from version 1.0.0 | Install from our Debian repository |
-| `wr_regulator_widget` | GUI for monitoring and switching channels | Install from our Debian repository |
-| EDS file | CANopen object dictionary, needed by `canopen` in Python | Ships with the SDK at `/opt/weston_robot/share/wrp_sdk/eds/westonrobot/regulator/` |
-
-Add our package repository before installing either: [Weston Robot Apt Source](/tutorial/installation/apt_source).
-
-### Specifications
-
-**Power module**
-
-| Port | Voltage | Max current | Power | Protection |
-| --- | --- | --- | --- | --- |
-| Main input | 18–32 V | 20 A | — | 20 A fuse |
-| Output — 19 V | 19 V | 8 A | 150 W | 10 A fuse |
-| Output — 12 V | 12 V | 10 A | 120 W | 15 A fuse |
-| Output — 5 V isolated | 5 V | 4 A | 20 W | Resettable |
-| Output — 12 V isolated | 12 V | 3.3 A | 40 W | Resettable |
-| Output — extension | Input voltage | — | Limited by total power | — |
-
-**Control module**
-
-| Port | Protocol | Function |
-| --- | --- | --- |
-| CAN | CANopen | Monitoring, control and firmware upgrade |
-| RS485 | — | Firmware upgrade (backup), future extension |
 
 ### Control interface
 
@@ -122,6 +110,26 @@ At power-on:
 - **V2.2** — both LEDs on for about **18 seconds**, covering initialisation and calibration together.
 
 Once calibrated the unit is operational: red off, green blinking.
+
+### Specifications
+
+**Power module**
+
+| Port | Voltage | Max current | Power | Protection |
+| --- | --- | --- | --- | --- |
+| Main input | 18–32 V | 20 A | — | 20 A fuse |
+| Output — 19 V | 19 V | 8 A | 150 W | 10 A fuse |
+| Output — 12 V | 12 V | 10 A | 120 W | 15 A fuse |
+| Output — 5 V isolated | 5 V | 4 A | 20 W | Resettable |
+| Output — 12 V isolated | 12 V | 3.3 A | 40 W | Resettable |
+| Output — extension | Input voltage | — | Limited by total power | — |
+
+**Control module**
+
+| Port | Protocol | Function |
+| --- | --- | --- |
+| CAN | CANopen | Monitoring, control and firmware upgrade |
+| RS485 | — | Firmware upgrade (backup), future extension |
 
 ## Common configurations
 

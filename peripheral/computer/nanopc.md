@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-description: "NanoPC-based onboard computer: fitting, industrial port device nodes, CAN bring-up and configuration."
+description: "NanoPC-based onboard computer: setup, industrial port device nodes, CAN bring-up and specifications."
 ---
 
 # NanoPC-based onboard computer
@@ -11,7 +11,7 @@ description: "NanoPC-based onboard computer: fitting, industrial port device nod
 
 An onboard computer for our robot platforms, built on the FriendlyELEC **NanoPC-T6** (Rockchip RK3588). We extended the base board with industrial ports — CAN, RS485 and RS232 — so it can interface directly with robot bases and the sensors commonly fitted alongside them, without a USB adapter in the path.
 
-Drivers for those ports are pre-configured under Ubuntu 22.04, so the interfaces are present on first boot. What is *not* obvious from the board itself is how each port appears to software; that mapping is in [Interfaces and device nodes](#interfaces-and-device-nodes) and is the main reason to read this page.
+Drivers for those ports are pre-configured under Ubuntu 22.04, so the interfaces are present on first boot. What is *not* obvious from the board itself is how each port appears to software; that mapping is in [Electrical interfaces](#electrical-interfaces) and is the main reason to read this page.
 
 FriendlyELEC's [NanoPC-T6 wiki](https://wiki.friendlyelec.com/wiki/index.php/NanoPC-T6) documents the **base board only** — it does not cover the industrial port extensions we add, which are documented here.
 
@@ -25,14 +25,12 @@ FriendlyELEC's [NanoPC-T6 wiki](https://wiki.friendlyelec.com/wiki/index.php/Nan
 
 </Split>
 
-## Fitting it
+## Getting started
 
-| | |
-| --- | --- |
-| **Power input** | 5.5 × 2.1 mm DC jack, 5–20 V. **12 V recommended** |
-| **Operating temperature** | 0 °C to 70 °C |
-| **Cooling** | Active — 1 × 5 V fan |
-| **Operating system** | Ubuntu 22.04, Linux kernel 5.10, industrial port drivers pre-configured |
+1. **Mount the board** where it has airflow — it is actively cooled by a 5 V fan.
+2. **Power it** through the 5.5 × 2.1 mm DC jack. It accepts 5–20 V; **12 V is recommended**.
+3. **Wire your devices** to the industrial ports, following the silkscreen labels.
+4. **Bring the interfaces up** — CAN needs an explicit `ip link` before it exists to software, and the serial ports are not named after their silkscreen labels. Both are covered in [Electrical interfaces](#electrical-interfaces).
 
 Most robot bases we supply can feed 12 V directly. Where the platform's rail is higher, or shared with motors that pull it down under load, take the computer from a regulated output instead — the [Power Regulator v2](/peripheral/power/power_regulator_v2) exists for this.
 
@@ -46,7 +44,7 @@ Most robot bases we supply can feed 12 V directly. Where the platform's rail is 
 
 Installing Weston Robot packages on the computer? Add our package repository first: [Weston Robot Apt Source](/tutorial/installation/apt_source).
 
-### Interfaces and device nodes
+### Electrical interfaces
 
 The silkscreen labels the ports; it does not tell you which device node each one is. Follow the silkscreen to wire your devices, then use the mapping below to reach them.
 
@@ -138,6 +136,10 @@ Figures for the unit as we supply it. Anything not listed here is on the [base b
 | Video | 1 × HDMI input (to 4Kp60) · 2 × HDMI output |
 | Audio | 3.5 mm stereo output · 2.0 mm PH-2A analogue microphone input |
 | Industrial ports | 3 × CAN (with transceivers) · 2 × RS485 · 2 × RS232 |
+| Power input | 5.5 × 2.1 mm DC jack, 5–20 V (12 V recommended) |
+| Operating temperature | 0 °C to 70 °C |
+| Cooling | Active — 1 × 5 V fan |
+| Operating system | Ubuntu 22.04, Linux kernel 5.10 |
 
 ## Troubleshooting & FAQ
 
