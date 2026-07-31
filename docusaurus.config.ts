@@ -192,9 +192,13 @@ const config: Config = {
     // Replace with your project's social card
     image: 'img/wr-social-card.png',
     zoom: {
-      // Content images only — not the navbar logo, and not images that are
-      // themselves links (where clicking should navigate, not zoom).
-      selector: '.markdown :not(a) > img',
+      // Content images only. Two exclusions:
+      //   :not(a) > img  — an image that *is* the link's only child
+      //   :not(.no-zoom) — an image nested deeper inside a link, which the
+      //                    selector above does not catch. Product cards render
+      //                    a > div > img, so all 21 card images on the hub
+      //                    pages were zooming instead of navigating.
+      selector: '.markdown :not(a) > img:not(.no-zoom)',
       background: {light: 'rgba(255, 255, 255, 0.95)', dark: 'rgba(16, 19, 23, 0.95)'},
     },
     navbar: {

@@ -30,7 +30,7 @@ export function ProductCard({to, src, alt, title, children}: ProductCardProps) {
     <Link to={to} className={`${styles.card} product-card`}>
       <div className={styles.media}>
         {src ? (
-          <img src={src} alt={alt ?? title} loading="lazy" />
+          <img src={src} alt={alt ?? title} loading="lazy" className="no-zoom" />
         ) : (
           /* Better an honest blank than a picture of something else — the Power
              Regulator's only image is a screenshot of its configuration widget. */
