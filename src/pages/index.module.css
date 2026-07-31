@@ -7,28 +7,32 @@
    browser chrome and navbar are gone — so sizes here are deliberately smaller
    than the in-page equivalents. */
 
+/* Fill whatever height Docusaurus gives us, so the leftover on a tall screen is
+   distributed around the content rather than pooling above the footer. */
 .page {
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
 }
 
 .hero {
-  padding: 1.6rem 0 1.4rem;
+  padding: clamp(1.6rem, 3.3vh, 3.25rem) 0 clamp(1.4rem, 2.9vh, 2.75rem);
   text-align: center;
   background: var(--ifm-color-primary-darkest);
   color: #fff;
 }
 
 .heroTitle {
-  font-size: 1.85rem;
+  font-size: clamp(1.85rem, 3.8vh, 2.6rem);
   line-height: 1.2;
   margin-bottom: 0.35rem;
 }
 
 .heroSubtitle {
-  font-size: 1rem;
+  font-size: clamp(1rem, 1.9vh, 1.15rem);
   opacity: 0.85;
-  margin-bottom: 1rem;
+  margin-bottom: clamp(1rem, 2.1vh, 1.9rem);
 }
 
 .heroSearch {
@@ -44,7 +48,7 @@
   gap: 0.7rem;
   width: 100%;
   max-width: 520px;
-  height: 2.6rem;
+  height: clamp(2.6rem, 5.4vh, 3.25rem);
   padding: 0 0.9rem;
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 8px;
@@ -87,13 +91,22 @@
 }
 
 .main {
-  padding: 1.15rem 0 0.9rem;
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(1.15rem, 2.2vh, 2rem) 0 clamp(0.9rem, 1.8vh, 1.75rem);
 }
 
 /* Shorter tiles than a hub page uses, to keep the whole layout above the fold.
    ProductCard reads this variable. */
+/* Sized from viewport height rather than grown by flex. Flex growth is
+   unbounded here — the wrapper's height is content-driven, so the picture
+   expanded past the viewport and pushed the tiles and footer below the fold on
+   a real 1080p screen, which gives about 940px once browser chrome is gone. */
 .families {
-  --product-card-media-height: 98px;
+  --product-card-media-height: clamp(96px, 20.5vh, 240px);
 }
 
 .families :global(.margin-vert--lg) {
@@ -105,10 +118,10 @@
    as the product row above without repeating its weight. */
 .sections {
   display: grid;
-  gap: 1.25rem 2rem;
+  gap: clamp(1.25rem, 2.4vh, 2rem) 2rem;
   grid-template-columns: 1fr;
-  margin-top: 1rem;
-  padding-top: 0.9rem;
+  margin-top: clamp(0.9rem, 1.9vh, 2rem);
+  padding-top: clamp(0.8rem, 1.7vh, 1.8rem);
   border-top: 1px solid var(--ifm-color-emphasis-200);
 }
 
@@ -132,7 +145,7 @@
 .sectionTiles {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.6rem;
+  gap: clamp(0.6rem, 1.1vh, 0.85rem);
 }
 
 .sectionTile {
@@ -140,7 +153,7 @@
   align-items: flex-start;
   gap: 0.5rem;
   min-width: 0;
-  padding: 0.5rem 0.65rem;
+  padding: clamp(0.5rem, 1vh, 0.8rem) 0.7rem;
   border: 1px solid var(--ifm-color-emphasis-200);
   border-radius: 8px;
   background: var(--ifm-background-surface-color);
@@ -212,3 +225,4 @@
   line-height: 1.35;
   color: var(--ifm-color-emphasis-700);
 }
+

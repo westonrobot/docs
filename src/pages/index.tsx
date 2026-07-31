@@ -141,6 +141,7 @@ export default function Home(): React.ReactNode {
   return (
     <Layout
       title={siteConfig.title}
+      wrapperClassName="homepage"
       description="Setup, interfaces and support for Weston Robot platforms, peripherals and systems.">
       <div className={styles.page}>
         <header className={styles.hero}>

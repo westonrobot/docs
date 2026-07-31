@@ -200,3 +200,13 @@ img.medium-zoom-image--opened {
 .markdown > div > table th {
   overflow-wrap: break-word;
 }
+
+/* Only the landing page fills the viewport, so this is scoped to it via
+   Layout's wrapperClassName. Applying it to .main-wrapper globally broke every
+   docs page: a flex item defaults to min-width:auto, so content that should
+   shrink instead overflowed horizontally. */
+.main-wrapper.homepage {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}

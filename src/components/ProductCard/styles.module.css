@@ -11,6 +11,11 @@
 
 @media (min-width: 997px) {
   .grid[data-columns='3'] { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+/* Four across needs real width; below this they stay two-up rather than
+   squeezing four into a narrow window. */
+@media (min-width: 1200px) {
   .grid[data-columns='4'] { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 
@@ -51,7 +56,11 @@
   align-items: center;
   justify-content: center;
   /* Overridable so a caller can run shorter tiles — the landing page fits its
-     whole layout in one viewport and sets this lower. */
+     whole layout in one viewport and sets this lower.
+
+     This must stay a definite height. With min-height instead, the `max-height:
+     100%` on the image below has no definite parent to resolve against, so the
+     image renders at its natural size and the tile grows to fit it. */
   height: var(--product-card-media-height, 160px);
   padding: 0.75rem;
   background: #f4f5f7;
