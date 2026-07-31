@@ -34,9 +34,9 @@ particular can fall without warning during development.
 
 <ProductCard to="/robot/quadruped/b2" src={require('./img/unitree/B2_robot.png').default} alt="Unitree B2 industrial quadruped" title="B2">Large industrial quadruped for payload-carrying and outdoor inspection.</ProductCard>
 
-<ProductCard to="/robot/quadruped/a2" title="A2">Unitree's A2 quadruped. Documentation in preparation.</ProductCard>
+<ProductCard to="/robot/quadruped/a2" src={require('./img/unitree/A2_robot.png').default} alt="Unitree A2 quadruped" title="A2">Unitree's A2 quadruped. Documentation in preparation.</ProductCard>
 
-<ProductCard to="/robot/quadruped/as2" title="As2">Unitree's compact industrial quadruped. Documentation in preparation.</ProductCard>
+<ProductCard to="/robot/quadruped/as2" src={require('./img/unitree/As2_robot.png').default} alt="Unitree As2 compact industrial quadruped" title="As2">Unitree's compact industrial quadruped. Documentation in preparation.</ProductCard>
 
 </ProductGrid>
 

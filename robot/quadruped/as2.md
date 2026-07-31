@@ -5,6 +5,10 @@ description: "Unitree As2 compact industrial quadruped: setup, logins, interface
 
 # As2
 
+<Split ratio="wide-narrow">
+
+<div>
+
 Unitree's As2, a compact industrial quadruped, supplied as a development platform. Unitree's control stack handles locomotion; you write your application against it over the robot's internal network, wired for anything touching low-level control.
 
 This page does not repeat or replace Unitree's documentation. It highlights the information you reach for most often, and supplements it with what we have learned from supplying and supporting these units — configuration, verified values, and our own guides.
@@ -16,6 +20,15 @@ Unitree's own documentation:
 
 A wheeled variant, the [As2-W](https://www.unitree.com/As2-W), is also listed by
 Unitree. **TODO** — confirm whether we supply it, and whether it needs its own page.
+
+</div>
+
+<Figure
+  src={require('../img/unitree/As2_robot.png').default}
+  alt="Unitree As2 compact industrial quadruped"
+  size="hero" />
+
+</Split>
 
 :::caution This page is in preparation
 
