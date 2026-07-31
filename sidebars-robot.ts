@@ -38,10 +38,11 @@ const sidebarsRobot: SidebarsConfig = {
         'manipulator/wr65',
         'manipulator/wrl63',
         'manipulator/xarm',
-        'manipulator/nero',
         'manipulator/z1',
+        // AgileX arms together
         'manipulator/piper',
-        'manipulator/kinova-gen3-lite'
+        'manipulator/nero',
+        'manipulator/kinova-gen3-lite',
       ],
     },
   ],

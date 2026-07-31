@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 6
 description: "AgileX NERO 7-DOF manipulator: setup, control interface, resources and support."
 ---
 
