@@ -1,84 +1,135 @@
 ---
 sidebar_position: 2
-description: "Industrial 5G and WiFi router: configuration and connectivity for robot deployments."
+description: "Industrial 5G and WiFi router: fitting, default address, AP-client configuration and LAN setup."
 ---
 
-import ROUTER_5G_IMG from '../img/westonrobot/5g_router/industrial_5g_wifi_router.jpg';
+# Industrial 5G / WiFi router
 
-# Industrial 5G Router
+<Split ratio="wide-narrow">
 
-<div style={{textAlign: 'center'}}>
-<img src={ROUTER_5G_IMG} alt="Industrial 5G and WiFi router" style={{width: 350}} />
+<div>
+
+An industrial cellular router for robots that have to work away from a fixed network — outdoor deployments, multi-site inspection, or anywhere you need to reach a robot that is not on your own WiFi.
+
+It carries 5G and LTE over a **Quectel RM520N-GL** module, has two SIM slots so it can fall back between carriers, and provides both WiFi and four Gigabit Ethernet ports for the devices on the robot.
+
+It can also run as a **WiFi client**, joining an existing network and sharing that connection to everything on its LAN ports — which is often what you actually want on a bench or in a lab.
+
 </div>
 
-## Key Specifications
+<Figure
+  src={require('../img/westonrobot/5g_router/industrial_5g_wifi_router.jpg').default}
+  alt="Industrial 5G and WiFi router"
+  size="hero"
+  framed />
 
-* **Cellular**
-    * **5G Standard**: 3GPP R16, Sub-6 GHz
-    * **5G NR NSA**: n1, n2, n3, n5, n7, n8, n12, n13, n14, n18, n20, n25, n26, n28, n29, n30, n38, n40, n41, n48, n66, n70, n71, n75, n76, n77, n78, n79
-    * **5G NR SA**: n1, n2, n3, n5, n7, n8, n12, n13, n14, n18, n20, n25, n26, n28, n29, n30, n38, n40, n41, n48, n66, n70, n71, n75, n76, n77, n78, n79
-    * **LTE-FDD**: B1, B2, B3, B4, B5, B7, B8, B12, B13, B14, B17, B18, B19, B20, B25, B26, B28, B29, B30, B32, B66, B71
-    * **LTE-TDD**: B34, B38, B39, B40, B41, B42, B43, B48
-    * Refer to "RM520N-GL" datasheet for more technical details
-* **Wifi:** 2.4G/5G
-* **Network Ports**
-    * 1x Gigabit WAN/LAN port
-    * 3x Gigabit LAN ports
-* **2x SIM card slots**: supports network switching between SIM cards
-* **Hardware watchdog**
-* **Operating temperature**: -40°C to 75°C
-* **Power supply**: 5-40V (DC2.1/2-pin Phoenix connector)
+</Split>
 
-## Common Configurations
+## Fitting it
 
-### Using the Industrial 5G/Wifi Router as an Access Point (AP) Client
+| | |
+| --- | --- |
+| **Power input** | 5–40 V, DC 2.1 barrel or 2-pin Phoenix connector |
+| **Operating temperature** | −40 °C to 75 °C |
+| **Network ports** | 1 × Gigabit WAN/LAN, 3 × Gigabit LAN |
+| **SIM** | 2 slots, with switching between them |
+| **WiFi** | 2.4 GHz and 5 GHz |
+| **Watchdog** | Hardware |
 
-The router can be configured to connect to an existing Wifi network as an AP client, after which it can provide internet access (assuming the existing network already has internet) to devices connected to its LAN ports.
+The wide input range means it can usually run straight from the platform's battery rail without a regulated supply.
 
-To configure the router as an AP client, follow these steps:
+## Key information
 
-1. Connect to the router's web interface by entering the router's IP address in a web browser. The default IP address is usually "10.10.0.1".
+### Related resources
 
-   ![Home Page](../img/westonrobot/5g_router/home_page.png)
+| Resource | What it is | Where |
+| --- | --- | --- |
+| Cellular module datasheet | Supported 5G NR and LTE bands, in full | [Quectel RM520N series](https://www.quectel.com/product/5g-rm520n-series/) |
 
-2. Click into the AP client configuration page.
+### Default address
 
-   ![AP Client Tab](../img/westonrobot/5g_router/ap_client_tab.png)
+| | |
+| --- | --- |
+| **Web interface** | `http://10.10.0.1` |
 
-3. Change "Wireless Operation Mode" to "AP-Client + AP" or "AP-Client (AP is disabled)"
+Everything below is done through that web interface. If the router has already been deployed, its address may have been changed — see [Changing the LAN IP address](#changing-the-lan-ip-address).
 
-   **Note**: The difference between the 2 modes is whether the router will also broadcast its own Wifi network. If you want the router to broadcast its own Wifi network, choose "AP-Client + AP".
+### Cellular bands
 
-   ![Operation Mode](../img/westonrobot/5g_router/operation_mode.png)
+The 5G NR and LTE band support comes from the **Quectel RM520N-GL** module. The full band list is long and belongs with the module rather than here — see the [Quectel RM520N series datasheet](https://www.quectel.com/product/5g-rm520n-series/).
 
-4. Switch Role to "WAN (Wireless ISP)", configure the Wifi network settings of the **existing network** to connect and click "Apply"
+What matters when deploying: it is a **Sub-6 GHz, 3GPP Release 16** module supporting both 5G NR standalone and non-standalone, with LTE-FDD and LTE-TDD fallback. Check your carrier's bands against the datasheet before committing to a region.
 
-   ![AP Settings](../img/westonrobot/5g_router/ap_settings.png)
+## Common configurations
 
-5. After applying the settings, the router will attempt to connect to the existing Wifi network. You can check the connection status on the "Status" page.
+### Using the router as a WiFi (AP) client
 
-#### For 5Ghz network
+This makes the router join an existing WiFi network and share that connection to devices on its LAN ports — useful when the robot needs internet access but you do not want to move it onto cellular.
 
-The router supports both 5Ghz and 2.4Ghz networks, you can configure the router to connect to a 5Ghz network by clicking the "Go to 5Ghz Setting" button and repeat the steps above.
+1. Open the web interface at `http://10.10.0.1`.
 
-![5Ghz Setting](../img/westonrobot/5g_router/5ghz_setting.png)
+   ![Router home page](../img/westonrobot/5g_router/home_page.png)
 
-### Changing the Router's LAN IP Address
+2. Go to the AP client configuration page.
 
-The router's LAN IP address range can be changed to fit your network configuration.
+   ![AP client tab](../img/westonrobot/5g_router/ap_client_tab.png)
 
-To change the LAN IP address, follow these steps:
+3. Set **Wireless Operation Mode** to either `AP-Client + AP` or `AP-Client (AP is disabled)`.
 
-1. Connect to the router's web interface by entering the router's IP address in a web browser. The default IP address is usually "10.10.0.1".
+   The difference is whether the router keeps broadcasting its own WiFi network as well. Choose `AP-Client + AP` if you still want to connect to the robot over its own SSID.
 
-   ![Home Page](../img/westonrobot/5g_router/home_page.png)
+   ![Operation mode](../img/westonrobot/5g_router/operation_mode.png)
 
-2. Click into the "LAN" configuration tab.
-  
-   ![LAN Config Tab](../img/westonrobot/5g_router/lan_config_tab.png)
+4. Set **Role** to `WAN (Wireless ISP)`, enter the credentials of the **existing** network you are joining, and click **Apply**.
 
-3. Adjust the LAN settings as needed and click "Apply".
-    
-   **Note**: DHCP server settings should be adjusted automatically to suit the new LAN settings.
+   ![AP settings](../img/westonrobot/5g_router/ap_settings.png)
 
-   ![LAN Settings](../img/westonrobot/5g_router/lan_settings.png)
+5. Check the connection on the **Status** page.
+
+#### Joining a 5 GHz network
+
+The steps are the same, but start by clicking **Go to 5Ghz Setting** — the 2.4 GHz and 5 GHz radios are configured separately.
+
+![5 GHz setting](../img/westonrobot/5g_router/5ghz_setting.png)
+
+### Changing the LAN IP address
+
+Change this when `10.10.0.x` collides with an existing network — which it will if you have two of these, or if the robot has to sit on a customer's subnet.
+
+1. Open the web interface at `http://10.10.0.1`.
+
+2. Go to the **LAN** configuration tab.
+
+   ![LAN config tab](../img/westonrobot/5g_router/lan_config_tab.png)
+
+3. Adjust the LAN settings and click **Apply**. The DHCP server range adjusts automatically to match.
+
+   ![LAN settings](../img/westonrobot/5g_router/lan_settings.png)
+
+:::caution You will lose the connection when you apply this
+
+Changing the LAN address changes the address you are currently connected on. Reconnect
+at the new address afterwards, and record it — there is no label on the unit saying
+what it was changed to.
+
+:::
+
+## Troubleshooting & FAQ
+
+### The web interface does not respond at 10.10.0.1
+
+Either the address has been changed on this unit, or your machine is not on its subnet. Check that you have an address from its DHCP server before assuming the router is faulty.
+
+### It has joined a WiFi network but devices have no internet
+
+Confirm the network it joined actually has internet, and that **Role** is set to `WAN (Wireless ISP)` — in the other roles the router will associate but not route.
+
+For fault and alarm codes, see [Fault codes](/support/fault-codes). General questions are answered on the [Support FAQ](/support/faq).
+
+## Support
+
+Collect the serial number, firmware version and the configuration you are using before raising a ticket — [Before you contact us](/support/before-you-contact-us) lists what helps.
+
+- [Support centre](/support/intro) — all support resources
+- [Identify your product](/support/identify-your-product) — where to find the serial number
+- [Warranty and RMA](/support/warranty-and-rma) — repairs, replacements and returns

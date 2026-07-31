@@ -229,8 +229,9 @@ Hero images are almost always **the vendor's copyright**, not ours. As their dis
 | `robot/img/realman/wr65.png` | WR65 | Realman [RM65 product page](https://www.realman-robotics.com/en/products/rm65.html) (`RM65-标准版`) | Vendor render. Alpha-trimmed, downscaled to 720 px tall |
 | `robot/img/realman/wrl63.png` | WRL63 | Realman [RML63 product page](https://www.realman-robotics.com/en/products/rml63.html) (`RML63-标准版`) | Vendor render. Alpha-trimmed, downscaled to 720 px tall |
 | `robot/img/ufactory/xarm.png` | xArm 6 | UFactory [xArm 6 product page](https://www.ufactory.cc/product-page/ufactory-xarm-6/) (`xarm56-1305_画板-1-副本-2.png`) | Vendor render. A UFACTORY badge occupying the top 14 % of the canvas, separate from the arm, was masked out; the arm itself is untouched |
+| `peripheral/img/westonrobot/power_regulator_v2.jpg` | Power Regulator v2 | Photographed in-house | **Ours — no rights question.** Cropped to the unit and downscaled. The serial-number label is legible when zoomed; redact it if that matters |
 
-All three are **pending confirmation** that our agreements cover documentation use. Replace with vendor-supplied assets if that is cleaner.
+The three vendor renders are **pending confirmation** that our agreements cover documentation use. Replace with vendor-supplied assets if that is cleaner. The regulator photo is our own and needs no such check.
 
 Two mechanical notes learned doing these:
 
@@ -481,7 +482,14 @@ For tier 3 carrier boards — the CM4 and NanoPC computers — the vendor link c
 | --- | --- | --- |
 | `peripheral/computer/nanopc` | 3 — our carrier on a FriendlyELEC SBC | ✅ exemplar |
 | `peripheral/computer/j4012` | 1 — Seeed reComputer | ✅ converted — datasheet transcription cut back |
-| `peripheral/computer/cm4` | 3 — our carrier on a Raspberry Pi CM4 | ⬜ 124 words, spec list only; needs device nodes and fitting |
-| `peripheral/network/industrial_5g_router` | 2 — rebadged, Quectel RM520N-GL module | ⬜ vendor unidentified; default IP buried in a procedure; no credentials |
-| `peripheral/power/power_regulator_v2` | 3 — our design | ⬜ richest page; needs section rename and a Support section |
-| `peripheral/sensor/manifold_pocket` | 1 — Manifold | ⬜ 227 words; no fitting or integration detail |
+| `peripheral/computer/cm4` | 3 — our carrier on a Raspberry Pi CM4 | ✅ converted — surfaced that its CAN and RS485 are **isolated**, which the NanoPC's are not. **Device nodes still needed** |
+| `peripheral/network/industrial_5g_router` | 2 — rebadged, Quectel RM520N-GL module | ✅ converted — ~60 band designations cut to a Quectel link; default address promoted out of a procedure step. **Vendor and credentials still unknown** |
+| `peripheral/power/power_regulator_v2` | 3 — our design | ✅ converted — photo now exists, documenting an XT60 input the text never mentioned |
+| `peripheral/sensor/manifold_pocket` | 1 — Manifold | ✅ converted — specs kept in full, deliberately: they decide whether a capture works before travelling to site |
+
+Open gaps across the set, all needing domain knowledge rather than editing:
+
+- **No default credentials are documented** for the NanoPC, CM4, J4012 or the router's web interface.
+- **No device-node mapping for the CM4.** The NanoPC page has one and it is the most valuable thing on it; the CM4's is simply not written down anywhere.
+- **The router's manufacturer is unidentified.** It is tier 2, so there should be a vendor to point at; only the cellular module (Quectel RM520N-GL) is known.
+- **Compatibility is unstated everywhere.** No peripheral page says which platforms it is used with, which is the first question a "will this work with my robot" reader has.

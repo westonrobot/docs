@@ -54,7 +54,7 @@ The app route is usually faster, and it gives you the model designation at the s
 | --- | --- |
 | [UGV Development Kit v1.0](/system/ugv_devkit/v1.0) | **TODO** |
 | [UGV Development Kit v1.1](/system/ugv_devkit/v1.1) | **TODO** |
-| [Power Regulator v2.X](/peripheral/power/power_regulator_v2) | **TODO** |
+| [Power Regulator v2.X](/peripheral/power/power_regulator_v2) | White label on the **top face**, in the corner beside the logo. Carries the serial number and a QR code |
 | Onboard computers | **TODO** |
 
 ## Software versions

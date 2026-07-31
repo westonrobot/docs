@@ -1,38 +1,90 @@
 ---
 sidebar_position: 1
-description: "Manifold Pocket Scanner: specifications and integration resources."
+description: "Manifold Pocket Scanner: fitting, capture planning, specifications and software."
 ---
-
-
-import MANIFOLD_POCKET_SCANNER_IMG from '../img/manifold/pocket.png';
 
 # Manifold Pocket Scanner
 
-## Overview
+<Split ratio="wide-narrow">
 
-<div style={{textAlign: 'center'}}>
-<img src={MANIFOLD_POCKET_SCANNER_IMG} alt="Manifold Pocket Scanner" style={{width: 350}} />
+<div>
+
+A compact handheld 3D capture unit, combining a **40-line LiDAR** with **dual global-shutter fisheye cameras** for colourised point clouds. At 560 g and roughly the size of a hand, it is carried rather than mounted, and is used alongside a robot deployment rather than on the robot.
+
+The usual reasons to reach for it: capturing a site before deploying a robot into it, producing a reference map to check an autonomously built one against, or recording as-built geometry where sending a robot is not practical.
+
+Capture is previewed live and edited in the field through the MindCloud GO app; MindCloud on Windows handles the heavier processing.
+
+This page does not repeat or replace Manifold's documentation — the manuals below are the reference for operating it.
+
 </div>
 
-The Pocket is a highly compact and modular 3D data collection device, purpose‑built for seamless integration into handheld workflows and robotic platforms. It combines dual industrial-grade fisheye cameras with global shutter capability for true‑color imaging, alongside a 40‑line LiDAR system delivering dense, real‑time point clouds. The system supports live preview and on‑the‑fly edits through the MindCloud‑GO app, all housed within a lightweight (560 g), palm‑sized enclosure with approximately 2 hours of battery life.
+<Figure
+  src={require('../img/manifold/pocket.png').default}
+  alt="Manifold Pocket handheld 3D scanner"
+  size="hero" />
 
-## Specifications
+</Split>
 
-| Specification | Value |
-|--------------|-------|
-| Laser Wavelength | 905nm |
-| Laser Range | Up to 40m @ 10% reflectivity, 70 m @ 80% reflectivity |
-| LiDAR Point Cloud Density | 40 lines |
-| LiDAR Point Rate | 200,000 points/s (first return) |
-| LiDAR Frame Rate | 10 Hz |
-| Cameras | Dual Fisheye 5 Megapixel Global Shutter Camera |
-| Battery Life | 2 hours |
-| Dimensions (Main Unit) | 115 mm X 110 mm X 83 mm |
-| Weight (Main Unit) | 560 g |
+## Fitting it
 
-## Resources
+Nothing to fit — it is handheld and battery-powered. What constrains a session:
 
-* MindCloud GO User Manual: [PDF](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EXVPAz1fy0dEmuplUSErgX8BZrLj6EK2IC621P0m_sSpow?e=cWhO5P)
-* MindCloud User Manual: [PDF](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EQCjHhhVamtNuHzNLNt-J1oBzEU-H3OIJ6Gbclk3GRVqZA?e=avRo4H)
-* MindCloud Go (Android APK): [Download](https://www.manifoldtech.cloud/download/?file=MindCloudGo_0.3.0.apk)
-* MindCloud (Windows): [Download](https://www.manifoldtech.cloud/download/?file=MindCloud_0.1.9.exe)
+| | |
+| --- | --- |
+| **Battery life** | About 2 hours |
+| **Weight** | 560 g (main unit) |
+| **Dimensions** | 115 × 110 × 83 mm (main unit) |
+
+Two hours is the practical planning unit. A site needing longer than that has to be split into sessions, so decide where the seams fall before you start rather than after the battery goes.
+
+## Key information
+
+### Related resources
+
+| Resource | What it is | Where |
+| --- | --- | --- |
+| MindCloud GO manual | Operating the scanner and the field app | [PDF](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EXVPAz1fy0dEmuplUSErgX8BZrLj6EK2IC621P0m_sSpow?e=cWhO5P) |
+| MindCloud manual | Desktop processing | [PDF](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EQCjHhhVamtNuHzNLNt-J1oBzEU-H3OIJ6Gbclk3GRVqZA?e=avRo4H) |
+| MindCloud GO | Field app — live preview and on-the-fly edits | [Android APK](https://www.manifoldtech.cloud/download/?file=MindCloudGo_0.3.0.apk) |
+| MindCloud | Desktop processing application | [Windows](https://www.manifoldtech.cloud/download/?file=MindCloud_0.1.9.exe) |
+
+### Specifications
+
+Unlike most product pages here the sensor figures are kept in full, because they determine whether a capture will work before you travel to the site — which is not something to discover on arrival.
+
+| | |
+| --- | --- |
+| LiDAR | 40 lines, 905 nm |
+| Range | Up to 40 m at 10 % reflectivity · 70 m at 80 % reflectivity |
+| Point rate | 200,000 points/s (first return) |
+| Frame rate | 10 Hz |
+| Cameras | 2 × 5 MP global-shutter fisheye, true colour |
+| Battery life | About 2 hours |
+| Dimensions | 115 × 110 × 83 mm (main unit) |
+| Weight | 560 g (main unit) |
+
+:::note Range depends on what you are scanning, not only how far away it is
+
+The two range figures are the same sensor against different surfaces. Dark, matte or
+wet materials sit near the 10 % end and will fall short of 40 m; bright painted walls
+and signage sit near the 80 % end. Plan around the lower figure for outdoor and
+industrial sites rather than the headline one.
+
+:::
+
+## Troubleshooting & FAQ
+
+### Coverage is patchy on dark surfaces
+
+Expected — see the note above. Dark and matte materials return far less light, so effective range drops well below the headline figure. Work closer to them.
+
+For fault and alarm codes, see [Fault codes](/support/fault-codes). General questions are answered on the [Support FAQ](/support/faq).
+
+## Support
+
+Collect the serial number and the app and firmware versions before raising a ticket — [Before you contact us](/support/before-you-contact-us) lists what helps.
+
+- [Support centre](/support/intro) — all support resources
+- [Identify your product](/support/identify-your-product) — where to find the serial number
+- [Warranty and RMA](/support/warranty-and-rma) — repairs, replacements and returns
