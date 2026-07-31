@@ -48,9 +48,9 @@ particular can fall without warning during development.
 
 <ProductCard to="/robot/humanoid/h1-2" src={require('./img/unitree/H1-2_robot.png').default} alt="Unitree H1-2 humanoid" title="H1-2">180 cm general-purpose humanoid, an upgrade of the original H1.</ProductCard>
 
-<ProductCard to="/robot/humanoid/r1" title="R1">Unitree's R1 humanoid. Documentation in preparation.</ProductCard>
+<ProductCard to="/robot/humanoid/r1" src={require('./img/unitree/R1_robot.png').default} alt="Unitree R1 humanoid" title="R1">Unitree's R1 humanoid. Documentation in preparation.</ProductCard>
 
-<ProductCard to="/robot/humanoid/h2" title="H2">Unitree's full-size H2 humanoid. Documentation in preparation.</ProductCard>
+<ProductCard to="/robot/humanoid/h2" src={require('./img/unitree/H2_robot.png').default} alt="Unitree H2 full-size humanoid" title="H2">Unitree's full-size H2 humanoid. Documentation in preparation.</ProductCard>
 
 </ProductGrid>
 
