@@ -27,7 +27,7 @@ What the robot was doing **just before**, what happened **at the moment**, and w
 
 </KeyPoints>
 
-### Anything else you can add
+**Anything else you can add**
 
 - **Photos or video** — especially of how payloads are mounted, or ten seconds of the fault if it is a movement.
 - **What you observed** — exact error text, which lights and what colour, whether the joints were stiff or limp.
@@ -49,10 +49,7 @@ Which unit, then what happened. That is already enough to point at thermal prote
 
 Send what you have gathered. The more your first message carries, the sooner we can work on the problem itself instead of asking about it.
 
-<a
-  className="button button--primary button--lg margin-top--sm"
-  href="https://forms.office.com/r/qELKzYF33W"
-  target="_blank"
-  rel="noopener noreferrer">
-  Submit a support request →
-</a>
+{/* Keep the label on the same line as the tags. Split across lines, MDX parses
+    it as a block and wraps it in a <p>, whose bottom margin lands inside the
+    button and pushes the text off centre. */}
+<a className="button button--primary button--lg margin-top--sm" href="https://forms.office.com/r/qELKzYF33W" target="_blank" rel="noopener noreferrer">Submit a support request →</a>
