@@ -80,6 +80,21 @@
   min-width: 0;
 }
 
+/* Each group owning its own tile grid means row heights equalise within Guides
+   and within Support, but never between them — a two-line subtitle under Guides
+   leaves the Support tiles visibly shorter beside it. Spanning both groups over
+   the same two parent rows makes the tile row one shared track, so every tile is
+   as tall as the tallest across both. Content-driven, so it survives edits to
+   the labels; row-gap is reset because the lead already carries its own margin. */
+@supports (grid-template-rows: subgrid) {
+  .sectionGroup {
+    display: grid;
+    grid-row: span 2;
+    grid-template-rows: subgrid;
+    row-gap: 0;
+  }
+}
+
 .sectionLead {
   font-size: 0.95rem;
   font-weight: 600;
