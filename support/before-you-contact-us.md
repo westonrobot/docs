@@ -35,11 +35,13 @@ What the robot was doing **just before**, what happened **at the moment**, and w
 - **What changed recently** — firmware, packages, payload, site, transport. "Nothing" is a real answer.
 - **Logs, starting with your own program's** — the output of whatever was driving the robot is the one thing we cannot get any other way. Send text as text, not a photo of a terminal.
 
-:::tip What a useful description looks like
+:::tip What a useful request looks like
 
-> *Driving at walking pace on flat concrete, ten minutes in. Stopped dead and went limp, no warning. Limp for about 30 seconds, then responded again.*
+> *Unitree Go2 — serial number on the sticker, photo attached.*
+>
+> *Driving at walking pace on flat concrete, about ten minutes in. Stopped dead and went limp with no warning, nothing shown on the controller. Stayed limp roughly 30 seconds, then responded again. Happened twice today, both times after about ten minutes of driving.*
 
-Three sentences, and it already points at thermal protection. "The robot keeps failing" points nowhere.
+Which unit, then what happened. That is already enough to point at thermal protection — "the robot keeps failing" points nowhere.
 
 :::
 
