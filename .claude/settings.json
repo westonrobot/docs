@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit|NotebookEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 /home/ntu-workcell-01/unitree/docs/.claude/hooks/commit-reminder.py",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}
