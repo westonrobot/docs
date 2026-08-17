@@ -72,3 +72,15 @@ Each section is configured as a separate plugin instance in `docusaurus.config.t
 - Custom CSS in `src/css/custom.css`
 - Supports Mermaid diagrams through `@docusaurus/theme-mermaid`
 - Uses Prism for syntax highlighting with GitHub light and Dracula dark themes
+
+## Writing Conventions
+
+Readers skim, not read. Optimize for that.
+
+- **Tables over prose** for anything procedural or reference-like — especially safety/emergency procedures. One row per case.
+- **Minimal text.** Lead with the action; cut connective explanation that doesn't change what the reader does.
+- **Multi-case procedures** (different hardware generations, different situations) go in one table with a "situation"/"if…" column — not parallel paragraphs.
+
+## Version Control Workflow
+
+Claude does not run `git add`, `git commit`, or `git push` in this repo — the human does. Claude's job is to say when a change is ready, propose the commit message(s), and flag a sensible point to push. A `PreToolUse` hook (`.claude/settings.json` → `.claude/hooks/commit-reminder.py`) reminds Claude of this before edits whenever the working tree already has uncommitted changes.
