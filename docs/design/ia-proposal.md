@@ -333,7 +333,7 @@ Also worth measuring: **how do customers reach the site** — bookmark, emailed 
 | D6 | Analytics platform, GA4 property, DocSearch application | **open, now blocking** — needs your accounts |
 | D7 | Specification authority: page or PDF | **open** — page authoritative, PDF generated from it. A process change on your side |
 | D8 | Doc review owner; definition of done for a product page | **open** — needed before Phase 6 |
-| D9 | Is SDK / API reference coming to this site | **open** — if yes, a `Develop` tab returns; if no, 16 repos stay on GitHub |
+| D9 | Is SDK / API reference coming to this site | **resolved (2026-08-20)** — no; product hubs link out via "Downloads / SDK" instead. See `wr_unitree_support/docs/PUBLISHING.md` |
 | D10 | Solution overviews here or on the marketing site | **resolved by D0** — outcome and proof on marketing, deployment and config here |
 | D11 | Which of the two support forms is correct | **resolved** — the short link `forms.office.com/r/qELKzYF33W` is the newer one and is now the only form on the site; see §2.7 |
 
