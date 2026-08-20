@@ -21,5 +21,10 @@ yarn-error.log*
 
 .vscode/
 # Claude Code config/instructions — not site content
-.claude/
+.claude/*
 CLAUDE.md
+# Exception: this skill is a shared team convention, not local config
+!.claude/skills/
+.claude/skills/*
+!.claude/skills/vendor-interface-summary/
+!.claude/skills/vendor-interface-summary/**
