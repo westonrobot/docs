@@ -77,9 +77,9 @@ Sidebars are explicit, so Docusaurus ignored these files — no `generated-index
 
 Docusaurus validates only *internal* links. Two links written as fully-qualified `https://docs.westonrobot.com/...` URLs were treated as external and skipped, so `onBrokenLinks: 'throw'` did not protect them. Now relative. Audited — those were the only two.
 
-### 2.6 Support material barely existed ✅ partially implemented
+### 2.6 Support material barely existed ✅ implemented
 
-See §10 for what is now real and what is still a scaffold.
+Answered by cutting the section's scope rather than filling it: four of the five planned pages were removed because their content belongs on the product or Guide page that owns it. See §10.
 
 ### 2.7 Two different support forms were in use ✅ resolved
 
@@ -121,7 +121,7 @@ Products ▾ │ Solutions │ Guides │ Support                   GitHub↗  L
 | **Products** | "I have *this thing*" | Robots, Peripherals, Systems — URLs unchanged |
 | **Solutions** | "Deploy and operate *this capability*" | ADT; Navigation and Patrolling in draft |
 | **Guides** | "I want to *do something*" | Safety, maintenance, setup, per-model guides |
-| **Support** | "Something is wrong, or I need a human" | Identification, FAQ, fault codes, warranty |
+| **Support** | "Something is wrong, or I need a human" | What to collect before raising a ticket; the support form |
 
 `Products` is a dropdown over three existing plugin instances, so no product URL changed. The external support form left the navbar and now lives at the end of the Support pages, after the reader has collected what support needs.
 
@@ -141,7 +141,7 @@ Guides stay where they are; the product page becomes the hub that gathers everyt
   5. Solutions for this platform ⟵ from tag              ⏳ pending
   6. Troubleshooting & FAQ
   7. Downloads ─────────── manuals · CAD/STEP · SDK
-  8. Support ───────────── warranty · contact
+  8. Support ───────────── what to collect · contact
 ```
 
 The ordering follows §0: a deployed customer does not need persuading, they need to confirm *which* unit they have and then get it working. Specifications stay important — integrators need payload, reach and interfaces — but below the operational sections.
@@ -253,7 +253,7 @@ The payoff: every product page with tagged guides carries a **Guides for this pr
 
 ---
 
-## 10. Support section ✅ partially implemented
+## 10. Support section ✅ implemented — scope deliberately reduced
 
 > **Reversal — safety and maintenance.** Revision 2 put `/support/safety` and `/support/maintenance` in this section. They are now under **Guides** instead, as `/tutorial/operational-safety` and `/tutorial/robot-maintenance`, because they are procedures you follow — one before operating, one on a schedule — which is the Guides axis. Keeping them here made Support a catch-all; Support is now scoped strictly to "something is wrong, or I need a human". Tagging them `safety` and `maintenance` also gives them more reach than a Support sub-page: a tag surfaces from any product page, whereas a Support page is only visited once there is already a problem.
 
@@ -262,7 +262,7 @@ Per §0 this is the highest-value section on the site. Every page is one a suppo
 | Page | Status | What it still needs |
 | --- | --- | --- |
 | `before-you-contact-us` | **complete** | — |
-| `faq` | **complete** | — |
+| ~~`faq`~~ | **removed** | Cross-platform answers moved into the Guides that own them; every product page links the relevant anchor directly |
 | ~~`identify-your-product`~~ | **removed** | Serial-number location is a per-product physical fact; it now lives on each product page under Key information |
 | ~~`fault-codes`~~ | **removed** | A single site-wide code list was the wrong shape. Fault and alarm codes are per firmware, so they belong on the robot family or vendor page that owns that firmware |
 | ~~`warranty-and-rma`~~ | **removed** | Never written — warranty terms are commercial commitments. Warranty questions go through the support form like anything else |
@@ -273,7 +273,11 @@ Per §0 this is the highest-value section on the site. Every page is one a suppo
 
 `fault-codes` was removed rather than filled in. Codes come from firmware, so one site-wide list would have had to span every vendor and every revision, and a wrong entry sends a customer down the wrong diagnostic path. They will be documented per robot family or vendor instead, on the page that owns that firmware.
 
-The `faq` page consolidates questions that were duplicated verbatim across G1, Go2 and B2 — joint lubrication, wireless development, waterproofing, fall recovery — while model-specific questions stay on the product pages where people look for them.
+`faq` was removed rather than kept. The questions it was to consolidate — joint lubrication, wireless development, waterproofing, fall recovery — are cross-platform answers, so they now live in the Guides that own them, and each product page links the anchor directly rather than sending the reader to a shared page. Seven product pages carry a **Questions that apply across our platforms** section built this way, pointing at `/tutorial/operational-safety#where-you-can-operate`, `#if-something-goes-wrong` and `#while-you-are-developing`, and `/tutorial/robot-maintenance#quadrupeds-and-humanoids` — each linked from four to seven of those pages. Model-specific questions stay on the product page. Same reasoning as the rows above: a shared page is a hop, and an answer reached from the product already in front of the reader is not.
+
+**Current state.** Support is one page — `before-you-contact-us` — plus a link to the support form. That is the entire section, by design.
+
+> **Consequence for `static/llms.txt`.** That file is hand-written and sits outside the build, so `onBrokenLinks` never checks it. It advertised `/support/faq` and `/support/warranty-and-rma` for weeks after both were deleted, serving two 404s to the audience `robots.txt` explicitly invites. Any page removed here must be removed there in the same commit.
 
 **One cheap input worth gathering: ask your support engineers what they retype.** They hold the ranked list already, in their heads and in the ticket history. It beats what analytics will produce in three weeks, and it costs a conversation.
 
@@ -308,7 +312,7 @@ Unchanged: every `/robot/*`, `/peripheral/*` and `/system/*` URL.
 | 0 | Instrument; ask the support team | **outstanding** — needs D6 |
 | 1 | Structural fixes and link integrity | ✅ done |
 | 2 | Navigation, taxonomy, Solutions, Software dissolved | ✅ done |
-| 3 | Support section | ✅ structure done, 3 pages need content |
+| 3 | Support section | ✅ done — scope cut to one page plus the form; see §10 |
 | 4 | Solution content for Navigation and Patrolling | ⏳ drafts in place |
 | 5 | Exemplar product hub — G1 | ⏳ next |
 | 6 | Roll hubs across the remaining 19 products | ⏳ |
