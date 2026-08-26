@@ -50,8 +50,8 @@ Files and repositories you clone or download to work with the robot.
 
 | Resource | What it is | Where |
 | --- | --- | --- |
-| User guide | Weston Robot's Go2 user guide | [Go2 User Guide](https://tangrobot.sharepoint.com/:p:/s/Public-Outgoing/ESCOlfuKT5lPkwCnOFUoYbwB5Jr5o4meAyXd2lpGB09W5w?e=ixXe5e) |
-| Expansion dock reflash | Recovering or updating the dock's firmware | [Reflash guide](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EcQ3PHojLhZBsDg1oBpvPPIBWyJiSJPyAZMsk91ZnXbBJg?e=YaKBgf) |
+| User guide | Weston Robot's Go2 user guide | [Go2 User Guide](https://drive.google.com/file/d/1J8djR9AM04yRQpGwCmQbvIni2ymwxlwV/view?usp=drive_link) |
+| Expansion dock reflash | Recovering or updating the dock's firmware | [Reflash guide](https://drive.google.com/file/d/14RwW_kDcGxX9-G442ri5mWq_qUPuTa0j/view?usp=drive_link) |
 | Payload mounting | Mechanical mounting guidance | [Unitree payload guide](https://support.unitree.com/home/en/developer/Payload) |
 | URDF / CAD | Robot model for simulation and mechanical design | [Unitree developer downloads](https://support.unitree.com/home/en/developer/Obtain%20SDK) |
 | C++ SDK | Primary development interface | [unitree_sdk2](https://github.com/unitreerobotics/unitree_sdk2) |
