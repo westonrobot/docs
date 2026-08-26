@@ -26,9 +26,7 @@ product page links its manufacturer's own documentation near the top.
 
 ## Support
 
-- [Support FAQ](https://docs.westonrobot.com/support/faq): waterproofing, joint wear, thermal behaviour, wired versus WiFi
 - [Before you contact us](https://docs.westonrobot.com/support/before-you-contact-us): what to collect, with the commands to collect it
-- [Warranty and RMA](https://docs.westonrobot.com/support/warranty-and-rma): repairs, replacements and returns
 
 ## Optional
 
