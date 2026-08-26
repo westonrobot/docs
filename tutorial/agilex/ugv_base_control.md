@@ -114,6 +114,6 @@ canplayer -I <candump-log-file-name>.log
 
 Now you've setup the CAN interface on your development or onboard computer. Connecting the robot CAN to your computer CAN (HIGH signal to High, LOW signal to LOW). Make sure **SWB** on the remote controller is at the up position. Now you should be able to use the SDK or ROS node to control the robot. 
 
-Refer to [sample code](https://github.com/westonrobot/wrp_sdk/tree/sample-v1.0.0/sample/mobile_base) and [sample launch files](https://github.com/westonrobot/wrp_ros/tree/main/launch/mobile_base) for details of the program control.
+Refer to [sample code](https://github.com/westonrobot/wrp_sdk/tree/main/sample/mobile_base) and [sample launch files](https://github.com/westonrobot/wrp_ros/tree/main/wrp_sdk_robot/launch/mobile_base) for details of the program control.
 
 **Important**: Please lift the robot up with a stool and keep the RC controller in hand for the initial testings to avoid the robot crashing into something around. 
