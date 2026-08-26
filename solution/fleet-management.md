@@ -79,11 +79,18 @@ Four things happen here, in this order.
 
 Missions are built in the browser from **waypoints** (the places on the site map a robot can be sent to), the routes between them, and a schedule, then kept in a library and reused. Revision comparison and duplication mean a second site starts from the first rather than from nothing.
 
-Missions reference the site map. **When a map changes, the missions affected by it are flagged for review** rather than dispatched against waypoints that may have moved.
+Missions reference the site map, so a robot has to be on the map the fleet has activated before its missions can be edited or dispatched. **When a newer map is activated, that robot's missions are switched off and stay locked** until it confirms the new map — rather than running against waypoints that may have moved. Once it confirms, you check the missions and switch them back on.
+
+<Figure
+  src={require('./img/fleet-map-not-current.png').default}
+  alt="A dialog headed 'This robot's map is not up to date', comparing the revision the fleet activated with the older revision on the robot, and explaining that its missions are switched off until it confirms the new map"
+  size="md"
+  framed
+  caption="What you see when a robot is behind the activated map. Editing and dispatch stay locked until it catches up." />
 
 ### 2. Dispatch it
 
-To **dispatch** a mission is to hand it to a named robot to run, either on demand or on a schedule. A robot can also be sent on a one-off errand without building a full mission.
+To **dispatch** a mission is to hand it to a named robot to run, either on demand or on a schedule. A robot can also be sent somewhere once, without building a mission at all — that is **Quick Dispatch**, on the map toolbar.
 
 ### 3. Watch it run
 
@@ -186,9 +193,9 @@ On-premise is the further step, and data residency is what decides it. If your r
 
 Expected. A new map arrives as a draft and has to be activated. Until then robots keep the map they have — this is deliberate, so a robot never changes map in the middle of a job.
 
-### Why are missions flagged for review after a map change?
+### A robot's missions are switched off and I cannot edit or dispatch them
 
-Because waypoints may have moved. Rather than dispatching against a map that no longer matches, the affected missions are flagged so someone confirms they still make sense.
+That robot is on an older map than the one the fleet has activated, and waypoints may have moved. Its missions stay locked until it confirms the new map; then you check them and switch them back on. If the switch fails, it can be retried from the same place. Updating which map a robot is on is a Site Admin action.
 
 ### Something was detected but nobody was alerted
 

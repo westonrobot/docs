@@ -98,15 +98,42 @@ Clean up the scan: remove noise and stray points, and level it against gravity s
 
 **This stage decides the quality of everything after it.** A scan that is subtly tilted produces a map that looks correct and navigates badly: where the floor sits, where the nodes and zones you later place come to rest on it, and whether routes solve all follow from getting this right.
 
+Downsampling is usually the first thing you do, because a raw scan is slow to draw on. It merges points into a grid of cubes and keeps one per cube, so the shape survives and the point count drops — the office below went from 555,150 points to 194,668 at a 5 cm grid.
+
+<Figure
+  src={require('./img/toolbox-prepare.png').default}
+  alt="The Prepare stage with an office point cloud rendered in the 3D view, and a panel offering Downsample, Gravity Align with Auto or pick-three-points, and Crop by polygon or box"
+  size="lg"
+  framed
+  caption="Preparing a scan: reduce it, level it against gravity, and crop away what you do not need." />
+
 ### 3 · Levels
 
 Identify the floor levels the map is built on. Every node and zone belongs to one.
+
+The tool finds horizontal planes in the scan for you and lists them by height, with the number of points supporting each. You add the one that is the floor.
+
+<Figure
+  src={require('./img/toolbox-levels.png').default}
+  alt="The Levels stage listing six detected horizontal planes by height, each with a point count and an Add button, beside the rendered point cloud"
+  size="lg"
+  framed
+  caption="Detected planes, listed by height. Adding one makes it a level the map is built on." />
 
 **This release supports one level per site**, because robots do not use stairs or lifts on their own. For a single-level site this stage is short: there is one level, and everything on the map belongs to it. **Transition** exists in the format for sites that do span floors, and has no use in a single-level site. Ramps within a level are usually fine.
 
 ### 4 · Edit
 
 Place what the robot actually reasons about — the nodes it can be sent to, the segments between them, and zones. Multi-select and surface snapping make drawing quick, and every action is reversible.
+
+The scan stays visible underneath while you draw, at an opacity you control, so you are placing things against the building rather than against an empty grid. **Surface snapping** is what settles a node or a zone onto the floor instead of leaving it floating: you set how far above and below the level the tool should look, and it does the rest.
+
+<Figure
+  src={require('./img/toolbox-edit.png').default}
+  alt="The Edit stage showing the active level over a semi-transparent point cloud, drawing tools for nodes segments and zones, a surface snap configuration panel, and an elements list counting nodes segments and zones"
+  size="lg"
+  framed
+  caption="Editing against the scan: the drawing tools on the left, the active level highlighted, and a running count of what the map contains." />
 
 ### 5 · Export
 
