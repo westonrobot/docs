@@ -8,11 +8,30 @@ services:
     volumes:
       # Bind-mount the source so edits hot-reload.
       - .:/app
-      # Keep node_modules inside the container. Without this, the bind mount
-      # above shadows the modules installed during the image build and the
-      # dev server starts with nothing installed. Run `docker compose build`
-      # after changing dependencies.
+      # Keep node_modules inside the container rather than sharing the host's.
+      # Without this the bind mount above shadows it and the dev server starts
+      # with nothing installed.
       - /app/node_modules
+      # NOTE: .docusaurus/ is deliberately NOT a volume. Docusaurus writes
+      # absolute paths into .docusaurus/client-modules.js, so the host and the
+      # container cannot share that cache: whichever wrote it last wins, and
+      # the other side fails with "Module not found". Mounting a volume over it
+      # does not help either — an anonymous volume nested inside the `.:/app`
+      # bind mount makes Docker create the host mount point as root, which then
+      # breaks host-side `npm run build` with EACCES instead.
+      # So: use the container or the host, not both. Run
+      #   rm -rf .docusaurus build
+      # when switching between them. See README.
+    # Install on every start, so adding a dependency needs no Docker knowledge.
+    # The anonymous volume above persists across `docker compose build`, so an
+    # image rebuilt with a new package.json was still shadowed by a stale volume
+    # and the dev server died with "unable to resolve the ... plugin". Measured
+    # cost of doing it here instead: ~4s from cold, ~1s when already satisfied.
+    #
+    # npm ci rather than npm install, for two reasons: it matches CI exactly, and
+    # it never writes package-lock.json — which matters because the lockfile is
+    # bind-mounted, so `npm install` in here could mutate the host's copy.
+    command: sh -c "npm ci --no-audit --fund=false && exec npm start -- --host 0.0.0.0 --port 3000"
     environment:
       - NODE_ENV=development
     restart: unless-stopped

@@ -1,3 +1,7 @@
+---
+description: "Install and configure the vision sensor kit on the UGV Development Kit."
+---
+
 # UGV Devkit - Vision Extension
 
 This sensor kit or extension module for the UGV development kit provides a layer to install multiple types of cameras, namely the Intel® RealSense™ Depth camera as well as an RGB camera. It is designed to provide a base for teleoperation function as well as improved perception ability for your set up.

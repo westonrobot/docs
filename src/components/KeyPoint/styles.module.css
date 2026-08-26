@@ -1,0 +1,61 @@
+.grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+  margin: 1.5rem 0 2rem;
+}
+
+@media (min-width: 997px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  padding: 1.1rem 1.25rem 1.25rem;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-left: 3px solid var(--ifm-color-primary);
+  border-radius: 8px;
+  background: var(--ifm-background-surface-color);
+}
+
+/* The numeral sits behind the text as a watermark rather than beside it, so it
+   reads as emphasis without stealing a column of width from a narrow card. */
+.marker {
+  position: absolute;
+  top: 0.15rem;
+  right: 0.7rem;
+  font-size: 3.6rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--ifm-color-primary);
+  opacity: 0.12;
+  pointer-events: none;
+  user-select: none;
+}
+
+.title {
+  position: relative;
+  margin: 0 0 0.35rem;
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+
+.lede {
+  position: relative;
+  margin: 0 0 0.75rem;
+  font-size: 0.92rem;
+  line-height: 1.45;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.body {
+  position: relative;
+}
+
+.body > :last-child {
+  margin-bottom: 0;
+}
+

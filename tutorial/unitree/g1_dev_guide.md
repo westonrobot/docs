@@ -1,5 +1,7 @@
 ---
 sidebar_position: 1
+description: "Develop on the Unitree G1: environment setup, SDK, networking and motion control."
+tags: [unitree, g1, development]
 ---
 
 import ReactPlayer from 'react-player'
@@ -21,9 +23,9 @@ import HW_IF_REAL_IMG from './img/hw_interface_real.jpg';
 
 This guide is designed to help you get started with the **G1 EDU** humanoid robot development. It covers the hardware and software components, as well as the development process. This guide is not intended to replace the [official Unitree documentation](https://support.unitree.com/home/en/G1_developer), but rather to provide a complementary perspective on key information and walk you through the most important development steps.
 
-## 1. Get to Know G1 Hardware
+## Get to Know G1 Hardware
 
-### 1.1 Joint Configuration
+### Joint Configuration
 
 To start working with any articulated robot, it is essential to know its number of degrees of freedom (DOF) and the joint configuration. The following image shows the joint configuration of the G1 robot:
 
@@ -106,7 +108,7 @@ If you're uncertain about any aspect of joint operation or control, please reach
 
 :::
 
-### 1.2 Main Peripherals
+### Main Peripherals
 
 Besides the main body, the G1 robot is equipped with several peripherals that enhance its capabilities. The following table summarizes the main peripherals and their functions:
 
@@ -132,7 +134,7 @@ You can use the table below to find out the specific model of the robotic hand y
 
 Note that G1 also includes built-in IMU, microphone array and speaker. You can refer to the Unitree documentation for more information on how to interact with these components. 
 
-### 1.3 Electrical Connectivity
+### Electrical Connectivity
 The electrical connectivity of the G1 robot follows a hierarchical architecture as illustrated below. The locomotion computer and its connected components function as a closed system that users cannot directly access. Think of this as a black box with protected internals. Nevertheless, you can still utilize these components' capabilities through the provided SDK. The development computer serves as your primary gateway for programming and controlling the robot.
 
 ```mermaid
@@ -162,7 +164,6 @@ The carrier board provides the following interfaces:
     <img src={DEV_PC_HW_IF_IMG} alt="Development PC Hardware Interface" style={{ height: 400 }} />
 </div>
 
-
 | No. | Connector Name | Interface Description | Interface specification                                           |
 | --- | -------------- | --------------------- | ----------------------------------------------------------------- |
 | 1   | XT30UPB-F      | VBAT                  | 58V/5A Battery power output (directly connected to battery power) |
@@ -185,9 +186,9 @@ The [Electrical Interface section](https://support.unitree.com/home/en/G1_develo
 While you can connect an external computer to the development computer using port [9] with a Type-C to **HDMI & Ethernet** adapter, this approach is **not recommended**. The physical connection with an adapter on the Type-C port is less reliable than using the dedicated RJ45 ports. Additionally, the Ethernet connection through Type-C requires extra configuration steps that necessitate using the HDMI output for setup. Port [9] should be considered primarily for temporary scenarios like debugging or troubleshooting (for instance, when ports [4] or [5] connectivity fails).
 :::
 
-## 2. Get Started with G1 Software
+## Get Started with G1 Software
 
-### 2.1 Network Configuration
+### Network Configuration
 
 Onboard network devices on the G1 robot are connected through an internal **L2 Ethernet switch**. When you plug your external computer to port [4] or [5], you are also connected to the same network. By default, Unitree configures the devices to be in the **192.168.123.1/24** subnet (for example, a valid IP could be 192.168.123.199 with netmask 255.255.255.0). 
 
@@ -212,7 +213,7 @@ With the above information, it should be quite straightforward if you want to ge
 Please change the password of the development computer if you intend to keep the robot connected to the Internet. The default password is weak and should not be used in production environments.
 :::
 
-### 2.2 Software Architecture
+### Software Architecture
 
 The Unitree proprietary software stack runs on the onboard locomotion computer. It is responsible for low-level control of the robot, including motor control, sensor data processing, and communication with the development computer. It exposes a set of APIs for users to interact with the robot using the CycloneDDS middleware. The `unitree_sdk2` allows you to talk with the locomotion computer directly using DDS. Since CycloneDDS and ROS2 are compatible at the DDS level, you can also use the ROS2 package `unitree_ros2` to communicate with the robot. The relationship between the different software components is illustrated in the diagram below:
 
@@ -298,7 +299,7 @@ Unitree provides a way to disable its locomotion controller by getting the robot
     </div>
 </div>
 
-## 3. Run the First Example
+## Run the First Example
 
 With the background information described in the previous sections, you should be ready to run your first example on the robot. We will use the [Quick Development](https://support.unitree.com/home/en/G1_developer/quick_development) example provided by Unitree as a case study. This example demonstrates how to run the ankle swing low-level control example (g1_ankle_swing_example) from the `unitree_sdk2` library on the G1 robot. You should still refer to that page for the detailed instructions. The rest of this section will provide complementary information to help you relate the example to the concepts discussed in the previous sections. 
 
@@ -341,6 +342,6 @@ Here is a video showing the ankle swing example running on the G1 robot:
 <ReactPlayer controls url='https://youtube.com/shorts/e9L8aEecLY8?feature=share' />
 </div>
 
-## 4. Summary
+## Summary
 
 This guide has introduced you to the G1 EDU humanoid robot's hardware and software fundamentals. We've covered the joint configuration with its 29 DOFs, available peripherals (robotic hands, LIDAR, RGB-D camera), and electrical connectivity architecture. You've learned about the development computer (Jetson Orin NX) interfaces and network configuration, along with understanding the software framework that includes unitree_sdk2 for direct C++ development and unitree_ros2 for ROS2 integration. The guide explained high-level versus low-level control considerations and showed how to enable debug mode for full control. By following the example case study, you should now be able to run your first control applications on the robot and understand how to interact with both built-in functionalities and third-party peripherals. This foundation will serve as your starting point for more complex G1 development projects.

@@ -1,5 +1,7 @@
 ---
 sidebar_position: 2
+description: "Diagnose a Unitree B2 using the robot interface and the Unitree mobile app."
+tags: [unitree, b2, diagnostics]
 ---
 
 import B2_APP_CONN_01_IMG from './img/b2_app_conn_01.jpg';
@@ -31,7 +33,7 @@ If the event was not recorded, you can still examine the robot post-incident for
 
 You may also use the Unitree mobile app to check the robot's diagnostic information. You can download the Unitree mobile app with the QR code on [this page](https://www.unitree.com/app/b2):
 
-![](./img/b2_app_download.png)
+![Unitree mobile app download](./img/b2_app_download.png)
 
 To acquire the robot's diagnostic information, you need to connect your mobile device to the robot first. B2 supports both AP mode and Wi-Fi mode. Unitree provides [tutorial videos](https://www.unitree.com/app/b2) for adding B2 and using app features. The following screenshots quickly guide you through the process of connecting to the robot using AP mode.
 
@@ -86,7 +88,7 @@ Once connected, you can access the robot's diagnostic information by navigating 
 
 ### Robot Alarm Information
 
-![](./img/g1_alarm_info.jpg)
+![Robot alarm information in the Unitree mobile app](./img/g1_alarm_info.jpg)
 
 ### Robot Motor Information
 

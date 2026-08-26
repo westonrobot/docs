@@ -1,0 +1,35 @@
+# Weston Robot Documentation
+
+> Setup, interfaces and support for the robot platforms, peripherals and
+> integrated systems supplied by Weston Robot. Written for customers who already
+> own the hardware.
+
+Most platforms here are partner hardware (Unitree, AgileX, UFactory, Kinova,
+Realman). These pages do not restate the vendor's specifications; they cover the
+unit **as we configure and supply it** — fitted sensors, IP addresses,
+credentials, pre-installed software — and link the vendor for the rest. Each
+product page links its manufacturer's own documentation near the top.
+
+## Products
+
+- [Robots](https://docs.westonrobot.com/robot/intro): UGVs, quadrupeds, humanoids and manipulators
+- [Peripherals](https://docs.westonrobot.com/peripheral/intro): onboard computers, networking, power and sensors
+- [Systems](https://docs.westonrobot.com/system/ugv_devkit): the UGV Development Kit, pre-integrated onto a robot base
+- [Solutions](https://docs.westonrobot.com/solution/intro): capabilities we develop and deploy, such as teleoperation
+
+## Guides
+
+- [Operational Safety](https://docs.westonrobot.com/tutorial/operational-safety): read before first power-on; covers wheeled bases, quadrupeds, humanoids and manipulators
+- [Robot Maintenance](https://docs.westonrobot.com/tutorial/robot-maintenance): routine checks, batteries, cleaning, storage
+- [Weston Robot Apt Source](https://docs.westonrobot.com/tutorial/installation/apt_source): add before installing any of our packages
+- [All guides](https://docs.westonrobot.com/tutorial/intro): setup, development and diagnostics, tagged by platform
+
+## Support
+
+- [Support FAQ](https://docs.westonrobot.com/support/faq): waterproofing, joint wear, thermal behaviour, wired versus WiFi
+- [Before you contact us](https://docs.westonrobot.com/support/before-you-contact-us): what to collect, with the commands to collect it
+- [Warranty and RMA](https://docs.westonrobot.com/support/warranty-and-rma): repairs, replacements and returns
+
+## Optional
+
+- [Full page list](https://docs.westonrobot.com/sitemap.xml): every indexed page

@@ -1,3 +1,7 @@
+---
+description: "Connect the UGV Development Kit to WiFi, reach it over SSH and configure its cameras."
+---
+
 # Getting Started
 
 ## Connecting the Robot PC to your WiFi Network

@@ -12,6 +12,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # showLastUpdateTime reads each page's last commit date, so the
+          # default shallow clone would leave every timestamp wrong or absent.
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4

@@ -1,3 +1,7 @@
+---
+description: "Install and configure the Livox MID-360 LiDAR extension on the UGV Development Kit."
+---
+
 # UGV Devkit - Livox Mid360 + IMU Extension
 
 This extension module for the UGV development kit consists of a Livox Mid360 LiDAR sensor and an IMU sensor. It is designed to provide a cost-effective solution for mobile robot 3D navigation and obstacle avoidance.
@@ -53,5 +57,4 @@ Taking the Top Plate as the reference link for this extension, the relative posi
 ![Top Side Views](../img/top_side_views.png)
 
 > **Note**: The Lidar has an additional integrated IMU chip (with a 3-axis accelerometer and a 3-axis gyroscope). More information can be found [here](https://terra-1-g.djicdn.com/851d20f7b9f64838a34cd02351370894/Livox/Livox_Mid-360_User_Manual_EN.pdf)
-
 

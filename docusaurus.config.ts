@@ -61,23 +61,73 @@ const config: Config = {
 
   plugins: [
     [
+      '@docusaurus/plugin-client-redirects',
+      {
+        // The Software section was dissolved: its pages were a solution (ADT)
+        // and two task guides, none of which belonged in a section of their
+        // own. These redirects keep old URLs working, which matters because
+        // support engineers paste them into tickets.
+        redirects: [
+          {from: '/software/toolbox/assisted_driving_toolbox', to: '/solution/adt/intro'},
+          {from: '/software/toolbox/adt_v1', to: '/solution/adt/intro'},
+          {from: '/software/toolbox/adt_v2', to: '/solution/adt/intro'},
+          {from: '/software/toolbox/adt_v3', to: '/solution/adt/intro'},
+          // ADT v1/v2/v3 were three pages, v2 and v3 75% identical. Now one
+          // page tabbed by version.
+          {from: '/solution/adt/v1', to: '/solution/adt/intro'},
+          {from: '/solution/adt/v2', to: '/solution/adt/intro'},
+          {from: '/solution/adt/v3', to: '/solution/adt/intro'},
+          {from: '/software/installation/apt_source', to: '/tutorial/installation/apt_source'},
+          {from: '/software/slam/go2_slam', to: '/tutorial/unitree/go2_slam'},
+          {from: '/software/intro', to: '/solution/intro'},
+          // Safety and maintenance are procedures you follow, which makes
+          // them Guides rather than Support. Support is scoped to "something
+          // is wrong or I need a human".
+          {from: '/general/operational-safety', to: '/tutorial/operational-safety'},
+          {from: '/general/robot-maintenance', to: '/tutorial/robot-maintenance'},
+          // The two UGV devkit version pages were 76% identical. They are now
+          // one page whose differences are a comparison table and a few tabbed
+          // images. Both old URLs are in circulation with customers.
+          {from: '/system/ugv_devkit/v1.0', to: '/system/ugv_devkit'},
+          {from: '/system/ugv_devkit/v1.1', to: '/system/ugv_devkit'},
+          {
+            from: '/system/ugv_devkit/v1.0/component_reconfiguration',
+            to: '/system/ugv_devkit/component_reconfiguration',
+          },
+          {
+            from: '/system/ugv_devkit/v1.1/component_reconfiguration',
+            to: '/system/ugv_devkit/component_reconfiguration',
+          },
+        ],
+      },
+    ],
+    // Click any content image to enlarge it. Connector pinouts and interface
+    // photos are unreadable at inline size, and there was no way to enlarge them.
+    'docusaurus-plugin-image-zoom',
+    [
       require.resolve('docusaurus-lunr-search'),
       {
         // Options
         languages: ['en'],
         indexDocs: true,
         indexBlog: false,
-        indexPages: true
+        indexPages: true,
+        // The plugin does not honour `unlisted: true` front matter, so an
+        // unlisted page still turns up in site search unless named here.
+        // Keep this in step with any page carrying that flag.
+        excludeRoutes: ['**/robot/ugv/ranger-mini-v2']
       }
     ],
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'general',
-        path: 'general',
-        routeBasePath: 'general',
-        sidebarPath: './sidebars-general.ts',
+        id: 'support',
+        path: 'support',
+        routeBasePath: 'support',
+        sidebarPath: './sidebars-support.ts',
         editUrl,
+        showLastUpdateTime: true,
+        onInlineTags: 'throw',
       },
     ],
     [
@@ -88,6 +138,8 @@ const config: Config = {
         routeBasePath: 'robot',
         sidebarPath: './sidebars-robot.ts',
         editUrl,
+        showLastUpdateTime: true,
+        onInlineTags: 'throw',
       },
     ],
     [
@@ -98,6 +150,8 @@ const config: Config = {
         routeBasePath: 'peripheral',
         sidebarPath: './sidebars-peripheral.ts',
         editUrl,
+        showLastUpdateTime: true,
+        onInlineTags: 'throw',
       },
     ],
     [
@@ -108,16 +162,20 @@ const config: Config = {
         routeBasePath: 'system',
         sidebarPath: './sidebars-system.ts',
         editUrl,
+        showLastUpdateTime: true,
+        onInlineTags: 'throw',
       },
     ],
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'software',
-        path: 'software',
-        routeBasePath: 'software',
-        sidebarPath: './sidebars-software.ts',
+        id: 'solution',
+        path: 'solution',
+        routeBasePath: 'solution',
+        sidebarPath: './sidebars-solution.ts',
         editUrl,
+        showLastUpdateTime: true,
+        onInlineTags: 'throw',
       },
     ],
     [
@@ -128,6 +186,8 @@ const config: Config = {
         routeBasePath: 'tutorial',
         sidebarPath: './sidebars-tutorial.ts',
         editUrl,
+        showLastUpdateTime: true,
+        onInlineTags: 'throw',
       },
     ],
   ],
@@ -135,6 +195,16 @@ const config: Config = {
   themeConfig: {
     // Replace with your project's social card
     image: 'img/wr-social-card.png',
+    zoom: {
+      // Content images only. Two exclusions:
+      //   :not(a) > img  — an image that *is* the link's only child
+      //   :not(.no-zoom) — an image nested deeper inside a link, which the
+      //                    selector above does not catch. Product cards render
+      //                    a > div > img, so all 21 card images on the hub
+      //                    pages were zooming instead of navigating.
+      selector: '.markdown :not(a) > img:not(.no-zoom)',
+      background: {light: 'rgba(255, 255, 255, 0.95)', dark: 'rgba(16, 19, 23, 0.95)'},
+    },
     navbar: {
       title: 'Weston Robot',
       logo: {
@@ -142,53 +212,40 @@ const config: Config = {
         src: 'img/wr-logo.png',
       },
       items: [
-        // { to: '/', label: 'Home', position: 'left' },
-        // {
-        //   type: 'doc',
-        //   docId: 'operational-safety',
-        //   docsPluginId: 'general',
-        //   position: 'left',
-        //   label: 'General',
-        // },
+        // The top level runs on a single axis: what you own, what capability
+        // you deploy, what you want to do, and reference. It previously mixed
+        // product taxonomy (Robots/Peripherals/Systems) with document type
+        // (Software/Tutorials), which is why nothing was findable.
         {
-            type: 'doc',
-            docId: 'intro',
-            docsPluginId: 'robot',
+            type: 'dropdown',
+            label: 'Products',
             position: 'left',
-            label: 'Robots',
+            items: [
+                {type: 'doc', docId: 'intro', docsPluginId: 'robot', label: 'Robots'},
+                {type: 'doc', docId: 'intro', docsPluginId: 'peripheral', label: 'Peripherals'},
+                {type: 'doc', docId: 'intro', docsPluginId: 'system', label: 'Systems'},
+            ],
         },
         {
             type: 'doc',
             docId: 'intro',
-            docsPluginId: 'peripheral',
+            docsPluginId: 'solution',
             position: 'left',
-            label: 'Peripherals',
-        },
-        {
-            type: 'doc',
-            docId: 'intro',
-            docsPluginId: 'system',
-            position: 'left',
-            label: 'Systems',
-        },
-        {
-            type: 'doc',
-            docId: 'intro',
-            docsPluginId: 'software',
-            position: 'left',
-            label: 'Software',
+            label: 'Solutions',
         },
         {
             type: 'doc',
             docId: 'intro',
             docsPluginId: 'tutorial',
             position: 'left',
-            label: 'Tutorials',
+            label: 'Guides',
         },
         {
-            href: 'https://forms.office.com/r/qELKzYF33W',
+            type: 'doc',
+            docId: 'before-you-contact-us',
+            docsPluginId: 'support',
+            position: 'left',
             label: 'Support',
-            position: 'right',
         },
         {
           href: 'https://github.com/westonrobot',

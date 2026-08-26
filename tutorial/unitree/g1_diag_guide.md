@@ -1,5 +1,7 @@
 ---
 sidebar_position: 2
+description: "Diagnose a Unitree G1 using the robot interface and the Unitree mobile app."
+tags: [unitree, g1, diagnostics]
 ---
 
 import G1_APP_CONN_01_IMG from './img/g1_app_conn_01.jpg';    
@@ -37,7 +39,7 @@ If the event was not recorded, you can still examine the robot post-incident for
 
 You may also use the Unitree mobile app to check the robot's diagnostic information. You can download the Unitree mobile app with the QR code on [this page](https://www.unitree.com/app/g1):
 
-![](./img/g1_app_download.png)
+![Unitree mobile app download](./img/g1_app_download.png)
 
 To acquire the robot's diagnostic information, you need to connect your mobile device to the robot first. G1 supports both AP mode and WiFi mode. Unitree provides a [tutorial video](https://www.unitree.com/images/4272b99b2fe34a2aa8ff5fcdbb20c550.mp4) for using WiFi mode. The following screenshots quickly guide you through the process of connecting to the robot using AP mode.
 
@@ -92,7 +94,7 @@ Once connected, you can access the robot's diagnostic information by navigating 
 
 ### Robot Alarm Information
 
-![](./img/g1_alarm_info.jpg)
+![Robot alarm information in the Unitree mobile app](./img/g1_alarm_info.jpg)
 
 ### Robot Joint State
 
@@ -101,7 +103,6 @@ Once connected, you can access the robot's diagnostic information by navigating 
 | ![Left Top](./img/g1_state_01.jpg)    | ![Middle Top](./img/g1_state_02.jpg)    |
 | ![Left Bottom](./img/g1_state_03.jpg) | ![Middle Bottom](./img/g1_state_04.jpg) |
 | ![Left Top](./img/g1_state_05.jpg)    | ![Middle Top](./img/g1_state_06.jpg)    |
-
 
 ## Reporting the Issue
 

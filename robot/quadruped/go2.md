@@ -1,82 +1,168 @@
 ---
 sidebar_position: 1
+description: "Unitree Go2 quadruped: setup, logins, interfaces, guides and support resources."
 ---
-
-import GO2_IMG from '../img/unitree/Go2_robot.png';
 
 # Go2
 
-## 1. Overview
+<Split ratio="wide-narrow">
 
-<img src={GO2_IMG} alt="Go2 robot" style={{width: 350}} />
+<div>
 
-The Go2 robot dog is a new and improved intelligent bionic quadruped robot empowered with AI and weighs 15 kg. The Go2 has Unitree's self-developed 4D LIDAR L1 with 360°x90° hemispherical ultra-wide recognition to make Go2 traverse complex terrain.
+The Go2 is Unitree's compact quadruped, supplied as a development platform. Unitree's control stack handles locomotion; you write your application against it over the robot's internal network, wired for anything touching low-level control.
 
-## 2. Specifications
+This page does not repeat or replace Unitree's documentation. It highlights the information you reach for most often, and supplements it with what we have learned from supplying and supporting these units — configuration, verified values, and our own guides.
 
-### 2.1 Electrical Interfaces
+Unitree's own documentation:
 
-![](../img/unitree/Go2_expansion_dock_specs.png)
-> **Note**: The expansion dock module is only available for the Go2 Edu and not compatible with Go2 Air or Go2 Pro.
+* [Official product page](https://www.unitree.com/go2)
+* [Official documentation](https://support.unitree.com/home/en/developer/about_Go2)
 
-![](../img/unitree/Go2_electrical_interfaces.png)
-> **Note**: The output power interface voltage is from the battery.
+</div>
 
+<Figure
+  src={require('../img/unitree/Go2_robot.png').default}
+  alt="Unitree Go2 quadruped robot"
+  size="hero" />
 
-### 2.2 On-board Computer
+</Split>
 
-Go2 Edu has 1 built-in computer and 1 onboard computer (expansion dock module):
+## Getting started
 
-- Operation & Control computing unit (Not accessible to public)
-    - IP: 192.168.123.161
-     
-- Expansion dock module
-    - IP: 192.168.123.18
-    - Username: unitree
-    - Password: 123
+Read [Operational Safety](/tutorial/operational-safety) before powering the robot for the first time.
 
-## 3. Resources
+The Go2 Edu we supply carries Unitree's 4D LIDAR L1 and, where fitted, the expansion dock that gives you a computer of your own to work on. Bring-up in outline:
 
-* **User Guide**: [Go2 User Guide](https://tangrobot.sharepoint.com/:p:/s/Public-Outgoing/ESCOlfuKT5lPkwCnOFUoYbwB5Jr5o4meAyXd2lpGB09W5w?e=ixXe5e)
-* **Unitree Support Page**: [Unitree](https://support.unitree.com/home/en/developer/about_Go2)
-* **Payload Mounting**: [Guide](https://support.unitree.com/home/en/developer/Payload)
-* **C++ SDK**: [unitree_sdk2](https://github.com/unitreerobotics/unitree_sdk2)
-* **Python SDK**: [unitree_sdk2_python](https://github.com/unitreerobotics/unitree_sdk2_python)
-* **ROS2 Package**: [unitree_ros2](https://github.com/unitreerobotics/unitree_ros2)
-* **Go2 App, Robot Features, Tutorial Videos, Manuals**: [Go2 Features](https://www.unitree.com/app/go2) 
-* **Other Information**: [URDF/CAD](https://support.unitree.com/home/en/developer/Obtain%20SDK)
-* **Tutorials Page**: [Diagnostic Guide](/tutorial/intro)
-* **Simultaneous Localization and Mapping Guide**: [Unitree SLAM Guide](/software/slam/go2_slam)
+1. **Power on** and pair the controller or the mobile app.
+2. **Connect your machine** to the robot's internal network over Ethernet.
+3. **SSH to the expansion dock** — see [Logins and IP addresses](#logins-and-ip-addresses).
+4. **Install the SDK** and run one of Unitree's examples.
 
-## 4. FAQ
+Then see [Guides for this product](#guides-for-this-product) for diagnostics and SLAM.
 
-1. **Q: What is account insufficient?**  
-    A: Each new GO2 comes with a complimentary RMB120 credit, which can be utilized for data transfer and GPT services. Consult the **Connection Mode** table to determine which connection modes will utilize this credit. When the account balance is insufficient, the GO2 can only be connected via AP mode.
+## Key information
 
-2. **Q: How can I recharge my account when the credit is insufficient?**  
-    A: Please contact [Weston Robot Support Team](https://forms.office.com/pages/responsepage.aspx?id=NTNVCC0zFkWzGo_3Vcs_4KxdsbBJKHVIkFlOJLtAMMlUQkJZMU8wM1EyTkRUVUJCVzA2WVdQNzBSMCQlQCN0PWcu&route=shorturl) for more information.
+A quick reference for the things you reach for most often, collected so you can find them with the robot in front of you. Values are as configured on the units we supply.
 
-3. **Q: How often do I need to lubricate the joints?**  
-    A: If you encounter motor issues, stiffness or loosening of joints, please contact [Weston Robot Support Team](https://forms.office.com/pages/responsepage.aspx?id=NTNVCC0zFkWzGo_3Vcs_4KxdsbBJKHVIkFlOJLtAMMlUQkJZMU8wM1EyTkRUVUJCVzA2WVdQNzBSMCQlQCN0PWcu&route=shorturl).
-    The *Serial Number (SN)* of the robot is located in the battery compartment. The SN (and the *Model*) can also be found in the app in `Device -> Robot Settings`.
+### Related resources
 
-4. **Q: How do I reflash the Expansion Dock?**   
-    A: Expansion Dock Reflash Guide: [PDF](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EcQ3PHojLhZBsDg1oBpvPPIBWyJiSJPyAZMsk91ZnXbBJg?e=YaKBgf)
+Files and repositories you clone or download to work with the robot.
 
-5. **Q: Does the robot support wireless development?**   
-    A: Currently, the robot does not support wireless connection to internal computers.
+| Resource | What it is | Where |
+| --- | --- | --- |
+| User guide | Weston Robot's Go2 user guide | [Go2 User Guide](https://tangrobot.sharepoint.com/:p:/s/Public-Outgoing/ESCOlfuKT5lPkwCnOFUoYbwB5Jr5o4meAyXd2lpGB09W5w?e=ixXe5e) |
+| Expansion dock reflash | Recovering or updating the dock's firmware | [Reflash guide](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EcQ3PHojLhZBsDg1oBpvPPIBWyJiSJPyAZMsk91ZnXbBJg?e=YaKBgf) |
+| Payload mounting | Mechanical mounting guidance | [Unitree payload guide](https://support.unitree.com/home/en/developer/Payload) |
+| URDF / CAD | Robot model for simulation and mechanical design | [Unitree developer downloads](https://support.unitree.com/home/en/developer/Obtain%20SDK) |
+| C++ SDK | Primary development interface | [unitree_sdk2](https://github.com/unitreerobotics/unitree_sdk2) |
+| Python SDK | Python bindings for the same interface | [unitree_sdk2_python](https://github.com/unitreerobotics/unitree_sdk2_python) |
+| ROS 2 package | ROS 2 integration | [unitree_ros2](https://github.com/unitreerobotics/unitree_ros2) |
 
-6. **Q: Does the robot support 4G?**   
-    A: Yes, users may insert the their desired SIM card into the SIM card slot![](../img/unitree/Go2_simcard_slot.png)
+Installing Weston Robot packages on the robot or your host? Add our package repository first: [Weston Robot Apt Source](/tutorial/installation/apt_source).
 
-7. **Q: Is the robot waterproof?**   
-    A: No, the Go2 is not waterproof.
+Vendor manuals, videos and the mobile app are on the official pages linked at the top of this page.
 
-8. **Q: Why does the robot enter into damping mode suddenly?**   
-    A: The robot will enter into damping mode when the motors overheat. Do not use the locked stand mode for extended periods as it will cause the motors to overheat.
+### Serial number
 
-9. **Q: Does the robot have follow-me function?**   
-    A: Yes, please refer to [usage guide](https://support.unitree.com/home/en/developer/UWB%20Application) and [Accompanying Mode video](https://www.unitree.com/app/go2).
+The serial number and model designation are in the **battery compartment**, and in the mobile app under `Device → Robot Settings`. The app is usually faster and gives you both at once.
 
-10. **Q: What happens when the robot rolls over/falls and does not respond to remote control commands?**   
-    A: If the `Recover From Fall` command does not work or it is unsafe to do so, check and screenshot the mobile app for any warnings or errors displayed. Power off the robot and carry the robot to a flat and levelled ground. Inspect the robot for any damages (e.g., loose/damaged wiring). Please contact [Weston Robot Support Team](https://forms.office.com/pages/responsepage.aspx?id=NTNVCC0zFkWzGo_3Vcs_4KxdsbBJKHVIkFlOJLtAMMlUQkJZMU8wM1EyTkRUVUJCVzA2WVdQNzBSMCQlQCN0PWcu&route=shorturl) if the robot is unable to be powered on or start up.
+### Logins and IP addresses
+
+| Computer | Address | Credentials | What it is |
+| --- | --- | --- | --- |
+| **Expansion dock** | `192.168.123.18` | `unitree` / `123` | Where your code runs |
+| Operation & control | `192.168.123.161` | — | Unitree's control stack. Not user-accessible |
+
+:::note The expansion dock is Go2 Edu only
+
+The expansion dock module is not compatible with the Go2 Air or Go2 Pro. Without it there is no user-accessible computer on the robot, and development happens from an external machine over the SDK.
+
+:::
+
+Use a **wired** connection for anything touching low-level control — WiFi dropouts can stall a control loop and drop the robot. WiFi is reasonable for high-level work and for internet access.
+
+### Network layout
+
+The control computer and the expansion dock sit on the robot's internal `192.168.123.x` network. **Your code goes on the expansion dock.**
+
+```mermaid
+flowchart LR
+    L["Your machine"] -->|Ethernet| NET["Robot internal network<br/>192.168.123.x"]
+    NET -->|ssh| DEV["<b>Expansion dock</b><br/>192.168.123.18<br/>unitree / 123"]
+    NET --- CTL["Operation &amp; control<br/>192.168.123.161<br/>not user-accessible"]
+    style DEV fill:#0f6e78,stroke:#0f6e78,color:#fff
+    style CTL fill:#e8e8e8,stroke:#999,color:#333
+```
+
+### Electrical interfaces
+
+What you use when mounting a payload or wiring anything to the robot. Click either image to enlarge.
+
+<FigureGrid columns={2}>
+  <Figure
+    src={require('../img/unitree/Go2_expansion_dock_specs.png').default}
+    alt="Go2 expansion dock connector and specification diagram"
+    framed
+    caption="Expansion dock interfaces — Go2 Edu only." />
+  <Figure
+    src={require('../img/unitree/Go2_electrical_interfaces.png').default}
+    alt="Go2 electrical interface locations on the robot body"
+    framed
+    caption="Interface locations on the body." />
+</FigureGrid>
+
+> **Note**: The output power interface voltage comes directly from the battery.
+
+## Guides for this product
+
+| Guide | What it covers | Reach for it when |
+| --- | --- | --- |
+| [Go2 Diagnostics Guide](/tutorial/unitree/go2_diag_guide) | Reading diagnostic data and alarm information through the mobile app | Something is wrong and you need to know what |
+| [Unitree SLAM Guide](/tutorial/unitree/go2_slam) | Mapping and navigation on the Go2 and Go2-W | Building a map or running autonomous navigation |
+
+**[All Go2 guides](/tutorial/tags/go2)** — generated from the `go2` tag, so anything published later appears there without this page being edited.
+
+## Troubleshooting & FAQ
+
+### What does "account insufficient" mean?
+
+Each new Go2 comes with a complimentary RMB 120 credit, used for data transfer and GPT services. Consult the **Connection Mode** table to see which connection modes consume it. When the balance runs out, the Go2 can only be connected in AP mode.
+
+To top it up, [contact us](/support/before-you-contact-us).
+
+### Does the Go2 support 4G?
+
+Yes — insert a SIM card into the slot.
+
+<Figure
+  src={require('../img/unitree/Go2_simcard_slot.png').default}
+  alt="Location of the SIM card slot on the Go2"
+  framed
+  size="md"
+  caption="SIM card slot location." />
+
+### Why does the robot suddenly enter damping mode?
+
+The motors have overheated, and damping mode is protective. Avoid holding the locked stand mode for extended periods — that is the most common cause.
+
+### Does the robot have a follow-me function?
+
+Yes. See Unitree's [UWB application guide](https://support.unitree.com/home/en/developer/UWB%20Application) and the accompanying-mode video on the [official product page](https://www.unitree.com/go2).
+
+### Can I develop over WiFi instead of a wired connection?
+
+Technically yes, and it is fine for high-level work. **Not for low-level control** — a WiFi latency spike or dropout can stall the control loop and the Go2 can fall as a result. Use a cable for anything joint-level or balance-related. See [the full answer](/tutorial/operational-safety#while-you-are-developing).
+
+### Questions that apply across our platforms
+
+These are answered in the guides rather than repeated on every product page:
+
+- [Is the robot waterproof?](/tutorial/operational-safety#where-you-can-operate) — no, and what the ratings mean across platforms
+- [How often do I need to lubricate the joints?](/tutorial/robot-maintenance#quadrupeds-and-humanoids) — and what to do about stiffness or play
+- [The robot has fallen over and does not respond to the controller](/tutorial/operational-safety#if-something-goes-wrong) — the recovery sequence
+
+## Support
+
+Collect the serial number, firmware version and logs before raising a ticket — [Before you contact us](/support/before-you-contact-us) lists what helps and includes the commands to gather it.
+
+[Submit a support request](https://forms.office.com/r/qELKzYF33W).

@@ -55,14 +55,17 @@
   --ifm-link-decoration: none;
 }
 
-/* Only add underlines to links in content/markdown areas */
-.markdown a {
+/* Only add underlines to links in content/markdown areas.
+   Two exclusions: a product card is one link wrapping a whole card, and a
+   button is already styled as an affordance — underlining either makes it look
+   like body text that has gone wrong. */
+.markdown a:not(.product-card):not(.button) {
   font-weight: 500;
   text-decoration: underline;
   text-underline-offset: 2px;
 }
 
-.markdown a:hover {
+.markdown a:not(.product-card):not(.button):hover {
   text-decoration: underline;
   text-underline-offset: 3px;
   transition: all 0.2s ease;
@@ -112,4 +115,99 @@ div:has(> .markdown table) {
     display: block;
     overflow-x: auto;
   }
+}
+
+/* ---------------------------------------------------------------------------
+   Images
+   ---------------------------------------------------------------------------
+   Markdown has no syntax for image size, which is why 69 images across this
+   site were converted to JSX with an `import` and an inline style just to
+   constrain them. These defaults remove the need for most of that.
+
+   Deliberately NO border or background by default: a lot of the images here are
+   transparent product cutouts, and framing one puts a box around empty space.
+   Screenshots that need separation opt in with <Figure framed>.
+   --------------------------------------------------------------------------- */
+
+.markdown img {
+  /* Never overflow the column, whatever the intrinsic size. */
+  max-width: 100%;
+  height: auto;
+  /* Keep a tall photo from owning the whole viewport. 70vh was too generous —
+     a hero shot pushed the actual content below the fold. */
+  max-height: 420px;
+  object-fit: contain;
+}
+
+/* An image alone in its paragraph is a figure: centre it, but do not give it
+   so much margin that it reads as detached from the text. */
+.markdown p > img:only-child {
+  display: block;
+  margin: 1.25rem auto;
+}
+
+/* medium-zoom marks attached images with this class and sets cursor: zoom-in
+   itself; the rule here only ensures the cursor survives our own img styles. */
+.markdown img.medium-zoom-image {
+  cursor: zoom-in;
+}
+
+/* Zoomed images should not inherit the inline height cap, or the enlarged view
+   is no bigger than the thumbnail. */
+.markdown img.medium-zoom-image--opened,
+img.medium-zoom-image--opened {
+  max-height: none;
+  max-width: none;
+}
+
+/* Images inside table cells are thumbnails — the diagnostics guides use tables
+   as ad-hoc image grids. Keep them from bursting the cell. */
+.markdown td > img,
+.markdown th > img {
+  max-height: 200px;
+  margin: 0;
+}
+
+/* Diagrams are not photos: no height cap, full width so Mermaid text stays
+   legible, and never a frame. */
+.markdown .docusaurus-mermaid-container svg,
+.markdown img[src$=".svg"] {
+  max-height: none;
+  border: none;
+  background: none;
+}
+
+/* ---------------------------------------------------------------------------
+   Tables
+   ---------------------------------------------------------------------------
+   Infima ships `display: block; width: max-content` so wide tables scroll. The
+   side effect is that every ordinary table shrinks to its content and sits
+   centred, leaving dead space beside it. These pages use tables heavily for
+   routing and specifications, where full width reads far better.
+   --------------------------------------------------------------------------- */
+
+.markdown > table,
+.markdown > div > table {
+  display: table;
+  width: 100%;
+  table-layout: auto;
+}
+
+/* With display:table the block-level overflow scroll is gone, so long cell
+   content must wrap instead of forcing the page wider. */
+.markdown > table td,
+.markdown > table th,
+.markdown > div > table td,
+.markdown > div > table th {
+  overflow-wrap: break-word;
+}
+
+/* Only the landing page fills the viewport, so this is scoped to it via
+   Layout's wrapperClassName. Applying it to .main-wrapper globally broke every
+   docs page: a flex item defaults to min-width:auto, so content that should
+   shrink instead overflowed horizontally. */
+.main-wrapper.homepage {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
 }

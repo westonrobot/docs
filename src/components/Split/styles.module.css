@@ -1,0 +1,41 @@
+.split {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem 2rem;
+  align-items: center;
+  margin: 1.5rem 0;
+}
+
+/* Stacked below this width — side by side would squeeze both columns. */
+@media (min-width: 900px) {
+  .split[data-ratio='narrow-wide'] { grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.6fr); }
+  .split[data-ratio='even']        { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .split[data-ratio='wide-narrow'] { grid-template-columns: minmax(0, 1.6fr) minmax(0, 0.8fr); }
+}
+
+/* A figure in a split column fills its column rather than keeping its own
+   max-width, and drops the vertical margin the grid gap already provides. */
+.split > figure {
+  margin: 0;
+  max-width: 100%;
+}
+
+/* Tables in a split column must be allowed to shrink, and should not carry the
+   theme's default block margin inside a grid cell. */
+.split > table {
+  display: table;
+  width: 100%;
+  margin: 0;
+}
+
+/* Paragraphs and headings in a split column lose their outer margins so the
+   grid gap is the only spacing. */
+.split > p:first-child,
+.split > h2:first-child,
+.split > h3:first-child {
+  margin-top: 0;
+}
+
+.split > p:last-child {
+  margin-bottom: 0;
+}

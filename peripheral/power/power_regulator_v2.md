@@ -1,148 +1,95 @@
 ---
 sidebar_position: 1
+description: "Power Regulator v2.X: setup, output ports, CANopen control, channel defaults and diagnostics."
 ---
 
-# Power Regulator V2
+# Power Regulator v2.X
 
-## 1. Overview
+<Split ratio="wide-narrow">
 
-The power management unit is designed by Weston Robot for mobile robot applications. It has the following features:
+<div>
 
-- Stable and low output ripple for all output channels
-- All ports are fused for protection of both battery and connected devices
-- Supports soft-start to avoid current surge during startup
-- Temperature monitoring and regulation with active fan cooling
-- The output ports can be controlled individually (on/off) for finer boot sequence control
-- Output voltage and current feedback via CAN/RS485 communication port
+A power management unit designed by Weston Robot for mobile robots. It takes the platform's battery and produces regulated, individually switchable output rails for everything you mount on it — onboard computers, sensors, and payloads that would otherwise sag or brown out when the motors draw current.
 
-## 2. Specifications
+We designed this unit, so this page is the full reference for it rather than a pointer to someone else's.
 
-### Power Module
+</div>
 
-| Port                  | Voltage       | Current (Max) | Power                  | Fused      |
-| --------------------- | ------------- | ------------- | ---------------------- | ---------- |
-| Main input            | 18-32V        | 20A           | /                      | 20A fuse   |
-| Output - 19V          | 19V           | 8A            | 150W                   | 10A fuse   |
-| Output - 12V          | 12V           | 10A           | 120W                   | 15A fuse   |
-| Output - 5V isolated  | 5V            | 4A            | 20W                    | Resettable |
-| Output - 12V isolated | 12V           | 3.3A          | 40W                    | Resettable |
-| Output - extension    | Input voltage | /             | Limited by total power | /          |
+<Figure
+  src={require('../img/westonrobot/regulator_v2.jpg').default}
+  alt="Power Regulator v2 showing the output ports and DC input on the front face"
+  size="hero"
+  framed />
 
-### Control Module
+</Split>
 
-| Port  | Protocol | Function                                    |
-| ----- | -------- | ------------------------------------------- |
-| CAN   | CANopen  | monitoring and control, firmware upgrade    |
-| RS485 | /        | firmware upgrade (backup), future extension |
+What it gives you over wiring straight to the battery:
 
-## 3. Hardware Setup
+- **Low output ripple** on every channel, and **soft-start** so a payload cannot pull a current surge at switch-on
+- **Every port fused**, protecting both the battery and whatever is connected
+- **Channels switched individually**, so you can control boot order — bring the control computer up first, then let it power the rest
+- **Voltage and current feedback per channel** over CAN or RS485
+- **Temperature monitoring** with active fan cooling
 
-### 3.1 Startup and Operation
+## Getting started
 
-#### LED Status Indicators
+1. **Mount it** where the fan is not obstructed.
+2. **Connect the battery** to the XT60 input, labelled `DC IN 24V` on the case.
+3. **Wire your loads** to the Mega-Fit output ports — see [Electrical interfaces](#electrical-interfaces) for the layout and the per-port budgets.
+4. **Connect CAN** and confirm the unit appears at node 30 — see [Control interface](#control-interface).
+5. **Switch the channels you need on.** Everything is off by default at power-on, so a freshly wired robot will appear dead until you do this or set the power-on defaults. See [Set the default state of each channel](#set-the-default-state-of-each-channel).
 
-|     Version      |    V2.1     |               |    V2.2     |               |
-| :--------------: | :---------: | :-----------: | :---------: | :-----------: |
-|      State       | **Red LED** | **Green LED** | **Red LED** | **Green LED** |
-|  Initialisation  |     ON      |      ON       |     ON      |      ON       |
-|   Calibration    |     OFF     |      OFF      |     ON      |      ON       |
-|   Operational    |     OFF     |   BLINKING    |     OFF     |   BLINKING    |
-| Firmware Upgrade |  BLINKING   |      OFF      |  BLINKING   |      OFF      |
+## Key information
 
-#### Startup Sequence
+### Related resources
 
-- Upon start up,   
-  - [**V2.1**]: Both red and green LEDs light up for about 2 seconds during initialization. Both LEDs then switch off for another 2 seconds, indicating the regulator is calibrating.
-  - [**V2.2**]: Both red and green LEDs light up for about 18 seconds while initialization and calibration takes place.
-- After calibration, the unit enters operational state, with the red LED turned off while the green LED blinks.
-- During firmware upgrades, the green LED turns off while the red LED blinks.
+| Resource | What it is | Where |
+| --- | --- | --- |
+| `wrp_sdk` | CANopen driver, from version 1.0.0 | Install from our Debian repository |
+| `wr_regulator_widget` | GUI for monitoring and switching channels | Install from our Debian repository |
+| EDS file | CANopen object dictionary, needed by `canopen` in Python | Ships with the SDK at `/opt/weston_robot/share/wrp_sdk/eds/westonrobot/regulator/` |
 
-### 3.2 Output Connection
+Add our package repository before installing either: [Weston Robot Apt Source](/tutorial/installation/apt_source).
 
-The output ports of the power module are exposed with **Molex Megafit** connectors. For each port, 2 or 4 channels are provided. Note that the channels are interconnected internally, thus the total power consumption should not exceed the power ratings of the port.  
+### Electrical interfaces
 
-**Note**: The operation of the fan is dependent on the state of the 12V channel, it will operate only when the 12V channel is on.
-The fan will be switched on once the temperature reaches 28°C, with fan speed reaching a maximum when the temperature rises to 45°C and above.
+| | |
+| --- | --- |
+| **Input** | 18–32 V, 20 A maximum, protected by a 20 A fuse. **XT60 connector**, labelled `DC IN 24V` on the case |
+| **Output connectors** | Molex Mega-Fit, 2 or 4 channels per port |
+| **Control** | CAN (CANopen) or RS485 |
+| **Cooling** | Active fan, temperature-controlled |
 
-## 4. Software Setup
+The case is labelled `DC IN 24V` because 24 V is the nominal battery voltage it is built around — the accepted input range is the full 18–32 V above, so a 6S lithium pack sagging under load is still within spec.
 
-The power regulator uses CANopen to communication with a computer. The CANopen driver for the power regulator is supported by wrp_sdk since version 1.0.0. 
+Outputs are on the same face as the input, labelled left to right: **12 V isolated · 5 V isolated · 12 V · 19 V**, with the XT60 input at the right-hand end. Click the photo above to enlarge and read the silkscreen.
 
-* If you want to interact with the power regulator from your C++ program, you need to install the SDK.
-* If you only need to monitor and control the power regulator with a GUI, you just need to install the widget. 
+:::caution The channels on a port share the port's power budget
 
-### 4.1 Install SDK
+Each output port exposes 2 or 4 channels, but they are **interconnected internally**.
+The total draw across a port's channels must stay within that port's rating — four
+channels on a 120 W port do not give you 120 W each.
 
-Follow the instructions to install the latest SDK.
+:::
 
-#### Install dependencies
+:::warning The fan only runs when the 12 V channel is on
 
-```bash
-sudo apt-get install -y software-properties-common 
-sudo add-apt-repository ppa:lely/ppa && sudo apt-get update
-sudo apt-get install -y pkg-config liblely-coapp-dev liblely-co-tools
-```
+Fan operation is tied to the state of the 12 V channel. Switch that channel off and
+the unit loses active cooling while the other rails keep supplying current.
 
-#### Install the SDK
+The fan starts at **28 °C** and reaches full speed at **45 °C** and above.
 
-Please add the debian repository to your apt-get source list first. Refer to this [guide](/software/installation/apt_source) for more details.
+:::
 
-```bash
-sudo apt-get install wrp_sdk
-```
+### Serial number
 
-### 4.2 Install the Widget
+On a white label on the **top face**, in the corner beside the logo. It carries the serial number and a QR code.
 
-Please make sure you have added the debian source.
+### Control interface
 
-```bash
-# 1. install wr_regulator_widget dependencies
-sudo apt-get install libgl1-mesa-dev libglfw3-dev libcairo2-dev
+The unit speaks **CANopen** and appears as **node ID 30**. The driver is in `wrp_sdk` from version 1.0.0 — use that from C++, or drive it over `canopen` in Python for one-off configuration.
 
-# 2. install the package 
-sudo apt-get install wr_regulator_widget
-```
-
-Once finished the installation, you can find the executable of the widget at `/opt/weston_robot/bin/regulator_widget`.
-
-```bash
-/opt/weston_robot/bin/regulator_widget/wr_regulator_widget
-```
-
-Run the widget and you should see the GUI like this:
-
-![Regulator Widget GUI](../img/westonrobot/regulator_v2.1_01.png)
-
-## 5. Configuration
-
-### Setting Default State for Channels
-
-By default, all the output channels are disabled after the power regulator is powered on for safety purpose. Nevertheless, depending on your application, you may want to have a different initial state for the output channels. For example, if your main control computer is powered by the 19V channel, you would want this channel to be on by default, only after which you can control the power sequence of other channels from your control computer.
-
-The default state is stored in non-volatile storage ROM. Thus, once set, the settings would persist. 
-
-#### Install dependencies
-
-python-can can be used to set default state for channels, 
-
-```python
-pip3 install --user canopen python-can
-```
-
-Configure python-can to use your CAN adapter through its
-configuration file. On GNU/Linux, the configuration looks similar to
-this:
-
-```bash
-cat << EOF > ~/.canrc
-[default]
-interface = socketcan
-channel = can0
-bitrate = 500000
-EOF
-```
-
-Next, bring up the CAN interface on the PC.
+Bring the CAN interface up on your computer before talking to it:
 
 ```bash
 sudo ip link set can0 type can bitrate 500000
@@ -150,45 +97,168 @@ sudo ip link set up can0
 sudo ip link set can0 txqueuelen 1000
 ```
 
-#### Configure with Python scripts
+### Status LEDs
 
-You can customize the default output state of each channel to be ON or OFF upon power up. 
+The two LEDs tell you which state the unit is in, and the timings differ between hardware revisions — check which one you have before concluding something is wrong.
 
-The example code below demonstrates how to set all output channels to be ON by default. 
+| State | V2.1 red | V2.1 green | V2.2 red | V2.2 green |
+| --- | --- | --- | --- | --- |
+| Initialisation | ON | ON | ON | ON |
+| Calibration | OFF | OFF | ON | ON |
+| Operational | OFF | BLINKING | OFF | BLINKING |
+| Firmware upgrade | BLINKING | OFF | BLINKING | OFF |
 
-Note that you will have to finish the configuration steps in Section 5 to execute the code below successfully. And you also need to modify the path of the eds file ("EDS" variable) from the SDK.  
+At power-on:
 
-```python
+- **V2.1** — both LEDs on for about 2 seconds while it initialises, then both off for about 2 seconds while it calibrates.
+- **V2.2** — both LEDs on for about **18 seconds**, covering initialisation and calibration together.
+
+Once calibrated the unit is operational: red off, green blinking.
+
+### Specifications
+
+**Power module**
+
+| Port | Voltage | Max current | Power | Protection |
+| --- | --- | --- | --- | --- |
+| Main input | 18–32 V | 20 A | — | 20 A fuse |
+| Output — 19 V | 19 V | 8 A | 150 W | 10 A fuse |
+| Output — 12 V | 12 V | 10 A | 120 W | 15 A fuse |
+| Output — 5 V isolated | 5 V | 4 A | 20 W | Resettable |
+| Output — 12 V isolated | 12 V | 3.3 A | 40 W | Resettable |
+| Output — extension | Input voltage | — | Limited by total power | — |
+
+**Control module**
+
+| Port | Protocol | Function |
+| --- | --- | --- |
+| CAN | CANopen | Monitoring, control and firmware upgrade |
+| RS485 | — | Firmware upgrade (backup), future extension |
+
+## Common configurations
+
+### Install the SDK
+
+Needed if you are driving the regulator from a C++ program. For monitoring and switching by hand, the widget alone is enough.
+
+```bash
+sudo apt-get install -y software-properties-common
+sudo add-apt-repository ppa:lely/ppa && sudo apt-get update
+sudo apt-get install -y pkg-config liblely-coapp-dev liblely-co-tools
+```
+
+Then, with [our Debian repository](/tutorial/installation/apt_source) added:
+
+```bash
+sudo apt-get install wrp_sdk
+```
+
+### Install the widget
+
+```bash
+# dependencies
+sudo apt-get install libgl1-mesa-dev libglfw3-dev libcairo2-dev
+
+# the widget itself
+sudo apt-get install wr_regulator_widget
+```
+
+Run it with:
+
+```bash
+/opt/weston_robot/bin/regulator_widget/wr_regulator_widget
+```
+
+If that path is not present on your install, the binary may be `/opt/weston_robot/bin/regulator_widget` directly — check which of the two your package produced.
+
+The widget opens with a channel-by-channel view of output state, voltage and current:
+
+<Figure
+  src={require('../img/westonrobot/regulator_v2.1_01.png').default}
+  alt="Power Regulator widget showing per-channel output state, voltage and current"
+  size="lg"
+  framed
+  caption="The regulator widget. Click to enlarge." />
+
+### Set the default state of each channel
+
+**Every output channel is off by default at power-on**, which is the safe default but not always the one you want. If your control computer runs from the 19 V channel, that channel has to come up on its own — otherwise nothing is alive to switch it on.
+
+The default state is stored in non-volatile ROM, so it persists once set.
+
+Install the Python CAN tooling:
+
+```bash
+pip3 install --user canopen python-can
+```
+
+Point `python-can` at your adapter:
+
+```bash title="~/.canrc"
+[default]
+interface = socketcan
+channel = can0
+bitrate = 500000
+```
+
+Bring up `can0` as shown in [Control interface](#control-interface), then run the script below. It sets **all four channels on by default** — adjust the values to suit your boot order, and set `EDS` to the path of the EDS file for your hardware revision.
+
+```python title="set_channel_defaults.py"
 import canopen
-import os
 import time
 
-EDS = <your-path-to-eds> // eg. /opt/weston_robot/share/wrp_sdk/eds/westonrobot/regulator/regulator_v2.1.eds
+EDS = "/opt/weston_robot/share/wrp_sdk/eds/westonrobot/regulator/regulator_v2.1.eds"
 NODEID = 30
 
 network = canopen.Network()
-
 network.connect()
-
 node = network.add_node(NODEID, EDS)
 
-print("----------------------")
-print("Initial Output state:")
-print("----------------------")
-print("19V {}".format(node.sdo['Output state'][1].raw))
-print("12V {}".format(node.sdo['Output state'][2].raw))
+print("Initial output state:")
+print("19V          {}".format(node.sdo['Output state'][1].raw))
+print("12V          {}".format(node.sdo['Output state'][2].raw))
 print("Isolated 12V {}".format(node.sdo['Output state'][3].raw))
-print("Isolated 5V {}".format(node.sdo['Output state'][4].raw))
+print("Isolated 5V  {}".format(node.sdo['Output state'][4].raw))
 
-print("----------------------")
 time.sleep(1)
-print("Setting Output command (1:on, 0:off):")
-print("----------------------")
+print("Setting output command (1: on, 0: off)")
 node.sdo['Output command'][1].raw = 1
 node.sdo['Output command'][2].raw = 1
 node.sdo['Output command'][3].raw = 1
 node.sdo['Output command'][4].raw = 1
-node.store() # store into ROM 
-# node.restore() # restore ROM
+
+node.store()      # write to ROM; without this the change is lost at power-off
+# node.restore()  # roll back to the stored defaults
 network.disconnect()
 ```
+
+:::note Use the EDS that matches your revision
+
+The EDS file is revision-specific. Using the V2.1 file against a V2.2 unit, or the
+reverse, gives object-dictionary errors rather than an obvious mismatch message.
+
+:::
+
+## Troubleshooting & FAQ
+
+### Nothing powers up after switch-on
+
+All channels ship disabled by default. Either switch them on over CAN or through the widget, or set the power-on defaults — see [Set the default state of each channel](#set-the-default-state-of-each-channel).
+
+### The green LED never starts blinking
+
+The unit has not finished calibrating. On a **V2.2** this takes about 18 seconds, which is long enough to look like a hang if you are expecting the V2.1's 4-second sequence. If it stays in that state well beyond it, treat it as a fault and raise a ticket.
+
+### The fan is not running and the unit is getting hot
+
+The fan is tied to the 12 V channel. If that channel is switched off, the fan will not run regardless of temperature.
+
+### A channel keeps cutting out under load
+
+The isolated 5 V and 12 V outputs are protected by resettable fuses, which cut and re-close rather than failing permanently — so an over-current shows up as an intermittent load, not a dead rail. Check the draw against the ratings in [Specifications](#specifications), remembering that channels on the same port share that port's budget.
+
+## Support
+
+Collect the hardware revision (V2.1 or V2.2), firmware version and logs before raising a ticket — [Before you contact us](/support/before-you-contact-us) lists what helps and includes the commands to gather it.
+
+[Submit a support request](https://forms.office.com/r/qELKzYF33W).

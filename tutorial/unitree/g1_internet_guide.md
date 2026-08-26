@@ -1,5 +1,9 @@
-# G1 Internet Access Guide
+---
+description: "Connect the Unitree G1 development PC to a WiFi network for internet access."
+tags: [unitree, g1, networking]
+---
 
+# G1 Internet Access Guide
 
 This guide details 2 methods to provide the internal development PC (192.168.123.164) internet access.
 The first method utilises the WiFi card onboard the internal development PC to connect to a WiFi Access Point with internet access.

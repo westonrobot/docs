@@ -1,0 +1,7 @@
+# Weston Robot Documentation
+# Crawling is welcome, including by AI agents and assistants.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://docs.westonrobot.com/sitemap.xml

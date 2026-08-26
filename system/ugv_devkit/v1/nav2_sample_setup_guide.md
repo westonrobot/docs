@@ -1,6 +1,10 @@
+---
+description: "Cartographer and RTAB-Map mapping with Nav2 navigation on the UGV Development Kit."
+---
+
 # UGV Devkit Nav2 Sample Setup
 
-## 1. Overview
+## Overview
 
 This guide provides step-by-step instructions for running mapping and navigation samples on the UGV development kit. The kit has been validated by Weston Robot for use with the Scout Mini and Ranger Mini V2 mobile robots. These samples serve as a starting point for developing mobile robots using ROS2. 
 
@@ -16,7 +20,7 @@ Review the following guide and README files within the `wr_devkit_navigation` pa
 * Tutorial: Cartographer Mapping and Navigation
 * Tutorial: RTAB-Map (Real-Time Appearance-Based Mapping) and Navigation
 
-## 2. Cartographer Mapping and Navigation
+## Cartographer Mapping and Navigation
 
 Cartographer is a system that provides real-time simultaneous localization and mapping (SLAM) in 2D and 3D across multiple platforms and sensor configurations. For autonomous navigation through complex environments, cartographer is integrated with [Nav2 Navigation Stack](https://docs.nav2.org/) by [Open Navigation](https://www.opennav.org/).
 
@@ -96,7 +100,7 @@ You can find more information on [ROS2 Workshop](https://ros2-industrial-worksho
 
     ![Cartographer Navigation Goal](../img/cartographer_navigation_goal.png)
 
-## 3. RTAB-Map and Navigation
+## RTAB-Map and Navigation
 
 > **Note:** RTAB-Map requires an RGB-D camera (e.g. Intel RealSense D435i) for operation. Ensure your camera is properly connected and configured before using RTAB-Map. In this sample mapping, one realsense camera is installed at the front position of the perception layer.
 

@@ -5,26 +5,43 @@ const sidebarsTutorial: SidebarsConfig = {
     'intro',
     {
       type: 'category',
-      label: 'UGV Tutorials',
+      label: 'Before You Operate',
       items: [
-        'agilex/ugv_base_control'
+        'operational-safety',
+        'robot-maintenance',
       ],
     },
     {
       type: 'category',
-      label: 'Humanoid Tutorials',
+      label: 'Software Setup',
+      items: [
+        'installation/apt_source',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'UGV Guides',
+      items: [
+        'agilex/ugv_base_control',
+        'agilex/ranger_mini_calibration',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Quadruped Guides',
+      items: [
+        'unitree/go2_diag_guide',
+        'unitree/go2_slam',
+        'unitree/b2_diag_guide',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Humanoid Guides',
       items: [
         'unitree/g1_dev_guide',
         'unitree/g1_diag_guide',
-        'unitree/g1_internet_guide'
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Quadruped Tutorials',
-      items: [
-        'unitree/go2_diag_guide',
-        'unitree/b2_diag_guide'
+        'unitree/g1_internet_guide',
       ],
     },
   ],
