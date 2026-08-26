@@ -56,25 +56,23 @@ Validate before anything leaves the tool, then inspect the finished map in 2D or
 
 Publishing pushes the map to the Fleet Management System **as a draft**. It does not go live at that moment.
 
-## Key information
-
-### The map format
+## The map format
 
 The map format is **TMG** (Topometric Navigation Graph), a Weston Robot specification. It exists because the formats already available describe a *space* without describing what is *allowed to happen* in it: TMG carries drivable boundaries, zones to stay out of, levels and the transitions between them, named waypoints, and what it costs to move between them.
 
 Four things read the same TMG map — the Deployment Toolbox that authors it, the Fleet Management System that shows it to an operator, the robot's planner, and its controller. That is why the format is stable and deliberately conservative.
 
-### Maps move in both directions
+## Maps move in both directions
 
 Publishing a finished map to Fleet Management is the obvious direction. The other one matters just as much: sites change, and whoever updates a map needs to start from what is **actually live**, not from a copy on someone's laptop that may no longer match. Import and export both work, so the map being edited and the map the robots are using stay the same map.
 
 Before editing an existing site, export the live map rather than reopening a local file.
 
-## Boundaries
+## What this tool deliberately cannot do
 
-Two limits are deliberate, and both are worth knowing before you plan a workflow around the tool:
+Two limits are by design, and both are worth knowing before you plan a workflow around the tool:
 
-**The Deployment Toolbox never talks to robots.** It publishes to the Fleet Management System, and distribution to robots happens from there. There is no path from this tool to a machine in the field.
+**It never talks to robots.** The Deployment Toolbox publishes to the Fleet Management System, and distribution to robots happens from there. There is no path from this tool to a machine in the field.
 
 **It cannot put a map live.** Activation happens only in the Fleet Management System. This is a boundary between the two tools — not a separation of duties between two people: the same `site_admin` who authored a map can activate it there. If your process requires a second person to review a map before it goes live, that has to come from your process.
 
@@ -84,7 +82,7 @@ Two limits are deliberate, and both are worth knowing before you plan a workflow
 - **One level per site in this release.** Robots do not climb stairs or use lifts on their own, so a site cannot span floors. Ramps are usually fine.
 - **A published map is not a live map.** Publishing and activation are separate steps in separate tools, by design.
 
-## Troubleshooting & FAQ
+## Common questions
 
 ### I published a map but the robots have not changed
 

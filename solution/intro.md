@@ -19,7 +19,9 @@ If you are looking for the robot itself, see [Robots](/robot/intro). If you are 
 
 ## In development
 
-**Navigation** and **Industrial Patrolling** are in development. Documentation for each will appear here as it becomes available, and pilot customers will be given direct links ahead of general release.
+Our **industrial patrolling and inspection** platform is in development, documented as three components: the **Fleet Management System** you plan and operate missions from, the **Deployment Toolbox** that turns a site scan into the map robots navigate by, and **Analytics Integration** for connecting detection algorithms. A working deployment needs all three.
+
+Documentation for each will appear here as it becomes available, and pilot customers will be given direct links ahead of general release.
 
 In the meantime, the navigation and mapping material that exists today lives under Guides:
 
@@ -28,15 +30,8 @@ In the meantime, the navigation and mapping material that exists today lives und
 
 ## What each solution page covers
 
-Solution pages follow the same structure as product pages, with two sections specific to software.
+Solution pages take one of two shapes, depending on what the solution is.
 
-| Section | What you will find |
-| --- | --- |
-| Getting started | What you need, installing the client, and first run |
-| Key information | Related resources, supported platforms, and the version comparison |
-| Using it | Day-to-day operation — the panels, settings and controls |
-| Known limitations | Where it does not work, so you can plan around it |
-| Troubleshooting & FAQ | Symptoms and what causes them |
-| Support | How to reach us, and what to tell us |
+**A tool you install and run** — such as the Assisted Driving Toolbox — follows the product-page structure: what you need and how to install it, key information and supported platforms, day-to-day operation, known limitations, troubleshooting, support. Where several versions are in service, those are **tabs on one page** rather than separate pages, so shared instructions are written once and the differences are visible side by side.
 
-Where a solution has several versions in service, those are **tabs on one page** rather than separate pages, so shared instructions are written once and the differences are visible side by side.
+**A system we deploy and you operate** is documented rather than summarised. Its sections are named for what they explain — how the pieces fit together, who may do what, what happens during a mission — because the point is to understand how the system behaves, not to look a single fact up. Every page of either kind ends with known limitations and how to reach us.
