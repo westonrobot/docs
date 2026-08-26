@@ -8,7 +8,7 @@ description: "Deployment Toolbox: turn a 3D scan of a site into the map robots n
 
 A 3D scan of a building is just points. A robot needs to know where the floor is, where it may drive, where it must not go, and which places matter. Somebody supplies that meaning once per site, and this is the tool they use.
 
-What comes out is the **site map** — the artifact everything else depends on. It is published to the [Fleet Management System](/solution/fleet-management), activated there, and sent from there to the robots.
+What comes out is the **site map** — the artifact everything else depends on. It is published to the [Fleet Management System](/solution/fleet-management), and reaches the robots from there.
 
 :::caution Draft
 
@@ -30,28 +30,56 @@ Editing a site's map requires the **Site Admin** role for that site. Operators a
   framed
   caption="Two tools: inspect an existing map, or build one." />
 
-**Map Inspector** loads a map — from the fleet or from a local file — so you can examine its nodes, segments and zones and test whether a route actually solves from a chosen start to a chosen goal. Use it to check a site before or after a change, without opening the editor.
+**Map Inspector** loads a map — from the fleet or from a local file — so you can examine its nodes, segments and zones, and test whether a route **solves**: whether a path can actually be worked out from a chosen start to a chosen goal. Use it to check a site before or after a change, without opening the editor.
 
 **Map Editor** is where maps are made, from a point cloud through to a published map.
+
+## What a map contains
+
+The map format is **TMG** (Topometric Navigation Graph), a Weston Robot specification. It exists because the available formats describe a *space* without describing what is *allowed to happen* in it.
+
+| Element | What it is |
+| --- | --- |
+| **Node** | A point on the map the robot can be sent to. Every node has a type; the default is **waypoint** |
+| **Charging** | The other node type: a charging station |
+| **Segment** | A connection between two nodes — the ways the robot is allowed to travel |
+| **Zone** | An area with a boundary that applies rules inside it, including no-go areas |
+| **Level** | A floor. Nodes and zones each belong to one |
+| **Transition** | How a robot moves between levels |
+
+These TMG names are the ones this page uses, and the editor's layer tree uses them too — **Nodes**, **Segments**, **Zones**. Two everyday words sit alongside them and are worth pinning down:
+
+- A **waypoint** is a node of the default type, and it is also what a mission's **stop** is. The map says where the robot can go; the mission says what it does there. A stop is not a separate object on the map.
+- A **route** is a path from one node to another across segments. Routes are worked out from the map, not drawn on it — you place segments, then test that a route solves over them.
+
+Zones do more than mark regions: a zone applies rules — a speed limit, or no access at all — to everything inside its boundary, which makes it the tool for both "slow down here" and "never go here".
 
 ## The map editor workflow
 
 The editor runs as five stages, shown across the top and worked left to right. Undo and redo apply throughout.
 
 <Figure
-  src={require('./img/toolbox-map-editor.png').default}
-  alt="Map Editor showing the five-stage workflow across the top - Load, Prepare, Levels, Edit, Export - with the layer tree listing point cloud, levels, nodes, segments, zones and transitions"
+  src={require('./img/toolbox-stages.png').default}
+  alt="The map editor's stage bar showing five numbered stages in order: Load, Prepare, Levels, Edit, Export, with undo and redo alongside"
   framed
-  caption="The editor's five stages, with the map's contents listed on the left." />
+  caption="The five stages, worked left to right. The current stage is highlighted." />
 
 ### 1 · Load
 
 Start from either source:
 
-- **Import from Fleet** — pull an existing map bundle (its graph, point cloud and costmap) to edit and push back as a new revision.
-- **Start from local files** — a point cloud is required; `PCD`, `PLY`, `XYZ` and `PTS` are supported. An existing map can be loaded alongside it.
+- **Import from Fleet** — pull an existing **map bundle** (the published unit: the graph, its point cloud and its costmap together) to edit and push back as a new revision.
+- **Start from local files** — a **point cloud** is required, meaning the raw 3D scan as a file of measured points; `PCD`, `PLY`, `XYZ` and `PTS` are supported. An existing map can be loaded alongside it.
 
-Importing from the fleet matters more than it looks. Sites change, and whoever updates a map needs to start from what is **actually live**, not a copy on a laptop that may no longer match.
+A **costmap** is the grid the robot uses to judge what it can drive over, and it travels with the map rather than being drawn by hand.
+
+<Figure
+  src={require('./img/toolbox-load.png').default}
+  alt="The Load stage panel offering Import from Fleet, or starting from local files with a required point cloud in PCD, PLY, XYZ or PTS format"
+  framed
+  caption="The two ways to start: pull the live map from the fleet, or begin from a scan on your machine." />
+
+Import from Fleet is what to reach for whenever a site already has a map. Sites change, and whoever updates a map needs to start from what is **actually live**, not a copy on a laptop that may no longer match.
 
 ### 2 · Prepare
 
@@ -61,40 +89,23 @@ Clean up the scan: remove noise and stray points, and level it against gravity s
 
 ### 3 · Levels
 
-Identify the floor levels the map is built on. Nodes and zones each belong to a level.
+Identify the floor levels the map is built on. Every node and zone belongs to one.
+
+**This release supports one level per site**, because robots do not use stairs or lifts on their own. For a single-level site this stage is short: there is one level, and everything on the map belongs to it. **Transition** exists in the format for sites that do span floors, and has no use in a single-level site. Ramps within a level are usually fine.
 
 ### 4 · Edit
 
-Place what the robot actually reasons about — waypoints, the routes between them, and zones. Multi-select and surface snapping make drawing quick, and every action is reversible.
+Place what the robot actually reasons about — the nodes it can be sent to, the segments between them, and zones. Multi-select and surface snapping make drawing quick, and every action is reversible.
 
 ### 5 · Export
 
-Validate, check the result, and publish to the Fleet Management System. Publishing creates a **draft**; it does not put the map live.
-
-## What a map contains
-
-The map format is **TMG** (Topometric Navigation Graph), a Weston Robot specification. It exists because the available formats describe a *space* without describing what is *allowed to happen* in it.
-
-| Element | What it is |
-| --- | --- |
-| **Waypoint** | A place the robot can navigate to. What a mission's stops actually are |
-| **Charging** | A charging station |
-| **Segment** | A connection between two points — the routes the robot may take |
-| **Zone** | An area with a boundary that applies rules inside it, including no-go areas |
-| **Level** | A floor. Waypoints and zones belong to one |
-| **Transition** | How the robot moves between levels |
-
-Zones do more than mark regions: a zone applies rules — a speed limit, or no access at all — to everything inside its boundary, which makes it the tool for both "slow down here" and "never go here".
-
-A note on wording: a mission's **stop** is not a separate thing on the map. It is a waypoint that a mission happens to use. The map says where the robot can go; the mission says what it does there.
+Validate, check the result, and publish to the Fleet Management System. Publishing creates a **draft** — the map is stored there, but not yet in use.
 
 ## How a map goes live
 
-Two limits here are deliberate, and both are worth knowing before you build a process around the tool.
-
 **The Deployment Toolbox never talks to robots.** It publishes to the Fleet Management System, and robots are updated from there. There is no path from this tool to a machine in the field.
 
-**It cannot make a map live.** Activation happens in the Fleet Management System. That is a boundary between the two tools rather than between two people — the same Site Admin who drew the map can activate it. If you want a second person to review a map before robots use it, that has to come from your process.
+**It cannot make a map live either.** A published map sits in the Fleet Management System as a draft until someone **activates** it there; activation is what puts a map in front of robots. That is a boundary between the two tools rather than between two people — the same Site Admin who drew the map can activate it. If you want a second person to review a map before robots use it, that has to come from your process. [How a map reaches a robot](/solution/fleet-management#how-a-map-reaches-a-robot) shows the whole path in one diagram.
 
 ## Known limitations
 
@@ -118,7 +129,7 @@ Import it from the fleet rather than trusting a local copy — that is what Impo
 
 ### Can I change a map without this tool?
 
-Waypoints and routes can be adjusted in the Fleet Management System by a Site Admin. Changing the scan, the levels or the zones is this tool's job.
+Waypoints and the connections between them can be adjusted in the Fleet Management System by a Site Admin. Changing the scan, the levels or the zones is this tool's job.
 
 ## Support
 

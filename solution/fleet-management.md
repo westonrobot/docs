@@ -6,7 +6,7 @@ description: "Fleet Management System: plan, dispatch, watch and review autonomo
 
 # Fleet Management System
 
-The Fleet Management System is the web application you run your robots from. Missions are planned here, dispatched here, watched here, and everything the robots find is kept here. It runs in a browser — there is nothing to install and no engineering tools involved.
+The Fleet Management System is the web application you run your robots from. Missions are planned here, dispatched here, watched here, and everything the robots find is kept here. It runs in a browser, and there is nothing to install.
 
 :::caution Draft
 
@@ -16,25 +16,49 @@ This page is being written for an upcoming release and is not final.
 
 ## Where it sits
 
-A working deployment has three parts. This is the one people use every day.
+The industrial patrolling and inspection platform is documented as three components: this **Fleet Management System**, the **Deployment Toolbox** that turns a site scan into the map robots navigate by, and **Analytics Integration** for connecting detection algorithms. Add the robots themselves and that is a working deployment. Fleet Management is the part people use every day; Analytics Integration does not have a page here yet.
 
 | Part | What it does | How often you touch it |
 | --- | --- | --- |
 | [Deployment Toolbox](/solution/deployment-toolbox) | Turns a 3D scan of your site into the map robots navigate by | Once per site |
 | **Fleet Management System** | Plan, dispatch, watch, review | Daily |
+| Analytics Integration | Connects detection algorithms, so what they find arrives here as events | — |
 | Robot | Carries out the missions | — |
 
-The **site map** connects them. It is drawn in the Deployment Toolbox, published here, activated here, and sent from here to the robots. The Deployment Toolbox never talks to a robot itself.
+### How a map reaches a robot
+
+The **site map** is what ties these parts together, and it travels in one direction only.
+
+```mermaid
+flowchart LR
+    TB["<b>Deployment Toolbox</b><br/>the map is drawn here"]
+    subgraph FMS["Fleet Management System"]
+        direction TB
+        DRAFT["Draft map"]
+        ACTIVE["Active map"]
+        REVIEW["Live view and<br/>detection review"]
+        DRAFT -->|activate| ACTIVE
+    end
+    ROBOT["<b>Robot</b>"]
+    TB -->|publish| DRAFT
+    ACTIVE -->|sent to the robot| ROBOT
+    ROBOT -->|telemetry, events, detections| REVIEW
+    style ACTIVE fill:#0f6e78,stroke:#0f6e78,color:#fff
+```
+
+A map published from the Deployment Toolbox arrives here as a **draft** — stored, but not in use. Someone with the Site Admin role then **activates** it, and activation is what makes it the map robots are given. Until that happens robots keep the map they already have, so a robot never changes map part-way through a job. The Deployment Toolbox never talks to a robot itself.
+
+Everything travelling the other way — where each robot is, what it is doing, and what it detected — arrives here from the robots.
 
 ## Key features
 
-| | |
+| Feature | What it gives you |
 | --- | --- |
 | **Fleet overview** | Every site and robot, with live status |
-| **Mission planning** | Build missions from waypoints, routes and schedules; reuse them across sites |
+| **Mission planning** | Build missions from waypoints, the routes between them and a schedule; reuse them across sites |
 | **Live monitoring** | Position on the site map, telemetry, camera feeds, health and activity |
-| **Direct control** | Emergency stop, dock, and remote driving, one operator at a time |
-| **Detection review** | Everything the robots detected, filterable and reviewable, kept as durable evidence |
+| **Direct control** | Emergency stop, teleoperation, docking and posture commands — one operator at a time |
+| **Detection review** | Everything the robots detected, filterable and reviewable, kept as a record that cannot be edited or deleted |
 | **Users and roles** | Who may watch, who may command, who may change a site |
 | **Audit log** | An append-only record of who did what |
 
@@ -46,37 +70,23 @@ The dashboard is the entry point: sites down the side, robots grouped by site, a
   framed
   caption="The fleet dashboard — every site and robot, with current status." />
 
-## Deployment models
-
-Which model your project uses is decided before deployment, and it is not a matter of preference.
-
-| Model | Use it for | Why |
-| --- | --- | --- |
-| **Shared cloud**, hosted by Weston Robot | Short proofs of concept, demonstrations, evaluations | Nothing to provision |
-| **Dedicated instance**, cloud | Real site deployments | Your own instance, upgraded on your schedule |
-| **Dedicated instance**, on-premise | Real deployments with data-residency requirements | As above, and your data stays on your network |
-
-**What decides it is tenancy, not location.** On the shared cloud every customer sits on the same infrastructure: your data is kept separate, but upgrades are not — an upgrade for one customer restarts services everyone is using, and it cannot be scheduled around your operations. A dedicated instance is upgraded on your schedule, wherever it runs.
-
-On-premise is the further step, and data residency is what decides it. If your rules require data to stay on your own network, on-premise is the answer; otherwise a dedicated cloud instance does the same job. Either way, the robots and the servers must be able to reach each other on your network.
-
 ## The main workflow
 
 Four things happen here, in this order.
 
 ### 1. Plan a mission
 
-Missions are built in the browser from waypoints, routes and schedules, then kept in a library and reused. Saved locations, revision comparison and duplication mean a second site starts from the first rather than from nothing.
+Missions are built in the browser from **waypoints** (the places on the site map a robot can be sent to), the routes between them, and a schedule, then kept in a library and reused. Saved locations, revision comparison and duplication mean a second site starts from the first rather than from nothing.
 
 Missions reference the site map. **When a map changes, the missions affected by it are flagged for review** rather than dispatched against waypoints that may have moved.
 
 ### 2. Dispatch it
 
-A mission is dispatched to a specific robot, either on demand or on a schedule. A robot can also be sent on a one-off errand without building a full mission.
+To **dispatch** a mission is to hand it to a named robot to run, either on demand or on a schedule. A robot can also be sent on a one-off errand without building a full mission.
 
 ### 3. Watch it run
 
-The robot view is where an operator spends their time: the site map with the robot's position on it, live camera feeds, telemetry, current mission, alerts, and the controls.
+The robot view is where an operator spends their time: the site map with the robot's position on it, live camera feeds, **telemetry** (the readings a robot reports about itself, such as battery level and temperature), the current mission, alerts, and the controls.
 
 <Figure
   src={require('./img/fleet-robot-view.png').default}
@@ -84,38 +94,23 @@ The robot view is where an operator spends their time: the site map with the rob
   framed
   caption="The operator's working view: where the robot is, what it sees, and the controls to intervene." />
 
-Direct control — **emergency stop, teleoperation, dock** — is taken deliberately, and held under a lease so **only one person is driving at a time**. Teleoperation stops the robot if the link degrades, and refuses the controls to anyone who has not properly taken control.
+Direct control is taken deliberately, and it is held under a **lease** — an exclusive claim on that robot — so **only one person is driving at a time**. The main controls are emergency stop, **teleoperation** (driving the robot yourself from the browser) and set home (the place the robot returns to); a Commands tab adds docking and posture commands such as stand and sit. Teleoperation stops the robot if the link degrades, and refuses the controls to anyone who has not properly taken control.
+
+<Figure
+  src={require('./img/fleet-controls.png').default}
+  alt="The robot control panel showing an idle mission, a scheduled patrol, and the emergency stop, teleoperation and set home controls with Commands and Missions tabs"
+  framed
+  caption="The control panel: what the robot is doing now, and the controls to intervene." />
 
 ### 4. Review what was found
 
 Detections and events land in Detection Review and stay there: filterable by robot, type, priority and review state, and acknowledged by a named person. Each detection is kept with its image, stored so it cannot be edited or deleted afterwards, and reviewer notes are appended rather than replacing what was there.
 
-This is the difference between a robot that saw something and an organisation that can show what it saw.
-
-## Users and roles
-
-Roles decide who may watch, who may command, and who may change a site. They are assigned per site, so someone can be an operator at one site and an observer at another.
-
-| Role | Can |
-| --- | --- |
-| **Observer** | See the site and its robots. No commands |
-| **Operator** | Everything an observer can, plus command robots — dispatch, teleoperate, emergency stop |
-| **Site Admin** | Everything an operator can, plus manage that site's maps, routes and robots |
-| **Auditor** | Read operational and audit logs across all your sites. No commands, no changes |
-
-Tenant-level administrators hold Site Admin authority across every site, and additionally manage sites, users and roles.
-
-<Figure
-  src={require('./img/fleet-users-roles.png').default}
-  alt="Tenant management screen listing sites with robot and map counts, and users with their assigned roles and activity"
-  framed
-  caption="Sites and users in one place, with each person's role and last activity." />
-
-**One thing worth planning around:** the same role that draws a map can also make it live. If your process requires a second person to approve a map before robots use it, that has to come from your process — the system does not require it.
+**Video is live only.** Camera feeds are not recorded, so what remains after the fact is the detection record and its still image — never footage of the moment. Plan around that if an incident review at your site is expected to produce a clip.
 
 ## What happens during a mission
 
-Behaviour you will not see on a screen until it happens:
+Battery level and the link to the robot both change what a running mission does.
 
 - **Not enough battery** — the robot refuses to start a mission, and interrupts its schedule if the level becomes critical.
 - **The connection drops mid-mission** — a policy you configure decides what happens: stop safely, halt immediately, or carry on. Choose it deliberately; the right answer differs between a warehouse aisle and an open yard.
@@ -125,15 +120,31 @@ Behaviour you will not see on a screen until it happens:
 
 Whatever detects something — a camera on the robot, or an analytics service elsewhere — reports it into the same list of event types, and each type carries an urgency.
 
-**An alert is raised at high urgency and above.** That is 12 of the 25 event types, two of which are critical: fire or smoke, and a person down. Events below that are recorded and reviewable, but do not page anyone. If you expect to be alerted about something, check the urgency of its type rather than assuming every detection alerts.
+**An alert is raised at high urgency and above.** That is 12 of the 25 event types, two of which are critical: fire or smoke, and a person down. Events below that are recorded and reviewable, but raise no alert. If you expect to be alerted about something, check the urgency of its type rather than assuming every detection alerts.
 
-An event type the platform does not recognise is treated as lowest urgency and shown as **Unclassified detection**, so an unexpected event from an integration can never page an operator by surprise.
+**Alerts stay in the app.** There is no email, SMS, push notification or phone call, so an alert is only seen by someone with the dashboard open in front of them. That makes alerting a staffing question as much as a configuration one. Which event types raise an alert is fixed, and cannot be varied per site.
 
-## Updates and remote management
+An event type the platform does not recognise is treated as lowest urgency and shown as **Unclassified detection**, so an unexpected event from an integration can never raise an alert by surprise.
 
-What can be done to a robot remotely is deliberately short: **change its credentials, and send it a new map.** There is no remote login. A new map does not take effect on arrival — someone has to activate it, so a robot never changes map part-way through a job.
+## Users and roles
 
-**Robot software is not updated through the dashboard.** Updates are done by Weston Robot, either on site or over a VPN connection to the robot. If your security policy does not allow that, raise it before the site survey rather than at the first update — it decides how your robots get serviced.
+Roles decide who may watch, who may command, and who may change a site. Three of them are assigned **per site**, so someone can be an Operator at one site and an Observer at another. Two are held across your whole **tenant** — your organisation's own space in the system, with its sites, robots, users and data — and apply everywhere at once.
+
+| Role | Scope | Can |
+| --- | --- | --- |
+| **Observer** | One site | See the site and its robots. No commands |
+| **Operator** | One site | Everything an Observer can, plus command robots — dispatch, teleoperate, emergency stop |
+| **Site Admin** | One site | Everything an Operator can, plus manage and activate that site's maps, and manage its routes and robots |
+| **Auditor** | Whole tenant | Read operational and audit logs across every site. No commands, no changes |
+| **Tenant Administrator** | Whole tenant | Site Admin authority at every site, plus managing sites, users and roles |
+
+<Figure
+  src={require('./img/fleet-users-roles.png').default}
+  alt="Tenant management screen listing sites with robot and map counts, and users with their assigned roles and activity"
+  framed
+  caption="Sites and users in one place, with each person's role and last activity." />
+
+**One thing worth planning around:** the same role that draws a map can also make it live. If your process requires a second person to approve a map before robots use it, that has to come from your process — the system does not require it.
 
 ## Known limitations
 
@@ -144,6 +155,26 @@ What can be done to a robot remotely is deliberately short: **change its credent
 - **Remote management covers credentials and maps only** — not software updates, configuration or log retrieval.
 - **Designed for desktop.** It is not optimised for tablets or phones.
 - **A detection is pinned to the robot, not to what it saw** — the record shows where the robot was standing, without a distance measurement, so the subject may be some way from the marker. Detections are still images rather than clips.
+
+## Updates and remote management
+
+What can be done to a robot remotely is deliberately short: **change its credentials, and send it a new map.** There is no remote login, and a map sent to a robot changes nothing until it is activated — see [How a map reaches a robot](#how-a-map-reaches-a-robot).
+
+**Robot software is not updated through the dashboard.** Updates are done by Weston Robot, either on site or over a VPN connection to the robot. If your security policy does not allow that, raise it before the site survey rather than at the first update — it decides how your robots get serviced.
+
+## Deployment models
+
+Which model your project uses is decided before deployment, and it is not a matter of preference.
+
+| Model | Use it for | Why |
+| --- | --- | --- |
+| **Shared cloud**, hosted by Weston Robot | Short proofs of concept, demonstrations, evaluations | Nothing to provision |
+| **Dedicated instance**, cloud | Real site deployments | Your own instance, upgraded on your schedule |
+| **Dedicated instance**, on-premise | Real deployments with data-residency requirements | As above, and your data stays on your network |
+
+**What decides it is tenancy, not location** — that is, whether your organisation shares infrastructure with other customers or has an instance to itself. On the shared cloud every customer sits on the same infrastructure: your data is kept separate, but upgrades are not — an upgrade for one customer restarts services everyone is using, and it cannot be scheduled around your operations. A dedicated instance is upgraded on your schedule, wherever it runs.
+
+On-premise is the further step, and data residency is what decides it. If your rules require data to stay on your own network, on-premise is the answer; otherwise a dedicated cloud instance does the same job. Either way, the robots and the servers must be able to reach each other on your network.
 
 ## Common questions
 
@@ -157,7 +188,7 @@ Because waypoints may have moved. Rather than dispatching against a map that no 
 
 ### Something was detected but nobody was alerted
 
-Check the urgency of that event type. Alerts are raised at high urgency and above; anything below is recorded without paging anyone.
+Check the urgency of that event type. Alerts are raised at high urgency and above; anything below is recorded without alerting anyone. Remember too that alerts appear only in the app, so someone has to have it open.
 
 ### Can two people drive the same robot?
 
