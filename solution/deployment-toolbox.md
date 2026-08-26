@@ -24,9 +24,12 @@ Editing a site's map requires the **Site Admin** role for that site. Operators a
 
 ## The two tools
 
+The Toolbox opens on a choice between two tools, and which one you want depends on whether the site already has a map.
+
 <Figure
   src={require('./img/toolbox-tools.png').default}
   alt="Deployment Toolbox landing page offering two tools: Map Inspector for loading and inspecting maps, and Map Editor for creating maps from point clouds"
+  size="md"
   framed
   caption="Two tools: inspect an existing map, or build one." />
 
@@ -40,8 +43,7 @@ The map format is **TMG** (Topometric Navigation Graph), a Weston Robot specific
 
 | Element | What it is |
 | --- | --- |
-| **Node** | A point on the map the robot can be sent to. Every node has a type; the default is **waypoint** |
-| **Charging** | The other node type: a charging station |
+| **Node** | A point on the map the robot can be sent to. Every node has a type: **waypoint**, which is the default, or **charging**, a charging station |
 | **Segment** | A connection between two nodes — the ways the robot is allowed to travel |
 | **Zone** | An area with a boundary that applies rules inside it, including no-go areas |
 | **Level** | A floor. Nodes and zones each belong to one |
@@ -52,7 +54,16 @@ These TMG names are the ones this page uses, and the editor's layer tree uses th
 - A **waypoint** is a node of the default type, and it is also what a mission's **stop** is. The map says where the robot can go; the mission says what it does there. A stop is not a separate object on the map.
 - A **route** is a path from one node to another across segments. Routes are worked out from the map, not drawn on it — you place segments, then test that a route solves over them.
 
-Zones do more than mark regions: a zone applies rules — a speed limit, or no access at all — to everything inside its boundary, which makes it the tool for both "slow down here" and "never go here".
+Zones do more than mark regions: a zone applies rules to everything inside its boundary. Some are drawn by hand for exactly that — a speed limit, or no access at all — which makes the zone the tool for both "slow down here" and "never go here". Others are generated for you, one around every node and every segment, marking the envelope the robot may drive within.
+
+Put together, a finished map looks like this. The labelled points are nodes — waypoints and charging stations — and the lines joining them are segments. **Everything shaded is a zone**, and all 34 of them here were generated: one corridor along each of the 19 segments, one circle around each of the 15 nodes. That is how a fifteen-node office comes to hold thirty-four zones. This particular map has no hand-drawn zones at all.
+
+<Figure
+  src={require('./img/toolbox-finished-map.png').default}
+  alt="A finished site map in the Map Inspector: an office floor with fifteen labelled waypoints and charging points joined by segments, with generated zones shaded as a corridor along every segment and a circle around every node, and a panel counting 15 nodes, 19 segments, 34 zones and 1 level"
+  size="lg"
+  framed
+  caption="A finished map for a single-level office. The panel counts what it contains: 15 nodes, 19 segments, 34 zones, one level." />
 
 ## The map editor workflow
 
@@ -61,6 +72,7 @@ The editor runs as five stages, shown across the top and worked left to right. U
 <Figure
   src={require('./img/toolbox-stages.png').default}
   alt="The map editor's stage bar showing five numbered stages in order: Load, Prepare, Levels, Edit, Export, with undo and redo alongside"
+  size="lg"
   framed
   caption="The five stages, worked left to right. The current stage is highlighted." />
 
@@ -68,14 +80,13 @@ The editor runs as five stages, shown across the top and worked left to right. U
 
 Start from either source:
 
-- **Import from Fleet** — pull an existing **map bundle** (the published unit: the graph, its point cloud and its costmap together) to edit and push back as a new revision.
+- **Import from Fleet** — pull an existing **map bundle** to edit and push back as a new revision. The bundle is the published unit: the graph, its point cloud, and its **costmap** — the grid the robot uses to judge what it can drive over, which travels with the map rather than being drawn by hand.
 - **Start from local files** — a **point cloud** is required, meaning the raw 3D scan as a file of measured points; `PCD`, `PLY`, `XYZ` and `PTS` are supported. An existing map can be loaded alongside it.
-
-A **costmap** is the grid the robot uses to judge what it can drive over, and it travels with the map rather than being drawn by hand.
 
 <Figure
   src={require('./img/toolbox-load.png').default}
   alt="The Load stage panel offering Import from Fleet, or starting from local files with a required point cloud in PCD, PLY, XYZ or PTS format"
+  size="md"
   framed
   caption="The two ways to start: pull the live map from the fleet, or begin from a scan on your machine." />
 
@@ -85,7 +96,7 @@ Import from Fleet is what to reach for whenever a site already has a map. Sites 
 
 Clean up the scan: remove noise and stray points, and level it against gravity so the floor sits flat.
 
-**This stage decides the quality of everything after it.** A scan that is subtly tilted produces a map that looks correct and navigates badly, because where the floor is, what surfaces snap, and whether routes solve all depend on it.
+**This stage decides the quality of everything after it.** A scan that is subtly tilted produces a map that looks correct and navigates badly: where the floor sits, where the nodes and zones you later place come to rest on it, and whether routes solve all follow from getting this right.
 
 ### 3 · Levels
 
@@ -109,9 +120,9 @@ Validate, check the result, and publish to the Fleet Management System. Publishi
 
 ## Known limitations
 
-- **Sites must stay structurally the same.** A map describes the site as scanned; if the building changes, it is re-scanned and the map re-authored.
-- **One level per site in this release.** Robots do not use stairs or lifts on their own, so a site cannot span floors. Ramps are usually fine.
-- **A published map is not a live map.** Publishing and activation are separate steps in separate tools.
+- **One level per site in this release** — a site cannot span floors, though ramps within a level are fine.
+- **A map describes the site as it was scanned.** Structural change to the building means a fresh scan and a re-authored map.
+- **Publishing is not activating** — see [How a map goes live](#how-a-map-goes-live) for the two steps and who takes them.
 
 ## Common questions
 

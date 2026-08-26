@@ -67,6 +67,7 @@ The dashboard is the entry point: sites down the side, robots grouped by site, a
 <Figure
   src={require('./img/fleet-dashboard.png').default}
   alt="Fleet dashboard showing four sites and ten robots grouped by site, with operational, non-responsive and faulty status counts"
+  size="lg"
   framed
   caption="The fleet dashboard — every site and robot, with current status." />
 
@@ -76,7 +77,7 @@ Four things happen here, in this order.
 
 ### 1. Plan a mission
 
-Missions are built in the browser from **waypoints** (the places on the site map a robot can be sent to), the routes between them, and a schedule, then kept in a library and reused. Saved locations, revision comparison and duplication mean a second site starts from the first rather than from nothing.
+Missions are built in the browser from **waypoints** (the places on the site map a robot can be sent to), the routes between them, and a schedule, then kept in a library and reused. Revision comparison and duplication mean a second site starts from the first rather than from nothing.
 
 Missions reference the site map. **When a map changes, the missions affected by it are flagged for review** rather than dispatched against waypoints that may have moved.
 
@@ -90,17 +91,19 @@ The robot view is where an operator spends their time: the site map with the rob
 
 <Figure
   src={require('./img/fleet-robot-view.png').default}
-  alt="Robot detail view with navigation map, camera feed panel, mission status, telemetry showing battery and temperature, and control panel with emergency stop"
+  alt="Robot detail view laying out the navigation map, the camera panel, mission status, telemetry showing battery and temperature, and the control panel"
+  size="lg"
   framed
-  caption="The operator's working view: where the robot is, what it sees, and the controls to intervene." />
+  caption="The operator's working view, with the site map, the camera panel, mission status and telemetry on one screen. The robot shown here is not connected, so the camera panel is empty." />
 
-Direct control is taken deliberately, and it is held under a **lease** — an exclusive claim on that robot — so **only one person is driving at a time**. The main controls are emergency stop, **teleoperation** (driving the robot yourself from the browser) and set home (the place the robot returns to); a Commands tab adds docking and posture commands such as stand and sit. Teleoperation stops the robot if the link degrades, and refuses the controls to anyone who has not properly taken control.
+Direct control is taken deliberately, and it is held under a **lease** — an exclusive claim on that robot — so **only one person is driving at a time**. The main controls are emergency stop, **teleoperation** (driving the robot yourself from the browser) and set home (the place the robot returns to); a Commands tab adds docking and posture commands such as stand and sit. Teleoperation stops the robot if the connection to the fleet degrades, and refuses the controls to anyone who has not properly taken control.
 
 <Figure
   src={require('./img/fleet-controls.png').default}
   alt="The robot control panel showing an idle mission, a scheduled patrol, and the emergency stop, teleoperation and set home controls with Commands and Missions tabs"
+  size="md"
   framed
-  caption="The control panel: what the robot is doing now, and the controls to intervene." />
+  caption="The control panel, closer up: what the robot is doing now, and the controls to intervene." />
 
 ### 4. Review what was found
 
@@ -110,21 +113,22 @@ Detections and events land in Detection Review and stay there: filterable by rob
 
 ## What happens during a mission
 
-Battery level and the link to the robot both change what a running mission does.
+Battery level and the connection to the fleet both change what a running mission does.
 
 - **Not enough battery** — the robot refuses to start a mission, and interrupts its schedule if the level becomes critical.
-- **The connection drops mid-mission** — a policy you configure decides what happens: stop safely, halt immediately, or carry on. Choose it deliberately; the right answer differs between a warehouse aisle and an open yard.
-- **The robot does not need the internet to patrol.** If the link drops it keeps working — what you lose is the live view, not the mission.
+- **The connection to the fleet drops mid-mission** — what the robot does next is a policy you configure: stop safely, halt immediately, or carry on. Choose it deliberately; the right answer differs between a warehouse aisle and an open yard.
+
+Two separate things are at work in that second case, and it is worth keeping them apart. **Navigating does not depend on the connection to the fleet.** The robot follows the map it already holds, so finishing the mission out of contact is genuinely possible, and "carry on" is a real option rather than a hopeful one. **What the robot actually does is still the policy's decision** — a robot perfectly capable of continuing will stop if that is what you configured. What is lost in every case is the live view and the ability to intervene: until the connection returns, nobody can watch that robot or send it a command.
 
 ## Events and alerts
 
-Whatever detects something — a camera on the robot, or an analytics service elsewhere — reports it into the same list of event types, and each type carries an urgency.
+Whatever detects something — a camera on the robot, or an analytics service elsewhere — reports it into the same list of event types, and each type carries a priority.
 
-**An alert is raised at high urgency and above.** That is 12 of the 25 event types, two of which are critical: fire or smoke, and a person down. Events below that are recorded and reviewable, but raise no alert. If you expect to be alerted about something, check the urgency of its type rather than assuming every detection alerts.
+**An alert is raised at high priority and above.** That is 12 of the 25 event types, two of which are critical: fire or smoke, and a person down. Events below that are recorded and reviewable, but raise no alert. If you expect to be alerted about something, check the priority of its type rather than assuming every detection alerts.
 
 **Alerts stay in the app.** There is no email, SMS, push notification or phone call, so an alert is only seen by someone with the dashboard open in front of them. That makes alerting a staffing question as much as a configuration one. Which event types raise an alert is fixed, and cannot be varied per site.
 
-An event type the platform does not recognise is treated as lowest urgency and shown as **Unclassified detection**, so an unexpected event from an integration can never raise an alert by surprise.
+An event type the platform does not recognise is treated as lowest priority and shown as **Unclassified detection**, so an unexpected event from an integration can never raise an alert by surprise.
 
 ## Users and roles
 
@@ -134,27 +138,18 @@ Roles decide who may watch, who may command, and who may change a site. Three of
 | --- | --- | --- |
 | **Observer** | One site | See the site and its robots. No commands |
 | **Operator** | One site | Everything an Observer can, plus command robots — dispatch, teleoperate, emergency stop |
-| **Site Admin** | One site | Everything an Operator can, plus manage and activate that site's maps, and manage its routes and robots |
+| **Site Admin** | One site | Everything an Operator can, plus manage and activate that site's maps — including its waypoints and the connections between them — and manage its robots |
 | **Auditor** | Whole tenant | Read operational and audit logs across every site. No commands, no changes |
 | **Tenant Administrator** | Whole tenant | Site Admin authority at every site, plus managing sites, users and roles |
 
 <Figure
   src={require('./img/fleet-users-roles.png').default}
   alt="Tenant management screen listing sites with robot and map counts, and users with their assigned roles and activity"
+  size="lg"
   framed
   caption="Sites and users in one place, with each person's role and last activity." />
 
 **One thing worth planning around:** the same role that draws a map can also make it live. If your process requires a second person to approve a map before robots use it, that has to come from your process — the system does not require it.
-
-## Known limitations
-
-- **Alerts stay in the app** — no email, SMS, push or phone. An alert is seen by someone with the dashboard open.
-- **Alert rules are not configurable per site.** Which event types raise an alert is fixed.
-- **Video is live only.** Nothing is recorded for later review.
-- **No mission replay or export**, and run history does not survive a restart.
-- **Remote management covers credentials and maps only** — not software updates, configuration or log retrieval.
-- **Designed for desktop.** It is not optimised for tablets or phones.
-- **A detection is pinned to the robot, not to what it saw** — the record shows where the robot was standing, without a distance measurement, so the subject may be some way from the marker. Detections are still images rather than clips.
 
 ## Updates and remote management
 
@@ -176,6 +171,15 @@ Which model your project uses is decided before deployment, and it is not a matt
 
 On-premise is the further step, and data residency is what decides it. If your rules require data to stay on your own network, on-premise is the answer; otherwise a dedicated cloud instance does the same job. Either way, the robots and the servers must be able to reach each other on your network.
 
+## Known limitations
+
+- **Alerting is in-app only, and its rules are fixed** — no email, SMS, push or phone, and which event types raise an alert cannot be varied per site.
+- **Video is live only** — nothing is recorded, so a detection record carries a still image, never a clip.
+- **No mission replay or export**, and run history does not survive a restart.
+- **Remote management covers credentials and maps only** — not software updates, configuration or log retrieval.
+- **Designed for desktop**, not for tablets or phones.
+- **A detection is pinned to the robot, not to what it saw** — the record marks where the robot was standing, with no distance to the subject.
+
 ## Common questions
 
 ### We updated a map but the robots are still using the old one
@@ -188,7 +192,7 @@ Because waypoints may have moved. Rather than dispatching against a map that no 
 
 ### Something was detected but nobody was alerted
 
-Check the urgency of that event type. Alerts are raised at high urgency and above; anything below is recorded without alerting anyone. Remember too that alerts appear only in the app, so someone has to have it open.
+Check the priority of that event type. Alerts are raised at high priority and above; anything below is recorded without alerting anyone. Remember too that alerts appear only in the app, so someone has to have it open.
 
 ### Can two people drive the same robot?
 
