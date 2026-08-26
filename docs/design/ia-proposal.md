@@ -233,7 +233,7 @@ What an interface cannot explain about itself, and therefore belongs here:
 - **Behaviour that is invisible until it happens** — the comms-loss policy, refusing to start on low battery, interrupting a schedule at a critical level.
 - **Limits** — what the system does not do at all.
 
-**Screenshots earn their place in three cases:** installation and first launch, where the mechanics are not guessable; an action with consequences, where showing the confirmation is the point; and physical hardware, where a photograph is the fastest way to identify a part.
+**Screenshots earn their place in four cases:** illustrating a workflow or a major operation, so a reader can recognise the screen being described; installation and first launch, where the mechanics are not guessable; an action with consequences, where showing the confirmation is the point; and physical hardware, where a photograph is the fastest way to identify a part. What this rule excludes is the *step-by-step, repetitive* kind — one image per stage of a workflow is illustration, one per click is a walkthrough.
 
 This rule is forward-looking. The one page that plainly contradicts it — `solution/adt/intro`, 42 figures and four times any other page — is **slated for retirement**, so it is neither a precedent to follow nor a page worth revising to match.
 
