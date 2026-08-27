@@ -62,7 +62,7 @@ Opening a robot gives you that one machine on one screen. It is where an operato
 - **How it is holding up** — **telemetry**, meaning the readings a robot reports about itself, such as battery level and temperature.
 - **What has been raised** — alerts for this robot, with the durable record in [Detection review](#detection-review).
 
-Two behaviours are worth knowing before you rely on the screen. **Camera feeds are live, and nothing is recorded**, so this view shows the present moment and cannot be wound back. And **navigating does not depend on the connection to the fleet** — a robot that goes quiet has usually not stopped; it has stopped being watchable. What it does next is a policy you configure rather than something the system decides for you.
+Two things shape what you see here. **Camera feeds stream live from the robot**, so the panel shows its present view. And **navigation runs on the robot itself**, from the map it already holds, so a mission carries on through an interruption in the link — what the robot should do if that happens is a policy you set: stop safely, halt immediately, or continue.
 
 <Figure
   src={require('../img/fleet-robot-view.jpg').default}
@@ -119,9 +119,9 @@ Detections and events from every robot land in one place and stay there. Whateve
 
 Entries filter by robot, type, priority and review state, and each is **acknowledged by a named person**. The record keeps the image the detection was made from, is stored so it cannot be edited or deleted, and reviewer notes are appended rather than replacing what was there. The result is an evidence trail rather than a working queue: it will say the same thing when someone reads it back months later.
 
-**Not every detection raises an alert.** The platform recognises 25 event types, each carrying a priority, and an alert is raised at high priority and above — 12 of the 25, of which two are critical: fire or smoke, and a person down. The remaining 13 are recorded and reviewable but raise no alert. An event type the platform does not recognise is treated as lowest priority and shown as **Unclassified detection**, so an unfamiliar event from an integration cannot alert by surprise.
+**Priority decides what raises an alert.** The platform recognises 25 event types, each carrying one, and an alert is raised at high priority and above — 12 of the 25, of which two are critical: fire or smoke, and a person down. The other 13 are recorded and reviewable in the same list. An event type the platform has not been told about is recorded at lowest priority as **Unclassified detection**, so an integration can introduce new types and they are still captured and reviewable.
 
-Two boundaries are worth planning around. **Alerts stay in the app** — there is no email, SMS, push or phone call — which makes alerting a staffing question as much as a configuration one. And because video is live only, what survives an incident is the detection record and its still image, never a clip.
+**Alerts are raised in the app**, on the dashboard an operator is already watching, so they arrive in the same place as the fleet they concern. Each detection is kept with the still image it was made from, and that image is what a review works from afterwards.
 
 <Figure
   src={require('../img/fleet-detection-review.jpg').default}
@@ -138,7 +138,7 @@ Access is expressed as roles rather than as individual permissions, and they for
 
 Scope is the second half of the model. Three roles — Observer, Operator and Site Admin — are granted **per site**, so someone can be an Operator at one building and an Observer at another. Two are held across your whole **tenant**, meaning your organisation's own space in the system with its sites, robots, users and data, and apply everywhere at once: Auditor, which reads operational and audit logs without being able to command anything, and Tenant Administrator, which holds Site Admin authority at every site plus the management of sites, users and roles.
 
-The line that matters most in daily use falls between Observer and Operator: anything that changes what a robot does starts at Operator. The line that matters most in planning falls at Site Admin, because that role both authors a site's map and activates it. If your process needs a second person to approve a map before robots use it, that has to come from your process — the system does not require it.
+The line that matters most in daily use falls between Observer and Operator: anything that changes what a robot does starts at Operator. The line that matters most in planning falls at Site Admin, because that role both authors a site's map and activates it. A single administrator can therefore take a map from draft to live; where a process calls for a second person to approve it first, that approval comes from the process rather than from the system.
 
 <Figure
   src={require('../img/fleet-users-roles.png').default}
@@ -166,9 +166,9 @@ The Auditor role exists for exactly this: it reads operational and audit logs ac
 
 ## Updates and remote management
 
-What can be done to a robot remotely is deliberately short: **change its credentials, and send it a new map.** There is no remote login, and a map sent to a robot changes nothing until it is activated — see [How a map reaches a robot](/solution/fleet-management/tenant-management#how-a-map-reaches-a-robot).
+Remote management covers two things: **changing a robot's credentials, and sending it a new map.** A map sent to a robot takes effect once it is activated — see [How a map reaches a robot](/solution/fleet-management/tenant-management#how-a-map-reaches-a-robot).
 
-**Robot software is not updated through the dashboard.** Updates are done by Weston Robot, either on site or over a VPN connection to the robot. If your security policy does not allow that, raise it before the site survey rather than at the first update — it decides how your robots get serviced.
+**Robot software is updated by Weston Robot**, either on site or over a VPN connection to the robot. Arranging that access is worth settling before the site survey, since it determines how your robots get serviced.
 
 ## Deployment models
 
