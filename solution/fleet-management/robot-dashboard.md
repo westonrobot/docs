@@ -43,6 +43,25 @@ Telemetry answers "is this robot all right?" and is presented three ways: **real
 | **Speed** | How fast it is moving now |
 | **Status** | Operational, non-responsive or faulty — the same status the fleet overview counts |
 
+### Diagnostics
+
+Telemetry says whether a robot is healthy. **Diagnostics** says what is unhealthy, and it opens from the telemetry panel.
+
+It reports the robot's subsystems as a tree, each node carrying a status:
+
+| Status | Means |
+| --- | --- |
+| **OK** | Reporting, and healthy |
+| **WARN** | Reporting, with something worth attention |
+| **ERROR** | Reporting a fault |
+| **STALE** | Not reporting recently enough to be trusted |
+
+Alongside the tree it summarises the current issues and shows **data freshness**, which keeps two different failures apart: a subsystem reporting a fault, and a subsystem that has stopped reporting at all. A service that has gone quiet is a different problem from one saying something is wrong, and they need different responses.
+
+**The control carries its own indicator**, so trouble is visible without opening it — amber for a warning, red for an error or a stale subsystem. On a robot that has not reported a diagnostics tree, the control is unavailable.
+
+The view is headed with the robot's name, model and serial number. Quote those when raising a fault with us.
+
 ## Taking control
 
 <Figure
