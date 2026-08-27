@@ -11,9 +11,9 @@ If you are looking for the robot itself, see [Robots](/robot/intro). If you are 
 
 ## Industrial patrolling and inspection
 
-Our patrolling and inspection platform has three components, and a working deployment needs all three: the **Fleet Management System** you plan and operate missions from, the **Deployment Toolbox** that turns a site scan into the map robots navigate by, and **Analytics Integration** for connecting detection algorithms.
+Robots patrol a site on a schedule and report what they find; people plan the work and review the results from a browser.
 
-Two of the three are documented now. They are not yet listed in the sidebar or in search, so these cards are the way in.
+Three parts make that work, and a deployment needs all three. The **Fleet Management System** is where missions are planned, dispatched and watched, and where everything the robots detect is kept. The **Deployment Toolbox** prepares a site before any robot drives it, turning a 3D scan into the map they navigate by. **Analytics Integration** connects the algorithms that decide what is worth reporting — ours running on the robot, or a partner's running elsewhere.
 
 <ProductGrid columns={3}>
 
