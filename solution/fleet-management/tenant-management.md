@@ -15,6 +15,33 @@ Your **tenant** is your organisation's own space in the system. Sites sit inside
   framed
   caption="Sites and users in one place, with each person's role and last activity." />
 
+## Tenant, sites and robots
+
+Everything in Fleet Management hangs off three levels.
+
+```mermaid
+flowchart TB
+    T["<b>Tenant</b><br/>your organisation's own space"]
+    subgraph SITE["<b>Site</b> — a building or a campus"]
+        direction LR
+        MAPS["<b>Maps</b><br/>one or more lineages,<br/>each revised over time"]
+        ROBOTS["<b>Robots</b><br/>each assigned to a map"]
+        MAPS -->|"the activated revision"| ROBOTS
+    end
+    S2["Site"]
+    S3["Site"]
+    T --> SITE
+    T --> S2
+    T --> S3
+    style SITE fill:transparent,stroke:#0f6e78
+```
+
+A **tenant** is your organisation's space: its sites, robots, users and data, separate from every other customer's.
+
+A **site** is a place robots work — a building, a floor, a campus. It owns the robots stationed there and the maps they navigate by, and it is the unit most roles are granted at, so someone can be an Operator at one site and an Observer at another.
+
+A **robot** belongs to one site and is assigned one map. Which map, and which version of it, is what the rest of this page is about.
+
 ## Roles
 
 | Role | Scope | Can |
@@ -31,7 +58,15 @@ Each role contains the one above it, so assigning access is one decision per per
 
 **One thing worth planning around:** authoring a map and activating it are both Site Admin authority, so a single administrator can take a map from draft to live. Where a process calls for a second person to approve it first, that approval comes from the process rather than from the system.
 
-## How a map reaches a robot
+## A site's maps
+
+A site does not hold one map; it holds a **map lineage** — a named map that is revised over time. Each publish from the Deployment Toolbox adds a **revision** to that lineage rather than replacing what was there, so `r4` and `r5` are the same map at two points in its life and the older one is still on record.
+
+Exactly one revision of a lineage is **activated** at a time. Activation is the decision that says "this is the revision robots should be running", and it is what the rest of the fleet reacts to.
+
+A site can hold more than one lineage where it needs them — a second building, or a floor mapped separately — and a robot is assigned to one of them.
+
+### How a map reaches a robot
 
 Maps are drawn in the Deployment Toolbox, but a map only reaches a robot through Fleet Management, and only once an administrator activates it. The path runs one way.
 
@@ -52,7 +87,20 @@ flowchart LR
 
 A map published from the Deployment Toolbox arrives in Fleet Management as a **draft** — stored, but not in use. Someone with the Site Admin role then **activates** it, and activation is what makes it the map robots are given. Until that happens robots keep the map they already have, so a robot never changes map part-way through a job. The Deployment Toolbox never talks to a robot itself.
 
-## Catching a robot up to the map
+### How a robot is assigned a map
+
+Two facts are tracked for every robot, and the difference between them is the whole story:
+
+| | |
+| --- | --- |
+| **Target** | The map and revision the fleet wants this robot to be running — its assigned lineage, at whatever revision is currently activated |
+| **Reported** | The map and revision the robot last said it is actually running |
+
+While the two agree, the robot is up to date. Activating a new revision changes the target for **every robot assigned to that lineage at once**, which makes them all out of date until each one catches up.
+
+Applying a map to a robot is not a background operation. The robot **stops navigating and restarts its stack**, then re-acquires localisation before it can work again — so it is a change to make deliberately rather than to a robot mid-task.
+
+### Catching a robot up to the map
 
 Activating a map does not finish the job. A robot keeps the map it already holds until it confirms the new one, and **while it is behind, its missions are switched off and cannot be edited or dispatched** — rather than run against waypoints that may have moved.
 

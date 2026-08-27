@@ -153,7 +153,7 @@ The line that matters most in daily use falls between Observer and Operator: any
   framed
   caption="Sites and users in one place, with each person's role and last activity." />
 
-[Tenant management](/solution/fleet-management/tenant-management) covers all five roles and what each may do, the path a map takes from the Deployment Toolbox to a robot, catching a robot up when it falls behind, and the audit log.
+[Tenant management](/solution/fleet-management/tenant-management) covers how a tenant, its sites and their robots fit together, all five roles and what each may do, how a site's maps are revised and activated, and how a robot is assigned one and caught up when it falls behind.
 
 ## Audit log
 
