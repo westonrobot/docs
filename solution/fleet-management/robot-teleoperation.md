@@ -50,24 +50,34 @@ These are the values a full deflection asks for, so lowering them makes the whol
 
 ## Arranging the view
 
-What you see while driving is yours to arrange, and the arrangement is remembered per robot.
+What you see while driving is yours to arrange. **Stream Settings**, from the camera panel, holds it, and the arrangement is remembered per robot.
+
+<Figure
+  src={require('../img/fleet-stream-settings.png').default}
+  alt="The Stream Settings dialog showing an audio mode of push-to-talk on hold-T, separate Dashboard and Teleop tabs, a layout picker with pane counts one to six and template thumbnails for two-by-two grid, focus left plus three and focus top plus three, a stream assignment list mapping slots A to D to cameras, and a grid fit choice between fill container and fixed aspect ratio"
+  size="md"
+  framed
+  caption="Stream Settings: audio mode, the layout and which camera sits in each pane, and how each view is fitted." />
+
+**Layout is chosen in two steps** — first how many panes you want, from one to six, then which arrangement of that many. Four panes offers a 2×2 grid, one large pane with three small, or one across the top with three beneath; the thumbnails show each. **Stream assignment** then puts a named camera in each lettered slot.
 
 | Setting | Options |
 | --- | --- |
-| **Layout** | 17 templates from one to six panes — Full Screen, Side by Side, Stacked, Focus Left, 2×2 Grid, Focus Top + 3 and so on |
-| **Slots** | Which camera goes in which pane of the chosen layout |
-| **Primary view** | The camera that takes the main pane |
-| **Picture-in-picture** | Any stream can be pinned to a corner — top or bottom, left, centre or right — or switched off |
-| **Fit** | Fill the pane, or lock each view to 16:9 so nothing is cropped |
+| **Layout** | One to six panes, with several arrangements at each count |
+| **Stream assignment** | Which camera goes in each lettered slot |
+| **Grid fit** | **Fill container**, which uses every pixel and may crop edges, or **fixed aspect ratio**, which keeps the whole frame |
+| **Picture-in-picture** | A stream pinned to a corner — top or bottom, left, centre or right — or switched off |
 | **Visible in teleop** | Which cameras appear while driving, which can be a smaller set than the dashboard shows |
 
-The **focus / fit** choice is the one worth deliberate thought: filling the pane uses every pixel but crops, and locking the aspect keeps the whole frame at the cost of letterboxing. For judging clearance beside a robot, seeing the whole frame usually matters more than filling the screen.
+**Dashboard and teleop keep separate layouts**, on their own tabs, so the arrangement you want while driving need not be the one you want while monitoring.
+
+Grid fit is the choice worth deliberate thought: filling the pane uses every pixel but crops the edges, and fixed aspect keeps the whole frame at the cost of letterboxing. For judging clearance beside a robot, seeing the whole frame usually matters more than filling the screen.
 
 Layout preferences are restored when you return to a robot. Which camera streams are running is not — streams are started fresh each session, so a view opens empty until its feeds connect.
 
 ## Audio
 
-Audio is **push-to-talk** by default: hold the bound button to speak, release to stop. It can be set to always-on where an operator needs both hands. Incoming volume is adjustable separately.
+Audio is **push-to-talk** by default: hold to speak, release to stop — **`T`** on the keyboard, or the bound gamepad button. It can be set to always-on where an operator needs both hands, from the same Stream Settings dialog. Incoming volume is adjustable separately.
 
 Push-to-talk is worth keeping as the default in a shared control room, since always-on carries whatever else is being said in the room to whoever is near the robot.
 
