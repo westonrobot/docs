@@ -53,7 +53,7 @@ Battery level and the connection to the fleet both change what a running mission
 - **Not enough battery** — the robot refuses to start a mission, and interrupts its schedule if the level becomes critical.
 - **The connection to the fleet drops mid-mission** — what the robot does next is a policy you configure: stop safely, halt immediately, or carry on. Choose it deliberately; the right answer differs between a warehouse aisle and an open yard.
 
-Two separate things are at work in that second case, and it is worth keeping them apart. **Navigating does not depend on the connection to the fleet.** The robot follows the map it already holds, so finishing the mission out of contact is genuinely possible, and "carry on" is a real option rather than a hopeful one. **What the robot actually does is still the policy's decision** — a robot perfectly capable of continuing will stop if that is what you configured. What is lost in every case is the live view and the ability to intervene: until the connection returns, nobody can watch that robot or send it a command.
+Two separate things are at work in that second case, and it is worth keeping them apart. **Navigation runs on the robot itself**, from the map it already holds, so completing a mission out of contact is a real capability rather than a hopeful one — which is what makes "carry on" a genuine option. **The policy still decides what happens**, so a robot perfectly capable of continuing will stop if that is what you configured. Live view and operator commands resume when the connection does.
 
 ## Common questions
 

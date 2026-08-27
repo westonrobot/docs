@@ -1,7 +1,7 @@
 ---
 unlisted: true
 sidebar_position: 3
-description: "Detection review in Fleet Management: what the robots found, which event types raise an alert, how records are kept, and what alerting does not do."
+description: "Detection review in Fleet Management: what the robots found, which event types raise an alert, how alerts reach people, and what each record keeps."
 ---
 
 # Detection review
@@ -27,17 +27,17 @@ Every event type carries a priority, and **an alert is raised at high priority a
 
 If you expect to be alerted about something, check the priority of its type rather than assuming every detection alerts.
 
-An event type the platform does not recognise is treated as lowest priority and shown as **Unclassified detection**, so an unexpected event from an integration can never raise an alert by surprise.
+An event type the platform has not been told about is recorded at lowest priority as **Unclassified detection**, so an integration can introduce new types and they are still captured and reviewable alongside the rest.
 
-## What alerting does not do
+## How alerts reach people
 
-**Alerts stay in the app.** There is no email, SMS, push notification or phone call, so an alert is only seen by someone with the dashboard open in front of them. That makes alerting a staffing question as much as a configuration one — plan for who is watching, not just for what is detected.
+**Alerts are raised in the app**, on the dashboard an operator is already watching, so they arrive in the same place as the fleet they concern. That makes alerting a staffing question as much as a configuration one — plan for who is watching, alongside what is detected.
 
-Which event types raise an alert is fixed, and cannot be varied per site.
+The priority attached to each event type is set by the platform, so a given event carries the same urgency at every site.
 
-## What the record does and does not contain
+## What each record keeps
 
-**Video is live only.** Camera feeds are not recorded, so what remains after the fact is the detection record and its still image — never footage of the moment. Plan around that if an incident review at your site is expected to produce a clip.
+**Camera feeds stream live, and each detection is kept with the still image it was made from.** That image is what an incident review works from afterwards, so plan on stills rather than footage where your process expects a clip.
 
 **A detection is pinned to the robot, not to what it saw.** The record marks where the robot was standing, with no distance to the subject. For a detection at the far end of a corridor, the position in the record is the robot's, not the subject's.
 
@@ -49,7 +49,7 @@ Check the priority of that event type. Alerts are raised at high priority and ab
 
 ### What is an "Unclassified detection"?
 
-An event of a type the platform does not recognise. It is recorded at lowest priority so that an unexpected event from an integration cannot raise an alert by surprise.
+An event of a type the platform has not been told about. It is recorded at lowest priority and appears in the same list, so an integration can add event types without changing what alerts.
 
 ### Can I get the video of a detection?
 

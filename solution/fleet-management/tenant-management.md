@@ -33,7 +33,7 @@ Each role contains the one above it, so there is one decision per person per sit
 
 The line that matters most in practice is between watching and commanding, and it falls between Observer and Operator. Anything that changes what a robot does — dispatching a mission, taking the controls, stopping it — starts at Operator. Anything that changes the site the robots work in — the map, its waypoints, which robots belong there — is Site Admin.
 
-**One thing worth planning around:** the same role that draws a map can also make it live. Authoring a map and activating it are both Site Admin authority, so a single person can do both. If your process requires a second person to approve a map before robots use it, that has to come from your process — the system does not require it.
+**One thing worth planning around:** authoring a map and activating it are both Site Admin authority, so a single administrator can take a map from draft to live. Where a process calls for a second person to approve it first, that approval comes from the process rather than from the system.
 
 ## How a map reaches a robot
 

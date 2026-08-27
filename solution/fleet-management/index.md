@@ -170,6 +170,4 @@ The Auditor role exists for exactly this: it reads operational and audit logs ac
 
 ## Support
 
-Before raising a ticket, note which site and robot are involved, what the robot was doing just before, and what you saw on screen. [Before you contact us](/support/before-you-contact-us) lists what helps.
-
-[Submit a support request](https://forms.office.com/r/qELKzYF33W).
+Before raising a ticket, note which site and robot are involved, what the robot was doing just before, and what you saw on screen. [Before you contact us](/support/before-you-contact-us) lists what helps and how to submit a support request.
