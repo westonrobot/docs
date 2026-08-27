@@ -35,13 +35,27 @@
   margin-bottom: 0;
 }
 
+/* Content sits just under the hero, and the leftover on a tall screen pools
+   below it. Centring split the leftover evenly, which put ~130px of nothing
+   between the hero and the first tile on a 1080p screen — a gap there reads as
+   a mistake, where the same gap above the footer reads as the page ending. */
 .main {
   flex: 1;
   min-width: 0;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   padding: clamp(1.15rem, 2.2vh, 2rem) 0 clamp(0.9rem, 1.8vh, 1.75rem);
+}
+
+/* Only a screen with room to spare gets the roomier gap under the hero. A
+   1366x768 laptop has none: its vertical budget is the constraint this whole
+   page is sized against, and raising these there costs it the one-viewport
+   rule. */
+@media (min-height: 900px) {
+  .main {
+    padding-top: clamp(1.15rem, 3.4vh, 2.75rem);
+  }
 }
 
 /* The default container is 1140px, which on a wide screen leaves roughly 390px
@@ -61,7 +75,13 @@
    expanded past the viewport and pushed the tiles and footer below the fold on
    a real 1080p screen, which gives about 940px once browser chrome is gone. */
 .families {
-  --product-card-media-height: clamp(96px, 24vh, 300px);
+  --product-card-media-height: clamp(96px, 20.5vh, 240px);
+}
+
+@media (min-height: 900px) {
+  .families {
+    --product-card-media-height: clamp(96px, 24vh, 300px);
+  }
 }
 
 .families :global(.margin-vert--lg) {
