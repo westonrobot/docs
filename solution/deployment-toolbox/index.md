@@ -29,6 +29,13 @@ A site map is not one file. What travels between the Toolbox and the fleet is a 
 | **Point cloud** | The 3D scan the map was authored against | Loaded back into the editor, so a later revision is drawn against the same scan |
 | **Occupancy grid** | A flat grid of what is free and what is blocked, one per level | Drawn beneath the graph, so its nodes, segments and zones can be read against the building |
 
+<Figure
+  src={require('../img/toolbox-graph-over-occupancy.png').default}
+  alt="A site's navigation map: the occupancy grid drawn in white showing the walls and structure of an office floor, with the TMG graph over it in blue — labelled nodes joined by segments, each wrapped in a shaded zone, and a marked home position"
+  size="full"
+  framed
+  caption="The two layers together. White is the occupancy grid — the building. Blue is the graph — the nodes, segments and zones the robot reasons about." />
+
 The graph is written in **TMG** — Topometric Navigation Graph, a map specification Weston Robot defines and publishes. It is *topometric* because it carries both the topology, meaning which places connect to which, and the metric detail, meaning exactly where each of them is. **The graph is the map; the rest is the ground it was drawn over** — a separation that shows in practice, since a bundle whose occupancy layer is missing still opens as a usable navigation graph, with the absent underlay reported rather than the whole map refused.
 
 The occupancy grid's role today is visualisation: the fleet and the toolbox draw it under the graph so a node or a zone can be related to the floor plan it sits on rather than read as bare coordinates, while a robot navigates from the graph. One further surface is computed rather than stored — the **height grid**, derived from the point cloud against the level being edited, is what surface snapping uses to settle a node onto the floor, and it exists only while you are working.
