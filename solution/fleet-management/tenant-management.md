@@ -1,10 +1,10 @@
 ---
 unlisted: true
 sidebar_position: 5
-description: "Tenants, sites, users and roles in Fleet Management: what each of the five roles may do, how a map reaches a robot, and how to read and export the audit log."
+description: "Tenant management in Fleet Management: sites and their robots and maps, what each of the five roles may do, how a map reaches a robot, catching a robot up, and the audit log."
 ---
 
-# Tenant and user management
+# Tenant management
 
 Your **tenant** is your organisation's own space in the system. Sites sit inside it, robots and maps belong to a site, and every person's authority is expressed as a role — either at one site or across the whole tenant.
 

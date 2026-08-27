@@ -34,7 +34,7 @@ Key features of the system are summarized in the table below, and each is covere
 | **Robot teleoperation** | Drive a robot from the browser, plus emergency stop, docking and posture commands — one operator at a time |
 | **Mission planning** | Build missions from waypoints, the routes between them and a schedule; reuse them across sites |
 | **Detection review** | Everything the robots detected, filterable and reviewable, kept as a record that cannot be edited or deleted |
-| **Users and roles** | Who may watch, who may command, who may change a site |
+| **Tenant management** | Your sites and their robots, the maps they navigate by, the people who use them, and what each role may do |
 | **Audit log** | An append-only record of who did what |
 
 ## Fleet overview
@@ -136,9 +136,11 @@ Entries filter by robot, type, priority and review state. **Alerts are the revie
 
 [Detection review](/solution/fleet-management/detection-review) covers the difference between an event and an alert, lists all 25 event types with the priority each carries, and explains filtering, acknowledging and marking false alarms, and what every record keeps.
 
-## Users and roles
+## Tenant management
 
-Access is expressed as roles rather than as individual permissions, and they form a ladder: watching, then commanding, then administering. Each level contains the one below it, so there is one decision per person per site instead of a set of switches.
+Your **tenant** is your organisation's own space in the system. Sites sit inside it, robots and maps belong to a site, and people are given roles within it — so adding a site, seeing which robots and maps it holds, activating a map, and granting somebody access are all the same job in the same place.
+
+Access itself is expressed as roles rather than as individual permissions, and they form a ladder: watching, then commanding, then administering. Each level contains the one below it, so there is one decision per person per site instead of a set of switches.
 
 Scope is the second half of the model. Three roles — Observer, Operator and Site Admin — are granted **per site**, so someone can be an Operator at one building and an Observer at another. Two are held across your whole **tenant**, meaning your organisation's own space in the system with its sites, robots, users and data, and apply everywhere at once: Auditor, which reads operational and audit logs without being able to command anything, and Tenant Administrator, which holds Site Admin authority at every site plus the management of sites, users and roles.
 
@@ -151,7 +153,7 @@ The line that matters most in daily use falls between Observer and Operator: any
   framed
   caption="Sites and users in one place, with each person's role and last activity." />
 
-[Tenant and user management](/solution/fleet-management/tenant-management) covers all five roles and what each may do, the path a map takes from the Deployment Toolbox to a robot, and the audit log.
+[Tenant management](/solution/fleet-management/tenant-management) covers all five roles and what each may do, the path a map takes from the Deployment Toolbox to a robot, catching a robot up when it falls behind, and the audit log.
 
 ## Audit log
 
@@ -166,7 +168,7 @@ The Auditor role exists for exactly this: it reads operational and audit logs ac
   framed
   caption="The audit trail: who did what, when, and whether it was accepted or refused." />
 
-The audit log is covered on the [Tenant and user management](/solution/fleet-management/tenant-management#the-audit-log) page — the fleet and tenant trails, the categories entries fall into, filtering and export, and the roles that can read it.
+The audit log is covered on the [Tenant management](/solution/fleet-management/tenant-management#the-audit-log) page — the fleet and tenant trails, the categories entries fall into, filtering and export, and the roles that can read it.
 
 ## Further topics
 
