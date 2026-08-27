@@ -1,23 +1,21 @@
 ---
 unlisted: true
 sidebar_position: 4
-description: "Tenants, sites, users and roles in Fleet Management: who may watch, who may command, who may change a site, how a map reaches a robot, and the audit log that records it."
+description: "Tenants, sites, users and roles in Fleet Management: what each of the five roles may do, how a map reaches a robot, and how to read and export the audit log."
 ---
 
 # Tenant and user management
 
-Your **tenant** is your organisation's own space in the system, holding its sites, robots, users and data. Sites sit inside it, robots and maps belong to a site, and every person's authority is expressed as a role — either at one site or across the whole tenant.
+Your **tenant** is your organisation's own space in the system. Sites sit inside it, robots and maps belong to a site, and every person's authority is expressed as a role — either at one site or across the whole tenant.
 
 <Figure
   src={require('../img/fleet-users-roles.png').default}
   alt="Tenant management screen listing sites with robot and map counts, and users with their assigned roles and activity"
-  size="lg"
+  size="full"
   framed
   caption="Sites and users in one place, with each person's role and last activity." />
 
 ## Roles
-
-Roles decide who may watch, who may command, and who may change a site. Three are assigned **per site**, so someone can be an Operator at one site and an Observer at another. Two are held across the whole **tenant** and apply everywhere at once.
 
 | Role | Scope | Can |
 | --- | --- | --- |
@@ -27,11 +25,9 @@ Roles decide who may watch, who may command, and who may change a site. Three ar
 | **Auditor** | Whole tenant | Read operational and audit logs across every site. No commands, no changes |
 | **Tenant Administrator** | Whole tenant | Site Admin authority at every site, plus managing sites, users and roles |
 
-Each role contains the one above it, so there is one decision per person per site rather than a set of switches.
+Observer, Operator and Site Admin are granted **per site**, so the same person can hold different roles at different buildings. Auditor and Tenant Administrator apply across the whole tenant at once.
 
-## Who can change a robot's behaviour
-
-The line that matters most in practice is between watching and commanding, and it falls between Observer and Operator. Anything that changes what a robot does — dispatching a mission, taking the controls, stopping it — starts at Operator. Anything that changes the site the robots work in — the map, its waypoints, which robots belong there — is Site Admin.
+Each role contains the one above it, so assigning access is one decision per person per site rather than a set of switches.
 
 **One thing worth planning around:** authoring a map and activating it are both Site Admin authority, so a single administrator can take a map from draft to live. Where a process calls for a second person to approve it first, that approval comes from the process rather than from the system.
 
@@ -58,7 +54,29 @@ A map published from the Deployment Toolbox arrives in Fleet Management as a **d
 
 ## The audit log
 
-Actions are recorded in an **append-only** log — entries are added, never changed or removed. Auditors can read it across every site without being able to command anything, which is what makes the role useful for a reviewer who should not be able to move a robot.
+Actions are recorded in an **append-only** log: entries are added, never changed or removed, and the trail cannot be edited from the application. Times are shown in UTC throughout, so entries from different sites compare directly.
+
+<Figure
+  src={require('../img/fleet-audit-log.png').default}
+  alt="The audit log filtered to mission events, each row showing a UTC timestamp, category, action, the actor, an outcome of accepted or rejected, and a plain-language description, with CSV and JSON export controls"
+  size="full"
+  framed
+  caption="The audit trail: who did what, when, and whether it was accepted or refused." />
+
+Every entry records the action taken, who took it, when, and **whether it was accepted or rejected** — refusals are recorded alongside successes, which is what lets the trail answer "was this attempted?" and not only "was this done?". Each carries a plain-language description, so a row reads as a sentence rather than as an identifier.
+
+The trail is split in two: **fleet audit** for what was done to sites and robots, and **tenant audit** for changes to the tenant itself.
+
+| Category | Covers |
+| --- | --- |
+| **Command** | Commands sent to a robot |
+| **Mission** | Creating, updating, running, activating and deleting missions |
+| **Authorization** | Who was granted or refused access to what |
+| **Safety** | Safety-related actions |
+| **Lifecycle** | Robots and sites entering and leaving service |
+| **Fault** | Faults raised against a robot |
+
+Entries filter by category, by outcome — including a failures-only view — by actor, by date range, and by free-text search. The result can be exported as **CSV or JSON** for review outside the application.
 
 ## Common questions
 
@@ -72,14 +90,12 @@ A new map arrives as a draft and has to be activated before robots are given it.
 
 ### Who can activate a map?
 
-A Site Admin for that site, or a Tenant Administrator. The Deployment Toolbox cannot activate a map at all — it publishes a draft, and activation happens here. See [How a map reaches a robot](#how-a-map-reaches-a-robot).
+A Site Admin for that site, or a Tenant Administrator. The Deployment Toolbox cannot activate a map at all — it publishes a draft, and activation happens here.
 
 ### Can an Auditor stop a robot in an emergency?
 
 No. The Auditor role is read-only by design. Anyone who may need to intervene needs Operator at that site.
 
-## Support
+### Why is an action I know was attempted missing from the log?
 
-Before raising a ticket, note which tenant and site are involved, the person affected, and the role they hold. [Before you contact us](/support/before-you-contact-us) lists what helps.
-
-[Submit a support request](https://forms.office.com/r/qELKzYF33W).
+Check the category and date filters first, and the fleet and tenant tabs — the two hold different kinds of entry. If an entry still appears to be missing, raise it, since a gap in an append-only trail is worth investigating.

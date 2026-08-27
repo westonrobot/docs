@@ -71,7 +71,7 @@ Two things shape what you see here. **Camera feeds stream live from the robot**,
   framed
   caption="One robot on one screen: the site map, its cameras, what it is doing, how it is holding up, and the controls." />
 
-[What is on the screen](/solution/fleet-management/robot-dashboard#what-is-on-the-screen) covers each panel in turn, and how battery level and connection loss change a running mission.
+[The panels](/solution/fleet-management/robot-dashboard#the-panels) covers each one in turn, the telemetry readings, and how battery level and connection loss change a running mission.
 
 ## Robot teleoperation
 
@@ -113,7 +113,7 @@ One constraint follows from missions referencing the map: **a robot must be on t
   framed
   caption="A mission being built: its checkpoints on the site map, and what the robot does at each of them." />
 
-[Building a mission](/solution/fleet-management/mission-editing#building-a-mission) covers checkpoints, actions, schedules, Quick Dispatch, and catching a robot up.
+[The editor](/solution/fleet-management/mission-editing#the-editor) covers its three stages, the ways to place a checkpoint, the actions one can carry, run conditions, and catching a robot up.
 
 ## Detection review
 
@@ -132,7 +132,7 @@ Entries filter by robot, type, priority and review state, and each is **acknowle
   framed
   caption="Detection review: what was seen, when, by which robot, and who has signed it off." />
 
-[Which events raise an alert](/solution/fleet-management/detection-review#which-events-raise-an-alert) covers the priorities and what the record keeps.
+[Event types and priority](/solution/fleet-management/detection-review#event-types-and-priority) lists all 25 types with the priority each carries, and what every record keeps.
 
 ## Users and roles
 

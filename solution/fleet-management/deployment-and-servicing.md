@@ -18,6 +18,22 @@ A project runs on one of three models, chosen before deployment.
 | **Dedicated instance**, cloud | Site deployments | An instance of your own, upgraded on your schedule |
 | **Dedicated instance**, on-premise | Site deployments with data-residency requirements | An instance of your own, running on your network |
 
+```mermaid
+flowchart TB
+    subgraph SHARED["Shared cloud — one instance, several customers"]
+        direction LR
+        T1["<b>Your tenant</b><br/>your sites, robots,<br/>users and data"]
+        T2["Another<br/>customer"]
+        T3["Another<br/>customer"]
+    end
+    subgraph DEDICATED["Dedicated instance — cloud or on-premise"]
+        direction LR
+        T4["<b>Your tenant</b><br/>your sites, robots,<br/>users and data"]
+    end
+    style T1 fill:#0f6e78,stroke:#0f6e78,color:#fff
+    style T4 fill:#0f6e78,stroke:#0f6e78,color:#fff
+```
+
 **Tenancy is what separates them, rather than location** — whether your organisation shares infrastructure with other customers or has an instance to itself. Your data is kept separate on every model. What a dedicated instance adds is control of timing: upgrades happen on your schedule rather than Weston Robot's, wherever that instance runs.
 
 On-premise goes one step further and is decided by data residency. Where your rules require data to stay on your own network, on-premise is the model that satisfies them; otherwise a dedicated cloud instance does the same job with less to run. Either way, the robots and the servers need to reach each other on your network.
@@ -47,9 +63,3 @@ They need to reach the Fleet Management instance over your network, wherever it 
 ### Can we update the robot software ourselves?
 
 Updates are carried out by Weston Robot. Arrange VPN access or an on-site visit through your usual contact.
-
-## Support
-
-Before raising a ticket, note which site is involved and whether the question is about the instance itself, network access, or a robot's software version. [Before you contact us](/support/before-you-contact-us) lists what helps.
-
-[Submit a support request](https://forms.office.com/r/qELKzYF33W).
