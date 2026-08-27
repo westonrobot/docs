@@ -118,6 +118,7 @@ const config: Config = {
         excludeRoutes: [
           '**/robot/ugv/ranger-mini-v2',
           '**/solution/fleet-management',
+          '**/solution/fleet-management/**',
           '**/solution/deployment-toolbox',
           '**/solution/adt/intro',
         ]
