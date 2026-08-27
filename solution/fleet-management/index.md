@@ -23,7 +23,7 @@ flowchart LR
     style FMS fill:#0f6e78,stroke:#0f6e78,color:#fff
 ```
 
-The **site map** ties these parts together, and it travels one way: the Deployment Toolbox publishes it here, and robots receive it from here once an administrator activates it. The Toolbox never reaches a robot directly. [How a map reaches a robot](/solution/fleet-management/tenant-management#how-a-map-reaches-a-robot) sets out the whole path and who may take each step.
+The **site map** ties these parts together, and it travels one way: the Deployment Toolbox publishes it here, and robots receive it from here once an administrator activates it. The Toolbox never reaches a robot directly. 
 
 ## Key features
 
@@ -42,7 +42,7 @@ The dashboard is the entry point: sites down the side, robots grouped by site, a
 <Figure
   src={require('../img/fleet-dashboard.png').default}
   alt="Fleet dashboard showing four sites and ten robots grouped by site, with operational, non-responsive and faulty status counts"
-  size="lg"
+  size="full"
   framed
   caption="The fleet dashboard — every site and robot, with current status." />
 
