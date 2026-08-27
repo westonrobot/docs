@@ -40,11 +40,10 @@ The graph is written in **TMG** — Topometric Navigation Graph, a map specifica
 
 The occupancy grid's role today is visualisation: the fleet and the toolbox draw it under the graph so a node or a zone can be related to the floor plan it sits on rather than read as bare coordinates, while a robot navigates from the graph. One further surface is computed rather than stored — the **height grid**, derived from the point cloud against the level being edited, is what surface snapping uses to settle a node onto the floor, and it exists only while you are working.
 
-[The map format](/solution/deployment-toolbox/map-format#the-layers) covers what a published bundle carries and how the layers relate.
 
 ## Map elements
 
-The navigation graph is where a map's meaning lives, and these four elements are what it is built from. TMG exists because the formats already available describe a *space* without describing what is *allowed to happen* in it: a point cloud says where the walls are, not that this doorway is a route and that one is off limits.
+The navigation graph is where a map's meaning lives, and these are the elements it is built from. TMG exists because the formats already available describe a *space* without describing what is *allowed to happen* in it: a point cloud says where the walls are, not that this doorway is a route and that one is off limits.
 
 | Element | What it is |
 | --- | --- |
@@ -52,8 +51,9 @@ The navigation graph is where a map's meaning lives, and these four elements are
 | **Segment** | A connection between two nodes: the ways the robot may travel |
 | **Zone** | An area whose boundary applies rules inside it, including no-go |
 | **Level** | A floor. Nodes and zones each belong to one |
+| **Transition** | How a robot moves between levels |
 
-Most zones on a finished map were never drawn by hand — one is generated around every node and along every segment, marking the envelope the robot may drive within.
+Most zones on a finished map were never drawn by hand — one is generated around every node and along every segment, marking the envelope the robot may drive within. The ones you *do* draw are how you say "slow down here" or "never go here".
 
 <Figure
   src={require('../img/toolbox-map-elements.png').default}
@@ -62,7 +62,7 @@ Most zones on a finished map were never drawn by hand — one is generated aroun
   framed
   caption="Nodes are the points; the lines joining them are segments. Everything shaded is a zone — one around each node, one along each segment. The red rectangle is the only zone on this map that someone drew." />
 
-[The map format](/solution/deployment-toolbox/map-format#the-elements) covers all four in full, which zones you draw and which are generated for you, and what levels mean for a site that spans floors.
+**This release supports one level per site**, because robots do not use stairs or lifts on their own. Transition exists in the format for sites that span floors and has no use in a single-level one; a ramp within a level is not a change of level.
 
 ## Data exchange
 

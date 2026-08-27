@@ -1,6 +1,6 @@
 ---
 unlisted: true
-sidebar_position: 2
+sidebar_position: 1
 description: "The Map Editor's five stages: loading a scan, preparing it, setting up levels, placing nodes segments and zones, and exporting a validated map."
 ---
 
@@ -78,7 +78,7 @@ Identify the floor levels the map is built on. Every node and zone belongs to on
 
 The tool finds horizontal planes in the scan for you and lists them by height, with the number of points supporting each. You add the one that is the floor — and the point count is how you tell a real floor from a run of desks at a consistent height.
 
-For a single-level site this stage is short: there is one level, and everything on the map belongs to it. See [Levels](/solution/deployment-toolbox/map-format#levels) for what that means for a site that spans floors.
+For a single-level site this stage is short: there is one level, and everything on the map belongs to it. This release supports one level per site, so for most sites that is the whole of it.
 
 ## 4 · Edit Map
 
@@ -166,3 +166,9 @@ Expected. Pushing creates a draft in the Fleet Management System; someone there 
 
 **Can I change a map without this tool?**  
 A Site Admin can adjust waypoints and the connections between them in the Fleet Management System. Changing the scan, the levels or the zones is this tool's job.
+
+**My site has two floors**  
+This release supports one level per site, because robots do not use stairs or lifts on their own. Ramps within a level are fine, since a ramp is not a change of level.
+
+**Why does my map have so many zones?**  
+Most were generated rather than drawn: one around every node and one along every segment. A twenty-four-node site with a single hand-drawn keep-out area still holds fifty-six zones.

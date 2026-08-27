@@ -31,7 +31,7 @@ Per D0 the site serves existing customers post-purchase, so every page starts fr
 | Page | Carries |
 | --- | --- |
 | `solution/fleet-management/` | A directory page. `index.md` carries the model behind missions and a section per feature; five sub-pages carry the detail (D-R8) |
-| `solution/deployment-toolbox/` | A directory page, same shape as fleet management (D-R8). `index.md` carries the model and one section per feature; `map-format.md`, `map-editor.md`, `map-inspector.md` and `publishing.md` carry the detail |
+| `solution/deployment-toolbox/` | A directory page, same shape as fleet management (D-R8). `index.md` carries the model (layers, elements, data exchange) and a section per tool; `map-inspector.md` and `map-editor.md` carry the detail. A `map-format.md` and a `publishing.md` were folded back in — the format page duplicated the overview and restated a spec the site does not own, and publishing is what the editor's last stage does rather than a component of its own |
 | `solution/analytics-integration.md` | Both integration paths, the event contract, unknown-token behaviour. Detail deferred |
 | `solution/intro.md` *(edit)* | Regroup; retire the "In development" entries |
 | Site-suitability guide | The envelope: where this works and where it does not |
