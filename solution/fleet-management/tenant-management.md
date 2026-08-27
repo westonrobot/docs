@@ -52,6 +52,22 @@ flowchart LR
 
 A map published from the Deployment Toolbox arrives in Fleet Management as a **draft** — stored, but not in use. Someone with the Site Admin role then **activates** it, and activation is what makes it the map robots are given. Until that happens robots keep the map they already have, so a robot never changes map part-way through a job. The Deployment Toolbox never talks to a robot itself.
 
+## Catching a robot up to the map
+
+Activating a map does not finish the job. A robot keeps the map it already holds until it confirms the new one, and **while it is behind, its missions are switched off and cannot be edited or dispatched** — rather than run against waypoints that may have moved.
+
+<Figure
+  src={require('../img/fleet-map-not-current.png').default}
+  alt="A dialog headed 'This robot's map is not up to date', naming the robot and the map, comparing the revision the fleet activated with the older revision on the robot, warning that navigation restarts and re-acquires localization, and noting that updating the robot's map needs the robot-manage permission at this site"
+  size="md"
+  framed
+  caption="A robot behind the activated map. The dialog names both revisions and what changing it will cost." />
+
+The dialog names the map, the revision the fleet activated and the revision on the robot, so it is clear how far behind it is. The recovery is to send it the activated map and wait for it to confirm; then check the missions and switch them back on. If the switch fails it can be retried from the same place, and the missions unlock when it succeeds.
+
+Two things to plan around. **Updating a robot's map restarts navigation**, which then has to re-acquire localisation — so it is not a change to make to a robot part-way through something. And it needs **robot-management permission at that site**, which is Site Admin authority.
+
+
 ## The audit log
 
 Actions are recorded in an **append-only** log: entries are added, never changed or removed, and the trail cannot be edited from the application. Times are shown in UTC throughout, so entries from different sites compare directly.

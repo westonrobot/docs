@@ -113,7 +113,7 @@ One constraint follows from missions referencing the map: **a robot must be on t
   framed
   caption="A mission being built: its checkpoints on the site map, and what the robot does at each of them." />
 
-[Mission editing and dispatch](/solution/fleet-management/mission-editing) covers the editor's three stages, the ways to place a checkpoint, the actions one can carry, run conditions, saved locations, dispatch and Quick Dispatch, and catching a robot up to the activated map.
+[Mission editing and dispatch](/solution/fleet-management/mission-editing) covers what a mission is made of, the editor's three stages, saved locations, run conditions and how they gate activation, sending missions to a robot and telling whether they arrived, and the history of what ran.
 
 ## Detection review
 

@@ -114,7 +114,7 @@ Control is held under a **lease**, so a second operator cannot take the controls
 
 Pressing **Teleop** starts a driving session in the main view area. Driving itself — keyboard and gamepad control, key mapping and axis inversion, speed and deadzone, arranging the camera views, and audio — is covered on [Robot teleoperation](/solution/fleet-management/robot-teleoperation).
 
-Drive commands depend on the robot being on the map the fleet has activated. A robot that is behind has its dispatch and Go Home controls withdrawn until it catches up — see [Catching a robot up to the map](/solution/fleet-management/mission-editing#catching-a-robot-up-to-the-map).
+Drive commands depend on the robot being on the map the fleet has activated. A robot that is behind has its dispatch and Go Home controls withdrawn until it catches up — see [Catching a robot up to the map](/solution/fleet-management/tenant-management#catching-a-robot-up-to-the-map).
 
 ### Auto-dispatch
 

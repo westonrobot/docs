@@ -1,94 +1,165 @@
 ---
 unlisted: true
 sidebar_position: 3
-description: "Building missions in Fleet Management: the editor's three stages, placing checkpoints, checkpoint actions, run conditions, saved locations, dispatch, and catching a robot up to the activated map."
+description: "Building missions in Fleet Management: the editor's three stages, checkpoints and actions, saved locations, run conditions and scheduling, sending missions to a robot, and the history of what ran."
 ---
 
 # Mission editing and dispatch
 
-The Mission Editor is where a mission is built, revised and saved to the library. It opens on a named robot, works against that robot's site map, and runs in three numbered stages.
+A **mission** is a named, reusable piece of work: an ordered list of places on the site map, what the robot does at each of them, and the conditions under which it should run. Missions are built in the browser, kept in a library, revised with a history, and sent to the robots that will run them.
+
+## What a mission is made of
+
+| Part | What it decides |
+| --- | --- |
+| **Checkpoints** | Where the robot goes, in what order, and which way it faces on arrival |
+| **Actions** | What it does at a checkpoint — pause, or play an announcement |
+| **Run conditions** | When the mission is eligible to start |
+| **Active or inactive** | Whether the mission is eligible at all |
+
+The first two are authored in the editor. The third is set separately, and is what decides whether a mission can be activated at all — see [Run conditions](#run-conditions).
 
 ## The editor
+
+The Mission Editor opens on a named robot and works against that robot's site map. It runs in three numbered stages.
 
 <Figure
   src={require('../img/fleet-mission-editor.png').default}
   alt="The Mission Editor with a named mission, its route drawn on the site map with numbered checkpoints, a checkpoint list showing X and Y positions, headings, pause and announce actions, and a saved-location picker open for the last checkpoint"
   size="full"
   framed
-  caption="The editor's three stages: details, checkpoints on the map with their actions, then review and save." />
+  caption="The editor: details on the left with the route map beneath, the checkpoint list on the right, and review and save at the bottom." />
 
 ### 1 · Details
 
-The mission's **name** is required; a **description** is optional. You also choose what kind of mission it is — an errand that sends the robot to one or more locations, for example.
+The mission's **name** is required and a **description** is optional. You also choose what kind of mission it is — an errand that sends the robot to one or more locations, for example.
 
 ### 2 · Checkpoints
 
-Checkpoints are an ordered list, and each one carries a position as **X and Y in metres** plus a **heading**, which is required. Drag to reorder, and undo, redo and clear apply across the whole list.
+Checkpoints are an ordered list. Each carries a position as **X and Y in metres** and a **heading in degrees**, which is required — a robot that arrives facing the wrong way has not really arrived.
 
-There are three ways to say where a checkpoint is:
+<Figure
+  src={require('../img/fleet-mission-checkpoint.png').default}
+  alt="A single checkpoint row in the editor, numbered 1, with X and Y position fields in metres, a required heading field in degrees, a pause-for-30-seconds action with a remove control, and an Add Action button"
+  size="lg"
+  framed
+  caption="One checkpoint: where the robot goes, which way it faces, and what it does on arrival." />
+
+Drag to reorder; undo, redo and clear apply across the whole list. There are three ways to say where a checkpoint is:
 
 | Method | Use it when |
 | --- | --- |
-| **Reuse a saved location** | The place already has a name — see [Saved locations](#saved-locations) below |
+| **Reuse a saved location** | The place already has a name — see [Saved locations](#saved-locations) |
 | **Place on the map** | Click the route map to set the position, then drag to set the heading |
 | **Use the robot's pose** | The robot is already standing where you want the checkpoint |
 
-Each checkpoint can carry **actions** performed on arrival:
+Each checkpoint can carry **actions** performed on arrival — **pause** for a set number of seconds, or **announce** by playing an audio file through the robot.
 
-| Action | What it does |
-| --- | --- |
-| **Pause for** | Wait a set number of seconds before moving on |
-| **Announce** | Play an audio file through the robot |
+The route map draws the mission over the site map, numbering the checkpoints in order and distinguishing places, docks and stops, so the sequence can be checked against the building rather than against a list of coordinates.
 
-The route map draws the mission over the site map, numbering the checkpoints in order and distinguishing places, docks and stops, so the sequence is checkable against the building rather than against a list of coordinates.
+### 3 · Review and save
 
-### 3 · Review & Save
+<Figure
+  src={require('../img/fleet-mission-review.png').default}
+  alt="The Review and Save stage showing a validation message reading 'Checkpoint 4: set its place on the map', a 'What changed?' note field marked optional and recorded with this save, and Run Conditions and Save Mission buttons with save disabled"
+  size="lg"
+  framed
+  caption="Review and save: what still needs fixing, the note recorded with this revision, and the two things you can do next." />
 
-Saving validates the mission first — a checkpoint with no position is called out by number and blocks the save until it is set.
+Saving validates first. A checkpoint with no position is named by number and blocks the save until it is set.
 
-Two things happen at this stage that are worth knowing:
+Two things here are worth knowing:
 
-- **A "what changed?" note is recorded with each save.** It is optional, and it is what makes the mission's revision history readable later rather than a list of timestamps.
-- **Run conditions are set separately from saving.** A mission can be saved without them, but activating one that has none is refused — the refusal is recorded in the [audit log](/solution/fleet-management/tenant-management#the-audit-log) like any other rejected action.
+- **A "what changed?" note is recorded with the save.** It is optional, and it is what makes the revision history readable later rather than a list of timestamps.
+- **Run conditions are set separately from saving.** A mission saves without them; it cannot be *activated* without them.
 
 ## Saved locations
 
-A saved location is a named place on a robot's map, and checkpoints made from one **follow it**. Correcting a saved location later corrects every mission that uses it, which is what keeps a growing library maintainable.
-
-Locations are held per robot, and can be picked from the list or clicked directly on the map. A robot's home is one of them.
-
-## Dispatching
-
-To **dispatch** a mission is to hand it to a named robot to run, either on demand or on the schedule the mission carries.
-
-A robot can also be sent somewhere once, without building a mission at all — that is **Quick Dispatch**, on the map toolbar of the robot's own view. Use it for a one-off; use a mission for anything you will want again.
-
-## Catching a robot up to the map
-
-Missions reference the site map, so **a robot has to be on the map the fleet has activated before its missions can be edited or dispatched.**
-
-When a newer map is activated, that robot's missions are switched off and stay locked until it confirms the new map, rather than running against waypoints that may have moved.
+A saved location is a named place on a robot's map. A checkpoint made from one **follows it**, so correcting the location later corrects every mission that uses it — which is what keeps a growing library maintainable rather than turning one moved shelf into an afternoon of edits.
 
 <Figure
-  src={require('../img/fleet-map-not-current.png').default}
-  alt="A dialog headed 'This robot's map is not up to date', comparing the revision the fleet activated with the older revision on the robot, and explaining that its missions are switched off until it confirms the new map"
-  size="full"
+  src={require('../img/fleet-mission-saved-location.png').default}
+  alt="The saved-location picker for a checkpoint, explaining that a stop made from a saved location follows it so fixing the location later fixes every mission that uses it, with a searchable list of the robot's locations each showing whether it has been used"
+  size="md"
   framed
-  caption="What you see when a robot is behind the activated map. Editing and dispatch stay locked until it catches up." />
+  caption="Picking a saved location. The list shows which are already in use, and the robot's home is one of them." />
 
-The recovery is: send the robot the activated map and wait for it to confirm, then check the missions and switch them back on. Sending the map is a Site Admin action, and if it fails it can be retried from the same dialog. [How a map reaches a robot](/solution/fleet-management/tenant-management#how-a-map-reaches-a-robot) shows the whole path.
+Locations are held per robot, are searchable, and can be picked from the list or clicked directly on the map.
+
+## Run conditions
+
+Run conditions answer **"when should it run?"**, and they are the gate on activation rather than on saving.
+
+| Condition | Behaviour |
+| --- | --- |
+| **Run by hand** | No automatic trigger — it runs when someone dispatches it |
+| **As soon as possible** | Always eligible |
+| **Every day** | Once a day, at an hour and minute |
+| **Every hour** | Once an hour, at a chosen minute past |
+| **Chosen days** | On selected weekdays, at an hour and minute |
+
+Three properties of this model explain most of what surprises people:
+
+**Conditions combine, they never alternate.** Every condition on a mission must be satisfied for it to become eligible. There is no "either/or".
+
+**No conditions means always eligible, not never.** A test that all of nothing passes is passed trivially, so a mission with an empty condition list is eligible at every opportunity — a patrol set up that way would restart continuously. **That is why activating a mission with no run conditions is refused**, and the refusal is recorded in the [audit log](/solution/fleet-management/tenant-management#the-audit-log) like any other rejected action.
+
+**A time carries its own cooldown.** The window you set is how late a start is still acceptable, and it doubles as the interval before the same trigger may fire again — which is what makes "every day at 09:00" safe on a mission that never finishes on its own. A day-of-week rule has no such guard, which is why days are always paired with a time rather than offered alone.
+
+Times are the **robot's local time**, not the browser's.
+
+## Sending missions to a robot
+
+Authoring a mission does not put it on a robot. Missions are **sent** to the robot that will run them, and a badge answers the question that follows: does the robot actually have these?
+
+| Badge | Means |
+| --- | --- |
+| **in sync** | The robot's own list was read back and matched this one |
+| **content is stale** | The robot has not confirmed what it holds |
+| **waiting for the robot** | Sent, not yet confirmed |
+| **waiting for the run to end** | A mission is still running; this clears itself when it ends |
+| **robot refused** | The robot rejected the last push |
+| **does not match** | The robot is holding missions this fleet did not send |
+| **robot offline** | Nothing can be confirmed |
+
+The order above is the order the badge itself uses when more than one is true, and it is ordered by what you would have to do about it — nothing can be believed while the robot is offline, so that outranks everything else.
+
+To **dispatch** a mission is to hand it to a named robot to run, on demand or on its schedule. A robot can also be sent somewhere once, with no mission at all — that is **Quick Dispatch**, on the map toolbar of the robot's own view. Use it for a one-off; use a mission for anything you will want again.
+
+Missions reference the site map, so a robot must be on the map the fleet has activated before its missions can be edited or dispatched. [Catching a robot up to the map](/solution/fleet-management/tenant-management#catching-a-robot-up-to-the-map) covers what to do when it is not.
+
+## History and logs
+
+Three separate records answer three different questions, and none of them can be edited.
+
+| Record | Answers |
+| --- | --- |
+| **Run history** | What actually ran, and how it ended |
+| **Mission changes** | Who created, edited, deleted, activated, deactivated or ran a mission |
+| **Revisions** | What a mission used to contain, and what one save changed |
+
+**Run history exists because the robot's own answer does not survive.** A finished run's outcome lasts only a few seconds in the robot's report before the next arming clears it, so without a record there is no moment at which anyone could ask "did the 09:00 patrol finish?" and be answered.
+
+**Mission changes are the only place you can see that someone else changed a mission** — that a patrol was deactivated, or deleted, and by whom. They come from the same operational audit trail as everything else.
+
+**Revisions can be compared side by side.** A version number and the author's note say a save happened; the comparison says what actually moved. That matters when the decision is whether to restore, because restoring puts a robot back on an older route.
 
 ## Common questions
 
-**A robot's missions are switched off and I cannot edit or dispatch them**  
-That robot is on an older map than the one the fleet has activated, and waypoints may have moved. Its missions stay locked until it confirms the new map; then you check them and switch them back on. If the switch fails, it can be retried from the same place. Updating which map a robot is on is a Site Admin action.
-
 **The mission saved but will not activate**  
-Check its run conditions. A mission saves without them, but activation is refused until they are set, and the refusal is recorded in the audit log.
+Check its run conditions. A mission saves without them, but activation is refused until they are set — a mission with no conditions would be eligible continuously.
 
-**Can I send a robot somewhere without building a mission?**  
-Yes — Quick Dispatch, on the map toolbar.
+**Why can I not use a day of the week on its own?**  
+A day rule has no cooldown of its own, so a mission that does not end by itself would restart all day. Pairing it with a time gives it one.
+
+**A robot's missions are switched off and I cannot edit or dispatch them**  
+That robot is on an older map than the one the fleet has activated. See [Catching a robot up to the map](/solution/fleet-management/tenant-management#catching-a-robot-up-to-the-map).
+
+**The badge says the robot does not match**  
+It is holding missions this fleet did not send. Send the active set again to bring it back into line.
 
 **I moved a location and several missions changed**  
-Expected, if it was a saved location. Checkpoints made from a saved location follow it, so one correction applies everywhere it is used.
+Expected, if it was a saved location. Checkpoints made from one follow it, so a single correction applies everywhere it is used.
 
+**Did last night's patrol actually run?**  
+Run history, which records how each run ended. The robot's own report does not keep it.
