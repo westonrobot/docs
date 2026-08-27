@@ -8,7 +8,7 @@ description: "Deployment Toolbox: turn a 3D scan of a site into the map robots n
 
 A 3D scan of a building is just points. A robot needs to know where the floor is, where it may drive, where it must not go, and which places matter. Somebody supplies that meaning once per site, and this is the tool they use.
 
-What comes out is the **site map** — the artifact everything else depends on. It is published to the [Fleet Management System](/solution/fleet-management), and reaches the robots from there.
+What comes out is the **site map** — the artifact everything else depends on. It is pushed to the [Fleet Management System](/solution/fleet-management), and reaches the robots from there.
 
 ## Who uses it, and when
 
@@ -131,25 +131,27 @@ The scan stays visible underneath while you draw, at an opacity you control, so 
 
 ### 5 · Export
 
-Validate, check the result, and publish to the Fleet Management System. Publishing creates a **draft** — the map is stored there, but not yet in use.
+Validate, check the result, and push the map to the Fleet Management System. It arrives there as a **draft** revision — stored, but not yet in use, and not yet in front of anyone.
 
 ## How a map goes live
 
-**The Deployment Toolbox never talks to robots.** It publishes to the Fleet Management System, and robots are updated from there. There is no path from this tool to a machine in the field.
+**The Deployment Toolbox never talks to robots.** It pushes to the Fleet Management System, and robots are updated from there. There is no path from this tool to a machine in the field.
 
-**It cannot make a map live either.** A published map sits in the Fleet Management System as a draft until someone **activates** it there; activation is what puts a map in front of robots. That is a boundary between the two tools rather than between two people — the same Site Admin who drew the map can activate it. If you want a second person to review a map before robots use it, that has to come from your process. [How a map reaches a robot](/solution/fleet-management/tenant-management#how-a-map-reaches-a-robot) shows the whole path in one diagram.
+**It cannot make a map live either.** A pushed map sits in the Fleet Management System as a draft until someone there **publishes** it and then **activates** it; activation is what puts a map in front of robots. Both are human actions in the other tool, and the Toolbox can take neither.
+
+That is a boundary between the two tools rather than between two people — the same Site Admin who drew the map can publish and activate it. If you want a second person to review a map before robots use it, that has to come from your process. [How a map reaches a robot](/solution/fleet-management/tenant-management#how-a-map-reaches-a-robot) shows the whole path in one diagram.
 
 ## Known limitations
 
 - **One level per site in this release** — a site cannot span floors, though ramps within a level are fine.
 - **A map describes the site as it was scanned.** Structural change to the building means a fresh scan and a re-authored map.
-- **Publishing is not activating** — see [How a map goes live](#how-a-map-goes-live) for the two steps and who takes them.
+- **Pushing is neither publishing nor activating** — see [How a map goes live](#how-a-map-goes-live) for the three steps and who takes each.
 
 ## Common questions
 
 ### I published a map but the robots have not changed
 
-Expected. Publishing creates a draft in the Fleet Management System, and someone has to activate it. Until then robots keep the map they have.
+Expected. Pushing creates a draft in the Fleet Management System; someone there has to publish it and then activate it. Until then robots keep the map they have.
 
 ### Routes look connected but validation fails
 
@@ -165,6 +167,6 @@ Waypoints and the connections between them can be adjusted in the Fleet Manageme
 
 ## Support
 
-Before raising a ticket, note which site and map are involved, and whether the problem is with drawing, publishing or activation — those are three different stages. [Before you contact us](/support/before-you-contact-us) lists what helps.
+Before raising a ticket, note which site and map are involved, and whether the problem is with drawing it, pushing it, publishing it or activating it — those are four different stages, and only the first two happen in this tool. [Before you contact us](/support/before-you-contact-us) lists what helps.
 
 [Submit a support request](https://forms.office.com/r/qELKzYF33W).

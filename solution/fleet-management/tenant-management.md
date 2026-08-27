@@ -20,20 +20,20 @@ Your **tenant** is your organisation's own space in the system. Sites sit inside
 Everything in Fleet Management hangs off three levels.
 
 ```mermaid
-flowchart TB
-    T["<b>Tenant</b><br/>your organisation's own space"]
-    subgraph SITE["<b>Site</b> — a building or a campus"]
-        direction LR
-        MAPS["<b>Maps</b><br/>one or more lineages,<br/>each revised over time"]
-        ROBOTS["<b>Robots</b><br/>each assigned to a map"]
-        MAPS -->|"the activated revision"| ROBOTS
+flowchart LR
+    TB["<b>Deployment Toolbox</b><br/>the map is drawn here"]
+    subgraph FMS["Fleet Management System"]
+        direction TB
+        DRAFT["Draft revision"]
+        PUB["Published"]
+        ACTIVE["Activated"]
+        DRAFT -->|"publish"| PUB
+        PUB -->|"activate"| ACTIVE
     end
-    S2["Site"]
-    S3["Site"]
-    T --> SITE
-    T --> S2
-    T --> S3
-    style SITE fill:transparent,stroke:#0f6e78
+    ROBOT["<b>Robot</b>"]
+    TB -->|"push"| DRAFT
+    ACTIVE -->|"sent to the robot"| ROBOT
+    style ACTIVE fill:#0f6e78,stroke:#0f6e78,color:#fff
 ```
 
 A **tenant** is your organisation's space: its sites, robots, users and data, separate from every other customer's.
@@ -62,7 +62,7 @@ Each role contains the one above it, so assigning access is one decision per per
 
 A site does not hold one map; it holds a **map lineage** — a named map that is revised over time. Each publish from the Deployment Toolbox adds a **revision** to that lineage rather than replacing what was there, so `r4` and `r5` are the same map at two points in its life and the older one is still on record.
 
-Exactly one revision of a lineage is **activated** at a time. Activation is the decision that says "this is the revision robots should be running", and it is what the rest of the fleet reacts to.
+A revision moves through **draft**, then **published**, and one published revision at a time is **activated**. Activation is the decision that says "this is the revision robots should be running", and it is what the rest of the fleet reacts to. Revisions that are finished with can be archived without being deleted.
 
 A site can hold more than one lineage where it needs them — a second building, or a floor mapped separately — and a robot is assigned to one of them.
 
@@ -85,7 +85,17 @@ flowchart LR
     style ACTIVE fill:#0f6e78,stroke:#0f6e78,color:#fff
 ```
 
-A map published from the Deployment Toolbox arrives in Fleet Management as a **draft** — stored, but not in use. Someone with the Site Admin role then **activates** it, and activation is what makes it the map robots are given. Until that happens robots keep the map they already have, so a robot never changes map part-way through a job. The Deployment Toolbox never talks to a robot itself.
+A revision reaches robots through three steps, and the Deployment Toolbox performs only the first.
+
+| Step | Who | What it does |
+| --- | --- | --- |
+| **Push** | Deployment Toolbox | Sends the finished map into Fleet Management as a **draft** revision, either starting a new lineage or adding to an existing one |
+| **Publish** | Site Admin | Marks the draft as a finished revision, ready to be used |
+| **Activate** | Site Admin | Makes it *the* revision robots are given |
+
+**The Toolbox stops at the draft.** Publishing and activating are both actions taken in Fleet Management by a person; the Toolbox can do neither, and never talks to a robot at all.
+
+Until a revision is activated, robots keep the map they already have — so a robot never changes map part-way through a job.
 
 ### How a robot is assigned a map
 
@@ -126,10 +136,10 @@ Actions taken across your tenant are recorded in an append-only log, readable by
 Yes, for the three per-site roles. Observer, Operator and Site Admin are assigned per site, so someone can be an Operator at one and an Observer at another. Auditor and Tenant Administrator apply across the whole tenant at once.
 
 **We activated a map but the robots are still using the old one**  
-A new map arrives as a draft and has to be activated before robots are given it. Until then they keep the map they already have, so a robot never changes map part-way through a job. If a robot is still behind after activation, it catches up when it confirms the new map — see [How a map reaches a robot](#how-a-map-reaches-a-robot).
+A pushed map arrives as a draft, and has to be published and then activated before robots are given it. Until then they keep the map they already have, so a robot never changes map part-way through a job. If a robot is still behind after activation, it catches up when it confirms the new map — see [How a map reaches a robot](#how-a-map-reaches-a-robot).
 
 **Who can activate a map?**  
-A Site Admin for that site, or a Tenant Administrator. The Deployment Toolbox cannot activate a map at all — it publishes a draft, and activation happens here.
+A Site Admin for that site, or a Tenant Administrator. The Deployment Toolbox cannot publish or activate at all — it pushes a draft, and both later steps happen here.
 
 **Can an Auditor stop a robot in an emergency?**  
 No. The Auditor role is read-only by design. Anyone who may need to intervene needs Operator at that site.

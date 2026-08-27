@@ -23,7 +23,7 @@ flowchart LR
     style FMS fill:#0f6e78,stroke:#0f6e78,color:#fff
 ```
 
-The **site map** ties these parts together, and it travels one way: the Deployment Toolbox publishes it here, and robots receive it from here once an administrator activates it. The Toolbox never reaches a robot directly. 
+The **site map** ties these parts together, and it travels one way: the Deployment Toolbox pushes it here as a draft, an administrator publishes and then activates it, and robots receive it from here. The Toolbox never reaches a robot directly. 
 
 Key features of the system are summarized in the table below, and each is covered in its own section.
 
