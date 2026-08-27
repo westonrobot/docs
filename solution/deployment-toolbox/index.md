@@ -84,24 +84,20 @@ That is deliberate, and it has one practical consequence worth planning around: 
 
 ## Map inspector
 
-The inspector opens a map — from the fleet, or from a file — and lets you examine it without changing it. It works in two modes: **Inspect**, which counts what a map holds and offers a searchable list of its elements, and **Route**, which tests whether a path between two points you choose actually solves. Either can be viewed flat in 2D or over the point cloud in 3D.
-
-**Testing that a route solves is the part that earns its keep.** Two segments that appear to meet on screen but do not share a point produce a map that looks connected and cannot be navigated, and that shows up here in seconds rather than during a patrol.
+The inspector answers whether a map is sound, without changing it. It opens one from the fleet or from a file, reports what it holds — how many nodes, segments, zones and levels, and every element by name — and tests whether a robot could actually travel between two points you pick. That second job is the one that earns it: a map whose segments do not quite meet looks connected on screen and cannot be navigated, and this is where that surfaces in seconds rather than during a patrol.
 
 [Map inspector](/solution/deployment-toolbox/map-inspector) covers the two modes, where a map can be opened from, how to choose which routes to test, and when reaching for it is worth the time.
 
 ## Map editor
 
-The editor runs as five stages, worked left to right: **load** a scan, **prepare** it, set up its **levels**, **edit** the graph onto it, and **export**. Any stage can be revisited once its prerequisites are met.
+The editor is where a site map is made: it takes a 3D scan of a building and produces the graph a robot navigates by. That means cleaning up the scan, establishing the floor it sits on, and then placing the nodes, segments and zones themselves — work that is staged, so a map can be picked up and revised later rather than rebuilt from the beginning each time the building changes.
 
 <Figure
   src={require('../img/toolbox-stages.png').default}
   alt="The map editor's stage bar showing five numbered stages in order: Load, Prepare, Levels, Edit, Export, with undo and redo alongside"
   size="full"
   framed
-  caption="The five stages, worked left to right, with undo and redo throughout." />
-
-The stage that decides the rest is **Prepare**. A scan that is subtly tilted produces a map that looks correct and navigates badly, and everything placed afterwards inherits the error.
+  caption="The editor's five stages, worked left to right, with undo and redo throughout." />
 
 [Map editor](/solution/deployment-toolbox/map-editor) covers all five stages, what each needs before it will open, the point cloud formats accepted, and what surface snapping is for.
 
