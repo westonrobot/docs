@@ -168,7 +168,7 @@ The Auditor role exists for exactly this: it reads operational and audit logs ac
   framed
   caption="The audit trail: who did what, when, and whether it was accepted or refused." />
 
-[Audit log](/solution/fleet-management/audit-log) covers the two trails — your own operations, and what Weston Robot staff did on your tenant under elevation — the categories entries fall into, filtering and export, and the roles that can read them.
+[Audit log](/solution/fleet-management/audit-log) covers both trails — your own operations, and every visit Weston Robot staff made to your tenant under elevation — the categories entries fall into, pivoting to an actor, linking to a single entry, export and its limits, and the roles that can read them.
 
 ## Further topics
 

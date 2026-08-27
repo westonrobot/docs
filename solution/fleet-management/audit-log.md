@@ -1,7 +1,7 @@
 ---
 unlisted: true
 sidebar_position: 6
-description: "The audit log in Fleet Management: the fleet and tenant trails, what each entry records, filtering and export, and where actions are recorded that do not appear here."
+description: "The audit log in Fleet Management: the fleet trail of operational events, the tenant trail of vendor access under elevation, filtering, permalinks, export, and who can read it."
 ---
 
 # Audit log
@@ -13,24 +13,20 @@ Actions are recorded in an **append-only** log: entries are added, never changed
   alt="The audit log filtered to mission events, each row showing a UTC timestamp, category, action, the actor, an outcome of accepted or rejected, and a plain-language description, with CSV and JSON export controls"
   size="full"
   framed
-  caption="The audit trail: who did what, when, and whether it was accepted or refused." />
+  caption="The fleet trail: who did what, when, and whether it was accepted or refused." />
 
 ## Two trails
 
 The log is split in two, and they answer different questions.
 
-| Trail | Records |
-| --- | --- |
-| **Fleet audit** | Operational events from your robots — safety such as emergency stops, control leases, missions, commands and faults, each with its actor and outcome |
-| **Tenant audit** | What Weston Robot staff did on your tenant from outside — entering and leaving under an elevation, and each action performed while elevated |
+| Trail | Records | Answers |
+| --- | --- | --- |
+| **Fleet audit** | Operational events from your robots and the people running them | What happened at my sites? |
+| **Tenant audit** | What Weston Robot staff did on your tenant from outside | Has anyone from the vendor been in here? |
 
-The second is worth understanding rather than skipping. When our staff need access to your tenant to support you, that access is itself recorded: when it began, when it ended, and everything done in between. It is there so you can check it.
+## Fleet audit
 
-## What an entry records
-
-Every entry carries the action taken, who took it, when, and **whether it was accepted or rejected**. Refusals are recorded alongside successes, which is what lets the trail answer "was this attempted?" and not only "was this done?" — a rejected emergency stop or a refused mission activation is often the more interesting row.
-
-Each also carries a plain-language description, so a row reads as a sentence rather than as an identifier.
+Every entry carries the action taken, who took it, when, and **whether it was accepted or rejected**. Refusals are recorded alongside successes, which is what lets the trail answer "was this attempted?" and not only "was this done?" — a refused mission activation or a rejected command is often the more interesting row. Each also carries a plain-language description, so a row reads as a sentence rather than as an identifier.
 
 | Category | Covers |
 | --- | --- |
@@ -43,11 +39,43 @@ Each also carries a plain-language description, so a row reads as a sentence rat
 
 **Not every entry has a person behind it.** An entry with no operator is attributed to the **robot**, because that is what it is — the robot reporting on itself, or a mission that fired on its own schedule with nobody involved. That is a different thing from an action whose actor could not be identified, and the log distinguishes them.
 
-## Finding and keeping entries
+Where a person is the actor, their name is resolved from your user directory. A raw identifier in that column means either a non-human actor or a directory your role cannot read.
 
-Entries filter by category, by outcome — including a failures-only view — by actor, by date range, and by free-text search. Any result can be exported as **CSV or JSON** for review outside the application, which is the route to take when an auditor wants the record in their own tooling rather than a screen to look at.
+**One robot's history** is also reachable from that robot's own page, already narrowed to it — the quicker route when the question is about one machine rather than the site.
 
-**Who can read it** is a role question. Auditors read both trails across every site without being able to command anything, which is what makes the role useful for a reviewer who should not be able to move a robot. See [Roles](/solution/fleet-management/tenant-management#roles).
+## Tenant audit
+
+Supporting a deployment sometimes means our staff need access to your tenant. That access is not silent: it runs under an **elevation**, and the elevation and everything done during it are recorded here for you to read.
+
+Two views onto the same records:
+
+| View | Shows |
+| --- | --- |
+| **Sessions** | One card per visit — who entered, the reason recorded, how it ended, how many actions were taken and how many were denied, expandable to the individual actions |
+| **Timeline** | The individual events in order — entered tenant, each action under elevation, left tenant |
+
+A session ends in one of three ways, and the difference is worth reading: **left**, meaning the person exited deliberately; **expired**, meaning the elevation timed out; or **active**, meaning it is still open right now.
+
+Sessions is the view to start from. It answers what visits happened, whether each one ended, and whether anything unexpected was attempted, without reading every row — and the denied count is the number to look at first.
+
+## Finding an entry
+
+Entries filter by category, by outcome — including a failures-only view — by actor, by date range, and by free-text search.
+
+Two shortcuts are worth knowing:
+
+- **Pivot to an actor.** An actor's name is clickable, which re-filters the log to everything that person did. It is the fastest way from "this one action looks odd" to "what else did they do that day".
+- **Link to a single entry.** Any entry can be copied as a link. Opening it brings up the log with that entry highlighted and scrolled to, which is what makes an audit finding quotable in a ticket or an email.
+
+## Exporting
+
+Any filtered result can be exported as **CSV or JSON** — the route to take when a reviewer wants the record in their own tooling rather than a screen to look at.
+
+The export is the **whole filtered set**, not the rows currently on screen; it pages through the rest for you. It stops at **10,000 rows** and tells you when it has done so, so a truncated export is never mistaken for a complete one. Narrow the filters and export again if you hit it.
+
+## Who can read it
+
+Reading the log is a role, not a permission you grant per person. **Auditors** read both trails across every site while being unable to command anything — which is exactly what makes the role useful for a reviewer who should not be able to move a robot. **Tenant administrators** can read it too. See [Roles](/solution/fleet-management/tenant-management#roles).
 
 ## Where other actions are recorded
 
@@ -61,8 +89,14 @@ Check the category and date filters first, and whether you are on the fleet or t
 **An entry has no user against it**  
 It was the robot acting on its own — reporting on itself, or running a mission that fired on schedule. That is recorded as the robot rather than as an unidentified person.
 
+**Has anyone from Weston Robot accessed our data?**  
+The tenant trail answers exactly that. Its Sessions view lists every visit, when it started and ended, and what was done during it.
+
+**A session shows as expired rather than left**  
+The elevation timed out instead of the person exiting deliberately. The actions taken during it are recorded either way.
+
+**My export looks short**  
+Exports stop at 10,000 rows and say when they have been truncated. Narrow the filters — by date range or category — and export again.
+
 **Can an entry be corrected or removed?**  
 No. The trail is append-only and cannot be edited from the application. A correction is a new entry, not a change to an old one.
-
-**Who can see the audit log?**  
-Auditors and tenant administrators. The Auditor role exists precisely so that a reviewer can read everything without being able to change anything.
