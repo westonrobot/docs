@@ -50,7 +50,7 @@ When a newer map is activated, that robot's missions are switched off and stay l
   framed
   caption="What you see when a robot is behind the activated map. Editing and dispatch stay locked until it catches up." />
 
-The whole path a map takes, from the Deployment Toolbox to a robot, is in [How a map reaches a robot](/solution/fleet-management#how-a-map-reaches-a-robot).
+The whole path a map takes, from the Deployment Toolbox to a robot, is in [How a map reaches a robot](/solution/fleet-management/tenant-management#how-a-map-reaches-a-robot).
 
 ## Known limitations
 

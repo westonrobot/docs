@@ -1,7 +1,7 @@
 ---
 unlisted: true
 sidebar_position: 4
-description: "Tenants, sites, users and roles in Fleet Management: who may watch, who may command, who may change a site, and the audit log that records it."
+description: "Tenants, sites, users and roles in Fleet Management: who may watch, who may command, who may change a site, how a map reaches a robot, and the audit log that records it."
 ---
 
 # Tenant and user management
@@ -35,6 +35,27 @@ The line that matters most in practice is between watching and commanding, and i
 
 **One thing worth planning around:** the same role that draws a map can also make it live. Authoring a map and activating it are both Site Admin authority, so a single person can do both. If your process requires a second person to approve a map before robots use it, that has to come from your process — the system does not require it.
 
+## How a map reaches a robot
+
+Maps are drawn in the Deployment Toolbox, but a map only reaches a robot through Fleet Management, and only once an administrator activates it. The path runs one way.
+
+```mermaid
+flowchart LR
+    TB["<b>Deployment Toolbox</b><br/>the map is drawn here"]
+    subgraph FMS["Fleet Management System"]
+        direction TB
+        DRAFT["Draft map"]
+        ACTIVE["Active map"]
+        DRAFT -->|"activate<br/>(Site Admin)"| ACTIVE
+    end
+    ROBOT["<b>Robot</b>"]
+    TB -->|publish| DRAFT
+    ACTIVE -->|sent to the robot| ROBOT
+    style ACTIVE fill:#0f6e78,stroke:#0f6e78,color:#fff
+```
+
+A map published from the Deployment Toolbox arrives in Fleet Management as a **draft** — stored, but not in use. Someone with the Site Admin role then **activates** it, and activation is what makes it the map robots are given. Until that happens robots keep the map they already have, so a robot never changes map part-way through a job. The Deployment Toolbox never talks to a robot itself.
+
 ## The audit log
 
 Actions are recorded in an **append-only** log — entries are added, never changed or removed. Auditors can read it across every site without being able to command anything, which is what makes the role useful for a reviewer who should not be able to move a robot.
@@ -52,7 +73,7 @@ Yes, for the three per-site roles. Observer, Operator and Site Admin are assigne
 
 ### Who can activate a map?
 
-A Site Admin for that site, or a Tenant Administrator. The Deployment Toolbox cannot activate a map at all — it publishes a draft, and activation happens here. See [How a map reaches a robot](/solution/fleet-management#how-a-map-reaches-a-robot).
+A Site Admin for that site, or a Tenant Administrator. The Deployment Toolbox cannot activate a map at all — it publishes a draft, and activation happens here. See [How a map reaches a robot](#how-a-map-reaches-a-robot).
 
 ### Can an Auditor stop a robot in an emergency?
 

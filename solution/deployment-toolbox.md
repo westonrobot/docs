@@ -137,7 +137,7 @@ Validate, check the result, and publish to the Fleet Management System. Publishi
 
 **The Deployment Toolbox never talks to robots.** It publishes to the Fleet Management System, and robots are updated from there. There is no path from this tool to a machine in the field.
 
-**It cannot make a map live either.** A published map sits in the Fleet Management System as a draft until someone **activates** it there; activation is what puts a map in front of robots. That is a boundary between the two tools rather than between two people — the same Site Admin who drew the map can activate it. If you want a second person to review a map before robots use it, that has to come from your process. [How a map reaches a robot](/solution/fleet-management#how-a-map-reaches-a-robot) shows the whole path in one diagram.
+**It cannot make a map live either.** A published map sits in the Fleet Management System as a draft until someone **activates** it there; activation is what puts a map in front of robots. That is a boundary between the two tools rather than between two people — the same Site Admin who drew the map can activate it. If you want a second person to review a map before robots use it, that has to come from your process. [How a map reaches a robot](/solution/fleet-management/tenant-management#how-a-map-reaches-a-robot) shows the whole path in one diagram.
 
 ## Known limitations
 

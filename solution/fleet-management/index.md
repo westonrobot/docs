@@ -8,40 +8,22 @@ description: "Fleet Management System: plan, dispatch, watch and review autonomo
 
 The Fleet Management System is the web application you run your robots from. Missions are planned here, dispatched here, watched here, and everything the robots find is kept here. It runs in a browser, and there is nothing to install.
 
-## Where it sits
-
-A working deployment is the robots, the map they navigate by, and this system. Fleet Management is the part people use every day; the **Deployment Toolbox** prepares a site once, before any robot drives there. Detection algorithms — ours on the robot, or a partner's alongside it — report into this system too, so what they find arrives as events here.
-
-| Part | What it does | How often you touch it |
-| --- | --- | --- |
-| [Deployment Toolbox](/solution/deployment-toolbox) | Turns a 3D scan of your site into the map robots navigate by | Once per site |
-| **Fleet Management System** | Plan, dispatch, watch, review | Daily |
-| Robot | Carries out the missions | — |
-
-### How a map reaches a robot
-
-The **site map** is what ties these parts together, and it travels in one direction only.
+A working deployment is the robots, the map they navigate by, and this system. Fleet Management is the part your team uses every day. The [Deployment Toolbox](/solution/deployment-toolbox) prepares a site once, before any robot drives there. Detection algorithms — ours on the robot, or a partner's alongside it — report into this system too, so what they find arrives as events here.
 
 ```mermaid
 flowchart LR
-    TB["<b>Deployment Toolbox</b><br/>the map is drawn here"]
-    subgraph FMS["Fleet Management System"]
-        direction TB
-        DRAFT["Draft map"]
-        ACTIVE["Active map"]
-        REVIEW["Live view and<br/>detection review"]
-        DRAFT -->|activate| ACTIVE
-    end
-    ROBOT["<b>Robot</b>"]
-    TB -->|publish| DRAFT
-    ACTIVE -->|sent to the robot| ROBOT
-    ROBOT -->|telemetry, events, detections| REVIEW
-    style ACTIVE fill:#0f6e78,stroke:#0f6e78,color:#fff
+    OP(["Your team,<br/>in a browser"])
+    TB["<b>Deployment Toolbox</b><br/>prepares the site, once"]
+    FMS["<b>Fleet Management System</b><br/>plan · dispatch · watch · review"]
+    ROBOT["<b>Robot</b><br/>carries out the missions"]
+    OP <--> FMS
+    TB -->|"site map"| FMS
+    FMS -->|"missions, map, commands"| ROBOT
+    ROBOT -->|"telemetry, events, detections"| FMS
+    style FMS fill:#0f6e78,stroke:#0f6e78,color:#fff
 ```
 
-A map published from the Deployment Toolbox arrives here as a **draft** — stored, but not in use. Someone with the Site Admin role then **activates** it, and activation is what makes it the map robots are given. Until that happens robots keep the map they already have, so a robot never changes map part-way through a job. The Deployment Toolbox never talks to a robot itself.
-
-Everything travelling the other way — where each robot is, what it is doing, and what it detected — arrives here from the robots.
+The **site map** ties these parts together, and it travels one way: the Deployment Toolbox publishes it here, and robots receive it from here once an administrator activates it. The Toolbox never reaches a robot directly. [How a map reaches a robot](/solution/fleet-management/tenant-management#how-a-map-reaches-a-robot) sets out the whole path and who may take each step.
 
 ## Key features
 
@@ -101,11 +83,11 @@ Detections and events land in Detection Review and stay there — filterable, ac
 | [Mission editing and dispatch](/solution/fleet-management/mission-editing) | Checkpoints, actions, schedules, saved locations, Quick Dispatch, and the map a robot must be on | Operators, site admins |
 | [Robot dashboard](/solution/fleet-management/robot-dashboard) | The robot view, taking control, and how battery and connection loss change a running mission | Operators |
 | [Detection review](/solution/fleet-management/detection-review) | What was found, which event types alert, and what the record keeps | Operators, reviewers |
-| [Tenant and user management](/solution/fleet-management/tenant-management) | Sites, users, the five roles, and the audit log | Site and tenant admins |
+| [Tenant and user management](/solution/fleet-management/tenant-management) | Sites, users, the five roles, how a map reaches a robot, and the audit log | Site and tenant admins |
 
 ## Updates and remote management
 
-What can be done to a robot remotely is deliberately short: **change its credentials, and send it a new map.** There is no remote login, and a map sent to a robot changes nothing until it is activated — see [How a map reaches a robot](#how-a-map-reaches-a-robot).
+What can be done to a robot remotely is deliberately short: **change its credentials, and send it a new map.** There is no remote login, and a map sent to a robot changes nothing until it is activated — see [How a map reaches a robot](/solution/fleet-management/tenant-management#how-a-map-reaches-a-robot).
 
 **Robot software is not updated through the dashboard.** Updates are done by Weston Robot, either on site or over a VPN connection to the robot. If your security policy does not allow that, raise it before the site survey rather than at the first update — it decides how your robots get serviced.
 
@@ -136,7 +118,7 @@ On-premise is the further step, and data residency is what decides it. If your r
 
 ### We updated a map but the robots are still using the old one
 
-Expected. A new map arrives as a draft and has to be activated. Until then robots keep the map they have — this is deliberate, so a robot never changes map in the middle of a job.
+Expected. A new map arrives as a draft and has to be activated. Until then robots keep the map they have — this is deliberate, so a robot never changes map in the middle of a job. See [How a map reaches a robot](/solution/fleet-management/tenant-management#how-a-map-reaches-a-robot).
 
 ### A robot's missions are switched off and I cannot edit or dispatch them
 
