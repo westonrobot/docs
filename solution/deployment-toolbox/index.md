@@ -40,9 +40,9 @@ The graph is written in **TMG** — Topometric Navigation Graph, a map specifica
 
 The occupancy grid's role today is visualisation: the fleet and the toolbox draw it under the graph so a node or a zone can be related to the floor plan it sits on rather than read as bare coordinates, while a robot navigates from the graph. One further surface is computed rather than stored — the **height grid**, derived from the point cloud against the level being edited, is what surface snapping uses to settle a node onto the floor, and it exists only while you are working.
 
-## What a site map contains
+## Map elements
 
-The navigation graph is where a map's meaning lives. TMG exists because the formats already available describe a *space* without describing what is *allowed to happen* in it: a point cloud says where the walls are, not that this doorway is a route and that one is off limits.
+The navigation graph is where a map's meaning lives, and these four elements are what it is built from. TMG exists because the formats already available describe a *space* without describing what is *allowed to happen* in it: a point cloud says where the walls are, not that this doorway is a route and that one is off limits.
 
 | Element | What it is |
 | --- | --- |
