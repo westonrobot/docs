@@ -48,8 +48,8 @@ const FAMILIES = [
   },
   {
     to: '/solution/intro',
-    src: require('@site/solution/img/fleet-dashboard.png').default,
-    alt: 'Fleet management dashboard',
+    src: require('@site/solution/img/fleet-robot-view.jpg').default,
+    alt: 'The robot dashboard: a site map with the robot on it, live camera feeds, telemetry and the control panel',
     title: 'Solutions',
     body: 'Capabilities we deploy on a platform',
   },
