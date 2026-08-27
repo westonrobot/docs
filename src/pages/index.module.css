@@ -44,6 +44,16 @@
   padding: clamp(1.15rem, 2.2vh, 2rem) 0 clamp(0.9rem, 1.8vh, 1.75rem);
 }
 
+/* The default container is 1140px, which on a wide screen leaves roughly 390px
+   dead either side of a four-tile row and makes the whole layout read as an
+   island. Widen it past that breakpoint only — narrower screens are already
+   container-bound and unaffected. */
+@media (min-width: 1400px) {
+  .page :global(.container) {
+    max-width: 1440px;
+  }
+}
+
 /* Shorter tiles than a hub page uses, to keep the whole layout above the fold.
    ProductCard reads this variable. */
 /* Sized from viewport height rather than grown by flex. Flex growth is
@@ -51,7 +61,7 @@
    expanded past the viewport and pushed the tiles and footer below the fold on
    a real 1080p screen, which gives about 940px once browser chrome is gone. */
 .families {
-  --product-card-media-height: clamp(96px, 20.5vh, 240px);
+  --product-card-media-height: clamp(96px, 24vh, 300px);
 }
 
 .families :global(.margin-vert--lg) {
