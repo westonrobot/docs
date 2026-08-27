@@ -84,11 +84,11 @@ That is deliberate, and it has one practical consequence worth planning around: 
 
 ## Map inspector
 
-The inspector opens a map — from the fleet or from a file — and lets you examine it without changing it: its graph, occupancy and height layers, an element list, and a route test between two points you choose.
+The inspector opens a map — from the fleet, or from a file — and lets you examine it without changing it. It works in two modes: **Inspect**, which counts what a map holds and offers a searchable list of its elements, and **Route**, which tests whether a path between two points you choose actually solves. Either can be viewed flat in 2D or over the point cloud in 3D.
 
 **Testing that a route solves is the part that earns its keep.** Two segments that appear to meet on screen but do not share a point produce a map that looks connected and cannot be navigated, and that shows up here in seconds rather than during a patrol.
 
-[Map inspector](/solution/deployment-toolbox/map-inspector) covers opening a map from the fleet or a file, the layers and the element list, how to choose which routes to test, and when reaching for it is worth the time.
+[Map inspector](/solution/deployment-toolbox/map-inspector) covers the two modes, where a map can be opened from, how to choose which routes to test, and when reaching for it is worth the time.
 
 ## Map editor
 
