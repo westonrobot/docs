@@ -27,18 +27,20 @@ A site map is not one file. What travels between the Toolbox and the fleet is a 
 | --- | --- | --- |
 | **Navigation graph** | The TMG document: nodes, segments, zones and levels | What the robot navigates by, and what the fleet reads a site's waypoints and routes from |
 | **Point cloud** | The 3D scan the map was authored against | Loaded back into the editor, so a later revision is drawn against the same scan |
-| **Occupancy grid** | A flat grid of what is free and what is blocked, one per level | Loaded by the robot, and drawn beneath the graph as the ground it sits on |
+| **Occupancy grid** | A flat grid of what is free and what is blocked, one per level | Drawn beneath the graph, so its nodes, segments and zones can be read against the building |
 | **Reference image** | A floor plan or similar picture, one per level | The same underlay role, where a drawing reads better than a scan |
+
+The graph is written in **TMG** — Topometric Navigation Graph, a map specification Weston Robot defines and publishes. It is *topometric* because it carries both the topology, meaning which places connect to which, and the metric detail, meaning exactly where each of them is.
 
 **The graph is the map; the rest is the ground it was drawn over.** That separation is deliberate, and it shows: a bundle whose occupancy layer is missing still opens as a usable navigation graph, with the absent underlay reported rather than the whole map refused.
 
-The occupancy grid is in the standard ROS format, which is what lets the same file serve both purposes — a robot loads it to judge what it can drive over, and the editor and inspector draw it as the floor beneath the graph.
+**The occupancy grid is there to be looked at.** Today it serves visualisation: the fleet and the toolbox draw it under the graph so a node or a zone can be related to the floor plan it sits on, rather than read as coordinates. A robot navigates from the graph.
 
 One surface is computed rather than stored. The **height grid** is derived from the point cloud against the level being edited, and it is what surface snapping uses to settle a node onto the floor. It exists while you work and is not something the bundle carries.
 
 ## What a site map contains
 
-The navigation graph is where a map's meaning lives, and its format is **TMG** — Topometric Navigation Graph, a Weston Robot specification. It exists because the formats already available describe a *space* without describing what is *allowed to happen* in it.
+The navigation graph is where a map's meaning lives. TMG exists because the formats already available describe a *space* without describing what is *allowed to happen* in it: a point cloud says where the walls are, not that this doorway is a route and that one is off limits.
 
 | Element | What it is |
 | --- | --- |

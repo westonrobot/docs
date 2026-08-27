@@ -21,7 +21,7 @@ The map is drawn in layers, which can be shown independently:
 | Layer | Shows |
 | --- | --- |
 | **Graph** | The nodes, segments and zones — the map as the robot reasons about it |
-| **Costmap** | The grid the robot uses to judge what it can drive over |
+| **Costmap** | The occupancy grid, drawn as the floor beneath the graph so elements can be related to the building |
 | **Height** | The vertical structure of the scan |
 
 Alongside it, an **elements list** enumerates what the map contains by kind, and selecting an element shows its properties. That is the quickest way to answer questions of the form "how many charging nodes does this site have?" or "which level is this zone on?".
