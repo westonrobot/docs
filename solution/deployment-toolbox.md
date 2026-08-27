@@ -1,5 +1,5 @@
 ---
-draft: true
+unlisted: true
 sidebar_position: 3
 description: "Deployment Toolbox: turn a 3D scan of a site into the map robots navigate by. The map editor workflow, what a map contains, and how maps go live."
 ---
@@ -9,12 +9,6 @@ description: "Deployment Toolbox: turn a 3D scan of a site into the map robots n
 A 3D scan of a building is just points. A robot needs to know where the floor is, where it may drive, where it must not go, and which places matter. Somebody supplies that meaning once per site, and this is the tool they use.
 
 What comes out is the **site map** — the artifact everything else depends on. It is published to the [Fleet Management System](/solution/fleet-management), and reaches the robots from there.
-
-:::caution Draft
-
-This page is being written for an upcoming release and is not final.
-
-:::
 
 ## Who uses it, and when
 

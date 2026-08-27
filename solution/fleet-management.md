@@ -1,5 +1,5 @@
 ---
-draft: true
+unlisted: true
 sidebar_position: 2
 description: "Fleet Management System: plan, dispatch, watch and review autonomous missions from a browser. Features, workflow, roles, alerts and limits."
 ---
@@ -7,12 +7,6 @@ description: "Fleet Management System: plan, dispatch, watch and review autonomo
 # Fleet Management System
 
 The Fleet Management System is the web application you run your robots from. Missions are planned here, dispatched here, watched here, and everything the robots find is kept here. It runs in a browser, and there is nothing to install.
-
-:::caution Draft
-
-This page is being written for an upcoming release and is not final.
-
-:::
 
 ## Where it sits
 

@@ -21,7 +21,17 @@ If you are looking for the robot itself, see [Robots](/robot/intro). If you are 
 
 Our **industrial patrolling and inspection** platform is in development, documented as three components: the **Fleet Management System** you plan and operate missions from, the **Deployment Toolbox** that turns a site scan into the map robots navigate by, and **Analytics Integration** for connecting detection algorithms. A working deployment needs all three.
 
-Documentation for each will appear here as it becomes available, and pilot customers will be given direct links ahead of general release.
+Two of the three are documented now. They are not yet listed in the sidebar or in search, so these cards are the way in.
+
+<ProductGrid columns={3}>
+
+<ProductCard to="/solution/fleet-management" src={require('./img/fleet-dashboard.png').default} alt="Fleet Management dashboard showing sites and robots with status" title="Fleet Management System">Plan, dispatch, watch and review missions from a browser. The part your operators use every day.</ProductCard>
+
+<ProductCard to="/solution/deployment-toolbox" src={require('./img/toolbox-finished-map.png').default} alt="A finished site map with waypoints, segments and zones" title="Deployment Toolbox">Turn a 3D scan of a site into the map robots navigate by. Used once per site, before any robot runs there.</ProductCard>
+
+</ProductGrid>
+
+**Analytics Integration** is not documented yet. Its page will appear here when it is.
 
 In the meantime, the navigation and mapping material that exists today lives under Guides:
 
