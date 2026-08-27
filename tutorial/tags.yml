@@ -52,10 +52,6 @@ weston-robot:
   description: Guides for Weston Robot's own products and software.
 
 # --- solution ----------------------------------------------------------------
-adt:
-  label: Assisted Driving Toolbox
-  permalink: /adt
-  description: Guides related to the Assisted Driving Toolbox.
 
 # --- topic -------------------------------------------------------------------
 diagnostics:

@@ -1,9 +1,18 @@
 ---
+unlisted: true
 sidebar_position: 1
-description: "Assisted Driving Toolbox: teleoperation for Weston Robot mobile platforms — setup, operation and versions."
+description: "Assisted Driving Toolbox (retired): teleoperation for Weston Robot mobile platforms. Kept for reference; superseded by the Fleet Management System."
 ---
 
 # Assisted Driving Toolbox
+
+:::warning Retired
+
+The Assisted Driving Toolbox has been **withdrawn** and is no longer developed or supported. Teleoperation is now part of the [Fleet Management System](/solution/fleet-management), alongside mission planning, live monitoring and detection review.
+
+This page is kept so existing links still lead somewhere, and so anyone still running the toolbox has its reference to hand. Nothing here is being updated.
+
+:::
 
 Teleoperation for mobile robot platforms, developed by Weston Robot. It lets an operator drive a robot over a shared network while watching its surroundings through the robot's onboard cameras.
 

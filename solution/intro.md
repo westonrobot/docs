@@ -9,17 +9,9 @@ A solution is a complete capability we develop and deploy on top of a robot plat
 
 If you are looking for the robot itself, see [Robots](/robot/intro). If you are looking for a task guide, see [Guides](/tutorial/intro).
 
-## Available now
+## Industrial patrolling and inspection
 
-<ProductGrid columns={3}>
-
-<ProductCard to="/solution/adt/intro" src={require('./adt/img/adt/adt_v3_04.png').default} alt="Assisted Driving Toolbox teleoperation panel" title="Assisted Driving Toolbox">Teleoperation over a shared network, with camera coverage of the robot's surroundings. Three versions in service.</ProductCard>
-
-</ProductGrid>
-
-## In development
-
-Our **industrial patrolling and inspection** platform is in development, documented as three components: the **Fleet Management System** you plan and operate missions from, the **Deployment Toolbox** that turns a site scan into the map robots navigate by, and **Analytics Integration** for connecting detection algorithms. A working deployment needs all three.
+Our patrolling and inspection platform has three components, and a working deployment needs all three: the **Fleet Management System** you plan and operate missions from, the **Deployment Toolbox** that turns a site scan into the map robots navigate by, and **Analytics Integration** for connecting detection algorithms.
 
 Two of the three are documented now. They are not yet listed in the sidebar or in search, so these cards are the way in.
 
@@ -33,15 +25,17 @@ Two of the three are documented now. They are not yet listed in the sidebar or i
 
 **Analytics Integration** is not documented yet. Its page will appear here when it is.
 
-In the meantime, the navigation and mapping material that exists today lives under Guides:
+Navigation and mapping material that exists today lives under Guides:
 
 - [Cartographer and RTAB-Map mapping with Nav2](/system/ugv_devkit/v1/nav2_sample_setup_guide) on the UGV Development Kit
 - [Unitree SLAM on the Go2 and Go2-W](/tutorial/unitree/go2_slam)
 
+## Retired
+
+The **[Assisted Driving Toolbox](/solution/adt/intro)** has been withdrawn and is no longer developed or supported. Teleoperation is now part of the Fleet Management System. Its page is kept so existing links still lead somewhere, and for anyone still running it.
+
 ## What each solution page covers
 
-Solution pages take one of two shapes, depending on what the solution is.
+A solution is a system we deploy and you operate, so its page is documented rather than summarised. Sections are named for what they explain — how the pieces fit together, who may do what, what happens during a mission — because the point is to understand how the system behaves, not to look a single fact up. Every page ends with known limitations and how to reach us.
 
-**A tool you install and run** — such as the Assisted Driving Toolbox — follows the product-page structure: what you need and how to install it, key information and supported platforms, day-to-day operation, known limitations, troubleshooting, support. Where several versions are in service, those are **tabs on one page** rather than separate pages, so shared instructions are written once and the differences are visible side by side.
-
-**A system we deploy and you operate** is documented rather than summarised. Its sections are named for what they explain — how the pieces fit together, who may do what, what happens during a mission — because the point is to understand how the system behaves, not to look a single fact up. Every page of either kind ends with known limitations and how to reach us.
+The retired Assisted Driving Toolbox page follows an older shape, built around installing and running a client, with its versions as tabs on one page.

@@ -4,6 +4,8 @@
 # Production
 /build
 
+.playwright-mcp/
+
 # Generated files
 .docusaurus
 .cache-loader

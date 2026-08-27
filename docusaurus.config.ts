@@ -119,6 +119,7 @@ const config: Config = {
           '**/robot/ugv/ranger-mini-v2',
           '**/solution/fleet-management',
           '**/solution/deployment-toolbox',
+          '**/solution/adt/intro',
         ]
       }
     ],

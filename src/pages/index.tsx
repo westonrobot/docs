@@ -48,8 +48,8 @@ const FAMILIES = [
   },
   {
     to: '/solution/intro',
-    src: require('@site/solution/adt/img/adt/adt_v3_04.png').default,
-    alt: 'Solutions',
+    src: require('@site/solution/img/fleet-dashboard.png').default,
+    alt: 'Fleet management dashboard',
     title: 'Solutions',
     body: 'Capabilities we deploy on a platform',
   },
