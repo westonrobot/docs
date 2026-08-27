@@ -26,14 +26,16 @@ The map being inspected can be swapped without leaving the tool, and the header 
 
 <Figure
   src={require('../img/toolbox-inspector.png').default}
-  alt="The Map Inspector in Inspect mode with a manufacturing site loaded: an overview panel counting 59 nodes, 65 segments, 17 zones and 3 levels, a searchable element list filtered by kind and showing named elements such as Receiving Dock and Assembly Station 1, and the graph drawn in 2D with its zones shaded"
+  alt="The Map Inspector in Inspect mode with a site loaded: an overview panel counting 24 nodes, 31 segments, 56 zones and one level, a searchable element list filtered by kind, and the graph drawn in 2D with its zones shaded"
   size="full"
   framed
-  caption="Inspect mode. The overview counts what the map holds, the element list is searchable and filterable by kind, and the graph is drawn with its zones. This is an example map that ships with the TMG specification." />
+  caption="Inspect mode. The overview counts what the map holds, the element list is searchable and filterable by kind, and the graph is drawn with its zones." />
 
 The **overview** counts what the map contains — nodes, segments, zones and levels — which is the quickest check that a map is the one you think it is. A site you expect to have a dozen nodes and which reports sixty is not the map you meant to open.
 
-The **element list** is searchable by name or identifier and filterable by kind, so you can pull up every charging node, or find the one waypoint whose name you half remember. Selecting an element shows its properties. This is where element names earn their keep: `Assembly Station 2` is a place someone can reason about, and a bare identifier is not.
+The **element list** is searchable by name or identifier and filterable by kind, so you can pull up every charging node, or find the one waypoint whose name you half remember. Selecting an element shows its properties.
+
+This is also where naming elements earns its keep. A list reading `wp_001` through `wp_024` is searchable and tells you nothing; `Loading Bay` and `Charging Point 2` are places a person can reason about, and the difference costs nothing at the time of drawing.
 
 ## Testing that a route solves
 
@@ -56,7 +58,7 @@ Route planning runs as a service rather than in the browser, so the mode is unav
 | **A robot will not go somewhere** | Distinguishes a map that cannot express the route from a robot that will not follow it |
 | **Taking on an unfamiliar site** | Reads the map someone else authored without risking an edit |
 
-Inspecting never modifies the map, so opening a live site's map to look at it is safe.
+**The inspector only reads.** It never modifies a map, and it cannot push one back to the fleet — that is the editor's job. Opening a live site's map to look at it is therefore safe.
 
 ## Common questions
 

@@ -76,10 +76,12 @@ flowchart LR
     TB -->|"push a draft revision"| FMS
 ```
 
-| Moment | Direction | What moves |
-| --- | --- | --- |
-| **Import from fleet** | Fleet → Toolbox | An existing map bundle, pulled down to work on |
-| **Push to fleet** | Toolbox → Fleet | The finished map, as a new draft revision |
+| Moment | Direction | What moves | Which tool |
+| --- | --- | --- | --- |
+| **Import from fleet** | Fleet → Toolbox | An existing map bundle, pulled down to work on | Editor or inspector |
+| **Push to fleet** | Toolbox → Fleet | The finished map, as a new draft revision | **Editor only** |
+
+**Only the editor writes back.** The inspector can pull a map down to look at it, and never sends one anywhere.
 
 **Nothing passes between them in between.** A map open in the editor is a copy: it does not follow changes made in the fleet while you work, and the fleet knows nothing of your edits until you push them. Work in progress lives in your own browser rather than on a server, so the two systems share no state at all between an import and a push.
 
