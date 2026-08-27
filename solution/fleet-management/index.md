@@ -71,7 +71,7 @@ Two things shape what you see here. **Camera feeds stream live from the robot**,
   framed
   caption="One robot on one screen: the site map, its cameras, what it is doing, how it is holding up, and the controls." />
 
-[The panels](/solution/fleet-management/robot-dashboard#the-panels) covers each one in turn, the telemetry readings, and how battery level and connection loss change a running mission.
+[Robot dashboard](/solution/fleet-management/robot-dashboard) covers the page in full: each panel, the telemetry readings and when a robot stops counting as reporting, the diagnostics view for a robot that is misbehaving, recovering localisation, and how battery level and connection loss change a running mission.
 
 ## Robot teleoperation
 

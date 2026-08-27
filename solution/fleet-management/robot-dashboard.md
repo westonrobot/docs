@@ -28,7 +28,9 @@ One robot on one screen. The view is laid out so that judging a running mission 
 
 **The main view area shows one or the other.** A **Map / Cameras** toggle decides whether the navigation map or the camera feeds take the large panel, with the other moving aside. An operator watching a robot drive can give the space to the feeds; one checking progress against the building can give it to the map. Which of the two opens by default is a per-user preference.
 
-**Localisation is worth watching.** A robot that is not localised does not know where it is on the map, so map-relative work — dispatching a mission, sending it home — has nothing to work from until it does.
+**Localisation is worth watching.** A robot that is not localised does not know where it is on the map, so map-relative work — dispatching a mission, sending it home — has nothing to work from until it does. The map reports which of four states it is in: **uninitialised**, **initialising**, **tracking** or **lost**.
+
+**Init Pose**, on the map toolbar, is the recovery for a robot that is not tracking. You point at where the robot actually is and set its heading; it localises from there. It stays available when the robot's other map actions are not, precisely because it is the action that fixes the problem those actions are blocked by.
 
 ## Telemetry
 
@@ -42,6 +44,20 @@ Telemetry answers "is this robot all right?" and is presented three ways: **real
 | **Temperature** | Thermal state |
 | **Speed** | How fast it is moving now |
 | **Status** | Operational, non-responsive or faulty — the same status the fleet overview counts |
+
+### When a robot reads as offline
+
+The robot sends a lifecycle heartbeat about every 30 seconds, and how recently one arrived is what decides whether it counts as reporting:
+
+| Since the last heartbeat | Reads as |
+| --- | --- |
+| Under 45 seconds | Normal |
+| 45 seconds or more | Stale — a beat has been missed |
+| 90 seconds or more | Lost — three beats missed |
+
+Telemetry is graded separately from the heartbeat. The robot's status signal publishes about every two seconds, so **30 seconds of silence** is taken as data having stopped flowing altogether. Individual readings also age out on their own after **90 seconds**, which is what stops a panel presenting a stale figure as though it were current while other signals keep arriving.
+
+**Two channels are graded independently**, and they can disagree. A robot can be operational on the data plane — driving, reporting telemetry — while its on-robot management agent is offline. That combination matters when it happens, because updating a robot's credentials remotely depends on the management channel rather than the data one.
 
 ### Diagnostics
 
@@ -81,10 +97,10 @@ The view is headed with the robot's name, model and serial number. Quote those w
 
 <Figure
   src={require('../img/fleet-controls.png').default}
-  alt="The robot control panel showing an idle mission, a scheduled patrol, and the emergency stop, teleoperation and Go Home controls with Commands and Missions tabs"
+  alt="The robot control panel, headed Control with the robot's mode, showing a full-width emergency stop, Teleop and Go Home buttons, Commands and Missions tabs, and under Commands a Stance group with Stand and Sit and a Docking group with Dock and Undock"
   size="lg"
   framed
-  caption="The control panel: what the robot is doing now, and the controls to intervene." />
+  caption="The control panel, with the Commands tab open: emergency stop, teleoperation, Go Home, and the stance and docking commands." />
 
 | Control | What it does |
 | --- | --- |
@@ -100,16 +116,30 @@ Teleoperation carries two safeguards worth knowing before you rely on it: it **s
 
 **What the driving view shows depends on the robot.** An assisted view — a stitched surround view, proximity zones drawn from the robot's own sensing, and a bird's-eye radar panel — is tuned for a particular robot configuration and deployment rather than provided on every robot by default. Confirm which of your robots are set up for it before planning work that relies on it.
 
-Drive commands also depend on the robot being on the map the fleet has activated. A robot that is behind has its dispatch and Go Home controls withdrawn until it catches up — see [Catching a robot up to the map](/solution/fleet-management/mission-editing#catching-a-robot-up-to-the-map).
+**Driving is not limited to the on-screen controls.** A connected gamepad or the keyboard can drive the robot, with linear, angular and lateral speeds configurable — set globally, and overridable for an individual robot. A gamepad can also carry emergency stop and push-to-talk on its own buttons. Keyboard driving can be switched off if you would rather it were not live.
+
+Drive commands depend on the robot being on the map the fleet has activated. A robot that is behind has its dispatch and Go Home controls withdrawn until it catches up — see [Catching a robot up to the map](/solution/fleet-management/mission-editing#catching-a-robot-up-to-the-map).
+
+### Auto-dispatch
+
+Scheduled missions start on their own, and the **auto-dispatch** control on the Missions tab is what governs that. Pausing it is how you stop a robot picking up new work without cancelling what it is already doing: **pausing blocks new missions being admitted and leaves a run already under way alone.**
+
+Nothing starts by itself again until **Resume Auto-Dispatch**, so a robot paused and forgotten is a robot that quietly runs nothing. Where it is paused, the control shows why.
+
+A robot that is not reporting its dispatcher state shows the control unavailable rather than hiding it — an absent button means the robot is not reporting, not that it lacks the feature.
 
 ## What happens during a mission
 
 Battery level and the connection to the fleet both change what a running mission does.
 
 - **Not enough battery** — the robot refuses to start a mission, and interrupts its schedule if the level becomes critical.
-- **The connection to the fleet drops mid-mission** — what the robot does next is a policy you configure: stop safely, halt immediately, or carry on. Choose it deliberately; the right answer differs between a warehouse aisle and an open yard.
+- **The connection to the fleet drops mid-mission** — what the robot does next is set by its **disconnect policy**: `stop_safe`, which brings it to a controlled stop, or `continue_mission`, which carries on with the mission it holds. A custom behaviour can be fitted where a site needs something else. **The default is `stop_safe`.**
 
-Two separate things are at work in that second case, and it is worth keeping them apart. **Navigation runs on the robot itself**, from the map it already holds, so completing a mission out of contact is a real capability rather than a hopeful one — which is what makes "carry on" a genuine option. **The policy still decides what happens**, so a robot perfectly capable of continuing will stop if that is what you configured. Live view and operator commands resume when the connection does.
+Two separate things are at work in that second case, and it is worth keeping them apart. **Navigation runs on the robot itself**, from the map it already holds, so completing a mission out of contact is a real capability rather than a hopeful one — which is what makes `continue_mission` a genuine option rather than a gamble. **The policy still decides what happens**, so a robot perfectly capable of continuing will stop if `stop_safe` is what it is set to.
+
+**The policy lives on the robot, not in the dashboard.** It is applied when Weston Robot commissions the robot, and changing it needs the same access as any other onboard change — see [Software updates](/solution/fleet-management/deployment-and-servicing#software-updates). The right answer differs between a warehouse aisle and an open yard, so it is worth settling at the site survey rather than after the first outage.
+
+Messages are buffered on the robot while the link is down, so telemetry and events from that period arrive once it returns. What is genuinely unavailable in the meantime is the live view and the ability to send a command.
 
 ## Common questions
 
