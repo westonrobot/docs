@@ -55,6 +55,13 @@ The navigation graph is where a map's meaning lives, and these four elements are
 
 Most zones on a finished map were never drawn by hand — one is generated around every node and along every segment, marking the envelope the robot may drive within.
 
+<Figure
+  src={require('../img/toolbox-finished-map.png').default}
+  alt="A finished site map: labelled waypoints and charging points joined by segments, every node and segment wrapped in a shaded zone, with a panel counting 15 nodes, 19 segments, 34 zones and one level"
+  size="full"
+  framed
+  caption="The elements on a finished map — labelled nodes, the segments joining them, and a zone around each. This one holds 15 nodes and 34 zones, none of which were drawn by hand." />
+
 [The map format](/solution/deployment-toolbox/map-format#the-elements) covers all four in full, which zones you draw and which are generated for you, and what levels mean for a site that spans floors.
 
 ## Data exchange
@@ -80,11 +87,25 @@ That is deliberate, and it has one practical consequence worth planning around: 
 
 **The Toolbox never talks to robots.** It pushes to the Fleet Management System, and robots are updated from there; there is no path from this tool to a machine in the field. A pushed map arrives as a **draft revision**, and someone in Fleet Management then **publishes** it and **activates** it — activation being what puts a map in front of robots, and neither step something the Toolbox can take.
 
+<Figure
+  src={require('../img/toolbox-import.png').default}
+  alt="The toolbox's load panel, offering Import from Fleet as the highlighted option, with Upload TMG File and Upload Bundle beneath it"
+  size="sm"
+  framed
+  caption="One end of the exchange: a map comes in from the fleet, or from a file on your machine." />
+
 [Publishing to the fleet](/solution/deployment-toolbox/publishing) covers the four things the push asks for, why the change summary is worth writing properly, the three steps from draft to activated, and what activation costs a robot.
 
 ## Map inspector
 
 The inspector answers whether a map is sound, without changing it. It opens one from the fleet or from a file, reports what it holds — how many nodes, segments, zones and levels, and every element by name — and tests whether a robot could actually travel between two points you pick. That second job is the one that earns it: a map whose segments do not quite meet looks connected on screen and cannot be navigated, and this is where that surfaces in seconds rather than during a patrol.
+
+<Figure
+  src={require('../img/toolbox-inspector.png').default}
+  alt="The Map Inspector with a site loaded, showing an overview counting its nodes, segments, zones and levels, a searchable list of named elements, and the graph drawn with its zones"
+  size="full"
+  framed
+  caption="The inspector reading a map: what it holds, every element by name, and the graph drawn out." />
 
 [Map inspector](/solution/deployment-toolbox/map-inspector) covers the two modes, where a map can be opened from, how to choose which routes to test, and when reaching for it is worth the time.
 
