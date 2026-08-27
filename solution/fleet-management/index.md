@@ -117,11 +117,13 @@ One constraint follows from missions referencing the map: **a robot must be on t
 
 ## Detection review
 
-Detections and events from every robot land in one place and stay there. Whatever did the detecting reports into the same list — a camera on the robot, or an analytics service running elsewhere — so the record is complete regardless of what found the thing.
+Everything the robots observe lands in one place and stays there. Whatever did the observing reports into the same list — a camera on the robot, or an analytics service running elsewhere — so the record is complete regardless of what found the thing.
 
-Entries filter by robot, type, priority and review state, and each is **acknowledged by a named person**. The record keeps the image the detection was made from, is stored so it cannot be edited or deleted, and reviewer notes are appended rather than replacing what was there. The result is an evidence trail rather than a working queue: it will say the same thing when someone reads it back months later.
+An observation is recorded as an **event**. An event whose priority is high enough is raised into an **alert**, and that is what puts it in front of an operator — everything else is kept and searchable without anyone being asked to look at it.
 
-**Priority decides what raises an alert.** The platform recognises 25 event types, each carrying one, and an alert is raised at high priority and above — 12 of the 25, of which two are critical: fire or smoke, and a person down. The other 13 are recorded and reviewable in the same list. An event type the platform has not been told about is recorded at lowest priority as **Unclassified detection**, so an integration can introduce new types and they are still captured and reviewable.
+Entries filter by robot, type, priority and review state. **Alerts are the reviewable ones**: each is acknowledged, or marked a false alarm, against the name of whoever did it. The record keeps the image the detection was made from where one was stored, cannot be edited or deleted, and reviewer notes are appended rather than replacing what was there. The result is an evidence trail rather than a working queue: it will say the same thing when someone reads it back months later.
+
+**Priority decides what raises an alert.** The platform recognises 25 event types, each carrying one, and an alert is raised at high priority and above — 12 of the 25, of which two are critical: fire or smoke, and a person down. The other 13 are recorded and searchable in the same list without alerting anyone. An event type the platform has not been told about is recorded at lowest priority as **Unclassified detection**, so an integration can introduce new types and they are still captured.
 
 **Alerts are raised in the app**, on the dashboard an operator is already watching, so they arrive in the same place as the fleet they concern. Each detection is kept with the still image it was made from, and that image is what a review works from afterwards.
 
@@ -132,7 +134,7 @@ Entries filter by robot, type, priority and review state, and each is **acknowle
   framed
   caption="Detection review: what was seen, when, by which robot, and who has signed it off." />
 
-[Detection review](/solution/fleet-management/detection-review) lists all 25 event types with the priority each carries, and covers filtering and acknowledging detections and what every record keeps.
+[Detection review](/solution/fleet-management/detection-review) covers the difference between an event and an alert, lists all 25 event types with the priority each carries, and explains filtering, acknowledging and marking false alarms, and what every record keeps.
 
 ## Users and roles
 
