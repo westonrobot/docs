@@ -47,7 +47,22 @@ Telemetry answers "is this robot all right?" and is presented three ways: **real
 
 Telemetry says whether a robot is healthy. **Diagnostics** says what is unhealthy, and it opens from the telemetry panel.
 
-It reports the robot's subsystems as a tree, each node carrying a status:
+<Figure
+  src={require('../img/fleet-diagnostics.png').default}
+  alt="The Diagnostics view for a robot, headed with its name, model and serial number, reporting three errors and four warnings. A grouped issues list shows services that have not published or have stopped publishing diagnostics; a data freshness panel lists each telemetry signal with its age; and an all-systems tree lists every subsystem with an OK, WARN, ERROR or STALE badge"
+  size="full"
+  framed
+  caption="Diagnostics for one robot: the issues worth acting on, how fresh each signal is, and every subsystem with its status." />
+
+It opens on a one-line verdict — how many errors and warnings the robot is reporting, and when that was last updated — and then three regions, meant to be read in order:
+
+| Region | What it is for |
+| --- | --- |
+| **Issues** | Only what is wrong, grouped by subsystem with a count. The triage list — start here |
+| **Data freshness** | Each telemetry signal with its age, so you can see what is still arriving |
+| **All systems** | Every subsystem, healthy ones included, as an expandable tree |
+
+Each subsystem carries one of four statuses:
 
 | Status | Means |
 | --- | --- |
@@ -56,7 +71,7 @@ It reports the robot's subsystems as a tree, each node carrying a status:
 | **ERROR** | Reporting a fault |
 | **STALE** | Not reporting recently enough to be trusted |
 
-Alongside the tree it summarises the current issues and shows **data freshness**, which keeps two different failures apart: a subsystem reporting a fault, and a subsystem that has stopped reporting at all. A service that has gone quiet is a different problem from one saying something is wrong, and they need different responses.
+**ERROR and STALE are different problems.** A subsystem reporting a fault has told you something is wrong; a stale one has stopped telling you anything, and its last known state may be long out of date. The freshness panel is what tells the two apart, and they need different responses — one is a fault to act on, the other is a service to get reporting again.
 
 **The control carries its own indicator**, so trouble is visible without opening it — amber for a warning, red for an error or a stale subsystem. On a robot that has not reported a diagnostics tree, the control is unavailable.
 
