@@ -88,7 +88,7 @@ One is generated per level, and it travels with the map.
 
 ## 4 · Edit Map
 
-Place what the robot actually reasons about.
+This is where the map itself is drawn: the nodes a robot can be sent to, the segments it may travel along, and the zones that apply rules.
 
 <Figure
   src={require('../img/toolbox-edit.png').default}
@@ -97,17 +97,64 @@ Place what the robot actually reasons about.
   framed
   caption="Editing against the scan: the tools on the left of the view, the occupancy map beneath, and a running count of what the map holds." />
 
-Four tools sit on the view: **select**, **node**, **segment** and **zone**. Each says how it is driven while it is active — double-click to place a node and drag to move it; click one node then another to connect them with a segment. Every action is undoable.
+### The tools
 
-**What you see underneath is yours to set.** The point cloud, the occupancy map and the level itself each have their own visibility and opacity, so you can draw against the scan, against the flat occupancy picture, or both. Drawing against something beats drawing against an empty grid.
+Four tools sit on the view, and each tells you how it is driven while it is active.
+
+| Tool | How it works |
+| --- | --- |
+| **Select** | Click a node or segment to select it. Shift-click to select several |
+| **Node** | Double-click on the level to place one; drag it to move it |
+| **Segment** | Click one node to start, then another to connect them. Via points can be dragged to shape the path between |
+| **Zone** | Draw a boundary, for the rules that apply inside it |
+
+Every action is undoable, and the map is saved as you go.
+
+### What you draw against
+
+The point cloud, the occupancy map and the level each have their own visibility and opacity. You can work against the raw scan, against the flat occupancy picture, or both at once — and the choice matters more than it sounds, because placing a node against an empty grid is how a node ends up somewhere a robot cannot reach.
+
+The scan is the more truthful of the two: it shows the clutter that the occupancy slice may have cut away. The occupancy map is the easier to read. Most people use the scan faded behind the occupancy map.
+
+### Selecting and adjusting
+
+<Figure
+  src={require('../img/toolbox-edit-properties.png').default}
+  alt="The elements list showing five nodes with one selected, beside a properties panel for that node giving its name, its type as waypoint or charging, its X Y and Z position, its orientation in degrees, its level, a snap-to-surface control and a priority, with a delete button"
+  size="md"
+  framed
+  caption="Selecting a node. The elements list is a live index of the map; the properties panel is where a node's type, position and orientation are set." />
+
+The **elements list** is a running index of everything on the map, grouped by kind. Selecting from it selects on the map, and the focus control jumps the view to whatever is selected — which is how you find one node among sixty rather than hunting for it.
+
+The **properties panel** is where a selected element is adjusted:
+
+| Field | What it sets |
+| --- | --- |
+| **Name** | Optional, and worth setting — a map of `wp_001` through `wp_024` is searchable and tells nobody anything |
+| **Type** | Whether the node is an ordinary **waypoint** or a **charging** station |
+| **Position** | X, Y and Z, editable directly when a click is not precise enough |
+| **Orientation** | Which way the robot faces on arrival, in degrees |
+| **Level** | Which level the element belongs to |
+| **Priority** | Advanced; leave it alone unless you have been told otherwise |
+
+Position and orientation being editable matters more than it seems. Clicking is fine for placing a node roughly; typing is how you put one exactly at the middle of a doorway, or make two facing points face the same way.
 
 ### Surface snapping
 
-**Surface snapping is what settles a node onto the floor instead of leaving it floating.** You set how far above and below the level the tool should look — and a node that is floating is a node a robot cannot be sent to, which is far easier to prevent here than to find later.
+**Surface snapping is what settles a node onto the floor instead of leaving it floating**, and a node that is floating is a node a robot cannot be sent to.
 
-The same panel can show height deviations, which is how you spot a node that has snapped to a desk rather than the floor.
+It works from a height grid computed against the active level, and you control how it looks:
 
-Placing a node and a segment is not the same as having a route. Segments are what a route is computed over, so two segments that appear to meet on screen but do not share a point produce a map that looks connected and does not solve. The [Map inspector](/solution/deployment-toolbox/map-inspector) is where that is checked.
+| Setting | What it does |
+| --- | --- |
+| **Above** and **Below** | How far above and below the level to search for a surface |
+| **Grid size** | How finely the surface is sampled |
+| **Neighbour search** | How far around a point to look when working out the surface height |
+
+Widening the search range is the fix when nodes will not settle; narrowing it is the fix when they settle onto the wrong thing. **Show height deviations** draws how far each node sits from the level, which is how you spot the one that snapped to a desk rather than the floor.
+
+Placing nodes and segments is not the same as having a route. Segments are what a route is computed over, so two segments that appear to meet on screen but do not share a point produce a map that looks connected and does not solve. The [Map inspector](/solution/deployment-toolbox/map-inspector) is where that is checked, and it is worth checking before you export.
 
 ## 5 · Export
 
@@ -183,6 +230,9 @@ So a map change is not a background event at the site. Push whenever the work is
 
 **A stage will not open**  
 Each one has a prerequisite, and the stage says which is missing. Prepare and Levels need a point cloud, Edit needs at least one level defined, and Export needs at least one node.
+
+**How do I place a node exactly?**  
+Click to place it roughly, then type its position and orientation in the properties panel. Clicking is for approximate; typing is for the middle of a doorway.
 
 **My nodes are sitting above or below the floor**  
 Surface snapping settles them onto the level, and it looks a set distance above and below to find it. Widen that range, or check the scan was levelled properly in Prepare — a tilted scan puts the floor where the nodes are not.
