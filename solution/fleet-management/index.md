@@ -92,7 +92,7 @@ Commanding a robot is Operator authority, granted per site. An Observer at the s
   framed
   caption="An assisted teleoperation view, on a robot fitted and configured for it: surround view, proximity zones, radar, and link quality." />
 
-[Taking control](/solution/fleet-management/robot-dashboard#taking-control) covers the controls and the safeguards in detail.
+Taking control is covered on the [Robot dashboard](/solution/fleet-management/robot-dashboard#taking-control) page, along with driving by gamepad or keyboard, pausing auto-dispatch so a robot admits no new work, and what happens to the controls when a robot is behind the activated map.
 
 ## Mission planning
 
@@ -113,7 +113,7 @@ One constraint follows from missions referencing the map: **a robot must be on t
   framed
   caption="A mission being built: its checkpoints on the site map, and what the robot does at each of them." />
 
-[The editor](/solution/fleet-management/mission-editing#the-editor) covers its three stages, the ways to place a checkpoint, the actions one can carry, run conditions, and catching a robot up.
+[Mission editing and dispatch](/solution/fleet-management/mission-editing) covers the editor's three stages, the ways to place a checkpoint, the actions one can carry, run conditions, saved locations, dispatch and Quick Dispatch, and catching a robot up to the activated map.
 
 ## Detection review
 
@@ -132,7 +132,7 @@ Entries filter by robot, type, priority and review state, and each is **acknowle
   framed
   caption="Detection review: what was seen, when, by which robot, and who has signed it off." />
 
-[Event types and priority](/solution/fleet-management/detection-review#event-types-and-priority) lists all 25 types with the priority each carries, and what every record keeps.
+[Detection review](/solution/fleet-management/detection-review) lists all 25 event types with the priority each carries, and covers filtering and acknowledging detections and what every record keeps.
 
 ## Users and roles
 
@@ -149,7 +149,7 @@ The line that matters most in daily use falls between Observer and Operator: any
   framed
   caption="Sites and users in one place, with each person's role and last activity." />
 
-[Roles](/solution/fleet-management/tenant-management#roles) covers all five and what each may do.
+[Tenant and user management](/solution/fleet-management/tenant-management) covers all five roles and what each may do, the path a map takes from the Deployment Toolbox to a robot, and the audit log.
 
 ## Audit log
 
@@ -164,7 +164,7 @@ The Auditor role exists for exactly this: it reads operational and audit logs ac
   framed
   caption="The audit trail: who did what, when, and whether it was accepted or refused." />
 
-[The audit log](/solution/fleet-management/tenant-management#the-audit-log) covers it alongside the roles that can read it.
+The audit log is covered on the [Tenant and user management](/solution/fleet-management/tenant-management#the-audit-log) page — the fleet and tenant trails, the categories entries fall into, filtering and export, and the roles that can read it.
 
 ## Further topics
 
