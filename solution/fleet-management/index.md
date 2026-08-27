@@ -1,5 +1,4 @@
 ---
-unlisted: true
 sidebar_position: 2
 description: "Fleet Management System: plan, dispatch, watch and review autonomous missions from a browser. How the system is put together, the workflow, deployment models and limits."
 ---

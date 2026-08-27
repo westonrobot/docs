@@ -1,5 +1,4 @@
 ---
-unlisted: true
 sidebar_position: 5
 description: "Tenant management in Fleet Management: sites and their robots and maps, what each of the five roles may do, how a map reaches a robot, catching a robot up, and the audit log."
 ---

@@ -1,5 +1,4 @@
 ---
-unlisted: true
 sidebar_position: 1
 description: "The robot view in Fleet Management: the navigation map, camera feeds, operations and telemetry panels, the control panel, and how battery and connection loss change a running mission."
 ---

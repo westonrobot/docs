@@ -1,5 +1,4 @@
 ---
-unlisted: true
 sidebar_position: 6
 description: "The audit log in Fleet Management: the fleet trail of operational events, the tenant trail of vendor access under elevation, filtering, permalinks, export, and who can read it."
 ---

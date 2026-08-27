@@ -1,5 +1,4 @@
 ---
-unlisted: true
 sidebar_position: 2
 description: "Driving a robot from the browser: keyboard and gamepad control, key mapping and axis inversion, speed and deadzone, arranging the camera views, and audio."
 ---

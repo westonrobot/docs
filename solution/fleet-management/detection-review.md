@@ -1,5 +1,4 @@
 ---
-unlisted: true
 sidebar_position: 4
 description: "Detection review in Fleet Management: how an event becomes an alert, the 25 event types and their priorities, filtering and reviewing, and what each record keeps."
 ---

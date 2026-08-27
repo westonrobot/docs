@@ -1,5 +1,4 @@
 ---
-unlisted: true
 sidebar_position: 3
 description: "Building missions in Fleet Management: the editor's three stages, checkpoints and actions, saved locations, run conditions and scheduling, sending missions to a robot, and the history of what ran."
 ---
