@@ -18,7 +18,6 @@ Key features of the toolbox are summarized in the table below, and each is cover
 | --- | --- |
 | **Map editor** | Turns a 3D scan into a site map: clean the scan, set its levels, then place the nodes, segments and zones the robot reasons about |
 | **Map inspector** | Opens a map without editing it — its layers and elements, and whether a route between two points actually solves |
-| **Fleet publishing** | Sends a finished map into Fleet Management as a new revision of that site's map |
 
 ## What a site map contains
 
@@ -59,6 +58,8 @@ The inspector opens a map — from the fleet or from a file — and lets you exa
 [Map inspector](/solution/deployment-toolbox/map-inspector) covers the layers, the element list and how to choose which routes to test.
 
 ## Publishing to the fleet
+
+A finished map leaves the editor at its last stage, and what happens to it then is a handover rather than a third tool.
 
 **The Deployment Toolbox never talks to robots.** It pushes a map into the Fleet Management System, and robots are updated from there — there is no path from this tool to a machine in the field.
 
