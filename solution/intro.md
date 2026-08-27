@@ -5,9 +5,7 @@ description: "Weston Robot solutions: complete capabilities deployed on supporte
 
 # Solutions
 
-A solution is a complete capability we develop and deploy on top of a robot platform, rather than a component you integrate yourself. Each runs on a defined set of platforms and comes with its own setup, configuration and version history.
-
-If you are looking for the robot itself, see [Robots](/robot/intro). If you are looking for a task guide, see [Guides](/tutorial/intro).
+A solution is a complete capability we build and deploy on a robot platform, rather than a component you integrate yourself. Each runs on a defined set of robots, and we set it up at your site for your people to operate.
 
 ## Industrial patrolling and inspection
 
