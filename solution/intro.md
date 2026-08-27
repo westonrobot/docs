@@ -9,7 +9,7 @@ A solution is a complete capability we build and deploy on a robot platform, rat
 
 ## Industrial patrolling and inspection
 
-Robots patrol a site on a schedule and report what they find, while people plan the work and review the results from a browser. The **Fleet Management System** is where missions are planned, dispatched and watched, and where everything the robots detect is kept. The **Deployment Toolbox** prepares a site before any robot drives there, turning a 3D scan into the map they navigate by. What counts as worth reporting is decided by detection algorithms, ours running on the robot or a partner's running alongside it, and their results arrive in the same place.
+**Autonomous patrolling with event reporting.** A robot walks a set route on a schedule, with nobody driving it. When it sees something that matters — smoke, a blocked exit, someone where they should not be — it raises an event, kept with its image and the time, so it can be reviewed afterwards or shown to someone else. People set the routes, watch live when they want to, and go through what came back.
 
 <ProductGrid columns={3}>
 
