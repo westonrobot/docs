@@ -112,11 +112,7 @@ The view is headed with the robot's name, model and serial number. Quote those w
 
 Control is held under a **lease**, so a second operator cannot take the controls until the one held is released.
 
-Teleoperation carries two safeguards worth knowing before you rely on it: it **stops the robot if the connection to the fleet degrades**, and it refuses the controls to anyone who has not properly taken control.
-
-**What the driving view shows depends on the robot.** An assisted view — a stitched surround view, proximity zones drawn from the robot's own sensing, and a bird's-eye radar panel — is tuned for a particular robot configuration and deployment rather than provided on every robot by default. Confirm which of your robots are set up for it before planning work that relies on it.
-
-**Driving is not limited to the on-screen controls.** A connected gamepad or the keyboard can drive the robot, with linear, angular and lateral speeds configurable — set globally, and overridable for an individual robot. A gamepad can also carry emergency stop and push-to-talk on its own buttons. Keyboard driving can be switched off if you would rather it were not live.
+Pressing **Teleop** starts a driving session in the main view area. Driving itself — keyboard and gamepad control, key mapping and axis inversion, speed and deadzone, arranging the camera views, and audio — is covered on [Robot teleoperation](/solution/fleet-management/robot-teleoperation).
 
 Drive commands depend on the robot being on the map the fleet has activated. A robot that is behind has its dispatch and Go Home controls withdrawn until it catches up — see [Catching a robot up to the map](/solution/fleet-management/mission-editing#catching-a-robot-up-to-the-map).
 

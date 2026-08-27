@@ -92,7 +92,7 @@ Commanding a robot is Operator authority, granted per site. An Observer at the s
   framed
   caption="An assisted teleoperation view, on a robot fitted and configured for it: surround view, proximity zones, radar, and link quality." />
 
-Taking control is covered on the [Robot dashboard](/solution/fleet-management/robot-dashboard#taking-control) page, along with driving by gamepad or keyboard, pausing auto-dispatch so a robot admits no new work, and what happens to the controls when a robot is behind the activated map.
+[Robot teleoperation](/solution/fleet-management/robot-teleoperation) covers driving in full: keyboard and gamepad control, remapping and inverting the axes, speed and deadzone, arranging the camera views, and audio. Taking and releasing the lease sits with the rest of the control panel on the [Robot dashboard](/solution/fleet-management/robot-dashboard#taking-control) page.
 
 ## Mission planning
 

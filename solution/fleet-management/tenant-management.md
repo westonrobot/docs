@@ -1,6 +1,6 @@
 ---
 unlisted: true
-sidebar_position: 4
+sidebar_position: 5
 description: "Tenants, sites, users and roles in Fleet Management: what each of the five roles may do, how a map reaches a robot, and how to read and export the audit log."
 ---
 

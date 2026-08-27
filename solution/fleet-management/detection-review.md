@@ -1,6 +1,6 @@
 ---
 unlisted: true
-sidebar_position: 3
+sidebar_position: 4
 description: "Detection review in Fleet Management: filtering and acknowledging detections, the 25 event types and the priority each carries, and what every record keeps."
 ---
 

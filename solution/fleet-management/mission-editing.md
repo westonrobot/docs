@@ -1,6 +1,6 @@
 ---
 unlisted: true
-sidebar_position: 2
+sidebar_position: 3
 description: "Building missions in Fleet Management: the editor's three stages, placing checkpoints, checkpoint actions, run conditions, saved locations, dispatch, and catching a robot up to the activated map."
 ---
 
