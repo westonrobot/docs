@@ -56,11 +56,11 @@ The navigation graph is where a map's meaning lives, and these four elements are
 Most zones on a finished map were never drawn by hand — one is generated around every node and along every segment, marking the envelope the robot may drive within.
 
 <Figure
-  src={require('../img/toolbox-finished-map.png').default}
-  alt="A finished site map: labelled waypoints and charging points joined by segments, every node and segment wrapped in a shaded zone, with a panel counting 15 nodes, 19 segments, 34 zones and one level"
+  src={require('../img/toolbox-map-elements.png').default}
+  alt="A close view of part of a site map: nodes as small points, segments as the lines joining them, a shaded zone around every node and along every segment, and one red rectangular zone drawn by hand"
   size="full"
   framed
-  caption="The elements on a finished map — labelled nodes, the segments joining them, and a zone around each. This one holds 15 nodes and 34 zones, none of which were drawn by hand." />
+  caption="Nodes are the points; the lines joining them are segments. Everything shaded is a zone — one around each node, one along each segment. The red rectangle is the only zone on this map that someone drew." />
 
 [The map format](/solution/deployment-toolbox/map-format#the-elements) covers all four in full, which zones you draw and which are generated for you, and what levels mean for a site that spans floors.
 
@@ -96,7 +96,7 @@ That is deliberate, and it has one practical consequence worth planning around: 
   framed
   caption="One end of the exchange: a map comes in from the fleet, or from a file on your machine." />
 
-[Publishing to the fleet](/solution/deployment-toolbox/publishing) covers the four things the push asks for, why the change summary is worth writing properly, the three steps from draft to activated, and what activation costs a robot.
+[Publishing to the fleet](/solution/deployment-toolbox/map-editor#publishing-to-the-fleet) covers the four things the push asks for, why the change summary is worth writing properly, the three steps from draft to activated, and what activation costs a robot.
 
 ## Map inspector
 

@@ -182,6 +182,14 @@ img.medium-zoom-image--opened {
   background: none;
 }
 
+/* Centre a diagram in the column. Mermaid sizes its SVG to the content, so a
+   small graph rendered in a wide column sat flush left with a third of the
+   column empty beside it — which reads as a layout bug rather than a diagram. */
+.markdown .docusaurus-mermaid-container svg {
+  display: block;
+  margin-inline: auto;
+}
+
 /* ---------------------------------------------------------------------------
    Tables
    ---------------------------------------------------------------------------
