@@ -8,8 +8,6 @@ description: "Fleet Management System: plan, dispatch, watch and review autonomo
 
 The Fleet Management System is the web application you run your robots from. Missions are planned here, dispatched here, watched here, and everything the robots find is kept here. It runs in a browser, and there is nothing to install.
 
-This page covers how the system is put together and how work moves through it. Each part of the workflow has a page of its own, linked as you go.
-
 ## Where it sits
 
 A working deployment is the robots, the map they navigate by, and this system. Fleet Management is the part people use every day; the **Deployment Toolbox** prepares a site once, before any robot drives there. Detection algorithms — ours on the robot, or a partner's alongside it — report into this system too, so what they find arrives as events here.
