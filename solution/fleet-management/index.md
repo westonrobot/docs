@@ -39,7 +39,11 @@ Key features of the system are summarized in the table below, and each is covere
 
 ## Fleet overview
 
-The dashboard is the entry point: sites down the side, robots grouped by site, and a status count across the top. It answers "is anything wrong right now" without opening a single robot.
+The dashboard is the entry point, and it is built around the question an operator asks first: is anything wrong right now? Sites run down the side, robots are grouped under the site they belong to, and a status count across the top summarises the whole fleet — how many robots are operational, how many are not responding, how many are faulty.
+
+That grouping is not cosmetic. A **site** is the unit nearly everything else is scoped to: a robot belongs to one, a map is activated for one, and most roles are granted for one rather than across your organisation. Someone responsible for two buildings sees two sites, and the authority they hold at each can differ.
+
+The overview is deliberately shallow. It tells you which robot needs attention, not why — one click into a robot opens the [Robot dashboard](#robot-dashboard), where the detail lives.
 
 <Figure
   src={require('../img/fleet-dashboard.png').default}
@@ -50,47 +54,71 @@ The dashboard is the entry point: sites down the side, robots grouped by site, a
 
 ## Robot dashboard
 
-Opening a robot from the fleet overview gives you that one robot on one screen. It is where an operator spends their time, and it is built to answer "what is this robot doing, and is it all right?" without switching between views.
+Opening a robot gives you that one machine on one screen. It is where an operator spends their time, and everything needed to judge a running mission is laid out together rather than behind tabs:
 
-What you can see:
-
-- **Where it is** — its position and heading on the site map.
+- **Where it is** — its position and heading drawn on the site map, so you can see it against the building rather than as a coordinate.
 - **What it can see** — live feeds from its cameras.
 - **What it is doing** — the mission running now, and what is scheduled next.
-- **How it is holding up** — **telemetry**, the readings a robot reports about itself, such as battery level and temperature.
-- **What has been raised** — alerts for this robot; the full record lives in [Detection review](/solution/fleet-management/detection-review).
+- **How it is holding up** — **telemetry**, meaning the readings a robot reports about itself, such as battery level and temperature.
+- **What has been raised** — alerts for this robot, with the durable record in [Detection review](#detection-review).
+
+Two behaviours are worth knowing before you rely on the screen. **Camera feeds are live, and nothing is recorded**, so this view shows the present moment and cannot be wound back. And **navigating does not depend on the connection to the fleet** — a robot that goes quiet has usually not stopped; it has stopped being watchable. What it does next is a policy you configure rather than something the system decides for you.
 
 [What is on the screen](/solution/fleet-management/robot-dashboard#what-is-on-the-screen) covers each panel in turn, and how battery level and connection loss change a running mission.
 
 ## Robot teleoperation
 
-Control is taken deliberately and held under a **lease** — an exclusive claim on that robot — so only one person drives at a time. **Teleoperation** means driving the robot yourself from the browser; alongside it sit emergency stop, set home, and a Commands tab carrying docking and posture commands.
+Beyond watching, an operator can intervene directly: drive the robot from the browser, stop it, send it home, dock it, or put it into a posture such as stand or sit.
 
-[Taking control](/solution/fleet-management/robot-dashboard#taking-control) covers the controls and the safeguards on teleoperation.
+Because these commands move a machine in a real building, taking control is deliberate rather than incidental. Control is held under a **lease** — an exclusive claim on that robot — so **only one person drives at a time**, and a second operator cannot take the controls until the lease is released. There is no ambiguity about who is responsible for a moving robot.
+
+Teleoperation carries its own safeguards. It **stops the robot when the connection to the fleet degrades**, on the reasoning that driving a machine you can no longer see is worse than halting it, and it refuses the controls to anyone who has not properly taken control.
+
+Commanding a robot is Operator authority, granted per site. An Observer at the same site sees everything described above and can do none of it.
+
+[Taking control](/solution/fleet-management/robot-dashboard#taking-control) covers the controls and the safeguards in detail.
 
 ## Mission planning
 
-A **mission** is an ordered list of places on the site map, what the robot does at each of them, and when it should run. Missions are built in the browser, kept in a library, and reused across sites, so a second site starts from the first rather than from nothing.
+A **mission** is an ordered list of places on the site map, what the robot does at each of them, and when it should run. It is the unit of work the system is organised around: built once, kept in a library, and reused rather than recreated.
 
-Missions reference the site map, so a robot must be on the map the fleet has activated before its missions can be edited or dispatched.
+The places come from the map. The site map defines **waypoints** — the points a robot can be sent to — and a mission's checkpoint is a waypoint together with a heading and, optionally, actions to perform on arrival, such as pausing for a set time or playing an announcement. The map says where a robot *can* go; the mission says what it *does* there.
 
-[Building a mission](/solution/fleet-management/mission-editing#building-a-mission) covers checkpoints and the actions they carry, schedules, saved locations, Quick Dispatch, and what happens when a robot is behind the activated map.
+Three things keep a growing library maintainable. **Saved locations** mean a place named once is reused, so correcting it later corrects every mission that uses it. **Duplication and revision comparison** mean the next mission starts from an existing one. And missions are **portable across sites**, so a second building starts from the first.
+
+Dispatching hands a mission to a named robot, on demand or on its schedule. A robot can also be sent somewhere once, with no mission at all, through **Quick Dispatch**.
+
+One constraint follows from missions referencing the map: **a robot must be on the map the fleet has activated before its missions can be edited or dispatched.** When a newer map is activated, that robot's missions are switched off and stay locked until it confirms the new map, rather than running against waypoints that may have moved.
+
+[Building a mission](/solution/fleet-management/mission-editing#building-a-mission) covers checkpoints, actions, schedules, Quick Dispatch, and catching a robot up.
 
 ## Detection review
 
-Everything the robots detected lands in one place and stays there: filterable by robot, type, priority and review state, acknowledged by a named person, and stored so it cannot be edited or deleted. Not every detection raises an alert — alerts start at high priority.
+Detections and events from every robot land in one place and stay there. Whatever did the detecting reports into the same list — a camera on the robot, or an analytics service running elsewhere — so the record is complete regardless of what found the thing.
 
-[Which events raise an alert](/solution/fleet-management/detection-review#which-events-raise-an-alert) covers the priorities, what the record keeps, and what alerting deliberately does not do.
+Entries filter by robot, type, priority and review state, and each is **acknowledged by a named person**. The record keeps the image the detection was made from, is stored so it cannot be edited or deleted, and reviewer notes are appended rather than replacing what was there. The result is an evidence trail rather than a working queue: it will say the same thing when someone reads it back months later.
+
+**Not every detection raises an alert.** The platform recognises 25 event types, each carrying a priority, and an alert is raised at high priority and above — 12 of the 25, of which two are critical: fire or smoke, and a person down. The remaining 13 are recorded and reviewable but raise no alert. An event type the platform does not recognise is treated as lowest priority and shown as **Unclassified detection**, so an unfamiliar event from an integration cannot alert by surprise.
+
+Two boundaries are worth planning around. **Alerts stay in the app** — there is no email, SMS, push or phone call — which makes alerting a staffing question as much as a configuration one. And because video is live only, what survives an incident is the detection record and its still image, never a clip.
+
+[Which events raise an alert](/solution/fleet-management/detection-review#which-events-raise-an-alert) covers the priorities and what the record keeps.
 
 ## Users and roles
 
-Roles decide who may watch, who may command, and who may change a site. Three are assigned per site, so someone can be an Operator at one site and an Observer at another; two are held across your whole **tenant** — your organisation's own space in the system — and apply everywhere at once.
+Access is expressed as roles rather than as individual permissions, and they form a ladder: watching, then commanding, then administering. Each level contains the one below it, so there is one decision per person per site instead of a set of switches.
 
-[Roles](/solution/fleet-management/tenant-management#roles) covers all five, what each may do, and who may activate a map.
+Scope is the second half of the model. Three roles — Observer, Operator and Site Admin — are granted **per site**, so someone can be an Operator at one building and an Observer at another. Two are held across your whole **tenant**, meaning your organisation's own space in the system with its sites, robots, users and data, and apply everywhere at once: Auditor, which reads operational and audit logs without being able to command anything, and Tenant Administrator, which holds Site Admin authority at every site plus the management of sites, users and roles.
+
+The line that matters most in daily use falls between Observer and Operator: anything that changes what a robot does starts at Operator. The line that matters most in planning falls at Site Admin, because that role both authors a site's map and activates it. If your process needs a second person to approve a map before robots use it, that has to come from your process — the system does not require it.
+
+[Roles](/solution/fleet-management/tenant-management#roles) covers all five and what each may do.
 
 ## Audit log
 
-Actions are recorded in an append-only log: entries are added, never changed or removed. The Auditor role reads it across every site without being able to command anything, which is what makes it useful for a reviewer who should not be able to move a robot.
+Actions are recorded in an **append-only** log: entries are added, never changed or removed. Together with detection records, which are stored the same way, it means the two things most likely to be asked about after an incident — what the robot saw, and what people told it to do — are both answerable from records that cannot have been tidied up afterwards.
+
+The Auditor role exists for exactly this: it reads operational and audit logs across every site and can command nothing. A reviewer can be given the whole picture without being given the ability to move a robot.
 
 [The audit log](/solution/fleet-management/tenant-management#the-audit-log) covers it alongside the roles that can read it.
 
