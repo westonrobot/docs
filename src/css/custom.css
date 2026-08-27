@@ -158,6 +158,11 @@ div:has(> .markdown table) {
 img.medium-zoom-image--opened {
   max-height: none;
   max-width: none;
+  /* The opened image is moved out of `.markdown`, so it no longer inherits the
+     `object-fit: contain` above and would otherwise fall back to `fill`. Belt
+     and braces: figures now keep their aspect ratio by construction, but an
+     image reaching zoom by another route must not be stretched either. */
+  object-fit: contain;
 }
 
 /* Images inside table cells are thumbnails — the diagnostics guides use tables

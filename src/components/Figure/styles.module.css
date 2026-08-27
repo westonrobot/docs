@@ -6,8 +6,24 @@
   gap: 0.6rem;
 }
 
+/* `width: auto` rather than `width: 100%`, so the element box always keeps the
+   image's own aspect ratio.
+
+   With `width: 100%`, a height cap (the `max-height` on `.markdown img` in
+   custom.css) clamps the box without narrowing it, producing a box whose aspect
+   differs from the image's. In the page `object-fit: contain` hides that by
+   letterboxing. But medium-zoom moves the opened image out of `.markdown`,
+   where it loses `contain`, falls back to `fill`, and the mismatch shows up as
+   a stretch — a 765x1190 portrait panel was rendering 2.52x too wide when
+   zoomed to full size.
+
+   `max-width: 100%` keeps a wide image inside its column, so anything wider
+   than the column still fills it. Anything narrower now renders at its own size
+   rather than being upscaled, which is what the size comment below already
+   promised. `.hero img` has used this pattern all along. */
 .figure img {
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   height: auto;
 }
 
