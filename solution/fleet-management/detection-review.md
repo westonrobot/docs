@@ -41,12 +41,6 @@ Which event types raise an alert is fixed, and cannot be varied per site.
 
 **A detection is pinned to the robot, not to what it saw.** The record marks where the robot was standing, with no distance to the subject. For a detection at the far end of a corridor, the position in the record is the robot's, not the subject's.
 
-## Known limitations
-
-- **Alerting is in-app only, and its rules are fixed** — no email, SMS, push or phone, and which event types raise an alert cannot be varied per site.
-- **Video is live only** — a detection record carries a still image, never a clip.
-- **A detection is pinned to the robot, not to what it saw** — no distance to the subject.
-
 ## Common questions
 
 ### Something was detected but nobody was alerted

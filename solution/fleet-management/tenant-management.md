@@ -60,11 +60,6 @@ A map published from the Deployment Toolbox arrives in Fleet Management as a **d
 
 Actions are recorded in an **append-only** log — entries are added, never changed or removed. Auditors can read it across every site without being able to command anything, which is what makes the role useful for a reviewer who should not be able to move a robot.
 
-## Known limitations
-
-- **Map authoring and map activation are the same authority** — separation of duties, if you need it, is a process you impose rather than one the system enforces.
-- **Which event types raise an alert is fixed** and cannot be varied per site or per role — see [Detection review](/solution/fleet-management/detection-review).
-
 ## Common questions
 
 ### Can someone have different roles at different sites?

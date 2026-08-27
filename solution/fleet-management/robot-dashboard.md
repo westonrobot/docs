@@ -55,12 +55,6 @@ Battery level and the connection to the fleet both change what a running mission
 
 Two separate things are at work in that second case, and it is worth keeping them apart. **Navigating does not depend on the connection to the fleet.** The robot follows the map it already holds, so finishing the mission out of contact is genuinely possible, and "carry on" is a real option rather than a hopeful one. **What the robot actually does is still the policy's decision** — a robot perfectly capable of continuing will stop if that is what you configured. What is lost in every case is the live view and the ability to intervene: until the connection returns, nobody can watch that robot or send it a command.
 
-## Known limitations
-
-- **Video is live only** — camera feeds are not recorded, so nothing here can be replayed after the fact.
-- **No mission replay or export**, and run history does not survive a restart.
-- **Designed for desktop**, not for tablets or phones.
-
 ## Common questions
 
 ### Can two people drive the same robot?

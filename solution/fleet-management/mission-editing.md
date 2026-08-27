@@ -52,11 +52,6 @@ When a newer map is activated, that robot's missions are switched off and stay l
 
 The whole path a map takes, from the Deployment Toolbox to a robot, is in [How a map reaches a robot](/solution/fleet-management/tenant-management#how-a-map-reaches-a-robot).
 
-## Known limitations
-
-- **No mission replay or export**, and run history does not survive a restart.
-- **A mission is locked while its robot is behind the activated map** — this is deliberate, not a fault.
-
 ## Common questions
 
 ### A robot's missions are switched off and I cannot edit or dispatch them

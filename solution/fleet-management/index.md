@@ -114,15 +114,6 @@ Which model your project uses is decided before deployment, and it is not a matt
 
 On-premise is the further step, and data residency is what decides it. If your rules require data to stay on your own network, on-premise is the answer; otherwise a dedicated cloud instance does the same job. Either way, the robots and the servers must be able to reach each other on your network.
 
-## Known limitations
-
-- **Alerting is in-app only, and its rules are fixed** — no email, SMS, push or phone, and which event types raise an alert cannot be varied per site.
-- **Video is live only** — nothing is recorded, so a detection record carries a still image, never a clip.
-- **No mission replay or export**, and run history does not survive a restart.
-- **Remote management covers credentials and maps only** — not software updates, configuration or log retrieval.
-- **Designed for desktop**, not for tablets or phones.
-- **A detection is pinned to the robot, not to what it saw** — the record marks where the robot was standing, with no distance to the subject.
-
 ## Common questions
 
 ### We updated a map but the robots are still using the old one
