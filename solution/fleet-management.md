@@ -77,7 +77,7 @@ Missions reference the site map, so a robot has to be on the map the fleet has a
 <Figure
   src={require('./img/fleet-map-not-current.png').default}
   alt="A dialog headed 'This robot's map is not up to date', comparing the revision the fleet activated with the older revision on the robot, and explaining that its missions are switched off until it confirms the new map"
-  size="md"
+  size="lg"
   framed
   caption="What you see when a robot is behind the activated map. Editing and dispatch stay locked until it catches up." />
 
@@ -101,7 +101,7 @@ Direct control is taken deliberately, and it is held under a **lease** — an ex
 <Figure
   src={require('./img/fleet-controls.png').default}
   alt="The robot control panel showing an idle mission, a scheduled patrol, and the emergency stop, teleoperation and set home controls with Commands and Missions tabs"
-  size="md"
+  size="lg"
   framed
   caption="The control panel, closer up: what the robot is doing now, and the controls to intervene." />
 

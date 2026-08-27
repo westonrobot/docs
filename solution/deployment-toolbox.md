@@ -23,7 +23,7 @@ The Toolbox opens on a choice between two tools, and which one you want depends 
 <Figure
   src={require('./img/toolbox-tools.png').default}
   alt="Deployment Toolbox landing page offering two tools: Map Inspector for loading and inspecting maps, and Map Editor for creating maps from point clouds"
-  size="md"
+  size="lg"
   framed
   caption="Two tools: inspect an existing map, or build one." />
 

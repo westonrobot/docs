@@ -5,11 +5,11 @@ description: "Weston Robot solutions: complete capabilities deployed on supporte
 
 # Solutions
 
-A solution is a complete capability we build and deploy on a robot platform, rather than a component you integrate yourself. Each runs on a defined set of robots, and we set it up at your site for your people to operate.
+A solution is a complete capability we build and deploy on a robot platform, rather than a component you integrate yourself. Each runs on a defined set of robots, and we set it up at your site for your team to operate.
 
 ## Industrial patrolling and inspection
 
-Robots patrol a site on a schedule and report what they find, while people plan the work and review the results from a browser. Two tools make that possible and a deployment needs both: the **Fleet Management System**, where missions are planned, dispatched and watched and where everything the robots detect is kept, and the **Deployment Toolbox**, which turns a 3D scan of a site into the map the robots navigate by. What counts as worth reporting is decided by detection algorithms, ours running on the robot or a partner's running alongside it, and their results arrive in the same place.
+Robots patrol a site on a schedule and report what they find, while people plan the work and review the results from a browser. The **Fleet Management System** is where missions are planned, dispatched and watched, and where everything the robots detect is kept. The **Deployment Toolbox** prepares a site before any robot drives there, turning a 3D scan into the map they navigate by. What counts as worth reporting is decided by detection algorithms, ours running on the robot or a partner's running alongside it, and their results arrive in the same place.
 
 <ProductGrid columns={3}>
 
