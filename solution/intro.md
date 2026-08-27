@@ -23,13 +23,6 @@ Two of the three are documented now. They are not yet listed in the sidebar or i
 
 </ProductGrid>
 
-**Analytics Integration** is not documented yet. Its page will appear here when it is.
-
-Navigation and mapping material that exists today lives under Guides:
-
-- [Cartographer and RTAB-Map mapping with Nav2](/system/ugv_devkit/v1/nav2_sample_setup_guide) on the UGV Development Kit
-- [Unitree SLAM on the Go2 and Go2-W](/tutorial/unitree/go2_slam)
-
 ## Retired
 
 The **[Assisted Driving Toolbox](/solution/adt/intro)** has been withdrawn and is no longer developed or supported. Teleoperation is now part of the Fleet Management System. Its page is kept so existing links still lead somewhere, and for anyone still running it.
