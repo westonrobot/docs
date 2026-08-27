@@ -19,20 +19,17 @@ Your **tenant** is your organisation's own space in the system. Sites sit inside
 Everything in Fleet Management hangs off three levels.
 
 ```mermaid
-flowchart LR
-    TB["<b>Deployment Toolbox</b><br/>the map is drawn here"]
-    subgraph FMS["Fleet Management System"]
-        direction TB
-        DRAFT["Draft revision"]
-        PUB["Published"]
-        ACTIVE["Activated"]
-        DRAFT -->|"publish"| PUB
-        PUB -->|"activate"| ACTIVE
-    end
-    ROBOT["<b>Robot</b>"]
-    TB -->|"push"| DRAFT
-    ACTIVE -->|"sent to the robot"| ROBOT
-    style ACTIVE fill:#0f6e78,stroke:#0f6e78,color:#fff
+flowchart TD
+    T["<b>Tenant</b><br/>your organisation"]
+    S1["<b>Site</b><br/>a building, floor or campus"]
+    S2["<b>Site</b>"]
+    R["<b>Robots</b><br/>stationed at the site"]
+    M["<b>Maps</b><br/>the site's map lineages"]
+    T --> S1
+    T --> S2
+    S1 --> R
+    S1 --> M
+    style T fill:#0f6e78,stroke:#0f6e78,color:#fff
 ```
 
 A **tenant** is your organisation's space: its sites, robots, users and data, separate from every other customer's.
@@ -73,14 +70,16 @@ Maps are drawn in the Deployment Toolbox, but a map only reaches a robot through
 flowchart LR
     TB["<b>Deployment Toolbox</b><br/>the map is drawn here"]
     subgraph FMS["Fleet Management System"]
-        direction TB
-        DRAFT["Draft map"]
-        ACTIVE["Active map"]
-        DRAFT -->|"activate<br/>(Site Admin)"| ACTIVE
+        direction LR
+        DRAFT["Draft revision"]
+        PUB["Published"]
+        ACTIVE["Activated"]
+        DRAFT -->|"publish<br/>(Site Admin)"| PUB
+        PUB -->|"activate<br/>(Site Admin)"| ACTIVE
     end
     ROBOT["<b>Robot</b>"]
-    TB -->|publish| DRAFT
-    ACTIVE -->|sent to the robot| ROBOT
+    TB -->|"push"| DRAFT
+    ACTIVE -->|"sent to the robot"| ROBOT
     style ACTIVE fill:#0f6e78,stroke:#0f6e78,color:#fff
 ```
 
@@ -123,7 +122,6 @@ Activating a map does not finish the job. A robot keeps the map it already holds
 The dialog names the map, the revision the fleet activated and the revision on the robot, so it is clear how far behind it is. The recovery is to send it the activated map and wait for it to confirm; then check the missions and switch them back on. If the switch fails it can be retried from the same place, and the missions unlock when it succeeds.
 
 Two things to plan around. **Updating a robot's map restarts navigation**, which then has to re-acquire localisation — so it is not a change to make to a robot part-way through something. And it needs **robot-management permission at that site**, which is Site Admin authority.
-
 
 ## The audit log
 
