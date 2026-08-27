@@ -29,11 +29,11 @@ Work is saved as you go, and the header shows when it last was. It lives in your
 ## 1 · Load Map Data
 
 <Figure
-  src={require('../img/toolbox-load.png').default}
-  alt="The Load stage offering two paths: Import from Fleet, described as loading a map bundle of graph, point cloud and costmap to edit and push back as a new revision; or starting from local files with a required point cloud supporting PCD, PLY, XYZ and PTS"
+  src={require('../img/toolbox-load-fleet.jpg').default}
+  alt="The Load stage with a map imported from the fleet: the two ways in on the left, a colour 3D scan of an office filling the view, and a panel naming the imported map and revision with the point cloud's file, point count and extent and the map's format, spec version, dates and element counts"
   size="full"
   framed
-  caption="Two ways to start: pull an existing map down from the fleet, or begin from a scan on your machine." />
+  caption="A map imported from the fleet. The panel names the revision it came from, and reports what both the scan and the map contain." />
 
 **Import from Fleet** pulls an existing map bundle — the graph, its point cloud and its occupancy map — down to edit and push back as a new revision. The header then names the map and revision you are working from, so there is no doubt which one it is.
 
