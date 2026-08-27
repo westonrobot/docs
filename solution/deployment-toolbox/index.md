@@ -122,7 +122,7 @@ The editor is where a site map is made: it takes a 3D scan of a building and pro
   framed
   caption="The editor's five stages, worked left to right, with undo and redo throughout." />
 
-[Map editor](/solution/deployment-toolbox/map-editor) covers all five stages, what each needs before it will open, the point cloud formats accepted, and what surface snapping is for.
+[Map editor](/solution/deployment-toolbox/map-editor) covers all five stages with a worked example, what each needs before it will open, how the occupancy map is generated, what surface snapping is for, and what validation checks before you export or push.
 
 ## Support
 
