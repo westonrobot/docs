@@ -44,6 +44,16 @@
   margin: 0 auto;
 }
 
+/* `full` is an explicit request for the full column width. The global
+   `.markdown img` rule in custom.css caps height at 420px with
+   `object-fit: contain`, which does not shrink the element — it letterboxes the
+   picture inside it, so a 1918x992 screenshot painted 812px wide inside a 958px
+   box with grey bars either side. Compound the class for specificity (0,2,1):
+   `.full img` alone ties with `.markdown img` and loses on source order. */
+.figure.full img {
+  max-height: none;
+}
+
 .sm { max-width: 260px; }
 .md { max-width: 420px; }
 .lg { max-width: 680px; }
