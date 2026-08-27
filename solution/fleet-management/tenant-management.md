@@ -70,29 +70,7 @@ Two things to plan around. **Updating a robot's map restarts navigation**, which
 
 ## The audit log
 
-Actions are recorded in an **append-only** log: entries are added, never changed or removed, and the trail cannot be edited from the application. Times are shown in UTC throughout, so entries from different sites compare directly.
-
-<Figure
-  src={require('../img/fleet-audit-log.png').default}
-  alt="The audit log filtered to mission events, each row showing a UTC timestamp, category, action, the actor, an outcome of accepted or rejected, and a plain-language description, with CSV and JSON export controls"
-  size="full"
-  framed
-  caption="The audit trail: who did what, when, and whether it was accepted or refused." />
-
-Every entry records the action taken, who took it, when, and **whether it was accepted or rejected** — refusals are recorded alongside successes, which is what lets the trail answer "was this attempted?" and not only "was this done?". Each carries a plain-language description, so a row reads as a sentence rather than as an identifier.
-
-The trail is split in two: **fleet audit** for what was done to sites and robots, and **tenant audit** for changes to the tenant itself.
-
-| Category | Covers |
-| --- | --- |
-| **Command** | Commands sent to a robot |
-| **Mission** | Creating, updating, running, activating and deleting missions |
-| **Authorization** | Who was granted or refused access to what |
-| **Safety** | Safety-related actions |
-| **Lifecycle** | Robots and sites entering and leaving service |
-| **Fault** | Faults raised against a robot |
-
-Entries filter by category, by outcome — including a failures-only view — by actor, by date range, and by free-text search. The result can be exported as **CSV or JSON** for review outside the application.
+Actions taken across your tenant are recorded in an append-only log, readable by Auditors and tenant administrators. [Audit log](/solution/fleet-management/audit-log) covers the two trails, what each entry records, and how to filter and export them.
 
 ## Common questions
 
@@ -107,7 +85,4 @@ A Site Admin for that site, or a Tenant Administrator. The Deployment Toolbox ca
 
 **Can an Auditor stop a robot in an emergency?**  
 No. The Auditor role is read-only by design. Anyone who may need to intervene needs Operator at that site.
-
-**Why is an action I know was attempted missing from the log?**  
-Check the category and date filters first, and the fleet and tenant tabs — the two hold different kinds of entry. If an entry still appears to be missing, raise it, since a gap in an append-only trail is worth investigating.
 

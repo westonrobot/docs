@@ -1,6 +1,6 @@
 ---
 unlisted: true
-sidebar_position: 6
+sidebar_position: 7
 description: "Where Fleet Management runs — shared cloud, dedicated cloud or on-premise — what that decides about upgrades and data residency, and how robots and their software are kept current."
 ---
 

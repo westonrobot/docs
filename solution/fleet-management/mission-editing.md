@@ -116,7 +116,7 @@ Three properties of this model explain most of what surprises people:
 
 **Conditions combine, they never alternate.** Every condition on a mission must be satisfied for it to become eligible. There is no "either/or".
 
-**No conditions means always eligible, not never.** A test that all of nothing passes is passed trivially, so a mission with an empty condition list is eligible at every opportunity — a patrol set up that way would restart continuously. **That is why activating a mission with no run conditions is refused**, and the refusal is recorded in the [audit log](/solution/fleet-management/tenant-management#the-audit-log) like any other rejected action.
+**No conditions means always eligible, not never.** A test that all of nothing passes is passed trivially, so a mission with an empty condition list is eligible at every opportunity — a patrol set up that way would restart continuously. **That is why activating a mission with no run conditions is refused**, and the refusal is recorded in the [audit log](/solution/fleet-management/audit-log) like any other rejected action.
 
 **A time carries its own cooldown.** The window you set is how late a start is still acceptable, and it doubles as the interval before the same trigger may fire again — which is what makes "every day at 09:00" safe on a mission that never finishes on its own. A day-of-week rule has no such guard, which is why days are always paired with a time rather than offered alone.
 
