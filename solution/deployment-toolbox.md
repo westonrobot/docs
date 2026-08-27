@@ -123,7 +123,7 @@ Place what the robot actually reasons about — the nodes it can be sent to, the
 The scan stays visible underneath while you draw, at an opacity you control, so you are placing things against the building rather than against an empty grid. **Surface snapping** is what settles a node or a zone onto the floor instead of leaving it floating: you set how far above and below the level the tool should look, and it does the rest.
 
 <Figure
-  src={require('./img/toolbox-edit.png').default}
+  src={require('./img/toolbox-edit.jpg').default}
   alt="The Edit stage showing the active level over a semi-transparent point cloud, drawing tools for nodes segments and zones, a surface snap configuration panel, and an elements list counting nodes segments and zones"
   size="lg"
   framed

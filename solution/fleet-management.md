@@ -72,6 +72,15 @@ Four things happen here, in this order.
 
 Missions are built in the browser from **waypoints** (the places on the site map a robot can be sent to), the routes between them, and a schedule, then kept in a library and reused. Revision comparison and duplication mean a second site starts from the first rather than from nothing.
 
+You build a mission as an ordered list of checkpoints on the site map. Each checkpoint has a position and a heading, and can carry actions — pause for a set time, play an announcement. Locations you have named once can be reused, so fixing a location later fixes every mission that uses it.
+
+<Figure
+  src={require('./img/fleet-mission-editor.png').default}
+  alt="The Mission Editor with a named mission, its route drawn on the site map with numbered checkpoints, and a checkpoint list showing positions, headings, pause and announce actions"
+  size="lg"
+  framed
+  caption="Building a mission: details, checkpoints on the map with their actions, then review and save." />
+
 Missions reference the site map, so a robot has to be on the map the fleet has activated before its missions can be edited or dispatched. **When a newer map is activated, that robot's missions are switched off and stay locked** until it confirms the new map — rather than running against waypoints that may have moved. Once it confirms, you check the missions and switch them back on.
 
 <Figure
@@ -90,7 +99,7 @@ To **dispatch** a mission is to hand it to a named robot to run, either on deman
 The robot view is where an operator spends their time: the site map with the robot's position on it, live camera feeds, **telemetry** (the readings a robot reports about itself, such as battery level and temperature), the current mission, alerts, and the controls.
 
 <Figure
-  src={require('./img/fleet-robot-view.png').default}
+  src={require('./img/fleet-robot-view.jpg').default}
   alt="Robot detail view laying out the navigation map, the camera panel, mission status, telemetry showing battery and temperature, and the control panel"
   size="lg"
   framed
@@ -108,6 +117,13 @@ Direct control is taken deliberately, and it is held under a **lease** — an ex
 ### 4. Review what was found
 
 Detections and events land in Detection Review and stay there: filterable by robot, type, priority and review state, and acknowledged by a named person. Each detection is kept with its image, stored so it cannot be edited or deleted afterwards, and reviewer notes are appended rather than replacing what was there.
+
+<Figure
+  src={require('./img/fleet-detection-review.jpg').default}
+  alt="Detection Review in gallery view, showing intrusion and perimeter-compromised detections as images with bounding boxes, each labelled with priority, camera, robot, time and who acknowledged it, beside a summary counting detections by priority and type"
+  size="lg"
+  framed
+  caption="Detection Review: what was seen, when, by which robot, and who has signed it off." />
 
 **Video is live only.** Camera feeds are not recorded, so what remains after the fact is the detection record and its still image — never footage of the moment. Plan around that if an incident review at your site is expected to produce a clip.
 
