@@ -40,6 +40,8 @@ The graph is written in **TMG** — Topometric Navigation Graph, a map specifica
 
 The occupancy grid's role today is visualisation: the fleet and the toolbox draw it under the graph so a node or a zone can be related to the floor plan it sits on rather than read as bare coordinates, while a robot navigates from the graph. One further surface is computed rather than stored — the **height grid**, derived from the point cloud against the level being edited, is what surface snapping uses to settle a node onto the floor, and it exists only while you are working.
 
+[The map format](/solution/deployment-toolbox/map-format#the-layers) covers what a published bundle carries and how the layers relate.
+
 ## Map elements
 
 The navigation graph is where a map's meaning lives, and these four elements are what it is built from. TMG exists because the formats already available describe a *space* without describing what is *allowed to happen* in it: a point cloud says where the walls are, not that this doorway is a route and that one is off limits.
@@ -53,7 +55,7 @@ The navigation graph is where a map's meaning lives, and these four elements are
 
 Most zones on a finished map were never drawn by hand — one is generated around every node and along every segment, marking the envelope the robot may drive within.
 
-[What a site map contains](/solution/deployment-toolbox/map-format) covers the elements in full, which zones are generated and which you draw, what levels mean for a multi-floor site, and what a published map bundle carries besides the graph.
+[The map format](/solution/deployment-toolbox/map-format#the-elements) covers all four in full, which zones you draw and which are generated for you, and what levels mean for a site that spans floors.
 
 ## Map editor
 
@@ -68,7 +70,7 @@ The editor runs as five stages, worked left to right: **load** a scan, **prepare
 
 The stage that decides the rest is **Prepare**. A scan that is subtly tilted produces a map that looks correct and navigates badly, and everything placed afterwards inherits the error.
 
-[Map editor](/solution/deployment-toolbox/map-editor) covers each stage, what it needs before it will open, the point cloud formats accepted, and the operations at each step.
+[Map editor](/solution/deployment-toolbox/map-editor) covers all five stages, what each needs before it will open, the point cloud formats accepted, and what surface snapping is for.
 
 ## Map inspector
 
@@ -76,7 +78,7 @@ The inspector opens a map — from the fleet or from a file — and lets you exa
 
 **Testing that a route solves is the part that earns its keep.** Two segments that appear to meet on screen but do not share a point produce a map that looks connected and cannot be navigated, and that shows up here in seconds rather than during a patrol.
 
-[Map inspector](/solution/deployment-toolbox/map-inspector) covers the layers, the element list and how to choose which routes to test.
+[Map inspector](/solution/deployment-toolbox/map-inspector) covers opening a map from the fleet or a file, the layers and the element list, how to choose which routes to test, and when reaching for it is worth the time.
 
 ## Publishing to the fleet
 
@@ -84,7 +86,7 @@ A finished map leaves the editor at its last stage, and what happens to it then 
 
 A pushed map arrives as a **draft revision**. Someone in Fleet Management then **publishes** it and **activates** it, and activation is what puts a map in front of robots — the Toolbox can take neither of those steps.
 
-[Publishing to the fleet](/solution/deployment-toolbox/publishing) covers what the push asks for, why the change summary matters, and what activation costs a robot.
+[Publishing to the fleet](/solution/deployment-toolbox/publishing) covers the four things the push asks for, why the change summary is worth writing properly, the three steps from draft to activated, and what activation costs a robot.
 
 ## Common questions
 

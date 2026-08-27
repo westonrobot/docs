@@ -1,10 +1,10 @@
 ---
 unlisted: true
 sidebar_position: 1
-description: "The TMG map format: nodes, segments, zones, levels and transitions, which zones are drawn and which are generated, and what a published map bundle contains."
+description: "The TMG map format: the layers a bundle carries, the elements the navigation graph is built from, which zones are drawn and which are generated, and what levels mean."
 ---
 
-# What a site map contains
+# The map format
 
 A 3D scan of a building is just points. A robot needs to know where the floor is, where it may drive, where it must not go, and which places matter. The **site map** is where that meaning lives, and this page is what it is made of.
 
@@ -50,7 +50,7 @@ Every node and zone belongs to a level. **This release supports one level per si
 
 **Transition** exists in the format for sites that do span floors, and has no use in a single-level site. Ramps within a level are usually fine, since a ramp is not a change of level.
 
-## What is published
+## The layers
 
 The graph is not the whole artifact. What travels to the fleet is a **map bundle**:
 
