@@ -80,18 +80,10 @@ The recovery is: send the robot the activated map and wait for it to confirm, th
 
 ## Common questions
 
-### A robot's missions are switched off and I cannot edit or dispatch them
+| Question | Answer |
+| --- | --- |
+| **A robot's missions are switched off and I cannot edit or dispatch them** | That robot is on an older map than the one the fleet has activated, and waypoints may have moved. Its missions stay locked until it confirms the new map; then you check them and switch them back on. If the switch fails, it can be retried from the same place. Updating which map a robot is on is a Site Admin action. |
+| **The mission saved but will not activate** | Check its run conditions. A mission saves without them, but activation is refused until they are set, and the refusal is recorded in the audit log. |
+| **Can I send a robot somewhere without building a mission?** | Yes — Quick Dispatch, on the map toolbar. |
+| **I moved a location and several missions changed** | Expected, if it was a saved location. Checkpoints made from a saved location follow it, so one correction applies everywhere it is used. |
 
-That robot is on an older map than the one the fleet has activated, and waypoints may have moved. Its missions stay locked until it confirms the new map; then you check them and switch them back on. If the switch fails, it can be retried from the same place. Updating which map a robot is on is a Site Admin action.
-
-### The mission saved but will not activate
-
-Check its run conditions. A mission saves without them, but activation is refused until they are set, and the refusal is recorded in the audit log.
-
-### Can I send a robot somewhere without building a mission?
-
-Yes — Quick Dispatch, on the map toolbar.
-
-### I moved a location and several missions changed
-
-Expected, if it was a saved location. Checkpoints made from a saved location follow it, so one correction applies everywhere it is used.
