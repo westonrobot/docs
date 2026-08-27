@@ -46,6 +46,8 @@ Direct control is taken deliberately, and it is held under a **lease** — an ex
 
 Teleoperation carries two safeguards worth knowing about before you rely on it: it **stops the robot if the connection to the fleet degrades**, and it refuses the controls to anyone who has not properly taken control.
 
+**What the driving view shows depends on the robot.** An assisted view — a stitched surround view, proximity zones drawn from the robot's own sensing, and a bird's-eye radar panel — is tuned for a particular robot configuration and deployment rather than provided on every robot by default. Confirm which of your robots are set up for it before planning work that relies on it.
+
 ## What happens during a mission
 
 Battery level and the connection to the fleet both change what a running mission does.

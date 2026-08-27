@@ -83,12 +83,14 @@ Teleoperation carries its own safeguards. It **stops the robot when the connecti
 
 Commanding a robot is Operator authority, granted per site. An Observer at the same site sees everything described above and can do none of it.
 
+**What the driving view shows depends on the robot.** The assisted view below — camera feeds stitched into a surround view, proximity zones drawn from the robot's own sensing, and a bird's-eye radar panel alongside speed and link quality — is tuned for a particular robot configuration and deployment. It is not part of every robot's teleoperation by default, so what a given robot presents depends on how that robot was set up.
+
 <Figure
   src={require('../img/fleet-teleop.jpg').default}
-  alt="Teleoperation view showing a stitched forward camera view with proximity zones overlaid, three additional camera feeds along the top, a bird's-eye radar panel, speed readouts, link latency and bandwidth, and an emergency stop control"
+  alt="An assisted teleoperation view on a robot configured for it, showing a stitched forward surround view with proximity zones overlaid, three additional camera feeds along the top, a bird's-eye radar panel, speed readouts, link latency and bandwidth, and an emergency stop control"
   size="full"
   framed
-  caption="Driving a robot from the browser, with the proximity zones, radar and link quality an operator needs to judge it." />
+  caption="An assisted teleoperation view, on a robot fitted and configured for it: surround view, proximity zones, radar, and link quality." />
 
 [Taking control](/solution/fleet-management/robot-dashboard#taking-control) covers the controls and the safeguards in detail.
 
