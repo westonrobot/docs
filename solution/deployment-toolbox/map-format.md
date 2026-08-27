@@ -63,3 +63,11 @@ The graph is not the whole artifact. What travels to the fleet is a **map bundle
 **The occupancy grid is there to be looked at.** Today its role is visualisation: the fleet and the toolbox draw it under the graph so a node or a zone can be related to the floor plan it sits on rather than read as bare coordinates. It is generated rather than drawn by hand, and a robot navigates from the graph, not from this.
 
 Keeping the layers together is what lets someone open a published map later and edit it against the same scan it was built from, rather than guessing. They are not equally essential, though — **the graph is the map**, and a bundle whose occupancy layer is missing still opens as a usable navigation graph, with the absent underlay reported rather than the whole map refused.
+
+## Common questions
+
+**My site has two floors**  
+This release supports one level per site, because robots do not use stairs or lifts on their own. Ramps within a level are fine, since a ramp is not a change of level.
+
+**Why does my map have so many zones?**  
+Most of them were generated rather than drawn: one around every node and one along every segment. A fifteen-node office with no hand-drawn zones at all still holds thirty-four.

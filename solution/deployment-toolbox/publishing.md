@@ -46,3 +46,11 @@ That is a boundary between the two tools rather than between two people: the sam
 Worth knowing before you push, because it shapes when the rest of the change should be scheduled: applying a new map to a robot **restarts its navigation and makes it re-acquire localisation**, and its missions are locked until it confirms the new map.
 
 So a map change is not a background event at the site. Push whenever the work is done; time the activation.
+
+## Common questions
+
+**I pushed a map but the robots have not changed**  
+Expected. Pushing creates a draft in the Fleet Management System; someone there has to publish it and then activate it. Until then robots keep the map they have.
+
+**Can I change a map without this tool?**  
+A Site Admin can adjust waypoints and the connections between them in the Fleet Management System. Changing the scan, the levels or the zones is this tool's job.

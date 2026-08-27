@@ -16,8 +16,8 @@ Key features of the toolbox are summarized in the table below, and each is cover
 
 | Feature | What it gives you |
 | --- | --- |
-| **Map editor** | Turns a 3D scan of a site into the map robots navigate by |
 | **Map inspector** | Opens a map to examine it and check that routes solve |
+| **Map editor** | Turns a 3D scan of a site into the map robots navigate by |
 
 ## Map layers
 
@@ -57,6 +57,39 @@ Most zones on a finished map were never drawn by hand — one is generated aroun
 
 [The map format](/solution/deployment-toolbox/map-format#the-elements) covers all four in full, which zones you draw and which are generated for you, and what levels mean for a site that spans floors.
 
+## Data exchange
+
+The Toolbox and the Fleet Management System exchange maps at two moments and are otherwise independent of each other.
+
+```mermaid
+flowchart LR
+    FMS["<b>Fleet Management System</b>"]
+    TB["<b>Deployment Toolbox</b><br/>an editing session"]
+    FMS -->|"import a map bundle"| TB
+    TB -->|"push a draft revision"| FMS
+```
+
+| Moment | Direction | What moves |
+| --- | --- | --- |
+| **Import from fleet** | Fleet → Toolbox | An existing map bundle, pulled down to work on |
+| **Push to fleet** | Toolbox → Fleet | The finished map, as a new draft revision |
+
+**Nothing passes between them in between.** A map open in the editor is a copy: it does not follow changes made in the fleet while you work, and the fleet knows nothing of your edits until you push them. Work in progress lives in your own browser rather than on a server, so the two systems share no state at all between an import and a push.
+
+That is deliberate, and it has one practical consequence worth planning around: **whoever edits a site's map should import it at the start of the session rather than reusing yesterday's copy**, because nothing will tell them if it has moved on. It is also why two people editing the same site's map at the same time is a bad idea — neither would know.
+
+**The Toolbox never talks to robots.** It pushes to the Fleet Management System, and robots are updated from there; there is no path from this tool to a machine in the field. A pushed map arrives as a **draft revision**, and someone in Fleet Management then **publishes** it and **activates** it — activation being what puts a map in front of robots, and neither step something the Toolbox can take.
+
+[Publishing to the fleet](/solution/deployment-toolbox/publishing) covers the four things the push asks for, why the change summary is worth writing properly, the three steps from draft to activated, and what activation costs a robot.
+
+## Map inspector
+
+The inspector opens a map — from the fleet or from a file — and lets you examine it without changing it: its graph, occupancy and height layers, an element list, and a route test between two points you choose.
+
+**Testing that a route solves is the part that earns its keep.** Two segments that appear to meet on screen but do not share a point produce a map that looks connected and cannot be navigated, and that shows up here in seconds rather than during a patrol.
+
+[Map inspector](/solution/deployment-toolbox/map-inspector) covers opening a map from the fleet or a file, the layers and the element list, how to choose which routes to test, and when reaching for it is worth the time.
+
 ## Map editor
 
 The editor runs as five stages, worked left to right: **load** a scan, **prepare** it, set up its **levels**, **edit** the graph onto it, and **export**. Any stage can be revisited once its prerequisites are met.
@@ -71,39 +104,6 @@ The editor runs as five stages, worked left to right: **load** a scan, **prepare
 The stage that decides the rest is **Prepare**. A scan that is subtly tilted produces a map that looks correct and navigates badly, and everything placed afterwards inherits the error.
 
 [Map editor](/solution/deployment-toolbox/map-editor) covers all five stages, what each needs before it will open, the point cloud formats accepted, and what surface snapping is for.
-
-## Map inspector
-
-The inspector opens a map — from the fleet or from a file — and lets you examine it without changing it: its graph, costmap and height layers, an element list, and a route test between two points you choose.
-
-**Testing that a route solves is the part that earns its keep.** Two segments that appear to meet on screen but do not share a point produce a map that looks connected and cannot be navigated, and that shows up here in seconds rather than during a patrol.
-
-[Map inspector](/solution/deployment-toolbox/map-inspector) covers opening a map from the fleet or a file, the layers and the element list, how to choose which routes to test, and when reaching for it is worth the time.
-
-## Publishing to the fleet
-
-A finished map leaves the editor at its last stage, and what happens to it then is a handover rather than a third tool. **The Deployment Toolbox never talks to robots** — it pushes a map into the Fleet Management System, and robots are updated from there; there is no path from this tool to a machine in the field.
-
-A pushed map arrives as a **draft revision**. Someone in Fleet Management then **publishes** it and **activates** it, and activation is what puts a map in front of robots — the Toolbox can take neither of those steps.
-
-[Publishing to the fleet](/solution/deployment-toolbox/publishing) covers the four things the push asks for, why the change summary is worth writing properly, the three steps from draft to activated, and what activation costs a robot.
-
-## Common questions
-
-**I pushed a map but the robots have not changed**  
-Expected. Pushing creates a draft in the Fleet Management System; someone there has to publish it and then activate it. Until then robots keep the map they have.
-
-**Routes look connected but validation fails**  
-Validation checks that a route actually solves, not that lines meet on screen. Two segments that appear to join may not share a point, or the path may cross a zone that forbids it.
-
-**Which map are the robots actually using?**  
-Import it from the fleet rather than trusting a local copy — that is what Import from Fleet is for.
-
-**Can I change a map without this tool?**  
-A Site Admin can adjust waypoints and the connections between them in the Fleet Management System. Changing the scan, the levels or the zones is this tool's job.
-
-**My site has two floors**  
-This release supports one level per site, because robots do not use stairs or lifts on their own. Ramps within a level are fine.
 
 ## Support
 

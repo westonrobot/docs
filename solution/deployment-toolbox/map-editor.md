@@ -106,3 +106,14 @@ Validate, check the result, and produce the finished map.
 Validation is the point of the stage. It checks that the map holds together — that routes actually solve over the segments you placed, rather than that the lines meet on screen.
 
 From here the map can be **saved as a file**, or **pushed to the Fleet Management System**, which is the route that leads to robots. See [Publishing to the fleet](/solution/deployment-toolbox/publishing).
+
+## Common questions
+
+**A stage will not open**  
+Each one has a prerequisite, and the stage says which is missing. Prepare and Levels need a point cloud, Edit needs at least one level defined, and Export needs at least one node.
+
+**My nodes are sitting above or below the floor**  
+Surface snapping settles them onto the level, and it looks a set distance above and below to find it. Widen that range, or check the scan was levelled properly in Prepare — a tilted scan puts the floor where the nodes are not.
+
+**Can I go back and re-crop the scan after placing nodes?**  
+Yes. Stages are revisitable once their prerequisites are met, so returning to Prepare is normal rather than a restart.

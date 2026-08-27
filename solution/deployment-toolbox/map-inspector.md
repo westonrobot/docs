@@ -46,3 +46,11 @@ Test the pairs that matter to the missions you intend to run — the charging st
 | **Taking on an unfamiliar site** | Reads the map someone else authored without risking an edit |
 
 Inspecting never modifies the map, so it is safe to open a live site's map and look.
+
+## Common questions
+
+**Routes look connected but validation fails**  
+Validation checks that a route actually solves, not that lines meet on screen. Two segments that appear to join may not share a point, or the path may cross a zone that forbids it.
+
+**Which map are the robots actually using?**  
+Load it from the fleet rather than trusting a local copy — that is what Import from Fleet is for, and a copy on a laptop may be several revisions behind.
