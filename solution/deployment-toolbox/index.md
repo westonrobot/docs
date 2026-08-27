@@ -10,13 +10,9 @@ A 3D scan of a building is just points. A robot needs to know where the floor is
 
 What comes out is the **site map** — the artifact everything else depends on. It is pushed to the [Fleet Management System](/solution/fleet-management), and reaches the robots from there.
 
-## Who uses it, and when
+Preparing a site is a once-per-site job rather than a once-per-mission one, and the map is revisited afterwards only when the building itself changes — new racking, a wall moved, a door now permanently shut. Editing a site's map requires the **Site Admin** role for that site; operators and observers use maps without changing them.
 
-Preparing a site is a **once-per-site** job, not a once-per-mission one. Afterwards the map is only revisited when the building itself changes — new racking, a wall moved, a door that is now permanently shut.
-
-Editing a site's map requires the **Site Admin** role for that site. Operators and observers use maps but do not change them.
-
-## Key features
+Key features of the toolbox are summarized in the table below, and each is covered in its own section.
 
 | Feature | What it gives you |
 | --- | --- |
