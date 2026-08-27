@@ -168,24 +168,6 @@ The Auditor role exists for exactly this: it reads operational and audit logs ac
 
 [**Deployment and servicing**](/solution/fleet-management/deployment-and-servicing) — where the system runs (shared cloud, a dedicated cloud instance, or on-premise), what that decides about upgrade scheduling and data residency, and how robots and their software are kept current.
 
-## Common questions
-
-### We updated a map but the robots are still using the old one
-
-Expected. A new map arrives as a draft and has to be activated. Until then robots keep the map they have — this is deliberate, so a robot never changes map in the middle of a job. See [How a map reaches a robot](/solution/fleet-management/tenant-management#how-a-map-reaches-a-robot).
-
-### A robot's missions are switched off and I cannot edit or dispatch them
-
-That robot is on an older map than the one the fleet has activated. See [Missions and the site map](/solution/fleet-management/mission-editing#missions-and-the-site-map).
-
-### Something was detected but nobody was alerted
-
-Alerts are raised at high priority and above, and they appear only in the app. See [Which events raise an alert](/solution/fleet-management/detection-review#which-events-raise-an-alert).
-
-### Can two people drive the same robot?
-
-No. Control is held under a lease, and only one person holds it at a time.
-
 ## Support
 
 Before raising a ticket, note which site and robot are involved, what the robot was doing just before, and what you saw on screen. [Before you contact us](/support/before-you-contact-us) lists what helps.
