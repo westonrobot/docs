@@ -37,7 +37,9 @@ The **site map** ties these parts together, and it travels one way: the Deployme
 | **Users and roles** | Who may watch, who may command, who may change a site |
 | **Audit log** | An append-only record of who did what |
 
-The dashboard is the entry point: sites down the side, robots grouped by site, and a status count across the top.
+## Fleet overview
+
+The dashboard is the entry point: sites down the side, robots grouped by site, and a status count across the top. It answers "is anything wrong right now" without opening a single robot.
 
 <Figure
   src={require('../img/fleet-dashboard.png').default}
@@ -46,44 +48,43 @@ The dashboard is the entry point: sites down the side, robots grouped by site, a
   framed
   caption="The fleet dashboard — every site and robot, with current status." />
 
-## How the work flows
+## Mission planning
 
-Four things happen here, in this order.
+A **mission** is an ordered list of places on the site map, what the robot does at each of them, and when it should run. Missions are built in the browser, kept in a library, and reused across sites, so a second site starts from the first rather than from nothing.
 
-### 1. Plan a mission
+Missions reference the site map, so a robot must be on the map the fleet has activated before its missions can be edited or dispatched.
 
-A **mission** is an ordered list of places on the site map, what the robot does at each of them, and when it should run. Missions are built in the browser, kept in a library, and reused — so a second site starts from the first rather than from nothing.
+[Building a mission](/solution/fleet-management/mission-editing#building-a-mission) covers checkpoints and the actions they carry, schedules, saved locations, Quick Dispatch, and what happens when a robot is behind the activated map.
 
-Because missions reference the site map, a robot has to be on the map the fleet has activated before its missions can be edited or dispatched.
+## Live monitoring
 
-→ [Mission editing and dispatch](/solution/fleet-management/mission-editing)
+The robot view puts one robot on one screen: its position on the site map, live camera feeds, **telemetry** — the readings a robot reports about itself, such as battery level and temperature — the current mission, and any alerts raised for it.
 
-### 2. Dispatch it
+[What is on the screen](/solution/fleet-management/robot-dashboard#what-is-on-the-screen) covers each panel, and how battery level and connection loss change a running mission.
 
-To **dispatch** a mission is to hand it to a named robot to run, either on demand or on a schedule. A robot can also be sent somewhere once, without building a mission at all — that is **Quick Dispatch**.
+## Direct control
 
-→ [Mission editing and dispatch](/solution/fleet-management/mission-editing)
+Control is taken deliberately and held under a **lease** — an exclusive claim on that robot — so only one person drives at a time. The controls are emergency stop, **teleoperation** (driving the robot yourself from the browser), set home, and a Commands tab carrying docking and posture commands.
 
-### 3. Watch it run
+[Taking control](/solution/fleet-management/robot-dashboard#taking-control) covers the controls and the safeguards on teleoperation.
 
-The robot view puts one robot on one screen: its position on the site map, live camera feeds, telemetry, the current mission, alerts, and the controls. Direct control is held under a **lease**, so only one person is driving at a time.
+## Detection review
 
-→ [Robot dashboard](/solution/fleet-management/robot-dashboard)
+Everything the robots detected lands in one place and stays there: filterable by robot, type, priority and review state, acknowledged by a named person, and stored so it cannot be edited or deleted. Not every detection raises an alert — alerts start at high priority.
 
-### 4. Review what was found
+[Which events raise an alert](/solution/fleet-management/detection-review#which-events-raise-an-alert) covers the priorities, what the record keeps, and what alerting deliberately does not do.
 
-Detections and events land in Detection Review and stay there — filterable, acknowledged by a named person, and stored so they cannot be edited or deleted. Not every detection raises an alert: alerts start at high priority.
+## Users and roles
 
-→ [Detection review](/solution/fleet-management/detection-review)
+Roles decide who may watch, who may command, and who may change a site. Three are assigned per site, so someone can be an Operator at one site and an Observer at another; two are held across your whole **tenant** — your organisation's own space in the system — and apply everywhere at once.
 
-## In more detail
+[Roles](/solution/fleet-management/tenant-management#roles) covers all five, what each may do, and who may activate a map.
 
-| Page | Covers | Mostly read by |
-| --- | --- | --- |
-| [Mission editing and dispatch](/solution/fleet-management/mission-editing) | Checkpoints, actions, schedules, saved locations, Quick Dispatch, and the map a robot must be on | Operators, site admins |
-| [Robot dashboard](/solution/fleet-management/robot-dashboard) | The robot view, taking control, and how battery and connection loss change a running mission | Operators |
-| [Detection review](/solution/fleet-management/detection-review) | What was found, which event types alert, and what the record keeps | Operators, reviewers |
-| [Tenant and user management](/solution/fleet-management/tenant-management) | Sites, users, the five roles, how a map reaches a robot, and the audit log | Site and tenant admins |
+## Audit log
+
+Actions are recorded in an append-only log: entries are added, never changed or removed. The Auditor role reads it across every site without being able to command anything, which is what makes it useful for a reviewer who should not be able to move a robot.
+
+[The audit log](/solution/fleet-management/tenant-management#the-audit-log) covers it alongside the roles that can read it.
 
 ## Updates and remote management
 
