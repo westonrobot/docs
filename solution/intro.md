@@ -15,6 +15,6 @@ A solution is a complete capability we build and deploy on a robot platform, rat
 
 <ProductCard to="/solution/fleet-management" src={require('./img/fleet-robot-view.jpg').default} alt="The robot dashboard: a site map with the robot's position, live camera feeds, mission status, telemetry and the control panel on one screen" title="Fleet Management System">Plan, dispatch, watch and review missions from a browser. The part your operators use every day.</ProductCard>
 
-<ProductCard to="/solution/deployment-toolbox" src={require('./img/toolbox-finished-map.png').default} alt="A finished site map with waypoints, segments and zones" title="Deployment Toolbox">Turn a 3D scan of a site into the map robots navigate by. Used once per site, before any robot runs there.</ProductCard>
+<ProductCard to="/solution/deployment-toolbox" src={require('./img/toolbox-map-elements.png').default} alt="A close view of a site map: nodes joined by segments, each wrapped in a zone, with one hand-drawn keep-out area" title="Deployment Toolbox">Turn a 3D scan of a site into the map robots navigate by. Used once per site, before any robot runs there.</ProductCard>
 
 </ProductGrid>

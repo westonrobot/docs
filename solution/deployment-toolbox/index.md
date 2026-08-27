@@ -1,5 +1,4 @@
 ---
-unlisted: true
 sidebar_position: 3
 description: "Deployment Toolbox: turn a 3D scan of a site into the map robots navigate by. What a map contains, the editor, the inspector, and how a map reaches the fleet."
 ---
@@ -116,11 +115,11 @@ The inspector answers whether a map is sound, without changing it. It opens one 
 The editor is where a site map is made: it takes a 3D scan of a building and produces the graph a robot navigates by. That means cleaning up the scan, establishing the floor it sits on, and then placing the nodes, segments and zones themselves — work that is staged, so a map can be picked up and revised later rather than rebuilt from the beginning each time the building changes.
 
 <Figure
-  src={require('../img/toolbox-stages.png').default}
-  alt="The map editor's stage bar showing five numbered stages in order: Load, Prepare, Levels, Edit, Export, with undo and redo alongside"
+  src={require('../img/toolbox-edit.png').default}
+  alt="The Map Editor part-way through a site: the five-stage bar across the top with Edit active, the scan and its occupancy map drawn in the view, drawing tools beside them, and panels for the active level, visualisation and surface snapping"
   size="full"
   framed
-  caption="The editor's five stages, worked left to right, with undo and redo throughout." />
+  caption="The editor at work. The stage bar runs across the top; the map is drawn against the scan and the occupancy map beneath it." />
 
 [Map editor](/solution/deployment-toolbox/map-editor) covers all five stages with a worked example, what each needs before it will open, how the occupancy map is generated, what surface snapping is for, and what validation checks before you export or push.
 

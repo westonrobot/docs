@@ -1,5 +1,4 @@
 ---
-unlisted: true
 sidebar_position: 2
 description: "The Map Inspector: open a map from the fleet or a file, examine its elements in 2D or 3D, and test whether a route between two points solves."
 ---

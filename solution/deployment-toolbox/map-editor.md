@@ -1,5 +1,4 @@
 ---
-unlisted: true
 sidebar_position: 1
 description: "Using the Map Editor: loading a scan, preparing it, detecting levels and generating an occupancy map, drawing the graph, validating and exporting, and pushing to the fleet."
 ---
@@ -36,9 +35,11 @@ Work is saved as you go, and the header shows when it last was. It lives in your
   framed
   caption="Two ways to start: pull an existing map down from the fleet, or begin from a scan on your machine." />
 
-**Import from Fleet** pulls an existing map bundle — the graph, its point cloud and its occupancy map — down to edit and push back as a new revision.
+**Import from Fleet** pulls an existing map bundle — the graph, its point cloud and its occupancy map — down to edit and push back as a new revision. The header then names the map and revision you are working from, so there is no doubt which one it is.
 
-**Start from local files** needs a **point cloud**, the scan the map is built on, in `PCD`, `PLY`, `XYZ` or `PTS`. An existing map can be loaded alongside it, which is how you re-author a map against a fresh scan.
+**Start from local files** assembles the same pieces yourself. A **point cloud** is required — the scan the map is built on, in `PCD`, `PLY`, `XYZ` or `PTS`, with colour if the scan carries it. A **TMG map** is optional, and loading one continues an existing map rather than starting a new one, which is how you re-author a map against a fresh scan.
+
+Once something is loaded, the panel reports what you have: the point cloud's file, its point count and its extent in metres; and for a map, its format and spec version, when it was created and last modified, and how many nodes, segments, zones, transitions and levels it holds. **Read those counts before you start editing** — they are the quickest way to notice you have opened the wrong map, or an older revision than you meant.
 
 **Reach for Import from Fleet whenever the site already has a map.** Sites change, and whoever updates one needs to start from what is actually live rather than a copy on a laptop that may be several revisions behind — and nothing will tell you that it is.
 

@@ -117,8 +117,6 @@ const config: Config = {
         // Keep this in step with any page carrying that flag.
         excludeRoutes: [
           '**/robot/ugv/ranger-mini-v2',
-          '**/solution/deployment-toolbox',
-          '**/solution/deployment-toolbox/**',
           '**/solution/adt/intro',
         ]
       }

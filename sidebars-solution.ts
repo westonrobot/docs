@@ -22,9 +22,16 @@ const sidebarsSolution: SidebarsConfig = {
         'fleet-management/deployment-and-servicing',
       ],
     },
-    // The Deployment Toolbox is still `unlisted` pending its own review, so it
-    // is not listed here yet. Its ProductCard on the Solutions hub still
-    // reaches it.
+    {
+      type: 'category',
+      label: 'Deployment Toolbox',
+      link: {type: 'doc', id: 'deployment-toolbox/index'},
+      // Inspector before editor, matching the overview's own order.
+      items: [
+        'deployment-toolbox/map-inspector',
+        'deployment-toolbox/map-editor',
+      ],
+    },
     // The Assisted Driving Toolbox is retired and `unlisted`, so it is not
     // listed here. Its URL stays alive because seven redirects from the old
     // /software/toolbox/* paths point at it (§11) and those are in
