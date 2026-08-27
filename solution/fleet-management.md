@@ -10,13 +10,12 @@ The Fleet Management System is the web application you run your robots from. Mis
 
 ## Where it sits
 
-The industrial patrolling and inspection platform is documented as three components: this **Fleet Management System**, the **Deployment Toolbox** that turns a site scan into the map robots navigate by, and **Analytics Integration** for connecting detection algorithms. Add the robots themselves and that is a working deployment. Fleet Management is the part people use every day; Analytics Integration does not have a page here yet.
+A working deployment is the robots, the map they navigate by, and this system. Fleet Management is the part people use every day; the **Deployment Toolbox** prepares a site once, before any robot drives there. Detection algorithms — ours on the robot, or a partner's alongside it — report into this system too, so what they find arrives as events here.
 
 | Part | What it does | How often you touch it |
 | --- | --- | --- |
 | [Deployment Toolbox](/solution/deployment-toolbox) | Turns a 3D scan of your site into the map robots navigate by | Once per site |
 | **Fleet Management System** | Plan, dispatch, watch, review | Daily |
-| Analytics Integration | Connects detection algorithms, so what they find arrives here as events | — |
 | Robot | Carries out the missions | — |
 
 ### How a map reaches a robot
