@@ -6,18 +6,32 @@ description: "Building missions in Fleet Management: the editor's three stages, 
 
 # Mission editing and dispatch
 
-A **mission** is a named, reusable piece of work: an ordered list of places on the site map, what the robot does at each of them, and the conditions under which it should run. Missions are built in the browser, kept in a library, revised with a history, and sent to the robots that will run them.
+A **mission** answers three questions about a piece of work: **what** the robot should do, **where** it should do it, and **when** that should happen. Missions are built in the browser, kept in a library with a revision history, and sent to the robots that will run them.
 
-## What a mission is made of
+## The model
 
-| Part | What it decides |
+**Where — checkpoints.** A checkpoint is more than a pose to drive to. It is a place the mission attaches meaning to: the robot travels there, turns to the heading you set, and then does whatever that checkpoint says it should. The position and heading are how it arrives; what the checkpoint carries is why it went.
+
+**What — actions on arrival.** Each checkpoint holds its own list of actions, performed once the robot is there:
+
+| Action | What the robot does |
 | --- | --- |
-| **Checkpoints** | Where the robot goes, in what order, and which way it faces on arrival |
-| **Actions** | What it does at a checkpoint — pause, or play an announcement |
-| **Run conditions** | When the mission is eligible to start |
-| **Active or inactive** | Whether the mission is eligible at all |
+| **Pause** | Holds position for a set number of seconds |
+| **Announce** | Plays an audio clip, chosen from the sounds that robot carries rather than typed in |
 
-The first two are authored in the editor. The third is set separately, and is what decides whether a mission can be activated at all — see [Run conditions](#run-conditions).
+A checkpoint with no actions is somewhere the robot passes through. A checkpoint with them is somewhere it stops and does something — and that is the difference between a route and a mission.
+
+**When — run conditions.** Whether the mission is eligible to start at all, covered in [Run conditions](#run-conditions) below. A mission can be saved without them but not activated.
+
+Some settings belong to the mission as a whole rather than to any one checkpoint:
+
+| Setting | Default | What it decides |
+| --- | --- | --- |
+| **Minimum battery** | 20% | The charge required before the mission may start |
+| **Retries** | 2 | How many times a move that fails is attempted again, up to 10 |
+| **Ambient audio** | None | Clips played in continuous rotation while the mission runs, rather than at one place |
+
+Two kinds of mission use this same shape. A **patrol** is a route the robot works repeatedly; an **errand** is an ad-hoc move from one place to another. Both are ordered checkpoints with actions attached — what differs is whether the work is meant to persist.
 
 ## The editor
 
@@ -32,11 +46,11 @@ The Mission Editor opens on a named robot and works against that robot's site ma
 
 ### 1 · Details
 
-The mission's **name** is required and a **description** is optional. You also choose what kind of mission it is — an errand that sends the robot to one or more locations, for example.
+The mission's **name** is required and a **description** is optional. This is also where you choose whether it is a patrol or an errand.
 
 ### 2 · Checkpoints
 
-Checkpoints are an ordered list. Each carries a position as **X and Y in metres** and a **heading in degrees**, which is required — a robot that arrives facing the wrong way has not really arrived.
+Checkpoints are an ordered list. Each carries a position as **X and Y in metres** and a **heading in degrees**, which is required — a robot that arrives facing the wrong way has not really arrived, and a camera pointed at the wrong wall inspects nothing.
 
 <Figure
   src={require('../img/fleet-mission-checkpoint.png').default}
@@ -53,7 +67,7 @@ Drag to reorder; undo, redo and clear apply across the whole list. There are thr
 | **Place on the map** | Click the route map to set the position, then drag to set the heading |
 | **Use the robot's pose** | The robot is already standing where you want the checkpoint |
 
-Each checkpoint can carry **actions** performed on arrival — **pause** for a set number of seconds, or **announce** by playing an audio file through the robot.
+Actions are added per checkpoint, and a checkpoint can carry more than one.
 
 The route map draws the mission over the site map, numbering the checkpoints in order and distinguishing places, docks and stops, so the sequence can be checked against the building rather than against a list of coordinates.
 
