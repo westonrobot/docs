@@ -39,13 +39,6 @@ The **element list** is searchable by name or identifier and filterable by kind,
 
 Route mode answers the question the graph exists for: can the robot actually get from here to there?
 
-<Figure
-  src={require('../img/toolbox-route-test.png').default}
-  alt="The Map Inspector in Route mode, with instructions to click to set a start point and shift-click to set a goal, and a note that the map data is sent to the server for pathfinding"
-  size="full"
-  framed
-  caption="Route mode: click a start, shift-click a goal, and the path is computed across the segments." />
-
 Click to set a start point and shift-click to set a goal. The path is computed across the segments and drawn, or the attempt fails — and **the failure is the informative case**.
 
 A route that does not solve is the map's problem, not the robot's. Two segments that appear to join on screen may not share a point; a path may cross a zone that forbids it; a node may sit on a different level from the one you expect. Each of those looks fine and navigates badly, and each shows up here in seconds rather than during a patrol.
