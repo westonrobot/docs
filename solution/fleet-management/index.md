@@ -164,25 +164,9 @@ The Auditor role exists for exactly this: it reads operational and audit logs ac
 
 [The audit log](/solution/fleet-management/tenant-management#the-audit-log) covers it alongside the roles that can read it.
 
-## Updates and remote management
+## Further topics
 
-Remote management covers two things: **changing a robot's credentials, and sending it a new map.** A map sent to a robot takes effect once it is activated — see [How a map reaches a robot](/solution/fleet-management/tenant-management#how-a-map-reaches-a-robot).
-
-**Robot software is updated by Weston Robot**, either on site or over a VPN connection to the robot. Arranging that access is worth settling before the site survey, since it determines how your robots get serviced.
-
-## Deployment models
-
-Which model your project uses is decided before deployment, and it is not a matter of preference.
-
-| Model | Use it for | Why |
-| --- | --- | --- |
-| **Shared cloud**, hosted by Weston Robot | Short proofs of concept, demonstrations, evaluations | Nothing to provision |
-| **Dedicated instance**, cloud | Real site deployments | Your own instance, upgraded on your schedule |
-| **Dedicated instance**, on-premise | Real deployments with data-residency requirements | As above, and your data stays on your network |
-
-**What decides it is tenancy, not location** — that is, whether your organisation shares infrastructure with other customers or has an instance to itself. On the shared cloud every customer sits on the same infrastructure: your data is kept separate, but upgrades are not — an upgrade for one customer restarts services everyone is using, and it cannot be scheduled around your operations. A dedicated instance is upgraded on your schedule, wherever it runs.
-
-On-premise is the further step, and data residency is what decides it. If your rules require data to stay on your own network, on-premise is the answer; otherwise a dedicated cloud instance does the same job. Either way, the robots and the servers must be able to reach each other on your network.
+[**Deployment and servicing**](/solution/fleet-management/deployment-and-servicing) — where the system runs (shared cloud, a dedicated cloud instance, or on-premise), what that decides about upgrade scheduling and data residency, and how robots and their software are kept current.
 
 ## Common questions
 
