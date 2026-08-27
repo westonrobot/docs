@@ -12,10 +12,10 @@ The robot view is where an operator spends their time. Everything about one robo
 
 <Figure
   src={require('../img/fleet-robot-view.jpg').default}
-  alt="Robot detail view laying out the navigation map, the camera panel, mission status, telemetry showing battery and temperature, and the control panel"
+  alt="Robot detail view with the navigation map and the robot's pose, four live camera feeds, an operations panel showing scheduled missions, telemetry for battery, uptime, heartbeat and speed, an alerts panel, and the control panel"
   size="lg"
   framed
-  caption="The operator's working view, with the site map, the camera panel, mission status and telemetry on one screen. The robot shown here is not connected, so the camera panel is empty." />
+  caption="The operator's working view: the site map with the robot on it, its camera feeds, what it is doing, telemetry, and the controls." />
 
 | Panel | What it shows |
 | --- | --- |
@@ -24,7 +24,7 @@ The robot view is where an operator spends their time. Everything about one robo
 | **Mission status** | What the robot is doing now, and what is scheduled next |
 | **Telemetry** | The readings a robot reports about itself, such as battery level and temperature |
 | **Alerts** | What has been raised for this robot — the full record is in [Detection review](/solution/fleet-management/detection-review) |
-| **Controls** | Emergency stop, teleoperation, set home, and a Commands tab |
+| **Controls** | Emergency stop, teleoperation, Go Home, and a Commands tab |
 
 ## Taking control
 
@@ -32,7 +32,7 @@ Direct control is taken deliberately, and it is held under a **lease** — an ex
 
 <Figure
   src={require('../img/fleet-controls.png').default}
-  alt="The robot control panel showing an idle mission, a scheduled patrol, and the emergency stop, teleoperation and set home controls with Commands and Missions tabs"
+  alt="The robot control panel showing an idle mission, a scheduled patrol, and the emergency stop, teleoperation and Go Home controls with Commands and Missions tabs"
   size="lg"
   framed
   caption="The control panel, closer up: what the robot is doing now, and the controls to intervene." />
@@ -41,7 +41,7 @@ Direct control is taken deliberately, and it is held under a **lease** — an ex
 | --- | --- |
 | **Emergency stop** | Stops the robot |
 | **Teleoperation** | Drive the robot yourself, from the browser |
-| **Set home** | Set the place the robot returns to |
+| **Go Home** | Send the robot back to its home position. If no home has been set yet the same control reads **Set Home**, because with nowhere to drive to Go Home could only fail |
 | **Commands** | Docking, and posture commands such as stand and sit |
 
 Teleoperation carries two safeguards worth knowing about before you rely on it: it **stops the robot if the connection to the fleet degrades**, and it refuses the controls to anyone who has not properly taken control.

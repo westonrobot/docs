@@ -64,6 +64,13 @@ Opening a robot gives you that one machine on one screen. It is where an operato
 
 Two behaviours are worth knowing before you rely on the screen. **Camera feeds are live, and nothing is recorded**, so this view shows the present moment and cannot be wound back. And **navigating does not depend on the connection to the fleet** — a robot that goes quiet has usually not stopped; it has stopped being watchable. What it does next is a policy you configure rather than something the system decides for you.
 
+<Figure
+  src={require('../img/fleet-robot-view.jpg').default}
+  alt="Robot detail view with the navigation map and the robot's pose, four live camera feeds, an operations panel showing scheduled missions, telemetry for battery, uptime, heartbeat and speed, an alerts panel, and the control panel"
+  size="full"
+  framed
+  caption="One robot on one screen: the site map, its cameras, what it is doing, how it is holding up, and the controls." />
+
 [What is on the screen](/solution/fleet-management/robot-dashboard#what-is-on-the-screen) covers each panel in turn, and how battery level and connection loss change a running mission.
 
 ## Robot teleoperation
@@ -75,6 +82,13 @@ Because these commands move a machine in a real building, taking control is deli
 Teleoperation carries its own safeguards. It **stops the robot when the connection to the fleet degrades**, on the reasoning that driving a machine you can no longer see is worse than halting it, and it refuses the controls to anyone who has not properly taken control.
 
 Commanding a robot is Operator authority, granted per site. An Observer at the same site sees everything described above and can do none of it.
+
+<Figure
+  src={require('../img/fleet-teleop.jpg').default}
+  alt="Teleoperation view showing a stitched forward camera view with proximity zones overlaid, three additional camera feeds along the top, a bird's-eye radar panel, speed readouts, link latency and bandwidth, and an emergency stop control"
+  size="full"
+  framed
+  caption="Driving a robot from the browser, with the proximity zones, radar and link quality an operator needs to judge it." />
 
 [Taking control](/solution/fleet-management/robot-dashboard#taking-control) covers the controls and the safeguards in detail.
 
@@ -90,6 +104,13 @@ Dispatching hands a mission to a named robot, on demand or on its schedule. A ro
 
 One constraint follows from missions referencing the map: **a robot must be on the map the fleet has activated before its missions can be edited or dispatched.** When a newer map is activated, that robot's missions are switched off and stay locked until it confirms the new map, rather than running against waypoints that may have moved.
 
+<Figure
+  src={require('../img/fleet-mission-editor.png').default}
+  alt="The Mission Editor with a named mission, its route drawn on the site map with numbered checkpoints, and a checkpoint list showing positions, headings, pause and announce actions"
+  size="full"
+  framed
+  caption="A mission being built: its checkpoints on the site map, and what the robot does at each of them." />
+
 [Building a mission](/solution/fleet-management/mission-editing#building-a-mission) covers checkpoints, actions, schedules, Quick Dispatch, and catching a robot up.
 
 ## Detection review
@@ -102,6 +123,13 @@ Entries filter by robot, type, priority and review state, and each is **acknowle
 
 Two boundaries are worth planning around. **Alerts stay in the app** — there is no email, SMS, push or phone call — which makes alerting a staffing question as much as a configuration one. And because video is live only, what survives an incident is the detection record and its still image, never a clip.
 
+<Figure
+  src={require('../img/fleet-detection-review.jpg').default}
+  alt="Detection Review in gallery view, showing intrusion and perimeter-compromised detections as images with bounding boxes, each labelled with priority, camera, robot, time and who acknowledged it, beside a summary counting detections by priority and type"
+  size="full"
+  framed
+  caption="Detection review: what was seen, when, by which robot, and who has signed it off." />
+
 [Which events raise an alert](/solution/fleet-management/detection-review#which-events-raise-an-alert) covers the priorities and what the record keeps.
 
 ## Users and roles
@@ -112,6 +140,13 @@ Scope is the second half of the model. Three roles — Observer, Operator and Si
 
 The line that matters most in daily use falls between Observer and Operator: anything that changes what a robot does starts at Operator. The line that matters most in planning falls at Site Admin, because that role both authors a site's map and activates it. If your process needs a second person to approve a map before robots use it, that has to come from your process — the system does not require it.
 
+<Figure
+  src={require('../img/fleet-users-roles.png').default}
+  alt="Tenant management screen listing sites with robot and map counts, and users with their assigned roles and activity"
+  size="full"
+  framed
+  caption="Sites and users in one place, with each person's role and last activity." />
+
 [Roles](/solution/fleet-management/tenant-management#roles) covers all five and what each may do.
 
 ## Audit log
@@ -119,6 +154,13 @@ The line that matters most in daily use falls between Observer and Operator: any
 Actions are recorded in an **append-only** log: entries are added, never changed or removed. Together with detection records, which are stored the same way, it means the two things most likely to be asked about after an incident — what the robot saw, and what people told it to do — are both answerable from records that cannot have been tidied up afterwards.
 
 The Auditor role exists for exactly this: it reads operational and audit logs across every site and can command nothing. A reviewer can be given the whole picture without being given the ability to move a robot.
+
+<Figure
+  src={require('../img/fleet-audit-log.png').default}
+  alt="The audit log filtered to mission events, each row showing a UTC timestamp, category, action, the actor, an outcome of accepted or rejected, and a plain-language description, with CSV and JSON export controls"
+  size="full"
+  framed
+  caption="The audit trail: who did what, when, and whether it was accepted or refused." />
 
 [The audit log](/solution/fleet-management/tenant-management#the-audit-log) covers it alongside the roles that can read it.
 
