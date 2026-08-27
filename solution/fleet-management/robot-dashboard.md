@@ -23,8 +23,10 @@ One robot on one screen. The view is laid out so that judging a running mission 
 | **Camera feeds** | Live feeds from the robot's cameras, each labelled, any of which can be brought into focus |
 | **Operations** | The mission running now, how many are scheduled, and a running log of what the robot has reported |
 | **Telemetry** | The readings the robot makes about itself — see below |
-| **Alerts** | What has been raised for this robot over a recent window; the durable record is in [Detection review](/solution/fleet-management/detection-review) |
+| **Alerts** | What has been raised for this robot over a window you choose — 12 hours by default, adjustable from 1 to 48. The durable record is in [Detection review](/solution/fleet-management/detection-review) |
 | **Control** | The robot's current mode, and the controls to intervene |
+
+**The main view area shows one or the other.** A **Map / Cameras** toggle decides whether the navigation map or the camera feeds take the large panel, with the other moving aside. An operator watching a robot drive can give the space to the feeds; one checking progress against the building can give it to the map. Which of the two opens by default is a per-user preference.
 
 **Localisation is worth watching.** A robot that is not localised does not know where it is on the map, so map-relative work — dispatching a mission, sending it home — has nothing to work from until it does.
 
