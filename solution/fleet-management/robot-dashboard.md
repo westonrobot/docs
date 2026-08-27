@@ -77,10 +77,15 @@ Two separate things are at work in that second case, and it is worth keeping the
 
 ## Common questions
 
-| Question | Answer |
-| --- | --- |
-| **Can two people drive the same robot?** | No. Control is held under a lease, and only one person holds it at a time. |
-| **The camera panel is empty** | The robot is not connected. Feeds are live, so there is nothing to show for a robot that is not reporting in. Check the heartbeat reading in telemetry. |
-| **Why did teleoperation stop on its own?** | Teleoperation stops the robot when the connection to the fleet degrades. That is deliberate — driving a robot you cannot see is worse than stopping it. |
-| **The dispatch and Go Home controls are unavailable** | Either the emergency stop is engaged, or the robot is behind the map the fleet has activated. The second is the more common; catching it up restores them. |
+**Can two people drive the same robot?**  
+No. Control is held under a lease, and only one person holds it at a time.
+
+**The camera panel is empty**  
+The robot is not connected. Feeds are live, so there is nothing to show for a robot that is not reporting in. Check the heartbeat reading in telemetry.
+
+**Why did teleoperation stop on its own?**  
+Teleoperation stops the robot when the connection to the fleet degrades. That is deliberate — driving a robot you cannot see is worse than stopping it.
+
+**The dispatch and Go Home controls are unavailable**  
+Either the emergency stop is engaged, or the robot is behind the map the fleet has activated. The second is the more common; catching it up restores them.
 

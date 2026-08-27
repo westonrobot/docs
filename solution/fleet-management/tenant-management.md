@@ -80,11 +80,18 @@ Entries filter by category, by outcome — including a failures-only view — by
 
 ## Common questions
 
-| Question | Answer |
-| --- | --- |
-| **Can someone have different roles at different sites?** | Yes, for the three per-site roles. Observer, Operator and Site Admin are assigned per site, so someone can be an Operator at one and an Observer at another. Auditor and Tenant Administrator apply across the whole tenant at once. |
-| **We activated a map but the robots are still using the old one** | A new map arrives as a draft and has to be activated before robots are given it. Until then they keep the map they already have, so a robot never changes map part-way through a job. If a robot is still behind after activation, it catches up when it confirms the new map — see [How a map reaches a robot](#how-a-map-reaches-a-robot). |
-| **Who can activate a map?** | A Site Admin for that site, or a Tenant Administrator. The Deployment Toolbox cannot activate a map at all — it publishes a draft, and activation happens here. |
-| **Can an Auditor stop a robot in an emergency?** | No. The Auditor role is read-only by design. Anyone who may need to intervene needs Operator at that site. |
-| **Why is an action I know was attempted missing from the log?** | Check the category and date filters first, and the fleet and tenant tabs — the two hold different kinds of entry. If an entry still appears to be missing, raise it, since a gap in an append-only trail is worth investigating. |
+**Can someone have different roles at different sites?**  
+Yes, for the three per-site roles. Observer, Operator and Site Admin are assigned per site, so someone can be an Operator at one and an Observer at another. Auditor and Tenant Administrator apply across the whole tenant at once.
+
+**We activated a map but the robots are still using the old one**  
+A new map arrives as a draft and has to be activated before robots are given it. Until then they keep the map they already have, so a robot never changes map part-way through a job. If a robot is still behind after activation, it catches up when it confirms the new map — see [How a map reaches a robot](#how-a-map-reaches-a-robot).
+
+**Who can activate a map?**  
+A Site Admin for that site, or a Tenant Administrator. The Deployment Toolbox cannot activate a map at all — it publishes a draft, and activation happens here.
+
+**Can an Auditor stop a robot in an emergency?**  
+No. The Auditor role is read-only by design. Anyone who may need to intervene needs Operator at that site.
+
+**Why is an action I know was attempted missing from the log?**  
+Check the category and date filters first, and the fleet and tenant tabs — the two hold different kinds of entry. If an entry still appears to be missing, raise it, since a gap in an append-only trail is worth investigating.
 

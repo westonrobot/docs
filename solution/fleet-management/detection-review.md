@@ -56,10 +56,15 @@ An event type the platform has not been told about is recorded at lowest priorit
 
 ## Common questions
 
-| Question | Answer |
-| --- | --- |
-| **Something was detected but nobody was alerted** | Check which priority that event type carries in the table above. High and above alerts; anything below is recorded without alerting anyone. Alerts also appear in the app, so someone needs it open. |
-| **What is an "Unclassified detection"?** | An event of a type the platform has not been told about. It is recorded at lowest priority and appears in the same list, so an integration can add event types without changing what alerts. |
-| **Can I get the video of a detection?** | Camera feeds are live. The still image kept with the detection is what survives, and it is what a review works from. |
-| **Can a detection be corrected or removed?** | Records cannot be edited or deleted. Add a reviewer note instead — notes are appended, so the original and the correction both remain. |
+**Something was detected but nobody was alerted**  
+Check which priority that event type carries in the table above. High and above alerts; anything below is recorded without alerting anyone. Alerts also appear in the app, so someone needs it open.
+
+**What is an "Unclassified detection"?**  
+An event of a type the platform has not been told about. It is recorded at lowest priority and appears in the same list, so an integration can add event types without changing what alerts.
+
+**Can I get the video of a detection?**  
+Camera feeds are live. The still image kept with the detection is what survives, and it is what a review works from.
+
+**Can a detection be corrected or removed?**  
+Records cannot be edited or deleted. Add a reviewer note instead — notes are appended, so the original and the correction both remain.
 
