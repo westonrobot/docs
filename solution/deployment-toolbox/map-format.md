@@ -56,8 +56,11 @@ The graph is not the whole artifact. What travels to the fleet is a **map bundle
 
 | Layer | What it is |
 | --- | --- |
-| **The TMG graph** | The nodes, segments, zones and levels above |
-| **The point cloud** | The scan the map was authored against |
-| **The costmap** | The grid the robot uses to judge what it can drive over |
+| **Navigation graph** | The nodes, segments, zones and levels above — the TMG document |
+| **Point cloud** | The scan the map was authored against |
+| **Occupancy grid** | A flat grid of what is free and what is blocked, one per level, in the standard ROS format |
+| **Reference image** | An optional floor plan or similar, one per level, serving the same underlay role |
 
-The costmap travels with the map rather than being drawn by hand. Keeping all three together is what lets someone open a published map later and edit it against the same scan it was built from, rather than guessing.
+The occupancy grid is generated rather than drawn by hand, and it does double duty: a robot loads it to judge what it can drive over, and the editor and inspector draw it as the floor beneath the graph.
+
+Keeping the layers together is what lets someone open a published map later and edit it against the same scan it was built from, rather than guessing. They are not equally essential, though — **the graph is the map**, and a bundle whose occupancy layer is missing still opens as a usable navigation graph, with the absent underlay reported rather than the whole map refused.

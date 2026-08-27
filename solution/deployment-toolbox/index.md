@@ -19,9 +19,26 @@ Key features of the toolbox are summarized in the table below, and each is cover
 | **Map editor** | Turns a 3D scan of a site into the map robots navigate by |
 | **Map inspector** | Opens a map to examine it and check that routes solve |
 
+## Map layers
+
+A site map is not one file. What travels between the Toolbox and the fleet is a **bundle** of layers, and each answers a different question.
+
+| Layer | What it is | Where it is used |
+| --- | --- | --- |
+| **Navigation graph** | The TMG document: nodes, segments, zones and levels | What the robot navigates by, and what the fleet reads a site's waypoints and routes from |
+| **Point cloud** | The 3D scan the map was authored against | Loaded back into the editor, so a later revision is drawn against the same scan |
+| **Occupancy grid** | A flat grid of what is free and what is blocked, one per level | Loaded by the robot, and drawn beneath the graph as the ground it sits on |
+| **Reference image** | A floor plan or similar picture, one per level | The same underlay role, where a drawing reads better than a scan |
+
+**The graph is the map; the rest is the ground it was drawn over.** That separation is deliberate, and it shows: a bundle whose occupancy layer is missing still opens as a usable navigation graph, with the absent underlay reported rather than the whole map refused.
+
+The occupancy grid is in the standard ROS format, which is what lets the same file serve both purposes — a robot loads it to judge what it can drive over, and the editor and inspector draw it as the floor beneath the graph.
+
+One surface is computed rather than stored. The **height grid** is derived from the point cloud against the level being edited, and it is what surface snapping uses to settle a node onto the floor. It exists while you work and is not something the bundle carries.
+
 ## What a site map contains
 
-The map format is **TMG** — Topometric Navigation Graph, a Weston Robot specification. It exists because the formats already available describe a *space* without describing what is *allowed to happen* in it.
+The navigation graph is where a map's meaning lives, and its format is **TMG** — Topometric Navigation Graph, a Weston Robot specification. It exists because the formats already available describe a *space* without describing what is *allowed to happen* in it.
 
 | Element | What it is |
 | --- | --- |
