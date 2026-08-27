@@ -28,15 +28,10 @@ A site map is not one file. What travels between the Toolbox and the fleet is a 
 | **Navigation graph** | The TMG document: nodes, segments, zones and levels | What the robot navigates by, and what the fleet reads a site's waypoints and routes from |
 | **Point cloud** | The 3D scan the map was authored against | Loaded back into the editor, so a later revision is drawn against the same scan |
 | **Occupancy grid** | A flat grid of what is free and what is blocked, one per level | Drawn beneath the graph, so its nodes, segments and zones can be read against the building |
-| **Reference image** | A floor plan or similar picture, one per level | The same underlay role, where a drawing reads better than a scan |
 
-The graph is written in **TMG** — Topometric Navigation Graph, a map specification Weston Robot defines and publishes. It is *topometric* because it carries both the topology, meaning which places connect to which, and the metric detail, meaning exactly where each of them is.
+The graph is written in **TMG** — Topometric Navigation Graph, a map specification Weston Robot defines and publishes. It is *topometric* because it carries both the topology, meaning which places connect to which, and the metric detail, meaning exactly where each of them is. **The graph is the map; the rest is the ground it was drawn over** — a separation that shows in practice, since a bundle whose occupancy layer is missing still opens as a usable navigation graph, with the absent underlay reported rather than the whole map refused.
 
-**The graph is the map; the rest is the ground it was drawn over.** That separation is deliberate, and it shows: a bundle whose occupancy layer is missing still opens as a usable navigation graph, with the absent underlay reported rather than the whole map refused.
-
-**The occupancy grid is there to be looked at.** Today it serves visualisation: the fleet and the toolbox draw it under the graph so a node or a zone can be related to the floor plan it sits on, rather than read as coordinates. A robot navigates from the graph.
-
-One surface is computed rather than stored. The **height grid** is derived from the point cloud against the level being edited, and it is what surface snapping uses to settle a node onto the floor. It exists while you work and is not something the bundle carries.
+The occupancy grid's role today is visualisation: the fleet and the toolbox draw it under the graph so a node or a zone can be related to the floor plan it sits on rather than read as bare coordinates, while a robot navigates from the graph. One further surface is computed rather than stored — the **height grid**, derived from the point cloud against the level being edited, is what surface snapping uses to settle a node onto the floor, and it exists only while you are working.
 
 ## What a site map contains
 
@@ -78,11 +73,9 @@ The inspector opens a map — from the fleet or from a file — and lets you exa
 
 ## Publishing to the fleet
 
-A finished map leaves the editor at its last stage, and what happens to it then is a handover rather than a third tool.
+A finished map leaves the editor at its last stage, and what happens to it then is a handover rather than a third tool. **The Deployment Toolbox never talks to robots** — it pushes a map into the Fleet Management System, and robots are updated from there; there is no path from this tool to a machine in the field.
 
-**The Deployment Toolbox never talks to robots.** It pushes a map into the Fleet Management System, and robots are updated from there — there is no path from this tool to a machine in the field.
-
-A pushed map arrives as a **draft revision**. Someone in Fleet Management then **publishes** it and **activates** it; activation is what puts a map in front of robots. The Toolbox can take neither of those steps.
+A pushed map arrives as a **draft revision**. Someone in Fleet Management then **publishes** it and **activates** it, and activation is what puts a map in front of robots — the Toolbox can take neither of those steps.
 
 [Publishing to the fleet](/solution/deployment-toolbox/publishing) covers what the push asks for, why the change summary matters, and what activation costs a robot.
 

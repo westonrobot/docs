@@ -59,7 +59,6 @@ The graph is not the whole artifact. What travels to the fleet is a **map bundle
 | **Navigation graph** | The nodes, segments, zones and levels above — the TMG document |
 | **Point cloud** | The scan the map was authored against |
 | **Occupancy grid** | A flat grid of what is free and what is blocked, one per level, in the standard ROS format |
-| **Reference image** | An optional floor plan or similar, one per level, serving the same underlay role |
 
 **The occupancy grid is there to be looked at.** Today its role is visualisation: the fleet and the toolbox draw it under the graph so a node or a zone can be related to the floor plan it sits on rather than read as bare coordinates. It is generated rather than drawn by hand, and a robot navigates from the graph, not from this.
 
