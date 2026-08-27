@@ -33,9 +33,3 @@ Navigation and mapping material that exists today lives under Guides:
 ## Retired
 
 The **[Assisted Driving Toolbox](/solution/adt/intro)** has been withdrawn and is no longer developed or supported. Teleoperation is now part of the Fleet Management System. Its page is kept so existing links still lead somewhere, and for anyone still running it.
-
-## What each solution page covers
-
-A solution is a system we deploy and you operate, so its page is documented rather than summarised. Sections are named for what they explain — how the pieces fit together, who may do what, what happens during a mission — because the point is to understand how the system behaves, not to look a single fact up. Every page ends with known limitations and how to reach us.
-
-The retired Assisted Driving Toolbox page follows an older shape, built around installing and running a client, with its versions as tabs on one page.
