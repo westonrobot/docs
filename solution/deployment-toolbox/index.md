@@ -16,8 +16,8 @@ Key features of the toolbox are summarized in the table below, and each is cover
 
 | Feature | What it gives you |
 | --- | --- |
-| **Map editor** | Turns a 3D scan into a site map: clean the scan, set its levels, then place the nodes, segments and zones the robot reasons about |
-| **Map inspector** | Opens a map without editing it — its layers and elements, and whether a route between two points actually solves |
+| **Map editor** | Turns a 3D scan of a site into the map robots navigate by |
+| **Map inspector** | Opens a map to examine it and check that routes solve |
 
 ## What a site map contains
 
