@@ -25,14 +25,14 @@ flowchart LR
 
 The **site map** ties these parts together, and it travels one way: the Deployment Toolbox publishes it here, and robots receive it from here once an administrator activates it. The Toolbox never reaches a robot directly. 
 
-## Key features
+Key features of the system are summarized in the table below, and each is covered in its own section.
 
 | Feature | What it gives you |
 | --- | --- |
 | **Fleet overview** | Every site and robot, with live status |
+| **Robot dashboard** | Position on the site map, telemetry, camera feeds, health and activity |
+| **Robot teleoperation** | Drive a robot from the browser, plus emergency stop, docking and posture commands — one operator at a time |
 | **Mission planning** | Build missions from waypoints, the routes between them and a schedule; reuse them across sites |
-| **Live monitoring** | Position on the site map, telemetry, camera feeds, health and activity |
-| **Direct control** | Emergency stop, teleoperation, docking and posture commands — one operator at a time |
 | **Detection review** | Everything the robots detected, filterable and reviewable, kept as a record that cannot be edited or deleted |
 | **Users and roles** | Who may watch, who may command, who may change a site |
 | **Audit log** | An append-only record of who did what |
@@ -48,6 +48,26 @@ The dashboard is the entry point: sites down the side, robots grouped by site, a
   framed
   caption="The fleet dashboard — every site and robot, with current status." />
 
+## Robot dashboard
+
+Opening a robot from the fleet overview gives you that one robot on one screen. It is where an operator spends their time, and it is built to answer "what is this robot doing, and is it all right?" without switching between views.
+
+What you can see:
+
+- **Where it is** — its position and heading on the site map.
+- **What it can see** — live feeds from its cameras.
+- **What it is doing** — the mission running now, and what is scheduled next.
+- **How it is holding up** — **telemetry**, the readings a robot reports about itself, such as battery level and temperature.
+- **What has been raised** — alerts for this robot; the full record lives in [Detection review](/solution/fleet-management/detection-review).
+
+[What is on the screen](/solution/fleet-management/robot-dashboard#what-is-on-the-screen) covers each panel in turn, and how battery level and connection loss change a running mission.
+
+## Robot teleoperation
+
+Control is taken deliberately and held under a **lease** — an exclusive claim on that robot — so only one person drives at a time. **Teleoperation** means driving the robot yourself from the browser; alongside it sit emergency stop, set home, and a Commands tab carrying docking and posture commands.
+
+[Taking control](/solution/fleet-management/robot-dashboard#taking-control) covers the controls and the safeguards on teleoperation.
+
 ## Mission planning
 
 A **mission** is an ordered list of places on the site map, what the robot does at each of them, and when it should run. Missions are built in the browser, kept in a library, and reused across sites, so a second site starts from the first rather than from nothing.
@@ -55,18 +75,6 @@ A **mission** is an ordered list of places on the site map, what the robot does 
 Missions reference the site map, so a robot must be on the map the fleet has activated before its missions can be edited or dispatched.
 
 [Building a mission](/solution/fleet-management/mission-editing#building-a-mission) covers checkpoints and the actions they carry, schedules, saved locations, Quick Dispatch, and what happens when a robot is behind the activated map.
-
-## Live monitoring
-
-The robot view puts one robot on one screen: its position on the site map, live camera feeds, **telemetry** — the readings a robot reports about itself, such as battery level and temperature — the current mission, and any alerts raised for it.
-
-[What is on the screen](/solution/fleet-management/robot-dashboard#what-is-on-the-screen) covers each panel, and how battery level and connection loss change a running mission.
-
-## Direct control
-
-Control is taken deliberately and held under a **lease** — an exclusive claim on that robot — so only one person drives at a time. The controls are emergency stop, **teleoperation** (driving the robot yourself from the browser), set home, and a Commands tab carrying docking and posture commands.
-
-[Taking control](/solution/fleet-management/robot-dashboard#taking-control) covers the controls and the safeguards on teleoperation.
 
 ## Detection review
 
