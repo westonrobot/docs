@@ -48,8 +48,8 @@ const FAMILIES = [
   },
   {
     to: '/solution/intro',
-    src: require('@site/solution/adt/img/adt/adt_v3_04.png').default,
-    alt: 'Solutions',
+    src: require('@site/solution/img/fleet-cover.jpg').default,
+    alt: 'The robot dashboard: the site map with the robot on it, live camera feeds, telemetry and the control panel',
     title: 'Solutions',
     body: 'Capabilities we deploy on a platform',
   },
@@ -109,7 +109,7 @@ export default function Home(): React.ReactNode {
     <Layout
       title={siteConfig.title}
       wrapperClassName="homepage"
-      description="Setup, interfaces and support for Weston Robot platforms, peripherals and systems.">
+      description="Set up, run and support Weston Robot robots, peripherals, systems and software.">
       <div className={styles.page}>
         <header className={styles.hero}>
           <div className="container">
@@ -117,7 +117,7 @@ export default function Home(): React.ReactNode {
               Weston Robot Documentation
             </Heading>
             <p className={styles.heroSubtitle}>
-              Setup, interfaces and support for the hardware you own.
+              Set up, run and support the robots and software we deliver.
             </p>
           </div>
         </header>

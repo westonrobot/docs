@@ -158,6 +158,11 @@ div:has(> .markdown table) {
 img.medium-zoom-image--opened {
   max-height: none;
   max-width: none;
+  /* The opened image is moved out of `.markdown`, so it no longer inherits the
+     `object-fit: contain` above and would otherwise fall back to `fill`. Belt
+     and braces: figures now keep their aspect ratio by construction, but an
+     image reaching zoom by another route must not be stretched either. */
+  object-fit: contain;
 }
 
 /* Images inside table cells are thumbnails — the diagnostics guides use tables
@@ -175,6 +180,14 @@ img.medium-zoom-image--opened {
   max-height: none;
   border: none;
   background: none;
+}
+
+/* Centre a diagram in the column. Mermaid sizes its SVG to the content, so a
+   small graph rendered in a wide column sat flush left with a third of the
+   column empty beside it — which reads as a layout bug rather than a diagram. */
+.markdown .docusaurus-mermaid-container svg {
+  display: block;
+  margin-inline: auto;
 }
 
 /* ---------------------------------------------------------------------------

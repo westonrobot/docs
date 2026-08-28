@@ -4,6 +4,8 @@
 # Production
 /build
 
+.playwright-mcp/
+
 # Generated files
 .docusaurus
 .cache-loader
@@ -18,6 +20,13 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Video masters. Any `video/raw/` folder holds camera originals; the re-encodes
+# beside it are what ships. Masters stay out of git because history is
+# permanent — committing them and re-encoding later leaves both copies in the
+# pack forever, and this repo is already ~350 MB. They are therefore NOT backed
+# up by git: keep a copy somewhere else.
+**/video/raw/
 
 .vscode/
 # Claude Code config/instructions — not site content

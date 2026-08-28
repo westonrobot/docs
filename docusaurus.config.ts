@@ -115,7 +115,10 @@ const config: Config = {
         // The plugin does not honour `unlisted: true` front matter, so an
         // unlisted page still turns up in site search unless named here.
         // Keep this in step with any page carrying that flag.
-        excludeRoutes: ['**/robot/ugv/ranger-mini-v2']
+        excludeRoutes: [
+          '**/robot/ugv/ranger-mini-v2',
+          '**/solution/adt/intro',
+        ]
       }
     ],
     [

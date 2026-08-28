@@ -2,6 +2,7 @@ import MDXComponents from '@theme-original/MDXComponents';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import {Figure, FigureGrid} from '@site/src/components/Figure';
+import {Video} from '@site/src/components/Video';
 import {Split} from '@site/src/components/Split';
 import {ProductCard, ProductGrid} from '@site/src/components/ProductCard';
 import {KeyPoint, KeyPoints} from '@site/src/components/KeyPoint';
@@ -17,6 +18,7 @@ export default {
   ...MDXComponents,
   Figure,
   FigureGrid,
+  Video,
   Split,
   ProductCard,
   ProductGrid,
