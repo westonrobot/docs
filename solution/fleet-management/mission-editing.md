@@ -43,6 +43,16 @@ The Mission Editor opens on a named robot and works against that robot's site ma
   framed
   caption="The editor: details on the left with the route map beneath, the checkpoint list on the right, and review and save at the bottom." />
 
+The recording below builds a two-checkpoint patrol from an empty editor through to saving it, so the three stages can be seen as one continuous piece of work. The sections that follow are the reference for each stage.
+
+<Video
+  src={require('../video/mission_creation.mp4').default}
+  poster={require('../video/mission_creation.poster.jpg').default}
+  title="A patrol mission built end to end in the Mission Editor: naming it, choosing the patrol kind, placing two checkpoints on the route map, setting a heading, adding an action, and saving with a change note"
+  size="full"
+  framed
+  caption="Building a patrol end to end. Two minutes and a half; use fullscreen to read the panels." />
+
 ### 1 · Details
 
 The mission's **name** is required and a **description** is optional. This is also where you choose whether it is a patrol or an errand.
@@ -138,6 +148,14 @@ Authoring a mission does not put it on a robot. Missions are **sent** to the rob
 The order above is the order the badge itself uses when more than one is true, and it is ordered by what you would have to do about it — nothing can be believed while the robot is offline, so that outranks everything else.
 
 To **dispatch** a mission is to hand it to a named robot to run, on demand or on its schedule. A robot can also be sent somewhere once, with no mission at all — that is **Quick Dispatch**, on the map toolbar of the robot's own view. Use it for a one-off; use a mission for anything you will want again.
+
+<Video
+  src={require('../video/quick_dispatch.mp4').default}
+  poster={require('../video/quick_dispatch.poster.jpg').default}
+  title="Quick Dispatch sent from a robot's own view: picking a point on the navigation map, dispatching, and watching the run appear in Operations and the activity log while the robot drives"
+  size="full"
+  framed
+  caption="Quick Dispatch, sent from the robot's own view. The run appears in Operations and the log as it goes." />
 
 Missions reference the site map, so a robot must be on the map the fleet has activated before its missions can be edited or dispatched. [Catching a robot up to the map](/solution/fleet-management/tenant-management#catching-a-robot-up-to-the-map) covers what to do when it is not.
 

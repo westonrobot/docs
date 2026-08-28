@@ -30,3 +30,10 @@ CLAUDE.md
 .claude/skills/*
 !.claude/skills/vendor-interface-summary/
 !.claude/skills/vendor-interface-summary/**
+
+# Camera-original screen recordings. The re-encodes beside them are what ships
+# (native resolution, CRF 32 — roughly a third of the size at a difference you
+# cannot see at fullscreen). Masters stay out of git because history is
+# permanent: committing 18 MB and re-encoding later leaves both copies in the
+# pack forever. Keep them backed up somewhere outside this repo.
+solution/video/raw/

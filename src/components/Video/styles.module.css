@@ -1,0 +1,41 @@
+.video {
+  margin: 1.5rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+/* Same reasoning as Figure's img rule: `width: auto` keeps the element box at
+   the media's own aspect ratio, so a height cap elsewhere cannot produce a box
+   whose shape differs from the picture inside it. `max-width: 100%` keeps a
+   wide capture inside its column. */
+.video video {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 6px;
+  /* Until the poster loads there is nothing to paint; a neutral ground reads
+     better than the black the UA would otherwise use, since every capture here
+     is of a light-themed UI. */
+  background: var(--ifm-background-surface-color);
+}
+
+.framed video {
+  border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.video figcaption {
+  font-size: 0.87rem;
+  line-height: 1.5;
+  color: var(--ifm-color-emphasis-700);
+  text-align: center;
+  max-width: 60ch;
+}
+
+/* Mirrors Figure's named widths. `sm` is deliberately absent — a 260px video
+   is unreadable, and offering the size would invite it. */
+.md { max-width: 420px; }
+.lg { max-width: 680px; }
+.full { max-width: 100%; }
