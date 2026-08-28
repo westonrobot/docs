@@ -21,6 +21,13 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Video masters. Any `video/raw/` folder holds camera originals; the re-encodes
+# beside it are what ships. Masters stay out of git because history is
+# permanent — committing them and re-encoding later leaves both copies in the
+# pack forever, and this repo is already ~350 MB. They are therefore NOT backed
+# up by git: keep a copy somewhere else.
+**/video/raw/
+
 .vscode/
 # Claude Code config/instructions — not site content
 .claude/*
@@ -30,10 +37,3 @@ CLAUDE.md
 .claude/skills/*
 !.claude/skills/vendor-interface-summary/
 !.claude/skills/vendor-interface-summary/**
-
-# Camera-original screen recordings. The re-encodes beside them are what ships
-# (native resolution, CRF 32 — roughly a third of the size at a difference you
-# cannot see at fullscreen). Masters stay out of git because history is
-# permanent: committing 18 MB and re-encoding later leaves both copies in the
-# pack forever. Keep them backed up somewhere outside this repo.
-solution/video/raw/
