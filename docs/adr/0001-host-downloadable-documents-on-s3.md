@@ -38,9 +38,13 @@ The docs site links out to documents that are not part of the site: product manu
 
 **D7. The four Google Drive links migrate with the rest.** They are Weston Robot's own documents on a third-party share URL and carry the same risk.
 
+**D8. Video stays in this repository while it is small and stable; everything else goes to the bucket.** The threshold is 10 MiB per file and 40 MiB across all tracked video, together with a judgement that the clip is not expected to be re-recorded on a release cadence. Keeping small video in-repo is worth doing because `require()` resolves at build time, so a renamed or deleted file is a build failure — the same guarantee `onBrokenLinks: 'throw'` gives internal links, and precisely the guarantee whose absence produced issue #31. Keeping it there indefinitely is not, because git history is permanent: a 3 MB clip re-encoded once per release costs its full size again every time, unreclaimable without a history rewrite. Two costs, two halves of the rule — size and churn.
+
 ## Consequences
 
 Recovering the source files is the blocking step and it is not a code change: someone with M365 tenant access must export the 39 documents from the renamed tenant before anything else can proceed. The WR65 and WRL63 manuals are the urgent ones — unlike the Unitree and AgileX pages there is no vendor site to fall back to, so those two products have no reachable documentation at all today.
+
+D8's size half is enforced by `scripts/check-video-budget.sh`, wired into CI ahead of the Node setup so a breach fails in seconds rather than after a full install and build. Its churn half is a judgement made at review, because expected revision frequency is not mechanically checkable — the check enforces what is checkable and the ADR carries the rest. Raising either limit is an amendment to this document, not an edit to the script; the script says so when it fails.
 
 The site gains a second class of external link that CI must check, since a `files.westonrobot.com` URL is not verified by the Docusaurus build the way an in-repo asset is. D6 covers this, and D4's immutability rule is what keeps the check green over time.
 
@@ -54,13 +58,12 @@ The site gains a second class of external link that CI must check, since a `file
 
 **Cloudflare R2.** Zero egress fees, S3-compatible API, custom domain and CDN built in without wiring a second service — meaningfully cheaper and simpler than S3+CloudFront, and the gap widens as video volume grows. Rejected on operational consistency: the company already runs AWS, already serves files from S3, and already has the IAM, billing, and on-call story for it. Introducing a second storage vendor to save an amount of money that is small at this volume is not a good trade. Worth revisiting if video egress ever becomes a real line item.
 
-**Keep the files in this repository and serve them from GitHub Pages alongside the site.** This has the best safety property of any option on the list: a missing file becomes a build failure rather than a customer-facing 404, which is precisely the guarantee whose absence produced issue #31. Rejected on size. The packed repository is already 351 MiB against a 1 GB practical GitHub limit, product manuals run to tens of MB each, and video would consume the remaining headroom quickly. The property is worth preserving where it is cheap, which is why small shipped video re-encodes stay in-repo for now — see the open item below.
+**Keep the files in this repository and serve them from GitHub Pages alongside the site.** This has the best safety property of any option on the list: a missing file becomes a build failure rather than a customer-facing 404, which is precisely the guarantee whose absence produced issue #31. Rejected on size. The packed repository is already 351 MiB against a 1 GB practical GitHub limit, product manuals run to tens of MB each, and video would consume the remaining headroom quickly. The property is worth preserving where it is cheap, which is why small shipped video re-encodes stay in-repo under D8.
 
 **GitHub Releases as an asset host.** Free, effectively unmetered bandwidth, stable per-tag URLs. Rejected because the URL shape is hostile to a customer reading a manual link, "the current manual" has no natural address, and the identity in the URL is `github.com`'s rather than ours — a weaker form of the same problem as D1.
 
 ## Open
 
-- Whether the shipped video re-encodes should also move out of the repository, or stay in-repo below a size threshold to keep the build-failure guarantee. Not decided; see `TODO.md`.
 - Where video masters are backed up. Out of scope here, since this bucket is for public content — but `.gitignore` records the need and nothing satisfies it yet.
 - The AWS region of the existing bucket was not confirmed; the probe returned no `x-amz-bucket-region` header. With CloudFront in front, origin region matters much less than it does today.
 - Mainland-China performance is deferred by decision, not solved. Neither S3 nor CloudFront serves it well without an ICP-licensed presence.

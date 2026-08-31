@@ -18,7 +18,6 @@ Blocked on the first item; everything below it depends on having the files.
 - [ ] Upload under the path convention in ADR 0001 D4, with `Content-Type` and `Cache-Control` set explicitly at upload.
 - [ ] Rewrite the 48 SharePoint occurrences (34 unique documents, 8 files) to the new URLs.
 - [ ] Rewrite the 4 Google Drive links added by `adce7c6` — `robot/humanoid/g1.md:51`, `robot/quadruped/b2.md:57`, `robot/quadruped/go2.md:53,54`. They are Weston Robot's own documents on opaque third-party share tokens: the same failure class as the SharePoint links, one vendor over.
-- [ ] Decide whether shipped video re-encodes move out of the repo or stay in-repo below a size threshold. In-repo means a broken reference fails the build; external means it does not. Currently 2.7 MB and 3.0 MB against a 351 MiB packed repo. ADR 0001, Open.
 - [ ] Find a home for video masters. `.gitignore` excludes `**/video/raw/` and says they are backed up nowhere; that is still true. Out of ADR 0001's scope, which covers public content only.
 - [ ] Confirm the AWS region of the existing bucket — the probe returned no `x-amz-bucket-region`.
 

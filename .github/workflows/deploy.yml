@@ -17,6 +17,12 @@ jobs:
           # default shallow clone would leave every timestamp wrong or absent.
           fetch-depth: 0
 
+      # ADR 0001 D8. Runs before the Node setup because it needs only git, so a
+      # video that breaches the budget fails in seconds rather than after a full
+      # install and build.
+      - name: Check in-repo video budget
+        run: bash scripts/check-video-budget.sh
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
