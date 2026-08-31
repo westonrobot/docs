@@ -1,6 +1,6 @@
 # File store infrastructure
 
-Terraform for `files.westonrobot.com`. The decision is [ADR 0001](../docs/adr/0001-host-downloadable-documents-on-s3.md); the design and the reasoning are [`docs/design/file-hosting.md`](../docs/design/file-hosting.md).
+Terraform for `files.westonrobot.net`. The decision is [ADR 0001](../docs/adr/0001-host-downloadable-documents-on-s3.md); the design and the reasoning are [`docs/design/file-hosting.md`](../docs/design/file-hosting.md).
 
 **Nothing here has been applied.** It is validated (`terraform validate`, `terraform fmt`) but has never run against an account, so treat the first apply as the real test.
 
@@ -25,7 +25,9 @@ $ terraform plan -out=tf.plan
 $ terraform apply tf.plan
 ```
 
-**Certificate validation is the step that blocks.** With `hosted_zone_id` set, Terraform creates the validation records and waits. Without it, the apply completes with the certificate `PENDING_VALIDATION` and the distribution unusable until someone creates the records by hand — `terraform output certificate_validation_records` prints them. Decide which of those you want before the first apply rather than during it.
+**Certificate validation runs itself.** `hosted_zone_id` defaults to the `westonrobot.net` zone in this account, so Terraform creates the validation records and waits for ACM — no manual DNS step, which is the main reason the hostname is `.net` rather than `.com` (ADR 0001 D1). Expect the apply to sit for a few minutes on validation and again on the CloudFront distribution.
+
+If the hostname is ever moved to a zone this account does not hold, set `hosted_zone_id = ""`. The apply then completes with the certificate `PENDING_VALIDATION` and the distribution unusable until someone adds the records by hand; `terraform output certificate_validation_records` prints them.
 
 Then attach the policies. `terraform output policies` gives three ARNs; wire `upload` and `approve` to Identity Center permission sets rather than to IAM users, and give technicians the bookmark from `terraform output inbox_console_url`.
 

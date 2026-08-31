@@ -151,14 +151,14 @@ class IndexEntries(unittest.TestCase):
             "ContentLength": 12,
             "ContentType": "application/pdf",
         }
-        e = w.index_entry(self.KEY, head, "https://files.westonrobot.com")
+        e = w.index_entry(self.KEY, head, "https://files.westonrobot.net")
         self.assertEqual(e["kind"], "service-manual")  # stored wins over derived
         self.assertEqual(e["sha256"], "abc")
-        self.assertEqual(e["url"], f"https://files.westonrobot.com/{self.KEY}")
+        self.assertEqual(e["url"], f"https://files.westonrobot.net/{self.KEY}")
 
     def test_falls_back_to_the_key(self):
         # The initial bulk load writes objects by hand; they must still index.
-        e = w.index_entry(self.KEY, {}, "https://files.westonrobot.com")
+        e = w.index_entry(self.KEY, {}, "https://files.westonrobot.net")
         self.assertEqual(e["kind"], "user-manual")
         self.assertEqual(e["lang"], "en")
         self.assertEqual(e["version"], "2.3")
@@ -171,3 +171,26 @@ class IndexEntries(unittest.TestCase):
 
 
 KEY_SIDECAR = "robot/wr65/wr65-user-manual-en-v2.3.pdf.sha256"
+
+
+class TheTwoRoutesLandInTheSameShape(unittest.TestCase):
+    """Both front doors leave the object at its published key inside the inbox
+    bucket. Anything else means the promote Lambda has two cases to handle and
+    a reader has two shapes to hold in their head."""
+
+    KEY = "robot/wr65/wr65-user-manual-en-v2.3.pdf"
+
+    def test_script_route(self):
+        # publish-files.py uploads to the key it derived from the local path.
+        derived = w.key_from_upload_path(f"static/_upload/{self.KEY}")
+        self.assertEqual(derived, self.KEY)
+        self.assertEqual(w.key_from_inbox_key(derived), self.KEY)
+
+    def test_console_route(self):
+        self.assertEqual(
+            w.key_from_inbox_key("robot__wr65__user-manual__en__v2.3.pdf"), self.KEY
+        )
+
+    def test_a_stray_inbox_prefix_is_still_tolerated(self):
+        # Someone may create a folder by hand; it should not break promotion.
+        self.assertEqual(w.key_from_inbox_key(f"inbox/{self.KEY}"), self.KEY)

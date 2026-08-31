@@ -7,7 +7,7 @@ review again against the published URL.
 
     static/_upload/robot/wr65/wr65-user-manual-en-v2.3.pdf
       local  /_upload/robot/wr65/wr65-user-manual-en-v2.3.pdf
-      served https://files.westonrobot.com/robot/wr65/wr65-user-manual-en-v2.3.pdf
+      served https://files.westonrobot.net/robot/wr65/wr65-user-manual-en-v2.3.pdf
 
 The two differ only by prefix, so substituting one for the other is a string
 swap rather than a rewrite.
@@ -37,7 +37,7 @@ LOCAL_PREFIX = f"/{wrfiles.UPLOAD_DIR}/"
 CONTENT_DIRS = ("robot", "solution", "peripheral", "system", "tutorial", "support")
 PAGE_SUFFIXES = (".md", ".mdx")
 
-DEFAULT_BASE_URL = os.environ.get("WR_FILES_BASE_URL", "https://files.westonrobot.com")
+DEFAULT_BASE_URL = os.environ.get("WR_FILES_BASE_URL", "https://files.westonrobot.net")
 DEFAULT_INBOX = os.environ.get("WR_FILES_INBOX_BUCKET", "wr-files-inbox")
 
 
@@ -145,7 +145,11 @@ def main() -> int:
 
     s3 = boto3.client("s3")
     for item in todo:
-        inbox_key = f"inbox/{item['key']}"
+        # The object lands at the published key, in the inbox bucket — no
+        # `inbox/` prefix inside a bucket already called that. It matters that
+        # this matches where the console route drops a file: two front doors
+        # that leave objects in different shapes are two things to reason about.
+        inbox_key = item["key"]
         print(f"\nuploading {item['key']}")
         s3.upload_file(str(item["path"]), args.inbox_bucket, inbox_key)
         if args.approve:

@@ -7,13 +7,13 @@ variable "region" {
 variable "domain_name" {
   description = "The customer-facing hostname. This is the contract (ADR 0001 D1); everything else in this file is replaceable."
   type        = string
-  default     = "files.westonrobot.com"
+  default     = "files.westonrobot.net"
 }
 
 variable "hosted_zone_id" {
-  description = "Route 53 zone for domain_name. Leave empty to skip DNS and certificate validation records, which is what you want when the zone is managed elsewhere."
+  description = "Route 53 zone for domain_name. westonrobot.net lives in this account, so the default lets Terraform create the certificate validation records and the alias itself. Set to \"\" for a domain whose DNS is managed elsewhere — westonrobot.com is on Cloudflare, and would need both records added by hand."
   type        = string
-  default     = ""
+  default     = "Z016356211Y82HTRJIPRB"
 }
 
 variable "bucket_prefix" {

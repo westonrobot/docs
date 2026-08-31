@@ -59,7 +59,7 @@ if [ "$failed" -ne 0 ]; then
 
 ADR 0001 D8: video stays in the repository only while it is small and stable.
 Git history is permanent, so every re-encode of a tracked video costs its full
-size forever. Move the offending file to files.westonrobot.com and reference it
+size forever. Move the offending file to files.westonrobot.net and reference it
 by URL, or re-encode it smaller.
 
 Raising the limit is a decision, not a fix — amend ADR 0001 D8 if that is what

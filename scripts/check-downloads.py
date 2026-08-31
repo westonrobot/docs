@@ -29,7 +29,7 @@ REPO = pathlib.Path(__file__).resolve().parent.parent
 LOCAL_REF = re.compile(r"[\"'(]\s*(/_upload/[^\s\"')]+)")
 DOWNLOADS_TAG = re.compile(r"<Downloads\b([^>]*?)/?>", re.S)
 ATTR = re.compile(r'(\w+)\s*=\s*"([^"]*)"')
-BASE_URL = os.environ.get("WR_FILES_BASE_URL", "https://files.westonrobot.com")
+BASE_URL = os.environ.get("WR_FILES_BASE_URL", "https://files.westonrobot.net")
 # A staged reference can hide in a component as easily as in a page, so the
 # local-reference scan covers source too. `<Downloads>` queries are only ever
 # authored in content — scanning source as well would match this repository's
