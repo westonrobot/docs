@@ -18,7 +18,7 @@ Blocked on the first item; everything below it depends on having the files. `doc
 - [ ] Upload under the path convention in ADR 0001 D4, with `Content-Type` and `Cache-Control` set explicitly at upload.
 - [ ] Rewrite the 48 SharePoint occurrences (34 unique documents, 8 files) to the new URLs.
 - [ ] Rewrite the 4 Google Drive links added by `adce7c6` — `robot/humanoid/g1.md:51`, `robot/quadruped/b2.md:57`, `robot/quadruped/go2.md:53,54`. They are Weston Robot's own documents on opaque third-party share tokens: the same failure class as the SharePoint links, one vendor over.
-- [ ] Build the publish script — scan `_upload/`, parse the naming convention, checksum, upload to the inbox, substitute the published URL in the page. Phase 2; needs the bucket to exist first, so not startable yet. A Claude Code skill wraps it; the script must run standalone for CI and for anyone without the skill.
+- [ ] Build the publish script — walk `_upload/`, derive each key by stripping the `_upload/` root, checksum, skip anything whose digest already matches the index, upload the rest to the inbox, substitute the published URL in the page. Phase 2; needs the bucket to exist first, so not startable yet. A Claude Code skill wraps it; the script must run standalone for CI and for anyone without the skill.
 - [ ] Find a home for video masters. `.gitignore` excludes `**/video/raw/` and says they are backed up nowhere; that is still true. Out of ADR 0001's scope, which covers public content only.
 
 ## Site infrastructure

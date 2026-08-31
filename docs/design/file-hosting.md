@@ -66,7 +66,7 @@ Within `wr-files-prod`, prefixes carry the structure: `/robot/...`, `/solution/.
 **The source of truth is the bucket.** A document's metadata lives on the object itself, set at the moment it is promoted:
 
 ```
-s3://wr-files-prod/robot/manipulator/wr65/wr65-user-manual-en-v2.3.pdf
+s3://wr-files-prod/robot/wr65/wr65-user-manual-en-v2.3.pdf
   Content-Type:  application/pdf
   Cache-Control: public, max-age=31536000, immutable
   x-amz-meta-title:    WR65 User Manual
@@ -111,7 +111,9 @@ A document is usually received or written by the same person editing the page th
 
 So the engineer's path starts in the working tree:
 
-1. **Drop the file into the `_upload/` directory beside the page.** These directories are gitignored, exactly as `**/video/raw/` already is, so the bytes never enter history. The leading underscore also keeps Docusaurus from treating the directory as routable content.
+1. **Drop the file into `_upload/`, at the path it will occupy in the store.** `_upload/robot/wr65/wr65-user-manual-en-v2.3.pdf` publishes to exactly that path — the script derives the key by stripping the `_upload/` root, so the local tree is a preview of the bucket and a misfiled document is visible by eye before it is uploaded rather than after. The directory is gitignored, exactly as `**/video/raw/` already is, so the bytes never enter history, and the leading underscore keeps Docusaurus from treating it as routable content.
+
+   **There is no `pending/` or `done/` subdirectory, deliberately.** The script compares each local digest against the published index, so it already knows what is outstanding and re-running it is a no-op for anything published. State directories would have to be kept in step by hand, and the one thing a gitignored tree cannot offer is a guarantee that anyone did.
 
    The name is deliberate. It is not `_publish/`, because dropping a file there does not publish it — it stages it for the upload step, and approval still stands between that and a customer. Naming the directory after the verb it actually performs keeps the distinction in §3 visible at the point where someone is most likely to forget it.
 2. **Reference it locally and build.** `npm start` and a local build show the real page with the real document attached — which is the point, and the thing no console-first flow can offer.
@@ -159,15 +161,21 @@ That is a genuinely small grant. "Can add a file to one bucket" is not high acce
 2. **A presigned upload page.** The technician holds no AWS identity at all; a small endpoint mints a presigned POST, which can additionally cap content length and constrain content type. The catch is that the endpoint still has to know who the technician is, so this moves the identity problem rather than removing it — worth it only where there is already an internal login to hook into.
 3. **SFTP through AWS Transfer Family.** Field staff know WinSCP and FileZilla, which is a real advantage. Rejected on cost: the endpoint bills per hour whether or not anyone uploads, which is heavily disproportionate to a handful of files a month. *Rate to confirm before dismissing it permanently.*
 
-**Name the file so the metadata can be inferred**: `<product>__<kind>__<lang>__v<version>.<ext>`, for example `wr65__manual__en__v2.3.pdf`. Renaming before dropping the file is the only convention a technician has to learn, and it is what lets the approve step present a ready-made record rather than a form to fill in. A file that does not parse is held in the inbox and reported, never guessed at.
+**Name the file so the metadata can be inferred**: `<section>__<product>__<kind>__<lang>__v<version>.<ext>`, for example `robot__wr65__manual__en__v2.3.pdf`. Those are the same segments an engineer expresses as directories (§4); the flat inbox has no path to carry them, so the filename does. Renaming before dropping the file is the only convention a technician has to learn, and it is what lets the approve step present a ready-made record rather than a form to fill in. A file that does not parse is held in the inbox and reported, never guessed at.
 
 ## 4. Identity and paths
 
-The path convention is ADR 0001 D4. Two operational rules make it hold over time:
+The path convention is ADR 0001 D4: `/<section>/<product>/<document>-<lang>-v<version>.<ext>`. Everything belonging to one robot shares one prefix, so `files.westonrobot.com/robot/wr65/` is the whole of the WR65's downloadable documentation and someone holding any one of its URLs can guess the others.
+
+**The prefix names the product, not the navigation.** The page for the WR65 lives at `/robot/manipulator/wr65`; its files live at `/robot/wr65/`. Dropping the category is deliberate — see the amendment note on D4. Sections and product identities are stable; the taxonomy between them is the layer that gets reorganised, and a permanent URL must not inherit that.
+
+Three operational rules make the convention hold over time:
 
 **Published paths are immutable.** Never rename, never delete, never repurpose. A new revision is a new key; the old key keeps resolving. This is not tidiness — a customer's bookmark, a printed QR code on a robot, and a support email from 2024 all depend on it.
 
 **Where "the current manual" needs a stable address**, `latest/` is a separate short-TTL key that redirects or duplicates, and the versioned key remains the canonical one. Never make the unversioned path the only path.
+
+**The same segments express the key twice, once per upload route.** An engineer working in the repository spells them with `/` — `_upload/robot/wr65/wr65-user-manual-en-v2.3.pdf` — and the script derives the destination by stripping the `_upload/` root, so the local tree is a literal preview of the store. A technician uploading a single file to a flat inbox spells the same segments with `__` — `robot__wr65__manual__en__v2.3.pdf` — and the promote Lambda parses them back. One convention, two notations, one resulting key.
 
 **Language is a path element, not a suffix on the title** — `…-en-v2.3.pdf`, `…-zh-v2.3.pdf`. The docs site serves existing customers including zh-Hans readers, and a language variant that is discoverable only by reading a table is not discoverable.
 
