@@ -19,7 +19,7 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Project   = "wr-file-store"
+      Project   = "wr-files"
       ManagedBy = "terraform"
       Source    = "westonrobot/docs:infra"
     }
@@ -35,7 +35,7 @@ provider "aws" {
 
   default_tags {
     tags = {
-      Project   = "wr-file-store"
+      Project   = "wr-files"
       ManagedBy = "terraform"
       Source    = "westonrobot/docs:infra"
     }
