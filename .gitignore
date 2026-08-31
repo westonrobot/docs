@@ -45,3 +45,14 @@ CLAUDE.md
 .claude/skills/*
 !.claude/skills/vendor-interface-summary/
 !.claude/skills/vendor-interface-summary/**
+
+# Python bytecode from the publish/check scripts
+__pycache__/
+*.pyc
+
+# Terraform working files and the Lambda zip it builds
+infra/.terraform/
+infra/.terraform.lock.hcl
+infra/.build/
+*.tfstate
+*.tfstate.*

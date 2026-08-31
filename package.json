@@ -13,7 +13,10 @@
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
     "typecheck": "tsc",
-    "check:video": "bash scripts/check-video-budget.sh"
+    "check:video": "bash scripts/check-video-budget.sh",
+    "check:downloads": "python3 scripts/check-downloads.py",
+    "test:files": "python3 -m unittest discover -s infra/lambda -t infra/lambda",
+    "publish:files": "python3 scripts/publish-files.py"
   },
   "dependencies": {
     "@docusaurus/core": "^3.10.2",
