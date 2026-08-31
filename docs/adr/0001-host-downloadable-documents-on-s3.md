@@ -2,7 +2,7 @@
 
 - **Status:** Accepted
 - **Date:** 2026-08-31
-- **Related:** issue #31 (dead SharePoint links), `docs/LESSONS.md`
+- **Related:** issue #31 (dead SharePoint links), [`../design/file-hosting.md`](../design/file-hosting.md) for how it is built and operated, `docs/LESSONS.md`
 
 ## Context
 

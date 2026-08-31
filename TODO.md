@@ -11,7 +11,7 @@ Open items for the docs site. WHAT, not HOW. Status: `[ ]` open, `[~]` in progre
 
 ## File hosting — ADR 0001
 
-Blocked on the first item; everything below it depends on having the files.
+Blocked on the first item; everything below it depends on having the files. `docs/design/file-hosting.md` carries the reference design; the items here are its Phase 0 and Phase 1. Phases 2–4 — manifest-driven publishing, generated download links, checksums and alarms — get broken down here once Phase 1 lands.
 
 - [ ] Export the 39 documents from the renamed M365 tenant (`westonrobot.sharepoint.com`). Needs tenant access, not a code change. The WR65 and WRL63 manuals are the urgent ones — they have no vendor fallback, so those products have no reachable documentation today.
 - [ ] Stand up `files.westonrobot.com`: private S3 bucket, CloudFront + ACM + OAC. Do not copy the `deb.westonrobot.net` pattern — verified 2026-08-31 as a bare S3 website endpoint (`Server: AmazonS3`, no `Via:`/`X-Cache:`, `https://` times out), which cannot carry a certificate.
