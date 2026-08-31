@@ -29,6 +29,8 @@ $ terraform apply tf.plan
 
 If the hostname is ever moved to a zone this account does not hold, set `hosted_zone_id = ""`. The apply then completes with the certificate `PENDING_VALIDATION` and the distribution unusable until someone adds the records by hand; `terraform output certificate_validation_records` prints them.
 
+**If `aws_s3_bucket_policy.prod` fails to apply**, do not relax the public-access block to get past it. All four settings are on deliberately, and a rejection means the bucket policy is being evaluated as genuinely public — which would be a defect in the policy, not in the setting.
+
 Then attach the policies. `terraform output policies` gives three ARNs; wire `upload` and `approve` to Identity Center permission sets rather than to IAM users, and give technicians the bookmark from `terraform output inbox_console_url`.
 
 ## The initial bulk load

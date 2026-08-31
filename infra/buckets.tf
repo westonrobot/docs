@@ -22,12 +22,19 @@ resource "aws_s3_bucket_versioning" "prod" {
   }
 }
 
+# All four on. The OAC policy in cloudfront.tf is not a public policy: it
+# grants to the CloudFront *service* principal and conditions on
+# `AWS:SourceArn` for one distribution, and Block Public Access evaluates only
+# Allow statements that grant to `*` without a limiting condition. The Deny
+# statement does name `AWS: *`, but a Deny is never public access. This is the
+# posture AWS documents for OAC — if the policy PUT is ever rejected, the
+# policy has become genuinely public and needs investigating, not loosening.
 resource "aws_s3_bucket_public_access_block" "prod" {
   bucket                  = aws_s3_bucket.prod.id
   block_public_acls       = true
-  block_public_policy     = false # the OAC policy below is the only public path
+  block_public_policy     = true
   ignore_public_acls      = true
-  restrict_public_buckets = false
+  restrict_public_buckets = true
 }
 
 resource "aws_s3_bucket_lifecycle_configuration" "prod" {
