@@ -28,6 +28,8 @@ The docs site links out to documents that are not part of the site: product manu
 
 **D2. Storage is S3; the front is CloudFront with an ACM certificate.** Not a bare website endpoint. TLS is required for three independent reasons: video embedded in an HTTPS page is blocked as mixed active content; a browser downloading a software archive verifies nothing, so plaintext means the payload is substitutable in transit; and a "Not Secure" warning on a customer download from the documentation site is not acceptable. CloudFront is the only component that terminates TLS for a custom domain in front of S3.
 
+The bucket lives in `ap-southeast-1`, matching the rest of the company's AWS footprint. Verified 2026-08-31 against the existing bucket, whose REST endpoint returns `x-amz-bucket-region: ap-southeast-1` — the website endpoint does not carry that header, which is why the earlier probe could not confirm it. There is no availability zone to choose: S3 is a regional service and replicates objects across the AZs of its region automatically, so `ap-southeast-1a` describes where the compute footprint sits rather than anything a bucket configures. With CloudFront in front, the origin region governs cache-miss latency and little else.
+
 **D3. The bucket stays private, reachable only through CloudFront Origin Access Control.** The content is public, so this is not access control — it is enforcement of D1. A public bucket makes `https://<bucket>.s3.<region>.amazonaws.com/manual.pdf` work as well as the branded URL, and the wrong one gets pasted into an email eventually. OAC makes the vendor-namespace URL return `403`, so the URL contract holds mechanically rather than by discipline.
 
 **D4. Paths are structured, versioned, and immutable.** The shape is `/<category>/<product>/<document>-<lang>-v<version>.<ext>`, e.g. `/robot/manipulator/wr65/wr65-user-manual-en-v2.3.pdf`. A published path is never renamed or deleted; a new revision gets a new path and the old one keeps resolving. Where "the current manual" needs a stable address, a short `latest/` alias points at the versioned object.
@@ -65,5 +67,4 @@ The site gains a second class of external link that CI must check, since a `file
 ## Open
 
 - Where video masters are backed up. Out of scope here, since this bucket is for public content — but `.gitignore` records the need and nothing satisfies it yet.
-- The AWS region of the existing bucket was not confirmed; the probe returned no `x-amz-bucket-region` header. With CloudFront in front, origin region matters much less than it does today.
 - Mainland-China performance is deferred by decision, not solved. Neither S3 nor CloudFront serves it well without an ICP-licensed presence.
