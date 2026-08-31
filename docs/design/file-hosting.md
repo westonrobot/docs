@@ -105,6 +105,30 @@ The component resolves that query against the index at build time. **A page cann
 
 **Is a Lambda and an index over-engineering for 39 files?** The index generator is a few dozen lines and the promote function not much more, against a failure that has already happened once and cost a 160-link audit to find. The part that could be deferred is the `<Downloads>` component — pages could carry `files.westonrobot.com` URLs by hand at first. But that is the piece carrying most of the value, so defer it last.
 
+### Authoring locally, publishing deliberately
+
+A document is usually received or written by the same person editing the page that will link it, and that person needs to see the page work before anyone else does — the table rendered, the link live, the right revision attached. Sending them to a console to upload first and back to the page to paste a URL gets that backwards, and a link pasted by hand is a link typed wrong eventually.
+
+So the engineer's path starts in the working tree:
+
+1. **Drop the file into the `_files/` directory beside the page.** These directories are gitignored, exactly as `**/video/raw/` already is, so the bytes never enter history. The leading underscore also keeps Docusaurus from treating the directory as routable content.
+2. **Reference it locally and build.** `npm start` and a local build show the real page with the real document attached — which is the point, and the thing no console-first flow can offer.
+3. **Run the publish script when the page is right.** It parses the naming convention, computes the digest, derives the D4 key, uploads to the inbox and — for a caller who also holds the approve grant — tags it, so it is live in seconds. Then it rewrites the page's local reference to the published one.
+4. **Rebuild and review again.** The second review is against exactly what a customer will get.
+
+**The gitignore is the enforcement, and this is the load-bearing part.** CI has no local files, because they are not in the repository. A page committed before its document was uploaded therefore cannot resolve, and the build fails. The author saw a working page; CI sees the truth; the discrepancy surfaces in a pipeline rather than in a support ticket. It is the same mechanism as the video budget check (ADR 0001 D8) — a guarantee that comes from git and the filesystem disagreeing in a controlled, deliberate way.
+
+`npm run check:downloads` runs the same resolution locally for anyone who wants the answer before pushing rather than after.
+
+**What step 3 rewrites changes between phases**, and the earlier form is worth shipping first:
+
+- **Phase 2.** The script substitutes the published URL directly into the page. Simple, and it makes the second review concrete — you are looking at the actual link. The URL is generated from the D4 convention rather than typed, and D4 paths are immutable, so it does not rot the way a hand-pasted one would.
+- **Phase 3.** The page carries `<Downloads product="wr65" kind="manual" />` instead, and the resolver prefers a matching local file in development and the published index everywhere else. No URL appears in the page at all, and a superseded revision stops requiring an edit to every page that mentions it.
+
+**Why a script here and a console for technicians.** Engineers already have the repository open, the file in hand and the metadata in its filename; a script closes the loop without a context switch and is deterministic where a console is not — content type, digest, key derivation and path convention all come out of one code path rather than out of somebody's care on the day. The two routes land in the same inbox and pass the same approval. One pipeline, two front doors, chosen by which one is already open.
+
+**A skill is a wrapper, not the implementation.** If this is exposed as a Claude Code skill alongside `vendor-interface-summary`, the skill calls the script and the script stays runnable on its own. CI needs it, a technician on a laptop may need it, and neither has the skill installed.
+
 ### Uploading is not publishing
 
 The two verbs have different audiences, different frequencies and different privileges, and conflating them is how a design becomes one nobody can use.
@@ -226,9 +250,9 @@ Ordered so each phase is independently useful and nothing is blocked on the phas
 
 **Phase 1 — Serve it correctly.** Bucket, CloudFront, ACM, OAC, Block Public Access, versioning. An admin bulk-loads the 39 exported documents under D4 paths with their metadata, and the 48 SharePoint occurrences and 4 Google Drive links are rewritten. This is a one-time migration, so it does not wait on the self-service machinery. At the end of this phase the defect is fixed.
 
-**Phase 2 — Make it self-service.** The inbox bucket, the upload and approve roles, the promote Lambda, the index generator, and IaC for all of it. At the end of this phase a technician can get a document published without an engineer, and no human can write to the served bucket.
+**Phase 2 — Make it self-service.** The inbox bucket, the upload and approve roles, the promote Lambda, the index generator, and IaC for all of it — plus the publish script and the gitignored `_files/` convention, which is how an engineer gets a document up without leaving the repository. At the end of this phase a technician can publish without an engineer, an engineer can publish without a console, and no human can write to the served bucket.
 
-**Phase 3 — Make it structural.** The `<Downloads>` component, and the S3 event that rebuilds the site when the index changes. At the end of this phase pages carry queries instead of URLs, and the broken-link class is gone rather than monitored.
+**Phase 3 — Make it structural.** The `<Downloads>` component with its local-file fallback, and the S3 event that rebuilds the site when the index changes. The publish script stops substituting URLs and the pages that carry them are converted. At the end of this phase pages carry queries instead of URLs, and the broken-link class is gone rather than monitored.
 
 **Phase 4 — Harden.** Checksums, then signatures for firmware and SDKs. 404 alarm and cost alarm. Noncurrent-version lifecycle.
 
