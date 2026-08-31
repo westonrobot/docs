@@ -18,7 +18,7 @@ const path = require('path');
 
 const UPLOAD_DIR = '_upload';
 const DEFAULT_BASE_URL =
-  process.env.WR_FILES_BASE_URL || 'https://files.westonrobot.net';
+  process.env.WR_FILES_BASE_URL || 'https://download.westonrobot.net';
 
 /** Re-derive a record from a key, matching wrfiles.metadata_for. */
 function metadataForKey(key) {

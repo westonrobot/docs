@@ -151,14 +151,14 @@ class IndexEntries(unittest.TestCase):
             "ContentLength": 12,
             "ContentType": "application/pdf",
         }
-        e = w.index_entry(self.KEY, head, "https://files.westonrobot.net")
+        e = w.index_entry(self.KEY, head, "https://download.westonrobot.net")
         self.assertEqual(e["kind"], "service-manual")  # stored wins over derived
         self.assertEqual(e["sha256"], "abc")
-        self.assertEqual(e["url"], f"https://files.westonrobot.net/{self.KEY}")
+        self.assertEqual(e["url"], f"https://download.westonrobot.net/{self.KEY}")
 
     def test_falls_back_to_the_key(self):
         # The initial bulk load writes objects by hand; they must still index.
-        e = w.index_entry(self.KEY, {}, "https://files.westonrobot.net")
+        e = w.index_entry(self.KEY, {}, "https://download.westonrobot.net")
         self.assertEqual(e["kind"], "user-manual")
         self.assertEqual(e["lang"], "en")
         self.assertEqual(e["version"], "2.3")

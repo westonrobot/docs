@@ -7,7 +7,7 @@ review again against the published URL.
 
     static/_upload/robot/wr65/wr65-user-manual-en-v2.3.pdf
       local  /_upload/robot/wr65/wr65-user-manual-en-v2.3.pdf
-      served https://files.westonrobot.net/robot/wr65/wr65-user-manual-en-v2.3.pdf
+      served https://download.westonrobot.net/robot/wr65/wr65-user-manual-en-v2.3.pdf
 
 The two differ only by prefix, so substituting one for the other is a string
 swap rather than a rewrite.
@@ -37,7 +37,7 @@ LOCAL_PREFIX = f"/{wrfiles.UPLOAD_DIR}/"
 CONTENT_DIRS = ("robot", "solution", "peripheral", "system", "tutorial", "support")
 PAGE_SUFFIXES = (".md", ".mdx")
 
-DEFAULT_BASE_URL = os.environ.get("WR_FILES_BASE_URL", "https://files.westonrobot.net")
+DEFAULT_BASE_URL = os.environ.get("WR_FILES_BASE_URL", "https://download.westonrobot.net")
 DEFAULT_INBOX = os.environ.get("WR_FILES_INBOX_BUCKET", "wr-files-inbox")
 
 

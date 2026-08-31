@@ -24,11 +24,15 @@ The docs site links out to documents that are not part of the site: product manu
 
 ## Decision
 
-**D1. The customer-facing URL is a Weston Robot domain under our own administration.** `files.westonrobot.net` is the only hostname that ever appears in a doc page, an email, or a datasheet. This is the decision that fixes the defect; every other decision here is implementation.
+**D1. The customer-facing URL is a Weston Robot domain under our own administration.** `download.westonrobot.net` is the only hostname that ever appears in a doc page, an email, or a datasheet. This is the decision that fixes the defect; every other decision here is implementation.
 
-*Amended 2026-08-31.* Originally `files.westonrobot.com`, to match the documentation site. Changed to `.net` on the ground that matters most here: **`westonrobot.net` is in Route 53 in the same account, directly administered by the team that owns this store, while `westonrobot.com` is on Cloudflare** (verified: `dig +short NS westonrobot.com` returns `brian`/`marlowe.ns.cloudflare.com`, and Route 53 in <account-id> holds only the `.net` zone). The defect being fixed was a permanent URL living in a namespace nobody here administered; choosing the tidier TLD over the one under direct control would repeat the shape of that mistake for the sake of appearances. It also makes the apply fully automatic — Terraform creates the certificate validation records and the alias itself, where `.com` would need both added by hand in Cloudflare.
+*Amended 2026-08-31.* Originally `files.westonrobot.com`, chosen to match the documentation site. Both halves changed.
 
-**`files.westonrobot.net` is production.** The `.net` domain is otherwise used for development and internal infrastructure, and `deb.westonrobot.net` already serves customers from it. Under D4 these URLs are permanent and end up in customer bookmarks, printed QR codes and support email, so this subdomain must not be treated as disposable when the `.net` estate is next tidied up.
+**The domain** is `westonrobot.net` because it is in Route 53 in this account and directly administered, while `westonrobot.com` is on Cloudflare — verified: `dig +short NS westonrobot.com` returns `brian`/`marlowe.ns.cloudflare.com`, and Route 53 in <account-id> holds only the `.net` zone. The defect being fixed was a permanent URL living in a namespace nobody here administered, so preferring the tidier TLD over the one under direct control would repeat the shape of that mistake for the sake of appearances. It also makes the apply fully automatic: Terraform creates the certificate validation records and the alias itself, where `.com` would need both added by hand in Cloudflare, at every renewal, by whoever holds that account.
+
+**The subdomain** is `download` rather than `files` because it names what a customer does there. `files` describes the storage; `download` describes the act, and the hostname exists for the person clicking a link rather than for the people running the bucket.
+
+**`download.westonrobot.net` is production.** The `.net` domain is otherwise used for development and internal infrastructure, and `deb.westonrobot.net` already serves customers from it. Under D4 these URLs are permanent and end up in customer bookmarks, printed QR codes and support email, so this subdomain must not be treated as disposable when the `.net` estate is next tidied up.
 
 **D2. Storage is S3; the front is CloudFront with an ACM certificate.** Not a bare website endpoint. TLS is required for three independent reasons: video embedded in an HTTPS page is blocked as mixed active content; a browser downloading a software archive verifies nothing, so plaintext means the payload is substitutable in transit; and a "Not Secure" warning on a customer download from the documentation site is not acceptable. CloudFront is the only component that terminates TLS for a custom domain in front of S3.
 
@@ -54,7 +58,7 @@ Recovering the source files is the blocking step and it is not a code change: so
 
 D8's size half is enforced by `scripts/check-video-budget.sh`, wired into CI ahead of the Node setup so a breach fails in seconds rather than after a full install and build. Its churn half is a judgement made at review, because expected revision frequency is not mechanically checkable — the check enforces what is checkable and the ADR carries the rest. Raising either limit is an amendment to this document, not an edit to the script; the script says so when it fails.
 
-The site gains a second class of external link that CI must check, since a `files.westonrobot.net` URL is not verified by the Docusaurus build the way an in-repo asset is. D6 covers this, and D4's immutability rule is what keeps the check green over time.
+The site gains a second class of external link that CI must check, since a `download.westonrobot.net` URL is not verified by the Docusaurus build the way an in-repo asset is. D6 covers this, and D4's immutability rule is what keeps the check green over time.
 
 `deb.westonrobot.net` is left as it is by this ADR, but its lack of TLS is now a known gap rather than an unexamined default — tracked in `TODO.md`. The reasoning that makes plaintext defensible there (apt verifies GPG signatures independently of the transport) does not extend to browser downloads.
 

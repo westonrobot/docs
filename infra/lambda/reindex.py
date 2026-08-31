@@ -25,7 +25,7 @@ cloudfront = boto3.client("cloudfront")
 
 PROD_BUCKET = os.environ["PROD_BUCKET"]
 DISTRIBUTION_ID = os.environ.get("DISTRIBUTION_ID", "")
-BASE_URL = os.environ.get("BASE_URL", "https://files.westonrobot.net")
+BASE_URL = os.environ.get("BASE_URL", "https://download.westonrobot.net")
 
 
 def build_index() -> dict:

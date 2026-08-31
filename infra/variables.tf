@@ -7,7 +7,7 @@ variable "region" {
 variable "domain_name" {
   description = "The customer-facing hostname. This is the contract (ADR 0001 D1); everything else in this file is replaceable."
   type        = string
-  default     = "files.westonrobot.net"
+  default     = "download.westonrobot.net"
 }
 
 variable "hosted_zone_id" {
@@ -17,7 +17,7 @@ variable "hosted_zone_id" {
 }
 
 variable "bucket_prefix" {
-  description = "Name prefix for the three buckets."
+  description = "Name prefix for the three buckets. Deliberately not renamed to match download.westonrobot.net: the hostname is the customer-facing contract (D1) while these names describe what the buckets hold, and `wr-download-inbox` would be actively wrong — nobody downloads from an inbox."
   type        = string
   default     = "wr-files"
 }

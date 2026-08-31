@@ -1,6 +1,6 @@
 # File store infrastructure
 
-Terraform for `files.westonrobot.net`. The decision is [ADR 0001](../docs/adr/0001-host-downloadable-documents-on-s3.md); the design and the reasoning are [`docs/design/file-hosting.md`](../docs/design/file-hosting.md).
+Terraform for `download.westonrobot.net`. The decision is [ADR 0001](../docs/adr/0001-host-downloadable-documents-on-s3.md); the design and the reasoning are [`docs/design/file-hosting.md`](../docs/design/file-hosting.md).
 
 **Nothing here has been applied.** It is validated (`terraform validate`, `terraform fmt`) but has never run against an account, so treat the first apply as the real test.
 

@@ -24,7 +24,7 @@ Four layers, each replaceable without touching the ones above it. The point of t
 flowchart TB
   C[Customer / docs site]
   subgraph IDENT[Identity — permanent]
-    DNS["files.westonrobot.net<br/>Route 53"]
+    DNS["download.westonrobot.net<br/>Route 53"]
   end
   subgraph DELIV[Delivery — swappable]
     CF["CloudFront + ACM<br/>TLS, cache, logs"]
@@ -105,7 +105,7 @@ The component resolves that query against the index at build time. **A page cann
 
 **What git still holds:** the site, the `<Downloads>` component, the infrastructure definition. Code, never inventory.
 
-**Is a Lambda and an index over-engineering for 39 files?** The index generator is a few dozen lines and the promote function not much more, against a failure that has already happened once and cost a 160-link audit to find. The part that could be deferred is the `<Downloads>` component — pages could carry `files.westonrobot.net` URLs by hand at first. But that is the piece carrying most of the value, so defer it last.
+**Is a Lambda and an index over-engineering for 39 files?** The index generator is a few dozen lines and the promote function not much more, against a failure that has already happened once and cost a 160-link audit to find. The part that could be deferred is the `<Downloads>` component — pages could carry `download.westonrobot.net` URLs by hand at first. But that is the piece carrying most of the value, so defer it last.
 
 ### Authoring locally, publishing deliberately
 
@@ -113,7 +113,7 @@ A document is usually received or written by the same person editing the page th
 
 So the engineer's path starts in the working tree:
 
-1. **Drop the file into `static/_upload/`, at the path it will occupy in the store.** It has to be under `static/` for Docusaurus to serve it during a local build — which is the whole point of step 2 — and that also makes substitution a prefix swap: `/_upload/robot/wr65/x.pdf` locally, `https://files.westonrobot.net/robot/wr65/x.pdf` once published. `static/_upload/robot/wr65/wr65-user-manual-en-v2.3.pdf` publishes to exactly that path — the script derives the key by stripping the `_upload/` root, so the local tree is a preview of the bucket and a misfiled document is visible by eye before it is uploaded rather than after. The directory is gitignored, exactly as `**/video/raw/` already is, so the bytes never enter history, and the leading underscore keeps Docusaurus from treating it as routable content.
+1. **Drop the file into `static/_upload/`, at the path it will occupy in the store.** It has to be under `static/` for Docusaurus to serve it during a local build — which is the whole point of step 2 — and that also makes substitution a prefix swap: `/_upload/robot/wr65/x.pdf` locally, `https://download.westonrobot.net/robot/wr65/x.pdf` once published. `static/_upload/robot/wr65/wr65-user-manual-en-v2.3.pdf` publishes to exactly that path — the script derives the key by stripping the `_upload/` root, so the local tree is a preview of the bucket and a misfiled document is visible by eye before it is uploaded rather than after. The directory is gitignored, exactly as `**/video/raw/` already is, so the bytes never enter history, and the leading underscore keeps Docusaurus from treating it as routable content.
 
    **There is no `pending/` or `done/` subdirectory, deliberately.** The script compares each local digest against the published index, so it already knows what is outstanding and re-running it is a no-op for anything published. State directories would have to be kept in step by hand, and the one thing a gitignored tree cannot offer is a guarantee that anyone did.
 
@@ -165,7 +165,7 @@ Versioning on the inbox bucket gives the same guarantee to both routes — an ov
 
 ## 4. Identity and paths
 
-The path convention is ADR 0001 D4: `/<section>/<product>/<document>-<lang>-v<version>.<ext>`. Everything belonging to one robot shares one prefix, so `files.westonrobot.net/robot/wr65/` is the whole of the WR65's downloadable documentation and someone holding any one of its URLs can guess the others.
+The path convention is ADR 0001 D4: `/<section>/<product>/<document>-<lang>-v<version>.<ext>`. Everything belonging to one robot shares one prefix, so `download.westonrobot.net/robot/wr65/` is the whole of the WR65's downloadable documentation and someone holding any one of its URLs can guess the others.
 
 **The prefix names the product, not the navigation.** The page for the WR65 lives at `/robot/manipulator/wr65`; its files live at `/robot/wr65/`. Dropping the category is deliberate — see the amendment note on D4. Sections and product identities are stable; the taxonomy between them is the layer that gets reorganised, and a permanent URL must not inherit that.
 
@@ -222,7 +222,7 @@ One consequence to be aware of: a public index makes the full inventory enumerab
 
 P4. The design goal is that the next time something breaks, a dashboard says so before a customer does.
 
-**What moving to our own domain buys us, beyond the fix.** When the links lived on `tangrobot.sharepoint.com`, a broken link produced a DNS failure on infrastructure we did not own and could not see. Once every link is on `files.westonrobot.net`, a broken link produces a **404 in our own CloudFront logs**. The failure becomes an observable event on a system we operate. That is arguably a larger win than the fix itself.
+**What moving to our own domain buys us, beyond the fix.** When the links lived on `tangrobot.sharepoint.com`, a broken link produced a DNS failure on infrastructure we did not own and could not see. Once every link is on `download.westonrobot.net`, a broken link produces a **404 in our own CloudFront logs**. The failure becomes an observable event on a system we operate. That is arguably a larger win than the fix itself.
 
 Worth watching, in rough order of value:
 
