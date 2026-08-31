@@ -1,0 +1,66 @@
+# ADR 0001 — Host downloadable documents on S3, behind a domain we own
+
+- **Status:** Accepted
+- **Date:** 2026-08-31
+- **Related:** issue #31 (dead SharePoint links), `docs/LESSONS.md`
+
+## Context
+
+The docs site links out to documents that are not part of the site: product manuals, SDK and wire-protocol specs, training decks, firmware and software archives, and — from R2026.08 onward — screen recordings. Until now these lived on Microsoft 365 anonymous share links under `tangrobot.sharepoint.com`. Every one of them is dead.
+
+**What broke.** The M365 tenant was renamed `tangrobot` → `westonrobot`, and the old hostname stopped existing in public DNS. Issue #31 verified this with `dig @1.1.1.1 tangrobot.sharepoint.com` returning `NXDOMAIN` while `westonrobot.sharepoint.com` returns `NOERROR` and `microsoft.sharepoint.com` resolves normally. Re-checked on 2026-08-31: `curl -L` against three of the links returns `000` — resolution failure, not `403` or `404`. Rewriting the host to the new tenant returns `404` for the share tokens, so the shares must be re-issued from inside the tenant, not merely rewritten.
+
+**Why it broke, precisely.** The links failed not because SharePoint is unreliable but because their durable identity — the string `tangrobot` — was a fact about the company, encoded in a namespace Microsoft owns. When the fact changed, 53 links died at the same instant. The control case is on the same pages: the 30 `forms.office.com/r/…` links still return `200`, because that hostname is Microsoft's own and carries nothing about us.
+
+**The stopgap repeated the mistake.** Commit `adce7c6` ("replace expired SharePoint links with Google Drive") moved four Weston Robot documents — the G1 and B2 training decks, the Go2 user guide, the expansion-dock reflash guide — to `drive.google.com/file/d/…?usp=drive_link`. These are opaque tokens in a vendor namespace: the same failure class, a different vendor.
+
+**Counts.** Issue #31 recorded 53 occurrences across 39 unique documents in 11 files at audit time. The tree at `f4fe89f` holds 48 occurrences, 34 unique documents, 8 files, plus the 4 Google Drive links from `adce7c6`.
+
+**What already exists.** `deb.westonrobot.net` is served from S3 in an AWS account the company already operates. Probed on 2026-08-31: `http://` returns `200` with `Server: AmazonS3` and no `Via:` or `X-Cache:` header, so there is no CloudFront in front; `https://` times out with no bytes received. It is a bare S3 *static website endpoint*, which is plaintext-only by design — a certificate cannot be attached to one.
+
+**What is in scope.** Public content only: PDFs, software archives, and video. No licence-gated or customer-restricted items (decided 2026-08-31). Mainland-China download performance is explicitly not a requirement for now.
+
+**Repository weight, which constrains one of the alternatives.** `.git` is 465 MB on disk, 351 MiB packed. The two shipped video re-encodes are 2.7 MB and 3.0 MB; their masters, at 11 MB and 6.9 MB, are excluded by `.gitignore`, whose comment notes they are therefore backed up nowhere.
+
+## Decision
+
+**D1. The customer-facing URL is a Weston Robot domain.** A dedicated subdomain — `files.westonrobot.com` or similar — is the only hostname that ever appears in a doc page, an email, or a datasheet. This is the decision that fixes the defect; every other decision here is implementation.
+
+**D2. Storage is S3; the front is CloudFront with an ACM certificate.** Not a bare website endpoint. TLS is required for three independent reasons: video embedded in an HTTPS page is blocked as mixed active content; a browser downloading a software archive verifies nothing, so plaintext means the payload is substitutable in transit; and a "Not Secure" warning on a customer download from the documentation site is not acceptable. CloudFront is the only component that terminates TLS for a custom domain in front of S3.
+
+**D3. The bucket stays private, reachable only through CloudFront Origin Access Control.** The content is public, so this is not access control — it is enforcement of D1. A public bucket makes `https://<bucket>.s3.<region>.amazonaws.com/manual.pdf` work as well as the branded URL, and the wrong one gets pasted into an email eventually. OAC makes the vendor-namespace URL return `403`, so the URL contract holds mechanically rather than by discipline.
+
+**D4. Paths are structured, versioned, and immutable.** The shape is `/<category>/<product>/<document>-<lang>-v<version>.<ext>`, e.g. `/robot/manipulator/wr65/wr65-user-manual-en-v2.3.pdf`. A published path is never renamed or deleted; a new revision gets a new path and the old one keeps resolving. Where "the current manual" needs a stable address, a short `latest/` alias points at the versioned object.
+
+**D5. `Content-Type` and `Cache-Control` are set at upload, not left to inference.** `aws s3 sync` infers correctly from common extensions, but firmware blobs and unusual archive types need `--content-type` given explicitly, and `.mp4` must be `video/mp4` or Safari will not seek. Versioned paths take a long `max-age`; any `latest/` alias takes a short one, or CloudFront will serve a superseded manual for a year.
+
+**D6. External link checking runs in CI.** 53 links died at a single point in time and were found by a manual audit weeks later. Without this check the class of defect is invisible again the moment the next thing moves.
+
+**D7. The four Google Drive links migrate with the rest.** They are Weston Robot's own documents on a third-party share URL and carry the same risk.
+
+## Consequences
+
+Recovering the source files is the blocking step and it is not a code change: someone with M365 tenant access must export the 39 documents from the renamed tenant before anything else can proceed. The WR65 and WRL63 manuals are the urgent ones — unlike the Unitree and AgileX pages there is no vendor site to fall back to, so those two products have no reachable documentation at all today.
+
+The site gains a second class of external link that CI must check, since a `files.westonrobot.com` URL is not verified by the Docusaurus build the way an in-repo asset is. D6 covers this, and D4's immutability rule is what keeps the check green over time.
+
+`deb.westonrobot.net` is left as it is by this ADR, but its lack of TLS is now a known gap rather than an unexamined default — tracked in `TODO.md`. The reasoning that makes plaintext defensible there (apt verifies GPG signatures independently of the transport) does not extend to browser downloads.
+
+## Alternatives rejected
+
+**Re-share the documents from `westonrobot.sharepoint.com`.** Cheapest possible fix, no new infrastructure, and it restores the links this week. Rejected because it reproduces the defect exactly: the tenant name is still in the hostname and the tokens are still revocable and opaque. The next tenant rename, migration, or sharing-policy change breaks all 39 again, and nothing about this option makes that failure any more visible than it was the first time.
+
+**Copy the `deb.westonrobot.net` pattern — a bare S3 static website endpoint.** Consistent with existing practice and the simplest thing that satisfies D1. Rejected on TLS alone, for the three reasons in D2.
+
+**Cloudflare R2.** Zero egress fees, S3-compatible API, custom domain and CDN built in without wiring a second service — meaningfully cheaper and simpler than S3+CloudFront, and the gap widens as video volume grows. Rejected on operational consistency: the company already runs AWS, already serves files from S3, and already has the IAM, billing, and on-call story for it. Introducing a second storage vendor to save an amount of money that is small at this volume is not a good trade. Worth revisiting if video egress ever becomes a real line item.
+
+**Keep the files in this repository and serve them from GitHub Pages alongside the site.** This has the best safety property of any option on the list: a missing file becomes a build failure rather than a customer-facing 404, which is precisely the guarantee whose absence produced issue #31. Rejected on size. The packed repository is already 351 MiB against a 1 GB practical GitHub limit, product manuals run to tens of MB each, and video would consume the remaining headroom quickly. The property is worth preserving where it is cheap, which is why small shipped video re-encodes stay in-repo for now — see the open item below.
+
+**GitHub Releases as an asset host.** Free, effectively unmetered bandwidth, stable per-tag URLs. Rejected because the URL shape is hostile to a customer reading a manual link, "the current manual" has no natural address, and the identity in the URL is `github.com`'s rather than ours — a weaker form of the same problem as D1.
+
+## Open
+
+- Whether the shipped video re-encodes should also move out of the repository, or stay in-repo below a size threshold to keep the build-failure guarantee. Not decided; see `TODO.md`.
+- Where video masters are backed up. Out of scope here, since this bucket is for public content — but `.gitignore` records the need and nothing satisfies it yet.
+- The AWS region of the existing bucket was not confirmed; the probe returned no `x-amz-bucket-region` header. With CloudFront in front, origin region matters much less than it does today.
+- Mainland-China performance is deferred by decision, not solved. Neither S3 nor CloudFront serves it well without an ICP-licensed presence.
