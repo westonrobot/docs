@@ -1,0 +1,46 @@
+.wrap {
+  overflow-x: auto;
+  margin-bottom: var(--ifm-spacing-vertical, 1rem);
+}
+
+.table {
+  width: 100%;
+  display: table;
+  margin-bottom: 0;
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+}
+
+.size {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Both badges are metadata about the row, not part of the link text. */
+.staged,
+.sum {
+  margin-left: 0.5rem;
+  padding: 0.05rem 0.35rem;
+  border-radius: var(--ifm-code-border-radius, 4px);
+  font-family: var(--ifm-font-family-monospace);
+  font-size: 0.72em;
+  white-space: nowrap;
+}
+
+.staged {
+  background: var(--ifm-color-warning-contrast-background);
+  color: var(--ifm-color-warning-contrast-foreground);
+}
+
+.sum {
+  background: var(--ifm-color-emphasis-100);
+  color: var(--ifm-color-emphasis-700);
+}
+
+.empty {
+  color: var(--ifm-color-emphasis-600);
+  font-style: italic;
+}
