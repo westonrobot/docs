@@ -94,10 +94,12 @@ The component resolves that query against the index at build time. **A page cann
 | 1 | Upload to the inbox | Technician or engineer | `PutObject` on `wr-files-inbox/*` |
 | 2 | Approve | A small named group | `PutObjectTagging` on `wr-files-inbox/*` |
 | 3 | Copy to the served bucket, set metadata, invalidate | Lambda | Read inbox, write prod, invalidate |
-| 4 | Regenerate `index.json` | Lambda | Write the index object |
+| 4 | Regenerate `index.json` | Lambda, invoked by step 3 | Write the index object |
 | 5 | Rebuild the docs site | CI, on `repository_dispatch` | Read the index |
 
 **No human writes to the served bucket at any point.** An approver's entire privilege is the ability to put a tag on an object sitting in the inbox; the copy is performed by a Lambda. The separation between "can approve" and "can serve" is therefore enforced by IAM rather than by anyone remembering it, and it survives someone being in a hurry.
+
+**Reindexing is invoked by promotion, not by a bucket notification.** An `ObjectCreated` trigger on the served bucket would fire on `index.json` and re-trigger itself. One promotion, one reindex — and a bulk load done by hand needs one manual invoke, which `infra/README.md` documents.
 
 **Audit and rollback, without git.** CloudTrail records who tagged which object and when — stronger attribution than a merge commit, because it cannot be rewritten. S3 versioning covers rollback. "What is live?" is answered by reading the index, which is generated from the only thing that can be authoritative about what is live: the bucket.
 
@@ -111,18 +113,18 @@ A document is usually received or written by the same person editing the page th
 
 So the engineer's path starts in the working tree:
 
-1. **Drop the file into `_upload/`, at the path it will occupy in the store.** `_upload/robot/wr65/wr65-user-manual-en-v2.3.pdf` publishes to exactly that path — the script derives the key by stripping the `_upload/` root, so the local tree is a preview of the bucket and a misfiled document is visible by eye before it is uploaded rather than after. The directory is gitignored, exactly as `**/video/raw/` already is, so the bytes never enter history, and the leading underscore keeps Docusaurus from treating it as routable content.
+1. **Drop the file into `static/_upload/`, at the path it will occupy in the store.** It has to be under `static/` for Docusaurus to serve it during a local build — which is the whole point of step 2 — and that also makes substitution a prefix swap: `/_upload/robot/wr65/x.pdf` locally, `https://files.westonrobot.com/robot/wr65/x.pdf` once published. `static/_upload/robot/wr65/wr65-user-manual-en-v2.3.pdf` publishes to exactly that path — the script derives the key by stripping the `_upload/` root, so the local tree is a preview of the bucket and a misfiled document is visible by eye before it is uploaded rather than after. The directory is gitignored, exactly as `**/video/raw/` already is, so the bytes never enter history, and the leading underscore keeps Docusaurus from treating it as routable content.
 
    **There is no `pending/` or `done/` subdirectory, deliberately.** The script compares each local digest against the published index, so it already knows what is outstanding and re-running it is a no-op for anything published. State directories would have to be kept in step by hand, and the one thing a gitignored tree cannot offer is a guarantee that anyone did.
 
    The name is deliberate. It is not `_publish/`, because dropping a file there does not publish it — it stages it for the upload step, and approval still stands between that and a customer. Naming the directory after the verb it actually performs keeps the distinction in §3 visible at the point where someone is most likely to forget it.
-2. **Reference it locally and build.** `npm start` and a local build show the real page with the real document attached — which is the point, and the thing no console-first flow can offer.
+2. **Reference it locally and build.** `npm start` shows the real page with the real document attached — the thing no console-first flow can offer. A `<Downloads>` query resolves against staged files too, and marks them `staged` so a local build is never mistaken for a published one.
 3. **Run the publish script when the page is right.** It parses the naming convention, computes the digest, derives the D4 key, uploads to the inbox and — for a caller who also holds the approve grant — tags it, so it is live in seconds. Then it rewrites the page's local reference to the published one.
 4. **Rebuild and review again.** The second review is against exactly what a customer will get.
 
 **The gitignore is the enforcement, and this is the load-bearing part.** CI has no local files, because they are not in the repository. A page committed before its document was uploaded therefore cannot resolve, and the build fails. The author saw a working page; CI sees the truth; the discrepancy surfaces in a pipeline rather than in a support ticket. It is the same mechanism as the video budget check (ADR 0001 D8) — a guarantee that comes from git and the filesystem disagreeing in a controlled, deliberate way.
 
-`npm run check:downloads` runs the same resolution locally for anyone who wants the answer before pushing rather than after.
+`npm run check:downloads` runs the same resolution locally for anyone who wants the answer before pushing rather than after. It checks two things: that no page references `static/_upload/`, and — whenever the index is reachable — that every `<Downloads>` query matches something. An unreachable index skips the second check rather than failing it, because before the store exists there is nothing to check against and a gate that fails for that reason gets switched off.
 
 **What step 3 rewrites changes between phases**, and the earlier form is worth shipping first:
 
@@ -149,11 +151,9 @@ The two verbs have different audiences, different frequencies and different priv
 
 That is a genuinely small grant. "Can add a file to one bucket" is not high access, and it is the least privilege that still allows self-service.
 
-**Objects are named by content hash.** An upload lands at `inbox/<sha256>`, not at a human-chosen path. Three things fall out of that:
+**The inbox is versioned, and objects keep their names.** An earlier draft of this section keyed inbox objects by content hash, so that `PutObject` alone could not destroy an earlier upload and no deny rule was needed to make that true. Implementing it showed why that cannot work: **a technician dragging a file onto the S3 console has no way to compute a digest.** Content addressing is available to the script route and to nothing else, and a rule that only one of two front doors can obey is not a rule.
 
-- **Overwrites become impossible without a deny rule.** Different content is a different key by construction, so `PutObject` alone cannot destroy an earlier upload — which is what makes it safe to grant `PutObject` without `DeleteObject` and stop there.
-- **The digest is the integrity value and the address at once.** What an approver tagged is what the Lambda copies and what a customer verifies, with no step where the three can drift apart.
-- **Nothing about the item enters git.** Which is the point.
+Versioning on the inbox bucket gives the same guarantee to both routes — an overwrite supersedes rather than destroys, and the previous version stays recoverable. The digest is computed by the promote Lambda, which has to read the object anyway, and recorded on the published object. So the property survives: what an approver tagged is what gets copied and what a customer verifies, with no step where the three can drift apart. Nothing about the item enters git either way, which is the point.
 
 **How the technician actually uploads.** Three options; the first is the recommendation.
 

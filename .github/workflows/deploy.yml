@@ -23,6 +23,18 @@ jobs:
       - name: Check in-repo video budget
         run: bash scripts/check-video-budget.sh
 
+      # Both use the runner's python3 rather than `npm run`, so they execute
+      # before the Node setup and a naming or publishing mistake fails in
+      # seconds instead of after an install and a build.
+      - name: Test file-store key derivation
+        run: python3 -m unittest discover -s infra/lambda -t infra/lambda
+
+      # The gate behind local-first authoring: static/_upload/ is gitignored,
+      # so a page committed before its document was uploaded resolves here
+      # against nothing. See docs/design/file-hosting.md §3.
+      - name: Check download references
+        run: python3 scripts/check-downloads.py
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:

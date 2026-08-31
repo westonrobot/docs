@@ -11,14 +11,17 @@ Open items for the docs site. WHAT, not HOW. Status: `[ ]` open, `[~]` in progre
 
 ## File hosting — ADR 0001
 
-Blocked on the first item; everything below it depends on having the files. `docs/design/file-hosting.md` carries the reference design; the items here are its Phase 0 and Phase 1. Phases 2–4 — self-service uploading, query-driven download tables, checksums and alarms — get broken down here once Phase 1 lands.
+Blocked on the first item; everything below it depends on having the files. `docs/design/file-hosting.md` carries the reference design, `infra/README.md` the runbook. Phases 1–3 are written and locally verified — the infrastructure, the two Lambdas, the publish script, the `<Downloads>` component and the CI gates all exist. **None of it has run against an account**, so every item below is an act of operation rather than of coding.
 
 - [ ] Export the 39 documents from the renamed M365 tenant (`westonrobot.sharepoint.com`). Needs tenant access, not a code change. The WR65 and WRL63 manuals are the urgent ones — they have no vendor fallback, so those products have no reachable documentation today.
-- [ ] Stand up `files.westonrobot.com`: private S3 bucket, CloudFront + ACM + OAC. Do not copy the `deb.westonrobot.net` pattern — verified 2026-08-31 as a bare S3 website endpoint (`Server: AmazonS3`, no `Via:`/`X-Cache:`, `https://` times out), which cannot carry a certificate.
-- [ ] Upload under the path convention in ADR 0001 D4, with `Content-Type` and `Cache-Control` set explicitly at upload.
+- [ ] Apply `infra/` — it is written and validated but has never run against an account, so treat the first apply as the real test. Decide `hosted_zone_id` beforehand: without it the certificate stays `PENDING_VALIDATION` and the distribution is unusable until someone adds the records by hand. Runbook in `infra/README.md`.
+- [ ] Attach the `upload` and `approve` policies to Identity Center permission sets, and give technicians the inbox console bookmark from `terraform output inbox_console_url`.
+- [ ] Bulk-load the exported documents under D4 paths, then invoke `wr-files-reindex` once by hand — reindexing is triggered by promotion, not by a bucket notification.
 - [ ] Rewrite the 48 SharePoint occurrences (34 unique documents, 8 files) to the new URLs.
 - [ ] Rewrite the 4 Google Drive links added by `adce7c6` — `robot/humanoid/g1.md:51`, `robot/quadruped/b2.md:57`, `robot/quadruped/go2.md:53,54`. They are Weston Robot's own documents on opaque third-party share tokens: the same failure class as the SharePoint links, one vendor over.
-- [ ] Build the publish script — walk `_upload/`, derive each key by stripping the `_upload/` root, checksum, skip anything whose digest already matches the index, upload the rest to the inbox, substitute the published URL in the page. Phase 2; needs the bucket to exist first, so not startable yet. A Claude Code skill wraps it; the script must run standalone for CI and for anyone without the skill.
+- [ ] Exercise `scripts/publish-files.py --publish` against the real inbox once it exists. The dry run, key derivation, page detection and link substitution are all verified locally; the upload and tagging calls have never run.
+- [ ] Wrap the publish script in a Claude Code skill, alongside `vendor-interface-summary`. The script stays runnable standalone — CI needs it and not everyone has the skill.
+- [ ] Decide whether `reindex` should trigger a docs-site rebuild via `repository_dispatch`. It needs a GitHub token in AWS, which is a secret to manage and a decision to take on its own.
 - [ ] Find a home for video masters. `.gitignore` excludes `**/video/raw/` and says they are backed up nowhere; that is still true. Out of ADR 0001's scope, which covers public content only.
 
 ## Site infrastructure
