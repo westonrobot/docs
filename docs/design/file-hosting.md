@@ -237,13 +237,26 @@ CloudFront standard logs to `wr-files-logs`, queried with Athena when a question
 
 ## 9. Cost
 
-Not a deciding factor at this volume, which is itself worth recording so nobody optimises it prematurely. The levers, in order of effect:
+**Effectively zero at this volume, and that is now measured rather than assumed.** Rates below were read from the AWS Pricing API on 2026-08-31 (`aws pricing get-products --service-code AmazonCloudFront`), not recalled; they are list prices, so any negotiated agreement only moves them down.
+
+| Line | Rate | At 39 documents |
+| --- | --- | --- |
+| CloudFront egress, first 1 TB/month | **$0.00** — perpetual, not a trial | $0.00 |
+| CloudFront egress beyond that, Asia Pacific | $0.12/GB (0–10 TB), $0.085/GB in Europe and the US | — |
+| CloudFront HTTPS requests, first 10M/month | $0.00, then $1.20 per million in Asia Pacific | $0.00 |
+| S3 Standard, ap-southeast-1 | $0.025/GB-Mo | a few cents |
+| ACM certificate | free when used with CloudFront | $0.00 |
+| Route 53 hosted zone | `westonrobot.net` already exists | $0.00 |
+
+Exceeding the free tier needs more than 1 TB of egress a month — on the order of fifty thousand downloads of a 20 MB manual. The first terabyte past it costs about $120. That is a volume worth celebrating rather than optimising against.
+
+The levers, in order of effect, for whenever it does matter:
 
 - **`Cache-Control`.** The dominant lever on egress. Long TTLs on immutable versioned keys mean the origin is read approximately once per object per edge.
 - **Storage class.** Standard for served content. Archive tiers apply to masters, which are out of scope here.
-- **A billing alarm**, so video growth is noticed as a number rather than as an invoice.
+- **A billing alarm**, so video growth is noticed as a number rather than as an invoice. $20/month is a reasonable threshold — comfortably above zero, far below anything that would be a surprise.
 
-**Measurement to take, not estimated here:** total corpus size once the 39 documents are exported. Storage cost is negligible at any plausible figure; egress depends on traffic nobody has measured yet, and inventing a number would only make it look decided.
+**Still a measurement to take:** total corpus size once the 39 documents are exported. Storage is a rounding error at any plausible figure, but the number is worth knowing before the first bulk load rather than after.
 
 ## 10. Content lifecycle and retention
 
