@@ -28,13 +28,13 @@ yarn-error.log*
 # up by git: keep a copy somewhere else.
 **/video/raw/
 
-# Downloadable documents staged for upload. Any `_files/` folder holds
+# Documents staged for upload to the S3 store. Any `_upload/` folder holds
 # manuals, archives and firmware that belong in the S3 store, never in git —
 # see docs/design/file-hosting.md. They are gitignored on purpose: CI has no
 # local copy, so a page committed before its document was uploaded fails the
 # build instead of shipping a dead link. The underscore also keeps Docusaurus
 # from treating the directory as routable content.
-**/_files/
+**/_upload/
 
 .vscode/
 # Claude Code config/instructions — not site content

@@ -111,7 +111,9 @@ A document is usually received or written by the same person editing the page th
 
 So the engineer's path starts in the working tree:
 
-1. **Drop the file into the `_files/` directory beside the page.** These directories are gitignored, exactly as `**/video/raw/` already is, so the bytes never enter history. The leading underscore also keeps Docusaurus from treating the directory as routable content.
+1. **Drop the file into the `_upload/` directory beside the page.** These directories are gitignored, exactly as `**/video/raw/` already is, so the bytes never enter history. The leading underscore also keeps Docusaurus from treating the directory as routable content.
+
+   The name is deliberate. It is not `_publish/`, because dropping a file there does not publish it — it stages it for the upload step, and approval still stands between that and a customer. Naming the directory after the verb it actually performs keeps the distinction in §3 visible at the point where someone is most likely to forget it.
 2. **Reference it locally and build.** `npm start` and a local build show the real page with the real document attached — which is the point, and the thing no console-first flow can offer.
 3. **Run the publish script when the page is right.** It parses the naming convention, computes the digest, derives the D4 key, uploads to the inbox and — for a caller who also holds the approve grant — tags it, so it is live in seconds. Then it rewrites the page's local reference to the published one.
 4. **Rebuild and review again.** The second review is against exactly what a customer will get.
@@ -250,7 +252,7 @@ Ordered so each phase is independently useful and nothing is blocked on the phas
 
 **Phase 1 — Serve it correctly.** Bucket, CloudFront, ACM, OAC, Block Public Access, versioning. An admin bulk-loads the 39 exported documents under D4 paths with their metadata, and the 48 SharePoint occurrences and 4 Google Drive links are rewritten. This is a one-time migration, so it does not wait on the self-service machinery. At the end of this phase the defect is fixed.
 
-**Phase 2 — Make it self-service.** The inbox bucket, the upload and approve roles, the promote Lambda, the index generator, and IaC for all of it — plus the publish script and the gitignored `_files/` convention, which is how an engineer gets a document up without leaving the repository. At the end of this phase a technician can publish without an engineer, an engineer can publish without a console, and no human can write to the served bucket.
+**Phase 2 — Make it self-service.** The inbox bucket, the upload and approve roles, the promote Lambda, the index generator, and IaC for all of it — plus the publish script and the gitignored `_upload/` convention, which is how an engineer gets a document up without leaving the repository. At the end of this phase a technician can publish without an engineer, an engineer can publish without a console, and no human can write to the served bucket.
 
 **Phase 3 — Make it structural.** The `<Downloads>` component with its local-file fallback, and the S3 event that rebuilds the site when the index changes. The publish script stops substituting URLs and the pages that carry them are converted. At the end of this phase pages carry queries instead of URLs, and the broken-link class is gone rather than monitored.
 
