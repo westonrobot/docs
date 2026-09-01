@@ -45,6 +45,27 @@ Manuals, SDK archives, firmware. These live in the file store, never in git — 
 3. `python3 scripts/publish-files.py` shows what it would do. Add `--publish` to upload and rewrite the page's link to the published URL.
 4. Rebuild and look again. The second review is against exactly what a customer gets.
 
+### Has it actually gone up?
+
+`python3 scripts/publish-files.py` answers this without uploading anything. It compares each staged file's digest against the published index and reports one of:
+
+| | |
+| --- | --- |
+| `=` published | in the index, digest matches — done |
+| `!` differs | in the index under this key, but the bytes changed |
+| `~` awaiting approval | uploaded, sitting in the inbox, needs an approver |
+| `+` new | not uploaded |
+
+The `~` states need read access to the inbox, which an uploader deliberately does not have — their grant is `PutObject` and nothing else. When it cannot look, it says so rather than guessing, and everything unpublished shows as `+`.
+
+**Without any AWS access at all**, the published index is public:
+
+```bash
+curl -s https://download.westonrobot.net/index.json | grep wr65
+```
+
+That is the same file the site build reads, so if a document is in there it is live.
+
 `npm run check:downloads` fails if a page still points into `static/_upload/`. That is not a lint rule — CI has no copy of your local file, so such a page would 404 for everyone but you.
 
 The path convention is [ADR 0001 D4](docs/adr/0001-host-downloadable-documents-on-s3.md): `/<section>/<product>/<file>`, and a published path is **never renamed or deleted**. A customer's bookmark, a QR code printed on a chassis and a support email from 2024 all depend on that.

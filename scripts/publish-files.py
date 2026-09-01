@@ -60,6 +60,35 @@ def fetch_index(base_url: str) -> dict[str, dict]:
     return {e["key"]: e for e in data.get("files", [])}
 
 
+def inbox_state(bucket: str, keys: list[str]) -> dict[str, str] | None:
+    """Which of these keys are already in the inbox, and whether approved.
+
+    Returns None when the inbox cannot be read — an uploader's grant is
+    `PutObject` and nothing else, deliberately, so this is the normal case for
+    a technician rather than an error. Saying "not checked" is honest; guessing
+    is not.
+    """
+    try:
+        import boto3
+        from botocore.exceptions import ClientError
+    except ImportError:
+        return None
+
+    s3 = boto3.client("s3")
+    found = {}
+    for key in keys:
+        try:
+            tags = s3.get_object_tagging(Bucket=bucket, Key=f"inbox/{key}")["TagSet"]
+        except ClientError as exc:
+            code = exc.response["Error"]["Code"]
+            if code in ("NoSuchKey", "404"):
+                continue
+            return None  # AccessDenied, or no credentials at all
+        approved = any(t["Key"] == "approved" and t["Value"] == "true" for t in tags)
+        found[key] = "approved, not yet promoted" if approved else "awaiting approval"
+    return found
+
+
 def pages_referencing(local_url: str) -> list[pathlib.Path]:
     hits = []
     for directory in CONTENT_DIRS:
@@ -123,20 +152,38 @@ def main() -> int:
         for rel, why in problems:
             print(f"  {rel}\n      {why}")
 
+    # A key absent from the index may never have been uploaded, or may be
+    # sitting in the inbox waiting for someone to approve it. Those are
+    # different problems and used to look identical here.
+    unpublished = [i["key"] for i in plan if i["state"] != "published"]
+    inbox = inbox_state(args.inbox_bucket, unpublished) if unpublished else {}
+    if inbox is None:
+        print("  note: inbox not checked (no read access, which is normal for an uploader)")
+        inbox = {}
+    for item in plan:
+        if item["state"] == "new" and item["key"] in inbox:
+            item["state"] = inbox[item["key"]]
+
     print(f"\n{len(plan)} staged file(s):")
     for item in plan:
         pages = pages_referencing(item["local_url"])
         item["pages"] = pages
-        mark = {"new": "+", "differs": "!", "published": "="}[item["state"]]
+        mark = {"new": "+", "differs": "!", "published": "=",
+                "awaiting approval": "~", "approved, not yet promoted": "~"}[item["state"]]
         print(f"  {mark} {item['key']}  ({item['bytes'] / 1048576:.1f} MiB, {item['state']})")
         for page in pages:
             print(f"      referenced by {page.relative_to(REPO)}")
         if item["state"] != "published" and not pages:
             print("      no page references it yet")
 
-    todo = [i for i in plan if i["state"] != "published"]
+    todo = [i for i in plan if i["state"] in ("new", "differs")]
     if not todo:
-        print("\nEverything staged is already published; nothing to do.")
+        waiting = [i for i in plan if i["state"].startswith(("awaiting", "approved"))]
+        if waiting:
+            print(f"\nNothing to upload. {len(waiting)} file(s) are in the inbox already —"
+                  "\nthey need an approver, not another upload.")
+        else:
+            print("\nEverything staged is already published; nothing to do.")
     if not args.publish:
         print("\nDry run. Re-run with --publish to upload and rewrite pages.")
         return 1 if problems else 0
