@@ -24,7 +24,11 @@ Edit the `.md` or `.mdx` file, run `npm run start`, look at it. That is the whol
 Two things the dev server will not catch, and `npm run build` will:
 
 - **Broken internal links and anchors.** `onBrokenLinks` and `onBrokenAnchors` are both set to `throw`, deliberately — see [`docs/design/ia-proposal.md`](docs/design/ia-proposal.md).
-- **Redirects.** They are only emitted by a production build, and the dev server serves `index.html` for unknown routes, so an old URL can look like it works while rendering the wrong page.
+- **Redirects.** `@docusaurus/plugin-client-redirects` only emits redirect stubs during `docusaurus build`, never during `docusaurus start`. The dev server also serves `index.html` for unknown routes, so an old URL can look like it works in development while actually rendering the wrong thing. To check one:
+
+  ```bash
+  npm run build && npm run serve
+  ```
 
 ## Adding or restructuring a product page
 
