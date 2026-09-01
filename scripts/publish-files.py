@@ -38,7 +38,7 @@ CONTENT_DIRS = ("robot", "solution", "peripheral", "system", "tutorial", "suppor
 PAGE_SUFFIXES = (".md", ".mdx")
 
 DEFAULT_BASE_URL = os.environ.get("WR_FILES_BASE_URL", "https://download.westonrobot.net")
-DEFAULT_INBOX = os.environ.get("WR_FILES_INBOX_BUCKET", "wr-files-inbox")
+DEFAULT_INBOX = os.environ.get("WR_FILES_INBOX_BUCKET", "wr-files-private")
 
 
 def staged_files() -> list[pathlib.Path]:
@@ -145,11 +145,11 @@ def main() -> int:
 
     s3 = boto3.client("s3")
     for item in todo:
-        # The object lands at the published key, in the inbox bucket — no
-        # `inbox/` prefix inside a bucket already called that. It matters that
-        # this matches where the console route drops a file: two front doors
-        # that leave objects in different shapes are two things to reason about.
-        inbox_key = item["key"]
+        # Under `inbox/`, which is where the console route drops a file too —
+        # two front doors that leave objects in different shapes are two things
+        # to reason about. The prefix is load-bearing rather than decorative:
+        # the private bucket also holds `logs/`.
+        inbox_key = f"inbox/{item['key']}"
         print(f"\nuploading {item['key']}")
         s3.upload_file(str(item["path"]), args.inbox_bucket, inbox_key)
         if args.approve:

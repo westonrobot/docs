@@ -47,13 +47,16 @@ The dashed relationship worth noticing is `IDX → C`: the store generates the s
 
 ## 2. Topology
 
-Three buckets. Separate a bucket from another bucket only when they differ in **blast radius or lifecycle policy**, never merely in content type — prefixes handle content type, and every extra bucket is another policy, another log destination and another thing to get wrong. Each of the three below differs on the stated criterion; a fourth, split by content type, would not.
+Two buckets. The line between them is the only one that has to hold: **what CloudFront serves, and what it must never see.** Separate a bucket from another bucket on blast radius, never on content type — prefixes handle content type, and every extra bucket is another policy, another log destination and another thing to get wrong.
 
 | Bucket | Holds | Access | Why separate |
 | --- | --- | --- | --- |
-| `wr-files-prod` | Everything customers download | Private; readable only by the CloudFront OAC principal | The served content |
-| `wr-files-logs` | CloudFront + S3 access logs | Private; write from the log delivery principal | Logs must never live in the bucket they describe — a policy error that exposes content would expose the audit trail with it, and log writes pollute the content bucket's own access log |
-| `wr-files-inbox` | Files waiting to be published | **Write-only** for people; read and delete for the promote Lambda | A drop zone whose whole purpose is to be writable by humans, which is the one thing the served bucket must never be. Nothing here is reachable by a customer, so a bad upload is junk in a staging area rather than an incident |
+| `wr-files` | Everything customers download | Private; readable only by the CloudFront OAC principal | The served content |
+| `wr-files-private` | `inbox/` — documents awaiting approval. `logs/` — reserved for access logs | **Write-only** under `inbox/` for people; read and delete for the promote Lambda | Its whole purpose is to be writable by humans, which is the one thing the served bucket must never be. It is not a CloudFront origin, so an unapproved document is unreachable by construction rather than by a deny rule being correct |
+
+An earlier draft split this three ways, giving logs a bucket of their own on the grounds that access logs must never live in the bucket they describe. That reasoning still holds for the *served* bucket — and it is satisfied here, because logs go to the private bucket, not to the one being logged. What does not survive is giving logs their own bucket: they differ from the inbox in who writes to them, which is an IAM question rather than a blast-radius one.
+
+**One real cost, paid deliberately.** Merging them makes CloudFront's access logging impossible to express in this stack: the private bucket triggers promotion, promotion reaches the distribution, and the distribution would log back to the private bucket — CloudFormation rejects the cycle. Logging is therefore deferred to Phase 4, where the alarm work lives anyway, and enabled then against whatever destination that work chooses. Nothing consumes the logs before then, and the 404 rate that matters most is available from CloudWatch metrics without them (§8).
 
 **Naming follows one rule: customer-facing surfaces say `download`, internal ones say `files`.** The hostname is `download.westonrobot.net` because it names what a customer *does* there — `files` describes the storage, and the hostname exists for the person clicking a link in a manual. The buckets are `wr-files-*` because they name what they *hold*, and `wr-download-inbox` would be actively wrong: nobody downloads from an inbox. The same split runs through the code — `<Downloads>` and `npm run check:downloads` sit on the customer-facing surface, while `wrfiles.py`, `npm run publish:files` and `WR_FILES_BASE_URL` are internal. It looks like an inconsistency until you know the rule, which is why the rule is written here rather than left to be inferred.
 
@@ -227,6 +230,8 @@ That requirement is met by CloudFormation (`infra/`), chosen over Terraform on d
 P4. The design goal is that the next time something breaks, a dashboard says so before a customer does.
 
 **What moving to our own domain buys us, beyond the fix.** When the links lived on `tangrobot.sharepoint.com`, a broken link produced a DNS failure on infrastructure we did not own and could not see. Once every link is on `download.westonrobot.net`, a broken link produces a **404 in our own CloudFront logs**. The failure becomes an observable event on a system we operate. That is arguably a larger win than the fix itself.
+
+**Access logging is not on at launch.** Merging the logs bucket into the private one made it inexpressible in a single stack (§2), so it is switched on with the alarm work rather than before it. That costs less than it sounds: CloudFront publishes `4xxErrorRate` to CloudWatch as a metric with no logging configured, so the alarm below — the one that answers how 53 dead links went unnoticed — can exist without them. What logs add is *which* keys are missing, which is the second question rather than the first.
 
 Worth watching, in rough order of value:
 

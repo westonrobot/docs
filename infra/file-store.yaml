@@ -47,17 +47,29 @@ Parameters:
 Resources:
 
   # --------------------------------------------------------------- buckets --
-  # Three, separated by blast radius and lifecycle rather than by content type
-  # — prefixes handle content type (design §2).
+  # Two, and the line between them is the only one that has to hold: what
+  # CloudFront serves, and what it must never see. Inbox and logs differ in who
+  # writes to them, which is an IAM question rather than a blast-radius one, so
+  # they share a bucket under separate prefixes (design §2).
 
-  LogsBucket:
+  PrivateBucket:
     Type: AWS::S3::Bucket
     DeletionPolicy: Retain
     UpdateReplacePolicy: Retain
+    # The notification below names PromoteFunction, and PromotePermission names
+    # this bucket. The cycle is broken by deriving the bucket ARN there from
+    # BucketPrefix rather than from !GetAtt, so only this ordering is needed.
+    DependsOn: PromotePermission
     Properties:
-      BucketName: !Sub '${BucketPrefix}-logs'
+      BucketName: !Sub '${BucketPrefix}-private'
+      # Overwrite safety for both upload routes. Content-addressed keys would
+      # have given the same guarantee, but a technician dragging a file onto
+      # the S3 console cannot compute a digest.
+      VersioningConfiguration:
+        Status: Enabled
       # CloudFront's log delivery writes with ACLs, so this bucket has to accept
-      # them. Nothing else in this stack does.
+      # them. BlockPublicAcls still applies — log delivery grants to a named
+      # canonical user, not to the public.
       OwnershipControls:
         Rules:
           - ObjectOwnership: BucketOwnerPreferred
@@ -68,16 +80,44 @@ Resources:
         RestrictPublicBuckets: true
       LifecycleConfiguration:
         Rules:
+          # The inbox is a staging area, not storage.
+          - Id: expire-unpromoted
+            Status: Enabled
+            Prefix: inbox/
+            ExpirationInDays: !Ref InboxExpiryDays
+            NoncurrentVersionExpiration:
+              NoncurrentDays: !Ref InboxExpiryDays
+          # Reserved: access logging is Phase 4 (see ServedBucket).
           - Id: expire-logs
             Status: Enabled
+            Prefix: logs/
             ExpirationInDays: 400
+      # Promotion is driven by tagging, not by upload: an object appearing in
+      # the inbox means nothing until somebody approves it. Filtered to inbox/
+      # so that tagging a log object cannot trigger a promotion.
+      NotificationConfiguration:
+        LambdaConfigurations:
+          - Event: 's3:ObjectTagging:Put'
+            Filter:
+              S3Key:
+                Rules:
+                  - Name: prefix
+                    Value: inbox/
+            Function: !GetAtt PromoteFunction.Arn
 
-  ProdBucket:
+  # No LoggingConfiguration here, and none on the distribution. With two
+  # buckets those edges cannot be broken: the private bucket triggers promote,
+  # promote reaches the distribution, and the distribution would log back to
+  # the private bucket — CloudFormation rejects the cycle. Nothing consumes
+  # access logs until the Phase 4 alarm work, and CloudFront publishes
+  # 4xxErrorRate to CloudWatch without them, so logging is enabled then against
+  # whatever destination that work chooses. Design §8.
+  ServedBucket:
     Type: AWS::S3::Bucket
     DeletionPolicy: Retain
     UpdateReplacePolicy: Retain
     Properties:
-      BucketName: !Sub '${BucketPrefix}-prod'
+      BucketName: !Ref BucketPrefix
       # The realistic failure is a person or a script overwriting the wrong
       # object, not hardware loss. Versioning is the cheapest control for it.
       VersioningConfiguration:
@@ -92,9 +132,6 @@ Resources:
         BlockPublicPolicy: true
         IgnorePublicAcls: true
         RestrictPublicBuckets: true
-      LoggingConfiguration:
-        DestinationBucketName: !Ref LogsBucket
-        LogFilePrefix: s3/prod/
       LifecycleConfiguration:
         Rules:
           - Id: expire-noncurrent-versions
@@ -106,47 +143,13 @@ Resources:
             AbortIncompleteMultipartUpload:
               DaysAfterInitiation: 7
 
-  InboxBucket:
-    Type: AWS::S3::Bucket
-    DeletionPolicy: Retain
-    UpdateReplacePolicy: Retain
-    # The notification below names PromoteFunction, and PromotePermission names
-    # this bucket. The cycle is broken by deriving the bucket ARN there from
-    # BucketPrefix rather than from !GetAtt, so only this ordering is needed.
-    DependsOn: PromotePermission
-    Properties:
-      BucketName: !Sub '${BucketPrefix}-inbox'
-      # Overwrite safety for both upload routes. Content-addressed keys would
-      # have given the same guarantee, but a technician dragging a file onto
-      # the S3 console cannot compute a digest.
-      VersioningConfiguration:
-        Status: Enabled
-      PublicAccessBlockConfiguration:
-        BlockPublicAcls: true
-        BlockPublicPolicy: true
-        IgnorePublicAcls: true
-        RestrictPublicBuckets: true
-      LifecycleConfiguration:
-        Rules:
-          - Id: expire-unpromoted
-            Status: Enabled
-            ExpirationInDays: !Ref InboxExpiryDays
-            NoncurrentVersionExpiration:
-              NoncurrentDays: !Ref InboxExpiryDays
-      # Promotion is driven by tagging, not by upload: an object appearing in
-      # the inbox means nothing until somebody approves it.
-      NotificationConfiguration:
-        LambdaConfigurations:
-          - Event: 's3:ObjectTagging:Put'
-            Function: !GetAtt PromoteFunction.Arn
-
   # ------------------------------------------------------------ delivery ----
 
   OriginAccessControl:
     Type: AWS::CloudFront::OriginAccessControl
     Properties:
       OriginAccessControlConfig:
-        Name: !Sub '${BucketPrefix}-prod'
+        Name: !Ref BucketPrefix
         OriginAccessControlOriginType: s3
         SigningBehavior: always
         SigningProtocol: sigv4
@@ -164,7 +167,7 @@ Resources:
         PriceClass: PriceClass_200
         Origins:
           - Id: prod
-            DomainName: !GetAtt ProdBucket.RegionalDomainName
+            DomainName: !GetAtt ServedBucket.RegionalDomainName
             OriginAccessControlId: !GetAtt OriginAccessControl.Id
             S3OriginConfig:
               OriginAccessIdentity: ''
@@ -181,10 +184,6 @@ Resources:
           AcmCertificateArn: !Ref CertificateArn
           SslSupportMethod: sni-only
           MinimumProtocolVersion: TLSv1.2_2021
-        Logging:
-          Bucket: !GetAtt LogsBucket.DomainName
-          Prefix: cloudfront/
-          IncludeCookies: false
       Tags:
         - Key: Project
           Value: wr-files
@@ -193,10 +192,10 @@ Resources:
   # control — the content is public — it is what stops the raw
   # <bucket>.s3.amazonaws.com URL from working, so the branded hostname is the
   # only URL that can end up in an email (ADR 0001 D3).
-  ProdBucketPolicy:
+  ServedBucketPolicy:
     Type: AWS::S3::BucketPolicy
     Properties:
-      Bucket: !Ref ProdBucket
+      Bucket: !Ref ServedBucket
       PolicyDocument:
         Version: '2012-10-17'
         Statement:
@@ -205,7 +204,7 @@ Resources:
             Principal:
               Service: cloudfront.amazonaws.com
             Action: 's3:GetObject'
-            Resource: !Sub '${ProdBucket.Arn}/*'
+            Resource: !Sub '${ServedBucket.Arn}/*'
             Condition:
               StringEquals:
                 'AWS:SourceArn': !Sub 'arn:${AWS::Partition}:cloudfront::${AWS::AccountId}:distribution/${Distribution}'
@@ -214,8 +213,8 @@ Resources:
             Principal: '*'
             Action: ['s3:DeleteObject', 's3:DeleteObjectVersion']
             Resource:
-              - !GetAtt ProdBucket.Arn
-              - !Sub '${ProdBucket.Arn}/*'
+              - !GetAtt ServedBucket.Arn
+              - !Sub '${ServedBucket.Arn}/*'
             Condition:
               ArnNotEquals:
                 'aws:PrincipalArn': !GetAtt PromoteRole.Arn
@@ -247,7 +246,7 @@ Resources:
           - Sid: PutIntoInboxOnly
             Effect: Allow
             Action: 's3:PutObject'
-            Resource: !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-inbox/*'
+            Resource: !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-private/inbox/*'
 
   ApprovePolicy:
     Type: AWS::IAM::ManagedPolicy
@@ -265,8 +264,8 @@ Resources:
               - 's3:GetObject'
               - 's3:ListBucket'
             Resource:
-              - !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-inbox'
-              - !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-inbox/*'
+              - !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-private'
+              - !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-private/inbox/*'
 
   ReadPolicy:
     Type: AWS::IAM::ManagedPolicy
@@ -279,8 +278,8 @@ Resources:
           - Effect: Allow
             Action: ['s3:GetObject', 's3:ListBucket']
             Resource:
-              - !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-prod'
-              - !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-prod/*'
+              - !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}'
+              - !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}/*'
 
   # --------------------------------------------------------------- lambdas --
 
@@ -308,12 +307,12 @@ Resources:
                   - 's3:GetObjectVersionTagging'
                   - 's3:ListBucket'
                 Resource:
-                  - !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-inbox'
-                  - !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-inbox/*'
+                  - !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-private'
+                  - !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-private/inbox/*'
               - Sid: WriteServed
                 Effect: Allow
                 Action: ['s3:PutObject', 's3:DeleteObject', 's3:DeleteObjectVersion']
-                Resource: !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-prod/*'
+                Resource: !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}/*'
               - Sid: Invalidate
                 Effect: Allow
                 Action: 'cloudfront:CreateInvalidation'
@@ -346,12 +345,12 @@ Resources:
                 Effect: Allow
                 Action: ['s3:GetObject', 's3:ListBucket']
                 Resource:
-                  - !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-prod'
-                  - !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-prod/*'
+                  - !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}'
+                  - !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}/*'
               - Sid: WriteIndex
                 Effect: Allow
                 Action: 's3:PutObject'
-                Resource: !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-prod/index.json'
+                Resource: !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}/index.json'
               - Sid: Invalidate
                 Effect: Allow
                 Action: 'cloudfront:CreateInvalidation'
@@ -375,7 +374,7 @@ Resources:
       Code: ./lambda
       Environment:
         Variables:
-          PROD_BUCKET: !Sub '${BucketPrefix}-prod'
+          PROD_BUCKET: !Ref BucketPrefix
           DISTRIBUTION_ID: !Ref Distribution
           BASE_URL: !Sub 'https://${DomainName}'
 
@@ -391,7 +390,7 @@ Resources:
       Code: ./lambda
       Environment:
         Variables:
-          PROD_BUCKET: !Sub '${BucketPrefix}-prod'
+          PROD_BUCKET: !Ref BucketPrefix
           DISTRIBUTION_ID: !Ref Distribution
           REINDEX_NAME: !Ref ReindexFunction
 
@@ -402,8 +401,8 @@ Resources:
       Action: 'lambda:InvokeFunction'
       Principal: s3.amazonaws.com
       # Derived from the parameter rather than !GetAtt, to break the cycle with
-      # InboxBucket's notification.
-      SourceArn: !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-inbox'
+      # PrivateBucket's notification.
+      SourceArn: !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-private'
       SourceAccount: !Ref 'AWS::AccountId'
 
 Outputs:
@@ -414,12 +413,12 @@ Outputs:
     Description: Point DNS here if the zone is ever managed outside this account.
     Value: !GetAtt Distribution.DomainName
   ServedBucket:
-    Value: !Ref ProdBucket
-  InboxBucket:
-    Value: !Ref InboxBucket
+    Value: !Ref ServedBucket
+  PrivateBucket:
+    Value: !Ref PrivateBucket
   InboxConsoleUrl:
     Description: Bookmark this for technicians — it opens directly on the drop zone.
-    Value: !Sub 'https://${AWS::Region}.console.aws.amazon.com/s3/buckets/${BucketPrefix}-inbox?region=${AWS::Region}'
+    Value: !Sub 'https://${AWS::Region}.console.aws.amazon.com/s3/buckets/${BucketPrefix}-private?prefix=inbox/&region=${AWS::Region}'
   UploadPolicyArn:
     Value: !Ref UploadPolicy
   ApprovePolicyArn:

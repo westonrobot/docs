@@ -191,6 +191,7 @@ class TheTwoRoutesLandInTheSameShape(unittest.TestCase):
             w.key_from_inbox_key("robot__wr65__user-manual__en__v2.3.pdf"), self.KEY
         )
 
-    def test_a_stray_inbox_prefix_is_still_tolerated(self):
-        # Someone may create a folder by hand; it should not break promotion.
+    def test_the_inbox_prefix(self):
+        # Both routes write under `inbox/` in the shared private bucket, which
+        # also holds `logs/`. Stripping it is how the published key is found.
         self.assertEqual(w.key_from_inbox_key(f"inbox/{self.KEY}"), self.KEY)

@@ -15,7 +15,7 @@ The console is part of the argument. A stack shows its resources, its event hist
 | File | Holds |
 | --- | --- |
 | `certificate.yaml` | The ACM certificate. **Deploys to us-east-1** — CloudFront reads certificates only from there, regardless of where the buckets live. That constraint is the only reason this is two stacks. |
-| `file-store.yaml` | Everything else: three buckets, the distribution and its OAC, five policies and roles, both Lambdas, the DNS record. |
+| `file-store.yaml` | Everything else: two buckets, the distribution and its OAC, five policies and roles, both Lambdas, the DNS record. |
 | `lambda/` | `wrfiles.py` (the only implementation of the key rules), `promote.py`, `reindex.py`, and their tests. |
 
 ## Deploying it the first time
@@ -63,7 +63,7 @@ $ aws cloudformation describe-stacks --region ap-southeast-1 \
     --stack-name wr-files --query 'Stacks[0].Outputs' --output table
 ```
 
-That prints the served and inbox bucket names, the three policy ARNs and the console URL to bookmark for technicians. Attach `wr-files-upload` and `wr-files-approve` to an IAM group with console access and enforced MFA — Identity Center is not enabled in this account, so permission sets are not available yet.
+That prints the served and private bucket names, the three policy ARNs and the console URL to bookmark for technicians — it opens straight on the `inbox/` prefix. Attach `wr-files-upload` and `wr-files-approve` to an IAM group with console access and enforced MFA — Identity Center is not enabled in this account, so permission sets are not available yet.
 
 ## The initial bulk load
 

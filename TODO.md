@@ -23,6 +23,7 @@ Blocked on the first item; everything below it depends on having the files. `doc
 - [ ] Exercise `scripts/publish-files.py --publish` against the real inbox once it exists. The dry run, key derivation, page detection and link substitution are all verified locally; the upload and tagging calls have never run.
 - [ ] Wrap the publish script in a Claude Code skill, alongside `vendor-interface-summary`. The script stays runnable standalone — CI needs it and not everyone has the skill.
 - [ ] Decide whether `reindex` should trigger a docs-site rebuild via `repository_dispatch`. It needs a GitHub token in AWS, which is a secret to manage and a decision to take on its own.
+- [ ] Turn on access logging with the Phase 4 alarm work. It is absent from the stack because merging the logs bucket into the private one makes the CloudFront logging edge circular — see `docs/design/file-hosting.md` §2. `4xxErrorRate` is available from CloudWatch without it, so the alarm is not blocked; the logs add which keys are missing.
 - [ ] Find a home for video masters. `.gitignore` excludes `**/video/raw/` and says they are backed up nowhere; that is still true. Out of ADR 0001's scope, which covers public content only.
 
 ## Site infrastructure
