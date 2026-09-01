@@ -5,7 +5,7 @@ rather than guessed at: an unknown extension, a wrong directory depth, a
 section that is not one of the six. A store that serves firmware cannot
 afford a helpful default.
 
-Run: python3 -m unittest discover -s infra/lambda -t .
+Run: python3 -m unittest discover -s scripts -t scripts
 """
 
 import unittest
@@ -105,33 +105,6 @@ class Extensions(unittest.TestCase):
         self.assertEqual(w.content_type_for(".mp4"), "video/mp4")
 
 
-class InboxAcceptsBothNotations(unittest.TestCase):
-    """The inbox has two front doors and must not produce two keys."""
-
-    EXPECTED = "robot/wr65/wr65-user-manual-en-v2.3.pdf"
-
-    def test_path_form_from_the_script(self):
-        self.assertEqual(
-            w.key_from_inbox_key("inbox/robot/wr65/wr65-user-manual-en-v2.3.pdf"),
-            self.EXPECTED,
-        )
-
-    def test_flat_form_from_the_console(self):
-        self.assertEqual(
-            w.key_from_inbox_key("inbox/robot__wr65__user-manual__en__v2.3.pdf"),
-            self.EXPECTED,
-        )
-
-    def test_without_the_inbox_prefix(self):
-        self.assertEqual(
-            w.key_from_inbox_key("robot__wr65__user-manual__en__v2.3.pdf"), self.EXPECTED
-        )
-
-    def test_junk_is_refused(self):
-        with self.assertRaises(w.NameError_):
-            w.key_from_inbox_key("inbox/scan001.pdf")
-
-
 class Digests(unittest.TestCase):
     def test_stable(self):
         self.assertEqual(w.sha256_bytes(b"x"), w.sha256_bytes(b"x"))
@@ -171,27 +144,3 @@ class IndexEntries(unittest.TestCase):
 
 
 KEY_SIDECAR = "robot/wr65/wr65-user-manual-en-v2.3.pdf.sha256"
-
-
-class TheTwoRoutesLandInTheSameShape(unittest.TestCase):
-    """Both front doors leave the object at its published key inside the inbox
-    bucket. Anything else means the promote Lambda has two cases to handle and
-    a reader has two shapes to hold in their head."""
-
-    KEY = "robot/wr65/wr65-user-manual-en-v2.3.pdf"
-
-    def test_script_route(self):
-        # publish-files.py uploads to the key it derived from the local path.
-        derived = w.key_from_upload_path(f"static/_upload/{self.KEY}")
-        self.assertEqual(derived, self.KEY)
-        self.assertEqual(w.key_from_inbox_key(derived), self.KEY)
-
-    def test_console_route(self):
-        self.assertEqual(
-            w.key_from_inbox_key("robot__wr65__user-manual__en__v2.3.pdf"), self.KEY
-        )
-
-    def test_the_inbox_prefix(self):
-        # Both routes write under `inbox/` in the shared private bucket, which
-        # also holds `logs/`. Stripping it is how the published key is found.
-        self.assertEqual(w.key_from_inbox_key(f"inbox/{self.KEY}"), self.KEY)

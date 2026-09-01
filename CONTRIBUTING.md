@@ -53,10 +53,9 @@ Manuals, SDK archives, firmware. These live in the file store, never in git — 
 | --- | --- |
 | `=` published | in the index, digest matches — done |
 | `!` differs | in the index under this key, but the bytes changed |
-| `~` awaiting approval | uploaded, sitting in the inbox, needs an approver |
 | `+` new | not uploaded |
 
-The `~` states need read access to the inbox, which an uploader deliberately does not have — their grant is `PutObject` and nothing else. When it cannot look, it says so rather than guessing, and everything unpublished shows as `+`.
+It also lists objects in the store with nothing staged locally. That is the normal state for anything already published — the local copy is meant to be cleaned up — so it is a report, not an error. Nothing is ever deleted automatically: published paths are permanent, and removing one needs admin credentials.
 
 **Without any AWS access at all**, the published index is public:
 

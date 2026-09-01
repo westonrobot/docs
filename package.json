@@ -15,7 +15,7 @@
     "typecheck": "tsc",
     "check:video": "bash scripts/check-video-budget.sh",
     "check:downloads": "python3 scripts/check-downloads.py",
-    "test:files": "python3 -m unittest discover -s infra/lambda -t infra/lambda",
+    "test:files": "python3 -m unittest discover -s scripts -t scripts",
     "publish:files": "python3 scripts/publish-files.py"
   },
   "dependencies": {

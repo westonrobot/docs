@@ -31,15 +31,15 @@ flowchart TB
   end
   subgraph STORE[Storage — swappable]
     direction TB
-    S3["wr-files-prod<br/>objects carry the metadata"] --> IDX["index.json<br/>derived, never authored"]
+    S3["wr-files<br/>objects carry the metadata"] --> IDX["index.json<br/>derived, never authored"]
   end
   subgraph PUB[Publication — the control plane]
     direction TB
-    IN["wr-files-inbox<br/>write-only drop zone"] --> LAM["Promote Lambda<br/>fires on an approval tag"]
+    UP["static/_upload/<br/>gitignored, local"] --> SC["publish-files.py<br/>upload, reindex, invalidate"]
   end
   C --> DNS --> CF -->|OAC| S3
-  LAM -->|copy + metadata| S3
-  LAM -->|invalidate| CF
+  SC -->|upload + metadata| S3
+  SC -->|invalidate| CF
   IDX -.->|generates the tables| C
 ```
 
@@ -47,20 +47,13 @@ The dashed relationship worth noticing is `IDX → C`: the store generates the s
 
 ## 2. Topology
 
-Two buckets. The line between them is the only one that has to hold: **what CloudFront serves, and what it must never see.** Separate a bucket from another bucket on blast radius, never on content type — prefixes handle content type, and every extra bucket is another policy, another log destination and another thing to get wrong.
+One bucket, `wr-files`, holding one kind of thing: public documents. Prefixes carry the structure — `/robot/…`, `/solution/…` — and `index.json` sits at the root.
 
-| Bucket | Holds | Access | Why separate |
-| --- | --- | --- | --- |
-| `wr-files` | Everything customers download | Private; readable only by the CloudFront OAC principal | The served content |
-| `wr-files-private` | `inbox/` — documents awaiting approval. `logs/` — reserved for access logs | **Write-only** under `inbox/` for people; read and delete for the promote Lambda | Its whole purpose is to be writable by humans, which is the one thing the served bucket must never be. It is not a CloudFront origin, so an unapproved document is unreachable by construction rather than by a deny rule being correct |
+It got here by subtraction, and the subtractions are worth keeping because each one names a job that stopped existing. A logs bucket went when access logging moved to Phase 4 (§8). An inbox went with the approval step (ADR 0001 D9): its purpose was to be writable by people while the served bucket was not, and with publishing direct there is nothing to stage.
 
-An earlier draft split this three ways, giving logs a bucket of their own on the grounds that access logs must never live in the bucket they describe. That reasoning still holds for the *served* bucket — and it is satisfied here, because logs go to the private bucket, not to the one being logged. What does not survive is giving logs their own bucket: they differ from the inbox in who writes to them, which is an IAM question rather than a blast-radius one.
+**What still earns the bucket boundary is CloudFront.** It is the origin, so everything in the bucket is reachable at `download.westonrobot.net`. That is exactly right for a store of published documents and exactly wrong for anything else, which is why nothing else goes in it. If a private prefix is ever needed — video masters are the open candidate — it gets its own bucket rather than a deny rule, because an allowlist that has to stay correct is a weaker thing than an origin that cannot reach.
 
-**One real cost, paid deliberately.** Merging them makes CloudFront's access logging impossible to express in this stack: the private bucket triggers promotion, promotion reaches the distribution, and the distribution would log back to the private bucket — CloudFormation rejects the cycle. Logging is therefore deferred to Phase 4, where the alarm work lives anyway, and enabled then against whatever destination that work chooses. Nothing consumes the logs before then, and the 404 rate that matters most is available from CloudWatch metrics without them (§8).
-
-**Naming follows one rule: customer-facing surfaces say `download`, internal ones say `files`.** The hostname is `download.westonrobot.net` because it names what a customer *does* there — `files` describes the storage, and the hostname exists for the person clicking a link in a manual. The buckets are `wr-files-*` because they name what they *hold*, and `wr-download-inbox` would be actively wrong: nobody downloads from an inbox. The same split runs through the code — `<Downloads>` and `npm run check:downloads` sit on the customer-facing surface, while `wrfiles.py`, `npm run publish:files` and `WR_FILES_BASE_URL` are internal. It looks like an inconsistency until you know the rule, which is why the rule is written here rather than left to be inferred.
-
-Within `wr-files-prod`, prefixes carry the structure: `/robot/...`, `/solution/...`, `/video/...`. Masters and other private material do **not** belong here (ADR 0001 scope); when that need is addressed it gets its own bucket, because its lifecycle policy and access model are entirely different.
+**Naming follows one rule: customer-facing surfaces say `download`, internal ones say `files`.** The hostname is `download.westonrobot.net` because it names what a customer *does* there — `files` describes the storage, and the hostname exists for the person clicking a link in a manual. The bucket is `wr-files` because it names what it *holds*. The same split runs through the code: `<Downloads>` and `npm run check:downloads` are customer-facing, while `wrfiles.py`, `npm run publish:files` and `WR_FILES_BASE_URL` are internal. It looks like an inconsistency until you know the rule, which is why the rule is written here rather than left to be inferred.
 
 ## 3. Publication: the store is the source of truth
 
@@ -68,10 +61,10 @@ Within `wr-files-prod`, prefixes carry the structure: `/robot/...`, `/solution/.
 
 **A rejected answer, recorded because it is the tempting one.** An earlier draft of this document made a git-tracked manifest the source of truth. That is wrong, and the reason is worth keeping: it makes the documentation repository the gate for every document. Every manual a technician produces becomes a pull request; the repository accumulates a growing record of items it does not and must not hold; and a person who will never write code has to learn a code workflow to publish a PDF. **Git holds the code that renders the store. It does not hold the store's inventory.**
 
-**The source of truth is the bucket.** A document's metadata lives on the object itself, set at the moment it is promoted:
+**The source of truth is the bucket.** A document's metadata lives on the object itself, set at the moment it is published:
 
 ```
-s3://wr-files-prod/robot/wr65/wr65-user-manual-en-v2.3.pdf
+s3://wr-files/robot/wr65/wr65-user-manual-en-v2.3.pdf
   Content-Type:  application/pdf
   Cache-Control: public, max-age=31536000, immutable
   x-amz-meta-title:    WR65 User Manual
@@ -82,7 +75,7 @@ s3://wr-files-prod/robot/wr65/wr65-user-manual-en-v2.3.pdf
   x-amz-meta-sha256:   9f2b1c…
 ```
 
-A Lambda derives `index.json` from the prefix whenever it changes. The index is a *derived artifact* — never authored, never committed, reproducible at any time by re-listing the bucket.
+The publish script regenerates `index.json` from the bucket on every run. The index is a *derived artifact* — never authored, never committed, reproducible at any time by re-listing the bucket.
 
 **The docs site declares intent, not URLs.** This is the piece that keeps P3 intact without git holding anything:
 
@@ -92,25 +85,19 @@ A Lambda derives `index.json` from the prefix whenever it changes. The index is 
 
 The component resolves that query against the index at build time. **A page cannot hold a link to a document that is not published, because the page holds no links** — it holds a question, and the store answers it. An unsatisfied query renders an empty table rather than a dead link, and since "this page asks for WR65 manuals and the index has none" is checkable, the build fails on it instead of shipping it.
 
-### The flow, with no git in the upload path
+### The flow
 
-| | Step | Who | Entire grant |
+| | Step | Who | Grant |
 | --- | --- | --- | --- |
-| 1 | Upload to the inbox | Technician or engineer | `PutObject` on `wr-files-inbox/*` |
-| 2 | Approve | A small named group | `PutObjectTagging` on `wr-files-inbox/*` |
-| 3 | Copy to the served bucket, set metadata, invalidate | Lambda | Read inbox, write prod, invalidate |
-| 4 | Regenerate `index.json` | Lambda, invoked by step 3 | Write the index object |
-| 5 | Rebuild the docs site | CI, on `repository_dispatch` | Read the index |
+| 1 | Stage the file under `static/_upload/`, at its published path | Anyone editing the page | none — local |
+| 2 | `publish-files.py --publish` uploads it with content type, cache headers, metadata and a `.sha256` sidecar | The publisher | `wr-files-publish` |
+| 3 | The same run regenerates `index.json` from the bucket and invalidates the CDN | " | " |
+| 4 | It rewrites the page's local link to the published URL | " | none — local |
+| 5 | Rebuild the docs site | CI, on `repository_dispatch` or the next push | none — the index is public |
 
-**No human writes to the served bucket at any point.** An approver's entire privilege is the ability to put a tag on an object sitting in the inbox; the copy is performed by a Lambda. The separation between "can approve" and "can serve" is therefore enforced by IAM rather than by anyone remembering it, and it survives someone being in a hurry.
+**The publish grant carries no `DeleteObject`.** Published paths are permanent (D4) and a manual for hardware still in the field outlives any reason to tidy it away (§10), so the worst a publisher can do is overwrite an existing key — which versioning makes recoverable. Removing an object is an admin act, done deliberately by someone who knows why.
 
-**Reindexing is invoked by promotion, not by a bucket notification.** An `ObjectCreated` trigger on the served bucket would fire on `index.json` and re-trigger itself. One promotion, one reindex — and a bulk load done by hand needs one manual invoke, which `infra/README.md` documents.
-
-**Audit and rollback, without git.** CloudTrail records who tagged which object and when — stronger attribution than a merge commit, because it cannot be rewritten. S3 versioning covers rollback. "What is live?" is answered by reading the index, which is generated from the only thing that can be authoritative about what is live: the bucket.
-
-**What git still holds:** the site, the `<Downloads>` component, the infrastructure definition. Code, never inventory.
-
-**Is a Lambda and an index over-engineering for 39 files?** The index generator is a few dozen lines and the promote function not much more, against a failure that has already happened once and cost a 160-link audit to find. The part that could be deferred is the `<Downloads>` component — pages could carry `download.westonrobot.net` URLs by hand at first. But that is the piece carrying most of the value, so defer it last.
+**Reconciliation runs in the safe direction.** Every run lists the bucket and reports objects with nothing staged locally. That is the normal state for anything published — the local copy is meant to be cleaned up — so it is a report rather than an error, and nothing is ever deleted automatically. Its value is drift: an object uploaded by hand, or a half-finished publish, shows up here.
 
 ### Authoring locally, publishing deliberately
 
@@ -122,9 +109,9 @@ So the engineer's path starts in the working tree:
 
    **There is no `pending/` or `done/` subdirectory, deliberately.** The script compares each local digest against the published index, so it already knows what is outstanding and re-running it is a no-op for anything published. State directories would have to be kept in step by hand, and the one thing a gitignored tree cannot offer is a guarantee that anyone did.
 
-   The name is deliberate. It is not `_publish/`, because dropping a file there does not publish it — it stages it for the upload step, and approval still stands between that and a customer. Naming the directory after the verb it actually performs keeps the distinction in §3 visible at the point where someone is most likely to forget it.
+   The name is deliberate. It is not `_publish/`, because dropping a file there does not publish it — a file sits there through however many local builds it takes to get the page right, and only `publish-files.py --publish` sends it anywhere. The directory holds things queued for upload, and is named for that.
 2. **Reference it locally and build.** `npm start` shows the real page with the real document attached — the thing no console-first flow can offer. A `<Downloads>` query resolves against staged files too, and marks them `staged` so a local build is never mistaken for a published one.
-3. **Run the publish script when the page is right.** It parses the naming convention, computes the digest, derives the D4 key, uploads to the inbox and — for a caller who also holds the approve grant — tags it, so it is live in seconds. Then it rewrites the page's local reference to the published one.
+3. **Run the publish script when the page is right.** It derives the D4 key from the local path, computes the digest, uploads with the right content type and cache headers, writes the checksum sidecar, regenerates the index, invalidates the CDN, and rewrites the page's local reference to the published one. One command, and the document is live.
 4. **Rebuild and review again.** The second review is against exactly what a customer will get.
 
 **The gitignore is the enforcement, and this is the load-bearing part.** CI has no local files, because they are not in the repository. A page committed before its document was uploaded therefore cannot resolve, and the build fails. The author saw a working page; CI sees the truth; the discrepancy surfaces in a pipeline rather than in a support ticket. It is the same mechanism as the video budget check (ADR 0001 D8) — a guarantee that comes from git and the filesystem disagreeing in a controlled, deliberate way.
@@ -136,37 +123,9 @@ So the engineer's path starts in the working tree:
 - **Phase 2.** The script substitutes the published URL directly into the page. Simple, and it makes the second review concrete — you are looking at the actual link. The URL is generated from the D4 convention rather than typed, and D4 paths are immutable, so it does not rot the way a hand-pasted one would.
 - **Phase 3.** The page carries `<Downloads product="wr65" kind="manual" />` instead, and the resolver prefers a matching local file in development and the published index everywhere else. No URL appears in the page at all, and a superseded revision stops requiring an edit to every page that mentions it.
 
-**Why a script here and a console for technicians.** Engineers already have the repository open, the file in hand and the metadata in its filename; a script closes the loop without a context switch and is deterministic where a console is not — content type, digest, key derivation and path convention all come out of one code path rather than out of somebody's care on the day. The two routes land in the same inbox and pass the same approval. One pipeline, two front doors, chosen by which one is already open.
+**Why a script and not a console.** Content type, cache headers, the digest, the key and the index all come out of one code path rather than out of somebody's care on the day. A file dropped into the bucket by hand is at the wrong key with no cache headers and invisible to `index.json` — not obviously broken, which is worse. The script is the publishing interface, and there is no second one.
 
 **A skill is a wrapper, not the implementation.** If this is exposed as a Claude Code skill alongside `vendor-interface-summary`, the skill calls the script and the script stays runnable on its own. CI needs it, a technician on a laptop may need it, and neither has the skill installed.
-
-### Uploading is not publishing
-
-The two verbs have different audiences, different frequencies and different privileges, and conflating them is how a design becomes one nobody can use.
-
-| | Upload | Publish |
-| --- | --- | --- |
-| What it is | Getting bytes into AWS | Giving a document a customer-facing URL |
-| Who | Any technician or engineer with the file | A Lambda, on an approval tag |
-| How often | Whenever a document is produced | Whenever an approver says so |
-| Reviewed | No | Yes |
-| Access needed | Write to the inbox bucket, nothing else | Held by no human at all |
-
-**The inbox is write-only, and that is the whole security argument.** The upload grant is `s3:PutObject` on `wr-files-inbox/*` and nothing else — no `GetObject`, no `ListBucket`, no `DeleteObject`, no access to the served bucket, no other AWS service. A technician cannot read what anyone else uploaded, cannot enumerate the bucket, cannot delete or alter anything, and cannot make anything public. The worst outcome from a lost laptop or a leaked credential is junk accumulating in a staging area no customer can reach, cleared by a 90-day expiry lifecycle rule.
-
-That is a genuinely small grant. "Can add a file to one bucket" is not high access, and it is the least privilege that still allows self-service.
-
-**The inbox is versioned, and objects keep their names.** An earlier draft of this section keyed inbox objects by content hash, so that `PutObject` alone could not destroy an earlier upload and no deny rule was needed to make that true. Implementing it showed why that cannot work: **a technician dragging a file onto the S3 console has no way to compute a digest.** Content addressing is available to the script route and to nothing else, and a rule that only one of two front doors can obey is not a rule.
-
-Versioning on the inbox bucket gives the same guarantee to both routes — an overwrite supersedes rather than destroys, and the previous version stays recoverable. The digest is computed by the promote Lambda, which has to read the object anyway, and recorded on the published object. So the property survives: what an approver tagged is what gets copied and what a customer verifies, with no step where the three can drift apart. Nothing about the item enters git either way, which is the point.
-
-**How the technician actually uploads.** Three options; the first is the recommendation.
-
-1. **AWS IAM Identity Center with an S3 console bookmark.** One permission set granting the upload role above, MFA on the account, and a bookmarked URL that opens directly on the inbox bucket. The technician signs in and drags the file onto the page. Identity Center itself carries no charge, there is nothing to build or run, and the grant is auditable in CloudTrail per person. The console is not beautiful, but its upload page is drag-and-drop and needs no explanation.
-2. **A presigned upload page.** The technician holds no AWS identity at all; a small endpoint mints a presigned POST, which can additionally cap content length and constrain content type. The catch is that the endpoint still has to know who the technician is, so this moves the identity problem rather than removing it — worth it only where there is already an internal login to hook into.
-3. **SFTP through AWS Transfer Family.** Field staff know WinSCP and FileZilla, which is a real advantage. Rejected on cost: the endpoint bills per hour whether or not anyone uploads, which is heavily disproportionate to a handful of files a month. *Rate to confirm before dismissing it permanently.*
-
-**Name the file so the metadata can be inferred**: `<section>__<product>__<kind>__<lang>__v<version>.<ext>`, for example `robot__wr65__manual__en__v2.3.pdf`. Those are the same segments an engineer expresses as directories (§4); the flat inbox has no path to carry them, so the filename does. Renaming before dropping the file is the only convention a technician has to learn, and it is what lets the approve step present a ready-made record rather than a form to fill in. A file that does not parse is held in the inbox and reported, never guessed at.
 
 ## 4. Identity and paths
 
@@ -180,7 +139,7 @@ Three operational rules make the convention hold over time:
 
 **Where "the current manual" needs a stable address**, `latest/` is a separate short-TTL key that redirects or duplicates, and the versioned key remains the canonical one. Never make the unversioned path the only path.
 
-**The same segments express the key twice, once per upload route.** An engineer working in the repository spells them with `/` — `_upload/robot/wr65/wr65-user-manual-en-v2.3.pdf` — and the script derives the destination by stripping the `_upload/` root, so the local tree is a literal preview of the store. A technician uploading a single file to a flat inbox spells the same segments with `__` — `robot__wr65__manual__en__v2.3.pdf` — and the promote Lambda parses them back. One convention, two notations, one resulting key.
+**The local tree is a literal preview of the store.** `static/_upload/robot/wr65/wr65-user-manual-en-v2.3.pdf` publishes to exactly that path; the script derives the key by stripping the `_upload/` root. A misfiled document is visible by eye before it is uploaded rather than after.
 
 **Language is a path element, not a suffix on the title** — `…-en-v2.3.pdf`, `…-zh-v2.3.pdf`. The docs site serves existing customers including zh-Hans readers, and a language variant that is discoverable only by reading a table is not discoverable.
 
@@ -188,7 +147,7 @@ Three operational rules make the convention hold over time:
 
 The corpus contains software archives and firmware. That is executable code shipped to robots in the field, and it changes the standard this system is held to.
 
-**Minimum, now:** every archive and firmware image gets a published SHA-256, carried in the object's own metadata and in a sidecar `.sha256` beside it, with the docs page showing it. It is the same digest that addressed the object in the inbox (§3), so what an approver tagged is what a customer verifies. TLS protects the transfer; the checksum protects against a corrupted upload, a truncated download and a substituted object at rest. Every serious vendor publishes these; their absence is conspicuous.
+**Minimum, now:** every archive and firmware image gets a published SHA-256, carried in the object's own metadata and in a sidecar `.sha256` beside it, with the docs page showing it. It is computed from the bytes on disk at publish time and stored on the object, so what was uploaded is what a customer verifies. TLS protects the transfer; the checksum protects against a corrupted upload, a truncated download and a substituted object at rest. Every serious vendor publishes these; their absence is conspicuous.
 
 **Next, for firmware and SDKs:** detached GPG signatures. There is a consistency argument close to hand — `deb.westonrobot.net` already relies on GPG, and the same key management can cover both. The reason this matters more than it looks: apt verifies signatures automatically, but a human downloading a `.zip` from a web page verifies nothing unless the page gives them something to verify against and a reason to bother.
 
@@ -199,7 +158,7 @@ The corpus contains software archives and firmware. That is executable code ship
 S3's durability guarantee covers hardware loss. It does not cover the failure that actually happens, which is a person or a script deleting or overwriting the wrong thing.
 
 - **Versioning ON.** The single highest-value control here, and close to free at this volume. It turns "someone overwrote the manual" from an incident into a console click.
-- **Deletes denied outside the promote role.** A bucket policy that denies `s3:DeleteObject` and `s3:DeleteObjectVersion` to everything except the promote Lambda's execution role. Public documents should essentially never be deleted (§10).
+- **The publish grant has no `DeleteObject`.** The worst a publisher can do is overwrite a key, which versioning makes recoverable. Removing an object needs admin credentials — friction that is the point, since public documents should essentially never be deleted (§10).
 - **Lifecycle for noncurrent versions**, so versioning does not accumulate cost without bound — expire noncurrent versions after a generous window rather than keeping every revision of every PDF forever.
 - **Account-level Block Public Access ON.** With OAC (D3) nothing needs public ACLs, so this costs nothing and removes the most common way an S3 bucket becomes an incident.
 
@@ -211,15 +170,18 @@ Cross-region replication is deferred (§12).
 
 One consequence to be aware of: a public index makes the full inventory enumerable. That is acceptable only because the store holds public content by decision, and it needs revisiting the moment anything gated appears (§12).
 
-**No human writes to the served bucket.** This is what makes a broad upload grant safe: the people who add files cannot serve them, and the principal that serves them is a Lambda rather than anybody's login. The roles worth having are five:
+**Publishing is direct, so the publish grant does put files in front of customers** (ADR 0001 D9). Two roles, not five:
 
-| Role | Can | Assumed by |
+| Role | Can | Held by |
 | --- | --- | --- |
-| Upload | `PutObject` on `wr-files-inbox/*` — and nothing else | Technicians and engineers, via Identity Center with MFA |
-| Approve | `PutObjectTagging` on `wr-files-inbox/*` — and nothing else | A small named group |
-| Promote | Read the inbox, write `wr-files-prod/*`, CloudFront invalidation | The promote Lambda's execution role. No human, no CI |
+| Publish | `PutObject`, `GetObject`, `ListBucket` on `wr-files`, and CloudFront invalidation. **No `DeleteObject`** | Whoever publishes documents |
 | Read | `GetObject`, `ListBucket` | Humans, for debugging |
-| Admin | Bucket and distribution configuration | A named person, rarely, ideally through IaC |
+
+Bucket and distribution configuration is an admin act, done through the stack rather than through a standing role.
+
+**CI holds no AWS credentials at all.** `index.json` is public content served through CloudFront like everything else, so the site build fetches it over HTTPS exactly as any other consumer would. There is no publish step in CI and therefore no role for it to assume — which disposes of the most common finding in a setup like this: static access keys in repository secrets that do not rotate, do not expire, get copied elsewhere, and outlive whoever created them.
+
+One consequence to be aware of: a public index makes the full inventory enumerable. That is acceptable only because the store holds public content by decision, and it needs revisiting the moment anything gated appears (§12).
 
 **Infrastructure as code, for one narrow reason.** The security model of this store *is* its IAM and bucket policies — the OAC condition on `AWS:SourceArn`, the deny-delete, all four public-access blocks, five deliberately narrow grants. Those interlock, and their failure mode is silent: an over-broad grant does not error, it quietly works. Console editing over three years by three people is how that rots, so the policies have to exist as reviewable text that matches reality.
 
@@ -282,9 +244,9 @@ Ordered so each phase is independently useful and nothing is blocked on the phas
 
 **Phase 1 — Serve it correctly.** Bucket, CloudFront, ACM, OAC, Block Public Access, versioning. An admin bulk-loads the 39 exported documents under D4 paths with their metadata, and the 48 SharePoint occurrences and 4 Google Drive links are rewritten. This is a one-time migration, so it does not wait on the self-service machinery. At the end of this phase the defect is fixed.
 
-**Phase 2 — Make it self-service.** The inbox bucket, the upload and approve roles, the promote Lambda, the index generator, and IaC for all of it — plus the publish script and the gitignored `_upload/` convention, which is how an engineer gets a document up without leaving the repository. At the end of this phase a technician can publish without an engineer, an engineer can publish without a console, and no human can write to the served bucket.
+**Phase 2 — Make it repeatable.** The publish script and the gitignored `_upload/` convention, so publishing is one command rather than a sequence of console steps, and the index is regenerated from the bucket every time.
 
-**Phase 3 — Make it structural.** The `<Downloads>` component with its local-file fallback, and the S3 event that rebuilds the site when the index changes. The publish script stops substituting URLs and the pages that carry them are converted. At the end of this phase pages carry queries instead of URLs, and the broken-link class is gone rather than monitored.
+**Phase 3 — Make it structural.** The `<Downloads>` component with its local-file fallback, and a rebuild trigger for the site when the index changes. The publish script stops substituting URLs and the pages that carry them are converted. At the end of this phase pages carry queries instead of URLs, and the broken-link class is gone rather than monitored.
 
 **Phase 4 — Harden.** Checksums, then signatures for firmware and SDKs. 404 alarm and cost alarm. Noncurrent-version lifecycle.
 
@@ -297,7 +259,7 @@ Listed with the trigger that would change the answer, so the decision is revisit
 | Practice | Why not now | Trigger to revisit |
 | --- | --- | --- |
 | Cross-region replication | S3 durability within a region already exceeds the risk this addresses; versioning covers the realistic failure | A contractual availability commitment, or a second region for compliance |
-| A staging *environment* — a second distribution serving unpublished content for preview | 39 mostly-static documents; the approve step in §3 is the review. Distinct from `wr-files-inbox`, which is a write-only drop zone rather than a preview of the served site | Publishing becoming frequent enough that a bad publish is likely |
+| A staging *environment* — a second distribution serving unpublished content for preview | 39 mostly-static documents; review happens on the page, before publishing. Distinct from `wr-files-inbox`, which is a write-only drop zone rather than a preview of the served site | Publishing becoming frequent enough that a bad publish is likely |
 | Signed URLs / access control | ADR 0001 scope is public content only (decided 2026-08-31) | Any licence-gated SDK or customer-specific deliverable |
 | Object Lock / WORM | No regulatory retention requirement identified | A compliance or safety-certification requirement on firmware provenance |
 | A mainland-China mirror | Deferred by decision | Chinese customer download experience becoming a support burden |

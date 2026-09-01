@@ -13,8 +13,14 @@ The two differ only by prefix, so substituting one for the other is a string
 swap rather than a rewrite.
 
 Default is a dry run: it prints the plan and changes nothing. `--publish`
-uploads and rewrites pages. Re-running is a no-op for anything already in the
-index, so there is no `done/` directory to keep in step by hand.
+uploads, regenerates the index, invalidates the CDN and rewrites the pages.
+Re-running is a no-op for anything whose digest already matches, so there is
+no `done/` directory to keep in step by hand.
+
+**It never deletes.** Objects in the store with no local counterpart are
+reported as orphans, not removed: published paths are permanent (ADR 0001 D4)
+and a manual for hardware still in the field outlives every local checkout of
+it (§10). Removing one is a deliberate act for a human who knows why.
 """
 
 from __future__ import annotations
@@ -23,22 +29,20 @@ import argparse
 import json
 import os
 import pathlib
-import re
 import sys
-import urllib.error
-import urllib.request
 
-sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent.parent / "infra" / "lambda"))
-import wrfiles  # noqa: E402  (path shim above; wrfiles is the single source of key rules)
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import wrfiles  # noqa: E402
 
 REPO = pathlib.Path(__file__).resolve().parent.parent
 UPLOAD_ROOT = REPO / "static" / wrfiles.UPLOAD_DIR
 LOCAL_PREFIX = f"/{wrfiles.UPLOAD_DIR}/"
-CONTENT_DIRS = ("robot", "solution", "peripheral", "system", "tutorial", "support")
+CONTENT_DIRS = wrfiles.SECTIONS
 PAGE_SUFFIXES = (".md", ".mdx")
 
 DEFAULT_BASE_URL = os.environ.get("WR_FILES_BASE_URL", "https://download.westonrobot.net")
-DEFAULT_INBOX = os.environ.get("WR_FILES_INBOX_BUCKET", "wr-files-private")
+DEFAULT_BUCKET = os.environ.get("WR_FILES_BUCKET", "wr-files")
+DEFAULT_DISTRIBUTION = os.environ.get("WR_FILES_DISTRIBUTION_ID", "")
 
 
 def staged_files() -> list[pathlib.Path]:
@@ -47,46 +51,53 @@ def staged_files() -> list[pathlib.Path]:
     return sorted(p for p in UPLOAD_ROOT.rglob("*") if p.is_file())
 
 
-def fetch_index(base_url: str) -> dict[str, dict]:
-    """Published documents, by key. An unreachable index is not an error — it
-    only means nothing can be skipped, so everything is treated as new."""
-    url = f"{base_url}/{wrfiles.INDEX_KEY}"
-    try:
-        with urllib.request.urlopen(url, timeout=20) as fh:
-            data = json.load(fh)
-    except (urllib.error.URLError, json.JSONDecodeError, TimeoutError) as exc:
-        print(f"  note: no index at {url} ({exc}); treating everything as new")
-        return {}
-    return {e["key"]: e for e in data.get("files", [])}
+def remote_objects(s3, bucket: str) -> dict[str, dict]:
+    """Everything currently in the store, by key, with its recorded digest.
 
-
-def inbox_state(bucket: str, keys: list[str]) -> dict[str, str] | None:
-    """Which of these keys are already in the inbox, and whether approved.
-
-    Returns None when the inbox cannot be read — an uploader's grant is
-    `PutObject` and nothing else, deliberately, so this is the normal case for
-    a technician rather than an error. Saying "not checked" is honest; guessing
-    is not.
+    Read from the bucket rather than from `index.json`, because the index is
+    derived and this is the thing it is derived from — reconciling against a
+    projection would hide exactly the drift worth finding.
     """
-    try:
-        import boto3
-        from botocore.exceptions import ClientError
-    except ImportError:
-        return None
-
-    s3 = boto3.client("s3")
     found = {}
-    for key in keys:
-        try:
-            tags = s3.get_object_tagging(Bucket=bucket, Key=f"inbox/{key}")["TagSet"]
-        except ClientError as exc:
-            code = exc.response["Error"]["Code"]
-            if code in ("NoSuchKey", "404"):
+    for page in s3.get_paginator("list_objects_v2").paginate(Bucket=bucket):
+        for obj in page.get("Contents", []):
+            key = obj["Key"]
+            if not wrfiles.is_content_key(key):
                 continue
-            return None  # AccessDenied, or no credentials at all
-        approved = any(t["Key"] == "approved" and t["Value"] == "true" for t in tags)
-        found[key] = "approved, not yet promoted" if approved else "awaiting approval"
+            head = s3.head_object(Bucket=bucket, Key=key)
+            found[key] = {"sha256": head.get("Metadata", {}).get("sha256", ""),
+                          "bytes": head.get("ContentLength", 0), "head": head}
     return found
+
+
+def rebuild_index(s3, bucket: str, base_url: str) -> dict:
+    """Regenerate `index.json` from the bucket. Derived, never authored."""
+    entries = []
+    for page in s3.get_paginator("list_objects_v2").paginate(Bucket=bucket):
+        for obj in page.get("Contents", []):
+            key = obj["Key"]
+            if not wrfiles.is_content_key(key):
+                continue
+            head = s3.head_object(Bucket=bucket, Key=key)
+            try:
+                entries.append(wrfiles.index_entry(key, head, base_url))
+            except (ValueError, IndexError) as exc:
+                # Reported, not silently dropped: a document present in the
+                # bucket but absent from the index is invisible to every page
+                # that queries it.
+                print(f"  ! cannot parse {key}: {exc}")
+    entries.sort(key=lambda e: e["key"])
+    index = {"files": entries, "count": len(entries)}
+    s3.put_object(
+        Bucket=bucket,
+        Key=wrfiles.INDEX_KEY,
+        Body=json.dumps(index, indent=2, sort_keys=True).encode(),
+        ContentType="application/json",
+        # The one mutable object in the store, so the one that must not carry
+        # the immutable cache header every published key gets.
+        CacheControl=wrfiles.INDEX_CACHE,
+    )
+    return index
 
 
 def pages_referencing(local_url: str) -> list[pathlib.Path]:
@@ -113,21 +124,14 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--publish", action="store_true",
-                    help="actually upload and rewrite pages (default: dry run)")
-    ap.add_argument("--approve", action="store_true",
-                    help="also tag the upload approved; requires the approve grant")
+                    help="upload, reindex, invalidate and rewrite pages (default: dry run)")
     ap.add_argument("--base-url", default=DEFAULT_BASE_URL)
-    ap.add_argument("--inbox-bucket", default=DEFAULT_INBOX)
+    ap.add_argument("--bucket", default=DEFAULT_BUCKET)
+    ap.add_argument("--distribution-id", default=DEFAULT_DISTRIBUTION,
+                    help="CloudFront distribution to invalidate; skipped if unset")
     args = ap.parse_args()
 
     files = staged_files()
-    if not files:
-        print(f"Nothing staged in {UPLOAD_ROOT.relative_to(REPO)}/")
-        return 0
-
-    print(f"Index: {args.base_url}/{wrfiles.INDEX_KEY}")
-    index = fetch_index(args.base_url)
-
     plan, problems = [], []
     for path in files:
         rel = path.relative_to(REPO).as_posix()
@@ -136,77 +140,98 @@ def main() -> int:
         except wrfiles.NameError_ as exc:
             problems.append((rel, str(exc)))
             continue
-        digest = wrfiles.sha256_file(str(path))
-        published = index.get(key)
-        state = "published" if published and published.get("sha256") == digest else (
-            "differs" if published else "new")
-        plan.append({
-            "path": path, "rel": rel, "key": key, "digest": digest, "state": state,
-            "local_url": f"{LOCAL_PREFIX}{key}",
-            "published_url": f"{args.base_url}/{key}",
-            "bytes": path.stat().st_size,
-        })
+        plan.append({"path": path, "key": key, "digest": wrfiles.sha256_file(str(path)),
+                     "bytes": path.stat().st_size,
+                     "local_url": f"{LOCAL_PREFIX}{key}",
+                     "published_url": f"{args.base_url}/{key}"})
 
     if problems:
-        print("\nHeld — these names do not parse, and are never guessed at:")
+        print("Held — these names do not parse, and are never guessed at:")
         for rel, why in problems:
             print(f"  {rel}\n      {why}")
+        print()
 
-    # A key absent from the index may never have been uploaded, or may be
-    # sitting in the inbox waiting for someone to approve it. Those are
-    # different problems and used to look identical here.
-    unpublished = [i["key"] for i in plan if i["state"] != "published"]
-    inbox = inbox_state(args.inbox_bucket, unpublished) if unpublished else {}
-    if inbox is None:
-        print("  note: inbox not checked (no read access, which is normal for an uploader)")
-        inbox = {}
-    for item in plan:
-        if item["state"] == "new" and item["key"] in inbox:
-            item["state"] = inbox[item["key"]]
-
-    print(f"\n{len(plan)} staged file(s):")
-    for item in plan:
-        pages = pages_referencing(item["local_url"])
-        item["pages"] = pages
-        mark = {"new": "+", "differs": "!", "published": "=",
-                "awaiting approval": "~", "approved, not yet promoted": "~"}[item["state"]]
-        print(f"  {mark} {item['key']}  ({item['bytes'] / 1048576:.1f} MiB, {item['state']})")
-        for page in pages:
-            print(f"      referenced by {page.relative_to(REPO)}")
-        if item["state"] != "published" and not pages:
-            print("      no page references it yet")
-
-    todo = [i for i in plan if i["state"] in ("new", "differs")]
-    if not todo:
-        waiting = [i for i in plan if i["state"].startswith(("awaiting", "approved"))]
-        if waiting:
-            print(f"\nNothing to upload. {len(waiting)} file(s) are in the inbox already —"
-                  "\nthey need an approver, not another upload.")
-        else:
-            print("\nEverything staged is already published; nothing to do.")
-    if not args.publish:
-        print("\nDry run. Re-run with --publish to upload and rewrite pages.")
-        return 1 if problems else 0
-
-    import boto3  # imported late so a dry run needs no AWS SDK
-
+    try:
+        import boto3
+    except ImportError:
+        print("boto3 is not installed, so the store cannot be read.")
+        return 1
     s3 = boto3.client("s3")
+    try:
+        remote = remote_objects(s3, args.bucket)
+    except Exception as exc:  # noqa: BLE001 — no bucket yet is the normal case
+        print(f"Cannot read s3://{args.bucket} ({exc.__class__.__name__}); "
+              "treating the store as empty.")
+        remote = {}
+
+    for item in plan:
+        published = remote.get(item["key"])
+        item["state"] = ("published" if published and published["sha256"] == item["digest"]
+                         else "differs" if published else "new")
+
+    print(f"{len(plan)} staged, {len(remote)} in the store.\n")
+    for item in plan:
+        item["pages"] = pages_referencing(item["local_url"])
+        mark = {"new": "+", "differs": "!", "published": "="}[item["state"]]
+        print(f"  {mark} {item['key']}  ({item['bytes'] / 1048576:.1f} MiB, {item['state']})")
+        for page in item["pages"]:
+            print(f"      referenced by {page.relative_to(REPO)}")
+
+    # Reconciliation, in the direction that is safe to automate.
+    orphans = sorted(set(remote) - {i["key"] for i in plan})
+    if orphans:
+        print(f"\n{len(orphans)} object(s) in the store with nothing staged locally:")
+        for key in orphans:
+            print(f"  ? {key}")
+        print("  Not an error — every published document looks like this once its\n"
+              "  local copy is cleaned up. Listed so a real orphan is visible.\n"
+              "  Nothing here is ever deleted automatically (ADR 0001 D4, design §10).")
+
+    todo = [i for i in plan if i["state"] != "published"]
+    if not args.publish:
+        print(f"\nDry run. {len(todo)} file(s) would be uploaded. Re-run with --publish.")
+        return 1 if problems else 0
+    if not todo:
+        print("\nNothing to upload.")
+
     for item in todo:
-        # Under `inbox/`, which is where the console route drops a file too —
-        # two front doors that leave objects in different shapes are two things
-        # to reason about. The prefix is load-bearing rather than decorative:
-        # the private bucket also holds `logs/`.
-        inbox_key = f"inbox/{item['key']}"
+        _stem, ext = wrfiles.split_ext(item["key"])
+        meta = wrfiles.metadata_for(item["key"])
         print(f"\nuploading {item['key']}")
-        s3.upload_file(str(item["path"]), args.inbox_bucket, inbox_key)
-        if args.approve:
-            s3.put_object_tagging(
-                Bucket=args.inbox_bucket, Key=inbox_key,
-                Tagging={"TagSet": [{"Key": "approved", "Value": "true"}]},
-            )
-            print("  tagged approved")
-        else:
-            print("  awaiting approval")
+        s3.upload_file(
+            str(item["path"]), args.bucket, item["key"],
+            ExtraArgs={
+                # Set, never inferred (ADR 0001 D5). An archive served as
+                # octet-stream downloads fine; an .mp4 served that way will
+                # not seek.
+                "ContentType": wrfiles.content_type_for(ext),
+                "CacheControl": wrfiles.IMMUTABLE_CACHE,
+                "Metadata": {**meta, "sha256": item["digest"]},
+            },
+        )
+        # So a customer can verify without reading response headers.
+        s3.put_object(
+            Bucket=args.bucket, Key=f"{item['key']}.sha256",
+            Body=f"{item['digest']}  {item['key'].rsplit('/', 1)[-1]}\n".encode(),
+            ContentType="text/plain; charset=utf-8",
+            CacheControl=wrfiles.IMMUTABLE_CACHE,
+        )
+
+    index = rebuild_index(s3, args.bucket, args.base_url)
+    print(f"\nindex.json rebuilt: {index['count']} document(s)")
+
+    if args.distribution_id:
+        boto3.client("cloudfront").create_invalidation(
+            DistributionId=args.distribution_id,
+            InvalidationBatch={
+                "Paths": {"Quantity": 1, "Items": ["/*"]},
+                "CallerReference": f"publish-{index['count']}-{os.getpid()}",
+            },
+        )
+        print("CloudFront invalidated")
+    else:
+        print("No distribution id set; skipping invalidation. Published keys are\n"
+              "immutable so this only delays index.json, which expires in 60s.")
 
     for item in plan:
         for page in item.get("pages", []):

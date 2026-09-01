@@ -52,6 +52,16 @@ The bucket lives in `ap-southeast-1`, matching the rest of the company's AWS foo
 
 **D8. Video stays in this repository while it is small and stable; everything else goes to the bucket.** The threshold is 10 MiB per file and 40 MiB across all tracked video, together with a judgement that the clip is not expected to be re-recorded on a release cadence. Keeping small video in-repo is worth doing because `require()` resolves at build time, so a renamed or deleted file is a build failure — the same guarantee `onBrokenLinks: 'throw'` gives internal links, and precisely the guarantee whose absence produced issue #31. Keeping it there indefinitely is not, because git history is permanent: a 3 MB clip re-encoded once per release costs its full size again every time, unreclaimable without a history rewrite. Two costs, two halves of the rule — size and churn.
 
+**D9. Publishing is direct. There is no approval step.** A document goes live when someone with the publish grant runs `scripts/publish-files.py --publish`. *Decided 2026-09-01.*
+
+An earlier version of this ADR put an approval gate in front of publishing: technicians uploaded to a write-only inbox, an approver tagged the object, and a Lambda promoted it — so a broad upload grant was safe because it could not reach a customer. It is recorded here because the reasoning is sound and the trade is real, not because it was wrong.
+
+It was dropped on the grounds that **everything this repository publishes is already public, and links to material that is not simply are not written**. The gate was protecting against a mistake — the wrong revision, an internal draft — rather than against an untrusted actor, and at this size a second pair of eyes at publish time is not obviously better than the same person looking at the page they just built. What it cost was concrete: a second bucket, two Lambdas, five states a document could be in, and a person who has to be available before anything ships.
+
+**What is given up, stated plainly.** Humans now write to the served bucket, so the guarantee that no person could put a file in front of a customer is gone. Two things are kept in its place: the publish grant carries no `DeleteObject`, so the worst a publisher can do is overwrite — and versioning makes that recoverable; and the bucket stays private behind CloudFront (D3), so nothing is reachable except through the branded hostname.
+
+**One requirement did not survive, and should be reconsidered if it returns.** The console drag-and-drop route for technicians existed because the promote Lambda normalised whatever landed in the inbox — key, content type, cache headers, checksum, index. Without it, publishing needs a checkout, Python and credentials, which makes it an engineer's task. If technicians need to self-serve again, that costs one Lambda, not the whole gate.
+
 ## Consequences
 
 Recovering the source files is the blocking step and it is not a code change: someone with M365 tenant access must export the 39 documents from the renamed tenant before anything else can proceed. The WR65 and WRL63 manuals are the urgent ones — unlike the Unitree and AgileX pages there is no vendor site to fall back to, so those two products have no reachable documentation at all today.

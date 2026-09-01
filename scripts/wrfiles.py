@@ -1,13 +1,11 @@
 """Key derivation and metadata rules for the file store.
 
-Shared by every component that has to turn a filename into a published key:
-the publish script an engineer runs, the promote Lambda that acts on an
-approved inbox object, and the tests for both. ADR 0001 D4 defines the key
-shape; this module is its only implementation, so the two upload routes
-cannot drift apart.
+ADR 0001 D4 defines the published key shape; this module is its only
+implementation, used by `publish-files.py`, by `check-downloads.py` and by the
+tests. One implementation means a key cannot be derived two ways.
 
-Deliberately dependency-free (stdlib only) so the Lambda zip needs no build
-step and the publish script runs on a bare interpreter.
+Deliberately dependency-free (stdlib only), so it runs on a bare interpreter
+and the checks that use it can run in CI before Node is installed.
 """
 
 from __future__ import annotations
@@ -90,10 +88,13 @@ def content_type_for(ext: str) -> str:
 
 
 def parse_flat_name(name: str) -> dict:
-    """Parse the flat-inbox notation.
+    """Parse a flat `section__product__kind__lang__vN.ext` name.
 
-    `robot__wr65__user-manual__en__v2.3.pdf` — the same segments an engineer
-    spells as directories, for a drop zone that has no path to carry them.
+    Not used by the publish path, which reads the segments from the directory
+    structure instead. Kept because it is the one way to name a file
+    unambiguously when there is no path to carry the segments — handing a
+    document to someone over chat, for instance — and because
+    `key_from_flat_name` is what proves the two notations agree.
     """
     stem, ext = split_ext(name)
     parts = stem.split("__")
@@ -191,33 +192,12 @@ def sha256_file(path: str, chunk: int = 1 << 20) -> str:
     return h.hexdigest()
 
 
-def key_from_inbox_key(inbox_key: str) -> str:
-    """Derive the published key from wherever an object landed in the inbox.
-
-    The inbox accepts both notations because it has two front doors. A script
-    uploading from the repository already knows the destination and writes the
-    path form; a technician dragging one file onto the S3 console has no path
-    to work with and uses the flat `__` form. Both resolve here, so the two
-    routes cannot produce different keys for the same document.
-
-    Note what this deliberately is *not*: an earlier draft keyed inbox objects
-    by content hash, which made overwrites impossible by construction. That
-    cannot work for the console route — a person dragging a file cannot
-    compute a digest — so overwrite safety comes from versioning on the inbox
-    bucket instead, and the digest is computed at promotion.
-    """
-    rel = inbox_key.split("/", 1)[1] if inbox_key.startswith("inbox/") else inbox_key
-    if "/" in rel:
-        return key_from_upload_path(f"{UPLOAD_DIR}/{rel}")
-    return key_from_flat_name(rel)
-
-
 def index_entry(key: str, head: dict, base_url: str) -> dict:
     """One record in `index.json`.
 
-    Prefers the metadata stored on the object — that is what an approver
-    approved — and falls back to re-deriving it from the key, so an object
-    written by hand during the initial bulk load still indexes correctly.
+    Prefers the metadata stored on the object — that is what was published —
+    and falls back to re-deriving it from the key, so an object written by hand
+    still indexes correctly.
     """
     meta = head.get("Metadata", {})
     derived = metadata_for(key)
