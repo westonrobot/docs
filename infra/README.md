@@ -17,63 +17,9 @@ The only tool you need is the AWS CLI, which is already installed and already au
 
 There is no Lambda and no build step. Publishing is [`scripts/publish-files.py`](../scripts/publish-files.py), which runs on a laptop.
 
-## Deploying it the first time
+## Deploying it
 
-The certificate, in us-east-1. It waits while ACM creates and resolves the DNS validation records itself, because the zone is in this account — expect a few minutes:
-
-```console
-$ aws cloudformation deploy --region us-east-1 \
-    --template-file infra/certificate.yaml \
-    --stack-name wr-files-certificate
-
-$ aws cloudformation describe-stacks --region us-east-1 \
-    --stack-name wr-files-certificate \
-    --query 'Stacks[0].Outputs[?OutputKey==`CertificateArn`].OutputValue' --output text
-```
-
-Then the store. `CAPABILITY_NAMED_IAM` is required because the two managed policies have fixed names:
-
-```console
-$ aws cloudformation deploy --region ap-southeast-1 \
-    --template-file infra/file-store.yaml \
-    --stack-name wr-files \
-    --capabilities CAPABILITY_NAMED_IAM \
-    --parameter-overrides CertificateArn=<arn from above>
-```
-
-To see what a change would do before doing it, add `--no-execute-changeset` and read the change set in the console. That is this setup's equivalent of a plan.
-
-**If the bucket policy fails to apply**, do not relax the public-access block to get past it. All four settings are on deliberately, and a rejection means the policy is being evaluated as genuinely public — a defect in the policy, not in the setting.
-
-## After the first deploy
-
-```console
-$ aws cloudformation describe-stacks --region ap-southeast-1 \
-    --stack-name wr-files --query 'Stacks[0].Outputs' --output table
-```
-
-Attach `wr-files-publish` to whoever publishes documents and `wr-files-read` to anyone debugging. Identity Center is not enabled in this account, so that means an IAM group with console access and enforced MFA until it is.
-
-Set `WR_FILES_DISTRIBUTION_ID` from the `DistributionId` output, so the publish script can invalidate the CDN. Without it the script still works — published keys are immutable, so only `index.json` is delayed, and it expires in 60 seconds.
-
-## The initial bulk load
-
-Phase 1 is a one-time migration. Stage the 39 exported documents under `static/_upload/` at their [D4](../docs/adr/0001-host-downloadable-documents-on-s3.md) paths and run:
-
-```console
-$ python3 scripts/publish-files.py            # dry run — check the plan
-$ python3 scripts/publish-files.py --publish
-```
-
-That uploads them with the right content types and cache headers, writes the checksum sidecars, builds `index.json` and invalidates. There is no separate reindex step: every publish run regenerates the index from the bucket.
-
-## Tests
-
-```console
-$ python3 -m unittest discover -s scripts -t scripts
-```
-
-No dependencies. `scripts/wrfiles.py` is stdlib-only, so the tests run on a bare interpreter — which is why they are in CI ahead of the Node setup.
+Step by step, with verification and failure modes at each stage: [`RUNBOOK.md`](RUNBOOK.md). Two stacks — the certificate in us-east-1, everything else in ap-southeast-1 — because CloudFront reads certificates only from that region.
 
 ## What is not here
 

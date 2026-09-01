@@ -24,7 +24,7 @@ Parameters:
 
   BucketName:
     Type: String
-    Default: wr-files
+    Default: westonrobot-files
     Description: >
       Deliberately not named after the hostname. `download` is the
       customer-facing contract; this name describes what the bucket holds.
@@ -116,7 +116,7 @@ Resources:
           MinimumProtocolVersion: TLSv1.2_2021
       Tags:
         - Key: Project
-          Value: wr-files
+          Value: westonrobot-files
 
   # Readable by exactly one principal. This is not access control — the content
   # is public — it is what stops the raw <bucket>.s3.amazonaws.com URL from
@@ -158,7 +158,7 @@ Resources:
   PublishPolicy:
     Type: AWS::IAM::ManagedPolicy
     Properties:
-      ManagedPolicyName: wr-files-publish
+      ManagedPolicyName: westonrobot-files-publish
       Description: Publish documents to the file store. Cannot delete.
       PolicyDocument:
         Version: '2012-10-17'
@@ -177,7 +177,7 @@ Resources:
   ReadPolicy:
     Type: AWS::IAM::ManagedPolicy
     Properties:
-      ManagedPolicyName: wr-files-read
+      ManagedPolicyName: westonrobot-files-read
       Description: Read the file store, for debugging.
       PolicyDocument:
         Version: '2012-10-17'

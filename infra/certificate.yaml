@@ -29,11 +29,11 @@ Resources:
           HostedZoneId: !Ref HostedZoneId
       Tags:
         - Key: Project
-          Value: wr-files
+          Value: westonrobot-files
 
 Outputs:
   CertificateArn:
     Description: Pass this to file-store.yaml as its CertificateArn parameter.
     Value: !Ref Certificate
     Export:
-      Name: wr-files-certificate-arn
+      Name: westonrobot-files-certificate-arn

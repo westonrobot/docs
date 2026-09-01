@@ -31,7 +31,7 @@ flowchart TB
   end
   subgraph STORE[Storage — swappable]
     direction TB
-    S3["wr-files<br/>objects carry the metadata"] --> IDX["index.json<br/>derived, never authored"]
+    S3["westonrobot-files<br/>objects carry the metadata"] --> IDX["index.json<br/>derived, never authored"]
   end
   subgraph PUB[Publication — the control plane]
     direction TB
@@ -47,13 +47,13 @@ The dashed relationship worth noticing is `IDX → C`: the store generates the s
 
 ## 2. Topology
 
-One bucket, `wr-files`, holding one kind of thing: public documents. Prefixes carry the structure — `/robot/…`, `/solution/…` — and `index.json` sits at the root.
+One bucket, `westonrobot-files`, holding one kind of thing: public documents. Prefixes carry the structure — `/robot/…`, `/solution/…` — and `index.json` sits at the root.
 
 It got here by subtraction, and the subtractions are worth keeping because each one names a job that stopped existing. A logs bucket went when access logging moved to Phase 4 (§8). An inbox went with the approval step (ADR 0001 D9): its purpose was to be writable by people while the served bucket was not, and with publishing direct there is nothing to stage.
 
 **What still earns the bucket boundary is CloudFront.** It is the origin, so everything in the bucket is reachable at `download.westonrobot.net`. That is exactly right for a store of published documents and exactly wrong for anything else, which is why nothing else goes in it. If a private prefix is ever needed — video masters are the open candidate — it gets its own bucket rather than a deny rule, because an allowlist that has to stay correct is a weaker thing than an origin that cannot reach.
 
-**Naming follows one rule: customer-facing surfaces say `download`, internal ones say `files`.** The hostname is `download.westonrobot.net` because it names what a customer *does* there — `files` describes the storage, and the hostname exists for the person clicking a link in a manual. The bucket is `wr-files` because it names what it *holds*. The same split runs through the code: `<Downloads>` and `npm run check:downloads` are customer-facing, while `wrfiles.py`, `npm run publish:files` and `WR_FILES_BASE_URL` are internal. It looks like an inconsistency until you know the rule, which is why the rule is written here rather than left to be inferred.
+**Naming follows one rule: customer-facing surfaces say `download`, internal ones say `files`.** The hostname is `download.westonrobot.net` because it names what a customer *does* there — `files` describes the storage, and the hostname exists for the person clicking a link in a manual. The bucket is `westonrobot-files` because it names what it *holds*. The same split runs through the code: `<Downloads>` and `npm run check:downloads` are customer-facing, while `wrfiles.py`, `npm run publish:files` and `WR_FILES_BASE_URL` are internal. It looks like an inconsistency until you know the rule, which is why the rule is written here rather than left to be inferred.
 
 ## 3. Publication: the store is the source of truth
 
@@ -64,7 +64,7 @@ It got here by subtraction, and the subtractions are worth keeping because each 
 **The source of truth is the bucket.** A document's metadata lives on the object itself, set at the moment it is published:
 
 ```
-s3://wr-files/robot/wr65/wr65-user-manual-en-v2.3.pdf
+s3://westonrobot-files/robot/wr65/wr65-user-manual-en-v2.3.pdf
   Content-Type:  application/pdf
   Cache-Control: public, max-age=31536000, immutable
   x-amz-meta-title:    WR65 User Manual
@@ -90,7 +90,7 @@ The component resolves that query against the index at build time. **A page cann
 | | Step | Who | Grant |
 | --- | --- | --- | --- |
 | 1 | Stage the file under `static/_upload/`, at its published path | Anyone editing the page | none — local |
-| 2 | `publish-files.py --publish` uploads it with content type, cache headers, metadata and a `.sha256` sidecar | The publisher | `wr-files-publish` |
+| 2 | `publish-files.py --publish` uploads it with content type, cache headers, metadata and a `.sha256` sidecar | The publisher | `westonrobot-files-publish` |
 | 3 | The same run regenerates `index.json` from the bucket and invalidates the CDN | " | " |
 | 4 | It rewrites the page's local link to the published URL | " | none — local |
 | 5 | Rebuild the docs site | CI, on `repository_dispatch` or the next push | none — the index is public |
@@ -174,7 +174,7 @@ One consequence to be aware of: a public index makes the full inventory enumerab
 
 | Role | Can | Held by |
 | --- | --- | --- |
-| Publish | `PutObject`, `GetObject`, `ListBucket` on `wr-files`, and CloudFront invalidation. **No `DeleteObject`** | Whoever publishes documents |
+| Publish | `PutObject`, `GetObject`, `ListBucket` on `westonrobot-files`, and CloudFront invalidation. **No `DeleteObject`** | Whoever publishes documents |
 | Read | `GetObject`, `ListBucket` | Humans, for debugging |
 
 Bucket and distribution configuration is an admin act, done through the stack rather than through a standing role.
@@ -202,7 +202,7 @@ Worth watching, in rough order of value:
 3. **Egress volume**, once video is in the mix, with a billing alarm.
 4. **4xx/5xx from the origin**, which indicates an OAC or policy problem rather than a link problem.
 
-CloudFront standard logs to `wr-files-logs`, queried with Athena when a question comes up. A CloudWatch alarm on 404 rate is the piece that has to exist from day one; the query tooling can wait until there is a question.
+A CloudWatch alarm on 404 rate is the piece that has to exist from day one. Access logs, and a destination for them, arrive with it — the query tooling can wait until there is a question worth running against them.
 
 ## 9. Cost
 
@@ -259,7 +259,7 @@ Listed with the trigger that would change the answer, so the decision is revisit
 | Practice | Why not now | Trigger to revisit |
 | --- | --- | --- |
 | Cross-region replication | S3 durability within a region already exceeds the risk this addresses; versioning covers the realistic failure | A contractual availability commitment, or a second region for compliance |
-| A staging *environment* — a second distribution serving unpublished content for preview | 39 mostly-static documents; review happens on the page, before publishing. Distinct from `wr-files-inbox`, which is a write-only drop zone rather than a preview of the served site | Publishing becoming frequent enough that a bad publish is likely |
+| A staging *environment* — a second distribution serving unpublished content for preview | 39 mostly-static documents; review happens on the page, before publishing. Nothing unpublished exists to preview: a document is either staged on someone's laptop or live | Publishing becoming frequent enough that a bad publish is likely |
 | Signed URLs / access control | ADR 0001 scope is public content only (decided 2026-08-31) | Any licence-gated SDK or customer-specific deliverable |
 | Object Lock / WORM | No regulatory retention requirement identified | A compliance or safety-certification requirement on firmware provenance |
 | A mainland-China mirror | Deferred by decision | Chinese customer download experience becoming a support burden |

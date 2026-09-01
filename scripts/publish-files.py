@@ -41,7 +41,7 @@ CONTENT_DIRS = wrfiles.SECTIONS
 PAGE_SUFFIXES = (".md", ".mdx")
 
 DEFAULT_BASE_URL = os.environ.get("WR_FILES_BASE_URL", "https://download.westonrobot.net")
-DEFAULT_BUCKET = os.environ.get("WR_FILES_BUCKET", "wr-files")
+DEFAULT_BUCKET = os.environ.get("WR_FILES_BUCKET", "westonrobot-files")
 DEFAULT_DISTRIBUTION = os.environ.get("WR_FILES_DISTRIBUTION_ID", "")
 
 
