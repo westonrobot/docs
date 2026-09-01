@@ -151,6 +151,13 @@ Resources:
         HostedZoneId: Z2FDTNDATAQYW2
         EvaluateTargetHealth: false
 
+  # Named for the account it lives in, not for this system's internals. The
+  # bucket carries `westonrobot-` because S3 names are globally unique; IAM
+  # names are account-local, where that prefix is noise and pushes the
+  # meaningful part to the end. `DocsDownload*` follows the existing house
+  # style (FleetAuthS3Access, FleetStagingS3Access) and disambiguates against
+  # the other file-shaped policies already here.
+  #
   # Publishing is direct, so this grant does put files in front of customers.
   # It carries no DeleteObject, deliberately: published paths are permanent
   # (D4) and a manual for hardware still in the field outlives any reason to
@@ -158,7 +165,7 @@ Resources:
   PublishPolicy:
     Type: AWS::IAM::ManagedPolicy
     Properties:
-      ManagedPolicyName: westonrobot-files-publish
+      ManagedPolicyName: DocsDownloadPublish
       Description: Publish documents to the file store. Cannot delete.
       PolicyDocument:
         Version: '2012-10-17'
@@ -177,7 +184,7 @@ Resources:
   ReadPolicy:
     Type: AWS::IAM::ManagedPolicy
     Properties:
-      ManagedPolicyName: westonrobot-files-read
+      ManagedPolicyName: DocsDownloadRead
       Description: Read the file store, for debugging.
       PolicyDocument:
         Version: '2012-10-17'

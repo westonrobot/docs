@@ -90,7 +90,7 @@ The component resolves that query against the index at build time. **A page cann
 | | Step | Who | Grant |
 | --- | --- | --- | --- |
 | 1 | Stage the file under `static/_upload/`, at its published path | Anyone editing the page | none — local |
-| 2 | `publish-files.py --publish` uploads it with content type, cache headers, metadata and a `.sha256` sidecar | The publisher | `westonrobot-files-publish` |
+| 2 | `publish-files.py --publish` uploads it with content type, cache headers, metadata and a `.sha256` sidecar | The publisher | `DocsDownloadPublish` |
 | 3 | The same run regenerates `index.json` from the bucket and invalidates the CDN | " | " |
 | 4 | It rewrites the page's local link to the published URL | " | none — local |
 | 5 | Rebuild the docs site | CI, on `repository_dispatch` or the next push | none — the index is public |

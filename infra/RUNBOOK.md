@@ -144,12 +144,12 @@ Put it in your shell profile. Without it the script still publishes — publishe
 Identity Center is not enabled in this account, so this is an IAM group.
 
 ```console
-$ aws iam create-group --group-name westonrobot-files-publishers
-$ aws iam attach-group-policy --group-name westonrobot-files-publishers \
+$ aws iam create-group --group-name DocsDownloadPublishers
+$ aws iam attach-group-policy --group-name DocsDownloadPublishers \
     --policy-arn $(aws cloudformation describe-stacks --region ap-southeast-1 \
         --stack-name westonrobot-files \
         --query 'Stacks[0].Outputs[?OutputKey==`PublishPolicyArn`].OutputValue' --output text)
-$ aws iam add-user-to-group --group-name westonrobot-files-publishers --user-name <user>
+$ aws iam add-user-to-group --group-name DocsDownloadPublishers --user-name <user>
 ```
 
 Enforce MFA on those accounts. The grant carries no `DeleteObject`, so the worst a member can do is overwrite a key — which versioning makes recoverable.
