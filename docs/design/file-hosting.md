@@ -218,7 +218,9 @@ One consequence to be aware of: a public index makes the full inventory enumerab
 | Read | `GetObject`, `ListBucket` | Humans, for debugging |
 | Admin | Bucket and distribution configuration | A named person, rarely, ideally through IaC |
 
-**Infrastructure as code.** The bucket, distribution, certificate, OAC and policies should be a Terraform or CDK definition in a repository, not a sequence of console clicks. This matters less for getting it running and a great deal for the second environment, the recovery, and the review of a policy change two years from now.
+**Infrastructure as code, for one narrow reason.** The security model of this store *is* its IAM and bucket policies — the OAC condition on `AWS:SourceArn`, the deny-delete, all four public-access blocks, five deliberately narrow grants. Those interlock, and their failure mode is silent: an over-broad grant does not error, it quietly works. Console editing over three years by three people is how that rots, so the policies have to exist as reviewable text that matches reality.
+
+That requirement is met by CloudFormation (`infra/`), chosen over Terraform on dependency grounds: the AWS CLI is already installed and authenticated, there is no second binary, and **AWS holds the state** rather than a file someone has to host, secure and not corrupt. For a team whose first piece of infrastructure-as-code this is, the tool that adds no new operational concern beats the better language. Terraform earns its state file at the second account or the third environment; neither exists yet.
 
 ## 8. Observability — making breakage visible
 

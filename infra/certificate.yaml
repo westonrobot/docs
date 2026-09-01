@@ -1,0 +1,39 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >
+  TLS certificate for the file store. Deployed separately, and to us-east-1,
+  because CloudFront reads certificates only from that region regardless of
+  where the buckets live. That is a CloudFront constraint, not a choice, and it
+  is the reason this is two stacks rather than one.
+
+Parameters:
+  DomainName:
+    Type: String
+    Default: download.westonrobot.net
+    Description: The customer-facing hostname. This is the contract (ADR 0001 D1).
+  HostedZoneId:
+    Type: String
+    Default: Z016356211Y82HTRJIPRB
+    Description: >
+      Route 53 zone for DomainName. westonrobot.net lives in this account, so
+      ACM creates and resolves the validation records itself and this stack
+      simply waits. Expect it to sit for a few minutes.
+
+Resources:
+  Certificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: !Ref DomainName
+      ValidationMethod: DNS
+      DomainValidationOptions:
+        - DomainName: !Ref DomainName
+          HostedZoneId: !Ref HostedZoneId
+      Tags:
+        - Key: Project
+          Value: wr-files
+
+Outputs:
+  CertificateArn:
+    Description: Pass this to file-store.yaml as its CertificateArn parameter.
+    Value: !Ref Certificate
+    Export:
+      Name: wr-files-certificate-arn

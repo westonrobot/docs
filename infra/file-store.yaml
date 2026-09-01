@@ -1,0 +1,428 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >
+  Weston Robot file store — download.westonrobot.net. Three buckets, a
+  CloudFront distribution that is the only thing allowed to read the served
+  one, and two Lambdas that are the only things allowed to write it. Decision:
+  docs/adr/0001-host-downloadable-documents-on-s3.md. Design and reasoning:
+  docs/design/file-hosting.md.
+
+Parameters:
+  DomainName:
+    Type: String
+    Default: download.westonrobot.net
+    Description: The customer-facing hostname. This is the contract (ADR 0001 D1).
+
+  CertificateArn:
+    Type: String
+    Description: >
+      Output of the certificate stack, which must be deployed to us-east-1
+      first. CloudFront reads certificates only from that region.
+
+  HostedZoneId:
+    Type: String
+    Default: Z016356211Y82HTRJIPRB
+    Description: Route 53 zone for DomainName.
+
+  BucketPrefix:
+    Type: String
+    Default: wr-files
+    Description: >
+      Names the three buckets. Deliberately not renamed to match
+      download.westonrobot.net — the hostname is the customer-facing contract
+      while these names describe what the buckets hold, and wr-download-inbox
+      would be actively wrong since nobody downloads from an inbox.
+
+  InboxExpiryDays:
+    Type: Number
+    Default: 90
+    Description: How long an un-promoted upload lingers. The inbox is a staging area, not storage.
+
+  NoncurrentVersionDays:
+    Type: Number
+    Default: 365
+    Description: >
+      How long a superseded object version survives in the served bucket.
+      Versioning protects against an accidental overwrite; it is not an archive.
+
+Resources:
+
+  # --------------------------------------------------------------- buckets --
+  # Three, separated by blast radius and lifecycle rather than by content type
+  # — prefixes handle content type (design §2).
+
+  LogsBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      BucketName: !Sub '${BucketPrefix}-logs'
+      # CloudFront's log delivery writes with ACLs, so this bucket has to accept
+      # them. Nothing else in this stack does.
+      OwnershipControls:
+        Rules:
+          - ObjectOwnership: BucketOwnerPreferred
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      LifecycleConfiguration:
+        Rules:
+          - Id: expire-logs
+            Status: Enabled
+            ExpirationInDays: 400
+
+  ProdBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      BucketName: !Sub '${BucketPrefix}-prod'
+      # The realistic failure is a person or a script overwriting the wrong
+      # object, not hardware loss. Versioning is the cheapest control for it.
+      VersioningConfiguration:
+        Status: Enabled
+      # All four on. The OAC policy below is not a public policy: it grants to
+      # the CloudFront service principal conditioned on AWS:SourceArn, and
+      # Block Public Access evaluates only Allow statements granting to "*"
+      # without a limiting condition. If the policy is ever rejected, the
+      # policy has become genuinely public — investigate it, do not loosen this.
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      LoggingConfiguration:
+        DestinationBucketName: !Ref LogsBucket
+        LogFilePrefix: s3/prod/
+      LifecycleConfiguration:
+        Rules:
+          - Id: expire-noncurrent-versions
+            Status: Enabled
+            NoncurrentVersionExpiration:
+              NoncurrentDays: !Ref NoncurrentVersionDays
+          - Id: abort-incomplete-uploads
+            Status: Enabled
+            AbortIncompleteMultipartUpload:
+              DaysAfterInitiation: 7
+
+  InboxBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    # The notification below names PromoteFunction, and PromotePermission names
+    # this bucket. The cycle is broken by deriving the bucket ARN there from
+    # BucketPrefix rather than from !GetAtt, so only this ordering is needed.
+    DependsOn: PromotePermission
+    Properties:
+      BucketName: !Sub '${BucketPrefix}-inbox'
+      # Overwrite safety for both upload routes. Content-addressed keys would
+      # have given the same guarantee, but a technician dragging a file onto
+      # the S3 console cannot compute a digest.
+      VersioningConfiguration:
+        Status: Enabled
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      LifecycleConfiguration:
+        Rules:
+          - Id: expire-unpromoted
+            Status: Enabled
+            ExpirationInDays: !Ref InboxExpiryDays
+            NoncurrentVersionExpiration:
+              NoncurrentDays: !Ref InboxExpiryDays
+      # Promotion is driven by tagging, not by upload: an object appearing in
+      # the inbox means nothing until somebody approves it.
+      NotificationConfiguration:
+        LambdaConfigurations:
+          - Event: 's3:ObjectTagging:Put'
+            Function: !GetAtt PromoteFunction.Arn
+
+  # ------------------------------------------------------------ delivery ----
+
+  OriginAccessControl:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name: !Sub '${BucketPrefix}-prod'
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+
+  Distribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        IPV6Enabled: true
+        Comment: Weston Robot downloadable documents
+        Aliases:
+          - !Ref DomainName
+        # Customers are in Asia; the cheapest class that still covers Europe.
+        PriceClass: PriceClass_200
+        Origins:
+          - Id: prod
+            DomainName: !GetAtt ProdBucket.RegionalDomainName
+            OriginAccessControlId: !GetAtt OriginAccessControl.Id
+            S3OriginConfig:
+              OriginAccessIdentity: ''
+        DefaultCacheBehavior:
+          TargetOriginId: prod
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods: [GET, HEAD]
+          CachedMethods: [GET, HEAD]
+          Compress: true
+          # Managed CachingOptimized. Per-object Cache-Control still governs
+          # freshness: published keys are immutable, index.json is not.
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+        ViewerCertificate:
+          AcmCertificateArn: !Ref CertificateArn
+          SslSupportMethod: sni-only
+          MinimumProtocolVersion: TLSv1.2_2021
+        Logging:
+          Bucket: !GetAtt LogsBucket.DomainName
+          Prefix: cloudfront/
+          IncludeCookies: false
+      Tags:
+        - Key: Project
+          Value: wr-files
+
+  # The served bucket is readable by exactly one principal. This is not access
+  # control — the content is public — it is what stops the raw
+  # <bucket>.s3.amazonaws.com URL from working, so the branded hostname is the
+  # only URL that can end up in an email (ADR 0001 D3).
+  ProdBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref ProdBucket
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: AllowCloudFrontRead
+            Effect: Allow
+            Principal:
+              Service: cloudfront.amazonaws.com
+            Action: 's3:GetObject'
+            Resource: !Sub '${ProdBucket.Arn}/*'
+            Condition:
+              StringEquals:
+                'AWS:SourceArn': !Sub 'arn:${AWS::Partition}:cloudfront::${AWS::AccountId}:distribution/${Distribution}'
+          - Sid: DenyDeleteExceptPromote
+            Effect: Deny
+            Principal: '*'
+            Action: ['s3:DeleteObject', 's3:DeleteObjectVersion']
+            Resource:
+              - !GetAtt ProdBucket.Arn
+              - !Sub '${ProdBucket.Arn}/*'
+            Condition:
+              ArnNotEquals:
+                'aws:PrincipalArn': !GetAtt PromoteRole.Arn
+
+  DnsRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref HostedZoneId
+      Name: !Ref DomainName
+      Type: A
+      AliasTarget:
+        DNSName: !GetAtt Distribution.DomainName
+        # Fixed zone id for every CloudFront distribution, everywhere.
+        HostedZoneId: Z2FDTNDATAQYW2
+        EvaluateTargetHealth: false
+
+  # ---------------------------------------------------------------- people --
+  # Attach these to an IAM group, or to Identity Center permission sets once it
+  # is enabled. No human principal can write to the served bucket.
+
+  UploadPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: wr-files-upload
+      Description: Stage a document in the file store inbox. Cannot read, list, delete, or serve.
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: PutIntoInboxOnly
+            Effect: Allow
+            Action: 's3:PutObject'
+            Resource: !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-inbox/*'
+
+  ApprovePolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: wr-files-approve
+      Description: Review and approve a staged document. Cannot write to the served bucket.
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: TagInboxObjects
+            Effect: Allow
+            Action:
+              - 's3:PutObjectTagging'
+              - 's3:GetObjectTagging'
+              - 's3:GetObject'
+              - 's3:ListBucket'
+            Resource:
+              - !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-inbox'
+              - !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-inbox/*'
+
+  ReadPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: wr-files-read
+      Description: Read the served bucket, for debugging.
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action: ['s3:GetObject', 's3:ListBucket']
+            Resource:
+              - !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-prod'
+              - !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-prod/*'
+
+  # --------------------------------------------------------------- lambdas --
+
+  PromoteRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: wr-files-promote
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal: {Service: lambda.amazonaws.com}
+            Action: 'sts:AssumeRole'
+      Policies:
+        - PolicyName: wr-files-promote
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Sid: ReadInbox
+                Effect: Allow
+                Action:
+                  - 's3:GetObject'
+                  - 's3:GetObjectVersion'
+                  - 's3:GetObjectTagging'
+                  - 's3:GetObjectVersionTagging'
+                  - 's3:ListBucket'
+                Resource:
+                  - !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-inbox'
+                  - !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-inbox/*'
+              - Sid: WriteServed
+                Effect: Allow
+                Action: ['s3:PutObject', 's3:DeleteObject', 's3:DeleteObjectVersion']
+                Resource: !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-prod/*'
+              - Sid: Invalidate
+                Effect: Allow
+                Action: 'cloudfront:CreateInvalidation'
+                Resource: !Sub 'arn:${AWS::Partition}:cloudfront::${AWS::AccountId}:distribution/${Distribution}'
+              - Sid: TriggerReindex
+                Effect: Allow
+                Action: 'lambda:InvokeFunction'
+                Resource: !GetAtt ReindexFunction.Arn
+              - Sid: Logs
+                Effect: Allow
+                Action: ['logs:CreateLogGroup', 'logs:CreateLogStream', 'logs:PutLogEvents']
+                Resource: !Sub 'arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:*'
+
+  ReindexRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: wr-files-reindex
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal: {Service: lambda.amazonaws.com}
+            Action: 'sts:AssumeRole'
+      Policies:
+        - PolicyName: wr-files-reindex
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Sid: ReadServed
+                Effect: Allow
+                Action: ['s3:GetObject', 's3:ListBucket']
+                Resource:
+                  - !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-prod'
+                  - !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-prod/*'
+              - Sid: WriteIndex
+                Effect: Allow
+                Action: 's3:PutObject'
+                Resource: !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-prod/index.json'
+              - Sid: Invalidate
+                Effect: Allow
+                Action: 'cloudfront:CreateInvalidation'
+                Resource: !Sub 'arn:${AWS::Partition}:cloudfront::${AWS::AccountId}:distribution/${Distribution}'
+              - Sid: Logs
+                Effect: Allow
+                Action: ['logs:CreateLogGroup', 'logs:CreateLogStream', 'logs:PutLogEvents']
+                Resource: !Sub 'arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:*'
+
+  # Both functions share one zip. `aws cloudformation package` uploads ./lambda
+  # and rewrites these Code properties; see infra/README.md.
+  ReindexFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: wr-files-reindex
+      Role: !GetAtt ReindexRole.Arn
+      Handler: reindex.handler
+      Runtime: python3.12
+      Timeout: 300
+      MemorySize: 256
+      Code: ./lambda
+      Environment:
+        Variables:
+          PROD_BUCKET: !Sub '${BucketPrefix}-prod'
+          DISTRIBUTION_ID: !Ref Distribution
+          BASE_URL: !Sub 'https://${DomainName}'
+
+  PromoteFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: wr-files-promote
+      Role: !GetAtt PromoteRole.Arn
+      Handler: promote.handler
+      Runtime: python3.12
+      Timeout: 300
+      MemorySize: 512
+      Code: ./lambda
+      Environment:
+        Variables:
+          PROD_BUCKET: !Sub '${BucketPrefix}-prod'
+          DISTRIBUTION_ID: !Ref Distribution
+          REINDEX_NAME: !Ref ReindexFunction
+
+  PromotePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !GetAtt PromoteFunction.Arn
+      Action: 'lambda:InvokeFunction'
+      Principal: s3.amazonaws.com
+      # Derived from the parameter rather than !GetAtt, to break the cycle with
+      # InboxBucket's notification.
+      SourceArn: !Sub 'arn:${AWS::Partition}:s3:::${BucketPrefix}-inbox'
+      SourceAccount: !Ref 'AWS::AccountId'
+
+Outputs:
+  DomainName:
+    Description: The contract. Everything else here is replaceable behind it.
+    Value: !Ref DomainName
+  DistributionDomain:
+    Description: Point DNS here if the zone is ever managed outside this account.
+    Value: !GetAtt Distribution.DomainName
+  ServedBucket:
+    Value: !Ref ProdBucket
+  InboxBucket:
+    Value: !Ref InboxBucket
+  InboxConsoleUrl:
+    Description: Bookmark this for technicians — it opens directly on the drop zone.
+    Value: !Sub 'https://${AWS::Region}.console.aws.amazon.com/s3/buckets/${BucketPrefix}-inbox?region=${AWS::Region}'
+  UploadPolicyArn:
+    Value: !Ref UploadPolicy
+  ApprovePolicyArn:
+    Value: !Ref ApprovePolicy
+  ReadPolicyArn:
+    Value: !Ref ReadPolicy

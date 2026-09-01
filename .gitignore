@@ -50,9 +50,5 @@ CLAUDE.md
 __pycache__/
 *.pyc
 
-# Terraform working files and the Lambda zip it builds
-infra/.terraform/
-infra/.terraform.lock.hcl
-infra/.build/
-*.tfstate
-*.tfstate.*
+# Packaged CloudFormation output
+infra/*.packaged.yaml
