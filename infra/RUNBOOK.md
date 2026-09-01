@@ -4,7 +4,7 @@ First deployment of `download.westonrobot.net`, step by step. Reference material
 
 **Nothing here has ever been run.** The templates validate against the account, but no stack has been created, so treat this as a rehearsal that happens to be real. Doing it while the store is empty is deliberate: every failure below is cheap now and expensive once customers depend on it.
 
-**Roughly 30 minutes**, most of it waiting on ACM and CloudFront.
+**Roughly 30 minutes**, most of it waiting on ACM and CloudFront. Measured on the first real run, 2026-09-01: certificate 3m15s, store stack 19m30s.
 
 ---
 
@@ -21,7 +21,7 @@ $ aws s3api head-bucket --bucket westonrobot-files 2>&1 | grep -oE '\(40[34]\)'
 (404)                                          # 404 = free. 403 = taken by another account, stop.
 
 # S3 bucket names are globally unique across every AWS account, so this is not
-# a formality. `wr-files` was the original name here and returns 403 — another
+# a formality — this check is what caught the original name being taken. `wr-files` was the original name here and returns 403 — another
 # account holds it. Re-check whenever the name changes, and prefer a name
 # carrying the company over a short prefix anyone might have taken.
 
@@ -48,7 +48,7 @@ $ aws cloudformation deploy --region us-east-1 \
     --stack-name westonrobot-files-certificate
 ```
 
-**Expect:** several minutes of silence. ACM writes the validation records into the zone itself and waits for them to resolve.
+**Expect:** several minutes of silence — 3m15s on the first run. ACM writes the validation records into the zone itself and waits for them to resolve.
 
 **Verify:**
 
@@ -88,7 +88,7 @@ $ aws cloudformation deploy --region ap-southeast-1 \
 
 `CAPABILITY_NAMED_IAM` is required because the two managed policies have fixed names.
 
-**Expect:** 5–15 minutes. Most of it is the CloudFront distribution deploying to edge locations.
+**Expect:** 15–25 minutes; 19m30s on the first run. Almost all of it is the CloudFront distribution deploying to edge locations — everything else completes in the first minute or two, and `ServedBucketPolicy` waits on the distribution because it conditions on its ARN.
 
 **Verify:**
 
@@ -192,6 +192,13 @@ $ aws s3 rm s3://westonrobot-files/robot/wr65/wr65-user-manual-en-v0.1.pdf
 $ aws s3 rm s3://westonrobot-files/robot/wr65/wr65-user-manual-en-v0.1.pdf.sha256
 $ rm -rf static/_upload
 $ python3 scripts/publish-files.py --publish   # rebuilds the index without it
+```
+
+`index.json` will keep serving the old contents for up to a minute afterwards, even though the object in the bucket is already correct. That is the invalidation propagating, and it is why the index carries `max-age=60` while every published key is `immutable`. Confirm with `X-Cache` and the `count` field rather than assuming:
+
+```console
+$ curl -s https://download.westonrobot.net/index.json | head -3
+$ curl -sI https://download.westonrobot.net/index.json | grep -i x-cache
 ```
 
 ---
