@@ -179,6 +179,8 @@ One consequence to be aware of: a public index makes the full inventory enumerab
 
 Bucket and distribution configuration is an admin act, done through the stack rather than through a standing role.
 
+**The no-delete property belongs to the grant, not to the person.** Verified against the deployed policy with `iam simulate-principal-policy`: a publisher whose only relevant membership is this group gets `implicitDeny` on `s3:DeleteObject`, while a publisher who is also in `Administrators` gets `allowed`. That is the intended shape — removing a published document *should* require admin credentials (§10) — but it means the guarantee constrains the role rather than the human, and anyone holding admin is outside it. Worth knowing before assuming the store is protected from everyone who can publish to it.
+
 **CI holds no AWS credentials at all.** `index.json` is public content served through CloudFront like everything else, so the site build fetches it over HTTPS exactly as any other consumer would. There is no publish step in CI and therefore no role for it to assume — which disposes of the most common finding in a setup like this: static access keys in repository secrets that do not rotate, do not expire, get copied elsewhere, and outlive whoever created them.
 
 One consequence to be aware of: a public index makes the full inventory enumerable. That is acceptable only because the store holds public content by decision, and it needs revisiting the moment anything gated appears (§12).
