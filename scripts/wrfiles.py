@@ -56,7 +56,12 @@ KINDS = (
 # Likewise for `<lang>`. The shape was already constrained to two letters plus
 # an optional subtag, which does not stop `cn` and `zh` both being used for
 # Chinese — a split that only shows up as two rows in one table.
-LANGS = ("en", "zh", "zh-hans", "zh-hant")
+#
+# `zxx` is ISO 639-2 for "no linguistic content; not applicable" — CAD models,
+# firmware images and wiring diagrams are not in any language, and tagging a
+# solid model `en` is simply false. Keeping a value rather than making the
+# segment optional means the filename has one shape for every kind.
+LANGS = ("en", "zh", "zh-hans", "zh-hant", "zxx")
 
 # Extensions we are willing to publish. Anything else is held and reported
 # rather than guessed at — an unknown type is usually a mistake, and the
@@ -241,7 +246,7 @@ def metadata_for(key: str) -> dict:
     stem, _ext = split_ext(filename)
     rest = stem[len(product) + 1 :]
     lang = version = ""
-    m = re.search(r"-([a-z]{2}(?:-[a-z]+)?)-v(\d+(?:\.\d+)*)$", rest)
+    m = re.search(r"-([a-z]{2,3}(?:-[a-z]+)?)-v(\d+(?:\.\d+)*)$", rest)
     if m:
         lang, version = m.group(1), m.group(2)
         rest = rest[: m.start()]

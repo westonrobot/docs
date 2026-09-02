@@ -221,3 +221,24 @@ class KindAndLanguageAreControlledVocabularies(unittest.TestCase):
         # or it would be in the store and invisible to every page.
         self.assertEqual(
             w.metadata_for("robot/scout-mini/scout-mini-CAD-en-v1.pdf")["kind"], "CAD")
+
+
+class LanguageNeutralDocuments(unittest.TestCase):
+    """CAD models, firmware and wiring diagrams are not in any language.
+    Tagging a solid model `en` is false; `zxx` is the ISO 639-2 code for it."""
+
+    def test_zxx_is_accepted(self):
+        k = w.key_from_upload_path(
+            "_upload/robot/scout-mini/scout-mini-cad-zxx-v2020.10.29.zip")
+        self.assertEqual(w.metadata_for(k)["lang"], "zxx")
+
+    def test_a_date_serves_as_a_version(self):
+        # Manufacturer files often carry no version. The issue date is
+        # provenance rather than invention, and sorts correctly.
+        m = w.metadata_for(w.key_from_upload_path(
+            "_upload/robot/scout-mini/scout-mini-cad-zxx-v2020.10.29.zip"))
+        self.assertEqual(m["version"], "2020.10.29")
+
+    def test_three_letters_did_not_loosen_the_vocabulary(self):
+        with self.assertRaises(w.NameError_):
+            w.key_from_upload_path("_upload/robot/scout-mini/scout-mini-cad-abc-v1.zip")

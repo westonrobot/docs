@@ -35,6 +35,8 @@ const LANGUAGES: Record<string, string> = {
   zh: '中文',
   'zh-hans': '简体中文',
   'zh-hant': '繁體中文',
+  // ISO 639-2 "no linguistic content". A solid model is not in a language.
+  zxx: '—',
 };
 
 /** Words that are acronyms, not words. Without this `cad` renders as "Cad". */

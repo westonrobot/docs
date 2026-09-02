@@ -58,7 +58,6 @@ Files and repositories you clone or download to work with the robot.
 
 | Resource | What it is | Where |
 | --- | --- | --- |
-| CAD model | STEP file for mechanical design | [Scout Mini STEP](https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EX0iKqBzlbhCkLdpbcUT5pkBc0QDBlHuxJBXbz4__u0Mkg?e=RhxnaX) |
 | C++ SDK | Primary development interface | [ugv_sdk](https://github.com/westonrobot/ugv_sdk) |
 | ROS package | ROS 1 integration | [scout_ros](https://github.com/westonrobot/scout_ros) |
 | ROS 2 package | ROS 2 integration | [scout_ros2](https://github.com/westonrobot/scout_ros2) |
