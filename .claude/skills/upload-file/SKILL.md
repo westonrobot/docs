@@ -1,9 +1,9 @@
 ---
-name: publish-document
-description: Publish a manual, datasheet, CAD file, firmware image or other document to the Weston Robot file store at download.westonrobot.net. Use whenever someone hands over a file to put on a product page — it establishes the product, kind, language and version, renames the file to the required convention, stages it, uploads it, verifies it served correctly, and rebuilds the site so the page can be checked locally. Also use when a document needs replacing with a newer revision.
+name: upload-file
+description: Upload a manual, datasheet, CAD file, firmware image or other document to the Weston Robot file store at download.westonrobot.net. Use whenever someone hands over a file to put on a product page, or asks to upload, publish or add a document — it establishes the product, kind, language and version, renames the file to the required convention, stages it, uploads it, verifies it served correctly, and rebuilds the site so the page can be checked locally. Also use when a document needs replacing with a newer revision.
 ---
 
-# Publishing a document to the file store
+# Uploading a file to the store
 
 The store is one S3 bucket behind CloudFront. `scripts/publish-files.py` does the
 upload; this skill is about getting the file named and placed correctly first,
