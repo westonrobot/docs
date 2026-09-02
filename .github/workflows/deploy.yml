@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
         with:
           # showLastUpdateTime reads each page's last commit date, so the
           # default shallow clone would leave every timestamp wrong or absent.
@@ -36,7 +36,7 @@ jobs:
         run: python3 scripts/check-downloads.py
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version-file: '.nvmrc'
           cache: 'npm'
@@ -54,7 +54,7 @@ jobs:
 
       - name: Upload build artifact
         if: github.event_name != 'pull_request'
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: docusaurus-build
           path: ./build
@@ -75,19 +75,25 @@ jobs:
       
     steps:
       - name: Download build artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
           name: docusaurus-build
           path: ./build
           
       - name: Setup Pages
-        uses: actions/configure-pages@v5
+        uses: actions/configure-pages@v6
 
+      # include-hidden-files restores pre-v4 behaviour: from v4 this action
+      # drops dotfiles, and the Docusaurus build emits `build/.nojekyll`.
+      # Nothing in the output is underscore-prefixed today, so losing it would
+      # not break the current site — but the deployed artifact should not
+      # quietly change contents as a side effect of a runtime bump.
       - name: Upload artifact to GitHub Pages
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: ./build
+          include-hidden-files: true
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 
+        uses: actions/deploy-pages@v5 
