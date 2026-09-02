@@ -29,7 +29,6 @@ Open items for the docs site. WHAT, not HOW. Status: `[ ]` open, `[~]` in progre
 - [ ] Bulk-load the exported documents: stage them under `static/_upload/` at their D4 paths and run `publish-files.py --publish`, which uploads, indexes and invalidates in one pass.
 - [ ] Rewrite the 48 SharePoint occurrences (34 unique documents, 8 files) to the new URLs.
 - [ ] Rewrite the 4 Google Drive links added by `adce7c6` — `robot/humanoid/g1.md:51`, `robot/quadruped/b2.md:57`, `robot/quadruped/go2.md:53,54`. They are Weston Robot's own documents on opaque third-party share tokens: the same failure class as the SharePoint links, one vendor over.
-- [ ] Wrap the publish script in a Claude Code skill, alongside `vendor-interface-summary`. The script stays runnable standalone — CI needs it and not everyone has the skill.
 - [ ] Decide whether publishing should trigger a docs-site rebuild via `repository_dispatch`. It needs a GitHub token wherever the trigger lives, which is a secret to manage and a decision to take on its own.
 - [ ] Turn on access logging with the Phase 4 alarm work. It is absent from the stack because merging the logs bucket into the private one makes the CloudFront logging edge circular — see `docs/design/file-hosting.md` §2. `4xxErrorRate` is available from CloudWatch without it, so the alarm is not blocked; the logs add which keys are missing.
 - [ ] Find a home for video masters. `.gitignore` excludes `**/video/raw/` and says they are backed up nowhere; that is still true. Out of ADR 0001's scope, which covers public content only.
