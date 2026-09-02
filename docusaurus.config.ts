@@ -60,6 +60,9 @@ const config: Config = {
   ],
 
   plugins: [
+    // Loads the file store's derived index at build time so pages carry a
+    // query instead of a URL. See docs/design/file-hosting.md §3.
+    require.resolve('./plugins/file-index'),
     [
       '@docusaurus/plugin-client-redirects',
       {

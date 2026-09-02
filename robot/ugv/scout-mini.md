@@ -50,11 +50,15 @@ A quick reference for the things you reach for most often, collected so you can 
 
 Files and repositories you clone or download to work with the robot.
 
+**Documents we publish** — generated from the file store, so a new revision appears here without this page being edited.
+
+<Downloads product="scout-mini" />
+
+**Everything else** — code and documentation hosted elsewhere, maintained by hand.
+
 | Resource | What it is | Where |
 | --- | --- | --- |
-| Manual | Scout Mini user manual | [PDF](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/Eaq4LPW9NHFGjSprGPEiaGABftfiJ52k6Z4gkE8ylW1HVQ?e=E01Woq) |
-| CAD model | STEP file for mechanical design | [Scout Mini STEP](https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EX0iKqBzlbhCkLdpbcUT5pkBc0QDBlHuxJBXbz4__u0Mkg?e=RhxnaX) |
-| C++ SDK | Primary development interface | [wrp_sdk](https://github.com/westonrobot/wrp_sdk) |
+| C++ SDK | Primary development interface | [ugv_sdk](https://github.com/westonrobot/ugv_sdk) |
 | ROS package | ROS 1 integration | [scout_ros](https://github.com/westonrobot/scout_ros) |
 | ROS 2 package | ROS 2 integration | [scout_ros2](https://github.com/westonrobot/scout_ros2) |
 

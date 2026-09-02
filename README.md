@@ -56,37 +56,26 @@ npm ci
 npm run start
 ```
 
-### Testing redirects
-
-`@docusaurus/plugin-client-redirects` only emits redirect stubs during `docusaurus build`, never during `docusaurus start`. The dev server also serves `index.html` for unknown routes, so an old URL can look like it "works" in development while actually rendering the wrong thing.
-
-To check a redirect, use a production build:
-
-```bash
-npm run build && npm run serve
-```
-
-### Check before opening a pull request
-
-CI runs both of these, and `npm run build` is what catches broken links and
-anchors, which the dev server does not:
-
-```bash
-npm run typecheck
-npm run build
-```
-
 ## Repository layout
 
 Documentation is split into six independent Docusaurus docs plugin instances, each with its own sidebar file:
 
 | Section | Content directory | Sidebar |
 | --- | --- | --- |
-| `/general` | `general/` | `sidebars-general.ts` |
+| `/support` | `support/` | `sidebars-support.ts` |
 | `/robot` | `robot/` | `sidebars-robot.ts` |
 | `/peripheral` | `peripheral/` | `sidebars-peripheral.ts` |
 | `/system` | `system/` | `sidebars-system.ts` |
-| `/software` | `software/` | `sidebars-software.ts` |
+| `/solution` | `solution/` | `sidebars-solution.ts` |
 | `/tutorial` | `tutorial/` | `sidebars-tutorial.ts` |
 
+The `general` and `software` sections were dissolved; `docusaurus.config.ts` keeps redirects for their old URLs, because support engineers paste them into tickets.
+
 The landing page is `src/pages/index.tsx`.
+
+## Making a change
+
+This file gets the site running. [`CONTRIBUTING.md`](CONTRIBUTING.md) is what to
+do once it is: editing a page, adding a product, publishing a downloadable
+document, adding a video, moving a URL, recording a decision — and the checks
+to run before opening a pull request.

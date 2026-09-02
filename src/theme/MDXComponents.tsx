@@ -6,6 +6,7 @@ import {Video} from '@site/src/components/Video';
 import {Split} from '@site/src/components/Split';
 import {ProductCard, ProductGrid} from '@site/src/components/ProductCard';
 import {KeyPoint, KeyPoints} from '@site/src/components/KeyPoint';
+import {Downloads} from '@site/src/components/Downloads';
 
 /**
  * Components available in every .md and .mdx file without an import.
@@ -24,6 +25,7 @@ export default {
   ProductGrid,
   KeyPoint,
   KeyPoints,
+  Downloads,
   Tabs,
   TabItem,
 };

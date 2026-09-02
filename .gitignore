@@ -28,6 +28,14 @@ yarn-error.log*
 # up by git: keep a copy somewhere else.
 **/video/raw/
 
+# Documents staged for upload to the S3 store. Any `_upload/` folder holds
+# manuals, archives and firmware that belong in the S3 store, never in git —
+# see docs/design/file-hosting.md. They are gitignored on purpose: CI has no
+# local copy, so a page committed before its document was uploaded fails the
+# build instead of shipping a dead link. The underscore also keeps Docusaurus
+# from treating the directory as routable content.
+**/_upload/
+
 .vscode/
 # Claude Code config/instructions — not site content
 .claude/*
@@ -36,4 +44,15 @@ CLAUDE.md
 !.claude/skills/
 .claude/skills/*
 !.claude/skills/vendor-interface-summary/
+!.claude/skills/upload-file/
+!.claude/skills/upload-file/**
+!.claude/skills/retire-file/
+!.claude/skills/retire-file/**
 !.claude/skills/vendor-interface-summary/**
+
+# Python bytecode from the publish/check scripts
+__pycache__/
+*.pyc
+
+# Packaged CloudFormation output
+infra/*.packaged.yaml

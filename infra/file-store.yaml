@@ -1,0 +1,213 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: >
+  Weston Robot file store — download.westonrobot.net. One bucket, and a
+  CloudFront distribution that is the only thing allowed to read it. Decision:
+  docs/adr/0001-host-downloadable-documents-on-s3.md. Design and reasoning:
+  docs/design/file-hosting.md.
+
+Parameters:
+  DomainName:
+    Type: String
+    Default: download.westonrobot.net
+    Description: The customer-facing hostname. This is the contract (ADR 0001 D1).
+
+  CertificateArn:
+    Type: String
+    Description: >
+      Output of the certificate stack, which must be deployed to us-east-1
+      first. CloudFront reads certificates only from that region.
+
+  HostedZoneId:
+    Type: String
+    Default: Z016356211Y82HTRJIPRB
+    Description: Route 53 zone for DomainName.
+
+  BucketName:
+    Type: String
+    Default: westonrobot-files
+    Description: >
+      Deliberately not named after the hostname. `download` is the
+      customer-facing contract; this name describes what the bucket holds.
+
+  NoncurrentVersionDays:
+    Type: Number
+    Default: 365
+    Description: >
+      How long a superseded object version survives. Versioning protects
+      against an accidental overwrite; it is not an archive.
+
+Resources:
+
+  # There is one bucket because there is one kind of thing in it: public
+  # documents. Publishing is direct — no inbox, no approval step, no Lambda
+  # (ADR 0001 D9). No access logging either: that arrives with the Phase 4
+  # alarm work, and CloudFront publishes 4xxErrorRate to CloudWatch without it.
+  ServedBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      BucketName: !Ref BucketName
+      # The realistic failure is a person or a script overwriting the wrong
+      # object, not hardware loss. Versioning is the cheapest control for it,
+      # and the publish role has no DeleteObject, so an overwrite is the worst
+      # a publisher can do and it is recoverable.
+      VersioningConfiguration:
+        Status: Enabled
+      # All four on. The OAC policy below is not a public policy: it grants to
+      # the CloudFront service principal conditioned on AWS:SourceArn, and
+      # Block Public Access evaluates only Allow statements granting to "*"
+      # without a limiting condition. If the policy is ever rejected, the
+      # policy has become genuinely public — investigate it, do not loosen this.
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      LifecycleConfiguration:
+        Rules:
+          - Id: expire-noncurrent-versions
+            Status: Enabled
+            NoncurrentVersionExpiration:
+              NoncurrentDays: !Ref NoncurrentVersionDays
+          - Id: abort-incomplete-uploads
+            Status: Enabled
+            AbortIncompleteMultipartUpload:
+              DaysAfterInitiation: 7
+
+  OriginAccessControl:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name: !Ref BucketName
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+
+  Distribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        IPV6Enabled: true
+        Comment: Weston Robot downloadable documents
+        Aliases:
+          - !Ref DomainName
+        # Customers are in Asia; the cheapest class that still covers Europe.
+        PriceClass: PriceClass_200
+        Origins:
+          - Id: served
+            DomainName: !GetAtt ServedBucket.RegionalDomainName
+            OriginAccessControlId: !GetAtt OriginAccessControl.Id
+            S3OriginConfig:
+              OriginAccessIdentity: ''
+        DefaultCacheBehavior:
+          TargetOriginId: served
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods: [GET, HEAD]
+          CachedMethods: [GET, HEAD]
+          Compress: true
+          # Managed CachingOptimized. Per-object Cache-Control still governs
+          # freshness: published keys are immutable, index.json is not.
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+        ViewerCertificate:
+          AcmCertificateArn: !Ref CertificateArn
+          SslSupportMethod: sni-only
+          MinimumProtocolVersion: TLSv1.2_2021
+      Tags:
+        - Key: Project
+          Value: westonrobot-files
+
+  # Readable by exactly one principal. This is not access control — the content
+  # is public — it is what stops the raw <bucket>.s3.amazonaws.com URL from
+  # working, so the branded hostname is the only URL that can end up in an
+  # email (ADR 0001 D3).
+  ServedBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref ServedBucket
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: AllowCloudFrontRead
+            Effect: Allow
+            Principal:
+              Service: cloudfront.amazonaws.com
+            Action: 's3:GetObject'
+            Resource: !Sub '${ServedBucket.Arn}/*'
+            Condition:
+              StringEquals:
+                'AWS:SourceArn': !Sub 'arn:${AWS::Partition}:cloudfront::${AWS::AccountId}:distribution/${Distribution}'
+
+  DnsRecord:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: !Ref HostedZoneId
+      Name: !Ref DomainName
+      Type: A
+      AliasTarget:
+        DNSName: !GetAtt Distribution.DomainName
+        # Fixed zone id for every CloudFront distribution, everywhere.
+        HostedZoneId: Z2FDTNDATAQYW2
+        EvaluateTargetHealth: false
+
+  # Named for the account it lives in, not for this system's internals. The
+  # bucket carries `westonrobot-` because S3 names are globally unique; IAM
+  # names are account-local, where that prefix is noise and pushes the
+  # meaningful part to the end. `DocsDownload*` follows the existing house
+  # style (FleetAuthS3Access, FleetStagingS3Access) and disambiguates against
+  # the other file-shaped policies already here.
+  #
+  # Publishing is direct, so this grant does put files in front of customers.
+  # It carries no DeleteObject, deliberately: published paths are permanent
+  # (D4) and a manual for hardware still in the field outlives any reason to
+  # tidy it away (design §10). Removing an object is an admin act.
+  PublishPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: DocsDownloadPublish
+      Description: Publish documents to the file store. Cannot delete.
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: ReadAndWriteObjects
+            Effect: Allow
+            Action: ['s3:PutObject', 's3:GetObject', 's3:ListBucket']
+            Resource:
+              - !GetAtt ServedBucket.Arn
+              - !Sub '${ServedBucket.Arn}/*'
+          - Sid: Invalidate
+            Effect: Allow
+            Action: 'cloudfront:CreateInvalidation'
+            Resource: !Sub 'arn:${AWS::Partition}:cloudfront::${AWS::AccountId}:distribution/${Distribution}'
+
+  ReadPolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: DocsDownloadRead
+      Description: Read the file store, for debugging.
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Action: ['s3:GetObject', 's3:ListBucket']
+            Resource:
+              - !GetAtt ServedBucket.Arn
+              - !Sub '${ServedBucket.Arn}/*'
+
+Outputs:
+  DomainName:
+    Description: The contract. Everything else here is replaceable behind it.
+    Value: !Ref DomainName
+  DistributionId:
+    Description: Set as WR_FILES_DISTRIBUTION_ID so the publish script can invalidate.
+    Value: !Ref Distribution
+  DistributionDomain:
+    Description: Point DNS here if the zone is ever managed outside this account.
+    Value: !GetAtt Distribution.DomainName
+  Bucket:
+    Value: !Ref ServedBucket
+  PublishPolicyArn:
+    Value: !Ref PublishPolicy
+  ReadPolicyArn:
+    Value: !Ref ReadPolicy
