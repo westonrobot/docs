@@ -299,3 +299,20 @@ class RetirementIsNotDeletion(unittest.TestCase):
     def test_a_live_object_reports_no_retirement(self):
         self.assertEqual(
             w.index_entry(self.KEY, {}, "https://download.westonrobot.net")["retired"], "")
+
+
+class SidecarsAreNotDocuments(unittest.TestCase):
+    """A `.sha256` link sits beside the document's on the page, so it is the
+    thing most likely to be pasted by mistake. Acting on it would set metadata
+    on an object the index never lists — changing nothing, reporting nothing."""
+
+    def test_a_sidecar_is_not_content(self):
+        self.assertFalse(w.is_content_key(
+            "robot/scout-mini/scout-mini-user-manual-en-v2.0.1.pdf.sha256"))
+
+    def test_the_document_beside_it_is(self):
+        self.assertTrue(w.is_content_key(
+            "robot/scout-mini/scout-mini-user-manual-en-v2.0.1.pdf"))
+
+    def test_the_index_itself_is_not(self):
+        self.assertFalse(w.is_content_key("index.json"))

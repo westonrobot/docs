@@ -188,9 +188,28 @@ def retire(key: str, retiring: bool, args) -> int:
     REPLACE drops everything not supplied.
     """
     import boto3
+    from botocore.exceptions import ClientError
+
+    # A `.sha256` link sits right beside the document's, and retiring a sidecar
+    # would set metadata on an object the index never lists — so nothing would
+    # change and nothing would complain. Silent success is the worst outcome:
+    # the operator believes the document is retired when it is not.
+    if not wrfiles.is_content_key(key):
+        document = key[: -len(".sha256")] if key.endswith(".sha256") else key
+        print(f"{key} is not a document — it is bookkeeping the index never lists.")
+        if document != key:
+            print(f"You probably want:\n  {document}")
+        return 1
 
     s3 = boto3.client("s3")
-    head = s3.head_object(Bucket=args.bucket, Key=key)
+    try:
+        head = s3.head_object(Bucket=args.bucket, Key=key)
+    except ClientError as exc:
+        if exc.response["Error"]["Code"] in ("404", "NoSuchKey"):
+            print(f"No such object: {key}\n"
+                  "Run --list to see what is published; keys must match exactly.")
+            return 1
+        raise
     meta = dict(head.get("Metadata", {}))
     if retiring:
         meta["retired"] = datetime.now(timezone.utc).date().isoformat()
