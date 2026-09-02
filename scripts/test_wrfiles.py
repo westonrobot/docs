@@ -144,3 +144,36 @@ class IndexEntries(unittest.TestCase):
 
 
 KEY_SIDECAR = "robot/wr65/wr65-user-manual-en-v2.3.pdf.sha256"
+
+
+class TheVersionTailIsRequiredWhenPublishing(unittest.TestCase):
+    """Every other naming rule is machine-checked; this one used to be
+    convention, so a file without it published and then rendered with a blank
+    version and language — visible to a customer and to nobody else."""
+
+    def test_missing_lang_and_version_is_refused(self):
+        with self.assertRaises(w.NameError_) as cm:
+            w.key_from_upload_path("_upload/robot/scout-mini/scout-mini-manual.pdf")
+        self.assertIn("missing the language and version", str(cm.exception))
+
+    def test_missing_only_the_version_is_refused(self):
+        with self.assertRaises(w.NameError_):
+            w.key_from_upload_path("_upload/robot/scout-mini/scout-mini-manual-en.pdf")
+
+    def test_a_well_formed_name_still_passes(self):
+        self.assertEqual(
+            w.key_from_upload_path(
+                "static/_upload/robot/scout-mini/scout-mini-user-manual-en-v2.0.1.pdf"),
+            "robot/scout-mini/scout-mini-user-manual-en-v2.0.1.pdf")
+
+    def test_multipart_language_tags_pass(self):
+        self.assertEqual(
+            w.metadata_for(w.key_from_upload_path(
+                "_upload/robot/scout-mini/scout-mini-manual-zh-hans-v1.pdf"))["lang"],
+            "zh-hans")
+
+    def test_metadata_for_stays_lenient(self):
+        # An object written into the bucket by hand must still index.
+        m = w.metadata_for("robot/scout-mini/scout-mini-manual.pdf")
+        self.assertEqual(m["kind"], "manual")
+        self.assertEqual((m["lang"], m["version"]), ("", ""))

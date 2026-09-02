@@ -41,6 +41,8 @@ Add the page to the section's `sidebars-*.ts`, or it will build and be unreachab
 Manuals, SDK archives, firmware. These live in the file store, never in git — the repository is already ~350 MB packed, and git history is permanent.
 
 1. Put the file in `static/_upload/<section>/<product>/`, **at the path it will occupy in the store**: `static/_upload/robot/wr65/wr65-user-manual-en-v2.3.pdf`. The directory is gitignored.
+
+   **The name matters** — it carries all the metadata and is checked rather than trusted. See [Naming a document](#naming-a-document) below before you copy anything in.
 2. `npm run start` and check the page. The link works locally, so you are reviewing the real thing.
 3. `python3 scripts/publish-files.py` shows what it would do. Add `--publish` to upload and rewrite the page's link to the published URL.
 4. Rebuild and look again. The second review is against exactly what a customer gets.
@@ -68,6 +70,54 @@ That is the same file the site build reads, so if a document is in there it is l
 `npm run check:downloads` fails if a page still points into `static/_upload/`. That is not a lint rule — CI has no copy of your local file, so such a page would 404 for everyone but you.
 
 The path convention is [ADR 0001 D4](docs/adr/0001-host-downloadable-documents-on-s3.md): `/<section>/<product>/<file>`, and a published path is **never renamed or deleted**. A customer's bookmark, a QR code printed on a chassis and a support email from 2024 all depend on that.
+
+### Naming a document
+
+**The filename is the metadata.** Nothing else records the version, the language, or what kind of document it is — the name is parsed, and every segment ends up somewhere a customer sees. Get it wrong and the script refuses to upload; it never guesses.
+
+```
+static/_upload/<section>/<product>/<product>-<kind>-<lang>-v<version>.<ext>
+                                   └──────── the filename carries it all ────────┘
+```
+
+| Segment | Rules | Where it ends up |
+| --- | --- | --- |
+| `<section>` | one of `robot`, `solution`, `peripheral`, `system`, `tutorial`, `support` | first path segment of the URL |
+| `<product>` | lowercase and hyphens. **Must match the page's `<Downloads product="…" />`** or the document will not appear | second path segment — this is what groups every file for one robot |
+| `<product>-` | the filename repeats the product slug | so the name still means something once someone has saved it to a desktop |
+| `<kind>` | lowercase and hyphens, free text | the **Document** column, tidied for display: `user-manual` → "User manual" |
+| `<lang>` | two letters, optionally with a subtag: `en`, `zh`, `zh-hans` | the **Language** column |
+| `v<version>` | `v` then digits and dots: `v2`, `v2.0`, `v2.0.1` | the **Version** column, sorted numerically so `v2.1` correctly beats `v2.0.9` |
+| `<ext>` | must be in the publishable set — PDF, ZIP, tar.gz, MP4, XLSX and a few others | sets `Content-Type`; an unlisted extension is refused rather than served as a generic download |
+
+**Use the version printed on the document itself.** It becomes part of a permanent URL that is never renamed (ADR 0001 D4), so a guessed version is wrong forever.
+
+#### Worked examples
+
+| Filename | Renders as | URL becomes |
+| --- | --- | --- |
+| `scout-mini-user-manual-en-v2.0.1.pdf` | User manual · en · v2.0.1 | `download.westonrobot.net/robot/scout-mini/scout-mini-user-manual-en-v2.0.1.pdf` |
+| `scout-mini-user-manual-zh-v2.0.1.pdf` | User manual · zh · v2.0.1 | `download.westonrobot.net/robot/scout-mini/scout-mini-user-manual-zh-v2.0.1.pdf` |
+| `scout-mini-quick-start-en-v1.pdf` | Quick start · en · v1 | `download.westonrobot.net/robot/scout-mini/scout-mini-quick-start-en-v1.pdf` |
+| `scout-mini-cad-en-v1.zip` | Cad · en · v1 | `download.westonrobot.net/robot/scout-mini/scout-mini-cad-en-v1.zip` |
+| `wr65-wire-protocol-en-v3.2.pdf` | Wire protocol · en · v3.2 | `download.westonrobot.net/robot/wr65/wr65-wire-protocol-en-v3.2.pdf` |
+
+The two Scout Mini rows differ only by language, and both appear in the same table — one row each, no page edit. That is the point of the convention: the store answers `product="scout-mini"` with everything it has.
+
+#### What gets rejected, and what you will see
+
+Run `python3 scripts/publish-files.py` first — the dry run reports every problem before anything uploads.
+
+| Rejected name | Why |
+| --- | --- |
+| `scout-mini-manual.pdf` | missing the language and version |
+| `scout-mini-manual-en.pdf` | missing the version |
+| `Scout-Mini-Manual-EN-v2.pdf` | capitals — the slug must be lowercase |
+| `manual-en-v2.0.pdf` | does not start with the product slug |
+| `scout-mini-tool-en-v1.exe` | `.exe` is not in the publishable set |
+| `_upload/robot/ugv/scout-mini/…` | one directory too deep — it is `<section>/<product>/`, with no category between |
+
+Adding a genuinely new file type is a deliberate act: add it to `CONTENT_TYPES` in `scripts/wrfiles.py` with the right MIME type, rather than letting an unknown extension be served as a generic download.
 
 ## Adding a video
 

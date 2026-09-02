@@ -153,11 +153,35 @@ def key_from_upload_path(path: str) -> str:
             f"{filename!r} should start with the product slug {product!r} so a "
             "filename stays meaningful once detached from its directory"
         )
-    return posixpath.join(section, product, filename)
+
+    key = posixpath.join(section, product, filename)
+
+    # The `-<lang>-v<version>` tail is required here, and only here.
+    # `metadata_for` tolerates its absence because an object written into the
+    # bucket by hand — during a bulk load, say — must still index rather than
+    # vanish. On the publish path the name is under the author's control and
+    # every other rule is machine-checked, so accepting an unparseable tail
+    # would be the single place this refuses to refuse. A file missing it
+    # publishes fine and then renders with a blank version and language, which
+    # nobody notices until a customer does.
+    meta = metadata_for(key)
+    if not meta["lang"] or not meta["version"]:
+        raise NameError_(
+            f"{filename!r} is missing the language and version: expected "
+            f"{product}-<kind>-<lang>-v<version>{ext}, for example "
+            f"{product}-user-manual-en-v2.0{ext}"
+        )
+    return key
 
 
 def metadata_for(key: str) -> dict:
     """The object metadata a published key implies.
+
+    Deliberately lenient about a missing `-<lang>-v<version>` tail: this is
+    also how an object written straight into the bucket gets indexed, and a
+    document present in the store but absent from the index would be invisible
+    to every page that queries it. `key_from_upload_path` is where the tail is
+    required, because that is where a human is choosing the name.
 
     Kept derivable from the key alone so that re-deriving it later — during a
     re-index, or a migration to another store — cannot disagree with what was
