@@ -7,7 +7,7 @@ description: "Driving a robot from the browser: keyboard and gamepad control, ke
 
 Teleoperation is driving a robot yourself, from the browser, when a mission is not the right tool — recovering a robot that has stopped somewhere awkward, positioning it precisely, or looking at something the cameras cannot reach on their own.
 
-Control is held under a **lease**, so only one person drives at a time. Taking and releasing it is covered on the [Robot dashboard](/solution/fleet-management/robot-dashboard#taking-control) page, along with the rest of the control panel.
+Control is held under a **lease**, so only one person drives at a time. Taking and releasing it is covered on the [Robot dashboard](/solution/robot-management-toolbox/robot-dashboard#taking-control) page, along with the rest of the control panel.
 
 <Figure
   src={require('../img/fleet-teleop.jpg').default}

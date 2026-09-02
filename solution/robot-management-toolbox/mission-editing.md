@@ -1,6 +1,6 @@
 ---
 sidebar_position: 3
-description: "Building missions in Fleet Management: the editor's three stages, checkpoints and actions, saved locations, run conditions and scheduling, sending missions to a robot, and the history of what ran."
+description: "Building missions in the Robot Management Toolbox: the editor's three stages, checkpoints and actions, saved locations, run conditions and scheduling, sending missions to a robot, and the history of what ran."
 ---
 
 # Mission editing and dispatch
@@ -125,7 +125,7 @@ Three properties of this model explain most of what surprises people:
 
 **Conditions combine, they never alternate.** Every condition on a mission must be satisfied for it to become eligible. There is no "either/or".
 
-**No conditions means always eligible, not never.** A test that all of nothing passes is passed trivially, so a mission with an empty condition list is eligible at every opportunity — a patrol set up that way would restart continuously. **That is why activating a mission with no run conditions is refused**, and the refusal is recorded in the [audit log](/solution/fleet-management/audit-log) like any other rejected action.
+**No conditions means always eligible, not never.** A test that all of nothing passes is passed trivially, so a mission with an empty condition list is eligible at every opportunity — a patrol set up that way would restart continuously. **That is why activating a mission with no run conditions is refused**, and the refusal is recorded in the [audit log](/solution/robot-management-toolbox/audit-log) like any other rejected action.
 
 **A time carries its own cooldown.** The window you set is how late a start is still acceptable, and it doubles as the interval before the same trigger may fire again — which is what makes "every day at 09:00" safe on a mission that never finishes on its own. A day-of-week rule has no such guard, which is why days are always paired with a time rather than offered alone.
 
@@ -157,7 +157,7 @@ To **dispatch** a mission is to hand it to a named robot to run, on demand or on
   framed
   caption="Quick Dispatch, sent from the robot's own view. The run appears in Operations and the log as it goes." />
 
-Missions reference the site map, so a robot must be on the map the fleet has activated before its missions can be edited or dispatched. [Catching a robot up to the map](/solution/fleet-management/tenant-management#catching-a-robot-up-to-the-map) covers what to do when it is not.
+Missions reference the site map, so a robot must be on the map the fleet has activated before its missions can be edited or dispatched. [Catching a robot up to the map](/solution/robot-management-toolbox/tenant-management#catching-a-robot-up-to-the-map) covers what to do when it is not.
 
 ## History and logs
 
@@ -184,7 +184,7 @@ Check its run conditions. A mission saves without them, but activation is refuse
 A day rule has no cooldown of its own, so a mission that does not end by itself would restart all day. Pairing it with a time gives it one.
 
 **A robot's missions are switched off and I cannot edit or dispatch them**  
-That robot is on an older map than the one the fleet has activated. See [Catching a robot up to the map](/solution/fleet-management/tenant-management#catching-a-robot-up-to-the-map).
+That robot is on an older map than the one the fleet has activated. See [Catching a robot up to the map](/solution/robot-management-toolbox/tenant-management#catching-a-robot-up-to-the-map).
 
 **The badge says the robot does not match**  
 It is holding missions this fleet did not send. Send the active set again to bring it back into line.

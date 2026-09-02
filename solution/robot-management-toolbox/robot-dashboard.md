@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-description: "The robot view in Fleet Management: the navigation map, camera feeds, operations and telemetry panels, the control panel, and how battery and connection loss change a running mission."
+description: "The robot view in the Robot Management Toolbox: the navigation map, camera feeds, operations and telemetry panels, the control panel, and how battery and connection loss change a running mission."
 ---
 
 # Robot dashboard
@@ -22,7 +22,7 @@ One robot on one screen. The view is laid out so that judging a running mission 
 | **Camera feeds** | Live feeds from the robot's cameras, each labelled, any of which can be brought into focus |
 | **Operations** | The mission running now, how many are scheduled, and a running log of what the robot has reported |
 | **Telemetry** | The readings the robot makes about itself — see below |
-| **Alerts** | What has been raised for this robot over a window you choose — 12 hours by default, adjustable from 1 to 48. The durable record is in [Detection review](/solution/fleet-management/detection-review) |
+| **Alerts** | What has been raised for this robot over a window you choose — 12 hours by default, adjustable from 1 to 48. The durable record is in [Detection review](/solution/robot-management-toolbox/detection-review) |
 | **Control** | The robot's current mode, and the controls to intervene |
 
 **The main view area shows one or the other.** A **Map / Cameras** toggle decides whether the navigation map or the camera feeds take the large panel, with the other moving aside. An operator watching a robot drive can give the space to the feeds; one checking progress against the building can give it to the map. Which of the two opens by default is a per-user preference.
@@ -111,9 +111,9 @@ The view is headed with the robot's name, model and serial number. Quote those w
 
 Control is held under a **lease**, so a second operator cannot take the controls until the one held is released.
 
-Pressing **Teleop** starts a driving session in the main view area. Driving itself — keyboard and gamepad control, key mapping and axis inversion, speed and deadzone, arranging the camera views, and audio — is covered on [Robot teleoperation](/solution/fleet-management/robot-teleoperation).
+Pressing **Teleop** starts a driving session in the main view area. Driving itself — keyboard and gamepad control, key mapping and axis inversion, speed and deadzone, arranging the camera views, and audio — is covered on [Robot teleoperation](/solution/robot-management-toolbox/robot-teleoperation).
 
-Drive commands depend on the robot being on the map the fleet has activated. A robot that is behind has its dispatch and Go Home controls withdrawn until it catches up — see [Catching a robot up to the map](/solution/fleet-management/tenant-management#catching-a-robot-up-to-the-map).
+Drive commands depend on the robot being on the map the fleet has activated. A robot that is behind has its dispatch and Go Home controls withdrawn until it catches up — see [Catching a robot up to the map](/solution/robot-management-toolbox/tenant-management#catching-a-robot-up-to-the-map).
 
 ### Auto-dispatch
 
@@ -132,7 +132,7 @@ Battery level and the connection to the fleet both change what a running mission
 
 Two separate things are at work in that second case, and it is worth keeping them apart. **Navigation runs on the robot itself**, from the map it already holds, so completing a mission out of contact is a real capability rather than a hopeful one — which is what makes `continue_mission` a genuine option rather than a gamble. **The policy still decides what happens**, so a robot perfectly capable of continuing will stop if `stop_safe` is what it is set to.
 
-**The policy lives on the robot, not in the dashboard.** It is applied when Weston Robot commissions the robot, and changing it needs the same access as any other onboard change — see [Software updates](/solution/fleet-management/deployment-and-servicing#software-updates). The right answer differs between a warehouse aisle and an open yard, so it is worth settling at the site survey rather than after the first outage.
+**The policy lives on the robot, not in the dashboard.** It is applied when Weston Robot commissions the robot, and changing it needs the same access as any other onboard change — see [Software updates](/solution/robot-management-toolbox/deployment-and-servicing#software-updates). The right answer differs between a warehouse aisle and an open yard, so it is worth settling at the site survey rather than after the first outage.
 
 Messages are buffered on the robot while the link is down, so telemetry and events from that period arrive once it returns. What is genuinely unavailable in the meantime is the live view and the ability to send a command.
 

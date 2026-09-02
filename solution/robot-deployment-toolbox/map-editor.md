@@ -155,7 +155,7 @@ It works from a height grid computed against the active level, and you control h
 
 Widening the search range is the fix when nodes will not settle; narrowing it is the fix when they settle onto the wrong thing. **Show height deviations** draws how far each node sits from the level, which is how you spot the one that snapped to a desk rather than the floor.
 
-Placing nodes and segments is not the same as having a route. Segments are what a route is computed over, so two segments that appear to meet on screen but do not share a point produce a map that looks connected and does not solve. The [Map inspector](/solution/deployment-toolbox/map-inspector) is where that is checked, and it is worth checking before you export.
+Placing nodes and segments is not the same as having a route. Segments are what a route is computed over, so two segments that appear to meet on screen but do not share a point produce a map that looks connected and does not solve. The [Map inspector](/solution/robot-deployment-toolbox/map-inspector) is where that is checked, and it is worth checking before you export.
 
 ## 5 · Export
 
@@ -174,15 +174,15 @@ The stage also shows what the bundle will carry: the map document, the point clo
 
 **A changelog entry belongs to the version, not to the file.** The stage asks what changed and who changed it, and leaving both empty skips the entry — which is worth not doing, because it is the record that explains a revision to whoever opens it next.
 
-From here the map can be **exported as a bundle** — a `.zip` packing the map document, the point cloud and the occupancy map — or **pushed to the Fleet Management System**, which is the route that leads to robots.
+From here the map can be **exported as a bundle** — a `.zip` packing the map document, the point cloud and the occupancy map — or **pushed to the Robot Management Toolbox**, which is the route that leads to robots.
 
 ## Publishing to the fleet
 
-A finished map does nothing until it reaches robots, and the Deployment Toolbox performs only the first step of that journey.
+A finished map does nothing until it reaches robots, and the Robot Deployment Toolbox performs only the first step of that journey.
 
 ### Pushing
 
-Pushing sends the map into the Fleet Management System. The push asks for four things:
+Pushing sends the map into the Robot Management Toolbox. The push asks for four things:
 
 <Figure
   src={require('../img/toolbox-push.png').default}
@@ -205,9 +205,9 @@ Choosing an existing map rather than a new one is what keeps a site's revisions 
 
 ### What happens next
 
-A pushed map arrives in Fleet Management as a **draft revision**. It is stored, and it is not in front of anyone.
+A pushed map arrives in the fleet management system as a **draft revision**. It is stored, and it is not in front of anyone.
 
-Two further steps, both taken by a person in Fleet Management, turn it into the map robots run:
+Two further steps, both taken by a person in the fleet management system, turn it into the map robots run:
 
 | Step | Who | What it does |
 | --- | --- | --- |
@@ -215,11 +215,11 @@ Two further steps, both taken by a person in Fleet Management, turn it into the 
 | **Publish** | Site Admin | Marks the draft a finished revision |
 | **Activate** | Site Admin | Makes it *the* revision robots are given |
 
-**The Toolbox stops at the draft.** It cannot publish, it cannot activate, and it never talks to a robot at all. There is no path from this tool to a machine in the field.
+**This tool stops at the draft.** It cannot publish, it cannot activate, and it never talks to a robot at all. There is no path from here to a machine in the field.
 
 That is a boundary between the two tools rather than between two people: the same Site Admin who drew the map can publish and activate it. If your process needs a second person to review a map before robots use it, that has to come from your process.
 
-[How a map reaches a robot](/solution/fleet-management/tenant-management#how-a-map-reaches-a-robot) shows the whole path in one diagram, and [Catching a robot up to the map](/solution/fleet-management/tenant-management#catching-a-robot-up-to-the-map) covers what happens to robots once a revision is activated.
+[How a map reaches a robot](/solution/robot-management-toolbox/tenant-management#how-a-map-reaches-a-robot) shows the whole path in one diagram, and [Catching a robot up to the map](/solution/robot-management-toolbox/tenant-management#catching-a-robot-up-to-the-map) covers what happens to robots once a revision is activated.
 
 ### What activation costs a robot
 
@@ -242,10 +242,10 @@ Surface snapping settles them onto the level, and it looks a set distance above 
 Yes. Stages are revisitable once their prerequisites are met, so returning to Prepare is normal rather than a restart.
 
 **I pushed a map but the robots have not changed**  
-Expected. Pushing creates a draft in the Fleet Management System; someone there has to publish it and then activate it. Until then robots keep the map they have.
+Expected. Pushing creates a draft in the Robot Management Toolbox; someone there has to publish it and then activate it. Until then robots keep the map they have.
 
 **Can I change a map without this tool?**  
-A Site Admin can adjust waypoints and the connections between them in the Fleet Management System. Changing the scan, the levels or the zones is this tool's job.
+A Site Admin can adjust waypoints and the connections between them in the Robot Management Toolbox. Changing the scan, the levels or the zones is this tool's job.
 
 **My site has two floors**  
 This release supports one level per site, because robots do not use stairs or lifts on their own. Ramps within a level are fine, since a ramp is not a change of level.

@@ -5,31 +5,31 @@ const sidebarsSolution: SidebarsConfig = {
     'intro',
     {
       type: 'category',
-      label: 'Fleet Management System',
+      label: 'Robot Management Toolbox',
       // The overview is the category's own landing page, so clicking the
       // category goes somewhere useful instead of just expanding. Same shape
       // as ugv_devkit in sidebars-system.ts.
-      link: {type: 'doc', id: 'fleet-management/index'},
+      link: {type: 'doc', id: 'robot-management-toolbox/index'},
       // Ordered as the overview's feature sections are, so the sidebar and
       // the page agree about what comes after what.
       items: [
-        'fleet-management/robot-dashboard',
-        'fleet-management/robot-teleoperation',
-        'fleet-management/mission-editing',
-        'fleet-management/detection-review',
-        'fleet-management/tenant-management',
-        'fleet-management/audit-log',
-        'fleet-management/deployment-and-servicing',
+        'robot-management-toolbox/robot-dashboard',
+        'robot-management-toolbox/robot-teleoperation',
+        'robot-management-toolbox/mission-editing',
+        'robot-management-toolbox/detection-review',
+        'robot-management-toolbox/tenant-management',
+        'robot-management-toolbox/audit-log',
+        'robot-management-toolbox/deployment-and-servicing',
       ],
     },
     {
       type: 'category',
-      label: 'Deployment Toolbox',
-      link: {type: 'doc', id: 'deployment-toolbox/index'},
+      label: 'Robot Deployment Toolbox',
+      link: {type: 'doc', id: 'robot-deployment-toolbox/index'},
       // Inspector before editor, matching the overview's own order.
       items: [
-        'deployment-toolbox/map-inspector',
-        'deployment-toolbox/map-editor',
+        'robot-deployment-toolbox/map-inspector',
+        'robot-deployment-toolbox/map-editor',
       ],
     },
     // The Assisted Driving Toolbox is retired and `unlisted`, so it is not
