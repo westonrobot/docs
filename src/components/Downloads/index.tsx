@@ -13,6 +13,8 @@ export type FileEntry = {
   subject: string;
   version: string;
   sha256: string;
+  /** ISO date if retired: still served, no longer listed. */
+  retired: string;
   bytes: number;
   contentType: string;
   updated: string;
@@ -167,6 +169,10 @@ export function Downloads({product, kind, lang, empty}: DownloadsProps): ReactNo
   const all = data?.files ?? [];
 
   const files = all
+    // Retired documents keep their URL — a bookmark, a printed QR code and a
+    // support email from 2024 all resolve — but stop being offered here.
+    // The index still reports them; hiding is the display layer's job.
+    .filter((f) => !f.retired)
     .filter((f) => f.product === product)
     .filter((f) => (kind ? f.kind === kind : true))
     .filter((f) => (lang ? f.lang === lang : true))

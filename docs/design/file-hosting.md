@@ -238,6 +238,8 @@ The levers, in order of effect, for whenever it does matter:
 - **Retention is effectively indefinite** for manuals and firmware; storage is cheap and the alternative is a customer with an unserviceable robot.
 - **A document leaving the docs site is not a document leaving the bucket.** Two separate decisions, and conflating them is how bookmarks break.
 
+`publish-files.py --retire <key>` implements the second bullet: it writes a `retired` date into the object's metadata, so the index still reports the document and `<Downloads>` stops listing it while the URL goes on resolving. Metadata rather than a tag because `head_object` already returns it, so the index build reads it for free and setting it needs only `PutObject`, which a publisher already has. The index deliberately keeps reporting retired objects — it is derived from the bucket, and filtering there would make it a curated second source of truth that can disagree with the first.
+
 ## 11. Adoption in phases
 
 Ordered so each phase is independently useful and nothing is blocked on the phase after it.

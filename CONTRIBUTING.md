@@ -153,6 +153,18 @@ Run `python3 scripts/publish-files.py` first — the dry run reports every probl
 
 Adding a genuinely new file type is a deliberate act: add it to `CONTENT_TYPES` in `scripts/wrfiles.py` with the right MIME type, rather than letting an unknown extension be served as a generic download.
 
+## Retiring a document
+
+Something published by mistake, with the wrong metadata, or withdrawn by the manufacturer:
+
+```bash
+python3 scripts/publish-files.py --retire robot/scout-mini/scout-mini-cad-…-v1.zip
+```
+
+It disappears from the table. **It is not deleted and its URL keeps resolving** — a bookmark, a QR code printed on a chassis and a support email from 2024 all depend on that ([ADR 0001 D4](docs/adr/0001-host-downloadable-documents-on-s3.md), design §10). Reversible with `--unretire`.
+
+A *superseded* manual is usually not retired: a robot sold in 2021 is still in service and its operator still needs the 2021 manual. The table shows newest first within a kind, which is normally what you want.
+
 ## Adding a video
 
 Short UI screen recordings go in the repository, under `<section>/video/`, referenced with the `<Video>` component. Keep camera originals in `<section>/video/raw/` — gitignored, and **not backed up by git**, so keep a copy elsewhere.

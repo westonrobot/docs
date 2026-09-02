@@ -46,6 +46,8 @@ CLAUDE.md
 !.claude/skills/vendor-interface-summary/
 !.claude/skills/upload-file/
 !.claude/skills/upload-file/**
+!.claude/skills/retire-file/
+!.claude/skills/retire-file/**
 !.claude/skills/vendor-interface-summary/**
 
 # Python bytecode from the publish/check scripts

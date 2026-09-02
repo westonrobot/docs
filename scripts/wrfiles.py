@@ -337,6 +337,11 @@ def index_entry(key: str, head: dict, base_url: str) -> dict:
         "lang": meta.get("lang") or derived["lang"],
         "version": meta.get("version") or derived["version"],
         "sha256": meta.get("sha256", ""),
+        # An ISO date when the document has been retired from the table, empty
+        # otherwise. The index stays a faithful projection of the bucket — it
+        # reports what is there, and the display layer decides what to show.
+        # Hiding it here would make the index curated rather than derived.
+        "retired": meta.get("retired", ""),
         "bytes": head.get("ContentLength", 0),
         "contentType": head.get("ContentType", ""),
         "updated": last.isoformat() if last is not None else "",

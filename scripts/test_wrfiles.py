@@ -281,3 +281,21 @@ class OneProductHasManyOfMostThings(unittest.TestCase):
             with self.assertRaises(w.NameError_) as cm:
                 self.key(f"scout-mini-cad-off-road-wheel-{bad}-v1.zip")
             self.assertIn(f"language {bad!r}", str(cm.exception))
+
+
+class RetirementIsNotDeletion(unittest.TestCase):
+    """Hiding a document from the table and removing it from the store are two
+    decisions (design §10). The index reports both states; only the display
+    layer filters."""
+
+    KEY = "robot/scout-mini/scout-mini-cad-off-road-wheel-zxx-v2020.10.29.zip"
+
+    def test_a_retired_object_is_still_indexed(self):
+        e = w.index_entry(self.KEY, {"Metadata": {"retired": "2026-09-02"}},
+                          "https://download.westonrobot.net")
+        self.assertEqual(e["retired"], "2026-09-02")
+        self.assertTrue(e["url"].endswith(self.KEY))
+
+    def test_a_live_object_reports_no_retirement(self):
+        self.assertEqual(
+            w.index_entry(self.KEY, {}, "https://download.westonrobot.net")["retired"], "")

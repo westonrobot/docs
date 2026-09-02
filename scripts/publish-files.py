@@ -30,6 +30,7 @@ import json
 import os
 import pathlib
 import sys
+from datetime import datetime, timezone
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
 import wrfiles  # noqa: E402
@@ -120,9 +121,57 @@ def substitute(page: pathlib.Path, local_url: str, published_url: str) -> int:
     return count
 
 
+def retire(key: str, retiring: bool, args) -> int:
+    """Flag or unflag a published object, without moving or deleting it.
+
+    Metadata rather than a tag: `head_object` already returns it, so the index
+    build reads it for free, and setting it needs only `PutObject`, which a
+    publisher already has. S3 metadata is immutable, so this is a copy onto the
+    same key — the content type and cache headers have to be re-applied, since
+    REPLACE drops everything not supplied.
+    """
+    import boto3
+
+    s3 = boto3.client("s3")
+    head = s3.head_object(Bucket=args.bucket, Key=key)
+    meta = dict(head.get("Metadata", {}))
+    if retiring:
+        meta["retired"] = datetime.now(timezone.utc).date().isoformat()
+    else:
+        meta.pop("retired", None)
+
+    s3.copy_object(
+        Bucket=args.bucket, Key=key,
+        CopySource={"Bucket": args.bucket, "Key": key},
+        MetadataDirective="REPLACE",
+        Metadata=meta,
+        ContentType=head["ContentType"],
+        CacheControl=head.get("CacheControl", wrfiles.IMMUTABLE_CACHE),
+    )
+    print(f"{'retired' if retiring else 'restored'} {key}")
+    index = rebuild_index(s3, args.bucket, args.base_url)
+    print(f"index.json rebuilt: {index['count']} document(s)")
+    if args.distribution_id:
+        boto3.client("cloudfront").create_invalidation(
+            DistributionId=args.distribution_id,
+            InvalidationBatch={"Paths": {"Quantity": 1, "Items": ["/*"]},
+                               "CallerReference": f"retire-{os.getpid()}"},
+        )
+        print("CloudFront invalidated")
+    print("The object is still served; only the table stops listing it.")
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--retire", metavar="KEY",
+                    help="hide a document from the table. The object stays served "
+                         "and its URL keeps resolving — a bookmark, a printed QR "
+                         "code and a support email from 2024 all depend on that "
+                         "(ADR 0001 D4, design §10). Use for a mistake, or a "
+                         "revision that should no longer be offered.")
+    ap.add_argument("--unretire", metavar="KEY", help="undo --retire")
     ap.add_argument("--publish", action="store_true",
                     help="upload, reindex, invalidate and rewrite pages (default: dry run)")
     ap.add_argument("--base-url", default=DEFAULT_BASE_URL)
@@ -130,6 +179,9 @@ def main() -> int:
     ap.add_argument("--distribution-id", default=DEFAULT_DISTRIBUTION,
                     help="CloudFront distribution to invalidate; skipped if unset")
     args = ap.parse_args()
+
+    if args.retire or args.unretire:
+        return retire(args.retire or args.unretire, bool(args.retire), args)
 
     files = staged_files()
     plan, problems = [], []
