@@ -1,4 +1,4 @@
-import type {ReactNode} from 'react';
+import {useState, type ReactNode} from 'react';
 import {usePluginData} from '@docusaurus/useGlobalData';
 import styles from './styles.module.css';
 
@@ -30,19 +30,111 @@ type DownloadsProps = {
   empty?: ReactNode;
 };
 
-const LANGUAGES: Record<string, string> = {en: 'English', zh: '中文'};
+const LANGUAGES: Record<string, string> = {
+  en: 'English',
+  zh: '中文',
+  'zh-hans': '简体中文',
+  'zh-hant': '繁體中文',
+};
+
+/** Words that are acronyms, not words. Without this `cad` renders as "Cad". */
+const ACRONYMS = new Set(['cad', 'sdk', 'api', 'ros', 'urdf', 'pdf', 'usb', 'can']);
+
+/** `…-v2.3.tar.gz` -> `TAR.GZ`, `…-v2.3.pdf` -> `PDF`. Tells a reader what
+ *  they are about to download, which `kind` alone does not: a CAD file may be
+ *  a ZIP or a STEP, and a datasheet may be a PDF or a spreadsheet. */
+function fileType(key: string): string {
+  const name = key.slice(key.lastIndexOf('/') + 1).toLowerCase();
+  if (name.endsWith('.tar.gz')) return 'TAR.GZ';
+  const dot = name.lastIndexOf('.');
+  return dot > 0 ? name.slice(dot + 1).toUpperCase() : '—';
+}
 
 function formatBytes(bytes: number): string {
   if (!bytes) return '—';
-  const mib = bytes / 1048576;
-  return mib >= 1 ? `${mib.toFixed(1)} MB` : `${Math.max(1, Math.round(bytes / 1024))} KB`;
+  // Decimal units, because the label says MB and KB. Dividing by 1048576 and
+  // calling it MB is off by 5%, which is the kind of small wrongness nobody
+  // reports and everybody notices.
+  const mb = bytes / 1e6;
+  return mb >= 1 ? `${mb.toFixed(1)} MB` : `${Math.max(1, Math.round(bytes / 1e3))} KB`;
 }
 
 function label(entry: FileEntry): string {
-  // `user-manual` -> `User manual`. The kind segment is the human name, so it
-  // does not need a lookup table that would then need maintaining.
-  const words = entry.kind.replace(/-/g, ' ');
-  return words.charAt(0).toUpperCase() + words.slice(1);
+  // `user-manual` -> "User manual", `sdk-manual` -> "SDK manual". The kind
+  // segment is the human name, so it needs no lookup table — only a list of
+  // the words that are acronyms rather than words.
+  return entry.kind
+    .split('-')
+    .map((w, i) =>
+      ACRONYMS.has(w) ? w.toUpperCase() : i === 0 ? w.charAt(0).toUpperCase() + w.slice(1) : w,
+    )
+    .join(' ');
+}
+
+/* Inline SVG rather than an icon font or a dependency: two small shapes, drawn
+   in `currentColor` so they follow the theme without a second definition. */
+const CopyIcon = (
+  <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+       strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <rect x="5.5" y="5.5" width="8.5" height="8.5" rx="1.5" />
+    <path d="M10.5 3.5v-1a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1V9a1 1 0 0 0 1 1h1" />
+  </svg>
+);
+
+const CheckIcon = (
+  <svg width="13" height="13" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+       strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    <path d="M3 8.5l3.5 3.5L13 5" />
+  </svg>
+);
+
+/** A shortened SHA256 with a button that copies the full value.
+ *
+ * The column is headed SHA256 rather than "Checksum" on purpose: twelve hex
+ * characters could be a truncated MD5, SHA-1 or CRC, and the one thing a
+ * reader must not do with an integrity control is guess the algorithm. This
+ * store carries firmware, so the person checking a file before flashing it to
+ * a robot in the field is exactly the one who cannot afford to be wrong.
+ *
+ * Twelve characters are enough to compare against the sidecar by eye; nobody
+ * transcribes sixty-four. The button copies all of it, because the only real
+ * use of a hash is pasting it into `sha256sum -c`.
+ */
+function Checksum({value}: {value: string}): ReactNode {
+  const [copied, setCopied] = useState(false);
+  if (!value) return <span className={styles.muted}>—</span>;
+
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(value);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1500);
+    } catch {
+      // Clipboard needs a secure context and permission. Failing silently
+      // would leave the button looking broken, so say what happened.
+      setCopied(false);
+      window.prompt('Copy the SHA-256:', value);
+    }
+  };
+
+  return (
+    <span className={styles.sumCell}>
+      <code className={styles.sum} title={value}>
+        {value.slice(0, 12)}
+      </code>
+      <button
+        type="button"
+        className={`${styles.copy} ${copied ? styles.copied : ''}`}
+        onClick={copy}
+        // An icon-only control has no text to read, so the label is the only
+        // thing a screen reader has. It changes with the state, which is how a
+        // non-sighted user gets the same confirmation as the checkmark.
+        aria-label={copied ? 'SHA256 copied' : 'Copy the full SHA256'}
+        title={copied ? 'Copied' : 'Copy the full SHA256 — verify with: sha256sum -c'}>
+        {copied ? CheckIcon : CopyIcon}
+      </button>
+    </span>
+  );
 }
 
 /**
@@ -83,10 +175,12 @@ export function Downloads({product, kind, lang, empty}: DownloadsProps): ReactNo
       <table className={styles.table}>
         <thead>
           <tr>
-            <th scope="col">Document</th>
+            <th scope="col">File</th>
+            <th scope="col">Type</th>
             <th scope="col">Version</th>
             <th scope="col">Language</th>
             <th scope="col">Size</th>
+            <th scope="col">SHA256</th>
           </tr>
         </thead>
         <tbody>
@@ -101,15 +195,14 @@ export function Downloads({product, kind, lang, empty}: DownloadsProps): ReactNo
                     staged
                   </span>
                 ) : null}
-                {file.sha256 ? (
-                  <span className={styles.sum} title="SHA-256 of this file">
-                    {file.sha256.slice(0, 12)}…
-                  </span>
-                ) : null}
               </td>
+              <td className={styles.type}>{fileType(file.key)}</td>
               <td>{file.version ? `v${file.version}` : '—'}</td>
               <td>{LANGUAGES[file.lang] ?? file.lang ?? '—'}</td>
               <td className={styles.size}>{formatBytes(file.bytes)}</td>
+              <td>
+                <Checksum value={file.sha256} />
+              </td>
             </tr>
           ))}
         </tbody>

@@ -137,6 +137,18 @@ someone needs them, not by how reference-like they feel:
 
 > Related resources → Logins and IP addresses → Network layout → Electrical interfaces
 
+**Related resources holds two tables, and the split is who hosts the file.**
+
+> **Documents we publish** — `<Downloads product="…" />`, generated from the file store. Never hand-edited: a new revision appears because the store changed, not because someone remembered to update a page.
+>
+> **Everything else** — a hand-maintained table of vendor sites, GitHub repositories and third-party documentation.
+
+The dividing line is mechanical rather than editorial: **if the URL is `download.westonrobot.net`, it belongs in the component.** A document that appears in both is a document that can disagree with itself, which is how one dead link came to need editing in several files.
+
+Each table gets a one-line lead-in saying which it is; two adjacent tables with no explanation read as an accident. `robot/ugv/scout-mini.md` is the worked example.
+
+During the migration a page will legitimately show both: documents already moved to the store in the component, and ones still on a dead vendor link in the table. The table row disappears as each document is published — that is the migration's unit of progress.
+
 **Give it an explicit scope, or it becomes the old catch-all.** Twelve of the 13
 robot pages still carry a `## Resources` section, and between them those sections
 grew six ad-hoc sub-groupings — Basic Guides, CAD Models, Development, Manuals,
