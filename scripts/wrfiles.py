@@ -209,24 +209,64 @@ def key_from_upload_path(path: str) -> str:
     # nobody notices until a customer does.
     meta = metadata_for(key)
     if not meta["lang"] or not meta["version"]:
+        # The strict parse matches the language against LANGS, so a wrong-but-
+        # plausible code fails the same way a missing one does. Re-read it
+        # loosely purely to say something useful: `cn` is the mistake people
+        # actually make, and "missing the language" is the wrong answer to it.
+        # Take the token immediately before the version rather than pattern-
+        # matching a shape: a shape wide enough to catch `cn` is also wide
+        # enough to swallow `manual-cn`, and a diagnostic that misreports the
+        # problem is worse than the generic message below.
+        parts = stem.split("-")
+        guess = next(
+            (parts[i - 1] for i, t in enumerate(parts) if re.fullmatch(r"v\d[\d.]*", t) and i),
+            "",
+        )
+        if guess and guess not in LANGS:
+            raise NameError_(
+                f"language {guess!r} is not one of {', '.join(LANGS)} "
+                "(Chinese is 'zh', not 'cn'; a CAD model or firmware image is "
+                "'zxx' — no linguistic content)"
+            )
         raise NameError_(
             f"{filename!r} is missing the language and version: expected "
-            f"{product}-<kind>-<lang>-v<version>{ext}, for example "
+            f"{product}-<kind>[-<subject>]-<lang>-v<version>{ext}, for example "
             f"{product}-user-manual-en-v2.0{ext}"
         )
     if meta["kind"] not in KINDS:
         raise NameError_(
-            f"kind {meta['kind']!r} is not one of {', '.join(KINDS)}. "
-            "Pick the closest, or add a new one to KINDS in scripts/wrfiles.py "
-            "deliberately — an uncontrolled kind is how a store ends up with "
-            "cad, CAD and STP for the same thing"
-        )
-    if meta["lang"] not in LANGS:
-        raise NameError_(
-            f"language {meta['lang']!r} is not one of {', '.join(LANGS)} "
-            "(Chinese is 'zh', not 'cn')"
+            f"{meta['kind']!r} does not start with a known kind. It must be one "
+            f"of {', '.join(KINDS)}, optionally followed by a subject — "
+            f"`cad-off-road-wheel` is kind `cad`, subject `off-road-wheel`. "
+            "Add a new kind to KINDS in scripts/wrfiles.py deliberately; an "
+            "uncontrolled kind is how a store ends up with cad, CAD and STP "
+            "for the same thing"
         )
     return key
+
+
+def split_kind(middle: str) -> tuple[str, str]:
+    """Split the middle of a filename into its kind and an optional subject.
+
+    `cad-off-road-wheel` -> ("cad", "off-road-wheel"). Unambiguous only because
+    KINDS is a closed vocabulary: the longest kind that prefixes the string wins,
+    and `cad-off` is not a kind so it cannot be read that way. With free-text
+    kinds there would be no way to know where one segment ended and the next
+    began.
+
+    A subject exists because one product has more than one of most things — a
+    CAD model of the body and of an accessory, a user manual for the robot and
+    for a wheel kit. Without it they share a key and the second silently
+    overwrites the first.
+
+    Returns ("", middle) when no kind matches, so the caller can refuse.
+    """
+    for kind in sorted(KINDS, key=len, reverse=True):
+        if middle == kind:
+            return kind, ""
+        if middle.startswith(f"{kind}-"):
+            return kind, middle[len(kind) + 1 :]
+    return "", middle
 
 
 def metadata_for(key: str) -> dict:
@@ -246,14 +286,20 @@ def metadata_for(key: str) -> dict:
     stem, _ext = split_ext(filename)
     rest = stem[len(product) + 1 :]
     lang = version = ""
-    m = re.search(r"-([a-z]{2,3}(?:-[a-z]+)?)-v(\d+(?:\.\d+)*)$", rest)
+    # Longest first, so `zh-hans` is not truncated to `zh`.
+    langs = "|".join(sorted(LANGS, key=len, reverse=True))
+    m = re.search(rf"-({langs})-v(\d+(?:\.\d+)*)$", rest)
     if m:
         lang, version = m.group(1), m.group(2)
         rest = rest[: m.start()]
+    kind, subject = split_kind(rest)
     return {
         "section": section,
         "product": product,
-        "kind": rest,
+        # An unrecognised middle stays in `kind` so a hand-written object still
+        # indexes; key_from_upload_path is where it is refused.
+        "kind": kind or rest,
+        "subject": subject,
         "lang": lang,
         "version": version,
     }
@@ -287,6 +333,7 @@ def index_entry(key: str, head: dict, base_url: str) -> dict:
         "section": meta.get("section") or derived["section"],
         "product": meta.get("product") or derived["product"],
         "kind": meta.get("kind") or derived["kind"],
+        "subject": meta.get("subject") or derived["subject"],
         "lang": meta.get("lang") or derived["lang"],
         "version": meta.get("version") or derived["version"],
         "sha256": meta.get("sha256", ""),

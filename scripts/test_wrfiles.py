@@ -32,6 +32,7 @@ class BothRoutesAgree(unittest.TestCase):
                 "section": "peripheral",
                 "product": "manifold-pocket",
                 "kind": "datasheet",
+                "subject": "",
                 "lang": "zh",
                 "version": "1",
             },
@@ -200,7 +201,7 @@ class KindAndLanguageAreControlledVocabularies(unittest.TestCase):
         # `manual` vs `user-manual` is the split the vocabulary exists to stop.
         with self.assertRaises(w.NameError_) as cm:
             self.key("scout-mini-manual-en-v1.pdf")
-        self.assertIn("not one of", str(cm.exception))
+        self.assertIn("does not start with a known kind", str(cm.exception))
 
     def test_an_invented_format_kind_is_refused(self):
         # STEP and STL are formats, carried by the extension; the kind is `cad`.
@@ -242,3 +243,41 @@ class LanguageNeutralDocuments(unittest.TestCase):
     def test_three_letters_did_not_loosen_the_vocabulary(self):
         with self.assertRaises(w.NameError_):
             w.key_from_upload_path("_upload/robot/scout-mini/scout-mini-cad-abc-v1.zip")
+
+
+class OneProductHasManyOfMostThings(unittest.TestCase):
+    """A CAD model of the body and of an accessory; a user manual for the robot
+    and for a wheel kit. Without a subject they share a key and the second
+    silently overwrites the first."""
+
+    def key(self, name):
+        return w.key_from_upload_path(f"_upload/robot/scout-mini/{name}")
+
+    def test_subject_distinguishes_two_files_of_one_kind(self):
+        a = self.key("scout-mini-cad-zxx-v2020.10.29.zip")
+        b = self.key("scout-mini-cad-off-road-wheel-zxx-v2020.10.29.zip")
+        self.assertNotEqual(a, b)
+        self.assertEqual(w.metadata_for(a)["subject"], "")
+        self.assertEqual(w.metadata_for(b)["subject"], "off-road-wheel")
+
+    def test_the_split_is_unambiguous_because_kinds_is_closed(self):
+        # `cad-off` is not a kind, so this can only read one way.
+        self.assertEqual(w.split_kind("cad-off-road-wheel"), ("cad", "off-road-wheel"))
+        self.assertEqual(w.split_kind("user-manual-off-road-wheel"),
+                         ("user-manual", "off-road-wheel"))
+
+    def test_longest_kind_wins(self):
+        # `user-manual` must not be read as kind `user` plus a subject.
+        self.assertEqual(w.split_kind("user-manual"), ("user-manual", ""))
+
+    def test_a_short_subject_is_not_mistaken_for_a_language(self):
+        # Matching lang against LANGS rather than a shape: `-arm-en-v1` used to
+        # parse `arm-en` as the language.
+        m = w.metadata_for(self.key("scout-mini-cad-arm-en-v1.zip"))
+        self.assertEqual((m["subject"], m["lang"]), ("arm", "en"))
+
+    def test_the_wrong_language_says_so(self):
+        for bad in ("cn", "eng"):
+            with self.assertRaises(w.NameError_) as cm:
+                self.key(f"scout-mini-cad-off-road-wheel-{bad}-v1.zip")
+            self.assertIn(f"language {bad!r}", str(cm.exception))

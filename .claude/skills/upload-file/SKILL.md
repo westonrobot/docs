@@ -32,8 +32,9 @@ Ask for whatever is missing. Ask in one message, not four.
 | --- | --- |
 | **product** | The page's filename without `.md` — `robot/ugv/scout-mini.md` → `scout-mini`. Confirm the page exists; if there is no page, the document has nowhere to appear and that is worth raising before uploading. |
 | **kind** | One of `KINDS`. Offer the two or three plausible ones rather than the whole list. If the user says "manual", ask whether it is `user-manual` or `service-manual` — never pick for them. |
+| **subject** | Optional, and the thing most often missed. Ask whether this is *the* CAD model / manual for the product or one of several — a wheel kit, a charging dock, a battery. If there is any chance of a second file of the same kind, include it: without a subject the second one overwrites the first and nothing reports it. |
 | **lang** | One of `LANGS`. Look inside the document if unsure; do not assume English. |
-| **version** | **From the document itself** — cover page, revision table, footer. Open it and check. Never invent one, never default to `v1`: it is permanent. If genuinely unversioned, say so and agree one with the user rather than guessing. |
+| **version** | **From the document itself**, or the issue date when the manufacturer gives none — `v2020.10.29`, read from the file's own header. Never `v1` by default. — cover page, revision table, footer. Open it and check. Never invent one, never default to `v1`: it is permanent. If genuinely unversioned, say so and agree one with the user rather than guessing. |
 | **section** | The top-level content directory the page lives in: `robot`, `solution`, `peripheral`, `system`, `tutorial`, `support`. |
 
 If the extension is not in `CONTENT_TYPES`, stop. Adding one is a deliberate
@@ -42,7 +43,7 @@ edit to `wrfiles.py` with the right MIME type, not something to do in passing.
 ## The sequence
 
 1. **Stage it.** Copy — do not move — to
-   `static/_upload/<section>/<product>/<product>-<kind>-<lang>-v<version>.<ext>`.
+   `static/_upload/<section>/<product>/<product>-<kind>[-<subject>]-<lang>-v<version>.<ext>`.
    Copying leaves the user's original where they left it.
 
 2. **Dry run.** `python3 scripts/publish-files.py`

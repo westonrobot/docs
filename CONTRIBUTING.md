@@ -76,8 +76,8 @@ The path convention is [ADR 0001 D4](docs/adr/0001-host-downloadable-documents-o
 **The filename is the metadata.** Nothing else records the version, the language, or what kind of document it is — the name is parsed, and every segment ends up somewhere a customer sees. Get it wrong and the script refuses to upload; it never guesses.
 
 ```
-static/_upload/<section>/<product>/<product>-<kind>-<lang>-v<version>.<ext>
-                                   └──────── the filename carries it all ────────┘
+static/_upload/<section>/<product>/<product>-<kind>[-<subject>]-<lang>-v<version>.<ext>
+                                   └─────────── the filename carries it all ───────────┘
 ```
 
 | Segment | Rules | Where it ends up |
@@ -86,11 +86,25 @@ static/_upload/<section>/<product>/<product>-<kind>-<lang>-v<version>.<ext>
 | `<product>` | lowercase and hyphens. **Must match the page's `<Downloads product="…" />`** or the document will not appear | second path segment — this is what groups every file for one robot |
 | `<product>-` | the filename repeats the product slug | so the name still means something once someone has saved it to a desktop |
 | `<kind>` | **one of the listed values below** — not free text | the **Document** column, tidied for display: `user-manual` → "User manual" |
+| `<subject>` | **optional**, free text, lowercase and hyphens. Use it when a product has more than one of a kind — a CAD model of the body *and* of a wheel kit, a manual for the robot *and* for an accessory | appended to the **File** column: `CAD · Off road wheel`. Without it two such files share a key and the second silently overwrites the first |
 | `<lang>` | **one of `en`, `zh`, `zh-hans`, `zh-hant`** | the **Language** column |
 | `v<version>` | `v` then digits and dots: `v2`, `v2.0`, `v2.0.1` | the **Version** column, sorted numerically so `v2.1` correctly beats `v2.0.9` |
 | `<ext>` | must be in the publishable set — PDF, ZIP, tar.gz, MP4, XLSX and a few others | sets `Content-Type`; an unlisted extension is refused rather than served as a generic download |
 
 **Use the version printed on the document itself.** It becomes part of a permanent URL that is never renamed (ADR 0001 D4), so a guessed version is wrong forever.
+
+#### When one product has several of the same kind
+
+`scout-mini` has a CAD model of the chassis and another of an off-road wheel. Both are `kind=cad`, so without a subject they produce the same key and the second overwrites the first — silently, because versioning makes it recoverable but nothing reports it.
+
+```
+scout-mini-cad-zxx-v2021.03.02.zip                  → CAD
+scout-mini-cad-off-road-wheel-zxx-v2020.10.29.zip   → CAD · Off road wheel
+```
+
+The subject is whatever distinguishes them, and it parses unambiguously **because `kind` is a closed vocabulary**: the longest kind that starts the middle wins, and `cad-off` is not a kind so it cannot be read that way.
+
+A hyphenated subject renders with spaces — `off-road-wheel` becomes "Off road wheel" — so prefer a name that reads correctly that way.
 
 #### The `kind` vocabulary
 

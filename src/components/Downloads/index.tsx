@@ -10,6 +10,7 @@ export type FileEntry = {
   product: string;
   kind: string;
   lang: string;
+  subject: string;
   version: string;
   sha256: string;
   bytes: number;
@@ -61,16 +62,24 @@ function formatBytes(bytes: number): string {
   return mb >= 1 ? `${mb.toFixed(1)} MB` : `${Math.max(1, Math.round(bytes / 1e3))} KB`;
 }
 
-function label(entry: FileEntry): string {
-  // `user-manual` -> "User manual", `sdk-manual` -> "SDK manual". The kind
-  // segment is the human name, so it needs no lookup table — only a list of
-  // the words that are acronyms rather than words.
-  return entry.kind
+function humanise(slug: string): string {
+  return slug
     .split('-')
     .map((w, i) =>
       ACRONYMS.has(w) ? w.toUpperCase() : i === 0 ? w.charAt(0).toUpperCase() + w.slice(1) : w,
     )
     .join(' ');
+}
+
+/** `cad` + `off-road-wheel` -> "CAD · Off-road wheel".
+ *
+ * One product has more than one of most things: a CAD model of the body and of
+ * an accessory, a manual for the robot and for a wheel kit. Without the subject
+ * both rows read identically and a customer downloads the wrong one.
+ */
+function label(entry: FileEntry): string {
+  const kind = humanise(entry.kind);
+  return entry.subject ? `${kind} · ${humanise(entry.subject)}` : kind;
 }
 
 /* Inline SVG rather than an icon font or a dependency: two small shapes, drawn

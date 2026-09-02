@@ -3,7 +3,7 @@ sidebar_position: 3
 description: "Deployment Toolbox: turn a 3D scan of a site into the map robots navigate by. What a map contains, the editor, the inspector, and how a map reaches the fleet."
 ---
 
-# Deployment Toolbox
+# Robot Deployment Toolbox
 
 A 3D scan of a building is just points. A robot needs to know where the floor is, where it may drive, where it must not go, and which places matter. Somebody supplies that meaning once per site, and this is the tool they use.
 
