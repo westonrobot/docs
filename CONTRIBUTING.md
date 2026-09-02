@@ -155,11 +155,14 @@ Adding a genuinely new file type is a deliberate act: add it to `CONTENT_TYPES` 
 
 ## Retiring a document
 
-Something published by mistake, with the wrong metadata, or withdrawn by the manufacturer:
+Something published by mistake, with the wrong metadata, or withdrawn by the manufacturer. Find it first — keys are long and must match exactly:
 
 ```bash
-python3 scripts/publish-files.py --retire robot/scout-mini/scout-mini-cad-…-v1.zip
+python3 scripts/publish-files.py --list scout-mini
+python3 scripts/publish-files.py --retire <key-or-url>
 ```
+
+`--list` prints each key on its own line to copy, and marks anything already retired. Looking at a wrong row on a page? Right-click the link, copy it, and paste the URL — that works too.
 
 It disappears from the table. **It is not deleted and its URL keeps resolving** — a bookmark, a QR code printed on a chassis and a support email from 2024 all depend on that ([ADR 0001 D4](docs/adr/0001-host-downloadable-documents-on-s3.md), design §10). Reversible with `--unretire`.
 

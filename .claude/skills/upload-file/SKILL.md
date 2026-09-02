@@ -48,6 +48,10 @@ edit to `wrfiles.py` with the right MIME type, not something to do in passing.
 
 2. **Dry run.** `python3 scripts/publish-files.py`
 
+   `--list <product>` first is worth it when replacing something: it shows what
+   is already published for that product, so you can see whether this is a new
+   document, a new revision, or a duplicate under a slightly different name.
+
    Read the output. `+ new` is what you want. A refusal names the problem and
    nothing has been uploaded — fix the name and run it again. Never work around
    a refusal by editing the script.

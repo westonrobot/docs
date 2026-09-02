@@ -27,13 +27,24 @@ nothing here removes an object.
 - **A superseded manual is not retired by default.** A robot sold in 2021 is still in service and its operator still needs the 2021 manual. The table sorts newest first within a kind; showing both is usually correct.
 - **Never to tidy.** An old-looking row is not a reason. If a customer could still be running that hardware, leave it.
 
+## Finding the file first
+
+Never retype a key — it has to match exactly, and they are long.
+
+```bash
+python3 scripts/publish-files.py --list              # everything
+python3 scripts/publish-files.py --list scout-mini   # one product
+```
+
+Each entry prints its key on its own line, ready to copy, and retired ones are
+marked. If the user is looking at a wrong row on a page, the link's URL works
+just as well as the key — right-click, copy link, paste it.
+
 ## Doing it
 
 ```bash
-python3 scripts/publish-files.py --retire <key>
+python3 scripts/publish-files.py --retire <key-or-url>
 ```
-
-The key is the path after the hostname — `robot/scout-mini/scout-mini-cad-off-road-wheel-zxx-v2020.10.29.zip`. Take it from `index.json` or the stack's bucket listing rather than retyping it.
 
 It sets `retired` to today's date in the object's metadata, rebuilds `index.json`
 and invalidates the CDN. Reversible: `--unretire <key>`.

@@ -121,6 +121,63 @@ def substitute(page: pathlib.Path, local_url: str, published_url: str) -> int:
     return count
 
 
+def as_key(ref: str) -> str:
+    """Accept either a key or a URL copied from the page.
+
+    An engineer looking at a wrong row will right-click the link and copy it;
+    asking them to strip the hostname by hand is an invitation to typo a string
+    that has to match exactly.
+    """
+    ref = ref.strip()
+    for prefix in ("https://", "http://"):
+        if ref.startswith(prefix):
+            return ref[len(prefix) :].split("/", 1)[1]
+    return ref.lstrip("/")
+
+
+def show(args) -> int:
+    """What is published, with the key to copy."""
+    import boto3
+
+    remote = remote_objects(boto3.client("s3"), args.bucket)
+    if not remote:
+        print("Nothing published.")
+        return 0
+
+    rows = []
+    for key, info in sorted(remote.items()):
+        meta = info["head"].get("Metadata", {})
+        derived = wrfiles.metadata_for(key)
+        rows.append({
+            "key": key,
+            "product": meta.get("product") or derived["product"],
+            "what": " · ".join(x for x in (meta.get("kind") or derived["kind"],
+                                           meta.get("subject") or derived["subject"]) if x),
+            "version": meta.get("version") or derived["version"],
+            "mb": info["bytes"] / 1e6,
+            "status": "RETIRED" if meta.get("retired") else "live",
+        })
+    if args.list:
+        rows = [r for r in rows if r["product"] == args.list]
+        if not rows:
+            print(f"Nothing published for {args.list!r}.")
+            return 1
+
+    product = None
+    for r in rows:
+        if r["product"] != product:
+            product = r["product"]
+            print(f"\n{product}")
+        flag = "  " if r["status"] == "live" else " !"
+        print(f"{flag} {r['what']}  v{r['version']}  {r['mb']:.1f} MB"
+              + ("   [RETIRED — hidden from the table, URL still resolves]"
+                 if r["status"] == "RETIRED" else ""))
+        print(f"     {r['key']}")
+    print("\nRetire one with:  python3 scripts/publish-files.py --retire <key>")
+    print("The key or the full URL from the page both work.")
+    return 0
+
+
 def retire(key: str, retiring: bool, args) -> int:
     """Flag or unflag a published object, without moving or deleting it.
 
@@ -165,6 +222,9 @@ def retire(key: str, retiring: bool, args) -> int:
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--list", nargs="?", const="", metavar="PRODUCT",
+                    help="show what is published, with the key to copy. Optionally "
+                         "filtered to one product.")
     ap.add_argument("--retire", metavar="KEY",
                     help="hide a document from the table. The object stays served "
                          "and its URL keeps resolving — a bookmark, a printed QR "
@@ -180,8 +240,11 @@ def main() -> int:
                     help="CloudFront distribution to invalidate; skipped if unset")
     args = ap.parse_args()
 
+    if args.list is not None:
+        return show(args)
+
     if args.retire or args.unretire:
-        return retire(args.retire or args.unretire, bool(args.retire), args)
+        return retire(as_key(args.retire or args.unretire), bool(args.retire), args)
 
     files = staged_files()
     plan, problems = [], []
