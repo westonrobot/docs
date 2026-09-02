@@ -36,9 +36,7 @@ Open items for the docs site. WHAT, not HOW. Status: `[ ]` open, `[~]` in progre
 
 ## Site infrastructure
 
-- [ ] `docker-compose` re-runs `npm ci` on every one-off `run` because `node_modules` is not persisted, so a bare `npm run build` in a fresh container fails to resolve `@docusaurus/plugin-client-redirects`. Make `npm ci` conditional, set `restart: "no"`, and persist the npm cache.
-- [ ] `sudo rm -rf build node_modules` — root-owned artifacts from a previous Docker run. Needs the user's hands.
-- [ ] Bump the Node actions in `.github/workflows/deploy.yml` to Node 20.
+- [ ] Re-check the `docker-compose` npm behaviour. The failure this item described — a bare `npm run build` in a fresh container not resolving `@docusaurus/plugin-client-redirects` — should be fixed: the Dockerfile now runs `npm ci` at build time and `/app/node_modules` is an anonymous volume, so it initialises from the image. **Not verified by actually running it.** What remains is smaller than originally written: `command:` still re-runs `npm ci` on every `up` (deliberate per the README, so a `git pull` needs no extra step, but slow), and `restart: unless-stopped` is still there rather than `"no"`.
 - [ ] Add external link checking to CI — issue #31 tracks 53 dead SharePoint links. Required by ADR 0001 D6: a `download.westonrobot.net` URL is not verified by the Docusaurus build the way an in-repo asset is.
 - [ ] `deb.westonrobot.net` is served over plaintext HTTP only — a bare S3 website endpoint cannot terminate TLS. Tolerable for an apt repo, where GPG signatures make integrity independent of the transport, but it should get the same CloudFront + ACM front as `download.westonrobot.net`. Separate from ADR 0001.
 
