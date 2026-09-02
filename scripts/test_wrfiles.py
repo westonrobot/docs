@@ -81,17 +81,17 @@ class UploadPathIsRefusedNotGuessed(unittest.TestCase):
 
     def test_nested_under_a_section_dir(self):
         self.assertEqual(
-            w.key_from_upload_path("robot/_upload/solution/fleet/fleet-guide-en-v1.pdf"),
-            "solution/fleet/fleet-guide-en-v1.pdf",
+            w.key_from_upload_path("robot/_upload/solution/fleet/fleet-user-manual-en-v1.pdf"),
+            "solution/fleet/fleet-user-manual-en-v1.pdf",
         )
 
 
 class Extensions(unittest.TestCase):
     def test_tar_gz_is_one_extension(self):
-        self.assertEqual(w.split_ext("wr65-sdk-en-v2.3.tar.gz"), ("wr65-sdk-en-v2.3", ".gz"))
+        self.assertEqual(w.split_ext("wr65-sdk-manual-en-v2.3.tar.gz"), ("wr65-sdk-manual-en-v2.3", ".gz"))
         self.assertEqual(
-            w.key_from_upload_path("_upload/robot/wr65/wr65-sdk-en-v2.3.tar.gz"),
-            "robot/wr65/wr65-sdk-en-v2.3.tar.gz",
+            w.key_from_upload_path("_upload/robot/wr65/wr65-sdk-manual-en-v2.3.tar.gz"),
+            "robot/wr65/wr65-sdk-manual-en-v2.3.tar.gz",
         )
 
     def test_unknown_extension_is_refused(self):
@@ -169,7 +169,7 @@ class TheVersionTailIsRequiredWhenPublishing(unittest.TestCase):
     def test_multipart_language_tags_pass(self):
         self.assertEqual(
             w.metadata_for(w.key_from_upload_path(
-                "_upload/robot/scout-mini/scout-mini-manual-zh-hans-v1.pdf"))["lang"],
+                "_upload/robot/scout-mini/scout-mini-user-manual-zh-hans-v1.pdf"))["lang"],
             "zh-hans")
 
     def test_metadata_for_stays_lenient(self):
@@ -177,3 +177,47 @@ class TheVersionTailIsRequiredWhenPublishing(unittest.TestCase):
         m = w.metadata_for("robot/scout-mini/scout-mini-manual.pdf")
         self.assertEqual(m["kind"], "manual")
         self.assertEqual((m["lang"], m["version"]), ("", ""))
+
+
+class KindAndLanguageAreControlledVocabularies(unittest.TestCase):
+    """Free text here is how a store ends up holding cad, CAD, STP and STL for
+    the same thing — at which point `<Downloads kind="…">` stops being usable
+    and the Document column reads inconsistently."""
+
+    def key(self, name):
+        return w.key_from_upload_path(f"_upload/robot/scout-mini/{name}")
+
+    def test_a_listed_kind_passes(self):
+        self.assertTrue(self.key("scout-mini-user-manual-en-v2.0.pdf"))
+        self.assertTrue(self.key("scout-mini-cad-en-v1.zip"))
+
+    def test_case_variants_are_refused(self):
+        for n in ("scout-mini-CAD-en-v1.pdf", "scout-mini-User-Manual-en-v1.pdf"):
+            with self.assertRaises(w.NameError_):
+                self.key(n)
+
+    def test_a_near_synonym_is_refused(self):
+        # `manual` vs `user-manual` is the split the vocabulary exists to stop.
+        with self.assertRaises(w.NameError_) as cm:
+            self.key("scout-mini-manual-en-v1.pdf")
+        self.assertIn("not one of", str(cm.exception))
+
+    def test_an_invented_format_kind_is_refused(self):
+        # STEP and STL are formats, carried by the extension; the kind is `cad`.
+        with self.assertRaises(w.NameError_):
+            self.key("scout-mini-STP-en-v1.zip")
+
+    def test_cn_is_refused_in_favour_of_zh(self):
+        with self.assertRaises(w.NameError_) as cm:
+            self.key("scout-mini-user-manual-cn-v1.pdf")
+        self.assertIn("'zh'", str(cm.exception))
+
+    def test_chinese_script_variants_pass(self):
+        for lang in ("zh", "zh-hans", "zh-hant"):
+            self.assertTrue(self.key(f"scout-mini-user-manual-{lang}-v1.pdf"))
+
+    def test_metadata_for_stays_lenient_about_vocabulary(self):
+        # A bulk-loaded object with an off-vocabulary kind must still index,
+        # or it would be in the store and invisible to every page.
+        self.assertEqual(
+            w.metadata_for("robot/scout-mini/scout-mini-CAD-en-v1.pdf")["kind"], "CAD")

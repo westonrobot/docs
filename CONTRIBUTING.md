@@ -85,12 +85,32 @@ static/_upload/<section>/<product>/<product>-<kind>-<lang>-v<version>.<ext>
 | `<section>` | one of `robot`, `solution`, `peripheral`, `system`, `tutorial`, `support` | first path segment of the URL |
 | `<product>` | lowercase and hyphens. **Must match the page's `<Downloads product="…" />`** or the document will not appear | second path segment — this is what groups every file for one robot |
 | `<product>-` | the filename repeats the product slug | so the name still means something once someone has saved it to a desktop |
-| `<kind>` | lowercase and hyphens, free text | the **Document** column, tidied for display: `user-manual` → "User manual" |
-| `<lang>` | two letters, optionally with a subtag: `en`, `zh`, `zh-hans` | the **Language** column |
+| `<kind>` | **one of the listed values below** — not free text | the **Document** column, tidied for display: `user-manual` → "User manual" |
+| `<lang>` | **one of `en`, `zh`, `zh-hans`, `zh-hant`** | the **Language** column |
 | `v<version>` | `v` then digits and dots: `v2`, `v2.0`, `v2.0.1` | the **Version** column, sorted numerically so `v2.1` correctly beats `v2.0.9` |
 | `<ext>` | must be in the publishable set — PDF, ZIP, tar.gz, MP4, XLSX and a few others | sets `Content-Type`; an unlisted extension is refused rather than served as a generic download |
 
 **Use the version printed on the document itself.** It becomes part of a permanent URL that is never renamed (ADR 0001 D4), so a guessed version is wrong forever.
+
+#### The `kind` vocabulary
+
+Fixed on purpose, and covering what a hardware documentation site normally carries. Free text here is how a store ends up holding `cad`, `CAD`, `STP` and `STL` for the same thing — at which point `<Downloads kind="…" />` stops being usable and the Document column reads inconsistently.
+
+| Group | Values |
+| --- | --- |
+| Operating the product | `user-manual` · `quick-start` · `installation-guide` · `service-manual` · `troubleshooting` |
+| Specification and compliance | `datasheet` · `safety-manual` · `certificate` · `spare-parts` |
+| Engineering artefacts | `cad` · `wiring-diagram` · `firmware` |
+| Software | `sdk-manual` · `api-reference` · `api-examples` · `integration-guide` |
+| Other | `training` · `release-notes` |
+
+Three that catch people out:
+
+- **`cad` covers STEP, STL and DXF.** The format is the extension; the kind is what the document *is*.
+- **`manual` is not a value** — use `user-manual`, so it cannot drift apart from itself.
+- **Chinese is `zh`, never `cn`.** Language is one of `en`, `zh`, `zh-hans`, `zh-hant`.
+
+If something genuinely new comes along, add it to `KINDS` in `scripts/wrfiles.py`. The moment's thought about whether it duplicates a value already there is the entire point of the list.
 
 #### Worked examples
 

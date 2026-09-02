@@ -20,6 +20,44 @@ SECTIONS = ("robot", "solution", "peripheral", "system", "tutorial", "support")
 
 UPLOAD_DIR = "_upload"
 
+# Controlled vocabulary for the `<kind>` segment. Free text here is how a store
+# ends up holding cad, CAD, STP and STL for the same thing, at which point
+# `<Downloads kind="…">` stops being usable and the Document column reads
+# inconsistently. Derived from what the dead SharePoint links actually were.
+#
+# Extending it is a deliberate act, like CONTENT_TYPES: add the value here with
+# a moment's thought about whether it duplicates one already present.
+KINDS = (
+    # Operating the product
+    "user-manual",         # the manual a customer reads to run it
+    "quick-start",         # first-run sheet, unboxing to moving
+    "installation-guide",  # mounting, wiring, commissioning
+    "service-manual",      # maintenance, repair, calibration
+    "troubleshooting",     # symptom-led fault finding
+    # Specification and compliance
+    "datasheet",           # dimensions, payload, ratings
+    "safety-manual",       # safety instructions; often legally required
+    "certificate",         # CE, FCC, RoHS declarations
+    "spare-parts",         # parts list with order codes
+    # Engineering artefacts
+    "cad",                 # STEP, STL, DXF — the format is the extension
+    "wiring-diagram",      # electrical drawings
+    "firmware",            # images flashed to the robot
+    # Software
+    "sdk-manual",          # SDK documentation
+    "api-reference",       # API and wire-protocol specification
+    "api-examples",        # sample code bundles
+    "integration-guide",   # ROS 1 / ROS 2 and similar
+    # Everything else a documentation site carries
+    "training",            # training decks
+    "release-notes",
+)
+
+# Likewise for `<lang>`. The shape was already constrained to two letters plus
+# an optional subtag, which does not stop `cn` and `zh` both being used for
+# Chinese — a split that only shows up as two rows in one table.
+LANGS = ("en", "zh", "zh-hans", "zh-hant")
+
 # Extensions we are willing to publish. Anything else is held and reported
 # rather than guessed at — an unknown type is usually a mistake, and the
 # store serves executable payloads where guessing is not acceptable.
@@ -170,6 +208,18 @@ def key_from_upload_path(path: str) -> str:
             f"{filename!r} is missing the language and version: expected "
             f"{product}-<kind>-<lang>-v<version>{ext}, for example "
             f"{product}-user-manual-en-v2.0{ext}"
+        )
+    if meta["kind"] not in KINDS:
+        raise NameError_(
+            f"kind {meta['kind']!r} is not one of {', '.join(KINDS)}. "
+            "Pick the closest, or add a new one to KINDS in scripts/wrfiles.py "
+            "deliberately — an uncontrolled kind is how a store ends up with "
+            "cad, CAD and STP for the same thing"
+        )
+    if meta["lang"] not in LANGS:
+        raise NameError_(
+            f"language {meta['lang']!r} is not one of {', '.join(LANGS)} "
+            "(Chinese is 'zh', not 'cn')"
         )
     return key
 
