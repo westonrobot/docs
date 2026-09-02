@@ -1,19 +1,19 @@
 ---
 sidebar_position: 2
-description: "Fleet Management System: plan, dispatch, watch and review autonomous missions from a browser. How the system is put together, the workflow, deployment models and limits."
+description: "Robot Management Toolbox: plan, dispatch, watch and review autonomous missions from a browser. How the system is put together, the workflow, deployment models and limits."
 ---
 
-# Fleet Management Toolbox
+# Robot Management Toolbox
 
-The Fleet Management System is the web application you run your robots from. Missions are planned here, dispatched here, watched here, and everything the robots find is kept here. It runs in a browser, and there is nothing to install.
+The Robot Management Toolbox is the web application you run your robots from. Missions are planned here, dispatched here, watched here, and everything the robots find is kept here. It runs in a browser, and there is nothing to install.
 
-A working deployment is the robots, the map they navigate by, and this system. Fleet Management is the part your team uses every day. The [Deployment Toolbox](/solution/deployment-toolbox) prepares a site once, before any robot drives there. Detection algorithms — ours on the robot, or a partner's alongside it — report into this system too, so what they find arrives as events here.
+A working deployment is the robots, the map they navigate by, and this system — the part your team uses every day. The [Robot Deployment Toolbox](/solution/robot-deployment-toolbox) prepares a site once, before any robot drives there. Detection algorithms — ours on the robot, or a partner's alongside it — report into this system too, so what they find arrives as events here.
 
 ```mermaid
 flowchart LR
     OP(["Your team,<br/>in a browser"])
-    TB["<b>Deployment Toolbox</b><br/>prepares the site, once"]
-    FMS["<b>Fleet Management System</b><br/>plan · dispatch · watch · review"]
+    TB["<b>Robot Deployment Toolbox</b><br/>prepares the site, once"]
+    FMS["<b>Robot Management Toolbox</b><br/>plan · dispatch · watch · review"]
     ROBOT["<b>Robot</b><br/>carries out the missions"]
     OP <--> FMS
     TB -->|"site map"| FMS
@@ -22,7 +22,7 @@ flowchart LR
     style FMS fill:#0f6e78,stroke:#0f6e78,color:#fff
 ```
 
-The **site map** ties these parts together, and it travels one way: the Deployment Toolbox pushes it here as a draft, an administrator publishes and then activates it, and robots receive it from here. The Toolbox never reaches a robot directly. 
+The **site map** ties these parts together, and it travels one way: the Robot Deployment Toolbox pushes it here as a draft, an administrator publishes and then activates it, and robots receive it from here. The deployment toolbox never reaches a robot directly.
 
 Key features of the system are summarized in the table below, and each is covered in its own section.
 
@@ -70,7 +70,7 @@ Two things shape what you see here. **Camera feeds stream live from the robot**,
   framed
   caption="One robot on one screen: the site map, its cameras, what it is doing, how it is holding up, and the controls." />
 
-[Robot dashboard](/solution/fleet-management/robot-dashboard) covers the page in full: each panel, the telemetry readings and when a robot stops counting as reporting, the diagnostics view for a robot that is misbehaving, recovering localisation, and how battery level and connection loss change a running mission.
+[Robot dashboard](/solution/robot-management-toolbox/robot-dashboard) covers the page in full: each panel, the telemetry readings and when a robot stops counting as reporting, the diagnostics view for a robot that is misbehaving, recovering localisation, and how battery level and connection loss change a running mission.
 
 ## Robot teleoperation
 
@@ -91,7 +91,7 @@ Commanding a robot is Operator authority, granted per site. An Observer at the s
   framed
   caption="An assisted teleoperation view, on a robot fitted and configured for it: surround view, proximity zones, radar, and link quality." />
 
-[Robot teleoperation](/solution/fleet-management/robot-teleoperation) covers driving in full: keyboard and gamepad control, remapping and inverting the axes, speed and deadzone, arranging the camera views, and audio. Taking and releasing the lease sits with the rest of the control panel on the [Robot dashboard](/solution/fleet-management/robot-dashboard#taking-control) page.
+[Robot teleoperation](/solution/robot-management-toolbox/robot-teleoperation) covers driving in full: keyboard and gamepad control, remapping and inverting the axes, speed and deadzone, arranging the camera views, and audio. Taking and releasing the lease sits with the rest of the control panel on the [Robot dashboard](/solution/robot-management-toolbox/robot-dashboard#taking-control) page.
 
 ## Mission planning
 
@@ -112,7 +112,7 @@ One constraint follows from missions referencing the map: **a robot must be on t
   framed
   caption="A mission being built: its checkpoints on the site map, and what the robot does at each of them." />
 
-[Mission editing and dispatch](/solution/fleet-management/mission-editing) covers what a mission is made of, the editor's three stages, saved locations, run conditions and how they gate activation, sending missions to a robot and telling whether they arrived, and the history of what ran.
+[Mission editing and dispatch](/solution/robot-management-toolbox/mission-editing) covers what a mission is made of, the editor's three stages, saved locations, run conditions and how they gate activation, sending missions to a robot and telling whether they arrived, and the history of what ran.
 
 ## Detection review
 
@@ -133,7 +133,7 @@ Entries filter by robot, type, priority and review state. **Alerts are the revie
   framed
   caption="Detection review: what was seen, when, by which robot, and who has signed it off." />
 
-[Detection review](/solution/fleet-management/detection-review) covers the difference between an event and an alert, lists all 25 event types with the priority each carries, and explains filtering, acknowledging and marking false alarms, and what every record keeps.
+[Detection review](/solution/robot-management-toolbox/detection-review) covers the difference between an event and an alert, lists all 25 event types with the priority each carries, and explains filtering, acknowledging and marking false alarms, and what every record keeps.
 
 ## Tenant management
 
@@ -152,7 +152,7 @@ The line that matters most in daily use falls between Observer and Operator: any
   framed
   caption="Sites and users in one place, with each person's role and last activity." />
 
-[Tenant management](/solution/fleet-management/tenant-management) covers how a tenant, its sites and their robots fit together, all five roles and what each may do, how a site's maps are revised and activated, and how a robot is assigned one and caught up when it falls behind.
+[Tenant management](/solution/robot-management-toolbox/tenant-management) covers how a tenant, its sites and their robots fit together, all five roles and what each may do, how a site's maps are revised and activated, and how a robot is assigned one and caught up when it falls behind.
 
 ## Audit log
 
@@ -167,11 +167,11 @@ The Auditor role exists for exactly this: it reads operational and audit logs ac
   framed
   caption="The audit trail: who did what, when, and whether it was accepted or refused." />
 
-[Audit log](/solution/fleet-management/audit-log) covers both trails — your own operations, and every visit Weston Robot staff made to your tenant under elevation — the categories entries fall into, pivoting to an actor, linking to a single entry, export and its limits, and the roles that can read them.
+[Audit log](/solution/robot-management-toolbox/audit-log) covers both trails — your own operations, and every visit Weston Robot staff made to your tenant under elevation — the categories entries fall into, pivoting to an actor, linking to a single entry, export and its limits, and the roles that can read them.
 
 ## Further topics
 
-[**Deployment and servicing**](/solution/fleet-management/deployment-and-servicing) — where the system runs (shared cloud, a dedicated cloud instance, or on-premise), what that decides about upgrade scheduling and data residency, and how robots and their software are kept current.
+[**Deployment and servicing**](/solution/robot-management-toolbox/deployment-and-servicing) — where the system runs (shared cloud, a dedicated cloud instance, or on-premise), what that decides about upgrade scheduling and data residency, and how robots and their software are kept current.
 
 ## Support
 

@@ -1,6 +1,6 @@
 ---
 sidebar_position: 6
-description: "The audit log in Fleet Management: the fleet trail of operational events, the tenant trail of vendor access under elevation, filtering, permalinks, export, and who can read it."
+description: "The audit log in the Robot Management Toolbox: the fleet trail of operational events, the tenant trail of vendor access under elevation, filtering, permalinks, export, and who can read it."
 ---
 
 # Audit log
@@ -74,7 +74,7 @@ The export is the **whole filtered set**, not the rows currently on screen; it p
 
 ## Who can read it
 
-Reading the log is a role, not a permission you grant per person. **Auditors** read both trails across every site while being unable to command anything — which is exactly what makes the role useful for a reviewer who should not be able to move a robot. **Tenant administrators** can read it too. See [Roles](/solution/fleet-management/tenant-management#roles).
+Reading the log is a role, not a permission you grant per person. **Auditors** read both trails across every site while being unable to command anything — which is exactly what makes the role useful for a reviewer who should not be able to move a robot. **Tenant administrators** can read it too. See [Roles](/solution/robot-management-toolbox/tenant-management#roles).
 
 ## Where other actions are recorded
 

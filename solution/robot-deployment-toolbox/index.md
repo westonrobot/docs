@@ -1,13 +1,13 @@
 ---
 sidebar_position: 3
-description: "Deployment Toolbox: turn a 3D scan of a site into the map robots navigate by. What a map contains, the editor, the inspector, and how a map reaches the fleet."
+description: "Robot Deployment Toolbox: turn a 3D scan of a site into the map robots navigate by. What a map contains, the editor, the inspector, and how a map reaches the fleet."
 ---
 
 # Robot Deployment Toolbox
 
 A 3D scan of a building is just points. A robot needs to know where the floor is, where it may drive, where it must not go, and which places matter. Somebody supplies that meaning once per site, and this is the tool they use.
 
-What comes out is the **site map** — the artifact everything else depends on. It is pushed to the [Fleet Management System](/solution/fleet-management), and reaches the robots from there.
+What comes out is the **site map** — the artifact everything else depends on. It is pushed to the [Robot Management Toolbox](/solution/robot-management-toolbox), and reaches the robots from there.
 
 Preparing a site is a once-per-site job rather than a once-per-mission one, and the map is revisited afterwards only when the building itself changes — new racking, a wall moved, a door now permanently shut. Editing a site's map requires the **Site Admin** role for that site; operators and observers use maps without changing them.
 
@@ -20,7 +20,7 @@ Key features of the toolbox are summarized in the table below, and each is cover
 
 ## Map layers
 
-A site map is not one file. What travels between the Toolbox and the fleet is a **bundle** of layers, and each answers a different question.
+A site map is not one file. What travels between this tool and the fleet is a **bundle** of layers, and each answers a different question.
 
 | Layer | What it is | Where it is used |
 | --- | --- | --- |
@@ -65,20 +65,20 @@ Most zones on a finished map were never drawn by hand — one is generated aroun
 
 ## Data exchange
 
-The Toolbox and the Fleet Management System exchange maps at two moments and are otherwise independent of each other.
+The two toolboxes exchange maps at two moments and are otherwise independent of each other.
 
 ```mermaid
 flowchart LR
-    FMS["<b>Fleet Management System</b>"]
-    TB["<b>Deployment Toolbox</b><br/>an editing session"]
+    FMS["<b>Robot Management Toolbox</b>"]
+    TB["<b>Robot Deployment Toolbox</b><br/>an editing session"]
     FMS -->|"import a map bundle"| TB
     TB -->|"push a draft revision"| FMS
 ```
 
 | Moment | Direction | What moves | Which tool |
 | --- | --- | --- | --- |
-| **Import from fleet** | Fleet → Toolbox | An existing map bundle, pulled down to work on | Editor or inspector |
-| **Push to fleet** | Toolbox → Fleet | The finished map, as a new draft revision | **Editor only** |
+| **Import from fleet** | Fleet → this tool | An existing map bundle, pulled down to work on | Editor or inspector |
+| **Push to fleet** | This tool → Fleet | The finished map, as a new draft revision | **Editor only** |
 
 **Only the editor writes back.** The inspector can pull a map down to look at it, and never sends one anywhere.
 
@@ -86,7 +86,7 @@ flowchart LR
 
 That is deliberate, and it has one practical consequence worth planning around: **whoever edits a site's map should import it at the start of the session rather than reusing yesterday's copy**, because nothing will tell them if it has moved on. It is also why two people editing the same site's map at the same time is a bad idea — neither would know.
 
-**The Toolbox never talks to robots.** It pushes to the Fleet Management System, and robots are updated from there; there is no path from this tool to a machine in the field. A pushed map arrives as a **draft revision**, and someone in Fleet Management then **publishes** it and **activates** it — activation being what puts a map in front of robots, and neither step something the Toolbox can take.
+**This tool never talks to robots.** It pushes to the Robot Management Toolbox, and robots are updated from there; there is no path from here to a machine in the field. A pushed map arrives as a **draft revision**, and someone in the fleet management system then **publishes** it and **activates** it — activation being what puts a map in front of robots, and neither step something this tool can take.
 
 <Figure
   src={require('../img/toolbox-import.png').default}
@@ -95,7 +95,7 @@ That is deliberate, and it has one practical consequence worth planning around: 
   framed
   caption="One end of the exchange: a map comes in from the fleet, or from a file on your machine." />
 
-[Publishing to the fleet](/solution/deployment-toolbox/map-editor#publishing-to-the-fleet) covers the four things the push asks for, why the change summary is worth writing properly, the three steps from draft to activated, and what activation costs a robot.
+[Publishing to the fleet](/solution/robot-deployment-toolbox/map-editor#publishing-to-the-fleet) covers the four things the push asks for, why the change summary is worth writing properly, the three steps from draft to activated, and what activation costs a robot.
 
 ## Map inspector
 
@@ -108,7 +108,7 @@ The inspector answers whether a map is sound, without changing it. It opens one 
   framed
   caption="The inspector reading a map: what it holds, every element by name, and the graph drawn out." />
 
-[Map inspector](/solution/deployment-toolbox/map-inspector) covers the two modes, where a map can be opened from, how to choose which routes to test, and when reaching for it is worth the time.
+[Map inspector](/solution/robot-deployment-toolbox/map-inspector) covers the two modes, where a map can be opened from, how to choose which routes to test, and when reaching for it is worth the time.
 
 ## Map editor
 
@@ -121,7 +121,7 @@ The editor is where a site map is made: it takes a 3D scan of a building and pro
   framed
   caption="The editor at work. The stage bar runs across the top; the map is drawn against the scan and the occupancy map beneath it." />
 
-[Map editor](/solution/deployment-toolbox/map-editor) covers all five stages with a worked example, what each needs before it will open, how the occupancy map is generated, what surface snapping is for, and what validation checks before you export or push.
+[Map editor](/solution/robot-deployment-toolbox/map-editor) covers all five stages with a worked example, what each needs before it will open, how the occupancy map is generated, what surface snapping is for, and what validation checks before you export or push.
 
 ## Support
 

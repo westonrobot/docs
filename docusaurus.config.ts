@@ -80,6 +80,21 @@ const config: Config = {
           {from: '/solution/adt/v1', to: '/solution/adt/intro'},
           {from: '/solution/adt/v2', to: '/solution/adt/intro'},
           {from: '/solution/adt/v3', to: '/solution/adt/intro'},
+          // Release 1's two products were renamed to their trademark names,
+          // Robot Management Toolbox and Robot Deployment Toolbox, and their
+          // directories renamed to match. Every one of these old URLs is in
+          // circulation with customers and in support tickets.
+          {from: '/solution/fleet-management', to: '/solution/robot-management-toolbox'},
+          {from: '/solution/fleet-management/robot-dashboard', to: '/solution/robot-management-toolbox/robot-dashboard'},
+          {from: '/solution/fleet-management/robot-teleoperation', to: '/solution/robot-management-toolbox/robot-teleoperation'},
+          {from: '/solution/fleet-management/mission-editing', to: '/solution/robot-management-toolbox/mission-editing'},
+          {from: '/solution/fleet-management/detection-review', to: '/solution/robot-management-toolbox/detection-review'},
+          {from: '/solution/fleet-management/tenant-management', to: '/solution/robot-management-toolbox/tenant-management'},
+          {from: '/solution/fleet-management/audit-log', to: '/solution/robot-management-toolbox/audit-log'},
+          {from: '/solution/fleet-management/deployment-and-servicing', to: '/solution/robot-management-toolbox/deployment-and-servicing'},
+          {from: '/solution/deployment-toolbox', to: '/solution/robot-deployment-toolbox'},
+          {from: '/solution/deployment-toolbox/map-editor', to: '/solution/robot-deployment-toolbox/map-editor'},
+          {from: '/solution/deployment-toolbox/map-inspector', to: '/solution/robot-deployment-toolbox/map-inspector'},
           {from: '/software/installation/apt_source', to: '/tutorial/installation/apt_source'},
           {from: '/software/slam/go2_slam', to: '/tutorial/unitree/go2_slam'},
           {from: '/software/intro', to: '/solution/intro'},

@@ -13,8 +13,8 @@ A solution is a complete capability we build and deploy on a robot platform, rat
 
 <ProductGrid columns={3}>
 
-<ProductCard to="/solution/fleet-management" src={require('./img/fleet-cover.jpg').default} alt="The robot dashboard: the site map with the robot's route drawn over the building, live camera feeds, telemetry and the control panel on one screen" title="Fleet Management Toolbox">Plan, dispatch, watch and review missions from a browser. The part your operators use every day.</ProductCard>
+<ProductCard to="/solution/robot-management-toolbox" src={require('./img/fleet-cover.jpg').default} alt="The robot dashboard: the site map with the robot's route drawn over the building, live camera feeds, telemetry and the control panel on one screen" title="Robot Management Toolbox">Plan, dispatch, watch and review missions from a browser. The part your operators use every day.</ProductCard>
 
-<ProductCard to="/solution/deployment-toolbox" src={require('./img/toolbox-load-fleet.jpg').default} alt="The Map Editor with a colour 3D scan of an office loaded, ready to have a map drawn onto it" title="Robot Deployment Toolbox">Turn a 3D scan of a site into the map robots navigate by. Used once per site, before any robot runs there.</ProductCard>
+<ProductCard to="/solution/robot-deployment-toolbox" src={require('./img/toolbox-load-fleet.jpg').default} alt="The Map Editor with a colour 3D scan of an office loaded, ready to have a map drawn onto it" title="Robot Deployment Toolbox">Turn a 3D scan of a site into the map robots navigate by. Used once per site, before any robot runs there.</ProductCard>
 
 </ProductGrid>
