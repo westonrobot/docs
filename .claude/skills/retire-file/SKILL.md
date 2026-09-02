@@ -27,6 +27,10 @@ nothing here removes an object.
 - **A superseded manual is not retired by default.** A robot sold in 2021 is still in service and its operator still needs the 2021 manual. The table sorts newest first within a kind; showing both is usually correct.
 - **Never to tidy.** An old-looking row is not a reason. If a customer could still be running that hardware, leave it.
 
+## Before the first time on a machine
+
+Retiring reaches AWS, so it needs the setup in `CONTRIBUTING.md` → *One-time AWS setup*. `--list` below is also the check that it works.
+
 ## Finding the file first
 
 Never retype a key — it has to match exactly, and they are long.

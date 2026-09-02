@@ -46,6 +46,28 @@ DEFAULT_BUCKET = os.environ.get("WR_FILES_BUCKET", "westonrobot-files")
 DEFAULT_DISTRIBUTION = os.environ.get("WR_FILES_DISTRIBUTION_ID", "")
 
 
+def boto3_or_exit():
+    """The one third-party dependency, imported late and only when needed.
+
+    A dry run, `--list` of nothing, and every check in CI work without it; only
+    the calls that touch AWS need it. Saying so plainly beats an ImportError
+    traceback on a machine that has never published before.
+    """
+    try:
+        import boto3
+
+        return boto3
+    except ImportError:
+        print(
+            "boto3 is not installed, so AWS cannot be reached.\n"
+            "  pip install boto3        (in a virtualenv)\n"
+            "  sudo apt install python3-boto3\n"
+            "The AWS CLI does not provide it — it bundles its own Python.",
+            file=sys.stderr,
+        )
+        raise SystemExit(1)
+
+
 def staged_files() -> list[pathlib.Path]:
     if not UPLOAD_ROOT.is_dir():
         return []
@@ -137,9 +159,7 @@ def as_key(ref: str) -> str:
 
 def show(args) -> int:
     """What is published, with the key to copy."""
-    import boto3
-
-    remote = remote_objects(boto3.client("s3"), args.bucket)
+    remote = remote_objects(boto3_or_exit().client("s3"), args.bucket)
     if not remote:
         print("Nothing published.")
         return 0
@@ -187,7 +207,7 @@ def retire(key: str, retiring: bool, args) -> int:
     same key — the content type and cache headers have to be re-applied, since
     REPLACE drops everything not supplied.
     """
-    import boto3
+    boto3 = boto3_or_exit()
     from botocore.exceptions import ClientError
 
     # A `.sha256` link sits right beside the document's, and retiring a sidecar
@@ -285,11 +305,7 @@ def main() -> int:
             print(f"  {rel}\n      {why}")
         print()
 
-    try:
-        import boto3
-    except ImportError:
-        print("boto3 is not installed, so the store cannot be read.")
-        return 1
+    boto3 = boto3_or_exit()
     s3 = boto3.client("s3")
     try:
         remote = remote_objects(s3, args.bucket)

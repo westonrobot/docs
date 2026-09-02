@@ -36,6 +36,49 @@ Follow [`docs/design/product-page-template.md`](docs/design/product-page-templat
 
 Add the page to the section's `sidebars-*.ts`, or it will build and be unreachable.
 
+## One-time AWS setup
+
+Only needed to **publish or retire** documents. Editing pages, adding videos and every CI check work without any of this.
+
+**1 · AWS CLI v2.** Not in apt — use AWS's installer:
+
+```bash
+curl -fsSL "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o /tmp/awscliv2.zip
+unzip -q /tmp/awscliv2.zip -d /tmp && sudo /tmp/aws/install
+aws --version          # expect aws-cli/2.x
+```
+
+**2 · boto3**, which the publish script uses. The AWS CLI does **not** provide it — v2 bundles its own private Python:
+
+```bash
+sudo apt install python3-boto3        # or: pip install boto3, in a virtualenv
+```
+
+**3 · Credentials.** Ask an admin for an access key, and to add you to the IAM group `DocsDownloadPublishers` — that grant is `PutObject`, `GetObject`, `ListBucket` on the store plus CloudFront invalidation, and deliberately **no delete**.
+
+```bash
+aws configure                          # key, secret, region ap-southeast-1, output json
+aws sts get-caller-identity            # expect your user ARN in account <account-id>
+```
+
+**4 · The distribution id**, so publishing invalidates the CDN. Put it in your shell profile:
+
+```bash
+export WR_FILES_DISTRIBUTION_ID=E2SQLRWCEUM8UK
+```
+
+Without it publishing still works — published keys are immutable — but `index.json` takes up to a minute to catch up.
+
+**5 · Prove it, with one command:**
+
+```bash
+python3 scripts/publish-files.py --list
+```
+
+If that prints the published documents, everything above is correct. If it cannot reach AWS it says which part is missing rather than raising a traceback.
+
+`WR_FILES_BUCKET` and `WR_FILES_BASE_URL` also exist as overrides. Leave them alone unless you are pointing at a different store; the defaults are the live one.
+
 ## Publishing a downloadable document
 
 Manuals, SDK archives, firmware. These live in the file store, never in git — the repository is already ~350 MB packed, and git history is permanent.

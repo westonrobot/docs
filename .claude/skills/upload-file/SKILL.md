@@ -40,6 +40,10 @@ Ask for whatever is missing. Ask in one message, not four.
 If the extension is not in `CONTENT_TYPES`, stop. Adding one is a deliberate
 edit to `wrfiles.py` with the right MIME type, not something to do in passing.
 
+## Before the first time on a machine
+
+Publishing needs the AWS CLI, boto3, credentials and `WR_FILES_DISTRIBUTION_ID` — `CONTRIBUTING.md` → *One-time AWS setup*. `python3 scripts/publish-files.py --list` proves the setup in one command; if it fails, fix that before staging anything.
+
 ## The sequence
 
 1. **Stage it.** Copy — do not move — to

@@ -244,17 +244,17 @@ The levers, in order of effect, for whenever it does matter:
 
 Ordered so each phase is independently useful and nothing is blocked on the phase after it.
 
-**Phase 0 — Unblock.** Export the 39 documents from the renamed M365 tenant. Everything waits on this; WR65 and WRL63 first, since those products currently have no reachable documentation at all.
+**Phase 0 — Unblock. Still blocked.** Export the 39 documents from the renamed M365 tenant. Everything downstream waits on this; WR65 and WRL63 first, since those products have no reachable documentation at all.
 
-**Phase 1 — Serve it correctly.** Bucket, CloudFront, ACM, OAC, Block Public Access, versioning. An admin bulk-loads the 39 exported documents under D4 paths with their metadata, and the 48 SharePoint occurrences and 4 Google Drive links are rewritten. This is a one-time migration, so it does not wait on the self-service machinery. At the end of this phase the defect is fixed.
+**Phase 1 — Serve it correctly. Infrastructure done 2026-09-01.** Bucket, CloudFront, ACM, OAC, Block Public Access, versioning — deployed and verified; `infra/README.md` records what exists. The bulk load and the link rewrite wait on Phase 0.
 
-**Phase 2 — Make it repeatable.** The publish script and the gitignored `_upload/` convention, so publishing is one command rather than a sequence of console steps, and the index is regenerated from the bucket every time.
+**Phase 2 — Make it repeatable. Done.** The publish script and the gitignored `_upload/` convention, plus — added once the need appeared — `--list` to see what is published and `--retire` to withdraw a document without breaking its URL.
 
-**Phase 3 — Make it structural.** The `<Downloads>` component with its local-file fallback, and a rebuild trigger for the site when the index changes. The publish script stops substituting URLs and the pages that carry them are converted. At the end of this phase pages carry queries instead of URLs, and the broken-link class is gone rather than monitored.
+**Phase 3 — Make it structural. Done, except the rebuild trigger.** The `<Downloads>` component resolves from the live index, and pages carry queries rather than URLs. What remains is the trigger that rebuilds the site when the index changes: it needs a GitHub token in AWS, which is a decision of its own.
 
-**Phase 4 — Harden.** Checksums, then signatures for firmware and SDKs. 404 alarm and cost alarm. Noncurrent-version lifecycle.
+**Phase 4 — Harden. Not started.** Checksums are already written at publish, so what remains is signatures for firmware and SDKs, the 404 alarm with the access logging it wants, and the cost alarm.
 
-Phases 1 and 4's alarm are the ones that matter most per unit of effort. Phase 3 is the one that pays off longest.
+Of what remains, the Phase 4 alarm is the highest value per unit of effort — it is the answer to how 53 dead links went unnoticed for weeks, and CloudFront publishes `4xxErrorRate` to CloudWatch whether or not access logging is on.
 
 ## 12. Deliberately not doing this yet
 

@@ -2,7 +2,25 @@
 
 CloudFormation for `download.westonrobot.net`. The decision is [ADR 0001](../docs/adr/0001-host-downloadable-documents-on-s3.md); the design and the reasoning are [`docs/design/file-hosting.md`](../docs/design/file-hosting.md).
 
-**Nothing here has been deployed.** Both templates validate against the account (`aws cloudformation validate-template`), but no stack has ever been created, so treat the first deploy as the real test.
+## What is deployed
+
+Live in account **<account-id>** since 2026-09-01. These are the facts a machine that has never seen this repository needs:
+
+| | |
+| --- | --- |
+| Hostname | `download.westonrobot.net` |
+| Bucket | `westonrobot-files`, `ap-southeast-1` |
+| Distribution | `E2SQLRWCEUM8UK` — set as `WR_FILES_DISTRIBUTION_ID` |
+| Stacks | `westonrobot-files` (ap-southeast-1), `westonrobot-files-certificate` (us-east-1) |
+| Publishing | IAM group `DocsDownloadPublishers`, policy `DocsDownloadPublish` |
+| Read-only | policy `DocsDownloadRead` |
+
+Everything above is also an output of the stack, which is the copy to trust if they ever disagree:
+
+```console
+$ aws cloudformation describe-stacks --region ap-southeast-1 \
+    --stack-name westonrobot-files --query 'Stacks[0].Outputs' --output table
+```
 
 ## Why CloudFormation and not Terraform
 
@@ -19,7 +37,7 @@ There is no Lambda and no build step. Publishing is [`scripts/publish-files.py`]
 
 ## Deploying it
 
-Step by step, with verification and failure modes at each stage: [`RUNBOOK.md`](RUNBOOK.md). Two stacks — the certificate in us-east-1, everything else in ap-southeast-1 — because CloudFront reads certificates only from that region.
+The stacks already exist; this is for a rebuild, a second environment, or reading what was done. Step by step, with verification and failure modes at each stage: [`RUNBOOK.md`](RUNBOOK.md). Two stacks — the certificate in us-east-1, everything else in ap-southeast-1 — because CloudFront reads certificates only from that region.
 
 ## What is not here
 

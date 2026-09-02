@@ -2,7 +2,9 @@
 
 First deployment of `download.westonrobot.net`, step by step. Reference material is in [`README.md`](README.md); this file is the procedure.
 
-**Nothing here has ever been run.** The templates validate against the account, but no stack has been created, so treat this as a rehearsal that happens to be real. Doing it while the store is empty is deliberate: every failure below is cheap now and expensive once customers depend on it.
+**This was run on 2026-09-01 and the stacks exist.** Kept as the record of what was done and as the procedure for a rebuild or a second environment — not as a pending task. `infra/README.md` lists what is currently deployed.
+
+Pre-flight §0 is still worth running before any redeploy: it is what caught the original bucket name being taken.
 
 **Roughly 30 minutes**, most of it waiting on ACM and CloudFront. Measured on the first real run, 2026-09-01: certificate 3m15s, store stack 19m30s.
 
@@ -158,7 +160,9 @@ Enforce MFA on those accounts. The grant carries no `DeleteObject`, so the worst
 
 ## 6 · Smoke test with one real document
 
-**This is the first time the publish code touches AWS.** Do it with something disposable before the bulk load.
+Run after any redeploy, and after any change to the publish script. On a fresh stack it is the first time that code touches AWS, so do it with something disposable.
+
+Publishing day to day is `/upload-file` and `CONTRIBUTING.md`; this is the infrastructure-level check that the whole path still works.
 
 ```console
 $ mkdir -p static/_upload/robot/wr65
