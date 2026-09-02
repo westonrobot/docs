@@ -16,7 +16,7 @@ All read-only. Each command should produce what is stated; if one does not, stop
 
 ```console
 $ aws sts get-caller-identity --query Account --output text
-<account-id>
+<the Weston Robot account id — confirm it is the one you expect>
 
 $ dig +short download.westonrobot.net          # must be empty — the name is free
 $ aws s3api head-bucket --bucket westonrobot-files 2>&1 | grep -oE '\(40[34]\)'

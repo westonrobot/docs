@@ -58,7 +58,7 @@ sudo apt install python3-boto3        # or: pip install boto3, in a virtualenv
 
 ```bash
 aws configure                          # key, secret, region ap-southeast-1, output json
-aws sts get-caller-identity            # expect your user ARN in account <account-id>
+aws sts get-caller-identity            # expect your user ARN in the Weston Robot account
 ```
 
 **4 · The distribution id**, so publishing invalidates the CDN. Put it in your shell profile:

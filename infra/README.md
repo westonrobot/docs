@@ -4,7 +4,7 @@ CloudFormation for `download.westonrobot.net`. The decision is [ADR 0001](../doc
 
 ## What is deployed
 
-Live in account **<account-id>** since 2026-09-01. These are the facts a machine that has never seen this repository needs:
+Live since 2026-09-01, in the Weston Robot AWS account — `aws sts get-caller-identity` confirms which one you are pointed at. These are the facts a machine that has never seen this repository needs:
 
 | | |
 | --- | --- |
