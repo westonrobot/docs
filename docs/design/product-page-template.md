@@ -120,13 +120,122 @@ An earlier draft also had an "As supplied" section listing fitted hardware in a 
 
 Ten headings with two lines under each reads as unfinished, however accurate it is. Two rules keep a page substantial without padding it:
 
-**Every section opens by saying what it is for.** Not "here are the interfaces" but "use these when mounting a payload or wiring anything to the robot". The reader should be able to tell from the first sentence whether this section is the one they need.
+**A section opens by saying what it is for — when there is something to say.** Not "here
+are the interfaces" but "use these when mounting a payload or wiring anything to the
+robot". The reader should be able to tell from the first sentence whether this section is
+the one they need.
+
+The rule is satisfied by a *purpose*, and only by a purpose. Read as an absolute
+requirement it manufactures the filler catalogued under **Prose that earns its place**
+below — a heading with nothing to say about its purpose gets given a sentence that
+restates its own contents ("Vendor documentation, software and support." over a table
+whose second column is *What it is*), enumerates the rows beneath it, or explains why the
+section exists. A table with self-describing rows, or a numbered list of steps, is already
+oriented; go straight to it. Likewise a lead-in whose only function is to announce the
+block after it: if the list, table or figure stands on its own, the sentence introducing
+it is not a purpose statement, it is a throat-clear. Cut it, or replace it with the one
+thing the reader could not get from the block itself — *"Manifold's own two additions to
+that list"*, *"Two display controls that exist for the phone's benefit rather than the
+scan's"*, *"what that means for how you walk a site"*.
 
 **Prefer tables that carry a "when you need this" column** over bare bullet lists of links. `Guide · what it covers · reach for it when` orients someone who does not yet know which guide they want; a list of three link titles does not.
 
 **Use a diagram where the relationship matters more than the values.** See "Beyond tables" below — Mermaid is enabled site-wide and barely used.
 
 **Explain what existing facts mean.** The G1's two onboard computers with fixed IPs are genuinely confusing on first contact — saying plainly that your code goes on the second one is not new information, it is the existing information made usable. This is where most of the substance comes from, and it invents nothing.
+
+### Prose that earns its place
+
+Two rules above generate filler when read as absolutes — "a section opens by saying what
+it is for" and "avoid the bare-bones failure mode". This is the catalogue of what they
+produce, assembled from real sentences cut from these pages. Every one was short, true
+and grammatical, which is why no length, staleness or link check caught any of them. The
+test that does catch them: **what customer question does this sentence answer?** If the
+honest answer is "none", or "only editorial history", or "only template completeness",
+cut it rather than shortening it.
+
+**Template narration.** A sentence reporting the state of a template section instead of
+telling the reader anything — *"There is nothing to fit."* under *Getting started*. If a
+section has nothing to say, the section goes, not a sentence explaining its emptiness.
+
+**Documentation about documentation.** *"These guides own everything up to the `.pcd`."*
+Ownership boundaries between our own pages are an editorial fact; the reader wants the
+next link, not the org chart. Rationale for how we link things belongs in the ADR.
+
+**Defensive provenance.** *"Checked on one unit only."* Our evidence limits are a ledger
+concern. Either the claim is good enough to publish or it is not; a hedge in the prose
+transfers our uncertainty to someone who cannot act on it.
+
+The same applies to **naming the vendor as the source of each fact** — *"Manifold say the
+same thing"*, *"which is what Manifold mean by…"*, *"Manifold recommend the supplied
+cable"*. Our page is the first thing a reader meets and the vendor's manual is one link
+away; a per-sentence citation adds a hop they did not ask for, and it reads oddly when the
+sentence before it has already said the thing. Where a fact came from is a question the
+ledger and the ADR answer. Keep vendor attribution for exactly two jobs: **pointing at
+their documentation** (*"From the Pocket2 User Manual, on Manifold's downloads page"*), and
+**saying whose product something is** (*"Manifold's own Odin platform"*, *"the figures
+Manifold Tech publish on the product page"* over a spec table the reader must not mistake
+for our measurements).
+
+**Throat-clearing.** A lead-in whose only job is to announce the block beneath it, or to
+restate what the block's own column headings already say. Cut it, or replace it with the
+one thing the block cannot carry — *"Manifold's own two additions to that list"*.
+
+**Saying it twice.** The same fact in prose and in the table beside it, or explained once
+per section on a page with three sections. Pick the place the reader meets it first.
+
+**Superlatives about the document.** *"This matters more than anything else in this
+guide."* Rank the content by where you put it, not by asserting the ranking.
+
+**Manufactured confidence.** A frequency claim, causal ranking, asserted absence or
+universal that no source supports, added to make sourced material read more firmly:
+*"the commonest cause"*, *"in practice it is nearly always X"*, *"there is no label to
+hunt for on the unit"*, *"every symptom below is a version of Y"*. These are load-bearing
+claims a customer acts on, not connective tissue. Greppable tells:
+`commonest|usually|nearly always|in practice|there is no|never|every`. The aggravated
+form is any of them inside a block introduced as the vendor's own words — the reader has
+been told where it came from, so an invented ranking there is laundered through the
+vendor's authority. Where the source gives a flat list, publish a flat list.
+
+**Invented affordances.** Telling the reader the system will catch something for them —
+*"MindCloud Go will also warn you when you are moving too fast"*, where the manual
+documents no motion warning of any kind. This is the most consequential of the unsourced
+classes, because a reader who is told they will be warned stops watching for the thing
+themselves. Never publish a safety net you have not seen fire.
+
+**Numbers where the reader needs a feel.** A figure that is real, sourced and still wrong
+to foreground. Manifold recommend walking below 1 m/s and turning below 40 °/s; published
+as a table above the prose, with a paragraph on watching the live telemetry against them,
+that turns a site walk into two numbers to track and makes scanning tedious and anxious.
+Their own image — *walk as though you are carrying a glass of water that is almost
+overflowing* — is the same instruction in the form an operator can act on. Ask what the
+reader will actually do with a figure while holding the equipment; if the answer is
+"nothing", the qualitative cue is the publishable one and the number belongs in the
+vendor's manual where it already is.
+
+**Self-discoverable UI.** A control the reader will find and understand simply by
+opening the screen — *"view and measure the cloud: switch rendering mode, adjust point
+size, take measurements"*. True, verified, and still not worth a line: a first-contact
+page covers what someone could get wrong or would not think to look for, not an inventory
+of an app's own menus. The test is whether the sentence prevents a mistake or reveals
+something hidden. The neighbouring note on the preview point limit survives that test —
+it says lowering the limit does **not** affect the recorded file, which is precisely what
+a reader would fear and could not tell by looking.
+
+Keep this distinct from the unsourced families above. **We cannot stand behind it** and
+**the reader does not need telling** both end in a cut, and conflating them loses the
+reason: the first is a defect, the second is editing.
+
+**Perishable externals.** A detail that binds the page to some third party's state at a
+moment in time: their current process (*"give them the phone model — they collect
+these"*), a pinned document revision, a UI label read out of a vendor manual. None is
+wrong when written; each becomes silently false, and nothing on our side notices. Publish
+the action the reader takes rather than our belief about what the vendor does with it,
+link the page the vendor maintains rather than the revision, and keep the pinned
+specifics in the ADR or ledger as provenance where going stale is harmless. Where prose
+names a UI label, read it against the screenshot published beside it — the app moved
+`My` to `Profile` while a screenshot on the same page showed the new label and the prose
+still carried the old one, through five green CI gates.
 
 ## Rules
 
@@ -200,6 +309,39 @@ with the robot in front of you, and true of the units we ship. That is worth say
 and it does not require a claim about what the vendor omits. If you do want to say
 something is undocumented upstream, check first.
 
+**Every sentence must earn its place for the reader.** Short is not the same as good. A
+sentence can be five words long, grammatically clean and factually harmless, and still be
+a defect — *"There is nothing to fit."* shipped past a sweep that only measured paragraph
+length.
+
+The test is semantic: **what customer question does this sentence answer?** A sentence
+should normally do at least one of — say what the product does, say what to do, say what
+to expect, explain a choice, state a real limitation, give a value, warn about a real
+failure mode, or point at the right next step. If it does none of those, cut it.
+
+Four families to watch for, all of which pass a length check:
+
+| Pattern | Example | Why it fails |
+| --- | --- | --- |
+| **Template narration** | "There is nothing to fit." | Describes the emptiness of a section rather than telling the reader anything. If a required section has nothing to say, lead with what it *does* have |
+| **Documentation about documentation** | "This guide deliberately…", "these guides own everything up to…", "linked as a download page because the version moves" | Explains our editorial process. That belongs in an ADR. The exception is the template's own mandated vendor-pointer line, which tells the reader where the deeper reference is |
+| **Negative-only** | "We do not include X." | A real limitation is useful; a negation that exists because *we* investigated something is not |
+| **Defensive provenance** | "Checked on one unit only, so treat it as a cross-check rather than a rule." | Our evidence limits are internal. State the scope naturally instead |
+| **The self-cancelling instruction** | "Name it `pointcloud_map.pcd`. Neither is enforced by the tooling — any readable name loads." | Gives an instruction and then withdraws it. The reader now knows the convention is optional, which is the one thing we did not want to say |
+
+Removing useless prose beats populating a section, and providing a useful supported fact
+beats both. Never retain filler to satisfy a heading.
+
+**State a convention as an instruction.** Where we publish a naming or workflow convention
+of our own, give it plainly and give the reason it exists — *"so a site's files can be
+picked up months later without guesswork"*. Do **not** append how little enforces it. Being
+honest that a convention is ours rather than a parser requirement is right, and the way to
+be honest about it is to call it ours; adding "any readable name loads" is not candour, it
+is an escape hatch, and it undoes the instruction in the same breath. Where a tool
+genuinely accepts alternatives and the reader needs to know — because they will meet files
+that do not follow it — say what to do with those files, not that the convention is
+skippable.
+
 **Never invent a specification.** A plausible wrong figure is worse than no figure — on a hardware site it can cause a bad purchase or a damaged robot.
 
 For a partner platform this is not a gap to apologise for — it is the division of labour. State it plainly at the head of the Specifications section:
@@ -209,6 +351,8 @@ For a partner platform this is not a gap to apologise for — it is the division
 An admonition block announcing missing data reads as unfinished. A sentence explaining who owns which numbers reads as deliberate, and it is also true.
 
 **No manual heading numbers.** `## 1. Overview` produces the anchor `#1-overview`, which breaks the moment a section is inserted above it — silently invalidating every anchor a support engineer has pasted into a ticket. See `ia-proposal.md` §8.
+
+**Sentence case applies to `##` and below, not to the page title.** Product page titles are the product's name, so the question rarely comes up there — but it does under `tutorial/`, where every existing guide's `<h1>` is Title Case (`G1 Diagnostics Guide`, `Ranger Mini Steering Calibration`). These are two rules rather than one applied inconsistently: **Title Case for a page title, sentence case for headings within it.** Recorded because the first draft of the Manifold Scanner Guides got it wrong, which is what an unstated convention invites. See [ADR 0002](../adr/0002-scanner-workflow-lives-in-guides-handed-over-at-the-pcd.md) D5.
 
 **Do not duplicate a guide.** Link it. The bring-up procedure lives in the guide; the product page points at it.
 
@@ -257,8 +401,43 @@ Hero images are almost always **the vendor's copyright**, not ours. As their dis
 | `robot/img/agilex/nero.png` | AgileX NERO | AgileX [NERO product page](https://global.agilex.ai/products/nero) | Vendor render, transparent cutout. Trimmed to the subject |
 | `peripheral/img/westonrobot/regulator_v2.jpg` | Power Regulator v2 | Photographed in-house | **Ours — no rights question.** Cropped to the unit and downscaled. The serial-number label is legible when zoomed; redact it if that matters |
 | `robot/img/agilex/ranger_mini_v3.png` | Ranger Mini 3.0 | Supplied with the original site content | **Which generation this depicts is unverified** — the same file served both the 2.0 and 3.0 pages before the 2.0 was unlisted. Kept on preference: AgileX's own 3.0 render is a flat side elevation that fills the frame, which sits badly beside the Scout Mini's three-quarter view. Their render is in git history if the accuracy matters more than the match |
+| `peripheral/img/manifold/pocket2-rear-port-c.jpg` | Pocket2 Scanner | **Photographed in-house** by the operator | **Ours — no rights question.** The red ellipse marking Port C is the operator's annotation and is load-bearing, so do not crop or clean it out. Manifold publish no port diagram at all — manual §2.1 is a heading over an empty half-page — so this photograph is the only port reference that exists ([ADR 0002](../adr/0002-scanner-workflow-lives-in-guides-handed-over-at-the-pcd.md) D6) |
+| `peripheral/img/manifold/pocket2.png` | Pocket2 Scanner | Manifold Tech [Pocket2 product page](https://www.3dmanifold.com/products/pocket2) (`pocket2-device.640.webp`) | Vendor render, transparent cutout. **640 px is the largest published** — the wider `srcset` entries 404, so this is under the 1400 px cap by necessity rather than choice. Alpha-trimmed 640 × 640 → 208 × 505; 74 % of the canvas was padding. The `POCKET 2` and `MANIFOLD TECH` marks are on the product itself and are untouched |
 
-The three vendor renders are **pending confirmation** that our agreements cover documentation use. Replace with vendor-supplied assets if that is cleaner. The regulator photo is our own and needs no such check.
+**Screenshots and photographs we take ourselves need none of this.** The ten MindCloud Go and MindCloud Studio captures under `tutorial/manifold/img/` and the Pocket2 port photograph above are operator captures of software we license and hardware we supply — ours to publish, with no vendor agreement in play. They are listed here only so that fact is on the record; guide assets do not otherwise belong in this table. What they *do* need is a check for incidental content before publishing: a real site, real people, a visible serial number or a local filesystem path in a window title are all things a screenshot picks up without anyone intending it.
+
+Every **vendor** render in the table is **pending confirmation** that our agreements cover documentation use. Replace with vendor-supplied assets if that is cleaner. The regulator photo is our own and needs no such check. (This sentence said "the three vendor renders" while the table held four; a count in prose beside a table it describes is a count that goes stale on the next row.)
+
+### Marking an image that does not exist yet
+
+A page whose prose is finished but whose photographs are not needs the *place* recorded, or the images arrive later and nobody remembers where they were meant to go. Use an MDX comment at the exact insertion point, naming the subject specifically enough to match a file to it:
+
+```
+{/* TODO image: <subject> — <what the image must show, specifically enough to
+    match a file to it>. <Who is supplying it.> */}
+```
+
+Three reasons for this shape rather than the alternatives:
+
+- **It is invisible to readers.** Where the prose is already complete, telling a customer an image is missing gives them nothing. `robot/humanoid/h2.md` uses visible `**TODO**` markers instead, and that is correct *there* — on that page the text itself is missing, so the marker is the honest state of the content rather than a note to ourselves.
+- **It is greppable.** `grep -rn "TODO image"` is the whole inventory, and `TODO.md` carries the same list for anyone not reading source.
+- **It cannot break the build.** `{/* … */}` is the MDX comment form and is already used in `support/before-you-contact-us.md`. Do **not** use `<!-- … -->`: it appears in `solution/navigation.md`, but that page is `draft: true` and is stripped from production builds, so its HTML comments have never actually been through one.
+
+Never fill the space with a stock image or a vendor image of a different model. An absent figure is a gap; a wrong figure is a defect.
+
+**Retire the marker when the image stops being expected**, not only when it arrives. A `TODO image` left in place after the decision "we are not photographing this" is a request nobody is going to fulfil, and it makes the real outstanding markers harder to find.
+
+### Marking content that needs a decision rather than a file
+
+The same mechanism carries a second kind of note: prose that is published but not yet approved — a recommendation from research, a claim whose source is weaker than the rest of the page, a wording someone should rule on. Use a `REVIEW` marker naming the date, the source and the ledger row:
+
+```
+{/* REVIEW <date> (<why this is provisional>).
+    Source: <who said it>, and why the attribution is weaker than first-party.
+    <Ledger row> — approve, modify or delete the subsection below. */}
+```
+
+`grep -rn "REVIEW "` then lists everything published on provisional authority. This exists so a research pass cannot quietly become house policy: the text is useful enough to publish, and the marker is what stops it being mistaken for settled.
 
 ### Size images to how they are displayed
 
@@ -531,6 +710,7 @@ For tier 3 carrier boards — the CM4 and NanoPC computers — the vendor link c
 | `peripheral/network/industrial_5g_router` | 2 — rebadged, Quectel RM520N-GL module | ✅ converted — ~60 band designations cut to a Quectel link; default address promoted out of a procedure step. **Vendor and credentials still unknown** |
 | `peripheral/power/power_regulator_v2` | 3 — our design | ✅ converted — photo now exists, documenting an XT60 input the text never mentioned |
 | `peripheral/sensor/manifold_pocket` | 1 — Manifold | ✅ converted — specs kept in full, deliberately: they decide whether a capture works before travelling to site |
+| `peripheral/sensor/manifold_pocket2` | 1 — Manifold | ✅ new page — same full-spec exception. First peripheral with a `Guides for this product` section and a `Solutions for this platform` section, both pointing at the `.pcd` handoff ([ADR 0002](../adr/0002-scanner-workflow-lives-in-guides-handed-over-at-the-pcd.md)). Rear Port C photographed 2026-09-03; the front DATA-port placeholder was retired by ruling — no marker remains. The port layout is operator-verified and Manifold publish no diagram (D6) |
 
 Open gaps across the set, all needing domain knowledge rather than editing:
 

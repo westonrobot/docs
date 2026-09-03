@@ -260,7 +260,7 @@ Left alone deliberately, because they are content rather than numbering: `b2.md`
 
 ## 9. Tag taxonomy ✅ implemented
 
-**20 tags declared** in `tutorial/tags.yml` across four facets — model, vendor, solution, topic — each with a pinned `permalink` so URLs are readable and stable rather than relying on slugification (which turns `g1` into `g-1`).
+**23 tags declared** in `tutorial/tags.yml` across four facets — model, vendor, solution, topic — each with a pinned `permalink` so URLs are readable and stable rather than relying on slugification (which turns `g1` into `g-1`).
 
 Governance is enforced, not conventional: `onInlineTags: 'throw'` is set on every docs instance, so an undeclared tag **fails the build** rather than quietly creating a near-duplicate tag page. Since `typecheck` and `build` already gate every pull request, the taxonomy cannot decay by accident.
 
