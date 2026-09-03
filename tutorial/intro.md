@@ -27,6 +27,7 @@ Every guide is tagged with the models it applies to, so you can start from the r
 | get the robot on the network | [Networking](/tutorial/tags/networking) |
 | write software against it | [Development](/tutorial/tags/development) |
 | map and move autonomously | [SLAM](/tutorial/tags/slam) · [Navigation](/tutorial/tags/navigation) |
+| capture a site as a 3D point cloud | [Scanning](/tutorial/tags/scanning) |
 | talk to the base over CAN | [CAN bus](/tutorial/tags/can-bus) |
 | calibrate steering or joints | [Calibration](/tutorial/tags/calibration) |
 | install our packages | [Installation](/tutorial/tags/installation) |
@@ -61,6 +62,13 @@ Every guide is tagged with the models it applies to, so you can start from the r
 * [G1 Development Guide](/tutorial/unitree/g1_dev_guide) — the most detailed guide on this site
 * [G1 Diagnostics Guide](/tutorial/unitree/g1_diag_guide)
 * [G1 Internet Connection Guide](/tutorial/unitree/g1_internet_guide)
+
+### Manifold scanners
+
+* [Manifold Scanner Guides](/tutorial/manifold) — the whole sequence, and where the Robot Deployment Toolbox takes over
+* [Pocket2 Connection Guide](/tutorial/manifold/connecting) — the scanner's own Wi-Fi, and keeping the link up
+* [Pocket2 Scanning Guide](/tutorial/manifold/scanning) — initialisation, walking a site, and stopping safely
+* [Point Cloud Processing & Export Guide](/tutorial/manifold/processing) — MindCloud Studio, through to the file the [Robot Deployment Toolbox](/solution/robot-deployment-toolbox) reads
 
 ---
 

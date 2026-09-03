@@ -36,6 +36,10 @@ ugv-devkit:
   label: UGV Development Kit
   permalink: /ugv-devkit
   description: Guides that apply to the UGV Development Kit.
+pocket2:
+  label: Pocket2
+  permalink: /pocket2
+  description: Guides that apply to the Manifold Pocket2 Scanner.
 
 # --- vendor ------------------------------------------------------------------
 unitree:
@@ -50,6 +54,10 @@ weston-robot:
   label: Weston Robot
   permalink: /weston-robot
   description: Guides for Weston Robot's own products and software.
+manifold:
+  label: Manifold Tech
+  permalink: /manifold
+  description: Guides for Manifold Tech scanners and the MindCloud software suite.
 
 # --- solution ----------------------------------------------------------------
 
@@ -94,3 +102,7 @@ calibration:
   label: Calibration
   permalink: /calibration
   description: Calibrating steering, joints and sensors.
+scanning:
+  label: Scanning
+  permalink: /scanning
+  description: Capturing a site with a 3D scanner, and processing the result.

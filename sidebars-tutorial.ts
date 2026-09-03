@@ -44,6 +44,21 @@ const sidebarsTutorial: SidebarsConfig = {
         'unitree/g1_internet_guide',
       ],
     },
+    {
+      type: 'category',
+      label: 'Manifold Scanner Guides',
+      // The index is the category's own landing page, so clicking the category
+      // goes to the overview that explains where the workflow starts and stops
+      // instead of just expanding. Same shape as Robot Deployment Toolbox in
+      // sidebars-solution.ts.
+      link: {type: 'doc', id: 'manifold/index'},
+      // Ordered as the workflow runs: connect, capture, process.
+      items: [
+        'manifold/connecting',
+        'manifold/scanning',
+        'manifold/processing',
+      ],
+    },
   ],
 };
 

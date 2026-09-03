@@ -17,6 +17,8 @@ Capture is previewed live and edited in the field through the MindCloud GO app; 
 
 This page does not repeat or replace Manifold's documentation — the manuals below are the reference for operating it.
 
+This is the earlier model. The current one is the [Manifold Pocket2 Scanner](/peripheral/sensor/manifold_pocket2), and the desktop half of the workflow is the same for both — see the [Point Cloud Processing & Export Guide](/tutorial/manifold/processing).
+
 </div>
 
 <Figure
@@ -28,7 +30,7 @@ This page does not repeat or replace Manifold's documentation — the manuals be
 
 ## Getting started
 
-There is nothing to fit — it is handheld and battery-powered. What there is to plan:
+Before you travel to a site:
 
 1. **Charge it.** A full battery is about **2 hours** of capture.
 2. **Install MindCloud GO** on an Android device for live preview and field edits, and **MindCloud** on Windows for processing. Both are in [Related resources](#related-resources).
@@ -47,8 +49,6 @@ There is nothing to fit — it is handheld and battery-powered. What there is to
 | MindCloud | Desktop processing application | [Windows](https://www.manifoldtech.cloud/download/?file=MindCloud_0.1.9.exe) |
 
 ### Specifications
-
-Unlike most product pages here the sensor figures are kept in full, because they determine whether a capture will work before you travel to the site — which is not something to discover on arrival.
 
 | | |
 | --- | --- |
