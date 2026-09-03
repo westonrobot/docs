@@ -39,6 +39,14 @@ Work is saved as you go, and the header shows when it last was. It lives in your
 
 **Start from local files** assembles the same pieces yourself. A **point cloud** is required — the scan the map is built on, in `PCD`, `PLY`, `XYZ` or `PTS`, with colour if the scan carries it. A **TMG map** is optional, and loading one continues an existing map rather than starting a new one, which is how you re-author a map against a fresh scan.
 
+If you do not have that point cloud yet, [Manifold Scanner Guides](/tutorial/manifold) covers capturing a site with a handheld scanner and exporting a `.pcd` from it. Name that file **`pointcloud_map.pcd`**.
+
+**Look at the cloud before you start drawing on it.** A scan that is tilted, warped, doubled, disconnected or badly incomplete produces a map that looks reasonable here and navigates badly, and every stage after this one inherits the problem. The scanner guides list [what to reject and why](/tutorial/manifold/processing#look-at-it-before-you-export); the cheapest moment to send a bad scan back is before a single node is placed.
+
+Check the other direction too: **a cloud can be too sparse to localise against.** A robot matches what it sees to the map, so the permanent structure of the site — walls, columns, fixed racking — is what it needs. A repetitive building filtered down to bare geometry can look tidy here and leave a robot unable to tell one corridor from the next.
+
+**It can also be too heavy.** What you build here does not stay here: the bundle is uploaded to the Robot Management Toolbox and then pushed down to every robot that works the site, all of it over Wi-Fi. A cloud that is merely slow to draw on a workstation is an expensive thing to move over a site network, repeatedly. **Aim for a point cloud under about 300 MB** — density beyond what makes the building legible costs upload time and gains the robot nothing. The scanner guides reduce the cloud [before the handoff](/tutorial/manifold/processing#subsampling-to-01-m) for this reason.
+
 Once something is loaded, the panel reports what you have: the point cloud's file, its point count and its extent in metres; and for a map, its format and spec version, when it was created and last modified, and how many nodes, segments, zones, transitions and levels it holds. **Read those counts before you start editing** — they are the quickest way to notice you have opened the wrong map, or an older revision than you meant.
 
 **Reach for Import from Fleet whenever the site already has a map.** Sites change, and whoever updates one needs to start from what is actually live rather than a copy on a laptop that may be several revisions behind — and nothing will tell you that it is.
@@ -77,7 +85,29 @@ Identify the floor the map is built on. Every node and zone belongs to a level.
 
 **Extract** finds the horizontal planes in the scan and lists them by height, each with the number of points supporting it. You add the one that is the floor — and that point count is how you tell a real floor from a run of desks at a consistent height.
 
-For a single-level site this stage is short: there is one level, and everything on the map belongs to it. This release supports one level per site, so for most sites that is the whole of it.
+For a single-level site this stage is short: there is one level, and everything on the map belongs to it.
+
+### When the floor does not appear
+
+Extraction works from the points it has. **If the level you expect is not in the list, the usual reason is that too few points landed on it** for a plane to be detected — a floor that was only crossed quickly, or largely occluded by furniture, may simply not have enough support.
+
+That is not by itself a verdict on the whole map. **`+ Manual` under LEVELS defines a level directly**, and a site whose floor had to be added by hand can still be perfectly workable.
+
+:::caution A manually added level is a way to continue, not evidence the cloud is good
+
+Adding the level by hand gets the workflow moving. It says nothing about whether the
+point cloud under it is accurate or complete — and a scan thin enough to miss its own
+floor is worth a second look. If the cloud also looks tilted, warped, doubled or
+misaligned, re-scan rather than working around it; the
+[Manifold Scanner Guides](/tutorial/manifold) cover what to check.
+
+:::
+
+### Multiple detected levels are not multi-floor deployment
+
+Extraction will happily list several height bands, and a building with more than one storey in the scan will produce more than one candidate plane. That is the tool reading geometry.
+
+**It does not mean a robot can be deployed across those floors.** Multi-floor deployment is not currently supported: a robot does not use stairs or lifts on its own, and this release supports **one level per site**. Level detection and editing is a map-processing capability; the deployment workflow it feeds is single-level. Treat extra detected planes as candidates to choose the floor from, not as floors you can dispatch to.
 
 ### The occupancy map
 
@@ -170,11 +200,15 @@ Validate the map, review what it contains, and send it somewhere.
 
 **Validation is the point of the stage.** It reports what is wrong by name rather than in general — the map above is warned that it has multiple nodes but no segments, and each unconnected node is listed individually. A warning is not a refusal, but shipping past one is a decision rather than an oversight.
 
+**Validation checks the map against itself, not against the building.** It catches a node nothing connects to; it cannot catch a segment drawn through a wall the scan missed, or a floor that sits 30 cm below where the robot finds it. Clean validation means the map is internally coherent — the question of whether it describes the site correctly is settled by driving on it, and only then.
+
 The stage also shows what the bundle will carry: the map document, the point cloud, and the occupancy map generated for each level, written as a standard grid and its accompanying metadata.
 
 **A changelog entry belongs to the version, not to the file.** The stage asks what changed and who changed it, and leaving both empty skips the entry — which is worth not doing, because it is the record that explains a revision to whoever opens it next.
 
 From here the map can be **exported as a bundle** — a `.zip` packing the map document, the point cloud and the occupancy map — or **pushed to the Robot Management Toolbox**, which is the route that leads to robots.
+
+**Name the TMG document `tmg_map.tmg.json`**, alongside `pointcloud_map.pcd` for the cloud it was drawn against, so a site's files can be picked up months later without guesswork.
 
 ## Publishing to the fleet
 
@@ -226,6 +260,14 @@ That is a boundary between the two tools rather than between two people: the sam
 Worth knowing before you push, because it shapes when the rest of the change should be scheduled: applying a new map to a robot **restarts its navigation and makes it re-acquire localisation**, and its missions are locked until it confirms the new map.
 
 So a map change is not a background event at the site. Push whenever the work is done; time the activation.
+
+### The map is validated by driving on it
+
+Everything in this tool checks the map against itself. A cloud that imported, levels that extracted, a graph that validated and a revision that published all say the artifacts are coherent — none of them says the robot will work.
+
+**The final validation is navigation.** If a robot cannot localise reliably, or drifts off segments, or fails to reach nodes it should reach, then the map or the scan behind it needs revisiting, however clean it looked here. That is worth planning for: the first activation on a new site is a test, not a delivery.
+
+Where the problem traces back to the scan rather than the drawing — a tilted or warped cloud, geometry that was never captured — the fix is upstream, in the [Manifold Scanner Guides](/tutorial/manifold).
 
 ## Common questions
 

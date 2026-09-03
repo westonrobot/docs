@@ -7,6 +7,8 @@ description: "Robot Deployment Toolbox: turn a 3D scan of a site into the map ro
 
 A 3D scan of a building is just points. A robot needs to know where the floor is, where it may drive, where it must not go, and which places matter. Somebody supplies that meaning once per site, and this is the tool they use.
 
+The scan itself is made elsewhere. If the site is captured with one of our handheld scanners, [Manifold Scanner Guides](/tutorial/manifold) covers everything up to the `.pcd` this tool loads.
+
 What comes out is the **site map** — the artifact everything else depends on. It is pushed to the [Robot Management Toolbox](/solution/robot-management-toolbox), and reaches the robots from there.
 
 Preparing a site is a once-per-site job rather than a once-per-mission one, and the map is revisited afterwards only when the building itself changes — new racking, a wall moved, a door now permanently shut. Editing a site's map requires the **Site Admin** role for that site; operators and observers use maps without changing them.
