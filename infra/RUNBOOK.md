@@ -154,7 +154,11 @@ $ aws iam attach-group-policy --group-name DocsDownloadPublishers \
 $ aws iam add-user-to-group --group-name DocsDownloadPublishers --user-name <user>
 ```
 
-Enforce MFA on those accounts. The grant carries no `DeleteObject`, so the worst a member can do is overwrite a key — which versioning makes recoverable.
+The grant carries no `DeleteObject`, so the worst a member can do is overwrite a key — which versioning makes recoverable. Deleting a published object needs admin credentials, deliberately; `docs/design/file-hosting.md` §7 explains why that friction is the point.
+
+Group membership is the **only** per-person action here. Members enrol their own MFA and issue their own access keys — see `CONTRIBUTING.md` → *One-time AWS setup* for what that looks like from their side. MFA is enforced at console sign-in account-wide, so it is not something this procedure has to arrange.
+
+**The account's identity setup — the groups, the policies behind them, and the reasoning — is recorded in the private `wr_aws_setup` repository, not here.** This repository is public: it serves `docs.westonrobot.com`. Naming which people hold which grants, or which of them lack a second factor, would publish a target list. Keep this file to what rebuilding the *file store* requires.
 
 ---
 
