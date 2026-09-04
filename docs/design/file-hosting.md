@@ -187,7 +187,9 @@ One consequence to be aware of: a public index makes the full inventory enumerab
 
 **Infrastructure as code, for one narrow reason.** The security model of this store *is* its IAM and bucket policies — the OAC condition on `AWS:SourceArn`, the deny-delete, all four public-access blocks, five deliberately narrow grants. Those interlock, and their failure mode is silent: an over-broad grant does not error, it quietly works. Console editing over three years by three people is how that rots, so the policies have to exist as reviewable text that matches reality.
 
-That requirement is met by CloudFormation (`infra/`), chosen over Terraform on dependency grounds: the AWS CLI is already installed and authenticated, there is no second binary, and **AWS holds the state** rather than a file someone has to host, secure and not corrupt. For a team whose first piece of infrastructure-as-code this is, the tool that adds no new operational concern beats the better language. Terraform earns its state file at the second account or the third environment; neither exists yet.
+That requirement is met by CloudFormation, chosen over Terraform on dependency grounds: the AWS CLI is already installed and authenticated, there is no second binary, and **AWS holds the state** rather than a file someone has to host, secure and not corrupt. For a team whose first piece of infrastructure-as-code this is, the tool that adds no new operational concern beats the better language. Terraform earns its state file at the second account or the third environment; neither exists yet.
+
+The templates and their runbook are **not in this repository**. They live in the private infrastructure repository — moved there on 2026-09-04 because a repository whose job is publishing a website publishes everything in it, and an infrastructure directory accretes operational detail about the account by nature. What stays here is this document and ADR 0001: the reasoning about a published service, which a contributor may need. How the account is actually configured is not.
 
 ## 8. Observability — making breakage visible
 
