@@ -54,12 +54,24 @@ aws --version          # expect aws-cli/2.x
 sudo apt install python3-boto3        # or: pip install boto3, in a virtualenv
 ```
 
-**3 · Credentials.** Ask an admin for an access key, and to add you to the IAM group `DocsDownloadPublishers` — that grant is `PutObject`, `GetObject`, `ListBucket` on the store plus CloudFront invalidation, and deliberately **no delete**.
+**3 · Credentials.** Ask an admin for one thing: to add you to the IAM group `DocsDownloadPublishers`. That grant is `PutObject`, `GetObject`, `ListBucket` on the store plus CloudFront invalidation, and deliberately **no delete**. Nobody issues you a key — you create your own, and you can rotate or revoke it yourself without asking anyone.
+
+**3a · Enrol MFA first.** Sign in to the AWS console with the username and password an admin gave you, then open **your username, top right → Security credentials** and assign an MFA device.
+
+Two things will look wrong and are not. Most of that page will be empty until you enrol — that is the point, not a fault. And **IAM → Users** will refuse to load; nobody here can list other users. The account menu is the only route to your own credentials.
+
+**3b · Sign out, then sign back in with your MFA code.** Enrolling does not upgrade the session you are already in, and the next step is only permitted from an MFA-authenticated one.
+
+**3c · Create your own access key.** Same page → **Access keys** → **Create access key** → *Command Line Interface (CLI)*. Copy the secret immediately; AWS never shows it again.
 
 ```bash
 aws configure                          # key, secret, region ap-southeast-1, output json
 aws sts get-caller-identity            # expect your user ARN in the Weston Robot account
 ```
+
+If **Create access key** is greyed out or returns `AccessDenied`, your session predates your MFA enrolment — redo 3b.
+
+Rotate your own key whenever one leaks or a laptop is replaced; the same page deletes and re-creates. You cannot see or touch anyone else's. **If you lose your MFA device, you need an admin** — removing an enrolled device requires presenting it, so there is no self-service path back.
 
 **4 · The distribution id**, so publishing invalidates the CDN. Put it in your shell profile:
 
