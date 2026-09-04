@@ -27,7 +27,8 @@ const sidebarsPeripheral: SidebarsConfig = {
       type: 'category',
       label: 'Sensors',
       items: [
-        'sensor/manifold_pocket'],
+        'sensor/manifold_pocket',
+        'sensor/manifold_pocket2'],
     },
   ],
 };

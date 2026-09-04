@@ -41,7 +41,9 @@ If you are holding a board and are not sure which one it is, match it to a pictu
 
 <ProductGrid columns={3}>
 
-<ProductCard to="/peripheral/sensor/manifold_pocket" src={require('./img/manifold/pocket.png').default} alt="Manifold Pocket Scanner" title="Manifold Pocket Scanner">Handheld LiDAR and camera unit for 3D capture alongside a robot deployment.</ProductCard>
+<ProductCard to="/peripheral/sensor/manifold_pocket" src={require('./img/manifold/pocket.png').default} alt="Manifold Pocket Scanner" title="Manifold Pocket Scanner">Handheld LiDAR and camera unit for 3D capture alongside a robot deployment. The earlier model.</ProductCard>
+
+<ProductCard to="/peripheral/sensor/manifold_pocket2" src={require('./img/manifold/pocket2.png').default} alt="Manifold Pocket2 Scanner" title="Manifold Pocket2 Scanner">The current handheld scanner. Its point cloud is what the Robot Deployment Toolbox builds a site map against.</ProductCard>
 
 </ProductGrid>
 
