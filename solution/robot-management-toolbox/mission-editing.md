@@ -20,15 +20,7 @@ A **mission** answers three questions about a piece of work: **what** the robot 
 
 A checkpoint with no actions is somewhere the robot passes through. A checkpoint with them is somewhere it stops and does something — and that is the difference between a route and a mission.
 
-**When — run conditions.** Whether the mission is eligible to start at all, covered in [Run conditions](#run-conditions) below. A mission can be saved without them but not activated.
-
-Some settings belong to the mission as a whole rather than to any one checkpoint:
-
-| Setting | Default | What it decides |
-| --- | --- | --- |
-| **Minimum battery** | 20% | The charge required before the mission may start |
-| **Retries** | 2 | How many times a move that fails is attempted again, up to 10 |
-| **Ambient audio** | None | Clips played in continuous rotation while the mission runs, rather than at one place |
+**When — run conditions.** Whether the mission can start on its own at all, covered in [Run conditions](#run-conditions) below. A mission saves without one, but cannot be activated or sent until it has one.
 
 Two kinds of mission use this same shape. A **patrol** is a route the robot works repeatedly; an **errand** is an ad-hoc move from one place to another. Both are ordered checkpoints with actions attached — what differs is whether the work is meant to persist.
 
@@ -80,21 +72,21 @@ Actions are added per checkpoint, and a checkpoint can carry more than one.
 
 The route map draws the mission over the site map, numbering the checkpoints in order and distinguishing places, docks and stops, so the sequence can be checked against the building rather than against a list of coordinates.
 
-### 3 · Review and save
+### 3 · Review & Save
 
 <Figure
   src={require('../img/fleet-mission-review.png').default}
-  alt="The Review and Save stage showing a validation message reading 'Checkpoint 4: set its place on the map', a 'What changed?' note field marked optional and recorded with this save, and Run Conditions and Save Mission buttons with save disabled"
+  alt="The Review &amp; Save stage showing a validation message reading 'Checkpoint 4: set its place on the map', a 'What changed?' note field marked optional and recorded with this save, and Run Conditions and Save Mission buttons with save disabled"
   size="lg"
   framed
-  caption="Review and save: what still needs fixing, the note recorded with this revision, and the two things you can do next." />
+  caption="Review &amp; Save: what still needs fixing, the note recorded with this revision, and the two things you can do next." />
 
 Saving validates first. A checkpoint with no position is named by number and blocks the save until it is set.
 
 Two things here are worth knowing:
 
 - **A "what changed?" note is recorded with the save.** It is optional, and it is what makes the revision history readable later rather than a list of timestamps.
-- **Run conditions are set separately from saving.** A mission saves without them; it cannot be *activated* without them.
+- **Run conditions are set separately from saving.** A mission saves without one; it cannot be *activated or sent* until it has one.
 
 ## Saved locations
 
@@ -111,23 +103,37 @@ Locations are held per robot, are searchable, and can be picked from the list or
 
 ## Run conditions
 
-Run conditions answer **"when should it run?"**, and they are the gate on activation rather than on saving.
+Run conditions answer **"when should it run?"**. A run condition is what lets a mission start on its own, and it is the gate on activating and sending a mission rather than on saving one.
+
+**Which conditions you are offered depends on the mission.** A patrol repeats by definition; an errand asks whether it should.
+
+A **patrol** is offered three:
 
 | Condition | Behaviour |
 | --- | --- |
-| **Run by hand** | No automatic trigger — it runs when someone dispatches it |
-| **As soon as possible** | Always eligible |
-| **Every day** | Once a day, at an hour and minute |
-| **Every hour** | Once an hour, at a chosen minute past |
-| **Chosen days** | On selected weekdays, at an hour and minute |
+| **Every Hour** | Once an hour, at a chosen minute past |
+| **Everyday** | Once a day, at an hour and minute |
+| **On Chosen Days** | On selected weekdays, at an hour and minute |
 
-Three properties of this model explain most of what surprises people:
+An **errand** carries a **Does it repeat?** choice — **Runs once** or **Repeats** — and the conditions change with it. Set to **Runs once**:
 
-**Conditions combine, they never alternate.** Every condition on a mission must be satisfied for it to become eligible. There is no "either/or".
+| Condition | Behaviour |
+| --- | --- |
+| **As Soon as It Is Sent** | Starts at the first opportunity |
+| **At a Time of Day** | At an hour and minute |
+| **On One of These Days** | Waits for one of the chosen weekdays, then goes |
 
-**No conditions means always eligible, not never.** A test that all of nothing passes is passed trivially, so a mission with an empty condition list is eligible at every opportunity — a patrol set up that way would restart continuously. **That is why activating a mission with no run conditions is refused**, and the refusal is recorded in the [audit log](/solution/robot-management-toolbox/audit-log) like any other rejected action.
+Switch it to **Repeats** and it takes the same three a patrol has. **As Soon as It Is Sent** is then withheld, and the editor says why: a mission that repeats and starts as soon as it is sent has nothing limiting how often it runs, so it would begin again the moment it finished. Give it a time instead.
+
+**A mission with no condition cannot be activated or sent.** The editor states this where the condition would go — *no run condition set — this mission cannot be activated or sent until you pick one*. It does not mean the mission is unusable: it means nothing will start it by itself.
+
+**Running a mission by hand is not a run condition.** A saved mission can be handed to a robot on demand with **Dispatch**, on the Missions tab of the robot's own view, whether or not it has a condition. What a condition adds is the robot starting the work without anyone asking. The two are separate questions, and a mission with no condition simply never answers the second one.
+
+Two further properties explain most of what surprises people:
 
 **A time carries its own cooldown.** The window you set is how late a start is still acceptable, and it doubles as the interval before the same trigger may fire again — which is what makes "every day at 09:00" safe on a mission that never finishes on its own. A day-of-week rule has no such guard, which is why days are always paired with a time rather than offered alone.
+
+**Some limits are shown rather than set.** Where a mission carries a minimum charge, the run conditions panel reports it — *won't start below 20% battery*, or whatever figure applies. The number comes from the mission's own parameters as the robot's template supplied them; the editor displays it and does not offer it as a choice.
 
 Times are the **robot's local time**, not the browser's.
 
@@ -137,15 +143,18 @@ Authoring a mission does not put it on a robot. Missions are **sent** to the rob
 
 | Badge | Means |
 | --- | --- |
-| **in sync** | The robot's own list was read back and matched this one |
-| **content is stale** | The robot has not confirmed what it holds |
-| **waiting for the robot** | Sent, not yet confirmed |
+| **robot confirmed** | The robot accepted this mission list when it was sent |
+| **robot holds no missions** | Nothing in your mission list is on the robot |
+| **nothing sent yet** | No missions have been sent to this robot yet |
+| **waiting for the robot** | Sent — the robot has not confirmed yet |
 | **waiting for the run to end** | A mission is still running; this clears itself when it ends |
-| **robot refused** | The robot rejected the last push |
-| **does not match** | The robot is holding missions this fleet did not send |
-| **robot offline** | Nothing can be confirmed |
+| **robot refused** | The robot refused the last push, and says why where it gave a reason |
+| **robot offline** | The robot is offline, so nothing can be confirmed |
+| **not confirmed** | The robot has not confirmed what it holds |
 
-The order above is the order the badge itself uses when more than one is true, and it is ordered by what you would have to do about it — nothing can be believed while the robot is offline, so that outranks everything else.
+A badge may also carry **· needs review** after it. That is a separate signal appended to whichever badge applies, not a badge of its own: it says a mission the robot holds was built against a saved location that has since moved.
+
+**not confirmed** is what a mission shows when the system holds no evidence either way. On a system upgraded from an earlier release it is the starting state for missions that were already there, so a set of them reading *not confirmed* immediately after an upgrade is expected rather than a fault; sending again replaces it with an answer. A fresh installation does not normally produce it.
 
 To **dispatch** a mission is to hand it to a named robot to run, on demand or on its schedule. A robot can also be sent somewhere once, with no mission at all — that is **Quick Dispatch**, on the map toolbar of the robot's own view. Use it for a one-off; use a mission for anything you will want again.
 
@@ -178,16 +187,13 @@ Three separate records answer three different questions, and none of them can be
 ## Common questions
 
 **The mission saved but will not activate**  
-Check its run conditions. A mission saves without them, but activation is refused until they are set — a mission with no conditions would be eligible continuously.
+Check its run conditions. A mission saves without one, but activating or sending it is refused until it has one. It can still be dispatched by hand in the meantime.
 
 **Why can I not use a day of the week on its own?**  
 A day rule has no cooldown of its own, so a mission that does not end by itself would restart all day. Pairing it with a time gives it one.
 
 **A robot's missions are switched off and I cannot edit or dispatch them**  
 That robot is on an older map than the one the fleet has activated. See [Catching a robot up to the map](/solution/robot-management-toolbox/tenant-management#catching-a-robot-up-to-the-map).
-
-**The badge says the robot does not match**  
-It is holding missions this fleet did not send. Send the active set again to bring it back into line.
 
 **I moved a location and several missions changed**  
 Expected, if it was a saved location. Checkpoints made from one follow it, so a single correction applies everywhere it is used.
