@@ -210,11 +210,11 @@ From here the map can be **exported as a bundle** — a `.zip` packing the map d
 
 **Name the TMG document `tmg_map.tmg.json`**, alongside `pointcloud_map.pcd` for the cloud it was drawn against, so a site's files can be picked up months later without guesswork.
 
-## Publishing to the fleet
+## Pushing to the fleet
 
 A finished map does nothing until it reaches robots, and the Robot Deployment Toolbox performs only the first step of that journey.
 
-### Pushing
+### What the push asks for
 
 Pushing sends the map into the Robot Management Toolbox. The push asks for four things:
 
@@ -246,12 +246,12 @@ Two further steps, both taken by a person in the fleet management system, turn i
 | Step | Who | What it does |
 | --- | --- | --- |
 | **Push** | This tool | Creates the draft revision |
-| **Publish** | Site Admin | Marks the draft a finished revision |
-| **Activate** | Site Admin | Makes it *the* revision robots are given |
+| **Publish** | Site Admin or Tenant Administrator | Marks the draft a finished revision |
+| **Activate** | Site Admin or Tenant Administrator | Makes it *the* revision robots are given |
 
 **This tool stops at the draft.** It cannot publish, it cannot activate, and it never talks to a robot at all. There is no path from here to a machine in the field.
 
-That is a boundary between the two tools rather than between two people: the same Site Admin who drew the map can publish and activate it. If your process needs a second person to review a map before robots use it, that has to come from your process.
+That is a boundary between the two tools rather than between two people: the same person who drew the map can publish and activate it. If your process needs a second person to review a map before robots use it, that has to come from your process.
 
 [How a map reaches a robot](/solution/robot-management-toolbox/tenant-management#how-a-map-reaches-a-robot) shows the whole path in one diagram, and [Catching a robot up to the map](/solution/robot-management-toolbox/tenant-management#catching-a-robot-up-to-the-map) covers what happens to robots once a revision is activated.
 
@@ -287,7 +287,7 @@ Yes. Stages are revisitable once their prerequisites are met, so returning to Pr
 Expected. Pushing creates a draft in the Robot Management Toolbox; someone there has to publish it and then activate it. Until then robots keep the map they have.
 
 **Can I change a map without this tool?**  
-A Site Admin can adjust waypoints and the connections between them in the Robot Management Toolbox. Changing the scan, the levels or the zones is this tool's job.
+A Site Admin or Tenant Administrator can adjust waypoints and the connections between them in the Robot Management Toolbox. Changing the scan, the levels or the zones is this tool's job.
 
 **My site has two floors**  
 This release supports one level per site, because robots do not use stairs or lifts on their own. Ramps within a level are fine, since a ramp is not a change of level.
