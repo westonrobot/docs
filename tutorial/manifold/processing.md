@@ -114,11 +114,16 @@ Once it is open, MindCloud Studio also has **RTK Optimization**, a coordinate-ac
 
 This step decides how heavy the file you hand the toolbox is.
 
-:::tip Aim for a `.pcd` under about 300 MB
+:::tip Keep the `.pcd` below 200 MB
 
-That file does not stay on your laptop. It is uploaded to the Robot Management Toolbox and then pushed down to
-every robot that works the site, all of it over Wi-Fi — so its size is a cost paid again on
-every upload and every deployment, by people who were not there when it was exported.
+A heavier cloud may need further optimization before it can be used reliably with the
+Robot Deployment Toolbox, so this is the cheapest place to reduce it — rather than
+discovering the problem once the map is already being authored.
+
+Size is a running cost as well. That file does not stay on your laptop: it is uploaded to the
+Robot Management Toolbox and then pushed down to every robot that works the site, all of it
+over Wi-Fi — so its size is a cost paid again on every upload and every deployment, by people
+who were not there when it was exported.
 
 **Denser is not better.** Past the point where the permanent structure of the building is
 legible, extra points buy nothing: the robot localises against walls, columns and fixed
@@ -217,10 +222,10 @@ Select the **`…-Cloud.subsampled`** entry, then use the save action — the di
 | Option | Use it? |
 | --- | --- |
 | **Binary** | **Yes — the baseline.** Compact and quick to load |
-| Compressed binary | **Not used here.** Binary is the encoding this workflow has been run with |
-| ASCII/text | **It works**, and it is human-readable — but the file is substantially larger for no gain the toolbox can use, which counts against the size target above |
+| Compressed binary | **Not used here** |
+| ASCII/text | **Works, but produces a substantially larger file** |
 
-Confirm with **Yes**, then **check the size of the file you just wrote** against the 300 MB target above. If it is well over, keep reducing in Studio rather than handing it on. The **SOR (Statistical Outlier Removal) filter** clears scattered noise; if your build does not offer it, **cropping** alone will take you a long way — it removes what the map does not need at all, such as ground beyond the building, a neighbouring unit, or a car park that is not part of the site.
+Confirm with **Yes**, then **check the size of the file you just wrote** against the 200 MB recommendation above. If it is well over, keep reducing in Studio rather than handing it on. The **SOR (Statistical Outlier Removal) filter** clears scattered noise; if your build does not offer it, **cropping** alone will take you a long way — it removes what the map does not need at all, such as ground beyond the site, a neighbouring unit, or a car park that is not part of the site.
 
 :::caution Save it as `pointcloud_map.pcd`
 

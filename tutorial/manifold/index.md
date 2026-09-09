@@ -48,7 +48,7 @@ If you are doing this for the first time, read the guides in this order rather t
 | 9 | **File ▸ New Task**, browse to the `.lx`, choose the optimisations | [Processing](./processing.md#loading-it-in-mindcloud-studio) |
 | 10 | Look at the result before committing to it | [Processing](./processing.md#look-at-it-before-you-export) |
 | 11 | **Subsample ▸ Spatial ▸ 0.1 m** | [Processing](./processing.md#subsampling-to-01-m) |
-| 12 | Export **Point Cloud Library cloud (`*.pcd`)**, **Binary**, as `pointcloud_map.pcd` — aim for under about 300 MB | [Processing](./processing.md#exporting-the-pcd) |
+| 12 | Export **Point Cloud Library cloud (`*.pcd`)**, **Binary**, as `pointcloud_map.pcd` — keep it below 200 MB | [Processing](./processing.md#exporting-the-pcd) |
 | 13 | Import the `.pcd`, set up levels and author the site map | [Robot Deployment Toolbox](/solution/robot-deployment-toolbox/map-editor) |
 | 14 | Deploy, and check the robot actually localises and navigates | [The final check is the robot](./processing.md#the-final-check-is-the-robot-not-the-file) |
 

@@ -45,7 +45,9 @@ If you do not have that point cloud yet, [Manifold Scanner Guides](/tutorial/man
 
 Check the other direction too: **a cloud can be too sparse to localise against.** A robot matches what it sees to the map, so the permanent structure of the site — walls, columns, fixed racking — is what it needs. A repetitive building filtered down to bare geometry can look tidy here and leave a robot unable to tell one corridor from the next.
 
-**It can also be too heavy.** What you build here does not stay here: the bundle is uploaded to the Robot Management Toolbox and then pushed down to every robot that works the site, all of it over Wi-Fi. A cloud that is merely slow to draw on a workstation is an expensive thing to move over a site network, repeatedly. **Aim for a point cloud under about 300 MB** — density beyond what makes the building legible costs upload time and gains the robot nothing. The scanner guides reduce the cloud [before the handoff](/tutorial/manifold/processing#subsampling-to-01-m) for this reason.
+**It can also be too heavy.** What you build here does not stay here: the bundle is uploaded to the Robot Management Toolbox and then pushed down to every robot that works the site, all of it over Wi-Fi. A cloud that is merely slow to draw on a workstation is an expensive thing to move over a site network, repeatedly.
+
+**For reliable operation, keep the point cloud below 200 MB and the complete map bundle below 300 MB.** Maps that exceed these recommendations may require additional optimization before they can be used reliably with the Deployment Toolbox. Working inside them is also ordinary economy: density beyond what makes the building legible costs upload time and gains the robot nothing. The scanner guides reduce the cloud [before the handoff](/tutorial/manifold/processing#subsampling-to-01-m) for this reason.
 
 Once something is loaded, the panel reports what you have: the point cloud's file, its point count and its extent in metres; and for a map, its format and spec version, when it was created and last modified, and how many nodes, segments, zones, transitions and levels it holds. **Read those counts before you start editing** — they are the quickest way to notice you have opened the wrong map, or an older revision than you meant.
 
@@ -202,7 +204,7 @@ Validate the map, review what it contains, and send it somewhere.
 
 **Validation checks the map against itself, not against the building.** It catches a node nothing connects to; it cannot catch a segment drawn through a wall the scan missed, or a floor that sits 30 cm below where the robot finds it. Clean validation means the map is internally coherent — the question of whether it describes the site correctly is settled by driving on it, and only then.
 
-The stage also shows what the bundle will carry: the map document, the point cloud, and the occupancy map generated for each level, written as a standard grid and its accompanying metadata.
+The stage also shows what the bundle will carry: the map document, the point cloud, and the occupancy map generated for each level, written as a standard grid and its accompanying metadata. Keep the complete bundle below **300 MB** for reliable operation.
 
 **A changelog entry belongs to the version, not to the file.** The stage asks what changed and who changed it, and leaving both empty skips the entry — which is worth not doing, because it is the record that explains a revision to whoever opens it next.
 
