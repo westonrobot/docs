@@ -30,7 +30,7 @@ Key features of the system are summarized in the table below, and each is covere
 | --- | --- |
 | **Fleet overview** | Every site and robot, with live status |
 | **Robot dashboard** | Position on the site map, telemetry, camera feeds, health and activity |
-| **Robot teleoperation** | Drive a robot from the browser, plus emergency stop, docking and posture commands — one operator at a time |
+| **Robot teleoperation** | Drive a robot from the browser, plus docking and posture commands — one operator at a time. The E-Stop is separate: any role may press it, and it needs no turn at the controls |
 | **Mission planning** | Build missions from waypoints, the routes between them and a schedule; reuse them across sites |
 | **Detection review** | Everything the robots detected, filterable and reviewable, kept as a record that cannot be edited or deleted |
 | **Tenant management** | Your sites and their robots, the maps they navigate by, the people who use them, and what each role may do |
@@ -61,7 +61,7 @@ Opening a robot gives you that one machine on one screen. It is where an operato
 - **How it is holding up** — **telemetry**, meaning the readings a robot reports about itself, such as battery level and temperature.
 - **What has been raised** — alerts for this robot, with the durable record in [Detection review](#detection-review).
 
-Two things shape what you see here. **Camera feeds stream live from the robot**, so the panel shows its present view. And **navigation runs on the robot itself**, from the map it already holds, so a mission carries on through an interruption in the link — what the robot should do if that happens is a policy you set: stop safely, halt immediately, or continue.
+Two things shape what you see here. **Camera feeds stream live from the robot**, so the panel shows its present view. And **navigation runs on the robot itself**, from the map it already holds, so a mission carries on through an interruption in the link — what the robot should do if that happens is set on the robot itself, not here — see [What happens during a mission](/solution/robot-management-toolbox/robot-dashboard#what-happens-during-a-mission).
 
 <Figure
   src={require('../img/fleet-robot-view.jpg').default}
@@ -80,7 +80,7 @@ Because these commands move a machine in a real building, taking control is deli
 
 Teleoperation carries its own safeguards. It **stops the robot when the connection to the fleet degrades**, on the reasoning that driving a machine you can no longer see is worse than halting it, and it refuses the controls to anyone who has not properly taken control.
 
-Commanding a robot is Operator authority, granted per site. An Observer at the same site sees everything described above and can do none of it.
+Commanding a robot is Operator authority, granted per site. An Observer at the same site sees everything described above and can do none of it — with one deliberate exception: **the E-Stop may be pressed by any role.** Releasing it afterwards is an Operator action, so an Observer who stops a robot will need an Operator to reset it.
 
 **What the driving view shows depends on the robot.** The assisted view below — camera feeds stitched into a surround view, proximity zones drawn from the robot's own sensing, and a bird's-eye radar panel alongside speed and link quality — is tuned for a particular robot configuration and deployment. It is not part of every robot's teleoperation by default, so what a given robot presents depends on how that robot was set up.
 
@@ -137,7 +137,7 @@ Entries filter by robot, type, priority and review state. **Alerts are the revie
 
 ## Tenant management
 
-Your **tenant** is your organisation's own space in the system. Sites sit inside it, robots and maps belong to a site, and people are given roles within it — so adding a site, seeing which robots and maps it holds, activating a map, and granting somebody access are all the same job in the same place.
+Your **tenant** is your organisation's own space in the system. Sites sit inside it, robots and maps belong to a site, and people are given roles within it — so seeing which robots and maps a site holds, activating a map, and granting somebody access are all the same job in the same place. Sites themselves are provisioned by Weston Robot rather than created here.
 
 Access itself is expressed as roles rather than as individual permissions, and they form a ladder: watching, then commanding, then administering. Each level contains the one below it, so there is one decision per person per site instead of a set of switches.
 

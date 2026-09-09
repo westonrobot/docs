@@ -41,7 +41,7 @@ On-premise goes one step further and is decided by data residency. Where your ru
 
 Remote management covers two things: **changing a robot's credentials, and sending it a new map.**
 
-A map sent to a robot takes effect once it is activated, so a robot keeps the map it already has until an administrator makes the new one live. [How a map reaches a robot](/solution/robot-management-toolbox/tenant-management#how-a-map-reaches-a-robot) sets out that path and who takes each step.
+A map is activated first, and only then given to the robots assigned to it, so a robot keeps the map it already has until an administrator makes the new one live and it confirms the change. [How a map reaches a robot](/solution/robot-management-toolbox/tenant-management#how-a-map-reaches-a-robot) sets out that path and who takes each step.
 
 ## Software updates
 
@@ -55,7 +55,7 @@ That means the update path depends on access — a VPN connection and SSH to the
 Whoever arranged the deployment will know; it is fixed at the start of a project rather than chosen per site. If you are unsure, ask through [support](/support/before-you-contact-us).
 
 **Do the robots need internet access?**  
-They need to reach your Robot Management Toolbox instance over your network, wherever it runs. A robot navigates from the map it already holds, so a mission continues through an interruption in that link — what it does in that case is a policy you configure.
+They need to reach your Robot Management Toolbox instance over your network, wherever it runs. A robot navigates from the map it already holds, so a mission continues through an interruption in that link — what it does in that case is set on the robot when we commission it, not in the toolbox.
 
 **Can we update the robot software ourselves?**  
 Updates are carried out by Weston Robot. Arrange VPN access or an on-site visit through your usual contact.

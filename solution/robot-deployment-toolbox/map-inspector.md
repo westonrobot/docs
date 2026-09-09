@@ -1,19 +1,19 @@
 ---
 sidebar_position: 2
-description: "The Map Inspector: open a map from the fleet or a file, examine its elements in 2D or 3D, and test whether a route between two points solves."
+description: "The Map Inspector: open a map from the fleet or a file, examine its elements in 2D or 3D, and test in 2D whether a route between two points solves."
 ---
 
 # Map inspector
 
 The inspector opens a map and lets you examine it without changing it. It is the tool for answering "is this map all right?" — before a change, after one, or when a robot is behaving oddly and the map is a suspect.
 
-It has two modes, which were once two separate tools and are now tabs of one: **Inspect**, for reading what a map contains, and **Route**, for testing that it can be navigated. Both can be viewed in **2D**, the graph flat, or **3D**, the graph over the point cloud.
+It has two modes: **Inspect**, for reading what a map contains, and **Route**, for testing that it can be navigated. Inspect draws the map either in **2D**, the graph flat, or in **3D**, the graph over the point cloud; the 2D/3D switch sits beside the mode tabs and appears in Inspect only. **Route is 2D**, and switching to it returns you to the flat view.
 
 ## Opening a map
 
 | Source | Use it when |
 | --- | --- |
-| **Import from Fleet** | The question is about a live site — this is the map robots are actually running |
+| **Import from Fleet** | The question is about a live site — this is the revision the fleet has activated for it. A robot that has not yet confirmed the change is still running the previous one |
 | **Upload TMG file** | You have a graph on hand, without its other layers |
 | **Upload bundle** | You have a full map bundle as a `.zip` |
 
@@ -44,7 +44,9 @@ Click to set a start point and shift-click to set a goal. The path is computed a
 
 A route that does not solve is the map's problem, not the robot's. Two segments that appear to join on screen may not share a point; a path may cross a zone that forbids it; a node may sit on a different level from the one you expect. Each of those looks fine and navigates badly, and each shows up here in seconds rather than during a patrol.
 
-Route planning runs as a service rather than in the browser, so the mode is unavailable when that service cannot be reached, and the header shows whether it is connected.
+Route planning runs as a service rather than in the browser, so the mode is unavailable when that service cannot be reached.
+
+**Route availability.** Route requires both a connection to the supporting service and an available pathfinding engine. The header can therefore show **Connected** while **Route** remains unavailable — a real state rather than a glitch. The header itself reports three things and no more: **Checking...**, **Connected** or **Offline**; a server that is reachable but failing reads as Offline.
 
 **Test the pairs that matter**, rather than every pair. The long paths — a charging bay to the far end of the site, and back — are what expose a break in the middle. Short hops between neighbours rarely tell you anything you did not already know from looking.
 
@@ -68,4 +70,4 @@ Validation checks that a route actually solves, not that lines meet on screen. T
 Load it from the fleet rather than trusting a local copy — that is what Import from Fleet is for, and a copy on a laptop may be several revisions behind.
 
 **Route mode is greyed out**  
-Route planning runs as a service, and the mode is unavailable while it cannot be reached. The header shows the connection state.
+Route requires both a connection to the supporting service and an available pathfinding engine, and it is greyed out while either is missing. The header can read **Connected** and Route still be unavailable, because Connected reports only that the service was reached. On pointer-based browsers, hovering over Route may show which of the two is missing.

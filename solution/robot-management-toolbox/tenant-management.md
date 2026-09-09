@@ -44,9 +44,9 @@ A **robot** belongs to one site and is assigned one map. Which map, and which ve
 | --- | --- | --- |
 | **Observer** | One site | See the site and its robots. No commands |
 | **Operator** | One site | Everything an Observer can, plus command robots — dispatch, teleoperate, emergency stop |
-| **Site Admin** | One site | Everything an Operator can, plus manage and activate that site's maps — including its waypoints and the connections between them — and manage its robots |
+| **Site Admin** | One site | Everything an Operator can, plus manage and activate that site's maps — including its saved locations — and change a robot's name, model, capabilities and assigned map |
 | **Auditor** | Whole tenant | Read operational and audit logs across every site. No commands, no changes |
-| **Tenant Administrator** | Whole tenant | Site Admin authority at every site, plus managing sites, users and roles |
+| **Tenant Administrator** | Whole tenant | Site Admin authority at every site, plus managing users and roles. Sites themselves are provisioned by Weston Robot |
 
 Observer, Operator and Site Admin are granted **per site**, so the same person can hold different roles at different buildings. Auditor and Tenant Administrator apply across the whole tenant at once.
 

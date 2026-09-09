@@ -45,7 +45,9 @@ If you do not have that point cloud yet, [Manifold Scanner Guides](/tutorial/man
 
 Check the other direction too: **a cloud can be too sparse to localise against.** A robot matches what it sees to the map, so the permanent structure of the site — walls, columns, fixed racking — is what it needs. A repetitive building filtered down to bare geometry can look tidy here and leave a robot unable to tell one corridor from the next.
 
-**It can also be too heavy.** What you build here does not stay here: the bundle is uploaded to the Robot Management Toolbox and then pushed down to every robot that works the site, all of it over Wi-Fi. A cloud that is merely slow to draw on a workstation is an expensive thing to move over a site network, repeatedly. **Aim for a point cloud under about 300 MB** — density beyond what makes the building legible costs upload time and gains the robot nothing. The scanner guides reduce the cloud [before the handoff](/tutorial/manifold/processing#subsampling-to-01-m) for this reason.
+**It can also be too heavy.** What you build here does not stay here: the bundle is uploaded to the Robot Management Toolbox and then pushed down to every robot that works the site, all of it over Wi-Fi. A cloud that is merely slow to draw on a workstation is an expensive thing to move over a site network, repeatedly.
+
+**For reliable operation, keep the point cloud below 200 MB and the complete map bundle below 300 MB.** Maps that exceed these recommendations may require additional optimization before they can be used reliably with the Deployment Toolbox. Working inside them is also ordinary economy: density beyond what makes the building legible costs upload time and gains the robot nothing. The scanner guides reduce the cloud [before the handoff](/tutorial/manifold/processing#subsampling-to-01-m) for this reason.
 
 Once something is loaded, the panel reports what you have: the point cloud's file, its point count and its extent in metres; and for a map, its format and spec version, when it was created and last modified, and how many nodes, segments, zones, transitions and levels it holds. **Read those counts before you start editing** — they are the quickest way to notice you have opened the wrong map, or an older revision than you meant.
 
@@ -202,7 +204,7 @@ Validate the map, review what it contains, and send it somewhere.
 
 **Validation checks the map against itself, not against the building.** It catches a node nothing connects to; it cannot catch a segment drawn through a wall the scan missed, or a floor that sits 30 cm below where the robot finds it. Clean validation means the map is internally coherent — the question of whether it describes the site correctly is settled by driving on it, and only then.
 
-The stage also shows what the bundle will carry: the map document, the point cloud, and the occupancy map generated for each level, written as a standard grid and its accompanying metadata.
+The stage also shows what the bundle will carry: the map document, the point cloud, and the occupancy map generated for each level, written as a standard grid and its accompanying metadata. Keep the complete bundle below **300 MB** for reliable operation.
 
 **A changelog entry belongs to the version, not to the file.** The stage asks what changed and who changed it, and leaving both empty skips the entry — which is worth not doing, because it is the record that explains a revision to whoever opens it next.
 
@@ -210,11 +212,11 @@ From here the map can be **exported as a bundle** — a `.zip` packing the map d
 
 **Name the TMG document `tmg_map.tmg.json`**, alongside `pointcloud_map.pcd` for the cloud it was drawn against, so a site's files can be picked up months later without guesswork.
 
-## Publishing to the fleet
+## Pushing to the fleet
 
 A finished map does nothing until it reaches robots, and the Robot Deployment Toolbox performs only the first step of that journey.
 
-### Pushing
+### What the push asks for
 
 Pushing sends the map into the Robot Management Toolbox. The push asks for four things:
 
@@ -246,12 +248,12 @@ Two further steps, both taken by a person in the fleet management system, turn i
 | Step | Who | What it does |
 | --- | --- | --- |
 | **Push** | This tool | Creates the draft revision |
-| **Publish** | Site Admin | Marks the draft a finished revision |
-| **Activate** | Site Admin | Makes it *the* revision robots are given |
+| **Publish** | Site Admin or Tenant Administrator | Marks the draft a finished revision |
+| **Activate** | Site Admin or Tenant Administrator | Makes it *the* revision robots are given |
 
 **This tool stops at the draft.** It cannot publish, it cannot activate, and it never talks to a robot at all. There is no path from here to a machine in the field.
 
-That is a boundary between the two tools rather than between two people: the same Site Admin who drew the map can publish and activate it. If your process needs a second person to review a map before robots use it, that has to come from your process.
+That is a boundary between the two tools rather than between two people: the same person who drew the map can publish and activate it. If your process needs a second person to review a map before robots use it, that has to come from your process.
 
 [How a map reaches a robot](/solution/robot-management-toolbox/tenant-management#how-a-map-reaches-a-robot) shows the whole path in one diagram, and [Catching a robot up to the map](/solution/robot-management-toolbox/tenant-management#catching-a-robot-up-to-the-map) covers what happens to robots once a revision is activated.
 
@@ -287,7 +289,7 @@ Yes. Stages are revisitable once their prerequisites are met, so returning to Pr
 Expected. Pushing creates a draft in the Robot Management Toolbox; someone there has to publish it and then activate it. Until then robots keep the map they have.
 
 **Can I change a map without this tool?**  
-A Site Admin can adjust waypoints and the connections between them in the Robot Management Toolbox. Changing the scan, the levels or the zones is this tool's job.
+A Site Admin or Tenant Administrator can adjust a site's saved locations in the Robot Management Toolbox. Changing the scan, the levels, the graph or the zones is this tool's job.
 
 **My site has two floors**  
 This release supports one level per site, because robots do not use stairs or lifts on their own. Ramps within a level are fine, since a ramp is not a change of level.

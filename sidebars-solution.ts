@@ -3,12 +3,30 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 const sidebarsSolution: SidebarsConfig = {
   solutionSidebar: [
     'intro',
+    // Ordered by the workflow, not by how often a page is opened: a site is
+    // mapped with the Robot Deployment Toolbox before anything can be run from
+    // the Robot Management Toolbox. The overview page's cards are in the same
+    // order, so the sidebar and the page agree.
+    //
+    // Capturing the scan the deployment toolbox starts from is a scanner
+    // procedure rather than a solution (ADR 0002), so it is not listed here —
+    // Manifold Scanner Guides is linked from the deployment toolbox instead.
     {
       type: 'category',
-      label: 'Robot Management Toolbox',
+      label: 'Robot Deployment Toolbox',
       // The overview is the category's own landing page, so clicking the
       // category goes somewhere useful instead of just expanding. Same shape
       // as ugv_devkit in sidebars-system.ts.
+      link: {type: 'doc', id: 'robot-deployment-toolbox/index'},
+      // Inspector before editor, matching the overview's own order.
+      items: [
+        'robot-deployment-toolbox/map-inspector',
+        'robot-deployment-toolbox/map-editor',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Robot Management Toolbox',
       link: {type: 'doc', id: 'robot-management-toolbox/index'},
       // Ordered as the overview's feature sections are, so the sidebar and
       // the page agree about what comes after what.
@@ -20,16 +38,6 @@ const sidebarsSolution: SidebarsConfig = {
         'robot-management-toolbox/tenant-management',
         'robot-management-toolbox/audit-log',
         'robot-management-toolbox/deployment-and-servicing',
-      ],
-    },
-    {
-      type: 'category',
-      label: 'Robot Deployment Toolbox',
-      link: {type: 'doc', id: 'robot-deployment-toolbox/index'},
-      // Inspector before editor, matching the overview's own order.
-      items: [
-        'robot-deployment-toolbox/map-inspector',
-        'robot-deployment-toolbox/map-editor',
       ],
     },
     // The Assisted Driving Toolbox is retired and `unlisted`, so it is not

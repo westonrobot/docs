@@ -22,14 +22,14 @@ One robot on one screen. The view is laid out so that judging a running mission 
 | **Camera feeds** | Live feeds from the robot's cameras, each labelled, any of which can be brought into focus |
 | **Operations** | The mission running now, how many are scheduled, and a running log of what the robot has reported |
 | **Telemetry** | The readings the robot makes about itself — see below |
-| **Alerts** | What has been raised for this robot over a window you choose — 12 hours by default, adjustable from 1 to 48. The durable record is in [Detection review](/solution/robot-management-toolbox/detection-review) |
+| **Alerts** | What has been raised for this robot over a window set on the **Settings** page — 12 hours by default, or 1, 6, 24 or 48. The durable record is in [Detection review](/solution/robot-management-toolbox/detection-review) |
 | **Control** | The robot's current mode, and the controls to intervene |
 
 **The main view area shows one or the other.** A **Map / Cameras** toggle decides whether the navigation map or the camera feeds take the large panel, with the other moving aside. An operator watching a robot drive can give the space to the feeds; one checking progress against the building can give it to the map. Which of the two opens by default is a per-user preference.
 
-**Localisation is worth watching.** A robot that is not localised does not know where it is on the map, so map-relative work — dispatching a mission, sending it home — has nothing to work from until it does. The map reports which of four states it is in: **uninitialised**, **initialising**, **tracking** or **lost**.
+**Localisation is worth watching.** A robot that is not localised does not know where it is on the map, so map-relative work — dispatching a mission, sending it home — has nothing to work from until it does. The map reports it beside the robot: **Localized** when it is tracking, **Not Localized** when it has no fix, and **Unknown** when the robot has not said recently enough to be trusted.
 
-**Init Pose**, on the map toolbar, is the recovery for a robot that is not tracking. You point at where the robot actually is and set its heading; it localises from there. It stays available when the robot's other map actions are not, precisely because it is the action that fixes the problem those actions are blocked by.
+**Init Pose**, on the map toolbar, is the recovery for a robot that is not tracking. You point at where the robot actually is and set its heading; it localises from there. It stays available while a locations-confirmation round is outstanding, precisely because it is the action that fixes the problem those actions are blocked by. A robot on an out-of-date map revision is a different matter: there Init Pose waits with everything else until the map is put right.
 
 ## Telemetry
 
@@ -96,18 +96,20 @@ The view is headed with the robot's name, model and serial number. Quote those w
 
 <Figure
   src={require('../img/fleet-controls.png').default}
-  alt="The robot control panel, headed Control with the robot's mode, showing a full-width emergency stop, Teleop and Go Home buttons, Commands and Missions tabs, and under Commands a Stance group with Stand and Sit and a Docking group with Dock and Undock"
+  alt="The robot control panel, headed Control with the robot's mode, showing a full-width E-Stop, Teleop and Go Home buttons, Commands and Missions tabs, and under Commands a Stance group with Stand and Sit and a Docking group with Dock and Undock"
   size="lg"
   framed
-  caption="The control panel, with the Commands tab open: emergency stop, teleoperation, Go Home, and the stance and docking commands." />
+  caption="The control panel, with the Commands tab open: E-Stop, teleoperation, Go Home, and the stance and docking commands." />
 
 | Control | What it does |
 | --- | --- |
-| **Emergency stop** | Stops the robot. While it is engaged, the other controls on the card are unavailable |
+| **E-Stop** | Stops the robot. While it is active the panel reads **E-STOP ACTIVE** and offers **Reset E-Stop**, which is how it is released |
 | **Teleoperation** | Drive the robot yourself, from the browser |
 | **Go Home** | Send the robot back to its home position. Where no home has been set the same control reads **Set Home** instead, because with nowhere to drive to Go Home could only fail |
 | **Commands** | Docking — dock and undock — and posture commands such as stand and sit |
 | **Missions** | Pick a mission this robot may run, and dispatch it |
+
+**What the E-Stop withdraws is the ability to set the robot going, not the ability to stop it.** While it is active, the controls that would start movement or take on new work are unavailable — driving, Go Home, the stance and docking commands, dispatching a mission, and auto-dispatch. The controls for dealing with what is already running stay available, so a run in progress can still be paused, resumed or stopped, a result acknowledged, and the robot cleared. Releasing the E-Stop is a deliberate second action rather than a side effect of anything else.
 
 Control is held under a **lease**, so a second operator cannot take the controls until the one held is released.
 

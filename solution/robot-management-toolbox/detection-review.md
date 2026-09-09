@@ -5,7 +5,9 @@ description: "Detection review in the Robot Management Toolbox: how an event bec
 
 # Detection review
 
-Everything the robots observed arrives here. Whatever did the observing reports into the same place — a camera on the robot, or an analytics service running elsewhere — so this is the single record regardless of what found the thing.
+Everything a site's robots observed arrives here. Whatever did the observing reports into the same place — a camera on the robot, or an analytics service running elsewhere — so this is the single record regardless of what found the thing.
+
+**Detection review belongs to a site, and is opened from that site's page** via its **Detection Review** card. There is no fleet-wide list that spans sites: a tenant with three sites has three records, and reading one needs access to that site. That is the same boundary the rest of the system draws, and it is why a robot's alerts and the durable record agree — both are scoped to where the robot works.
 
 ## The model
 

@@ -1,19 +1,29 @@
 ---
-sidebar_position: 3
+sidebar_position: 2
 description: "Robot Deployment Toolbox: turn a 3D scan of a site into the map robots navigate by. What a map contains, the editor, the inspector, and how a map reaches the fleet."
 ---
 
 # Robot Deployment Toolbox
 
-A 3D scan of a building is just points. A robot needs to know where the floor is, where it may drive, where it must not go, and which places matter. Somebody supplies that meaning once per site, and this is the tool they use.
+A 3D scan of a building is a collection of points. A robot also needs to know where the floor is, where it may drive, where it must not go, and which places matter. The Robot Deployment Toolbox is used to add that information and to review it.
 
-The scan itself is made elsewhere. If the site is captured with one of our handheld scanners, [Manifold Scanner Guides](/tutorial/manifold) covers everything up to the `.pcd` this tool loads.
+The scan itself is produced elsewhere. Where a site is captured with one of our handheld scanners, [Manifold Scanner Guides](/tutorial/manifold) covers everything up to the `.pcd` this tool loads.
 
-What comes out is the **site map** — the artifact everything else depends on. It is pushed to the [Robot Management Toolbox](/solution/robot-management-toolbox), and reaches the robots from there.
+The output is the **site map**, which everything else depends on. It is pushed to the [Robot Management Toolbox](/solution/robot-management-toolbox) and reaches the robots from there.
 
-Preparing a site is a once-per-site job rather than a once-per-mission one, and the map is revisited afterwards only when the building itself changes — new racking, a wall moved, a door now permanently shut. Editing a site's map requires the **Site Admin** role for that site; operators and observers use maps without changing them.
+Site preparation is generally performed once for a site, and revisited when the physical environment changes — racking added, a wall moved, a door permanently closed.
 
-Key features of the toolbox are summarized in the table below, and each is covered in its own section.
+**A role is required to push a map, not to author one.** The three parts of the job are authorized separately:
+
+| Action | Role required |
+| --- | --- |
+| Open and edit a map from local files | None — the map stays in your browser |
+| Import a site's map from Fleet | **Observer** or above at that site |
+| **Push a map to Fleet** | **Site Admin** for that site, or **Tenant Administrator** |
+
+Authoring a map therefore needs no role in the fleet management system; authority is checked when the map is pushed. Publishing and activating the pushed revision require those same two roles, and neither is performed in this tool — see [Pushing to the fleet](/solution/robot-deployment-toolbox/map-editor#pushing-to-the-fleet).
+
+The toolbox's features are summarized below, and each is covered in its own section.
 
 | Feature | What it gives you |
 | --- | --- |
@@ -54,7 +64,7 @@ The navigation graph is where a map's meaning lives, and these are the elements 
 | **Level** | A floor. Nodes and zones each belong to one |
 | **Transition** | How a robot moves between levels |
 
-Most zones on a finished map were never drawn by hand — one is generated around every node and along every segment, marking the envelope the robot may drive within. The ones you *do* draw are how you say "slow down here" or "never go here".
+Most zones on a finished map were never drawn by hand — one is generated around every node and along every segment, marking the envelope the robot may drive within. The ones you *do* draw are how you say "never go here". A speed limit is set on a segment rather than drawn as a zone.
 
 <Figure
   src={require('../img/toolbox-map-elements.png').default}
@@ -97,7 +107,7 @@ That is deliberate, and it has one practical consequence worth planning around: 
   framed
   caption="One end of the exchange: a map comes in from the fleet, or from a file on your machine." />
 
-[Publishing to the fleet](/solution/robot-deployment-toolbox/map-editor#publishing-to-the-fleet) covers the four things the push asks for, why the change summary is worth writing properly, the three steps from draft to activated, and what activation costs a robot.
+[Pushing to the fleet](/solution/robot-deployment-toolbox/map-editor#pushing-to-the-fleet) covers the four things the push asks for, why the change summary is worth writing properly, the three steps from draft to activated, and what activation costs a robot.
 
 ## Map inspector
 
