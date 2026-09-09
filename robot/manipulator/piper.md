@@ -35,10 +35,10 @@ Bring-up in outline:
 
 1. **Mount the arm** on a rigid surface, or on the base it will run on.
 2. **Connect power and a CAN interface** to your computer.
-3. **Bring up CAN** and confirm the arm responds — the [CAN protocol reference](https://tangrobot.sharepoint.com/:x:/s/Public-Outgoing/EXt0lngMwfpEuhgttEqFuYIBtMUkrF6Ou1ovQOHQbsWm8A?e=2FoZtv) documents the frames.
+3. **Bring up CAN** and confirm the arm responds — the CAN protocol reference under [Related resources](#related-resources) documents the frames.
 4. **Drive it from code** using `piper_sdk`, or from the Windows application for a first check.
 
-The [Quick Start Guide](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EZQW2Y1CL_pHm8SymXTjTsMBVfHFpi-THuqaTYGQ3FMW1g?e=rQMw0H) is the shortest path, and the unboxing and gripper-installation videos below cover the mechanical side.
+The quick start guide under [Related resources](#related-resources) is the shortest path, and the unboxing and gripper-installation videos below cover the mechanical side.
 
 ## Key information
 
@@ -48,18 +48,19 @@ A quick reference for the things you reach for most often, collected so you can 
 
 Files and repositories you clone or download to work with the arm.
 
+**Documents we publish** — generated from the file store, so a new revision appears here without this page being edited.
+
+<Downloads product="piper" />
+
+**Everything else** — code repositories, maintained by hand.
+
 | Resource | What it is | Where |
 | --- | --- | --- |
-| User manual | Full manual | [EN](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EfqPP2v-mhFKv-VARWnYcyUB-xQBw-88Vx5Pro3mZsgmGg?e=KTfP6b) · [CN](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EasMrjngL_pNmaawLe8mlCgBTgPMNG1hp6PRw32CDxccow?e=7q5abC) |
-| Quick start guide | The shortest path to first motion | [EN](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EZQW2Y1CL_pHm8SymXTjTsMBVfHFpi-THuqaTYGQ3FMW1g?e=rQMw0H) · [CN](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EQBRJZsY1gdDg_do070o2goBCWjyDwGL9dohA4xCFqkNog?e=38opB8) |
-| CAN protocol | Frame reference for the control interface | [Protocol (CN)](https://tangrobot.sharepoint.com/:x:/s/Public-Outgoing/EXt0lngMwfpEuhgttEqFuYIBtMUkrF6Ou1ovQOHQbsWm8A?e=2FoZtv) |
-| Windows application | Drive the arm without writing code | [Application](https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EUN0qfdCSLVCqZPctXXr_SwB6CCPON8HHcWR5ybNwy1aOQ?e=zekJyS) |
 | SDK | Primary development interface | [piper_sdk](https://github.com/agilexrobotics/piper_sdk) · [examples](https://github.com/agilexrobotics/piper_sdk_demo) |
 | ROS 1 | ROS Noetic integration | [Piper_ros noetic](https://github.com/agilexrobotics/Piper_ros/tree/ros-noetic-no-aloha) |
 | ROS 2 | ROS 2 integration | [Humble](https://github.com/agilexrobotics/Piper_ros/tree/ros-humble-no-aloha) · [Foxy](https://github.com/agilexrobotics/Piper_ros/tree/ros-foxy-no-aloha) |
 | Simulation | Gazebo, Isaac Sim and MoveIt 2 | [Gazebo / MoveIt 2](https://github.com/agilexrobotics/agilex_open_class/tree/master/piper) · [Isaac Sim](https://github.com/agilexrobotics/piper_isaac_sim) |
 | URDF | Robot model | [urdf](https://github.com/agilexrobotics/Piper_ros/tree/ros-noetic-no-aloha/src/piper_description/urdf) |
-| CAD models | STEP files | [Arm](https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/Edhy2bZ_K1VEtaVOmVpe7AEBsh_b-1CXjWN9vhLG7VqNMw?e=qyKYmB) · [Gripper](https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EYwTc-zvbopOqe_LtjsbhscBrMTgOvUHuVOVgNnWEDmt5w?e=WzT6bk) · [Drag teaching tool](https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EfaGx4MK2hxHonUwllRgDGgBz9ciPUZrmXTq3Hu4o4WAyQ?e=ZVX6uK) |
 
 Installing Weston Robot packages on your host? Add our package repository first: [Weston Robot Apt Source](/tutorial/installation/apt_source).
 
