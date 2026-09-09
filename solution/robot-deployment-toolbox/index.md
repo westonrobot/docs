@@ -64,7 +64,7 @@ The navigation graph is where a map's meaning lives, and these are the elements 
 | **Level** | A floor. Nodes and zones each belong to one |
 | **Transition** | How a robot moves between levels |
 
-Most zones on a finished map were never drawn by hand — one is generated around every node and along every segment, marking the envelope the robot may drive within. The ones you *do* draw are how you say "slow down here" or "never go here".
+Most zones on a finished map were never drawn by hand — one is generated around every node and along every segment, marking the envelope the robot may drive within. The ones you *do* draw are how you say "never go here". A speed limit is set on a segment rather than drawn as a zone.
 
 <Figure
   src={require('../img/toolbox-map-elements.png').default}

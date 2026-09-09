@@ -27,9 +27,9 @@ One robot on one screen. The view is laid out so that judging a running mission 
 
 **The main view area shows one or the other.** A **Map / Cameras** toggle decides whether the navigation map or the camera feeds take the large panel, with the other moving aside. An operator watching a robot drive can give the space to the feeds; one checking progress against the building can give it to the map. Which of the two opens by default is a per-user preference.
 
-**Localisation is worth watching.** A robot that is not localised does not know where it is on the map, so map-relative work — dispatching a mission, sending it home — has nothing to work from until it does. The map reports which of four states it is in: **uninitialised**, **initialising**, **tracking** or **lost**.
+**Localisation is worth watching.** A robot that is not localised does not know where it is on the map, so map-relative work — dispatching a mission, sending it home — has nothing to work from until it does. The map reports it beside the robot: **Localized** when it is tracking, **Not Localized** when it has no fix, and **Unknown** when the robot has not said recently enough to be trusted.
 
-**Init Pose**, on the map toolbar, is the recovery for a robot that is not tracking. You point at where the robot actually is and set its heading; it localises from there. It stays available when the robot's other map actions are not, precisely because it is the action that fixes the problem those actions are blocked by.
+**Init Pose**, on the map toolbar, is the recovery for a robot that is not tracking. You point at where the robot actually is and set its heading; it localises from there. It stays available while a locations-confirmation round is outstanding, precisely because it is the action that fixes the problem those actions are blocked by. A robot on an out-of-date map revision is a different matter: there Init Pose waits with everything else until the map is put right.
 
 ## Telemetry
 

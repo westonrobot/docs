@@ -289,7 +289,7 @@ Yes. Stages are revisitable once their prerequisites are met, so returning to Pr
 Expected. Pushing creates a draft in the Robot Management Toolbox; someone there has to publish it and then activate it. Until then robots keep the map they have.
 
 **Can I change a map without this tool?**  
-A Site Admin or Tenant Administrator can adjust waypoints and the connections between them in the Robot Management Toolbox. Changing the scan, the levels or the zones is this tool's job.
+A Site Admin or Tenant Administrator can adjust a site's saved locations in the Robot Management Toolbox. Changing the scan, the levels, the graph or the zones is this tool's job.
 
 **My site has two floors**  
 This release supports one level per site, because robots do not use stairs or lifts on their own. Ramps within a level are fine, since a ramp is not a change of level.
