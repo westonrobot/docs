@@ -13,7 +13,7 @@ It has two modes: **Inspect**, for reading what a map contains, and **Route**, f
 
 | Source | Use it when |
 | --- | --- |
-| **Import from Fleet** | The question is about a live site — this is the map robots are actually running |
+| **Import from Fleet** | The question is about a live site — this is the revision the fleet has activated for it. A robot that has not yet confirmed the change is still running the previous one |
 | **Upload TMG file** | You have a graph on hand, without its other layers |
 | **Upload bundle** | You have a full map bundle as a `.zip` |
 
