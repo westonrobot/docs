@@ -61,8 +61,6 @@ Files and repositories you clone or download to work with the robot.
 
 | Resource | What it is | Where |
 | --- | --- | --- |
-| Manual | Ranger Mini 2.0 user manual | [EN](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/Eagd2Vrmnw9IiTzl4HaXjEwBuQJJ1unetL-IEpGHdBejag?e=YY4be5) · [CN](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EdlhLdKQBDlKlYL35YiVYDwBqyHDFgfliUiPDEmwy0WACA?e=TnIw9y) |
-| CAD model | STEP file for mechanical design | [Ranger Mini 2.0 STEP](https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/Efcf9NZa15JGkcNRaEoGLNsBfNuwNNzcgjNtEsDMMHAM4A?e=YcQ9AB) |
 | C++ SDK | Primary development interface | [ugv_sdk](https://github.com/westonrobot/ugv_sdk) |
 | ROS package | ROS 1 integration | [ranger_ros](https://github.com/westonrobot/ranger_ros) |
 | ROS 2 package | ROS 2 integration | [ranger_ros2](https://github.com/westonrobot/ranger_ros2) |
@@ -75,11 +73,13 @@ Dimensions, payload, speed and battery figures are on the [official product page
 
 Which build you are running changes what the robot can do, so check before troubleshooting.
 
+We supply firmware images on request — [submit a support request](https://forms.office.com/r/qELKzYF33W) quoting the version you are running.
+
 | Version | What is different |
 | --- | --- |
-| [V5.9.1](https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EasKzBaC07dIrhxGs9_4_WEBY-2gf81qeoZFdDFCFB0Ibw?e=CFUJ6T) | E-stop parks the wheels |
-| [V5.8.7](https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/ESydg3zKcnhHizjnudyNDcgBiSuX7mgCCOMeiZ4ncy_faQ?e=2Up90z) | **No** autocalibration — use [manual calibration](/tutorial/agilex/ranger_mini_calibration#manual-calibration) |
-| [V5.8.3](https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EXvKUHspMMZCvaDj1uvucD8BVPiIHzmzNm1JJ2N29_58_g?e=tWXt2J) | Includes autocalibration |
+| **V5.9.1** | E-stop parks the wheels |
+| **V5.8.7** | **No** autocalibration — use [manual calibration](/tutorial/agilex/ranger_mini_calibration#manual-calibration) |
+| **V5.8.3** | Includes autocalibration |
 
 ### Control interface
 

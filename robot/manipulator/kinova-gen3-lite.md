@@ -38,7 +38,7 @@ Bring-up in outline:
 3. **Reach the arm** through the KORTEX web interface to confirm it is alive.
 4. **Move to the API** — C++ or Python via KORTEX, or one of the ROS integrations.
 
-The [Start Guide](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EcuGhYgXKs5JtWMZoSnipRMBEWyYHV7YaTmaZAf57OIg_w?e=fJHUdH) is the shortest path, and Kinova's [KORTEX how-to series](https://www.youtube.com/watch?v=zQewb08M4sA&list=PLz1XwEYRuku5rZjJWBr6SDi93jgWZ4FHL) walks through the software.
+Kinova's [quick start guide](https://www.kinovarobotics.com/resource/gen3-lite-quick-start-guide) is the shortest path, and Kinova's [KORTEX how-to series](https://www.youtube.com/watch?v=zQewb08M4sA&list=PLz1XwEYRuku5rZjJWBr6SDi93jgWZ4FHL) walks through the software.
 
 ## Key information
 
@@ -48,13 +48,15 @@ A quick reference for the things you reach for most often, collected so you can 
 
 Files and repositories you clone or download to work with the arm.
 
+Kinova maintain their own documentation and revise it on their schedule — the links below go to their resource pages so you always get the current revision rather than a copy of ours.
+
 | Resource | What it is | Where |
 | --- | --- | --- |
-| User guide | Full manual | [User Guide PDF](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/Ec0kSpCAL-9JhKc6299RtrcBsy1Vvc0eolHHusPnqm_hlA?e=O8bN5Q) |
-| Start guide | The shortest path to first motion | [Start Guide PDF](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EcuGhYgXKs5JtWMZoSnipRMBEWyYHV7YaTmaZAf57OIg_w?e=fJHUdH) |
-| System overview | How KORTEX fits together | [Kinova Kortex PDF](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EeDH7SJp2CFJpmC3eTI_OOIBkzGOgqK6GYkxt7O1yfbbEg?e=wddhLM) |
-| Firmware release notes | What changed, and update procedure | [Release Notes PDF](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EdrqH5oIMkdJgx7gIsi6-60BURHPDimf6rviOIhmubDdzQ?e=sV36ea) |
-| CAD model | STEP file for mechanical design | [Gen3 Lite STEP](https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/ES0-WAcngaJBq0OggTQ34lMBAZ9P8QKvrli2RDojayINZw?e=GlLPa3) |
+| User guide | Full manual | [Gen3 lite user guide](https://www.kinovarobotics.com/resource/gen3-lite-user-guide) |
+| Start guide | The shortest path to first motion | [Quick start guide](https://www.kinovarobotics.com/resource/gen3-lite-quick-start-guide) |
+| Firmware release notes | What changed, and update procedure | [Release notes](https://artifactory.kinovaapps.com/artifactory/generic-documentation-public/Documentation/Gen3%20lite/Technical%20documentation/Release%20Notes/) |
+| CAD model | STEP file for mechanical design | [CAD & drawings](https://artifactory.kinovaapps.com/artifactory/generic-documentation-public/Documentation/Gen3%20lite/CAD%20%26%20Drawings/) |
+| Specifications | Dimensions, payload, reach and ratings | [Product specifications](https://artifactory.kinovaapps.com/artifactory/generic-documentation-public/Documentation/Gen3%20lite/Technical%20documentation/Product%20specifications/) |
 | Robot model | URDF / XACRO for simulation | [kortex_description](https://github.com/Kinovarobotics/ros_kortex/tree/kinetic-devel/kortex_description/arms/gen3_lite/6dof/urdf) |
 | C++ / Python API | Primary development interface | [Kinova KORTEX API](https://github.com/Kinovarobotics/Kinova-kortex2_Gen3_G3L/) |
 | ROS 1 | ROS integration | [ros_kortex](https://github.com/kinovarobotics/ros_kortex) |

@@ -188,8 +188,8 @@ If something genuinely new comes along, add it to `KINDS` in `scripts/wrfiles.py
 | `scout-mini-user-manual-en-v2.0.1.pdf` | User manual · en · v2.0.1 | `download.westonrobot.net/robot/scout-mini/scout-mini-user-manual-en-v2.0.1.pdf` |
 | `scout-mini-user-manual-zh-v2.0.1.pdf` | User manual · zh · v2.0.1 | `download.westonrobot.net/robot/scout-mini/scout-mini-user-manual-zh-v2.0.1.pdf` |
 | `scout-mini-quick-start-en-v1.pdf` | Quick start · en · v1 | `download.westonrobot.net/robot/scout-mini/scout-mini-quick-start-en-v1.pdf` |
-| `scout-mini-cad-en-v1.zip` | Cad · en · v1 | `download.westonrobot.net/robot/scout-mini/scout-mini-cad-en-v1.zip` |
-| `wr65-wire-protocol-en-v3.2.pdf` | Wire protocol · en · v3.2 | `download.westonrobot.net/robot/wr65/wr65-wire-protocol-en-v3.2.pdf` |
+| `scout-mini-cad-zxx-v1.zip` | CAD · — · v1 | `download.westonrobot.net/robot/scout-mini/scout-mini-cad-zxx-v1.zip` |
+| `wr65-api-reference-wire-protocol-en-v3.2.pdf` | API reference · Wire protocol · en · v3.2 | `download.westonrobot.net/robot/wr65/wr65-api-reference-wire-protocol-en-v3.2.pdf` |
 
 The two Scout Mini rows differ only by language, and both appear in the same table — one row each, no page edit. That is the point of the convention: the store answers `product="scout-mini"` with everything it has.
 
