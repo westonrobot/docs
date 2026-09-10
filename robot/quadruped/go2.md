@@ -56,7 +56,7 @@ Files and repositories you clone or download to work with the robot.
 
 | Resource | What it is | Where |
 | --- | --- | --- |
-| User guide | Weston Robot's Go2 user guide | [Go2 User Guide](https://drive.google.com/file/d/1J8djR9AM04yRQpGwCmQbvIni2ymwxlwV/view?usp=drive_link) |
+| User manual | Unitree's Go2 user manual | [Go2 user manual](https://marketing.unitree.com/article/en/Go2/User_Manual.html) |
 | Payload mounting | Mechanical mounting guidance | [Unitree payload guide](https://support.unitree.com/home/en/developer/Payload) |
 | URDF / CAD | Robot model for simulation and mechanical design | [Unitree developer downloads](https://support.unitree.com/home/en/developer/Obtain%20SDK) |
 | C++ SDK | Primary development interface | [unitree_sdk2](https://github.com/unitreerobotics/unitree_sdk2) |
