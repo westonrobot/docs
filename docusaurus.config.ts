@@ -136,6 +136,11 @@ const config: Config = {
         excludeRoutes: [
           '**/robot/ugv/ranger-mini-v2',
           '**/solution/adt/intro',
+          // Unlisted pages. docusaurus-lunr-search does not honour the
+          // `unlisted` front matter, so a page hidden from the sidebar and
+          // the sitemap is still returned by site search unless named here.
+          '**/robot/quadruped/as2',
+          '**/robot/humanoid/h2',
         ]
       }
     ],
