@@ -48,10 +48,15 @@ A quick reference for the things you reach for most often, collected so you can 
 
 Files and repositories you clone or download to work with the robot.
 
+**Documents we publish** — generated from the file store, so a new revision appears here without this page being edited.
+
+<Downloads product="go2" />
+
+**Everything else** — Unitree's own resources and code, maintained by them.
+
 | Resource | What it is | Where |
 | --- | --- | --- |
 | User guide | Weston Robot's Go2 user guide | [Go2 User Guide](https://drive.google.com/file/d/1J8djR9AM04yRQpGwCmQbvIni2ymwxlwV/view?usp=drive_link) |
-| Expansion dock reflash | Recovering or updating the dock's firmware | [Reflash guide](https://drive.google.com/file/d/14RwW_kDcGxX9-G442ri5mWq_qUPuTa0j/view?usp=drive_link) |
 | Payload mounting | Mechanical mounting guidance | [Unitree payload guide](https://support.unitree.com/home/en/developer/Payload) |
 | URDF / CAD | Robot model for simulation and mechanical design | [Unitree developer downloads](https://support.unitree.com/home/en/developer/Obtain%20SDK) |
 | C++ SDK | Primary development interface | [unitree_sdk2](https://github.com/unitreerobotics/unitree_sdk2) |
