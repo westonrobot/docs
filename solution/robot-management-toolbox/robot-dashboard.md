@@ -111,7 +111,15 @@ The view is headed with the robot's name, model and serial number. Quote those w
 
 **What the E-Stop withdraws is the ability to set the robot going, not the ability to stop it.** While it is active, the controls that would start movement or take on new work are unavailable — driving, Go Home, the stance and docking commands, dispatching a mission, and auto-dispatch. The controls for dealing with what is already running stay available, so a run in progress can still be paused, resumed or stopped, a result acknowledged, and the robot cleared. Releasing the E-Stop is a deliberate second action rather than a side effect of anything else.
 
-Control is held under a **lease**, so a second operator cannot take the controls until the one held is released.
+**Every role at a site may activate the E-Stop, and it needs no control lease.** Safety is not something to
+hold a lease for, so an Observer — who can command nothing else here — can still stop a robot.
+**Releasing it is an Operator action:** **Reset E-Stop** is not open to every role, so an Observer
+who stops a robot needs an Operator to reset it.
+[Roles](/solution/robot-management-toolbox/tenant-management#roles) defines every role and its scope.
+
+Every other control on this panel is held under a **lease** — an exclusive claim on that robot — so
+**only one person commands it at a time**, and a second operator cannot take the controls until the
+lease is released. There is no ambiguity about who is responsible for a moving robot.
 
 Pressing **Teleop** starts a driving session in the main view area. Driving itself — keyboard and gamepad control, key mapping and axis inversion, speed and deadzone, arranging the camera views, and audio — is covered on [Robot teleoperation](/solution/robot-management-toolbox/robot-teleoperation).
 
@@ -125,16 +133,40 @@ Nothing starts by itself again until **Resume Auto-Dispatch**, so a robot paused
 
 A robot that is not reporting its dispatcher state shows the control unavailable rather than hiding it — an absent button means the robot is not reporting, not that it lacks the feature.
 
+## Recovery and acknowledgement
+
+A run that ends badly leaves something to settle, and the Management Toolbox keeps it in your way
+rather than clearing it quietly. On the control panel's **Missions** tab, the dispatch control is replaced by
+**Acknowledge "…" to continue** — the run's own name, and *failed* when it failed.
+
+That replacement is the point: **until you acknowledge it, you cannot dispatch anything else to that
+robot.** A result nobody looked at is the one that repeats, so you are asked to close it before the robot
+will take new work. Acknowledging is not an admission of anything; it is you saying you have seen
+the outcome.
+
+A robot that fails a run usually stops taking new work at the same time. Acknowledging can lift that
+pause for you, but only where the pause can be established as belonging to that run — so it is not
+something to count on. A **scheduled** mission's failure never resumes the schedule by itself: a
+schedule that restarts after failing is a schedule that fails all night.
+
+When the pause came from somewhere else — an operator paused it, a map update paused it, the robot's
+work was cleared — it is left alone, and auto-dispatch simply stays paused. Lifting a hold
+someone else put on deliberately would be worse than leaving yours in place, so the way back is the
+**Resume Auto-Dispatch** control rather than the acknowledgement.
+
+**Resume Auto-Dispatch** is the way back whatever paused the robot, and it is never withheld
+because an automatic resume was declined. Like anything else that lets work start, it needs the
+robot's controls and a settled map, and it is unavailable while the **E-Stop** is active. If a
+robot is idle when you expected it to be working, that control is the first thing to check.
+
 ## What happens during a mission
 
 Battery level and the connection to the fleet both change what a running mission does.
 
 - **Not enough battery** — the robot refuses to start a mission, and interrupts its schedule if the level becomes critical.
-- **The connection to the fleet drops mid-mission** — what the robot does next is set by its **disconnect policy**: `stop_safe`, which brings it to a controlled stop, or `continue_mission`, which carries on with the mission it holds. A custom behaviour can be fitted where a site needs something else. **The default is `stop_safe`.**
+- **The connection to the fleet drops mid-mission** — what the robot does next is decided on the robot, not from this dashboard.
 
-Two separate things are at work in that second case, and it is worth keeping them apart. **Navigation runs on the robot itself**, from the map it already holds, so completing a mission out of contact is a real capability rather than a hopeful one — which is what makes `continue_mission` a genuine option rather than a gamble. **The policy still decides what happens**, so a robot perfectly capable of continuing will stop if `stop_safe` is what it is set to.
-
-**The policy lives on the robot, not in the dashboard.** It is applied when Weston Robot commissions the robot, and changing it needs the same access as any other onboard change — see [Software updates](/solution/robot-management-toolbox/deployment-and-servicing#software-updates). The right answer differs between a warehouse aisle and an open yard, so it is worth settling at the site survey rather than after the first outage.
+**Navigation runs on the robot itself**, from the map it already holds, so the link to the fleet is not what keeps a robot navigating. What a robot does when that link drops is set on the robot when Weston Robot commissions it, and changing it needs the same access as any other onboard change — see [Software updates](/solution/robot-management-toolbox/deployment-and-servicing#software-updates). The right answer differs between a warehouse aisle and an open yard, so it is worth settling at the site survey rather than after the first outage; ask us what your robots are set to do.
 
 Messages are buffered on the robot while the link is down, so telemetry and events from that period arrive once it returns. What is genuinely unavailable in the meantime is the live view and the ability to send a command.
 
