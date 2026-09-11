@@ -55,7 +55,7 @@ That means the update path depends on access — a VPN connection and SSH to the
 Whoever arranged the deployment will know; it is fixed at the start of a project rather than chosen per site. If you are unsure, ask through [support](/support/before-you-contact-us).
 
 **Do the robots need internet access?**  
-They need to reach your Robot Management Toolbox instance over your network, wherever it runs. A robot navigates from the map it already holds, so a mission continues through an interruption in that link — what it does in that case is set on the robot when we commission it, not in the toolbox.
+They need to reach your Robot Management Toolbox instance over your network, wherever it runs. A robot navigates from the map it already holds, so the link to the toolbox is not what keeps it navigating. What a robot does when that link drops is set on the robot when we commission it, not in the toolbox.
 
 **Can we update the robot software ourselves?**  
 Updates are carried out by Weston Robot. Arrange VPN access or an on-site visit through your usual contact.

@@ -127,26 +127,27 @@ A robot that is not reporting its dispatcher state shows the control unavailable
 
 ## Recovery and acknowledgement
 
-A run that ends badly leaves something to settle, and Fleet keeps it in your way rather than
-clearing it quietly. On the control panel's **Missions** tab, the dispatch control is replaced by
+A run that ends badly leaves something to settle, and the Management Toolbox keeps it in your way
+rather than clearing it quietly. On the control panel's **Missions** tab, the dispatch control is replaced by
 **Acknowledge "…" to continue** — the run's own name, and *failed* when it failed.
 
 That replacement is the point: **until you acknowledge it, you cannot dispatch anything else to that
-robot.** A result nobody looked at is the one that repeats, so Fleet asks you to close it before it
+robot.** A result nobody looked at is the one that repeats, so you are asked to close it before the robot
 will take new work. Acknowledging is not an admission of anything; it is you saying you have seen
 the outcome.
 
 A robot that fails a run usually stops taking new work at the same time. Acknowledging can lift that
-pause for you, but only where Fleet can establish that the pause belonged to that run — so it is not
+pause for you, but only where the pause can be established as belonging to that run — so it is not
 something to count on. A **scheduled** mission's failure never resumes the schedule by itself: a
 schedule that restarts after failing is a schedule that fails all night.
 
-When the pause came from somewhere else, Fleet leaves it alone and tells you which it was — paused
-by an operator, paused for a map update, or paused when the robot's work was cleared. Lifting a hold
-someone else put on deliberately would be worse than leaving yours in place.
+When the pause came from somewhere else — an operator paused it, a map update paused it, the robot's
+work was cleared — it is left alone, and auto-dispatch simply stays paused. Lifting a hold
+someone else put on deliberately would be worse than leaving yours in place, so the way back is the
+**Resume Auto-Dispatch** control rather than the acknowledgement.
 
 **Resume Auto-Dispatch** is always there and always yours to press. It is never hidden or disabled
-because Fleet declined to resume on its own. If a robot is idle when you expected it to be working,
+because an automatic resume was declined. If a robot is idle when you expected it to be working,
 that control is the first thing to check.
 
 ## What happens during a mission
@@ -154,11 +155,9 @@ that control is the first thing to check.
 Battery level and the connection to the fleet both change what a running mission does.
 
 - **Not enough battery** — the robot refuses to start a mission, and interrupts its schedule if the level becomes critical.
-- **The connection to the fleet drops mid-mission** — what the robot does next is set by its **disconnect policy**: `stop_safe`, which brings it to a controlled stop, or `continue_mission`, which carries on with the mission it holds. A custom behaviour can be fitted where a site needs something else. **The default is `stop_safe`.**
+- **The connection to the fleet drops mid-mission** — what the robot does next is decided on the robot, not from this dashboard.
 
-Two separate things are at work in that second case, and it is worth keeping them apart. **Navigation runs on the robot itself**, from the map it already holds, so completing a mission out of contact is a real capability rather than a hopeful one — which is what makes `continue_mission` a genuine option rather than a gamble. **The policy still decides what happens**, so a robot perfectly capable of continuing will stop if `stop_safe` is what it is set to.
-
-**The policy lives on the robot, not in the dashboard.** It is applied when Weston Robot commissions the robot, and changing it needs the same access as any other onboard change — see [Software updates](/solution/robot-management-toolbox/deployment-and-servicing#software-updates). The right answer differs between a warehouse aisle and an open yard, so it is worth settling at the site survey rather than after the first outage.
+**Navigation runs on the robot itself**, from the map it already holds, so the link to the fleet is not what keeps a robot navigating. What a robot does when that link drops is set on the robot when Weston Robot commissions it, and changing it needs the same access as any other onboard change — see [Software updates](/solution/robot-management-toolbox/deployment-and-servicing#software-updates). The right answer differs between a warehouse aisle and an open yard, so it is worth settling at the site survey rather than after the first outage; ask us what your robots are set to do.
 
 Messages are buffered on the robot while the link is down, so telemetry and events from that period arrive once it returns. What is genuinely unavailable in the meantime is the live view and the ability to send a command.
 

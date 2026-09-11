@@ -56,7 +56,7 @@ version — what each of the two everyday roles can actually do.
 | Turn a saved mission on or off | Yes | Yes |
 | Change **when** a mission runs — its run conditions | Yes | Yes |
 | Pause and resume auto-dispatch | Yes | Yes |
-| Acknowledge and retry work that failed | Yes | Yes |
+| Acknowledge work that failed | Yes | Yes |
 | Catch a robot up to the map | Yes | Yes |
 | Teleoperate, E-Stop, dock and undock, stance commands | Yes | Yes |
 | Create or edit **what** a mission is — its route, checkpoints and actions | — | Yes |
@@ -72,8 +72,9 @@ to, and the map underneath both. So an operator can decide *when* a mission runs
 
 An **Observer** may see all of the above and command none of it, with one deliberate exception:
 **the E-Stop is available to every role, and needs no control lease.** Safety is not something
-to hold a lease for. Everything else Fleet enforces against the role you hold, so an action outside
-your role cannot be performed.
+to hold a lease for. Releasing it again is an Operator action, so an Observer who stops a robot will
+need an Operator to reset it. Every other action is enforced against the role you hold, so one outside your role cannot be
+performed.
 
 **Above a site.** Managing people — inviting users, granting and removing roles — is a **Tenant
 Administrator's**, across the whole tenant rather than one site. Creating tenants and sites, and
@@ -90,7 +91,8 @@ sufficient:
   Go Home controls withdrawn until it catches up — [Catching a robot up to the
   map](/solution/robot-management-toolbox/tenant-management#catching-a-robot-up-to-the-map).
 - **Go Home needs a home.** Where none is set, the control reads **Set Home** instead.
-- **Pausing is always available; resuming asks for more.** Pausing auto-dispatch is never blocked.
+- **Pausing is easier than resuming.** Pausing auto-dispatch asks nothing of the robot's state, though the
+  E-Stop takes it with everything else while engaged.
   Resuming needs the robot's controls and a settled map, because resuming is a decision to let work
   start.
 
@@ -106,8 +108,10 @@ Setting a site up, once. The map arrives first and the missions refer to it, so 
    map](/solution/robot-management-toolbox/tenant-management#catching-a-robot-up-to-the-map).
 4. Save the places the work refers to, and set each robot's home — [Saved
    locations](/solution/robot-management-toolbox/mission-editing#saved-locations).
-5. Build the missions and set their run conditions — [Mission
-   editing](/solution/robot-management-toolbox/mission-editing).
+5. Build the missions — [Mission
+   editing](/solution/robot-management-toolbox/mission-editing). Setting their run conditions need
+   not be your job: an Operator can do it too. But a mission needs one before it can be activated,
+   and only an activated mission is carried by the next step.
 6. Send the missions to the robots that will run them, and confirm the badge reads **robot
    confirmed** —
    [Sending missions to a robot](/solution/robot-management-toolbox/mission-editing#sending-missions-to-a-robot).
@@ -133,7 +137,7 @@ Anything an operator cannot do on that path — a mission that needs a new check
 the wrong place, a robot that will not come onto the map — goes to an Admin. Where an action
 will not proceed at all, [When an action cannot
 proceed](/solution/robot-management-toolbox/mission-editing#when-an-action-cannot-proceed) explains
-what Fleet is telling you.
+what you are being told.
 
 ## Fleet overview
 

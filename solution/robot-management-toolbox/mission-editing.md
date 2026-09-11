@@ -155,7 +155,7 @@ about what the robot is carrying — in either direction. Turning a mission **of
 off the robot either: a robot already holding it can keep running it until the next Send to Robot
 leaves it out. A mission can be active and not on the robot, and the
 robot will not run it; the only thing that puts work on a robot is sending it, and the only thing
-that confirms it is the robot's own report. So *active* is Fleet's intent, and the badge below is
+that confirms it is the robot's own report. So *active* is the Management Toolbox's intent, and the badge below is
 the robot's answer — read the badge, not the activation, when you want to know what the robot has.
 
 | Badge | Means |
@@ -190,7 +190,8 @@ Missions reference the site map, so a robot must be on the map the fleet has act
 Quick Dispatch is **transient, one-off work**: one press, one drive, and the robot is finished with
 it. Use it for something you will not want again.
 
-There are two ways in, and they behave the same way:
+There are two ways in, and both create the same transient one-off work — neither puts the source
+mission on the robot:
 
 - **Quick Dispatch** on the map toolbar of the robot's own view, to send the robot to a point you
   pick, with no mission at all.
@@ -210,7 +211,7 @@ knowing before you rely on it:
   never makes other armed work resident as a side effect.
 - **It leaves resident work alone.** A scheduled mission already on the robot is untouched and stays
   scheduled; the errand runs alongside it, not instead of it.
-- **It clears itself.** When the robot reports the errand finished or failed, Fleet takes it off the
+- **It clears itself.** When the robot reports the errand finished or failed, it is taken off the
   robot without anyone pressing anything.
 - **It pauses the schedule until you acknowledge it.** New work is held back until you close the
   result — see [Recovery and
@@ -221,14 +222,14 @@ knowing before you rely on it:
 
 ## When an action cannot proceed
 
-Fleet would rather refuse than guess. Four refusals come up in normal use, and each one names a
-different missing fact — so the message tells you which of them you are looking at, and each has a
-different thing to do about it.
+The Management Toolbox would rather refuse than guess. Four of these come up in normal use, each turning on a
+different missing fact, and each with a different thing to do about it. The first, third and fourth
+say so on screen; the second is quieter — what you see is that auto-dispatch has gone paused.
 
 | Refusal | What it means | What to do |
 | --- | --- | --- |
-| **Fleet cannot tell what this robot is holding** | The robot has not reported its own mission list recently enough to be trusted. Not knowing is not the same as knowing it is empty, and Fleet will not treat it as empty | Wait for the robot to report, or bring it back online, then repeat the action. Nothing has been changed on the robot |
-| **The removal was withheld, and auto-dispatch is paused** | You asked Fleet to take work off a robot whose current list it cannot see. Sending a corrected list would mean guessing the rest of it, so Fleet sent nothing and paused new work instead, to stop the robot picking up something you were trying to remove | Wait until the robot reports again, repeat the removal, then **Resume Auto-Dispatch** |
+| **The fleet cannot tell what this robot is holding** | The robot has not reported its own mission list recently enough to be trusted. Not knowing is not the same as knowing it is empty, and Fleet will not treat it as empty | Wait for the robot to report, or bring it back online, then repeat the action. Nothing has been changed on the robot |
+| **The removal was withheld, and auto-dispatch is paused** | You asked for work to be taken off a robot whose current list cannot be seen. Sending a corrected list would mean guessing the rest of it, so nothing was sent and new work was paused instead, to stop the robot picking up something you were trying to remove | Wait until the robot reports again, repeat the removal, then **Resume Auto-Dispatch** |
 | **A saved location already stands here** | The place you are saving is the same spot, facing the same way, as a location that already exists — and it names the one that is already there | Use the location it names. Two names for one place is what makes a library stop being trustworthy |
 | **A place this mission needs cannot be resolved** | The mission refers to a home position or a checkpoint that no longer exists, or that cannot be resolved on the robot's current map. The mission is invalid to send at all, so this is answered before anything about schedules or holds | Open the mission and set the missing place, then send it again |
 
@@ -263,7 +264,7 @@ A day rule has no cooldown of its own, so a mission that does not end by itself 
 That robot is on an older map than the one the fleet has activated. See [Catching a robot up to the map](/solution/robot-management-toolbox/tenant-management#catching-a-robot-up-to-the-map).
 
 **I moved a location and several missions changed**  
-Expected, if it was a saved location. Checkpoints made from one follow it, so a single correction applies everywhere it is used.
+Expected, if it was a saved location. In the Management Toolbox, checkpoints that reference that saved location are updated together. A robot already holding one of those missions keeps the position it was previously given until you **Send to Robot** again — a **· needs review** signal on its badge is telling you that the copy the robot holds needs updating.
 
 **Did last night's patrol actually run?**  
 Run history, which records how each run ended. The robot's own report does not keep it.
