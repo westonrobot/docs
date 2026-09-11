@@ -39,15 +39,15 @@ Work is saved as you go, and the header shows when it last was. It lives in your
 
 **Start from local files** assembles the same pieces yourself. A **point cloud** is required — the scan the map is built on, in `PCD`, `PLY`, `XYZ` or `PTS`, with colour if the scan carries it. A **TMG map** is optional, and loading one continues an existing map rather than starting a new one, which is how you re-author a map against a fresh scan.
 
-If you do not have that point cloud yet, [Manifold Scanner Guides](/tutorial/manifold) covers capturing a site with a handheld scanner and exporting a `.pcd` from it. Name that file **`pointcloud_map.pcd`**.
+If you do not have that point cloud yet, [Manifold Scanner Guides](/guides/manifold) covers capturing a site with a handheld scanner and exporting a `.pcd` from it. Name that file **`pointcloud_map.pcd`**.
 
-**Look at the cloud before you start drawing on it.** A scan that is tilted, warped, doubled, disconnected or badly incomplete produces a map that looks reasonable here and navigates badly, and every stage after this one inherits the problem. The scanner guides list [what to reject and why](/tutorial/manifold/processing#look-at-it-before-you-export); the cheapest moment to send a bad scan back is before a single node is placed.
+**Look at the cloud before you start drawing on it.** A scan that is tilted, warped, doubled, disconnected or badly incomplete produces a map that looks reasonable here and navigates badly, and every stage after this one inherits the problem. The scanner guides list [what to reject and why](/guides/manifold/processing#look-at-it-before-you-export); the cheapest moment to send a bad scan back is before a single node is placed.
 
 Check the other direction too: **a cloud can be too sparse to localise against.** A robot matches what it sees to the map, so the permanent structure of the site — walls, columns, fixed racking — is what it needs. A repetitive building filtered down to bare geometry can look tidy here and leave a robot unable to tell one corridor from the next.
 
 **It can also be too heavy.** What you build here does not stay here: the bundle is uploaded to the Robot Management Toolbox and then pushed down to every robot that works the site, all of it over Wi-Fi. A cloud that is merely slow to draw on a workstation is an expensive thing to move over a site network, repeatedly.
 
-**For reliable operation, keep the point cloud below 200 MB and the complete map bundle below 300 MB.** Maps that exceed these recommendations may require additional optimization before they can be used reliably with the Deployment Toolbox. Working inside them is also ordinary economy: density beyond what makes the building legible costs upload time and gains the robot nothing. The scanner guides reduce the cloud [before the handoff](/tutorial/manifold/processing#subsampling-to-01-m) for this reason.
+**For reliable operation, keep the point cloud below 200 MB and the complete map bundle below 300 MB.** Maps that exceed these recommendations may require additional optimization before they can be used reliably with the Deployment Toolbox. Working inside them is also ordinary economy: density beyond what makes the building legible costs upload time and gains the robot nothing. The scanner guides reduce the cloud [before the handoff](/guides/manifold/processing#subsampling-to-01-m) for this reason.
 
 Once something is loaded, the panel reports what you have: the point cloud's file, its point count and its extent in metres; and for a map, its format and spec version, when it was created and last modified, and how many nodes, segments, zones, transitions and levels it holds. **Read those counts before you start editing** — they are the quickest way to notice you have opened the wrong map, or an older revision than you meant.
 
@@ -101,7 +101,7 @@ Adding the level by hand gets the workflow moving. It says nothing about whether
 point cloud under it is accurate or complete — and a scan thin enough to miss its own
 floor is worth a second look. If the cloud also looks tilted, warped, doubled or
 misaligned, re-scan rather than working around it; the
-[Manifold Scanner Guides](/tutorial/manifold) cover what to check.
+[Manifold Scanner Guides](/guides/manifold) cover what to check.
 
 :::
 
@@ -269,7 +269,7 @@ Everything in this tool checks the map against itself. A cloud that imported, le
 
 **The final validation is navigation.** If a robot cannot localise reliably, or drifts off segments, or fails to reach nodes it should reach, then the map or the scan behind it needs revisiting, however clean it looked here. That is worth planning for: the first activation on a new site is a test, not a delivery.
 
-Where the problem traces back to the scan rather than the drawing — a tilted or warped cloud, geometry that was never captured — the fix is upstream, in the [Manifold Scanner Guides](/tutorial/manifold).
+Where the problem traces back to the scan rather than the drawing — a tilted or warped cloud, geometry that was never captured — the fix is upstream, in the [Manifold Scanner Guides](/guides/manifold).
 
 ## Common questions
 

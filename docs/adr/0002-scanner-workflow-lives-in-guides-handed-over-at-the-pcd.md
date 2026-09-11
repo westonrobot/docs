@@ -23,7 +23,7 @@ We supply the scanner that produces it. The Manifold Pocket2 Scanner is a handhe
 
 ## Decision
 
-**D1. The capture workflow is a Guides area, not a product-page section and not part of the toolbox.** `Guides › Manifold Scanner Guides`, at `/tutorial/manifold`, as a sidebar category whose index is its own landing page — the shape `sidebars-solution.ts` already uses for the Robot Deployment Toolbox.
+**D1. The capture workflow is a Guides area, not a product-page section and not part of the toolbox.** `Guides › Manifold Scanner Guides`, at `/guides/manifold`, as a sidebar category whose index is its own landing page — the shape `sidebars-solution.ts` already uses for the Robot Deployment Toolbox.
 
 This follows the split the site is already built on and which `ia-proposal.md` §7 states: a product page says what a thing is and how it is wired, a guide says how to do something with it. A capture session is a procedure with a beginning and an end, so it is a guide. It is also the only one of the four options that lets the material grow: more scanner instructions land as sibling pages under the same category, with no page needing to be restructured to accommodate them.
 

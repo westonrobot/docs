@@ -17,7 +17,7 @@ Capture is previewed live and edited in the field through the MindCloud GO app; 
 
 This page does not repeat or replace Manifold's documentation — the manuals below are the reference for operating it.
 
-This is the earlier model. The current one is the [Manifold Pocket2 Scanner](/peripheral/sensor/manifold_pocket2), and the desktop half of the workflow is the same for both — see the [Point Cloud Processing & Export Guide](/tutorial/manifold/processing).
+This is the earlier model. The current one is the [Manifold Pocket2 Scanner](/peripheral/sensor/manifold_pocket2), and the desktop half of the workflow is the same for both — see the [Point Cloud Processing & Export Guide](/guides/manifold/processing).
 
 </div>
 

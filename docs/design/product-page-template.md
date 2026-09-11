@@ -360,7 +360,7 @@ An admonition block announcing missing data reads as unfinished. A sentence expl
 
 This reverses an earlier decision. A `/support/faq` page held the cross-platform answers — waterproofing, joint wear, fall recovery, wired versus WiFi — and product pages linked them by anchor. It was removed because the questions customers actually ask are model-specific, and a shared page meant every answer had to be hedged with "applies to G1, Go2 and B2".
 
-The four genuinely cross-cutting answers were not deleted with it. They moved into the two guides that already summarised and linked them: waterproofing, the WiFi-versus-wired reasoning and fall recovery into [Operational Safety](../../tutorial/operational-safety.md), joint wear into [Robot Maintenance](../../tutorial/robot-maintenance.md). Those are where a reader looking for safety or upkeep would go anyway.
+The four genuinely cross-cutting answers were not deleted with it. They moved into the two guides that already summarised and linked them: waterproofing, the WiFi-versus-wired reasoning and fall recovery into [Operational Safety](../../guides/operational-safety.md), joint wear into [Robot Maintenance](../../guides/robot-maintenance.md). Those are where a reader looking for safety or upkeep would go anyway.
 
 Anchors into them are still validated at build time by `onBrokenAnchors: 'throw'`.
 
@@ -519,7 +519,7 @@ those belong to the vendor.>
 
 ## Getting started
 
-Read [Operational Safety](/tutorial/operational-safety) before powering the robot
+Read [Operational Safety](/guides/operational-safety) before powering the robot
 for the first time. <One sentence on the platform-specific risk.>
 
 The first-run sequence is covered end to end in **[<bring-up guide>](...)**. In
@@ -570,7 +570,7 @@ you. Values below are as configured on the units we supply.
 | --- | --- | --- |
 | [<Guide>](...) | <scope> | <trigger> |
 
-**[All <Model> guides](/tutorial/tags/<tag>)** — generated from the `<tag>` tag,
+**[All <Model> guides](/guides/tags/<tag>)** — generated from the `<tag>` tag,
 so anything published later appears there without this page being edited.
 
 ## Troubleshooting & FAQ
@@ -672,7 +672,7 @@ An earlier draft invented `Fitting it` and `Interfaces and device nodes`. Both w
 | 2c | → **Electrical interfaces** | yes | Same title, wider scope — includes power input and **device nodes** |
 | 2d | → **Control interface** | if it has one | Same title already used on `wr65` and `xarm` |
 | 2e | → **Specifications** | yes | As-supplied figures, per the deferral rule below |
-| 3 | **Common configurations** | if any | **Peripheral-only.** Short inline procedures. Robot pages send these to `/tutorial/` guides; these are too small to extract |
+| 3 | **Common configurations** | if any | **Peripheral-only.** Short inline procedures. Robot pages send these to `/guides/` guides; these are too small to extract |
 | 4 | **Guides for this product** | if any | Same |
 | 5 | **Troubleshooting & FAQ** | yes | Same |
 | 6 | **Support** | yes | Same |
@@ -805,4 +805,4 @@ v1 is a genuinely different architecture — a server on the robot, and a client
 
 The hub previously promised a section list — Supported platforms, Deployment, Configuration, Release notes, Known limitations — that only the two unpublished drafts followed. The one live solution used a completely different shape, so the promise was false for everything a customer could actually reach.
 
-Open gaps: ADT has **no `Supported platforms` table** and no `Known limitations` section, both of which need product knowledge. v1's install instructions also predate our apt-source guide and originally hardcoded the repository URL with the deprecated `apt-key add`; they now link [Apt Source](../../tutorial/installation/apt_source.md), which should be confirmed as correct for v1.
+Open gaps: ADT has **no `Supported platforms` table** and no `Known limitations` section, both of which need product knowledge. v1's install instructions also predate our apt-source guide and originally hardcoded the repository URL with the deprecated `apt-key add`; they now link [Apt Source](../../guides/installation/apt_source.md), which should be confirmed as correct for v1.

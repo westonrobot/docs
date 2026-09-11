@@ -31,7 +31,7 @@ Realman's own documentation:
 
 ## Getting started
 
-Read [Operational Safety](/tutorial/operational-safety) before powering the arm for the first time. A manipulator moving under program control is a crush hazard — keep clear of the working envelope until you have tested your motion limits. The WRL63's reach makes this envelope considerably larger than you may expect; check what is inside it before the first move.
+Read [Operational Safety](/guides/operational-safety) before powering the arm for the first time, including the [additional hazards specific to manipulators](/guides/safety/manipulators). A manipulator moving under program control is a crush hazard — keep clear of the working envelope until you have tested your motion limits. The WRL63's reach makes this envelope considerably larger than you may expect; check what is inside it before the first move.
 
 Bring-up in outline:
 
@@ -61,7 +61,7 @@ Files and repositories you clone or download to work with the arm. The manuals b
 | ROS package | ROS 1 integration | [wrl63b_ros](https://github.com/westonrobot/wrl63b_ros) |
 | ROS 2 package | ROS 2 integration | [wr_arm_ros2](https://github.com/westonrobot/wr_arm_ros2) |
 
-Installing Weston Robot packages on your host? Add our package repository first: [Weston Robot Apt Source](/tutorial/installation/apt_source).
+Installing Weston Robot packages on your host? Add our package repository first: [Weston Robot Apt Source](/guides/installation/apt_source).
 
 CAD models, end effectors and Realman's own tooling are on the official pages linked at the top of this page.
 

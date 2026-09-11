@@ -49,7 +49,7 @@ What it gives you over wiring straight to the battery:
 | `wr_regulator_widget` | GUI for monitoring and switching channels | Install from our Debian repository |
 | EDS file | CANopen object dictionary, needed by `canopen` in Python | Ships with the SDK at `/opt/weston_robot/share/wrp_sdk/eds/westonrobot/regulator/` |
 
-Add our package repository before installing either: [Weston Robot Apt Source](/tutorial/installation/apt_source).
+Add our package repository before installing either: [Weston Robot Apt Source](/guides/installation/apt_source).
 
 ### Electrical interfaces
 
@@ -147,7 +147,7 @@ sudo add-apt-repository ppa:lely/ppa && sudo apt-get update
 sudo apt-get install -y pkg-config liblely-coapp-dev liblely-co-tools
 ```
 
-Then, with [our Debian repository](/tutorial/installation/apt_source) added:
+Then, with [our Debian repository](/guides/installation/apt_source) added:
 
 ```bash
 sudo apt-get install wrp_sdk

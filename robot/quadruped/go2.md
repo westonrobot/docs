@@ -29,7 +29,7 @@ Unitree's own documentation:
 
 ## Getting started
 
-Read [Operational Safety](/tutorial/operational-safety) before powering the robot for the first time.
+Read [Operational Safety](/guides/operational-safety) before powering the robot for the first time, including the [additional hazards specific to quadrupeds](/guides/safety/quadrupeds).
 
 The Go2 Edu we supply carries Unitree's 4D LIDAR L1 and, where fitted, the expansion dock that gives you a computer of your own to work on. Bring-up in outline:
 
@@ -58,7 +58,7 @@ Files and repositories you clone or download to work with the robot.
 | Python SDK | Python bindings for the same interface | [unitree_sdk2_python](https://github.com/unitreerobotics/unitree_sdk2_python) |
 | ROS 2 package | ROS 2 integration | [unitree_ros2](https://github.com/unitreerobotics/unitree_ros2) |
 
-Installing Weston Robot packages on the robot or your host? Add our package repository first: [Weston Robot Apt Source](/tutorial/installation/apt_source).
+Installing Weston Robot packages on the robot or your host? Add our package repository first: [Weston Robot Apt Source](/guides/installation/apt_source).
 
 Vendor manuals, videos and the mobile app are on the official pages linked at the top of this page.
 
@@ -117,10 +117,10 @@ What you use when mounting a payload or wiring anything to the robot. Click eith
 
 | Guide | What it covers | Reach for it when |
 | --- | --- | --- |
-| [Go2 Diagnostics Guide](/tutorial/unitree/go2_diag_guide) | Reading diagnostic data and alarm information through the mobile app | Something is wrong and you need to know what |
-| [Unitree SLAM Guide](/tutorial/unitree/go2_slam) | Mapping and navigation on the Go2 and Go2-W | Building a map or running autonomous navigation |
+| [Go2 Diagnostics Guide](/guides/unitree/go2_diag_guide) | Reading diagnostic data and alarm information through the mobile app | Something is wrong and you need to know what |
+| [Unitree SLAM Guide](/guides/unitree/go2_slam) | Mapping and navigation on the Go2 and Go2-W | Building a map or running autonomous navigation |
 
-**[All Go2 guides](/tutorial/tags/go2)** — generated from the `go2` tag, so anything published later appears there without this page being edited.
+**[All Go2 guides](/guides/tags/go2)** — generated from the `go2` tag, so anything published later appears there without this page being edited.
 
 ## Troubleshooting & FAQ
 
@@ -151,15 +151,15 @@ Yes. See Unitree's [UWB application guide](https://support.unitree.com/home/en/d
 
 ### Can I develop over WiFi instead of a wired connection?
 
-Technically yes, and it is fine for high-level work. **Not for low-level control** — a WiFi latency spike or dropout can stall the control loop and the Go2 can fall as a result. Use a cable for anything joint-level or balance-related. See [the full answer](/tutorial/operational-safety#while-you-are-developing).
+Technically yes, and it is fine for high-level work. **Not for low-level control** — a WiFi latency spike or dropout can stall the control loop and the Go2 can fall as a result. Use a cable for anything joint-level or balance-related. See [the full answer](/guides/operational-safety#while-you-are-developing).
 
 ### Questions that apply across our platforms
 
 These are answered in the guides rather than repeated on every product page:
 
-- [Is the robot waterproof?](/tutorial/operational-safety#where-you-can-operate) — no, and what the ratings mean across platforms
-- [How often do I need to lubricate the joints?](/tutorial/robot-maintenance#quadrupeds-and-humanoids) — and what to do about stiffness or play
-- [The robot has fallen over and does not respond to the controller](/tutorial/operational-safety#if-something-goes-wrong) — the recovery sequence
+- [Is the robot waterproof?](/guides/operational-safety#where-you-can-operate) — no, and what the ratings mean across platforms
+- [How often do I need to lubricate the joints?](/guides/maintenance/quadrupeds) — and what to do about stiffness or play
+- [The robot has fallen over and does not respond to the controller](/guides/operational-safety#if-something-goes-wrong) — the recovery sequence
 
 ## Support
 
