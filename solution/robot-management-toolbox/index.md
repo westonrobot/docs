@@ -120,7 +120,7 @@ Setting a site up, once. The map arrives first and the missions refer to it, so 
 
 ## Operator standard workflow
 
-Running the robots, every day.
+Setting run conditions and running the robots.
 
 1. Open the **Dashboard** and look for anything that needs attention.
 2. Open the robot in question — [Robot
@@ -162,7 +162,7 @@ Opening a robot gives you that one machine on one screen: where it is on the sit
   alt="Robot detail view with the navigation map and the robot's pose, four live camera feeds, an operations panel showing scheduled missions, telemetry for battery, uptime, heartbeat and speed, an alerts panel, and the control panel"
   size="full"
   framed
-  caption="One robot on one screen: the site map, its cameras, what it is doing, how it is holding up, and the controls." />
+  caption="One robot on one screen: the site map, its cameras, what it is doing, its status, and the controls." />
 
 [Robot dashboard](/solution/robot-management-toolbox/robot-dashboard) covers the page in full: each panel, the telemetry readings and when a robot stops counting as reporting, the diagnostics view for a robot that is misbehaving, recovering localisation, taking control of a robot, and [what happens during a mission](/solution/robot-management-toolbox/robot-dashboard#what-happens-during-a-mission) as battery level and the link to the fleet change.
 

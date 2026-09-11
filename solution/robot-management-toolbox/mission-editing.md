@@ -158,13 +158,13 @@ Times are the **robot's local time**, not the browser's.
 Authoring a mission does not put it on a robot. Missions are **sent** to the robot that will run them, and a badge answers the question that follows: does the robot actually have these?
 
 **Nor does activating one.** A mission's activation decides whether it is *eligible* to run — it is
-how you enable a schedule, and how you stop it starting again without deleting it. It says nothing
-about what the robot is carrying — in either direction. Turning a mission **off** does not take it
-off the robot either: a robot already holding it can keep running it until the next Send to Robot
-leaves it out. A mission can be active and not on the robot, and the
-robot will not run it; the only thing that puts work on a robot is sending it, and the only thing
-that confirms it is the robot's own report. So *active* is the Management Toolbox's intent, and the badge below is
-the robot's answer — read the badge, not the activation, when you want to know what the robot has.
+how you enable a schedule, and how you stop it starting again without deleting it. Activation is
+not how a mission is put on a robot: **Send to Robot** is the deliberate way to do that, and a
+mission can be active and not on the robot, in which case the robot will not run it. Turning a
+mission **off** does not take it off the robot by itself either — a robot already holding it can
+keep running it until it is sent a list that leaves it out. What confirms any of this is the
+robot's own report, so *active* is the Management Toolbox's intent and the badge beside is the
+robot's answer: read the badge, not the activation, when you want to know what the robot has.
 
 | Badge | Means |
 | --- | --- |
@@ -181,7 +181,7 @@ A badge may also carry **· needs review** after it. That is a separate signal a
 
 **not confirmed** is what a mission shows when the system holds no evidence either way. On a system upgraded from an earlier release it is the starting state for missions that were already there, so a set of them reading *not confirmed* immediately after an upgrade is expected rather than a fault; sending again replaces it with an answer. A fresh installation does not normally produce it.
 
-To **dispatch** a mission is to hand it to a named robot to run, on demand or on its schedule. A robot can also be sent somewhere once, with no mission at all. Both are transient work rather than something the robot keeps — see [Quick Dispatch](#quick-dispatch) below.
+To **dispatch** a mission is to hand it to a named robot to run now. A robot can also be sent somewhere once, with no mission at all. Both are transient work rather than something the robot keeps — see [Quick Dispatch](#quick-dispatch) below.
 
 <Video
   src={require('../video/quick_dispatch.mp4').default}
@@ -212,13 +212,12 @@ it. Everything below applies to both.
 Either way it is deliberately kept apart from what a robot *holds*, and the distinction is worth
 knowing before you rely on it:
 
-- **It is not a Send.** Running a saved mission once does not put that mission on the robot. The
-  badge on the mission list still tells you whether the robot has it, and running it does not change
-  that answer.
-- **It delivers nothing else.** A mission you activated but never sent stays unsent. Quick Dispatch
-  never makes other armed work resident as a side effect.
-- **It leaves resident work alone.** A scheduled mission already on the robot is untouched and stays
-  scheduled; the errand runs alongside it, not instead of it.
+- **It is not a Send.** Running a saved mission once does not put that mission on the robot: the
+  badge on the mission list still tells you whether the robot has it.
+- **It is not a delivery.** An errand is not how saved missions reach a robot; **Send to Robot**
+  is.
+- **It does not displace resident work.** The errand runs alongside a scheduled mission the robot
+  already holds, not instead of it.
 - **It clears itself.** When the robot reports the errand finished or failed, it is taken off the
   robot without anyone pressing anything.
 - **It pauses the schedule until you acknowledge it.** New work is held back until you close the
@@ -236,7 +235,7 @@ say so on screen; the second is quieter — what you see is that auto-dispatch h
 
 | Refusal | What it means | What to do |
 | --- | --- | --- |
-| **The fleet cannot tell what this robot is holding** | The robot has not reported its own mission list recently enough to be trusted. Not knowing is not the same as knowing it is empty, and Fleet will not treat it as empty | Wait for the robot to report, or bring it back online, then repeat the action. Nothing has been changed on the robot |
+| **The fleet cannot tell what this robot is holding** | The robot has not reported its own mission list recently enough to be trusted. Not knowing is not the same as knowing it is empty, and the Management Toolbox will not treat it as empty | Wait for the robot to report, or bring it back online, then repeat the action. Nothing has been changed on the robot |
 | **The removal was withheld, and auto-dispatch is paused** | You asked for work to be taken off a robot whose current list cannot be seen. Sending a corrected list would mean guessing the rest of it, so nothing was sent and new work was paused instead, to stop the robot picking up something you were trying to remove | Wait until the robot reports again, repeat the removal, then **Resume Auto-Dispatch** |
 | **A saved location already stands here** | The place you are saving is the same spot, facing the same way, as a location that already exists — and it names the one that is already there | Use the location it names. Two names for one place is what makes a library stop being trustworthy |
 | **A place this mission needs cannot be resolved** | The mission refers to a home position or a checkpoint that no longer exists, or that cannot be resolved on the robot's current map. The mission is invalid to send at all, so this is answered before anything about schedules or holds | Open the mission and set the missing place, then send it again |
