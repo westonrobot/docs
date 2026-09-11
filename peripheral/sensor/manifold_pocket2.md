@@ -41,7 +41,7 @@ Before you travel to a site:
 4. **Check the storage on your unit.** The scanner records to an internal SSD, in 256 GB, 512 GB or 1 TB. Know which one you have before planning a long session.
 5. **Check what you are scanning.** Effective range depends heavily on surface reflectivity; see the note under [Specifications](#specifications).
 
-The capture and processing sequence itself is covered end to end in **[Manifold Scanner Guides](/tutorial/manifold)**.
+The capture and processing sequence itself is covered end to end in **[Manifold Scanner Guides](/guides/manifold)**.
 
 ## Key information
 
@@ -144,22 +144,22 @@ Three accessories change what a session records. Each is documented in full in t
 
 | Guide | What it covers | Reach for it when |
 | --- | --- | --- |
-| [Manifold Scanner Guides](/tutorial/manifold) | The whole path: preparing the scanner, connecting MindCloud Go, capturing, processing and exporting a `.pcd` | You are about to scan a site, or have a scan and need it in a usable format |
-| [Pocket2 Connection Guide](/tutorial/manifold/connecting) | The scanner's Wi-Fi, what the app talks to, and what to do when it will not connect | The app cannot see the scanner |
-| [Pocket2 Scanning Guide](/tutorial/manifold/scanning) | Initialisation, how to walk a site, stopping safely | Your first session, or a capture came back with gaps |
-| [Point Cloud Processing & Export Guide](/tutorial/manifold/processing) | MindCloud Studio: loading the `.lx`, Spatial subsampling at 0.1 m, exporting a `.pcd` | You have a raw capture and need a point cloud for the toolbox |
+| [Manifold Scanner Guides](/guides/manifold) | The whole path: preparing the scanner, connecting MindCloud Go, capturing, processing and exporting a `.pcd` | You are about to scan a site, or have a scan and need it in a usable format |
+| [Pocket2 Connection Guide](/guides/manifold/connecting) | The scanner's Wi-Fi, what the app talks to, and what to do when it will not connect | The app cannot see the scanner |
+| [Pocket2 Scanning Guide](/guides/manifold/scanning) | Initialisation, how to walk a site, stopping safely | Your first session, or a capture came back with gaps |
+| [Point Cloud Processing & Export Guide](/guides/manifold/processing) | MindCloud Studio: loading the `.lx`, Spatial subsampling at 0.1 m, exporting a `.pcd` | You have a raw capture and need a point cloud for the toolbox |
 
-**[All Pocket2 guides](/tutorial/tags/pocket2)** — generated from the `pocket2` tag, so anything published later appears there without this page being edited.
+**[All Pocket2 guides](/guides/tags/pocket2)** — generated from the `pocket2` tag, so anything published later appears there without this page being edited.
 
 ## Solutions for this platform
 
-A scan from this unit is what the [Robot Deployment Toolbox](/solution/robot-deployment-toolbox) authors a site map against. The handoff is a single file: subsample to 0.1 m and export a `.pcd` from MindCloud Studio, then load it in the toolbox's Load stage — see the [Point Cloud Processing & Export Guide](/tutorial/manifold/processing).
+A scan from this unit is what the [Robot Deployment Toolbox](/solution/robot-deployment-toolbox) authors a site map against. The handoff is a single file: subsample to 0.1 m and export a `.pcd` from MindCloud Studio, then load it in the toolbox's Load stage — see the [Point Cloud Processing & Export Guide](/guides/manifold/processing).
 
 ## Troubleshooting & FAQ
 
 ### The app cannot find the scanner's Wi-Fi
 
-Restart the scanner and search again, ideally from a different phone and in a different spot — a location with many competing Wi-Fi sources is a known cause. The [Pocket2 Connection Guide](/tutorial/manifold/connecting) has the full sequence and the phone settings that interfere with it.
+Restart the scanner and search again, ideally from a different phone and in a different spot — a location with many competing Wi-Fi sources is a known cause. The [Pocket2 Connection Guide](/guides/manifold/connecting) has the full sequence and the phone settings that interfere with it.
 
 ### Coverage is patchy on dark surfaces
 
@@ -175,7 +175,7 @@ Far enough is not a distance — the link is Wi-Fi, and the volume of preview da
 
 ### Does the scan survive the phone dying?
 
-Yes. Scanning runs on the scanner, so the capture continues if the app is closed or the phone shuts down. Rejoin the scanner's Wi-Fi with **the same phone** — restarting MindCloud Go if you need to — and the app returns to the running session; the project is only committed once you stop it and the app reports it saved. The [Pocket2 Scanning Guide](/tutorial/manifold/scanning) covers what that means in practice.
+Yes. Scanning runs on the scanner, so the capture continues if the app is closed or the phone shuts down. Rejoin the scanner's Wi-Fi with **the same phone** — restarting MindCloud Go if you need to — and the app returns to the running session; the project is only committed once you stop it and the app reports it saved. The [Pocket2 Scanning Guide](/guides/manifold/scanning) covers what that means in practice.
 
 ## Support
 

@@ -29,16 +29,16 @@ AgileX's own documentation:
 
 ## Getting started
 
-Read [Operational Safety](/tutorial/operational-safety) before driving the robot for the first time.
+Read [Operational Safety](/guides/operational-safety) before driving the robot for the first time, including the [additional hazards specific to wheeled bases](/guides/safety/wheeled-bases).
 
 The Ranger Mini has no onboard computer of its own — you supply the compute and talk to the base over CAN. Bring-up in outline:
 
 1. **Charge and power on**, and check the base responds to the supplied controller.
-2. **Calibrate the steering** if the wheels are not aligned — see [Steering Calibration](/tutorial/agilex/ranger_mini_calibration).
+2. **Calibrate the steering** if the wheels are not aligned — see [Steering Calibration](/guides/agilex/ranger_mini_calibration).
 3. **Wire a CAN interface** between your computer and the robot.
 4. **Drive it from code** using `ugv_sdk` or the ROS packages.
 
-Steps 3 and 4 are covered end to end in **[Robot Base Control](/tutorial/agilex/ugv_base_control)**.
+Steps 3 and 4 are covered end to end in **[Robot Base Control](/guides/agilex/ugv_base_control)**.
 
 Looking to add compute, sensors or power distribution? See [Peripherals](/peripheral/intro), or the [UGV Development Kit](/system/intro) for a pre-integrated build.
 
@@ -58,7 +58,7 @@ Files and repositories you clone or download to work with the robot.
 | ROS package | ROS 1 integration | [ranger_ros](https://github.com/westonrobot/ranger_ros) |
 | ROS 2 package | ROS 2 integration | [ranger_ros2](https://github.com/westonrobot/ranger_ros2) |
 
-Installing Weston Robot packages on your host? Add our package repository first: [Weston Robot Apt Source](/tutorial/installation/apt_source).
+Installing Weston Robot packages on your host? Add our package repository first: [Weston Robot Apt Source](/guides/installation/apt_source).
 
 Dimensions, payload, speed and battery figures are on the [official product page](https://global.agilex.ai/products/ranger-mini-3) rather than copied here.
 
@@ -70,18 +70,18 @@ Dimensions, payload, speed and battery figures are on the [official product page
 
 ### Control interface
 
-The base is driven over **CAN**. Both `ugv_sdk` and the ROS packages speak to it over the same interface, so bringing up CAN correctly is the prerequisite for everything else — see [Robot Base Control](/tutorial/agilex/ugv_base_control).
+The base is driven over **CAN**. Both `ugv_sdk` and the ROS packages speak to it over the same interface, so bringing up CAN correctly is the prerequisite for everything else — see [Robot Base Control](/guides/agilex/ugv_base_control).
 
-Because this is a **swerve-drive** platform, each wheel steers independently and the steering zero has to be established by calibration. A robot that crabs or pulls to one side almost always needs [recalibrating](/tutorial/agilex/ranger_mini_calibration) rather than repairing.
+Because this is a **swerve-drive** platform, each wheel steers independently and the steering zero has to be established by calibration. A robot that crabs or pulls to one side almost always needs [recalibrating](/guides/agilex/ranger_mini_calibration) rather than repairing.
 
 ## Guides for this product
 
 | Guide | What it covers | Reach for it when |
 | --- | --- | --- |
-| [Robot Base Control](/tutorial/agilex/ugv_base_control) | Manual and programmatic control over CAN, including interface setup and troubleshooting | Setting the robot up, or driving it from your own code |
-| [Ranger Mini Steering Calibration](/tutorial/agilex/ranger_mini_calibration) | Autocalibration and manual calibration of the steering motors | The robot crabs, pulls to one side, or will not drive straight |
+| [Robot Base Control](/guides/agilex/ugv_base_control) | Manual and programmatic control over CAN, including interface setup and troubleshooting | Setting the robot up, or driving it from your own code |
+| [Ranger Mini Steering Calibration](/guides/agilex/ranger_mini_calibration) | Autocalibration and manual calibration of the steering motors | The robot crabs, pulls to one side, or will not drive straight |
 
-**[All Ranger Mini guides](/tutorial/tags/ranger-mini)** — generated from the `ranger-mini` tag, so anything published later appears there without this page being edited.
+**[All Ranger Mini guides](/guides/tags/ranger-mini)** — generated from the `ranger-mini` tag, so anything published later appears there without this page being edited.
 
 ## Troubleshooting & FAQ
 

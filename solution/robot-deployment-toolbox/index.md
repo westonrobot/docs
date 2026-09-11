@@ -7,7 +7,7 @@ description: "Robot Deployment Toolbox: turn a 3D scan of a site into the map ro
 
 A 3D scan of a building is a collection of points. A robot also needs to know where the floor is, where it may drive, where it must not go, and which places matter. The Robot Deployment Toolbox is used to add that information and to review it.
 
-The scan itself is produced elsewhere. Where a site is captured with one of our handheld scanners, [Manifold Scanner Guides](/tutorial/manifold) covers everything up to the `.pcd` this tool loads.
+The scan itself is produced elsewhere. Where a site is captured with one of our handheld scanners, [Manifold Scanner Guides](/guides/manifold) covers everything up to the `.pcd` this tool loads.
 
 The output is the **site map**, which everything else depends on. It is pushed to the [Robot Management Toolbox](/solution/robot-management-toolbox) and reaches the robots from there.
 

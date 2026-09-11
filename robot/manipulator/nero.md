@@ -40,7 +40,7 @@ Delete this admonition once the page is complete.
 
 ## Getting started
 
-Read [Operational Safety](/tutorial/operational-safety) before powering the arm for the first time. A manipulator moving under program control is a crush hazard — keep clear of the working envelope until you have tested your motion limits.
+Read [Operational Safety](/guides/operational-safety) before powering the arm for the first time, including the [additional hazards specific to manipulators](/guides/safety/manipulators). A manipulator moving under program control is a crush hazard — keep clear of the working envelope until you have tested your motion limits.
 
 Bring-up in outline:
 
@@ -66,7 +66,7 @@ Files and repositories you clone or download to work with the arm.
 | ROS / ROS 2 packages | **TODO** | |
 | URDF / CAD | **TODO** | |
 
-Installing Weston Robot packages on your host? Add our package repository first: [Weston Robot Apt Source](/tutorial/installation/apt_source).
+Installing Weston Robot packages on your host? Add our package repository first: [Weston Robot Apt Source](/guides/installation/apt_source).
 
 Reach, payload, repeatability and joint limits are published on AgileX's [product page](https://global.agilex.ai/products/nero) rather than copied here.
 

@@ -42,7 +42,7 @@ Most robot bases we supply can feed 12 V directly. Where the platform's rail is 
 | --- | --- | --- |
 | Base board wiki | FriendlyELEC's NanoPC-T6 documentation — base board only, not our extensions | [NanoPC-T6 wiki](https://wiki.friendlyelec.com/wiki/index.php/NanoPC-T6) |
 
-Installing Weston Robot packages on the computer? Add our package repository first: [Weston Robot Apt Source](/tutorial/installation/apt_source).
+Installing Weston Robot packages on the computer? Add our package repository first: [Weston Robot Apt Source](/guides/installation/apt_source).
 
 ### Electrical interfaces
 

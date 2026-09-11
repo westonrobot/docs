@@ -61,22 +61,22 @@ const FAMILIES = [
 const SECTIONS = [
   {
     lead: 'Guides',
-    to: '/tutorial/intro',
+    to: '/guides/intro',
     links: [
       {
-        to: '/tutorial/operational-safety',
+        to: '/guides/operational-safety',
         text: 'Operational safety',
         body: 'Read before the first power-on',
         icon: FaShieldAlt,
       },
       {
-        to: '/tutorial/robot-maintenance',
+        to: '/guides/robot-maintenance',
         text: 'Robot maintenance',
         body: 'Tyres, batteries, joints, storage',
         icon: FaWrench,
       },
       {
-        to: '/tutorial/installation/apt_source',
+        to: '/guides/installation/apt_source',
         text: 'Package source',
         body: 'Add before installing our packages',
         icon: FaTerminal,

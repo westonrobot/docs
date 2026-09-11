@@ -95,14 +95,43 @@ const config: Config = {
           {from: '/solution/deployment-toolbox', to: '/solution/robot-deployment-toolbox'},
           {from: '/solution/deployment-toolbox/map-editor', to: '/solution/robot-deployment-toolbox/map-editor'},
           {from: '/solution/deployment-toolbox/map-inspector', to: '/solution/robot-deployment-toolbox/map-inspector'},
-          {from: '/software/installation/apt_source', to: '/tutorial/installation/apt_source'},
-          {from: '/software/slam/go2_slam', to: '/tutorial/unitree/go2_slam'},
+          // The Guides tab was renamed in the IA restructure but its route stayed
+          // `/tutorial/*` — an oversight, not a decision: nothing in
+          // ia-proposal.md records a reason to keep it. Renamed to `/guides/*`
+          // on 2026-09-11 so the URL matches the tab a customer clicked. Every
+          // old URL is redirected because these are in support tickets.
+          {from: '/tutorial/intro', to: '/guides/intro'},
+          {from: '/tutorial/agilex/ranger_mini_calibration', to: '/guides/agilex/ranger_mini_calibration'},
+          {from: '/tutorial/agilex/ugv_base_control', to: '/guides/agilex/ugv_base_control'},
+          {from: '/tutorial/installation/apt_source', to: '/guides/installation/apt_source'},
+          {from: '/tutorial/maintenance/humanoids', to: '/guides/maintenance/humanoids'},
+          {from: '/tutorial/maintenance/manipulators', to: '/guides/maintenance/manipulators'},
+          {from: '/tutorial/maintenance/quadrupeds', to: '/guides/maintenance/quadrupeds'},
+          {from: '/tutorial/maintenance/wheeled-bases', to: '/guides/maintenance/wheeled-bases'},
+          {from: '/tutorial/manifold/connecting', to: '/guides/manifold/connecting'},
+          {from: '/tutorial/manifold', to: '/guides/manifold'},
+          {from: '/tutorial/manifold/processing', to: '/guides/manifold/processing'},
+          {from: '/tutorial/manifold/scanning', to: '/guides/manifold/scanning'},
+          {from: '/tutorial/operational-safety', to: '/guides/operational-safety'},
+          {from: '/tutorial/robot-maintenance', to: '/guides/robot-maintenance'},
+          {from: '/tutorial/safety/humanoids', to: '/guides/safety/humanoids'},
+          {from: '/tutorial/safety/manipulators', to: '/guides/safety/manipulators'},
+          {from: '/tutorial/safety/quadrupeds', to: '/guides/safety/quadrupeds'},
+          {from: '/tutorial/safety/wheeled-bases', to: '/guides/safety/wheeled-bases'},
+          {from: '/tutorial/unitree/b2_diag_guide', to: '/guides/unitree/b2_diag_guide'},
+          {from: '/tutorial/unitree/g1_dev_guide', to: '/guides/unitree/g1_dev_guide'},
+          {from: '/tutorial/unitree/g1_diag_guide', to: '/guides/unitree/g1_diag_guide'},
+          {from: '/tutorial/unitree/g1_internet_guide', to: '/guides/unitree/g1_internet_guide'},
+          {from: '/tutorial/unitree/go2_diag_guide', to: '/guides/unitree/go2_diag_guide'},
+          {from: '/tutorial/unitree/go2_slam', to: '/guides/unitree/go2_slam'},
+          {from: '/software/installation/apt_source', to: '/guides/installation/apt_source'},
+          {from: '/software/slam/go2_slam', to: '/guides/unitree/go2_slam'},
           {from: '/software/intro', to: '/solution/intro'},
           // Safety and maintenance are procedures you follow, which makes
           // them Guides rather than Support. Support is scoped to "something
           // is wrong or I need a human".
-          {from: '/general/operational-safety', to: '/tutorial/operational-safety'},
-          {from: '/general/robot-maintenance', to: '/tutorial/robot-maintenance'},
+          {from: '/general/operational-safety', to: '/guides/operational-safety'},
+          {from: '/general/robot-maintenance', to: '/guides/robot-maintenance'},
           // The two UGV devkit version pages were 76% identical. They are now
           // one page whose differences are a comparison table and a few tabbed
           // images. Both old URLs are in circulation with customers.
@@ -202,10 +231,10 @@ const config: Config = {
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'tutorial',
-        path: 'tutorial',
-        routeBasePath: 'tutorial',
-        sidebarPath: './sidebars-tutorial.ts',
+        id: 'guides',
+        path: 'guides',
+        routeBasePath: 'guides',
+        sidebarPath: './sidebars-guides.ts',
         editUrl,
         showLastUpdateTime: true,
         onInlineTags: 'throw',
@@ -257,7 +286,7 @@ const config: Config = {
         {
             type: 'doc',
             docId: 'intro',
-            docsPluginId: 'tutorial',
+            docsPluginId: 'guides',
             position: 'left',
             label: 'Guides',
         },

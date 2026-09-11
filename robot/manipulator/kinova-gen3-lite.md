@@ -29,7 +29,7 @@ Kinova's own documentation:
 
 ## Getting started
 
-Read [Operational Safety](/tutorial/operational-safety) before powering the arm for the first time. A manipulator moving under program control is a crush hazard — keep clear of the working envelope until you have tested your motion limits.
+Read [Operational Safety](/guides/operational-safety) before powering the arm for the first time, including the [additional hazards specific to manipulators](/guides/safety/manipulators). A manipulator moving under program control is a crush hazard — keep clear of the working envelope until you have tested your motion limits.
 
 Bring-up in outline:
 
@@ -62,7 +62,7 @@ Files and repositories you clone or download to work with the arm.
 | MATLAB | MATLAB interface | [matlab_kortex](https://github.com/Kinovarobotics/matlab_kortex) |
 | Video tutorials | Kinova's KORTEX how-to series | [YouTube playlist](https://www.youtube.com/watch?v=zQewb08M4sA&list=PLz1XwEYRuku5rZjJWBr6SDi93jgWZ4FHL) |
 
-Installing Weston Robot packages on your host? Add our package repository first: [Weston Robot Apt Source](/tutorial/installation/apt_source).
+Installing Weston Robot packages on your host? Add our package repository first: [Weston Robot Apt Source](/guides/installation/apt_source).
 
 Reach, payload, repeatability, joint ranges and power figures are on the [official product page](https://www.kinovarobotics.com/product/gen3-lite-robots) rather than copied here.
 

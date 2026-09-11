@@ -29,7 +29,7 @@ AgileX's own documentation:
 
 ## Getting started
 
-Read [Operational Safety](/tutorial/operational-safety) before driving the robot for the first time.
+Read [Operational Safety](/guides/operational-safety) before driving the robot for the first time, including the [additional hazards specific to wheeled bases](/guides/safety/wheeled-bases).
 
 The Scout Mini has no onboard computer of its own — you supply the compute and talk to the base over CAN. Bring-up in outline:
 
@@ -38,7 +38,7 @@ The Scout Mini has no onboard computer of its own — you supply the compute and
 3. **Bring up the CAN interface** and confirm frames are arriving.
 4. **Drive it from code** using `ugv_sdk` or the ROS packages.
 
-Steps 2 to 4 are covered end to end in **[Robot Base Control](/tutorial/agilex/ugv_base_control)**.
+Steps 2 to 4 are covered end to end in **[Robot Base Control](/guides/agilex/ugv_base_control)**.
 
 Looking to add compute, sensors or power distribution? See [Peripherals](/peripheral/intro), or the [UGV Development Kit](/system/intro) for a pre-integrated build.
 
@@ -62,13 +62,13 @@ Files and repositories you clone or download to work with the robot.
 | ROS package | ROS 1 integration | [scout_ros](https://github.com/westonrobot/scout_ros) |
 | ROS 2 package | ROS 2 integration | [scout_ros2](https://github.com/westonrobot/scout_ros2) |
 
-Installing Weston Robot packages on your host? Add our package repository first: [Weston Robot Apt Source](/tutorial/installation/apt_source).
+Installing Weston Robot packages on your host? Add our package repository first: [Weston Robot Apt Source](/guides/installation/apt_source).
 
 Dimensions, payload, speed, IP rating and battery figures are on the [official product page](https://global.agilex.ai/products/scout-mini) rather than copied here.
 
 ### Control interface
 
-The base is driven over **CAN**. Both `wrp_sdk` and the ROS packages speak to it over the same interface, so bringing up CAN correctly is the prerequisite for everything else — see [Robot Base Control](/tutorial/agilex/ugv_base_control).
+The base is driven over **CAN**. Both `wrp_sdk` and the ROS packages speak to it over the same interface, so bringing up CAN correctly is the prerequisite for everything else — see [Robot Base Control](/guides/agilex/ugv_base_control).
 
 The Scout Mini ships in standard-wheel and mecanum-wheel variants, which differ in rated load and how much tilt they tolerate. Confirm which you have before planning a payload.
 
@@ -76,9 +76,9 @@ The Scout Mini ships in standard-wheel and mecanum-wheel variants, which differ 
 
 | Guide | What it covers | Reach for it when |
 | --- | --- | --- |
-| [Robot Base Control](/tutorial/agilex/ugv_base_control) | Manual and programmatic control over CAN, including interface setup and troubleshooting | Setting the robot up, or driving it from your own code |
+| [Robot Base Control](/guides/agilex/ugv_base_control) | Manual and programmatic control over CAN, including interface setup and troubleshooting | Setting the robot up, or driving it from your own code |
 
-**[All Scout Mini guides](/tutorial/tags/scout-mini)** — generated from the `scout-mini` tag, so anything published later appears there without this page being edited.
+**[All Scout Mini guides](/guides/tags/scout-mini)** — generated from the `scout-mini` tag, so anything published later appears there without this page being edited.
 
 ## Troubleshooting & FAQ
 

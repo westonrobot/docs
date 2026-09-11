@@ -42,7 +42,7 @@ Delete this admonition once the page is complete.
 
 ## Getting started
 
-Read [Operational Safety](/tutorial/operational-safety) before powering the robot for the first time. The A2 is a legged robot that can fall, and the guidance there on keeping clear of the leg envelope prevents the most common injuries and damage.
+Read [Operational Safety](/guides/operational-safety) before powering the robot for the first time, including the [additional hazards specific to quadrupeds](/guides/safety/quadrupeds). The As2 is a legged robot that can fall, and the guidance there on keeping clear of the leg envelope prevents the most common injuries and damage.
 
 Bring-up in outline:
 
@@ -68,7 +68,7 @@ Files and repositories you clone or download to work with the robot.
 | ROS 2 package | **TODO** | |
 | URDF / CAD | **TODO** | |
 
-Installing Weston Robot packages on the robot or your host? Add our package repository first: [Weston Robot Apt Source](/tutorial/installation/apt_source).
+Installing Weston Robot packages on the robot or your host? Add our package repository first: [Weston Robot Apt Source](/guides/installation/apt_source).
 
 Vendor manuals, videos and the mobile app are on the official pages linked at the top of this page.
 
@@ -106,9 +106,9 @@ Use a **wired** connection for anything touching low-level control — WiFi drop
 
 These are answered in the guides rather than repeated on every product page:
 
-- [Is the robot waterproof?](/tutorial/operational-safety#where-you-can-operate) — and what the ratings mean across platforms
-- [How often do I need to lubricate the joints?](/tutorial/robot-maintenance#quadrupeds-and-humanoids) — and what to do about stiffness or play
-- [The robot has fallen over and does not respond to the controller](/tutorial/operational-safety#if-something-goes-wrong) — the recovery sequence
+- [Is the robot waterproof?](/guides/operational-safety#where-you-can-operate) — and what the ratings mean across platforms
+- [How often do I need to lubricate the joints?](/guides/maintenance/quadrupeds) — and what to do about stiffness or play
+- [The robot has fallen over and does not respond to the controller](/guides/operational-safety#if-something-goes-wrong) — the recovery sequence
 
 ## Support
 

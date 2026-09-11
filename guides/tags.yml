@@ -4,8 +4,14 @@
 # so a tag that is not declared here fails the build rather than quietly
 # creating a near-duplicate tag page. Add new tags here first.
 #
-# Four facets: model, vendor, solution, topic. Keep them flat — Docusaurus tags
-# have no hierarchy — and prefer adding to an existing facet over inventing one.
+# Five facets: model, platform type, vendor, solution, topic. Keep them flat —
+# Docusaurus tags have no hierarchy — and prefer adding to an existing facet over
+# inventing one.
+#
+# "platform type" was added 2026-09-11 when Operational Safety and Robot
+# Maintenance were split per type. It is the axis that structure is organised on,
+# and it is deliberately distinct from "model": a guide tagged `quadruped`
+# applies to every quadruped including ones with no model tag of their own.
 
 # --- model -------------------------------------------------------------------
 g1:
@@ -40,6 +46,24 @@ pocket2:
   label: Pocket2
   permalink: /pocket2
   description: Guides that apply to the Manifold Pocket2 Scanner.
+
+# --- platform type -----------------------------------------------------------
+ugv:
+  label: Wheeled bases
+  permalink: /ugv
+  description: Guides that apply to wheeled bases.
+quadruped:
+  label: Quadrupeds
+  permalink: /quadruped
+  description: Guides that apply to quadrupeds.
+humanoid:
+  label: Humanoids
+  permalink: /humanoid
+  description: Guides that apply to humanoids.
+manipulator:
+  label: Manipulators
+  permalink: /manipulator
+  description: Guides that apply to manipulators.
 
 # --- vendor ------------------------------------------------------------------
 unitree:

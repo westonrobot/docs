@@ -29,7 +29,7 @@ AgileX's own documentation:
 
 ## Getting started
 
-Read [Operational Safety](/tutorial/operational-safety) before powering the arm for the first time. A manipulator moving under program control is a crush hazard — keep clear of the working envelope until you have tested your motion limits.
+Read [Operational Safety](/guides/operational-safety) before powering the arm for the first time, including the [additional hazards specific to manipulators](/guides/safety/manipulators). A manipulator moving under program control is a crush hazard — keep clear of the working envelope until you have tested your motion limits.
 
 Bring-up in outline:
 
@@ -61,13 +61,13 @@ Files and repositories you clone or download to work with the arm.
 | URDF | Robot model | [urdf](https://github.com/agilexrobotics/Piper_ros/tree/ros-noetic-no-aloha/src/piper_description/urdf) |
 | CAD models | STEP files | [Arm](https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/Edhy2bZ_K1VEtaVOmVpe7AEBsh_b-1CXjWN9vhLG7VqNMw?e=qyKYmB) · [Gripper](https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EYwTc-zvbopOqe_LtjsbhscBrMTgOvUHuVOVgNnWEDmt5w?e=WzT6bk) · [Drag teaching tool](https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EfaGx4MK2hxHonUwllRgDGgBz9ciPUZrmXTq3Hu4o4WAyQ?e=ZVX6uK) |
 
-Installing Weston Robot packages on your host? Add our package repository first: [Weston Robot Apt Source](/tutorial/installation/apt_source).
+Installing Weston Robot packages on your host? Add our package repository first: [Weston Robot Apt Source](/guides/installation/apt_source).
 
 Reach, payload and repeatability are on the [official product page](https://global.agilex.ai/products/piper) rather than copied here.
 
 ### Control interface
 
-The arm is driven over **CAN**, the same interface used by AgileX's UGVs — so if you are already running a Scout Mini or Ranger Mini, the CAN setup in [Robot Base Control](/tutorial/agilex/ugv_base_control) applies here too, on a separate bus.
+The arm is driven over **CAN**, the same interface used by AgileX's UGVs — so if you are already running a Scout Mini or Ranger Mini, the CAN setup in [Robot Base Control](/guides/agilex/ugv_base_control) applies here too, on a separate bus.
 
 ### Videos
 
