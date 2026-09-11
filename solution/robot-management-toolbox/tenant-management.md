@@ -116,10 +116,17 @@ Activating a map does not finish the job. A robot keeps the map it already holds
 
 <Figure
   src={require('../img/fleet-map-not-current.png').default}
-  alt="A dialog headed 'This robot's map is not up to date', naming the robot and the map, comparing the revision the fleet activated with the older revision on the robot, warning that navigation restarts and re-acquires localization, and noting that updating the robot's map needs the robot-manage permission at this site"
+  alt="A dialog headed 'Dev-A2 · map', comparing what the fleet activated — map blk55_office_level3, revision r8 and a bundle identifier — with what the robot reports: still on its previous map, no revision the fleet has seen it confirm, and a reported bundle that resolves to blk55_office_level3 r8. A status line reads 'downloaded, not applied'. A warning says navigation restarts and re-acquires localization and that the robot's missions are switched off and need switching back on; an error says its management agent is offline and to wait for it to come back before updating"
   size="md"
   framed
-  caption="A robot behind the activated map. The dialog names both revisions and what changing it will cost." />
+  caption="What the fleet activated, beside what the robot reports back. This robot has downloaded the new map without applying it, and its management agent is offline — so the update waits for that agent to return." />
+
+Two of those readings are worth knowing the first time you meet them. **downloaded, not applied**
+means the robot has fetched the new map and is still running the old one, so it counts as behind
+until it switches over. And where a robot's **management agent is offline**, the dialog says so, and
+the update waits until it is back — [When a robot reads as
+offline](/solution/robot-management-toolbox/robot-dashboard#when-a-robot-reads-as-offline) covers
+what that state means.
 
 The dialog names the map, the revision the fleet activated and the revision on the robot, so it is clear how far behind it is. The recovery is **Take control & update**, then wait for the robot to confirm; then check the missions and switch them back on. If the switch fails it can be retried from the same place, and the missions unlock when it succeeds.
 
