@@ -141,6 +141,7 @@ const config: Config = {
           // the sitemap is still returned by site search unless named here.
           '**/robot/quadruped/as2',
           '**/robot/humanoid/h2',
+          '**/robot/manipulator/nero',
         ]
       }
     ],
