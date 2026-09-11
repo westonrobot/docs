@@ -73,7 +73,7 @@ Most zones on a finished map were never drawn by hand — one is generated aroun
   framed
   caption="Nodes are the points; the lines joining them are segments. Everything shaded is a zone — one around each node, one along each segment. The red rectangle is the only zone on this map that someone drew." />
 
-**This release supports one level per site**, because robots do not use stairs or lifts on their own. Transition exists in the format for sites that span floors and has no use in a single-level one; a ramp within a level is not a change of level.
+**Transition is part of the format rather than part of the workflow.** A deployment covers [one level](#a-deployment-covers-one-level), so nothing acts on a transition today; a ramp within a level is not a change of level.
 
 ## Data exchange
 
@@ -134,6 +134,44 @@ The editor is where a site map is made: it takes a 3D scan of a building and pro
   caption="The editor at work. The stage bar runs across the top; the map is drawn against the scan and the occupancy map beneath it." />
 
 [Map editor](/solution/robot-deployment-toolbox/map-editor) covers all five stages with a worked example, what each needs before it will open, how the occupancy map is generated, what surface snapping is for, and what validation checks before you export or push.
+
+## Known limitations
+
+Where the toolbox, and the workflow it feeds, currently stop. These are present limits rather than a
+list tied to one release: when one is lifted, this section changes.
+
+### A deployment covers one level
+
+**Multi-level navigation is not currently supported.** The Deployment Toolbox can represent maps with
+multiple levels, but robots currently operate on one level at a time and do not autonomously
+transition between levels.
+
+That gap between what a map can describe and what a robot does is worth knowing before you plan a
+building, because the editor will not stop you describing the rest of it:
+
+| | |
+| --- | --- |
+| **The editor authors levels** | Extraction lists every horizontal plane it finds, `+ Manual` defines one directly, and each level carries its own occupancy map |
+| **The format carries transitions** | **Transition** describes how a robot moves between levels. It is part of the map specification rather than part of the current deployment workflow |
+| **The fleet offers no level to pick** | The Robot Management Toolbox neither reports which level a robot is on nor asks which level a place is on. Everything saved there belongs to the level its robot works on |
+| **A ramp is not a change of level** | Ramps inside a level are ordinary and need nothing special |
+
+### Built for a desktop browser
+
+**The Robot Deployment Toolbox is designed for desktop or laptop browsers and a mouse-driven
+workflow.** Tablet and phone use is not currently supported.
+
+### The scan is not kept with the map
+
+**The map is saved as you go; the scan behind it is not.** The map itself — its levels, nodes,
+segments and zones — lives in your browser and is picked up again when you return to it. The point
+cloud is held only for the length of your session, so a map reopened later opens without it, and the
+scan has to be loaded again.
+
+That costs an upload rather than any work, but two stages need the cloud present — Prepare and Setup
+Levels both read it — so a map is easier to finish in one sitting than to resume across days. Where
+it has to span sittings, [export the bundle](/solution/robot-deployment-toolbox/map-editor) and load
+it back with its cloud.
 
 ## Support
 

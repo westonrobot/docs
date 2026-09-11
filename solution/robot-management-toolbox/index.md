@@ -237,6 +237,49 @@ Actions are recorded in an **append-only** log: entries are added, never changed
 
 [**Deployment and servicing**](/solution/robot-management-toolbox/deployment-and-servicing) — where the system runs (shared cloud, a dedicated cloud instance, or on-premise), what that decides about upgrade scheduling and data residency, and how robots and their software are kept current.
 
+## Known limitations
+
+What the Robot Management Toolbox does not currently do. These are present limits rather than a list
+tied to one release: when one is lifted, this section changes.
+
+### A control you can see is not always one your role may use
+
+**Some operational controls stay visible to roles that cannot use them.** An Observer holds no
+commands, and can still see controls such as Go Home or mission dispatch on a robot's panel. Pressing
+one does not carry it out — authority is checked when the action is sent rather than by hiding the
+control, so the action is refused and the robot is not touched.
+
+Read [Roles](/solution/robot-management-toolbox/tenant-management#roles) as the authority on what
+someone may do, rather than reading it off their screen.
+
+### No level to choose
+
+**No level is chosen or reported anywhere in this toolbox.** The places you save and the missions you
+build belong to the one level their robot works on, because [a deployment covers one
+level](/solution/robot-deployment-toolbox#a-deployment-covers-one-level) — that section carries the
+scope.
+
+### Built for a desktop browser
+
+**The Robot Management Toolbox is designed and tested for desktop browsers.** Some views adapt to
+smaller screens, but tablet and phone use is not currently supported for normal operation. In
+particular, mission editing and robot teleoperation require a desktop or laptop workflow.
+
+Use a desktop or laptop browser when planning missions, operating robots, or carrying out
+administrative work.
+
+### Limits stated where you meet them
+
+Five more belong to a single workflow each, and are explained at the point they matter:
+
+| Limitation | Where it is covered |
+| --- | --- |
+| **Go Home** can still report work as staged while the robot is already driving home | [Taking control](/solution/robot-management-toolbox/robot-dashboard#taking-control) |
+| **Save Mission** does not say why it is unavailable — most often a missing mission name | [Review & Save](/solution/robot-management-toolbox/mission-editing#3--review--save) |
+| Moving a saved location, or changing a robot's home, does not by itself reach a robot already holding the mission; and a move is not checked against a place already taken | [Saved locations](/solution/robot-management-toolbox/mission-editing#saved-locations) |
+| An activated mission the robot has never been sent can reach it when scheduled work is stopped or acknowledged — deactivate an active mission that should stay off that robot | [Sending missions to a robot](/solution/robot-management-toolbox/mission-editing#sending-missions-to-a-robot) |
+| A saved change to a mission the robot already holds — an edit, or a location it uses moving — can reach it during other work, rather than waiting for **Send to Robot** | [Sending missions to a robot](/solution/robot-management-toolbox/mission-editing#sending-missions-to-a-robot) |
+
 ## Support
 
 Before raising a ticket, note which site and robot are involved, what the robot was doing just before, and what you saw on screen. [Before you contact us](/support/before-you-contact-us) lists what helps and how to submit a support request.
