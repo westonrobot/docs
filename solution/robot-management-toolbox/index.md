@@ -1,5 +1,5 @@
 ---
-sidebar_position: 2
+sidebar_position: 3
 description: "Robot Management Toolbox: plan, dispatch, watch and review autonomous missions from a browser. How the system is put together, the workflow, deployment models and limits."
 ---
 
@@ -35,6 +35,105 @@ Key features of the system are summarized in the table below, and each is covere
 | **Detection review** | Everything the robots detected, filterable and reviewable, kept as a record that cannot be edited or deleted |
 | **Tenant management** | Your sites and their robots, the maps they navigate by, the people who use them, and what each role may do |
 | **Audit log** | An append-only record of who did what |
+
+## Admin and Operator roles
+
+Two roles cover nearly all daily use: an **Operator** runs the robots, and an **Admin** decides what
+they are allowed to run. *Admin* here is the general term for a user with administrative
+permissions — at a single site that is a Site Admin, and a Tenant Administrator holds the same
+authority at every site.
+[Roles](/solution/robot-management-toolbox/tenant-management#roles) defines all five roles and their
+scope, and names the exact role wherever an action requires one; the table below is the practical
+version — what each of the two everyday roles can actually do.
+
+| What you want to do | Operator | Admin |
+| --- | --- | --- |
+| Watch the fleet, a robot, its telemetry, its schedule and its history | Yes | Yes |
+| Send a robot somewhere once — Quick Dispatch | Yes | Yes |
+| Send a robot home — Go Home | Yes | Yes |
+| Run a saved mission now | Yes | Yes |
+| Send missions to a robot — Send to Robot | Yes | Yes |
+| Turn a saved mission on or off | Yes | Yes |
+| Change **when** a mission runs — its run conditions | Yes | Yes |
+| Pause and resume auto-dispatch | Yes | Yes |
+| Acknowledge and retry work that failed | Yes | Yes |
+| Catch a robot up to the map | Yes | Yes |
+| Teleoperate, E-Stop, dock and undock, stance commands | Yes | Yes |
+| Create or edit **what** a mission is — its route, checkpoints and actions | — | Yes |
+| Create, rename, move or delete a saved location | — | Yes |
+| Author, publish and activate a site's map | — | Yes |
+| Change a robot's name, model, capabilities or assigned map | — | Yes |
+
+The split is worth reading twice, because it is not the obvious one. **Everything that commands a
+robot is an operator's to do** — including sending missions to it, and including catching it up to
+the map. What an operator cannot do is change the definitions: the mission, the locations it refers
+to, and the map underneath both. So an operator can decide *when* a mission runs, and cannot change
+*what* it does.
+
+An **Observer** may see all of the above and command none of it, with one deliberate exception:
+**the E-Stop is available to every role, and needs no control lease.** Safety is not something
+to hold a lease for. Everything else Fleet enforces against the role you hold, so an action outside
+your role cannot be performed.
+
+**Above a site.** Managing people — inviting users, granting and removing roles — is a **Tenant
+Administrator's**, across the whole tenant rather than one site. Creating tenants and sites, and
+registering or decommissioning a robot, sit with Weston Robot rather than with your team; ask us,
+and see [Deployment and servicing](/solution/robot-management-toolbox/deployment-and-servicing).
+
+**Some actions need more than a role.** Holding the right role is necessary and sometimes not
+sufficient:
+
+- **Control is held under a lease.** Commanding a robot means holding its controls; a second person
+  cannot command it until the first releases them. See [Taking
+  control](/solution/robot-management-toolbox/robot-dashboard#taking-control).
+- **The robot must be on the map the fleet activated.** A robot that is behind has its dispatch and
+  Go Home controls withdrawn until it catches up — [Catching a robot up to the
+  map](/solution/robot-management-toolbox/tenant-management#catching-a-robot-up-to-the-map).
+- **Go Home needs a home.** Where none is set, the control reads **Set Home** instead.
+- **Pausing is always available; resuming asks for more.** Pausing auto-dispatch is never blocked.
+  Resuming needs the robot's controls and a settled map, because resuming is a decision to let work
+  start.
+
+## Admin standard workflow
+
+Setting a site up, once. The map arrives first and the missions refer to it, so the order matters.
+
+1. Have the site surveyed and its map authored in the [Robot Deployment
+   Toolbox](/solution/robot-deployment-toolbox), which pushes it here as a draft.
+2. Publish and activate the map for the site — [A site's
+   maps](/solution/robot-management-toolbox/tenant-management#a-sites-maps).
+3. Get each robot onto that map — [Catching a robot up to the
+   map](/solution/robot-management-toolbox/tenant-management#catching-a-robot-up-to-the-map).
+4. Save the places the work refers to, and set each robot's home — [Saved
+   locations](/solution/robot-management-toolbox/mission-editing#saved-locations).
+5. Build the missions and set their run conditions — [Mission
+   editing](/solution/robot-management-toolbox/mission-editing).
+6. Send the missions to the robots that will run them, and confirm the badge reads **robot
+   confirmed** —
+   [Sending missions to a robot](/solution/robot-management-toolbox/mission-editing#sending-missions-to-a-robot).
+7. Give your team their roles — [Roles](/solution/robot-management-toolbox/tenant-management#roles).
+
+## Operator standard workflow
+
+Running the robots, every day.
+
+1. Open the **Dashboard** and look for anything that needs attention.
+2. Open the robot in question — [Robot
+   dashboard](/solution/robot-management-toolbox/robot-dashboard).
+3. Let the schedule run, or start something yourself: run a saved mission now, or Quick Dispatch the
+   robot to one point.
+4. Watch it in Operations, and use Go Home or the E-Stop if you need to intervene.
+5. When a run fails, acknowledge it — and check that auto-dispatch is running again afterwards.
+   [Recovery and
+   acknowledgement](/solution/robot-management-toolbox/robot-dashboard#recovery-and-acknowledgement).
+6. Review what the robots found — [Detection
+   review](/solution/robot-management-toolbox/detection-review).
+
+Anything an operator cannot do on that path — a mission that needs a new checkpoint, a location in
+the wrong place, a robot that will not come onto the map — goes to an Admin. Where an action
+will not proceed at all, [When an action cannot
+proceed](/solution/robot-management-toolbox/mission-editing#when-an-action-cannot-proceed) explains
+what Fleet is telling you.
 
 ## Fleet overview
 
@@ -116,7 +215,7 @@ One constraint follows from missions referencing the map: **a robot must be on t
 
 ## Detection review
 
-Everything the robots observe lands in one place and stays there. Whatever did the observing reports into the same list — a camera on the robot, or an analytics service running elsewhere — so the record is complete regardless of what found the thing.
+Everything a site's robots observe is collected in that site's Detection Review, and stays there. Observations may come from a robot-mounted camera or from an analytics service running elsewhere, so the record is complete regardless of which produced it. Detection Review is opened from the site page; there is no fleet-wide list spanning sites.
 
 An observation is recorded as an **event**. An event whose priority is high enough is raised into an **alert**, and that is what puts it in front of an operator — everything else is kept and searchable without anyone being asked to look at it.
 

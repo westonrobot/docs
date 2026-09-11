@@ -125,6 +125,30 @@ Nothing starts by itself again until **Resume Auto-Dispatch**, so a robot paused
 
 A robot that is not reporting its dispatcher state shows the control unavailable rather than hiding it — an absent button means the robot is not reporting, not that it lacks the feature.
 
+## Recovery and acknowledgement
+
+A run that ends badly leaves something to settle, and Fleet keeps it in your way rather than
+clearing it quietly. On the control panel's **Missions** tab, the dispatch control is replaced by
+**Acknowledge "…" to continue** — the run's own name, and *failed* when it failed.
+
+That replacement is the point: **until you acknowledge it, you cannot dispatch anything else to that
+robot.** A result nobody looked at is the one that repeats, so Fleet asks you to close it before it
+will take new work. Acknowledging is not an admission of anything; it is you saying you have seen
+the outcome.
+
+A robot that fails a run usually stops taking new work at the same time. Acknowledging can lift that
+pause for you, but only where Fleet can establish that the pause belonged to that run — so it is not
+something to count on. A **scheduled** mission's failure never resumes the schedule by itself: a
+schedule that restarts after failing is a schedule that fails all night.
+
+When the pause came from somewhere else, Fleet leaves it alone and tells you which it was — paused
+by an operator, paused for a map update, or paused when the robot's work was cleared. Lifting a hold
+someone else put on deliberately would be worse than leaving yours in place.
+
+**Resume Auto-Dispatch** is always there and always yours to press. It is never hidden or disabled
+because Fleet declined to resume on its own. If a robot is idle when you expected it to be working,
+that control is the first thing to check.
+
 ## What happens during a mission
 
 Battery level and the connection to the fleet both change what a running mission does.

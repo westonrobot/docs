@@ -42,21 +42,23 @@ A **robot** belongs to one site and is assigned one map. Which map, and which ve
 
 | Role | Scope | Can |
 | --- | --- | --- |
-| **Observer** | One site | See the site and its robots. No commands |
-| **Operator** | One site | Everything an Observer can, plus command robots — dispatch, teleoperate, emergency stop |
+| **Observer** | One site | See the site and its robots. No commands, except the E-Stop, which every role may use — releasing it afterwards is an Operator action |
+| **Operator** | One site | Everything an Observer can, plus command robots — dispatch, teleoperate, E-Stop |
 | **Site Admin** | One site | Everything an Operator can, plus manage and activate that site's maps — including its saved locations — and change a robot's name, model, capabilities and assigned map |
 | **Auditor** | Whole tenant | Read operational and audit logs across every site. No commands, no changes |
 | **Tenant Administrator** | Whole tenant | Site Admin authority at every site, plus managing users and roles. Sites themselves are provisioned by Weston Robot |
 
 Observer, Operator and Site Admin are granted **per site**, so the same person can hold different roles at different buildings. Auditor and Tenant Administrator apply across the whole tenant at once.
 
-Each role contains the one above it, so assigning access is one decision per person per site rather than a set of switches.
+Each role contains the one below it, so assigning access is one decision per person per site rather than a set of switches.
 
-**One thing worth planning around:** authoring a map and activating it are both Site Admin authority, so a single administrator can take a map from draft to live. Where a process calls for a second person to approve it first, that approval comes from the process rather than from the system.
+**Admin** is used throughout this documentation as a general term for a user with administrative permissions. Where an action requires a specific role, the required role is named explicitly.
+
+**One thing worth planning around:** authoring a map and activating it are both administrative authority at that site, so a single administrator can take a map from draft to live. Where a process calls for a second person to approve it first, that approval comes from the process rather than from the system.
 
 ## A site's maps
 
-A site does not hold one map; it holds a **map lineage** — a named map that is revised over time. Each publish from the Robot Deployment Toolbox adds a **revision** to that lineage rather than replacing what was there, so `r4` and `r5` are the same map at two points in its life and the older one is still on record.
+A site does not hold one map; it holds a **map lineage** — a named map that is revised over time. A new **revision** is added to that lineage rather than replacing what was there — so `r4` and `r5` are the same map at two points in its life and the older one is still on record. Revisions arrive either as a push from the Robot Deployment Toolbox or by uploading a map bundle here.
 
 A revision moves through **draft**, then **published**, and one published revision at a time is **activated**. Activation is the decision that says "this is the revision robots should be running", and it is what the rest of the fleet reacts to. Revisions that are finished with can be archived without being deleted.
 
@@ -74,8 +76,8 @@ flowchart LR
         DRAFT["Draft revision"]
         PUB["Published"]
         ACTIVE["Activated"]
-        DRAFT -->|"publish<br/>(Site Admin)"| PUB
-        PUB -->|"activate<br/>(Site Admin)"| ACTIVE
+        DRAFT -->|"publish<br/>(Admin)"| PUB
+        PUB -->|"activate<br/>(Admin)"| ACTIVE
     end
     ROBOT["<b>Robot</b>"]
     TB -->|"push"| DRAFT
@@ -87,9 +89,9 @@ A revision reaches robots through three steps, and the Robot Deployment Toolbox 
 
 | Step | Who | What it does |
 | --- | --- | --- |
-| **Push** | Robot Deployment Toolbox | Sends the finished map into the Robot Management Toolbox as a **draft** revision, either starting a new lineage or adding to an existing one |
-| **Publish** | Site Admin | Marks the draft as a finished revision, ready to be used |
-| **Activate** | Site Admin | Makes it *the* revision robots are given |
+| **Push** | Robot Deployment Toolbox, or an upload here | Puts the finished map into the Robot Management Toolbox as a **draft** revision, either starting a new lineage or adding to an existing one |
+| **Publish** | Site Admin for that site, or Tenant Administrator | Marks the draft as a finished revision, ready to be used |
+| **Activate** | Site Admin for that site, or Tenant Administrator | Makes it *the* revision robots are given |
 
 **The deployment toolbox stops at the draft.** Publishing and activating are both actions taken here by a person; the deployment toolbox can do neither, and never talks to a robot at all.
 
@@ -119,9 +121,9 @@ Activating a map does not finish the job. A robot keeps the map it already holds
   framed
   caption="A robot behind the activated map. The dialog names both revisions and what changing it will cost." />
 
-The dialog names the map, the revision the fleet activated and the revision on the robot, so it is clear how far behind it is. The recovery is to send it the activated map and wait for it to confirm; then check the missions and switch them back on. If the switch fails it can be retried from the same place, and the missions unlock when it succeeds.
+The dialog names the map, the revision the fleet activated and the revision on the robot, so it is clear how far behind it is. The recovery is **Take control & update**, then wait for the robot to confirm; then check the missions and switch them back on. If the switch fails it can be retried from the same place, and the missions unlock when it succeeds.
 
-Two things to plan around. **Updating a robot's map restarts navigation**, which then has to re-acquire localisation — so it is not a change to make to a robot part-way through something. And it needs **robot-management permission at that site**, which is Site Admin authority.
+Two things to plan around. **Updating a robot's map restarts navigation**, which then has to re-acquire localisation — so it is not a change to make to a robot part-way through something. And it needs **robot-management permission at that site**, which an Operator holds as well as a Site Admin.
 
 ## The audit log
 
