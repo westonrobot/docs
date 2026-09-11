@@ -111,7 +111,7 @@ The view is headed with the robot's name, model and serial number. Quote those w
 
 **What the E-Stop withdraws is the ability to set the robot going, not the ability to stop it.** While it is active, the controls that would start movement or take on new work are unavailable — driving, Go Home, the stance and docking commands, dispatching a mission, and auto-dispatch. The controls for dealing with what is already running stay available, so a run in progress can still be paused, resumed or stopped, a result acknowledged, and the robot cleared. Releasing the E-Stop is a deliberate second action rather than a side effect of anything else.
 
-**Any role may activate the E-Stop, and it needs no control lease.** Safety is not something to
+**Every role at a site may activate the E-Stop, and it needs no control lease.** Safety is not something to
 hold a lease for, so an Observer — who can command nothing else here — can still stop a robot.
 **Releasing it is an Operator action:** **Reset E-Stop** is not open to every role, so an Observer
 who stops a robot needs an Operator to reset it.
@@ -154,9 +154,10 @@ work was cleared — it is left alone, and auto-dispatch simply stays paused. Li
 someone else put on deliberately would be worse than leaving yours in place, so the way back is the
 **Resume Auto-Dispatch** control rather than the acknowledgement.
 
-**Resume Auto-Dispatch** is always there and always yours to press. It is never hidden or disabled
-because an automatic resume was declined. If a robot is idle when you expected it to be working,
-that control is the first thing to check.
+**Resume Auto-Dispatch** is the way back whatever paused the robot, and it is never withheld
+because an automatic resume was declined. Like anything else that lets work start, it needs the
+robot's controls and a settled map, and it is unavailable while the **E-Stop** is active. If a
+robot is idle when you expected it to be working, that control is the first thing to check.
 
 ## What happens during a mission
 

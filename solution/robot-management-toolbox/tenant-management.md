@@ -42,7 +42,7 @@ A **robot** belongs to one site and is assigned one map. Which map, and which ve
 
 | Role | Scope | Can |
 | --- | --- | --- |
-| **Observer** | One site | See the site and its robots. No commands, except the E-Stop, which every role may use — releasing it afterwards is an Operator action |
+| **Observer** | One site | See the site and its robots. No commands, except the E-Stop, which every role at a site may use — releasing it afterwards is an Operator action |
 | **Operator** | One site | Everything an Observer can, plus command robots — dispatch, teleoperate, E-Stop |
 | **Site Admin** | One site | Everything an Operator can, plus manage and activate that site's maps — including its saved locations — and change a robot's name, model, capabilities and assigned map |
 | **Auditor** | Whole tenant | Read operational and audit logs across every site. No commands, no changes |

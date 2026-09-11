@@ -90,7 +90,15 @@ Two things here are worth knowing:
 
 ## Saved locations
 
-A saved location is a named place on a robot's map. A checkpoint made from one **follows it**, so correcting the location later corrects every mission that uses it — which is what keeps a growing library maintainable rather than turning one moved shelf into an afternoon of edits.
+A saved location is a named place on a robot's map. A checkpoint made from one **follows it**, so correcting the location later corrects every mission in the Management Toolbox that uses it — which is what keeps a growing library maintainable rather than turning one moved shelf into an afternoon of edits.
+
+**A robot that already holds the mission is the exception.** A checkpoint's pose, and the home a
+patrol returns to, are resolved at the moment you **Send to Robot** — so moving either changes
+nothing on a robot that was sent the mission earlier, and an armed patrol goes on driving to the
+pose it was given. Each mission in that state is badged **location changed** in the mission list,
+and one **Send to Robot** clears it. The badge is shown for an offline robot too, because that is
+exactly when a stale copy keeps running to its own schedule. A mission you have also edited since
+sending reports that edit instead — one Send answers either cause.
 
 <Figure
   src={require('../img/fleet-mission-saved-location.png').default}
@@ -169,7 +177,7 @@ the robot's answer — read the badge, not the activation, when you want to know
 | **robot offline** | The robot is offline, so nothing can be confirmed |
 | **not confirmed** | The robot has not confirmed what it holds |
 
-A badge may also carry **· needs review** after it. That is a separate signal appended to whichever badge applies, not a badge of its own: it says a mission the robot holds was built against a saved location that has since moved.
+A badge may also carry **· needs review** after it. That is a separate signal appended to whichever badge applies, not a badge of its own: the map underneath has moved — a new map revision was rolled out, or a waypoint one of the missions uses was edited or deleted — so what the robot holds needs checking against the map now activated. A moved **saved location** is a different signal, reported on the mission itself; see [Saved locations](#saved-locations).
 
 **not confirmed** is what a mission shows when the system holds no evidence either way. On a system upgraded from an earlier release it is the starting state for missions that were already there, so a set of them reading *not confirmed* immediately after an upgrade is expected rather than a fault; sending again replaces it with an answer. A fresh installation does not normally produce it.
 
@@ -264,7 +272,7 @@ A day rule has no cooldown of its own, so a mission that does not end by itself 
 That robot is on an older map than the one the fleet has activated. See [Catching a robot up to the map](/solution/robot-management-toolbox/tenant-management#catching-a-robot-up-to-the-map).
 
 **I moved a location and several missions changed**  
-Expected, if it was a saved location. In the Management Toolbox, checkpoints that reference that saved location are updated together. A robot already holding one of those missions keeps the position it was previously given until you **Send to Robot** again — a **· needs review** signal on its badge is telling you that the copy the robot holds needs updating.
+Expected, if it was a saved location. In the Management Toolbox, checkpoints that reference that saved location are updated together. A robot already holding one of those missions keeps the position it was previously given until you **Send to Robot** again, and each mission in that state is badged **location changed** — see [Saved locations](#saved-locations).
 
 **Did last night's patrol actually run?**  
 Run history, which records how each run ended. The robot's own report does not keep it.

@@ -71,7 +71,7 @@ to, and the map underneath both. So an operator can decide *when* a mission runs
 *what* it does.
 
 An **Observer** may see all of the above and command none of it, with one deliberate exception:
-**the E-Stop is available to every role, and needs no control lease** — though releasing it again is
+**the E-Stop is available to every role at a site, and needs no control lease** — though releasing it again is
 an Operator action. Every other action is enforced against the role you hold, so one outside your
 role cannot be performed. [Taking
 control](/solution/robot-management-toolbox/robot-dashboard#taking-control) sets out the control
@@ -168,7 +168,7 @@ Opening a robot gives you that one machine on one screen: where it is on the sit
 
 ## Robot teleoperation
 
-Beyond watching, an operator can intervene directly: drive the robot from the browser, stop it, send it home, dock it, or put it into a posture such as stand or sit. Because these commands move a machine in a real building, only one person holds a robot's controls at a time — with the **E-Stop** as the deliberate exception, available to every role without taking the controls at all.
+Beyond watching, an operator can intervene directly: drive the robot from the browser, stop it, send it home, dock it, or put it into a posture such as stand or sit. Because these commands move a machine in a real building, only one person holds a robot's controls at a time — with the **E-Stop** as the deliberate exception, available to every role at a site without taking the controls at all.
 
 <Figure
   src={require('../img/fleet-teleop.jpg').default}
