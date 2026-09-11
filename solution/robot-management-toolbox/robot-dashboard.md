@@ -111,7 +111,15 @@ The view is headed with the robot's name, model and serial number. Quote those w
 
 **What the E-Stop withdraws is the ability to set the robot going, not the ability to stop it.** While it is active, the controls that would start movement or take on new work are unavailable — driving, Go Home, the stance and docking commands, dispatching a mission, and auto-dispatch. The controls for dealing with what is already running stay available, so a run in progress can still be paused, resumed or stopped, a result acknowledged, and the robot cleared. Releasing the E-Stop is a deliberate second action rather than a side effect of anything else.
 
-Control is held under a **lease**, so a second operator cannot take the controls until the one held is released.
+**Any role may activate the E-Stop, and it needs no control lease.** Safety is not something to
+hold a lease for, so an Observer — who can command nothing else here — can still stop a robot.
+**Releasing it is an Operator action:** **Reset E-Stop** is not open to every role, so an Observer
+who stops a robot needs an Operator to reset it.
+[Roles](/solution/robot-management-toolbox/tenant-management#roles) defines every role and its scope.
+
+Every other control on this panel is held under a **lease** — an exclusive claim on that robot — so
+**only one person commands it at a time**, and a second operator cannot take the controls until the
+lease is released. There is no ambiguity about who is responsible for a moving robot.
 
 Pressing **Teleop** starts a driving session in the main view area. Driving itself — keyboard and gamepad control, key mapping and axis inversion, speed and deadzone, arranging the camera views, and audio — is covered on [Robot teleoperation](/solution/robot-management-toolbox/robot-teleoperation).
 
