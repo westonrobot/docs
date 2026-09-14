@@ -77,10 +77,11 @@ role cannot be performed. [Taking
 control](/solution/robot-management-toolbox/robot-dashboard#taking-control) sets out the control
 panel and who may use each part of it.
 
-**Above a site.** Managing people — inviting users, granting roles and removing roles — is a
-**Tenant Administrator's** responsibility across the tenant. For creating tenants or sites, or
-registering or decommissioning a robot, contact [Weston Robot
-support](/support/before-you-contact-us).
+**Above a site.** Managing people — [creating
+users](/solution/robot-management-toolbox/tenant-management#creating-users-and-granting-roles),
+granting roles and removing roles — is a **Tenant Administrator's** responsibility across the
+tenant, and needs no help from us. For creating tenants or sites, or registering or decommissioning
+a robot, contact [Weston Robot support](/support/before-you-contact-us).
 
 **Some actions need more than a role.** Holding the right role is necessary and sometimes not
 sufficient:

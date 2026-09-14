@@ -56,6 +56,45 @@ Each role contains the one below it, so assigning access is one decision per per
 
 **One thing worth planning around:** authoring a map and activating it are both administrative authority at that site, so a single administrator can take a map from draft to live. Where a process calls for a second person to approve it first, that approval comes from the process rather than from the system.
 
+## Creating users and granting roles
+
+A **Tenant Administrator** creates the tenant's own users — there is no need to ask us for an
+account. From **Users**, select **New User**:
+
+| Field | What it is |
+| --- | --- |
+| **Display Name** | The name shown against the account throughout the toolbox |
+| **Email** | The address the person signs in with. It is the login identifier, and must be unique across all tenants |
+| **Password** | An initial password you set for them — at least 12 characters, and different from their last three |
+| **Require password change on first login** | Leave this on, so the person replaces that password themselves |
+
+<Figure
+  src={require('../img/fleet-new-user.png').default}
+  alt="The tenant management screen with the Users list behind and the New User dialog open. A callout marks the New User button above the list, and a second marks the dialog, which carries Display Name, Email, Password with its requirements, a Require password change on first login checkbox, a Tenant Role selector reading None with the note 'No tenant-wide authority. Assign per-site roles below.', and a Site Roles row pairing a site with a role, above Add Site Role, Cancel and Create"
+  size="lg"
+  framed
+  caption="New User, and the dialog it opens. The account here takes no tenant-wide authority and is given its access one site at a time." />
+
+**Tenant Role** is authority across the whole tenant:
+
+| Tenant Role | Grants |
+| --- | --- |
+| **Tenant Administrator** | Site Admin authority at every site, plus managing users and roles |
+| **Auditor (read-only)** | Reading operational and audit logs across every site, with no commands |
+| **None** | No tenant-wide authority — the account takes what it can do from its Site Roles instead |
+
+**None does not mean no access.** It means the account holds nothing tenant-wide. Under **Site
+Roles** you then pick a site and the role the person holds there — **Observer**, **Operator** or
+**Site Admin** — and **Add Site Role** again for each further site. Someone who works in one
+building normally has Tenant Role **None** and a single Site Role; the two are combined, so a
+tenant-wide role and per-site roles can be held together.
+
+**Create** finishes the account.
+
+**Sites are the one exception.** A Tenant Administrator manages the tenant's people, but sites
+themselves are provisioned by Weston Robot — a tenant with no sites yet, or one that needs another,
+is what to [contact us](/support/before-you-contact-us) about.
+
 ## A site's maps
 
 A site does not hold one map; it holds a **map lineage** — a named map that is revised over time. A new **revision** is added to that lineage rather than replacing what was there — so `r4` and `r5` are the same map at two points in its life and the older one is still on record. Revisions arrive either as a push from the Robot Deployment Toolbox or by uploading a map bundle here.
