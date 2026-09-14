@@ -172,14 +172,14 @@ Times are the **robot's local time**, not the browser's.
 Authoring a mission does not put it on a robot. Missions are **sent** to the robot that will run them, and a badge answers the question that follows: does the robot actually have these?
 
 **Nor does activating one.** A mission's activation decides whether it is *eligible* to run — it is
-how you enable a schedule, and how you stop it starting again without deleting it. Activation is not
-how a mission is put on a robot. **Send to Robot** is: it is the deliberate operation that puts a
-saved mission on a robot, and the one that brings a copy the robot already holds up to the version
-you have saved. So a mission can be active and not on the robot, in which case the robot will not
-run it; and turning one **off** changes what it is eligible to do without taking it off the robot.
-What confirms any of this is the robot's own report, so *active* is the Management Toolbox's intent
-and the badge beside it is the robot's answer: read the badge, not the activation, when you want to
-know what the robot has.
+how you enable a schedule, and how you stop it starting again without deleting it. **Send to Robot**
+is the deliberate operation that puts a saved mission on a robot and updates a copy the robot already
+holds to the version you have saved. A mission can therefore be **Active** without being **On
+Robot**, and the robot will not run it until it has been sent. Turning a mission **off** changes
+whether it is eligible to run; it does not itself remove a copy the robot already holds. What
+confirms any of this is the robot's own report, so *active* is the Management Toolbox's intent and
+the badge beside it is the robot's answer: read the badge, not the activation, when you want to know
+what the robot has.
 
 | Badge | Means |
 | --- | --- |
@@ -196,24 +196,24 @@ A badge may also carry **· needs review** after it. That is a separate signal a
 
 **not confirmed** is what a mission shows when the system holds no evidence either way. On a system upgraded from an earlier release it is the starting state for missions that were already there, so a set of them reading *not confirmed* immediately after an upgrade is expected rather than a fault; sending again replaces it with an answer. A fresh installation does not normally produce it.
 
-:::caution Known issue in v0.6.0: other work can change what the robot holds
+:::caution Known issue: other work can change the robot's saved missions
 
-**Send to Robot is the only operation meant to change a robot's saved missions.** In this release,
-some other actions that update a robot's work change them as a side effect. This is a defect rather
-than a second way of managing what a robot has, and it is being fixed.
+**Send to Robot is the only operation intended to change a robot's saved missions.** In the current
+release, some other actions that update the robot's work can also change them as a side effect. This
+is a defect, not another way to manage what the robot holds.
 
 Three things can happen, each to a mission you were not acting on:
 
 | | |
 | --- | --- |
-| **A mission arrives** | One that is active but was never sent to that robot can reach it, and then runs to its own run conditions |
-| **An edit arrives early** | A mission the robot already holds can be brought up to your latest saved version before you send it |
-| **A mission leaves** | One the robot holds that you have since deactivated can be dropped from it |
+| **A mission is added** | A mission that is **Active** but not **On Robot** can be added to the robot, and may later run according to its configured run conditions |
+| **An edit is applied early** | A mission already **On Robot** can receive a newer saved revision before you use **Send to Robot** |
+| **A mission is removed** | A mission already **On Robot** that has since been deactivated can be removed during another affected update |
 
-The mission list is where to check. The **on robot** marking says what the robot is actually
-holding, and a mission whose saved version has moved ahead of the robot's copy is marked with both
-versions. Read it after work that changes what a robot is doing, and use **Send to Robot** when you
-want a robot's missions to match what is saved.
+Check the mission list after work that changes what the robot is doing. The **On Robot** marking
+shows which saved missions the robot currently reports holding, and a mission whose saved version is
+newer than the robot's copy is shown with both versions. Use **Send to Robot** when you want the
+robot's saved missions to match what is currently saved in the Management Toolbox.
 
 :::
 
