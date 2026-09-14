@@ -171,15 +171,15 @@ Times are the **robot's local time**, not the browser's.
 
 Authoring a mission does not put it on a robot. Missions are **sent** to the robot that will run them, and a badge answers the question that follows: does the robot actually have these?
 
-**Nor does activating one.** A mission's activation decides whether it is *eligible* to run — it is
-how you enable a schedule, and how you stop it starting again without deleting it. **Send to Robot**
-is the deliberate operation that puts a saved mission on a robot and updates a copy the robot already
-holds to the version you have saved. A mission can therefore be **Active** without being **On
-Robot**, and the robot will not run it until it has been sent. Turning a mission **off** changes
-whether it is eligible to run; it does not itself remove a copy the robot already holds. What
-confirms any of this is the robot's own report, so *active* is the Management Toolbox's intent and
-the badge beside it is the robot's answer: read the badge, not the activation, when you want to know
-what the robot has.
+**Activating a mission and sending it are separate steps.** Activation decides whether a mission is
+*eligible* to run — it is how you enable a schedule, and how you stop it starting again without
+deleting it. **Send to Robot** is the deliberate operation that puts a saved mission on a robot and
+updates a copy the robot already holds to the version you have saved. A mission can therefore be
+**Active** without being **On Robot**, and the robot will not run it until it has been sent. Turning
+a mission **off** changes whether it is eligible to run; it does not itself remove a copy the robot
+already holds. What confirms any of this is the robot's own report, so *active* is the Management
+Toolbox's intent and the badge beside it is the robot's answer: read the badge, not the activation,
+when you want to know what the robot has.
 
 | Badge | Means |
 | --- | --- |
