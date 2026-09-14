@@ -255,9 +255,9 @@ someone may do, rather than reading it off their screen.
 ### No level to choose
 
 **No level is chosen or reported anywhere in this toolbox.** The places you save and the missions you
-build belong to the one level their robot works on, because [a deployment covers one
-level](/solution/robot-deployment-toolbox#a-deployment-covers-one-level) — that section carries the
-scope.
+build belong to the level the robot is operating on — [whether a deployment can span floors or
+elevations](/solution/robot-deployment-toolbox#can-a-deployment-span-different-floors-or-elevations)
+carries the scope.
 
 ### Built for a desktop browser
 

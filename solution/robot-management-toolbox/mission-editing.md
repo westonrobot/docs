@@ -117,7 +117,7 @@ Correcting a location is the normal way to fix a place that has moved, and in th
 
 **Send to Robot is the deliberate way to carry a move across, and not the only thing that can.** [Other work you give the robot can carry the new place to it](#sending-missions-to-a-robot) as a side effect, so treat the old position as what the robot has until you have sent — rather than as something guaranteed to hold until you do.
 
-**A move is not checked the way a save is.** Saving at an occupied spot is refused, as *One location per place* below describes. Moving an existing location on top of another is not checked the same way, so a move can leave two locations at one spot. Nothing is lost and either still works; what it costs is a library with two names for one place.
+**A move is not checked the way a save is.** Saving at an occupied spot is refused, as *One location per place* below describes. Moving an existing location on top of another is not checked the same way, so a move can leave two locations at one spot. Nothing is lost and either still works.
 
 :::
 
