@@ -196,27 +196,6 @@ A badge may also carry **· needs review** after it. That is a separate signal a
 
 **not confirmed** is what a mission shows when the system holds no evidence either way. On a system upgraded from an earlier release it is the starting state for missions that were already there, so a set of them reading *not confirmed* immediately after an upgrade is expected rather than a fault; sending again replaces it with an answer. A fresh installation does not normally produce it.
 
-:::caution Known issue: other work can change the robot's saved missions
-
-**Send to Robot is the only operation intended to change a robot's saved missions.** In the current
-release, some other actions that update the robot's work can also change them as a side effect. This
-is a defect, not another way to manage what the robot holds.
-
-Three things can happen, each to a mission you were not acting on:
-
-| | |
-| --- | --- |
-| **A mission is added** | A mission that is **Active** but not **On Robot** can be added to the robot, and may later run according to its configured run conditions |
-| **An edit is applied early** | A mission already **On Robot** can receive a newer saved revision before you use **Send to Robot** |
-| **A mission is removed** | A mission already **On Robot** that has since been deactivated can be removed during another affected update |
-
-Check the mission list after work that changes what the robot is doing. The **On Robot** marking
-shows which saved missions the robot currently reports holding, and a mission whose saved version is
-newer than the robot's copy is shown with both versions. Use **Send to Robot** when you want the
-robot's saved missions to match what is currently saved in the Management Toolbox.
-
-:::
-
 To **dispatch** a mission is to hand it to a named robot to run now. A robot can also be sent somewhere once, with no mission at all. Both are transient work rather than something the robot keeps — see [Quick Dispatch](#quick-dispatch) below.
 
 <Video
