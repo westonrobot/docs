@@ -195,42 +195,30 @@ A badge may also carry **· needs review** after it. That is a separate signal a
 
 **not confirmed** is what a mission shows when the system holds no evidence either way. On a system upgraded from an earlier release it is the starting state for missions that were already there, so a set of them reading *not confirmed* immediately after an upgrade is expected rather than a fault; sending again replaces it with an answer. A fresh installation does not normally produce it.
 
-:::warning A mission you have never sent can still reach the robot
+:::caution An activated mission can reach the robot without being sent
 
-**This is a defect in the current release, not how the product is meant to work.** Activating a saved mission is not the same as sending it: an activated mission the robot has never been sent should stay off it until you **Send to Robot**. In this release it can arrive anyway.
+Activating a mission and sending it are separate steps, and a mission you have activated but never sent should stay off the robot until you **Send to Robot**. One case in this release does not hold to that. Clearing scheduled work — **Stop**, **Go Home** while a mission is still running, or acknowledging the result — rebuilds the robot's mission list from every saved mission that is currently active, so an activated mission the robot has never been sent can go across with it, and then runs to its own run conditions like anything else the robot holds.
 
-It happens around a mission that was running **on its schedule** — when you **Stop** it, when you press **Go Home** while it is still running, and when you acknowledge its result to carry on. Each of those rebuilds the robot's mission list from the saved missions that are currently active, so an active mission the robot was never sent can arrive alongside the one you were dealing with. Once it is on the robot it runs to its own schedule, like anything else the robot holds.
+It reaches only missions that are **active and not on the robot**, and the mission list marks those. Deactivating one is what prevents it: a deactivated mission is left out when the list is rebuilt. Deactivating sends nothing to the robot by itself, and it does not remove a copy the robot already holds — that copy leaves only when something later sends the robot a list without it. When you do want the mission running, activate it and **Send to Robot**.
 
-**The precaution is on the mission, not on the press.** Where a saved mission is **active but not on the robot**, and should stay off it, deactivate it before you stop or acknowledge scheduled work on that robot. A deactivated mission is left out when the list is rebuilt, so it cannot arrive this way.
-
-Three things about deactivating, so it is clear what it does and does not do:
-
-- **It does not reach the robot by itself.** A mission the robot already holds stays on it; that copy leaves only when something later sends the robot a list without it.
-- **It can be reactivated**, and reactivating sends nothing either.
-- **When you do want it running to its schedule**, activate it and **Send to Robot** deliberately.
-
-**Do not stop using Stop, Go Home or the acknowledgement control to avoid this.** They are how you halt a robot, recall it and clear finished work — a robot you are reluctant to stop or call back is the worse problem. The unsent mission is the safer thing to control.
-
-After stopping, recalling or acknowledging scheduled work, the **on robot** marking in the mission list says what the robot is actually holding, because it reads the robot's own report. Worth a look, though not a guarantee — a robot that has not reported recently gives it nothing to show.
+Keep using **Stop**, **Go Home** and the acknowledgement control. Halting or recalling a robot matters more than this does.
 
 :::
 
-:::caution Saved changes can reach missions the robot already holds, during other work
+:::caution A mission already on the robot can be updated by other work
 
-**That is about which missions the robot has. This is about what is inside them.** For a mission already on the robot, **Send to Robot** is the normal, deliberate way to update it — and it is not the only way an update reaches it.
-
-Work that updates what a robot is doing hands it its mission list again, and that list is built from what is saved now rather than from what was last sent. Giving the robot work does it — a Quick Dispatch, **Go Home**, dispatching a saved mission — and so do stopping a run and acknowledging a finished one. **A one-off run simply finishing does it too**, with nobody pressing anything. For a mission the robot is already holding, that means:
+**Send to Robot** is the deliberate way to update a mission the robot already holds, and it is not the only thing that does. Work that changes what a robot is doing hands it its mission list again, rebuilt from what is saved now rather than from what was last sent — a Quick Dispatch, **Go Home**, dispatching a saved mission, stopping a run, acknowledging a finished one, and a one-off run simply ending, which takes no press at all. For a mission the robot already holds, that means:
 
 | If since the last send you have | a later update can |
 | --- | --- |
 | edited and saved the mission | bring the robot's copy up to your latest saved version |
 | moved a saved location it uses, or changed the robot's home | put the new place on the robot |
 
-**The scope is what the robot already has.** What these updates rebuild is the content of the missions on the robot — so the exposure is the gap between what you have saved and what you last sent, for those missions.
+What gets rebuilt is the content of the missions the robot already has, so the exposure is the gap between what you have saved and what you last sent.
 
-**The mission list shows that gap.** A mission the robot holds whose saved version has moved ahead is marked with both versions — the one the robot is running and the one saved here — and a mission whose locations have moved is marked separately. The version marking clears once the robot takes the newer copy, so it tells you beforehand and not after.
+**The mission list shows that gap before it closes.** A mission whose saved version has moved ahead of the robot's copy is marked with both versions, and a mission whose locations have moved is marked separately. The marking clears once the robot takes the newer copy, so it tells you beforehand rather than afterwards.
 
-**So the save is the thing to control, not the button.** Reading the list before you set a robot going is worth doing, but it is not the whole answer, because an update can also follow work ending rather than work starting. Where a robot must go on running exactly what it has, do not leave a change saved against it; where the saved and robot-held versions should match, [Send to Robot](#sending-missions-to-a-robot) is what brings them into agreement deliberately. Holding off on **Go Home** is not the answer here — recalling a robot is not a press to hesitate over.
+**Control the save rather than the button.** Where a robot must go on running exactly what it has, do not leave a change saved against it; where the saved and robot-held versions should match, [Send to Robot](#sending-missions-to-a-robot) is what brings them into agreement deliberately.
 
 :::
 
