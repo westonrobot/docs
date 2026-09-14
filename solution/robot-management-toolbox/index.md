@@ -277,7 +277,7 @@ Five more belong to a single workflow each, and are explained at the point they 
 | **Go Home** can still report work as staged while the robot is already driving home | [Taking control](/solution/robot-management-toolbox/robot-dashboard#taking-control) |
 | **Save Mission** does not say why it is unavailable — most often a missing mission name | [Review & Save](/solution/robot-management-toolbox/mission-editing#3--review--save) |
 | Moving a saved location, or changing a robot's home, does not by itself reach a robot already holding the mission; and a move is not checked against a place already taken | [Saved locations](/solution/robot-management-toolbox/mission-editing#saved-locations) |
-| An activated mission the robot has never been sent can reach it when scheduled work is stopped or acknowledged — deactivate an active mission that should stay off that robot | [Sending missions to a robot](/solution/robot-management-toolbox/mission-editing#sending-missions-to-a-robot) |
+| An activated mission the robot has never been sent can reach it when scheduled work is stopped, recalled or acknowledged — deactivate an active mission that should stay off that robot | [Sending missions to a robot](/solution/robot-management-toolbox/mission-editing#sending-missions-to-a-robot) |
 | A saved change to a mission the robot already holds — an edit, or a location it uses moving — can reach it during other work, rather than waiting for **Send to Robot** | [Sending missions to a robot](/solution/robot-management-toolbox/mission-editing#sending-missions-to-a-robot) |
 
 ## Support

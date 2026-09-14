@@ -199,7 +199,7 @@ A badge may also carry **· needs review** after it. That is a separate signal a
 
 **This is a defect in the current release, not how the product is meant to work.** Activating a saved mission is not the same as sending it: an activated mission the robot has never been sent should stay off it until you **Send to Robot**. In this release it can arrive anyway.
 
-It happens around a mission that was running **on its schedule** — when you **Stop** it, and when you acknowledge its result to carry on. Both rebuild the robot's mission list from the saved missions that are currently active, so an active mission the robot was never sent can arrive alongside the one you were dealing with. Once it is on the robot it runs to its own schedule, like anything else the robot holds.
+It happens around a mission that was running **on its schedule** — when you **Stop** it, when you press **Go Home** while it is still running, and when you acknowledge its result to carry on. Each of those rebuilds the robot's mission list from the saved missions that are currently active, so an active mission the robot was never sent can arrive alongside the one you were dealing with. Once it is on the robot it runs to its own schedule, like anything else the robot holds.
 
 **The precaution is on the mission, not on the press.** Where a saved mission is **active but not on the robot**, and should stay off it, deactivate it before you stop or acknowledge scheduled work on that robot. A deactivated mission is left out when the list is rebuilt, so it cannot arrive this way.
 
@@ -209,9 +209,9 @@ Three things about deactivating, so it is clear what it does and does not do:
 - **It can be reactivated**, and reactivating sends nothing either.
 - **When you do want it running to its schedule**, activate it and **Send to Robot** deliberately.
 
-**Do not stop using Stop or the acknowledgement control to avoid this.** They are how you halt a robot and clear finished work. The unsent mission is the safer thing to control.
+**Do not stop using Stop, Go Home or the acknowledgement control to avoid this.** They are how you halt a robot, recall it and clear finished work — a robot you are reluctant to stop or call back is the worse problem. The unsent mission is the safer thing to control.
 
-After stopping or acknowledging scheduled work, the **on robot** marking in the mission list says what the robot is actually holding, because it reads the robot's own report. Worth a look, though not a guarantee — a robot that has not reported recently gives it nothing to show.
+After stopping, recalling or acknowledging scheduled work, the **on robot** marking in the mission list says what the robot is actually holding, because it reads the robot's own report. Worth a look, though not a guarantee — a robot that has not reported recently gives it nothing to show.
 
 :::
 
@@ -219,7 +219,7 @@ After stopping or acknowledging scheduled work, the **on robot** marking in the 
 
 **That is about which missions the robot has. This is about what is inside them.** For a mission already on the robot, **Send to Robot** is the normal, deliberate way to update it — and it is not the only way an update reaches it.
 
-Work that updates what a robot is doing hands it its mission list again, and that list is built from what is saved now rather than from what was last sent. Giving the robot work does it — a Quick Dispatch, **Go Home**, dispatching a saved mission, retrying a one-off — and so do stopping a run and acknowledging a finished one. **A one-off run simply finishing does it too**, with nobody pressing anything. For a mission the robot is already holding, that means:
+Work that updates what a robot is doing hands it its mission list again, and that list is built from what is saved now rather than from what was last sent. Giving the robot work does it — a Quick Dispatch, **Go Home**, dispatching a saved mission — and so do stopping a run and acknowledging a finished one. **A one-off run simply finishing does it too**, with nobody pressing anything. For a mission the robot is already holding, that means:
 
 | If since the last send you have | a later update can |
 | --- | --- |
