@@ -208,7 +208,160 @@ claims removed were outright fabrications, two of them promising the reader a sa
 - [x] **Field guidance published (first tranche of [L8]).** Level-surface initialisation and why it matters; loop closure explained for a non-specialist plus route planning; controlled pace, tied to the scanning view's live **Translation** (m/s) and **Rotation** (°/s) readouts and the app's too-fast warning; forward movement through corridors and stairs; gentle tilting for corners and blind spots; sideways through tight doorways; inspect the cloud before exporting.
 - [x] **External best-practice search exhausted.** `3dmanifold.com/{support,faq,tutorial,tutorials}` all 404; `/download` carries only MindCloud Studio material; `manifoldtechltd.github.io/wiki/` is Odin-only. One addition survived the evidence rule — reflective, transparent and water surfaces return badly, grounded in the manual's own initialisation warning. Rejected as another product's guidance (NavVis VLX, not Pocket2): loop closures every 15–30 m, an on-screen "Quality Map", holding the scanner sideways in corridors (which also contradicts the operator's forward-movement ruling), enriching featureless areas with objects, and 3 h/8 h operator-wellness limits.
 
+## Current customer limitations — branch `docs/current-limitations`
+
+The current customer-facing limitation layer for the Robot Management Toolbox and the Robot
+Deployment Toolbox. It is **not** a mirror of Fleet's engineering backlog: an item earns a place
+here only if knowing it helps a customer avoid misunderstanding the product, taking the wrong
+action, or wasting meaningful time. Fleet's own TODO and issues remain the engineering record;
+cross-repo issue numbers stay out of customer prose and are named here instead, so a maintainer
+can trace a decision back rather than filing it twice.
+
+- [x] **Saved changes can reach a mission the robot already holds, during other work — published
+      2026-09-11, broadened the same day.** In `mission-editing.md` › *Sending missions to a robot*,
+      with a row in the Known limitations table on `robot-management-toolbox/index.md`. Classified a
+      current customer limitation because it contradicts the expectation the page itself sets two
+      paragraphs earlier ("Authoring a mission does not put it on a robot"). **It was first written
+      as a Quick Dispatch limitation, and that was wrong** — the v0.6.0 review established the
+      republish is a family, and a limitation titled after one control tells an operator they are
+      safe when they are not. Five operator actions were traced and all five qualify: Quick
+      Dispatch, **Go Home**, dispatching a saved mission, retrying a failed one-off, and
+      stopping/cancelling a run. **Four things the investigation established, so nobody
+      re-derives them:**
+  - **Residency is not the defect; content freshness is.** The older behaviour — an Active
+    mission the robot had never been sent becoming resident on a Quick Dispatch — is fixed and
+    regression-tested in Fleet (`westonrobot-dev/wr_fleet_management` issue #372, and
+    `backend/test/integration/quickdispatch_payload_narrowing_test.go`). The payload is narrowed
+    to missions the robot itself reports holding. What is *not* pinned is each held mission's
+    content: it is composed from the live bank row at push time, so a mission edited and saved
+    since its last send goes out at the newer version.
+  - **"Avoid Quick Dispatch" was rejected as the workaround, deliberately.** Naming one control
+    gives false safety, and telling a customer to hesitate over **Go Home** would trade a content
+    surprise for a robot somebody is reluctant to recall. The controllable step is the *save*, not
+    the dispatch, which is what the published wording says. Actions were named only where a
+    distinct operator press has the observable consequence — not because they share code. Go Home
+    is listed because it is its own button with the same effect, and Retry because the failed
+    quick-dispatch banner offers it.
+  - **Two pushes happen with no press at all.** A one-off run reaching a terminal state, and a
+    dispatch the robot never admits timing out, both republish the held set at current saved
+    content. That is why the published wording puts the remedy on the save rather than on a
+    pre-flight check alone — a check before setting a robot going cannot cover an update that
+    follows work *ending*.
+  - **The residency constraint holds for the dispatch family, and NOT everywhere — do not restate
+    the reassurance that was withdrawn.** Quick Dispatch, Go Home, dispatching a saved mission and
+    retrying a one-off all narrow the payload to what the robot itself reports holding, so an
+    unsent mission cannot arrive by those. Two other operator presses do **not** narrow that way on
+    a robot that is up to date with its map — cancelling a *scheduled* saved mission, and
+    acknowledging a finished Quick Dispatch — and republish the whole armed set. A sentence
+    promising that an unsent mission never arrives was published on 2026-09-11 and withdrawn the
+    same day once the trace reached those two paths. **It must not be reinstated** without the
+    ruling named below.
+- [x] **Residency-identity violation — Fleet ruled 2026-09-11, published the same day.** On a robot
+      whose set is known and which has adopted the activated map revision, cancelling or
+      acknowledging a *scheduled* saved mission, and acknowledging a finished Quick Dispatch, each
+      republish the whole **active** set rather than only what the robot holds. An activated mission
+      the operator never sent can therefore become resident and then run to its own schedule. Fleet's
+      verdict: a **known production contract violation** of ADR-056 §5 and a **distinct sibling
+      defect of #372** — not an accepted semantic, not a supersession of Active ≠ On Robot, and not a
+      variant of the content-refresh limitation. #372 delivered its own scope and stays closed; a new
+      Fleet issue linked to it is recommended and **has not yet been created**. Published as its own
+      `:::warning` in `mission-editing.md` › *Sending missions to a robot*, kept separate from the
+      content-refresh limitation below because the consequence and the eventual fix differ.
+  - **The precaution was verified before publishing, not assumed, and is scoped.** It is for a
+    saved mission that is **active but not on the robot** and should stay off it. Deactivating
+    excludes such a mission from the affected rebuild — it reads only active missions, and the one
+    path that adds held-but-deactivated rows back runs only on a robot that has *not* adopted its
+    map, which is outside the violating condition. It is **not** a way to take back a mission the
+    robot already holds: deactivating never publishes, so that copy stays until a later push leaves
+    it out. Deactivating is also free of traps: arming and disarming never
+    publish to a robot at all, disarm is not gated behind a location-confirmation round, a
+    deactivated mission can still be dispatched by hand, and reactivating still sends nothing by
+    itself, so the deliberate **Send to Robot** remains required.
+  - **Telling operators to avoid a control was rejected again, for the same reason as before.** Stop,
+    Go Home and the acknowledgement controls are how a robot is recalled and finished work is
+    cleared. The saved mission is the safe thing to control.
+  - **Do not describe every acknowledgement as affected, and do not name Quick Dispatch here.** Two
+    controls were published on 2026-09-11 and withdrawn the same day after tracing the UI rather
+    than the handler. **Acknowledging a finished Quick Dispatch is not affected on this release:**
+    ad-hoc work became an execution in migration 083, so it is acknowledged through the execution
+    route, which narrows unconditionally. The unsafe quick-dispatch branch fires only for a legacy
+    `quickdispatch-<robot>` row minted before 083 and still held by a robot — a transitional
+    residue, not a normal operation, and not worth customer wording. **Go Home does not belong here
+    either:** it establishes no residency, and naming it in a residency warning taught operators to
+    distrust a recall control over a defect it has no part in. It participates only in the
+    content-refresh limitation. The affected controls are **Stop** and **Acknowledge**, both on a
+    saved mission that was running to its schedule.
+  - **The signal exists and is visible before the fact, not after.** A mission the robot holds
+    whose saved version has moved ahead is badged with both version numbers in the mission list.
+    It is cleared once the robot acknowledges the newer version, so it has to be read *before*
+    setting a robot going — which is why the published wording points at it as a pre-flight check
+    rather than as something to look back on.
+- [ ] **Persistent "already confirmed" list after a location-confirmation round — NOT published,
+      and this is a decision rather than an omission.** Re-opening a mission while a confirmation
+      round is still open re-shows the locations already confirmed, because that list derives
+      from stored confirmation state rather than from the visit. It reads as a statement of what
+      is done, asks for nothing, and has no operational consequence: Fleet un-gates on the count
+      of *unanswered* items, not on whether the round row has been closed, so the residue never
+      blocks a robot or a mission. Publishing it would also mean introducing the whole
+      confirmation-round feature — which these pages do not currently explain — purely to caveat
+      a footnote of it, and Fleet holds the sweep's semantics frozen pending a v2 state model, so
+      any wording written now would be pinned to semantics expected to change. Revisit if the v2
+      model ships, or if support sees customers reading it as outstanding work.
+- [ ] **Mission-wide background audio is not a feature and must not be written up as a
+      limitation.** An earlier revision implied support; the claim was removed and the branch is
+      clean (no `background music` / `ambient audio` / `ambient_audio` anywhere in the content
+      tree). Per-checkpoint **Announce** is the real feature and stays documented in
+      `mission-editing.md`. The absence of an unimplemented feature is not a customer limitation —
+      `docs/design/product-page-template.md` › *Prose that earns its place* rules the same way
+      under **Negative-only**. If it is ever raised again, the answer is already here.
+- [x] **Merged `docs/fleet-v0.6.0` into this branch 2026-09-11, and PR #45 now stacks on PR #43
+      and then rebased onto `main` once #43 merged.** Done deliberately and early: both branches edit the same five files,
+      and resolving that at merge time would have meant reconciling prose nobody was looking at. One
+      content conflict, in *Sending missions to a robot* — #43's rewritten dispatch paragraph was
+      taken, since it owns that text and points at the Quick Dispatch section it adds; this branch's
+      two limitation admonitions were kept. Everything else auto-merged. **What the reconciliation
+      settled, so it is not re-opened:**
+  - **#43 had already absorbed most of what this branch catalogued.** Its activation paragraph no
+    longer claims sending is the only thing that puts work on a robot, and it already qualifies the
+    deactivation case. Two absolute statements did survive and were qualified here: *Saved
+    locations* ("moving either changes nothing on a robot that was sent the mission earlier") and
+    the *Common questions* answer about a moved location.
+  - **`· needs review` — #43's paragraph adopted wholesale**, as planned. This branch's narrower
+    sentence is gone.
+  - **The duplicate saved-location material was removed from this branch, not from #43.** #43 owns
+    the base fact and the **location changed** badge; this branch's caution keeps only what #43 does
+    not cover — that a move is not checked the way a save is, and that Send is not the only thing
+    that carries a move across.
+  - **The double-prompt limitation was withdrawn, because #43 supersedes it.** This branch called
+    the second prompt when saving a checkpoint as a location an unexplained repeat; #43 documents it
+    as the **Merge** / **Keep separate** choice, which is intended behaviour. #43 is newer and owns
+    v0.6.0 product truth, so its account wins. The index row went with it.
+  - **One clause was added to #43's activation paragraph** pointing at the residency exception
+    immediately below it, so the rule and its current exception are not read apart.
+  - **The 23-commit history was squashed for the rebase onto `main`, deliberately.** Every one of
+    those commits was authored against the pre-#43 text, so replaying them individually would have
+    meant re-resolving the same reconciliation a dozen times — and several of them carry wording
+    that was later withdrawn as factually wrong, which a replay would have re-introduced before
+    fixing it again. The reasoning those commit messages held is in this section instead, which is
+    why it is written at this length. The pre-rebase history is recoverable from
+    `backup/pre-main-rebase-481fac1` while that ref exists.
+  - **`main` had moved well past #43 by then** — the `tutorial/` → `guides/` restructure, the Robot
+    Platforms pages, new safety and maintenance pages. Of the eight files this branch touches, four
+    Robot Management Toolbox files were untouched by that restructure and were verified byte-identical
+    after the replay; `TODO.md` and the two Deployment Toolbox pages were three-way merged.
+
 ## Docs conventions and layout — issue #38
+
+**Future work, and deliberately gated: run it only after the v0.6.0 documentation and the
+current-limitations work have landed on `main`.** The order is not a preference. #38 rewrites prose
+across 66 pages, so running it while the facts on those pages are still being corrected means doing
+the work twice and losing corrections in the reflow. Factual and current-product accuracy must be
+settled first.
+
+**#38 owns** wording and prose cleanup, removing implementation-shaped explanation, context flow,
+discoverability and links, formatting and structure, figure and caption quality, and terminology
+harmonisation. **It does not own** whether a statement is true of the current product — that stays
+with whichever branch owns the page, and must be complete before #38 begins.
 
 A site-wide sweep of all 66 content pages against `docs/design/product-page-template.md`,
 `docs/design/ia-proposal.md`, `docs/LESSONS.md` and the two ADRs, with 26 routes measured

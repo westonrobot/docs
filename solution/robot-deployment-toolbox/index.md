@@ -73,7 +73,7 @@ Most zones on a finished map were never drawn by hand — one is generated aroun
   framed
   caption="Nodes are the points; the lines joining them are segments. Everything shaded is a zone — one around each node, one along each segment. The red rectangle is the only zone on this map that someone drew." />
 
-**This release supports one level per site**, because robots do not use stairs or lifts on their own. Transition exists in the format for sites that span floors and has no use in a single-level one; a ramp within a level is not a change of level.
+**Transition is part of the format rather than part of the workflow.** Nothing acts on a transition today — see [whether a deployment can span floors or elevations](#can-a-deployment-span-different-floors-or-elevations).
 
 ## Data exchange
 
@@ -134,6 +134,56 @@ The editor is where a site map is made: it takes a 3D scan of a building and pro
   caption="The editor at work. The stage bar runs across the top; the map is drawn against the scan and the occupancy map beneath it." />
 
 [Map editor](/solution/robot-deployment-toolbox/map-editor) covers all five stages with a worked example, what each needs before it will open, how the occupancy map is generated, what surface snapping is for, and what validation checks before you export or push.
+
+## Known limitations
+
+Where the toolbox, and the workflow it feeds, currently stop. These are present limits rather than a
+list tied to one release: when one is lifted, this section changes.
+
+### Can a deployment span different floors or elevations?
+
+**Multi-level navigation is not currently supported.** The Deployment Toolbox can represent maps with
+multiple levels, but robots currently operate on one level at a time and do not autonomously
+transition between levels. The supported model is one deployment level on one physical floor.
+
+**That floor does not have to be flat.** Inclined roads, slopes, ramps and other gradual changes in
+elevation can be part of a deployment wherever the robot can traverse them reliably.
+
+**Areas at different elevations may still work as one deployment** — including areas you would
+normally describe as separate floors — where a continuous, traversable route connects them, such as
+a long gradual slope, a suitable ramp, or a broad and gradual stepped transition. That is not
+guaranteed multi-floor support.
+
+**Treat a transition the robot cannot reliably traverse as separating the areas.** A steep flight of
+stairs, an abrupt change in elevation, or a similar break divides one deployment from another, and a
+robot should not be expected to travel between separate deployment levels on its own.
+
+**No slope, stair or elevation figure decides this in advance.** Where a deployment depends on such a
+transition, test the actual route with the robot that will work it, under the conditions it will work
+in, before relying on it.
+
+What the editor will still let you describe is worth knowing before you plan a building:
+
+| | |
+| --- | --- |
+| **The editor authors levels** | Extraction lists every horizontal plane it finds, `+ Manual` defines one directly, and each level carries its own occupancy map |
+| **The format carries transitions** | **Transition** describes how a robot moves between levels. It is part of the map specification rather than part of the current deployment workflow |
+| **The fleet offers no level to pick** | The Robot Management Toolbox neither reports which level a robot is on nor asks which level a place is on. Everything saved there belongs to the level the robot is operating on |
+
+### Built for a desktop browser
+
+**The Robot Deployment Toolbox is designed for desktop or laptop browsers and a mouse-driven
+workflow.** Tablet and phone use is not currently supported.
+
+### Reopening a map requires loading the point cloud again
+
+**The map is saved as you go; the point cloud is not.** Its levels, nodes, segments and zones are
+picked up again when you return to it. The point cloud is held for the length of your session, so a
+map reopened later opens without one, and you load it again before going further.
+
+**Prepare** and **Setup Levels** both read the cloud, so neither runs until it is loaded. Load the
+same file you started from, or use **Import from Fleet** for a map that has already been pushed —
+that brings the graph, its point cloud and its occupancy map down together.
 
 ## Support
 

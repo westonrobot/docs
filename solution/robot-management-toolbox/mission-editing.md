@@ -83,6 +83,8 @@ The route map draws the mission over the site map, numbering the checkpoints in 
 
 Saving validates first. A checkpoint with no position is named by number and blocks the save until it is set.
 
+**Where Save Mission is unavailable, the reason is above it rather than on it.** The button does not currently say what is missing, and the most common answer is the simplest one — the mission has no name. Read the validation messages at the top of this stage, and check the name in **Details**, before looking for anything harder.
+
 Two things here are worth knowing:
 
 - **A "what changed?" note is recorded with the save.** It is optional, and it is what makes the revision history readable later rather than a list of timestamps.
@@ -93,9 +95,12 @@ Two things here are worth knowing:
 A saved location is a named place on a robot's map. A checkpoint made from one **follows it**, so correcting the location later corrects every mission in the Management Toolbox that uses it — which is what keeps a growing library maintainable rather than turning one moved shelf into an afternoon of edits.
 
 **A robot that already holds the mission is the exception.** A checkpoint's pose, and the home a
-patrol returns to, are resolved at the moment you **Send to Robot** — so moving either changes
-nothing on a robot that was sent the mission earlier, and an armed patrol goes on driving to the
-pose it was given. Each mission in that state is badged **location changed** in the mission list,
+patrol returns to, are resolved at the moment you **Send to Robot** — so moving either does not by
+itself change anything on a robot that was sent the mission earlier, and an armed patrol goes on
+driving to the pose it was given until that mission reaches it again. Missions hold those places
+by reference rather than by copy, so whenever an already-held mission is next sent out its
+checkpoints and its home are resolved to where they stand then — **Send to Robot** is how you make
+that happen when you want the robot updated now. Each mission in that state is badged **location changed** in the mission list,
 and one **Send to Robot** clears it. The badge is shown for an offline robot too, because that is
 exactly when a stale copy keeps running to its own schedule. A mission you have also edited since
 sending reports that edit instead — one Send answers either cause.
@@ -107,7 +112,16 @@ sending reports that edit instead — one Send answers either cause.
   framed
   caption="Picking a saved location. The list shows which are already in use, and the robot's home is one of them." />
 
-Locations are held per robot, are searchable, and can be picked from the list or clicked directly on the map.
+Locations are held per robot, are searchable, and can be picked from the list or clicked directly on the map. A checkpoint you placed by hand can also be saved as one, which is what turns a one-off stop into a place the next mission can reuse.
+
+:::caution Moving a saved location onto an occupied place is not checked
+
+Correcting a location is the normal way to fix a place that has moved, and in the Management Toolbox it does what it says — every mission that uses it follows it. One limit sits around that.
+
+**A move is not checked the way a save is.** Saving at an occupied spot is refused, as *One location per place* below describes. Moving an existing location on top of another is not checked the same way, so a move can leave two locations at one spot. Nothing is lost and either still works.
+
+:::
+
 
 **One location per place.** Saving a new location at a spot a location already occupies — the same
 position, facing the same way — is refused, and the refusal names the one already standing there so
@@ -157,14 +171,15 @@ Times are the **robot's local time**, not the browser's.
 
 Authoring a mission does not put it on a robot. Missions are **sent** to the robot that will run them, and a badge answers the question that follows: does the robot actually have these?
 
-**Nor does activating one.** A mission's activation decides whether it is *eligible* to run — it is
-how you enable a schedule, and how you stop it starting again without deleting it. Activation is
-not how a mission is put on a robot: **Send to Robot** is the deliberate way to do that, and a
-mission can be active and not on the robot, in which case the robot will not run it. Turning a
-mission **off** does not take it off the robot by itself either — a robot already holding it can
-keep running it until it is sent a list that leaves it out. What confirms any of this is the
-robot's own report, so *active* is the Management Toolbox's intent and the badge beside is the
-robot's answer: read the badge, not the activation, when you want to know what the robot has.
+**Activating a mission and sending it are separate steps.** Activation decides whether a mission is
+*eligible* to run — it is how you enable a schedule, and how you stop it starting again without
+deleting it. **Send to Robot** is the deliberate operation that puts a saved mission on a robot and
+updates a copy the robot already holds to the version you have saved. A mission can therefore be
+**Active** without being **On Robot**, and the robot will not run it until it has been sent. Turning
+a mission **off** changes whether it is eligible to run; it does not itself remove a copy the robot
+already holds. What confirms any of this is the robot's own report, so *active* is the Management
+Toolbox's intent and the badge beside it is the robot's answer: read the badge, not the activation,
+when you want to know what the robot has.
 
 | Badge | Means |
 | --- | --- |
@@ -229,19 +244,22 @@ knowing before you rely on it:
 
 ## When an action cannot proceed
 
-The Management Toolbox would rather refuse than guess. Four of these come up in normal use, each turning on a
-different missing fact, and each with a different thing to do about it. The first, third and fourth
-say so on screen; the second is quieter — what you see is that auto-dispatch has gone paused.
+The Management Toolbox refuses an action when it does not have enough information to proceed safely,
+or when the result would be invalid or in conflict with something that already exists. Four come up
+in normal use, each with a different thing to do about it.
 
-| Refusal | What it means | What to do |
-| --- | --- | --- |
-| **The fleet cannot tell what this robot is holding** | The robot has not reported its own mission list recently enough to be trusted. Not knowing is not the same as knowing it is empty, and the Management Toolbox will not treat it as empty | Wait for the robot to report, or bring it back online, then repeat the action. Nothing has been changed on the robot |
-| **The removal was withheld, and auto-dispatch is paused** | You asked for work to be taken off a robot whose current list cannot be seen. Sending a corrected list would mean guessing the rest of it, so nothing was sent and new work was paused instead, to stop the robot picking up something you were trying to remove | Wait until the robot reports again, repeat the removal, then **Resume Auto-Dispatch** |
-| **A saved location already stands here** | The place you are saving is the same spot, facing the same way, as a location that already exists — and it names the one that is already there | Use the location it names. Two names for one place is what makes a library stop being trustworthy |
-| **A place this mission needs cannot be resolved** | The mission refers to a home position or a checkpoint that no longer exists, or that cannot be resolved on the robot's current map. The mission is invalid to send at all, so this is answered before anything about schedules or holds | Open the mission and set the missing place, then send it again |
+**[1]**, **[3]** and **[4]** are reported on screen. **[2]** is quieter — what you see is that
+auto-dispatch has gone paused.
 
-The third and fourth are about the mission itself, so they are answered first: a mission that cannot
-be dispatched at all is never reported as merely waiting.
+| Ref | Refusal | What it means | What to do |
+| --- | --- | --- | --- |
+| **[1]** | **The fleet cannot tell what this robot is holding** | The robot has not reported its own mission list recently enough to be trusted. Not knowing is not the same as knowing it is empty, and the Management Toolbox will not treat it as empty | Wait for the robot to report, or bring it back online, then repeat the action. Nothing has been changed on the robot |
+| **[2]** | **The removal was withheld, and auto-dispatch is paused** | You asked for work to be taken off a robot whose current list cannot be seen. Sending a corrected list would mean guessing the rest of it, so nothing was sent and new work was paused instead, to stop the robot picking up something you were trying to remove | Wait until the robot reports again, repeat the removal, then **Resume Auto-Dispatch** |
+| **[3]** | **A saved location already stands here** | The place you are saving is the same spot, facing the same way, as a location that already exists — and the refusal names the one already there | Use the location it names instead of saving a second one at the same place |
+| **[4]** | **A place this mission needs cannot be resolved** | The mission refers to a home position or a checkpoint that no longer exists, or that cannot be resolved on the robot's current map. The mission is invalid to send at all, so this is answered before anything about schedules or holds | Open the mission and set the missing place, then send it again |
+
+**[3]** and **[4]** are about the mission or its saved places, so they are answered first: a mission
+that cannot be dispatched at all is never reported as merely waiting.
 
 ## History and logs
 
@@ -271,7 +289,7 @@ A day rule has no cooldown of its own, so a mission that does not end by itself 
 That robot is on an older map than the one the fleet has activated. See [Catching a robot up to the map](/solution/robot-management-toolbox/tenant-management#catching-a-robot-up-to-the-map).
 
 **I moved a location and several missions changed**  
-Expected, if it was a saved location. In the Management Toolbox, checkpoints that reference that saved location are updated together. A robot already holding one of those missions keeps the position it was previously given until you **Send to Robot** again, and each mission in that state is badged **location changed** — see [Saved locations](#saved-locations).
+Expected, if it was a saved location. In the Management Toolbox, checkpoints that reference that saved location are updated together. A robot already holding one of those missions keeps the position it was previously given until that mission is sent to it again — **Send to Robot** is the deliberate way to do that — and each mission in that state is badged **location changed** — see [Saved locations](#saved-locations).
 
 **Did last night's patrol actually run?**  
 Run history, which records how each run ended. The robot's own report does not keep it.

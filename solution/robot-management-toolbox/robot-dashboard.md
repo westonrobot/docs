@@ -29,7 +29,11 @@ One robot on one screen. The view is laid out so that judging a running mission 
 
 **Localisation is worth watching.** A robot that is not localised does not know where it is on the map, so map-relative work — dispatching a mission, sending it home — has nothing to work from until it does. The map reports it beside the robot: **Localized** when it is tracking, **Not Localized** when it has no fix, and **Unknown** when the robot has not said recently enough to be trusted.
 
-**Init Pose**, on the map toolbar, is the recovery for a robot that is not tracking. You point at where the robot actually is and set its heading; it localises from there. It stays available while a locations-confirmation round is outstanding, precisely because it is the action that fixes the problem those actions are blocked by. A robot on an out-of-date map revision is a different matter: there Init Pose waits with everything else until the map is put right.
+**Not Localized is a status rather than a fault.** It can appear when the robot does not yet have a valid localisation on the current map, and map-relative controls may be unavailable until localisation succeeds. Localisation or navigation warnings caused by a robot not being localised should clear once it localises.
+
+**Init Pose**, on the map toolbar, is the recovery for a robot that is not tracking. Arm it, then **click to set the location and drag to set the heading** — releasing sends it, and the robot starts localising from the pose you gave. There is no separate confirm step and nothing further to press: watch the reading beside the robot for **Localized**. Init Pose remains available while location confirmation is outstanding. If the robot is on an out-of-date map revision, however, Init Pose remains unavailable until the map is brought up to date.
+
+Two things make it more likely to take. Put the pose where the robot physically is, as closely as you can judge — near enough in the right place is what it needs rather than an exact figure. And have the robot somewhere with clear, distinctive surroundings rather than a repetitive or bare one, because an aisle of identical bays gives it little to tell one position from another.
 
 ## Telemetry
 
@@ -109,6 +113,8 @@ The view is headed with the robot's name, model and serial number. Quote those w
 | **Commands** | Docking — dock and undock — and posture commands such as stand and sit |
 | **Missions** | Pick a mission this robot may run, and dispatch it |
 
+**After Go Home, trust the robot rather than the panel.** The robot begins driving home when the command is accepted, but the panel can go on reporting that the work is staged and not moving yet. The press took; the message is behind it. Watch the robot's position rather than pressing Go Home a second time.
+
 **What the E-Stop withdraws is the ability to set the robot going, not the ability to stop it.** While it is active, the controls that would start movement or take on new work are unavailable — driving, Go Home, the stance and docking commands, dispatching a mission, and auto-dispatch. The controls for dealing with what is already running stay available, so a run in progress can still be paused, resumed or stopped, a result acknowledged, and the robot cleared. Releasing the E-Stop is a deliberate second action rather than a side effect of anything else.
 
 **Every role at a site may activate the E-Stop, and it needs no control lease.** Safety is not something to
@@ -169,6 +175,12 @@ Battery level and the connection to the fleet both change what a running mission
 **Navigation runs on the robot itself**, from the map it already holds, so the link to the fleet is not what keeps a robot navigating. What a robot does when that link drops is set on the robot when Weston Robot commissions it, and changing it needs the same access as any other onboard change — see [Software updates](/solution/robot-management-toolbox/deployment-and-servicing#software-updates). The right answer differs between a warehouse aisle and an open yard, so it is worth settling at the site survey rather than after the first outage; ask us what your robots are set to do.
 
 Messages are buffered on the robot while the link is down, so telemetry and events from that period arrive once it returns. What is genuinely unavailable in the meantime is the live view and the ability to send a command.
+
+## Unexpected errors
+
+If the toolbox or robot reports an unexpected error after the normal prerequisites have been
+satisfied, power the robot off and on once. This may clear a temporary fault. If the problem remains
+after the restart, [contact Weston Robot support](/support/before-you-contact-us).
 
 ## Common questions
 

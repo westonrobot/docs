@@ -24,7 +24,7 @@ The Map Editor turns a 3D scan of a building into a site map. It runs as five nu
 | **4 · Edit Map** | At least one level is defined |
 | **5 · Export** | At least one node exists |
 
-Work is saved as you go, and the header shows when it last was. It lives in your browser rather than on a server, so it is yours until you push it.
+Work is saved as you go, and the header shows when it last was. It lives in your browser rather than on a server, so it is yours until you push it — [though the point cloud is loaded again each session](/solution/robot-deployment-toolbox#reopening-a-map-requires-loading-the-point-cloud-again).
 
 ## 1 · Load Map Data
 
@@ -109,7 +109,7 @@ misaligned, re-scan rather than working around it; the
 
 Extraction will happily list several height bands, and a building with more than one storey in the scan will produce more than one candidate plane. That is the tool reading geometry.
 
-**It does not mean a robot can be deployed across those floors.** Multi-floor deployment is not currently supported: a robot does not use stairs or lifts on its own, and this release supports **one level per site**. Level detection and editing is a map-processing capability; the deployment workflow it feeds is single-level. Treat extra detected planes as candidates to choose the floor from, not as floors you can dispatch to.
+**It does not mean a robot can be deployed across those floors.** Treat extra detected planes as candidates to choose the floor from, not as floors you can dispatch to — see [whether a deployment can span floors or elevations](/solution/robot-deployment-toolbox#can-a-deployment-span-different-floors-or-elevations).
 
 ### The occupancy map
 
@@ -292,7 +292,7 @@ Expected. Pushing creates a draft in the Robot Management Toolbox; someone there
 A Site Admin or Tenant Administrator can adjust a site's saved locations in the Robot Management Toolbox. Changing the scan, the levels, the graph or the zones is this tool's job.
 
 **My site has two floors**  
-This release supports one level per site, because robots do not use stairs or lifts on their own. Ramps within a level are fine, since a ramp is not a change of level.
+The supported model is one deployment level on one physical floor, and that floor need not be flat — slopes and ramps the robot can traverse are ordinary. Two elevations joined by a continuously traversable route may also work as one deployment, while a steep flight of stairs divides them. [Whether a deployment can span floors or elevations](/solution/robot-deployment-toolbox#can-a-deployment-span-different-floors-or-elevations) covers what to check, and says why the route has to be tested rather than judged from a figure.
 
 **Why does my map have so many zones?**  
 Most were generated rather than drawn: one around every node and one along every segment. A twenty-four-node site with a single hand-drawn keep-out area still holds fifty-six zones.
