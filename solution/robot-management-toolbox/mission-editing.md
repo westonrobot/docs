@@ -97,7 +97,10 @@ A saved location is a named place on a robot's map. A checkpoint made from one *
 **A robot that already holds the mission is the exception.** A checkpoint's pose, and the home a
 patrol returns to, are resolved at the moment you **Send to Robot** — so moving either does not by
 itself change anything on a robot that was sent the mission earlier, and an armed patrol goes on
-driving to the pose it was given until something sends that mission to it again. Each mission in that state is badged **location changed** in the mission list,
+driving to the pose it was given until that mission reaches it again. Missions hold those places
+by reference rather than by copy, so whenever an already-held mission is next sent out its
+checkpoints and its home are resolved to where they stand then — **Send to Robot** is how you make
+that happen when you want the robot updated now. Each mission in that state is badged **location changed** in the mission list,
 and one **Send to Robot** clears it. The badge is shown for an offline robot too, because that is
 exactly when a stale copy keeps running to its own schedule. A mission you have also edited since
 sending reports that edit instead — one Send answers either cause.
@@ -111,11 +114,9 @@ sending reports that edit instead — one Send answers either cause.
 
 Locations are held per robot, are searchable, and can be picked from the list or clicked directly on the map. A checkpoint you placed by hand can also be saved as one, which is what turns a one-off stop into a place the next mission can reuse.
 
-:::caution Moving a saved location: two things to know
+:::caution Moving a saved location onto an occupied place is not checked
 
-Correcting a location is the normal way to fix a place that has moved, and in the Management Toolbox it does what it says — every mission that uses it follows it. Two limits sit around that.
-
-**Send to Robot is the deliberate way to carry a move across, and not the only thing that can.** [Other work you give the robot can carry the new place to it](#sending-missions-to-a-robot) as a side effect, so treat the old position as what the robot has until you have sent — rather than as something guaranteed to hold until you do.
+Correcting a location is the normal way to fix a place that has moved, and in the Management Toolbox it does what it says — every mission that uses it follows it. One limit sits around that.
 
 **A move is not checked the way a save is.** Saving at an occupied spot is refused, as *One location per place* below describes. Moving an existing location on top of another is not checked the same way, so a move can leave two locations at one spot. Nothing is lost and either still works.
 
@@ -175,7 +176,9 @@ how you enable a schedule, and how you stop it starting again without deleting i
 not how a mission is put on a robot: **Send to Robot** is the deliberate way to do that, and a
 mission can be active and not on the robot, in which case the robot will not run it. Turning a
 mission **off** does not take it off the robot by itself either — a robot already holding it can
-keep running it until it is sent a list that leaves it out. What confirms any of this is the
+keep running it until it is sent a list that leaves it out. In this release that can come sooner
+than you intend: a later update to the robot's mission list, made for other work, can leave a
+deactivated mission out and take it off the robot with it. What confirms any of this is the
 robot's own report, so *active* is the Management Toolbox's intent and the badge beside is the
 robot's answer: read the badge, not the activation, when you want to know what the robot has.
 There is one current exception to an active mission staying off the robot, immediately below.
@@ -197,28 +200,19 @@ A badge may also carry **· needs review** after it. That is a separate signal a
 
 :::caution An activated mission can reach the robot without being sent
 
-Activating a mission and sending it are separate steps, and a mission you have activated but never sent should stay off the robot until you **Send to Robot**. One case in this release does not hold to that. Clearing scheduled work — **Stop**, **Go Home** while a mission is still running, or acknowledging the result — rebuilds the robot's mission list from every saved mission that is currently active, so an activated mission the robot has never been sent can go across with it, and then runs to its own run conditions like anything else the robot holds.
+Activating a mission makes it eligible to run. **Send to Robot** is what puts it on a robot, and an activated mission the robot has never been sent should stay off it until you send it.
 
-It reaches only missions that are **active and not on the robot**, and the mission list marks those. Deactivating one is what prevents it: a deactivated mission is left out when the list is rebuilt. Deactivating sends nothing to the robot by itself, and it does not remove a copy the robot already holds — that copy leaves only when something later sends the robot a list without it. When you do want the mission running, activate it and **Send to Robot**.
+**In this release, clearing scheduled work can break that.** Stopping a mission that is running to its schedule, pressing **Go Home** while one is still running, or acknowledging one that has been deactivated since it started, can each also hand the robot a different mission that is active but was never sent to it. Once it is there, it runs to its own run conditions.
 
-Keep using **Stop**, **Go Home** and the acknowledgement control. Halting or recalling a robot matters more than this does.
+**Where an activated mission must stay off a robot, deactivate it** — a deactivated mission is not carried across this way. Deactivating does not take a mission off a robot that already holds it; the paragraph above covers that.
 
 :::
 
-:::caution A mission already on the robot can be updated by other work
+:::caution A saved edit can reach the robot before you send it
 
-**Send to Robot** is the deliberate way to update a mission the robot already holds, and it is not the only thing that does. Work that changes what a robot is doing hands it its mission list again, rebuilt from what is saved now rather than from what was last sent — a Quick Dispatch, **Go Home**, dispatching a saved mission, stopping a run, acknowledging a finished one, and a one-off run simply ending, which takes no press at all. For a mission the robot already holds, that means:
+**Send to Robot** is how a saved edit is applied to a mission the robot already holds. In this release it is not always what carries it: a later update to the robot's mission list can take your most recently saved version across first.
 
-| If since the last send you have | a later update can |
-| --- | --- |
-| edited and saved the mission | bring the robot's copy up to your latest saved version |
-| moved a saved location it uses, or changed the robot's home | put the new place on the robot |
-
-What gets rebuilt is the content of the missions the robot already has, so the exposure is the gap between what you have saved and what you last sent.
-
-**The mission list shows that gap before it closes.** A mission whose saved version has moved ahead of the robot's copy is marked with both versions, and a mission whose locations have moved is marked separately. The marking clears once the robot takes the newer copy, so it tells you beforehand rather than afterwards.
-
-**Control the save rather than the button.** Where a robot must go on running exactly what it has, do not leave a change saved against it; where the saved and robot-held versions should match, [Send to Robot](#sending-missions-to-a-robot) is what brings them into agreement deliberately.
+So where a robot must go on running exactly the version it holds, a saved edit is not reliably held in the Management Toolbox until you send it. The mission list marks a mission whose saved version has moved ahead of the robot's copy and names both versions — that marking clears once the robot takes the newer one.
 
 :::
 
@@ -270,19 +264,22 @@ knowing before you rely on it:
 
 ## When an action cannot proceed
 
-The Management Toolbox would rather refuse than guess. Four of these come up in normal use, each turning on a
-different missing fact, and each with a different thing to do about it. The first, third and fourth
-say so on screen; the second is quieter — what you see is that auto-dispatch has gone paused.
+The Management Toolbox refuses an action when it does not have enough information to proceed safely,
+or when the result would be invalid or in conflict with something that already exists. Four come up
+in normal use, each with a different thing to do about it.
 
-| Refusal | What it means | What to do |
-| --- | --- | --- |
-| **The fleet cannot tell what this robot is holding** | The robot has not reported its own mission list recently enough to be trusted. Not knowing is not the same as knowing it is empty, and the Management Toolbox will not treat it as empty | Wait for the robot to report, or bring it back online, then repeat the action. Nothing has been changed on the robot |
-| **The removal was withheld, and auto-dispatch is paused** | You asked for work to be taken off a robot whose current list cannot be seen. Sending a corrected list would mean guessing the rest of it, so nothing was sent and new work was paused instead, to stop the robot picking up something you were trying to remove | Wait until the robot reports again, repeat the removal, then **Resume Auto-Dispatch** |
-| **A saved location already stands here** | The place you are saving is the same spot, facing the same way, as a location that already exists — and it names the one that is already there | Use the location it names. Two names for one place is what makes a library stop being trustworthy |
-| **A place this mission needs cannot be resolved** | The mission refers to a home position or a checkpoint that no longer exists, or that cannot be resolved on the robot's current map. The mission is invalid to send at all, so this is answered before anything about schedules or holds | Open the mission and set the missing place, then send it again |
+**[1]**, **[3]** and **[4]** are reported on screen. **[2]** is quieter — what you see is that
+auto-dispatch has gone paused.
 
-The third and fourth are about the mission itself, so they are answered first: a mission that cannot
-be dispatched at all is never reported as merely waiting.
+| Ref | Refusal | What it means | What to do |
+| --- | --- | --- | --- |
+| **[1]** | **The fleet cannot tell what this robot is holding** | The robot has not reported its own mission list recently enough to be trusted. Not knowing is not the same as knowing it is empty, and the Management Toolbox will not treat it as empty | Wait for the robot to report, or bring it back online, then repeat the action. Nothing has been changed on the robot |
+| **[2]** | **The removal was withheld, and auto-dispatch is paused** | You asked for work to be taken off a robot whose current list cannot be seen. Sending a corrected list would mean guessing the rest of it, so nothing was sent and new work was paused instead, to stop the robot picking up something you were trying to remove | Wait until the robot reports again, repeat the removal, then **Resume Auto-Dispatch** |
+| **[3]** | **A saved location already stands here** | The place you are saving is the same spot, facing the same way, as a location that already exists — and the refusal names the one already there | Use the location it names instead of saving a second one at the same place |
+| **[4]** | **A place this mission needs cannot be resolved** | The mission refers to a home position or a checkpoint that no longer exists, or that cannot be resolved on the robot's current map. The mission is invalid to send at all, so this is answered before anything about schedules or holds | Open the mission and set the missing place, then send it again |
+
+**[3]** and **[4]** are about the mission or its saved places, so they are answered first: a mission
+that cannot be dispatched at all is never reported as merely waiting.
 
 ## History and logs
 
