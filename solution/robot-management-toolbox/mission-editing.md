@@ -172,16 +172,14 @@ Times are the **robot's local time**, not the browser's.
 Authoring a mission does not put it on a robot. Missions are **sent** to the robot that will run them, and a badge answers the question that follows: does the robot actually have these?
 
 **Nor does activating one.** A mission's activation decides whether it is *eligible* to run — it is
-how you enable a schedule, and how you stop it starting again without deleting it. Activation is
-not how a mission is put on a robot: **Send to Robot** is the deliberate way to do that, and a
-mission can be active and not on the robot, in which case the robot will not run it. Turning a
-mission **off** does not take it off the robot by itself either — a robot already holding it can
-keep running it until it is sent a list that leaves it out. In this release that can come sooner
-than you intend: a later update to the robot's mission list, made for other work, can leave a
-deactivated mission out and take it off the robot with it. What confirms any of this is the
-robot's own report, so *active* is the Management Toolbox's intent and the badge beside is the
-robot's answer: read the badge, not the activation, when you want to know what the robot has.
-There is one current exception to an active mission staying off the robot, immediately below.
+how you enable a schedule, and how you stop it starting again without deleting it. Activation is not
+how a mission is put on a robot. **Send to Robot** is: it is the deliberate operation that puts a
+saved mission on a robot, and the one that brings a copy the robot already holds up to the version
+you have saved. So a mission can be active and not on the robot, in which case the robot will not
+run it; and turning one **off** changes what it is eligible to do without taking it off the robot.
+What confirms any of this is the robot's own report, so *active* is the Management Toolbox's intent
+and the badge beside it is the robot's answer: read the badge, not the activation, when you want to
+know what the robot has.
 
 | Badge | Means |
 | --- | --- |
@@ -198,21 +196,24 @@ A badge may also carry **· needs review** after it. That is a separate signal a
 
 **not confirmed** is what a mission shows when the system holds no evidence either way. On a system upgraded from an earlier release it is the starting state for missions that were already there, so a set of them reading *not confirmed* immediately after an upgrade is expected rather than a fault; sending again replaces it with an answer. A fresh installation does not normally produce it.
 
-:::caution An activated mission can reach the robot without being sent
+:::caution Known issue in v0.6.0: other work can change what the robot holds
 
-Activating a mission makes it eligible to run. **Send to Robot** is what puts it on a robot, and an activated mission the robot has never been sent should stay off it until you send it.
+**Send to Robot is the only operation meant to change a robot's saved missions.** In this release,
+some other actions that update a robot's work change them as a side effect. This is a defect rather
+than a second way of managing what a robot has, and it is being fixed.
 
-**In this release, clearing scheduled work can break that.** Stopping a mission that is running to its schedule, pressing **Go Home** while one is still running, or acknowledging one that has been deactivated since it started, can each also hand the robot a different mission that is active but was never sent to it. Once it is there, it runs to its own run conditions.
+Three things can happen, each to a mission you were not acting on:
 
-**Where an activated mission must stay off a robot, deactivate it** — a deactivated mission is not carried across this way. Deactivating does not take a mission off a robot that already holds it; the paragraph above covers that.
+| | |
+| --- | --- |
+| **A mission arrives** | One that is active but was never sent to that robot can reach it, and then runs to its own run conditions |
+| **An edit arrives early** | A mission the robot already holds can be brought up to your latest saved version before you send it |
+| **A mission leaves** | One the robot holds that you have since deactivated can be dropped from it |
 
-:::
-
-:::caution A saved edit can reach the robot before you send it
-
-**Send to Robot** is how a saved edit is applied to a mission the robot already holds. In this release it is not always what carries it: a later update to the robot's mission list can take your most recently saved version across first.
-
-So where a robot must go on running exactly the version it holds, a saved edit is not reliably held in the Management Toolbox until you send it. The mission list marks a mission whose saved version has moved ahead of the robot's copy and names both versions — that marking clears once the robot takes the newer one.
+The mission list is where to check. The **on robot** marking says what the robot is actually
+holding, and a mission whose saved version has moved ahead of the robot's copy is marked with both
+versions. Read it after work that changes what a robot is doing, and use **Send to Robot** when you
+want a robot's missions to match what is saved.
 
 :::
 
