@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-description: "Driving a robot from the browser: keyboard and gamepad control, key mapping and axis inversion, speed and deadzone, arranging the camera views, and audio."
+description: "Driving a robot from the browser: keyboard and gamepad control, key mapping and axis inversion, speed and deadzone, the driving view, and speaking through the robot."
 ---
 
 # Robot teleoperation
@@ -47,38 +47,21 @@ These are the values a full deflection asks for, so lowering them makes the whol
 
 **Settings apply globally, and can be overridden per robot.** Editing while a robot is open changes that robot's override; the global value is shown beside it so you can see what you have departed from, and **Reset to global** puts it back. A heavy outdoor machine and a small indoor one can therefore sit at different speeds without either being wrong.
 
-## Arranging the view
+## What you see while driving
 
-What you see while driving is yours to arrange. **Stream Settings**, from the camera panel, holds it, and the arrangement is remembered per robot.
+The driving view has its own arrangement — a primary feed filling the screen, others pinned around it, and a choice of which cameras appear at all — kept separately from the dashboard's on the **Teleop** tab of **Stream Settings**. Both tabs, and turning streams on in the first place, are covered under [Arranging the view](/solution/robot-management-toolbox/robot-dashboard#arranging-the-view).
 
-<Figure
-  src={require('../img/fleet-stream-settings.png').default}
-  alt="The Stream Settings dialog showing an audio mode of push-to-talk on hold-T, separate Dashboard and Teleop tabs, a layout picker with pane counts one to six and template thumbnails for two-by-two grid, focus left plus three and focus top plus three, a stream assignment list mapping slots A to D to cameras, and a grid fit choice between fill container and fixed aspect ratio"
-  size="md"
-  framed
-  caption="Stream Settings: audio mode, the layout and which camera sits in each pane, and how each view is fitted." />
-
-**Layout is chosen in two steps** — first how many panes you want, from one to six, then which arrangement of that many. Four panes offers a 2×2 grid, one large pane with three small, or one across the top with three beneath; the thumbnails show each. **Stream assignment** then puts a named camera in each lettered slot.
-
-| Setting | Options |
-| --- | --- |
-| **Layout** | One to six panes, with several arrangements at each count |
-| **Stream assignment** | Which camera goes in each lettered slot |
-| **Grid fit** | **Fill container**, which uses every pixel and may crop edges, or **fixed aspect ratio**, which keeps the whole frame |
-| **Picture-in-picture** | A stream pinned to a corner — top or bottom, left, centre or right — or switched off |
-| **Visible in teleop** | Which cameras appear while driving, which can be a smaller set than the dashboard shows |
-
-**Dashboard and teleop keep separate layouts**, on their own tabs, so the arrangement you want while driving need not be the one you want while monitoring.
-
-Grid fit is the choice worth deliberate thought: filling the pane uses every pixel but crops the edges, and fixed aspect keeps the whole frame at the cost of letterboxing. For judging clearance beside a robot, seeing the whole frame usually matters more than filling the screen.
-
-Layout preferences are restored when you return to a robot. Which camera streams are running is not — streams are started fresh each session, so a view opens empty until its feeds connect.
+**Which streams are running is not remembered between sessions**, so a driving view opens with nothing in it until you turn feeds on. A pane whose stream is not running reads **Waiting for stream…**, which is the layout working and the feed absent rather than the layout being wrong.
 
 ## Audio
 
-Audio is **push-to-talk** by default: hold to speak, release to stop — **`T`** on the keyboard, or the bound gamepad button. It can be set to always-on where an operator needs both hands, from the same Stream Settings dialog. Incoming volume is adjustable separately.
+**Take Voice**, on the teleop bar, claims the robot's voice channel — one person at a time, and separately from the robot's controls, so the person driving is not necessarily the person speaking.
+
+Speaking is **push-to-talk** by default: hold to speak, release to stop — **`T`** on the keyboard, or the gamepad button bound to it. It can be set to always-on where an operator needs both hands, from Stream Settings.
 
 Push-to-talk is worth keeping as the default in a shared control room, since always-on carries whatever else is being said in the room to whoever is near the robot.
+
+Hearing the robot, and who may take or revoke the channel, are covered under [Audio](/solution/robot-management-toolbox/robot-dashboard#audio).
 
 ## The assisted view
 
@@ -98,7 +81,7 @@ Invert the axis rather than remapping it. Each of the three axes has its own inv
 Expected. Editing with a robot open sets that robot's override; the global value is shown beside it, and Reset to global clears the override.
 
 **The view opened with no cameras**  
-Streams start fresh each session rather than being restored, so the panes fill as the feeds connect. The layout itself is remembered.
+Streams start fresh each session rather than being restored, so nothing is running until you turn a feed on — see [Which streams are running](/solution/robot-management-toolbox/robot-dashboard#which-streams-are-running). The layout itself is remembered.
 
 **Can two people drive at once?**  
 No. Control is held under a lease, and only one person holds it at a time.

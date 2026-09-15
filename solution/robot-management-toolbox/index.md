@@ -165,7 +165,7 @@ Opening a robot gives you that one machine on one screen: where it is on the sit
   framed
   caption="One robot on one screen: the site map, its cameras, what it is doing, its status, and the controls." />
 
-[Robot dashboard](/solution/robot-management-toolbox/robot-dashboard) covers the page in full: each panel, the telemetry readings and when a robot stops counting as reporting, the diagnostics view for a robot that is misbehaving, recovering localisation, taking control of a robot, and [what happens during a mission](/solution/robot-management-toolbox/robot-dashboard#what-happens-during-a-mission) as battery level and the link to the fleet change.
+[Robot dashboard](/solution/robot-management-toolbox/robot-dashboard) covers the page in full: each panel, the telemetry readings and when a robot stops counting as reporting, the diagnostics view for a robot that is misbehaving, recovering localisation, [arranging the camera view](/solution/robot-management-toolbox/robot-dashboard#arranging-the-view) and the audio that goes with it, taking control of a robot, and [what happens during a mission](/solution/robot-management-toolbox/robot-dashboard#what-happens-during-a-mission) as battery level and the link to the fleet change.
 
 ## Robot teleoperation
 
@@ -178,7 +178,7 @@ Beyond watching, an operator can intervene directly: drive the robot from the br
   framed
   caption="An assisted teleoperation view, on a robot fitted and configured for it: surround view, proximity zones, radar, and link quality." />
 
-[Robot teleoperation](/solution/robot-management-toolbox/robot-teleoperation) covers driving in full: keyboard and gamepad control, remapping and inverting the axes, speed and deadzone, arranging the camera views, audio, and the assisted view some robots present. The control panel itself — taking control, the E-Stop and who may release it — is on the [Robot dashboard](/solution/robot-management-toolbox/robot-dashboard#taking-control) page.
+[Robot teleoperation](/solution/robot-management-toolbox/robot-teleoperation) covers driving in full: keyboard and gamepad control, remapping and inverting the axes, speed and deadzone, speaking through the robot while driving, and the assisted view some robots present. The control panel itself — taking control, the E-Stop and who may release it — is on the [Robot dashboard](/solution/robot-management-toolbox/robot-dashboard#taking-control) page.
 
 ## Mission planning
 
