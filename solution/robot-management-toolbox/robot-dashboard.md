@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-description: "The robot view in the Robot Management Toolbox: the navigation map, camera feeds, operations and telemetry panels, the control panel, and how battery and connection loss change a running mission."
+description: "The robot view in the Robot Management Toolbox: the navigation map, camera feeds and how to arrange them, audio, operations and telemetry panels, the control panel, and how battery and connection loss change a running mission."
 ---
 
 # Robot dashboard
@@ -34,6 +34,63 @@ One robot on one screen. The view is laid out so that judging a running mission 
 **Init Pose**, on the map toolbar, is the recovery for a robot that is not tracking. Arm it, then **click to set the location and drag to set the heading** — releasing sends it, and the robot starts localising from the pose you gave. There is no separate confirm step and nothing further to press: watch the reading beside the robot for **Localized**. Init Pose remains available while location confirmation is outstanding. If the robot is on an out-of-date map revision, however, Init Pose remains unavailable until the map is brought up to date.
 
 Two things make it more likely to take. Put the pose where the robot physically is, as closely as you can judge — near enough in the right place is what it needs rather than an exact figure. And have the robot somewhere with clear, distinctive surroundings rather than a repetitive or bare one, because an aisle of identical bays gives it little to tell one position from another.
+
+## Arranging the view
+
+What the camera panel shows takes two separate decisions: **which of the robot's streams are running**, and **how the panes are arranged**. Both are set from the controls along the top of the panel, which appear when the camera feeds hold the main view area — switch **Map / Cameras** to Cameras if they are currently in the small one.
+
+### Which streams are running
+
+<Figure
+  src={require('../img/fleet-stream-selection.png').default}
+  alt="The controls along the top of the camera panel: an audio button reading Robot audio on, a Take Voice button, a camera button reading 6 / 6 with its Streams menu open beneath it, and a Settings button. The menu lists six streams — A2 Front Camera, A2 Rear Camera, A2 Left Camera, A2 Right Camera, A2 Gesture Camera and A2 Fence Detection 1 — each with a tick beside it"
+  size="md"
+  framed
+  caption="The Streams menu, opened from the camera count: every stream the robot offers, and which of them are running." />
+
+The camera control counts **the streams running against the streams the robot offers** — `6 / 6` when every one of them is up. Opening it lists them by name, and ticking one starts it. The same set appears as **Enabled Streams** in Stream Settings, with each stream's type beside it.
+
+**Ticking a stream asks the robot to start sending that camera.** It is not a filter over feeds already arriving, which is why a pane can be assigned correctly and still show nothing: a pane whose stream is not running reads **Waiting for stream…** instead. When a layout you have just set looks empty, check this count before changing the layout: assigning a pane starts nothing.
+
+**Streams are not restored when you come back.** A session opens with none of them running, and the ones you started are stopped when you leave the robot, so the panes fill as you turn feeds on rather than arriving populated. The arrangement around them is remembered.
+
+### How the panes are arranged
+
+**Stream Settings**, from the same row of controls, holds the arrangement, and it is remembered per robot.
+
+<Figure
+  src={require('../img/fleet-stream-settings.png').default}
+  alt="The Stream Settings dialog showing an audio mode of push-to-talk on hold-T, separate Dashboard and Teleop tabs, a layout picker with pane counts one to six and template thumbnails for two-by-two grid, focus left plus three and focus top plus three, a stream assignment list mapping slots A to D to cameras, and a grid fit choice between fill container and fixed aspect ratio"
+  size="md"
+  framed
+  caption="Stream Settings: audio mode, the layout and which camera sits in each pane, and how each view is fitted. Its enabled-stream list is empty here because the robot was reporting none." />
+
+**Layout is chosen in two steps** — first how many panes you want, from one to six, then which arrangement of that many. Four panes offers a 2×2 grid, one large pane with three small, or one across the top with three beneath; the thumbnails show each. **Stream assignment** then puts a named camera in each lettered slot.
+
+| Setting | Options |
+| --- | --- |
+| **Layout** | One to six panes, and from two panes up, several arrangements of each |
+| **Stream assignment** | Which camera goes in each lettered slot |
+| **Grid fit** | **Fill container**, which uses every pixel and may crop edges, or **fixed aspect ratio**, which keeps the whole frame |
+| **Primary stream** | The feed that fills the screen while driving |
+| **Picture-in-picture** | A stream pinned to a corner — top or bottom, left, centre or right — or switched off |
+| **Visible in teleop** | Which cameras appear while driving, which can be a smaller set than the dashboard shows |
+
+**Dashboard and teleop keep separate layouts**, on their own tabs, so the arrangement you want while monitoring need not be the one you want while driving. The dashboard tab holds the pane layout and the grid fit; the teleop tab holds the primary stream and what is pinned around it.
+
+Grid fit is the choice worth deliberate thought: filling the pane uses every pixel but crops the edges, and fixed aspect keeps the whole frame at the cost of letterboxing. For judging clearance beside a robot, seeing the whole frame usually matters more than filling the screen.
+
+## Audio
+
+Audio has two halves, and they are separate controls: hearing the robot, and speaking through it.
+
+**Hearing it** is the audio button on the camera panel — **Robot audio on** while it is live, **Robot audio muted** while it is not. Where the browser has not yet been allowed to play audio the same button reads **Click to enable audio**, and pressing it both unlocks playback and unmutes. It is an on-or-off control rather than a level: how loud the robot is comes from the computer's own volume.
+
+**Speaking through it** is claimed the way the robot's controls are — one person at a time. **Take Voice** takes the channel, and while you hold it the control offers the microphone and a button to release it. Anyone else sees **Voice:** and the name of whoever holds it, and a Site Admin can **Revoke** a channel left held by someone who has gone.
+
+**The voice channel is independent of the robot's controls.** Taking it does not take the robot, so an operator can speak to whoever is near a machine without touching anything that moves it — and someone else driving does not stop you. Taking the channel is an Operator action; an Observer cannot.
+
+Speaking is **push-to-talk** by default: hold to speak, release to stop — **`T`** on the keyboard, or the gamepad button bound to it while driving. **Always on**, set from **Audio Mode** in Stream Settings, leaves the microphone live and gives you a mute button instead. That suits an operator who needs both hands and does not suit a shared control room, where it carries whatever else is being said in the room to whoever is standing near the robot.
 
 ## Telemetry
 
@@ -127,7 +184,7 @@ Every other control on this panel is held under a **lease** — an exclusive cla
 **only one person commands it at a time**, and a second operator cannot take the controls until the
 lease is released. There is no ambiguity about who is responsible for a moving robot.
 
-Pressing **Teleop** starts a driving session in the main view area. Driving itself — keyboard and gamepad control, key mapping and axis inversion, speed and deadzone, arranging the camera views, and audio — is covered on [Robot teleoperation](/solution/robot-management-toolbox/robot-teleoperation).
+Pressing **Teleop** starts a driving session in the main view area. Driving itself — keyboard and gamepad control, key mapping and axis inversion, speed and deadzone — is covered on [Robot teleoperation](/solution/robot-management-toolbox/robot-teleoperation).
 
 Drive commands depend on the robot being on the map the fleet has activated. A robot that is behind has its dispatch and Go Home controls withdrawn until it catches up — see [Catching a robot up to the map](/solution/robot-management-toolbox/tenant-management#catching-a-robot-up-to-the-map).
 
@@ -188,7 +245,10 @@ after the restart, [contact Weston Robot support](/support/before-you-contact-us
 No. Control is held under a lease, and only one person holds it at a time.
 
 **The camera panel is empty**  
-The robot is not connected. Feeds are live, so there is nothing to show for a robot that is not reporting in. Check the heartbeat reading in telemetry.
+Check the stream count first, since a session starts with nothing running and an empty panel may simply be a panel with no feeds turned on. If streams are running and the panes are still empty, the robot is not connected — feeds are live, so there is nothing to show for a robot that is not reporting in, and the heartbeat reading in telemetry will say so.
+
+**I set a layout and the panes are still empty**  
+A pane shows its camera only while that stream is running, and setting the layout does not start anything. Open the stream count beside **Settings** and tick the cameras you want — see [Which streams are running](#which-streams-are-running).
 
 **Why did teleoperation stop on its own?**  
 Teleoperation stops the robot when the connection to the fleet degrades. That is deliberate — driving a robot you cannot see is worse than stopping it.
