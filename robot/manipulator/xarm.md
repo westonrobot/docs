@@ -30,7 +30,7 @@ UFactory's own documentation:
 
 ## Getting started
 
-Read [Operational Safety](/tutorial/operational-safety) before powering the arm for the first time. A manipulator moving under program control is a crush hazard — keep clear of the working envelope until you have tested your motion limits.
+Read [Operational Safety](/guides/operational-safety) before powering the arm for the first time, including the [additional hazards specific to manipulators](/guides/safety/manipulators). A manipulator moving under program control is a crush hazard — keep clear of the working envelope until you have tested your motion limits.
 
 Bring-up in outline:
 
@@ -57,7 +57,7 @@ Files and repositories you clone or download to work with the arm.
 | ROS package | ROS 1 integration | [xarm_ros](https://github.com/xArm-Developer/xarm_ros) |
 | ROS 2 package | ROS 2 integration | [xarm_ros2](https://github.com/xArm-Developer/xarm_ros2) |
 
-Installing Weston Robot packages on your host? Add our package repository first: [Weston Robot Apt Source](/tutorial/installation/apt_source).
+Installing Weston Robot packages on your host? Add our package repository first: [Weston Robot Apt Source](/guides/installation/apt_source).
 
 Reach, payload, repeatability, joint limits and power figures differ between the xArm 5, 6 and 7 and are published on UFactory's [download page](https://www.ufactory.cc/download) rather than copied here.
 

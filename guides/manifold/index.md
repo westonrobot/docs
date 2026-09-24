@@ -62,7 +62,7 @@ If you are doing this for the first time, read the guides in this order rather t
 | [Pocket2 Scanning Guide](./scanning.md) | Your first session, or a capture came back with gaps |
 | [Point Cloud Processing & Export Guide](./processing.md) | You have a raw capture and need a usable point cloud |
 
-**[All scanning guides](/tutorial/tags/scanning)** — generated from the `scanning` tag, so anything published later appears there without this page being edited.
+**[All scanning guides](/guides/tags/scanning)** — generated from the `scanning` tag, so anything published later appears there without this page being edited.
 
 ## What you need
 

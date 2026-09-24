@@ -1,6 +1,6 @@
 ---
 sidebar_position: 2
-description: "Routine maintenance for Weston Robot platforms: wheeled bases, quadrupeds, humanoids and manipulators."
+description: "Maintenance that applies to every robot we supply: routine checks, battery care, cleaning, storage and transport, and when to call us."
 tags: [maintenance, safety]
 ---
 
@@ -8,7 +8,16 @@ tags: [maintenance, safety]
 
 Most faults we are asked about are wear, dirt, a loose fastener or a flat battery — not a broken robot. A few minutes of checking catches nearly all of them before they become a ticket.
 
-Read [Operational Safety](/tutorial/operational-safety) before working on a robot. **Power it off and disconnect the battery before touching anything mechanical.**
+Read [Operational Safety](/guides/operational-safety) before working on a robot. **Power it off and disconnect the battery before touching anything mechanical.**
+
+**Read the page for your platform as well.** Each one carries the checks specific to that type.
+
+| Your platform | |
+| --- | --- |
+| Scout Mini, Ranger Mini | [Wheeled base maintenance](/guides/maintenance/wheeled-bases) |
+| Go2, As2, A2, B2 | [Quadruped maintenance](/guides/maintenance/quadrupeds) |
+| G1, H1-2, R1, H2 | [Humanoid maintenance](/guides/maintenance/humanoids) |
+| WR65, WRL63, xArm, Z1, Piper, Nero, Kinova Gen3 Lite | [Manipulator maintenance](/guides/maintenance/manipulators) |
 
 ## Routine checks
 
@@ -48,76 +57,13 @@ Doing it the other way round can arc the connector.
 
 ## Cleaning
 
-**Assume the robot is not waterproof.** Unless yours was specifically customised, no hose, no pressure washer, no submersion. See the [ratings by platform](/tutorial/operational-safety#where-you-can-operate).
+**Assume the robot is not waterproof.** Unless yours was specifically customised, no hose, no pressure washer, no submersion. See the [ratings by platform](/guides/operational-safety#where-you-can-operate).
 
 - A dry brush or compressed air for dust; a **barely damp** cloth for the shell.
 - No solvents on plastics or painted surfaces.
 - Keep **cooling vents and fans** clear — a blocked fan is a thermal shutdown waiting to happen.
 - Keep **connectors dry and clean**. Blow out debris rather than wiping grit into a housing.
 - Clean around **joints, wheel hubs and feet** rather than driving grit into them.
-
-## By platform
-
-### Wheeled bases
-
-Scout Mini, Ranger Mini — see [UGVs](/robot/intro#ugvs).
-
-**Tyres matter more than people expect on skid-steer platforms.** Worn or unevenly inflated tyres change the friction each wheel sees, which degrades odometry and driving accuracy, and in the worst case loads the drivetrain unevenly enough to damage it.
-
-- **Check pressure regularly** on platforms with pneumatic tyres:
-
-  | Platform | Pressure |
-  | --- | --- |
-  | Scout 2.0 and later | **1.8–2.0 bar** |
-  | Hunter 2.0 | **around 0.8 bar** |
-
-  :::note Pressures for other platforms
-
-  These are the figures we have published. If your platform is not listed, check the
-  manual supplied with it rather than assuming a value — and [tell us](/support/before-you-contact-us),
-  because it means this table has a gap.
-
-  :::
-
-- **Replace worn tyres promptly.** Running them down damages more than the tyre.
-- **Check for uneven wear** across the four wheels — it usually points at a mechanical or alignment problem rather than the tyre itself.
-- **Clear debris from wheel hubs**, particularly hair, wire and cable ties, which wrap around axles.
-- **Recalibrate after wheel or tyre work** where the platform supports it — see the [Ranger Mini calibration guide](/tutorial/agilex/ranger_mini_calibration).
-
-### Quadrupeds and humanoids
-
-Go2, B2, G1, H1-2 — see [Quadrupeds](/robot/intro#quadrupeds) and [Humanoids](/robot/intro#humanoids).
-
-:::caution Do not service the joints yourself
-
-If you meet stiffness, play, unusual noise or motor faults in a joint, **[contact us](/support/before-you-contact-us)**
-with your serial number rather than opening or lubricating it. There is no owner-serviceable lubrication schedule on these
-platforms, and a joint opened incorrectly is an expensive repair.
-
-There is no fixed lubrication schedule to follow — stiffness, play, noise or a
-motor fault is the trigger, not an interval. Applies to the G1, Go2 and B2.
-
-:::
-
-What you *should* do:
-
-- **Inspect foot pads** for wear and for embedded grit. Worn pads change traction and gait.
-- **Check for play** by hand with the robot powered off and supported: a joint that has developed noticeable free movement is worth reporting early.
-- **Keep the leg linkages and joint seals clean.** Grit works its way in.
-- **Let overheated motors cool** rather than power-cycling repeatedly. On the Go2 a sudden limp into damping mode is thermal protection — see [the Go2 FAQ](/robot/quadruped/go2#why-does-the-robot-suddenly-enter-damping-mode).
-- **Inspect after every fall**, including the shell, the wiring and the connectors, not just the joint that landed first.
-- **Use the diagnostics tools** before raising a ticket: [Go2 diagnostics](/tutorial/unitree/go2_diag_guide), [B2 diagnostics](/tutorial/unitree/b2_diag_guide).
-
-### Manipulators
-
-WR65, WRL63, xArm, Z1, Piper, Kinova Gen3 Lite — see [Manipulators](/robot/intro#manipulators).
-
-- **Check the base mounting bolts.** An arm applies real reaction forces to its base and they cycle constantly, which is exactly the condition that loosens fasteners. A base that has begun to move ruins repeatability before it becomes obviously loose.
-- **Check the end effector mounting and its cabling.** Tool-side cables flex every cycle and fail before anything else does.
-- **Watch the cable routing through the joints.** Cables that have been re-routed during integration can chafe over thousands of cycles.
-- **Confirm repeatability** if positioning accuracy has drifted: run a known pose and compare. Drift usually means a mechanical problem, not a software one.
-- **Keep the arm clean of process debris** — swarf, dust and adhesive around joint seals.
-- **Support the arm before removing power** if it is extended or carrying a payload, since not every joint necessarily brakes. See [Operational Safety](/tutorial/operational-safety#manipulators).
 
 ## Storage and transport
 
@@ -148,5 +94,5 @@ Have the serial number, firmware version and any error codes ready — [Before y
 
 ## Support
 
-- [Operational Safety](/tutorial/operational-safety) — read before working on a robot
+- [Operational Safety](/guides/operational-safety) — read before working on a robot
 - [Before you contact us](/support/before-you-contact-us) — what to collect

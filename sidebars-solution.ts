@@ -3,10 +3,28 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 const sidebarsSolution: SidebarsConfig = {
   solutionSidebar: [
     'intro',
-    // Ordered by the workflow, not by how often a page is opened: a site is
-    // mapped with the Robot Deployment Toolbox before anything can be run from
-    // the Robot Management Toolbox. The overview page's cards are in the same
-    // order, so the sidebar and the page agree.
+    // Ordered by the workflow, not by how often a page is opened: a Robot
+    // Platform is what a customer physically has, a site is mapped with the
+    // Robot Deployment Toolbox before anything can be run, and the Robot
+    // Management Toolbox is what it is run from afterwards. The overview
+    // page's cards are in the same order, so the sidebar and the page agree.
+    //
+    // Plural on purpose. The page presents a set — three supported bases and a
+    // comparison matrix — not one product, and the singular collides with the
+    // glossary's `Platform`, which means base + low-level hardware and so
+    // excludes the payload this page is mostly about.
+    //
+    // A category since 2026-09-11, when network configuration was added. The
+    // index stays the category's landing page, so the URL never moved — which
+    // is why the page was put in a directory on day one.
+    {
+      type: 'category',
+      label: 'Robot Platforms',
+      link: {type: 'doc', id: 'robot-platforms/index'},
+      items: [
+        'robot-platforms/network-configuration',
+      ],
+    },
     //
     // Capturing the scan the deployment toolbox starts from is a scanner
     // procedure rather than a solution (ADR 0002), so it is not listed here —

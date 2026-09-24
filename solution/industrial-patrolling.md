@@ -19,7 +19,7 @@ Delete this admonition before publishing.
 ## Getting started
 
 <!-- What you need, installing it, and first run on a supported platform. Link
-     /tutorial/installation/apt_source rather than repeating the apt setup. -->
+     /guides/installation/apt_source rather than repeating the apt setup. -->
 
 ## Key information
 

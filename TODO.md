@@ -8,6 +8,78 @@ Open items for the docs site. WHAT, not HOW. Status: `[ ]` open, `[~]` in progre
 - [ ] Capture the route-solve screenshot for `solution/robot-deployment-toolbox/map-inspector.md` — "Testing that a route solves" has no figure because the running backend cannot find the pathfinding binary. It works standalone; the backend needs `TMG_PATHFINDING_BINARY=<wrdev_ws>/wra_topometric_graph/build/bin/pathfinding_query`. Verified by running the binary directly, which returned `{"found":true,…}`.
 - [ ] `solution/img/toolbox-load.png` is unreferenced. Left in place deliberately — an earlier unused-image sweep deleted `toolbox-finished-map.png` while `solution/intro.md` still used it and the build failed. Re-run the reference check immediately before deleting, not before the edit that changes references.
 - [ ] Open questions in `docs/design/release-pages-plan.md` §7: Toolbox/SDK delivery routes, R2026.08 labelling, component version visibility, WR SDK reference home.
+- [ ] Recapture `solution/img/fleet-stream-settings.png` against a robot that is reporting streams. The published capture was taken with none, so its **Enabled Streams** list is an empty heading and every Stream Assignment slot reads *None* — on `robot-dashboard.md` that figure now sits under prose about enabling streams, and the caption has to explain the gap. A capture with six streams listed and slots filled would carry the section on its own.
+
+- [ ] **Two Robot Management Toolbox capability claims need a product ruling before they go back.** The index claimed missions are **portable across sites** and that **duplication and revision comparison** let the next mission start from an existing one. Both existed only on `solution/robot-management-toolbox/index.md` (from `9587dae`), were absent from `mission-editing.md` which owns the feature, and were never seen by the `6abe51d`/`2e4b8ea` exposure passes. Removed in the index de-duplication pass rather than relocated, because relocating would have published them as verified. If the editor does offer either, they belong on `mission-editing.md` with the control named; if it does not, they stay out.
+- [ ] **`waypoint` vs `checkpoint` across the two toolboxes.** The index said a mission's checkpoint *is* a map waypoint plus a heading; `mission-editing.md` §2 gives three ways to place one (click the map, a saved location, the robot's pose) and never mentions waypoints, while the Deployment Toolbox defines waypoint as a kind of map node. The index no longer asserts the relationship, but the two vocabularies still need reconciling in one place. DEFER TO #38.
+
+## Robot Platforms page — solution/robot-platforms/
+
+New page, not yet published. It is the hardware third of the Autonomy Stack, which had no page anywhere: `docs/design/release-pages-plan.md:7` states a customer needs all three components, and only the two toolboxes were documented.
+
+**Placement supersedes the plan.** `release-pages-plan.md` §2 Phase 3 assigned this content to `system/`, mirroring `system/ugv_devkit`. It is in `solution/` instead, on the reasoning that `system/intro.md` defines Systems as pre-integrated kits a customer configures — `ugv_devkit` has a `component_reconfiguration.md` — while this hardware is never sold separately and nobody assembles it, which was the plan's own stated reason for deferring. **That plan section still says `system/` and needs amending.**
+
+- [ ] Amend `release-pages-plan.md` §2 Phase 3 to record the Solutions placement, and add the naming decision below.
+- [ ] **Naming is provisional.** No trademark name for this component exists — verified by grep over `wr_arch_docs/src/conventions/`, `docs/commercial/product-strategy.md` and the release material. "Robot Platform" is the internal briefing's label for Component 1 and collides with the glossary's `Platform` (`glossary.md:87` — robot base + low-level hardware, which *excludes* the payload this page is mostly about). Plural was chosen because the page presents a set, not one product. Both Toolboxes were renamed to trademark names under D-R10 *after* their URLs circulated, costing eleven redirects; nothing here is published yet, so this is free to change until it is.
+- [x] **Closed 2026-09-11 — internal verification status is not published.** The supported-platforms table carried "Water-proofing is not fully verified" (B2) and "Autonomous charging is not yet verified" (A2), transcribed from `wr_arch_docs/src/overview/releases/r1.md:154-162`. **Removed on the owner's ruling: these are items tracked internally and resolved before delivery, not properties of a delivered robot.** A customer receives a unit after that work is finished, so publishing our in-progress state describes a robot nobody is sent. The table now carries only what each platform is supplied for. Recorded as a general rule in `docs/LESSONS.md`, since it is not specific to these two items. The same source's "to be phased out in favour of the A2" stays out separately and for a different reason — roadmap, excluded by `release-pages-plan.md` §4.
+- [ ] **The component matrix is unverified.** `solution/robot-platforms/index.md:39-53` is transcribed from `wr_arch_docs/docs/release/202608/release-1-briefing.md:135-148`, which is a briefing slide, not a bill of materials. Nothing in the workspace corroborates it. Three specific items:
+  - **Orin NX counts.** The matrix says two on the B2. `wr_robot_autonomy/release/robots/b2_sbs/deploy_config.yml` deploys to three hosts — `pc4`, `orinnx1`, `orinnx2`. Verified by reading that file and its `inventory.yml`. Most likely a site-specific build rather than a contradiction, but unconfirmed either way. `a2_wrdev` and `go2_wrdev` each have a single host, so those configs are development units and not evidence of the standard build.
+  - **`-` versus `no`.** The source distinguishes the two for Wi-Fi connectivity and the Ethernet switch on B2/A2 and never says why. The page reads them as "provided by the router and PoE switch above" — an inference, published as "via router" / "via PoE switch" rather than as absence. Confirm or correct.
+  - **Owner-stated 2026-09-11, and it corrects how the matrix reads:** both the B2 and the A2 accept additional accessories, subject to proper integration and testing. The **Spare space in the enclosure** row is about free room inside the B2's enclosure only — it is *not* a statement that the A2 cannot be extended, and an earlier draft of the page read it that way. The page now says so explicitly.
+  - **Go2 warning beacon.** The briefing says the Go2 has none; the hero image on the same page appears to show a blue dome on it. One of the two is wrong.
+- [x] **Closed 2026-09-11 — "Where a robot can work" is framed as current tested capability, and departs from the source deliberately.** `wr_arch_docs/src/overview/releases/r1.md` groups these under "Group 1 — Physical and environmental envelope" and states "These are properties of the platform and the environment. **They are not schedule items.**" The page says the opposite on the owner's ruling: this is what the autonomy software is tested to handle *today*, and an absent capability such as multi-level navigation is "not available yet rather than ruled out". Do not re-derive the source's framing — it will read as a permanent product ceiling, which is not what is meant. The rows say "outside the tested range" rather than "outside what a robot handles" for the same reason. **The section also separates two dimensions on the owner's instruction** — what the hardware can physically do versus what the autonomy handles unattended — with teleoperation named as what covers the gap. That is directly supported by `r1.md:69`: "Teleoperation is a supported operating mode, not just a rescue path — it is how the product covers navigation situations outside the autonomous envelope." The worked example is **uneven ground**: the autonomy navigates it up to a point, the legs manage more than that, and an operator drives beyond it. **Owner-stated 2026-09-11, and it qualifies the source:** navigation does handle a degree of roughness, within limits. `r1.md`'s "Terrain-aware navigation is still absent" must therefore **not** be read as "cannot traverse uneven ground" — a draft phrased it as "planning a route across it is not something the autonomy does yet" and that was rejected as overstated. The distinction is a threshold, not an absence, and the page must not restate it as binary. **Stairs were used first and withdrawn 2026-09-11:** the claim "a base can climb them" was sourced from `robot/quadruped/a2.md`'s spec table (30 cm step height), which describes the **bare** Unitree base — a platform carrying our payload has different mass and centre of gravity, and nothing establishes the figure still holds. Do not reinstate it without a figure measured with the payload fitted. Teleop is claimed *only* where the source says so. The per-condition table this note originally described was replaced on 2026-09-11 by a short bullet list, on the owner's instruction not to enumerate every limitation one by one — the conditions now appear as one clause ("multiple floors, unprepared ground, or heavy foot and vehicle traffic") whose consequence is more operator involvement, not a set of separate verdicts. The page also carries an owner-stated line that the autonomy is worked on continuously and what it handles unattended keeps widening. **That is the §4 boundary and it is deliberately at its limit:** a general statement that development continues is fine; a named future feature or any date is not. `release-pages-plan.md` §4 excludes the roadmap because the briefing itself records that quoting roadmap items has been "a recurring and expensive error" — so do not make this sentence more specific.
+
+- [x] **Closed 2026-09-11 — battery behaviour, owner-confirmed.** The robot **does** dock and charge; what is missing is resuming an interrupted patrol automatically from where it stopped. `wr_arch_docs/src/overview/releases/r1.md` Group 2 reads "it does not **automatically** dock, recharge, and resume a patrol where it left off" — the adverb scopes the whole chain, and a draft of this page dropped it and published "it does not dock, recharge and pick up where it left off". Do not re-derive that from the source.
+
+- [x] **Closed 2026-09-11 — support for a solution-delivered robot is single-point-of-contact, and this diverges from the product-page convention on purpose.** A draft said base faults (locomotion, joints, the manufacturer's controls) were covered by Unitree's documentation, with only the payload and onboard software coming to us. **Removed on the owner's ruling: a robot delivered as part of the solution is supported by Weston Robot end to end, and the customer is not routed to the vendor.** Note what this does *not* contradict: `docs/design/product-page-template.md` tier 1 says "Defer. Link the vendor" for the B2, A2 and Go2 — and that stays correct on `robot/quadruped/*`, where the reader bought a bare development platform. **The same hardware carries two support models depending on how it was sold**, so do not apply the tier-1 rule to this page. The vendor pages are still linked here, but as a reference for base specifications only, never as a support route. **Also removed on the owner's instruction:** the update path's VPN-and-SSH prerequisite, which a draft raised as something to take to the customer's network-security owner before a site survey. The page now says only that Weston Robot updates the onboard software and coordinates with the customer's operations team. The prerequisite itself is real and is still recorded in `docs/design/release-pages-plan.md` §6, including that on-site SSH has been refused outright by some customers' security rules — it belongs in a deployment conversation, not on a post-purchase page.
+
+- [ ] **`tutorial/robot-maintenance.md` §Firmware and software contradicts the Robot Platforms support model.** It tells the reader to "Record the version before and after any update", not to "update firmware mid-project", and to keep a note of "anything you built yourself — reimaging loses it". That addresses someone who manages their own platform; `solution/robot-platforms/index.md` says updates are Weston Robot's and there is nothing for the customer's team to run. The Robot Platforms page now links the maintenance guide and states in place that its firmware guidance does not apply — a patch, not a fix. **The real question is whether that guide should be split by audience, or carry a per-section note**, since it is linked from 13 robot pages that *are* self-managed as well as from here. Found while adding the "Operating and maintaining" section on 2026-09-11.
+
+- [ ] **Link-loss policy has no default and no setting location.** `solution/robot-platforms/index.md:77` says the behaviour is set by policy — stop safely, halt immediately, or keep going — because that is all the briefing states. Where it is set, and what ships as the default, both belong on the page and could not be found.
+- [ ] **`robot/quadruped/b2.md` and `a2.md` are now incomplete for deployed customers.** Their `### Network layout` sections describe the bare Unitree base; a delivered robot has two Orin NX, a 5G router, a Wi-Fi router and a PoE switch behind it. The product-page template's section 4, *Solutions for this platform*, exists for exactly this and is currently used only on `peripheral/sensor/manifold_pocket2.md:154`.
+- [ ] Decide whether the payload cutaway renders go public. `wr_arch_docs/docs/release/202608/images/box-b2.png` and `box-a2.png` are the only images that show what "integrated" means, and they show board-level detail of our own electronics. Not used on the page.
+- [ ] The two draft skeletons `solution/navigation.md` and `solution/industrial-patrolling.md` are still present. `release-pages-plan.md` §2 lists both for deletion; D-R1 rejected an `industrial-patrolling` hub because naming a page after the application over-promises.
+
+**Two overstatements were caught by the owner in review and corrected in place**, both from transcribing the briefing's persuasive register into reference prose:
+
+- "The B2 and A2 carry the same payload" / "Their electronics, enclosure and cabling are the same." The enclosure and cabling half was **invented**. The briefing says only that the A2 "shares the B2's backpack design" (`release-1-briefing.md:204`) and that there is "one electronics design across A2 and B2 — a fix on one is a fix on both, a spare part fits either" (`:224`). The page's own matrix (`Spare space`: B2 yes, A2 no) and its hero image both show the enclosures differ.
+- "They are not kits. You do not specify, assemble or reconfigure one… and is commissioned at your site by a Weston Robot engineer." Absolute where the briefing is not; "you do not specify or reconfigure" contradicted the page's own spare-space paragraph; and the commissioning claim was **invented** — the briefing says "deploy, and hand over to the customer's operators" (`:118`). Paragraph removed. The hand-over fact is sourced and could go under *Servicing and updates* if wanted.
+
+## Robot Platforms — network configuration page, incomplete
+
+`solution/robot-platforms/network-configuration.md` was created 2026-09-11. Its framing is written; **the procedures are not, because nothing in the workspace documents them.** Searched `wr_arch_docs`, `wr_autonomy_onboard/wr_robot_autonomy` (including `docs/guides/`) and the release material for router, 5G, APN, SSID and web-interface configuration — no hits. Owner-stated facts the page is built on: the B2 and A2 carry the same Wi-Fi and 5G routers so one procedure covers both, and the Go2 has neither and uses a Weston Robot web interface for Wi-Fi.
+
+**Needed before this page is useful to a customer.** None of it may be inferred — a wrong network instruction on a deployed robot costs a site visit:
+
+- [x] **A2 addressing documented 2026-09-11 (owner-stated).** All Weston Robot services on an A2 sit on `192.168.124.0/24`, with `.1` the 5G router and `.2` the Wi-Fi router. Corroborated rather than contradicted by `robot/quadruped/a2.md#network-layout`, which shows the base's Switcher 2 on the same `192.168.124.0/24` with the LiDARs at `.20`/`.21` — so the payload shares the base's second subnet.
+- [ ] **CONFIRM: DDS domain ID 1 versus `ros_domain_id: 0` in every deploy config.** The page publishes, on the owner's statement, that A2 autonomy runs on `192.168.124.0/24` at **domain ID 1**. But `wr_robot_autonomy/release/robots/a2_wrdev/deploy_config.yml:3` sets `ros_domain_id: 0`, as do `b2_sbs`, `go2x_devkit`, `ci_e2e`, `dev_testing` and the template at `release/deploy_config.yml:11` — and `docs/CHANGELOG.md` records "All nine robot configs and the template ship `0`". Either the delivered configuration differs from these development units (consistent with the `b2_sbs` three-host finding), or the domain is set outside the deploy config, or the figure is wrong. **This is worth resolving rather than leaving:** a wrong domain ID is the silent-failure case — a customer sets it, discovers nothing, and gets no error explaining why. Published as owner-stated pending confirmation.
+- [x] **Closed 2026-09-11 — two supported topologies, no failover (owner-stated).** Either the 5G router is the main router with the Wi-Fi router as a WAP only, or the 5G router is disabled and the Wi-Fi router is the main router. Fixed at commissioning, not dynamic. **This confirms the withdrawal below was correct**, and the diagram was corrected at the same time: it had shown both routers reaching the outside in parallel, which is neither setup. **Owner-stated 2026-09-11:** on a mobile uplink the access point is for **debugging only** and must be switched off for deployment — it is how someone working on the robot gets onto its network, and leaving it on keeps a wireless route to the internal network live for the life of the deployment. Published as a `:::warning` in that section and restated in the configuration table. That also answers the earlier open question about how an engineer reaches the routers, at least on a mobile uplink. Still open: which device serves DHCP on `192.168.124.0/24`, and the equivalent access route on a **site uplink**, where the Wi-Fi router is the main router rather than a WAP — the debugging-only instruction does **not** transfer to that configuration and must not be assumed to.
+- [ ] ~~**How the two routers work together**~~ — the withdrawn claim, kept for the record. The page describes what each router is *for*; it does not say how they interact, because nothing establishes it. **Withdrawn 2026-09-11:** a draft router table read "The mobile link the robot uses where there is no usable site Wi-Fi, **or when site Wi-Fi drops**" — that second clause asserts automatic failover and was invented, not stated. Now reads "independent of anything your site provides". Needed: which router carries the default route; whether the robot switches between them automatically or the path is fixed at configuration; whether both can be active at once; and which device serves DHCP on `192.168.124.0/24`. Failover in particular must not be implied again without confirmation — a customer who believes the robot fails over to 5G and plans coverage around that belief will discover otherwise at a site.
+- [ ] **A2 — how the routers are actually reached.** The addresses are published; getting onto the robot's network to use them is not. Needed: whether that is the PC1 Switch Ethernet port (as `a2.md` says for the onboard computers) or something else, whether the routers present a web UI on those addresses, and whether credentials are handed to customers at all. The page currently says only "you need to be on it before either address resolves".
+- [ ] **B2 addressing — a genuinely different arrangement, confirmed by the owner 2026-09-11, not merely undocumented.** The B2 and A2 carry the same router models but their networks are set up differently, so the two keep separate sections permanently rather than being merged once the B2 is written up. The difference is visible in the base already: `robot/quadruped/b2.md#network-layout` puts all five computers on one `192.168.123.x` network, while `robot/quadruped/a2.md#network-layout` splits across two switches (`192.168.123.0/24` and `192.168.124.0/24`). The page states the difference and routes to support. **Do not infer B2 addressing from the A2's** — that inference is exactly what this item exists to prevent.
+- [ ] **B2/A2 5G.** Whether the customer ever touches the SIM or APN, or whether a SIM change is always a Weston Robot job.
+- [ ] **Go2 web interface.** Where it is reached from, what a customer needs in order to open it, and what it can and cannot change.
+- [ ] **Which of these a customer is permitted to do at all**, versus what we do for them. The rest of the Robot Platforms page says updates and servicing are ours and that every fault comes to us; if network changes are also ours, this page should say so and become much shorter.
+- [ ] Router make and model are deliberately absent. Decide whether they are published — naming them invites customers to look up the vendor's own admin documentation, which may or may not be what we want.
+
+## Safety and maintenance split by platform type — 2026-09-11
+
+`tutorial/operational-safety.md` and `tutorial/robot-maintenance.md` were split by platform type on the product owner's instruction: *"I feel strange if I see UGV related contents as a humanoid robot user."*
+
+**Shape.** Both landing pages keep their URLs and carry what holds for every robot — pre-power-on checks, batteries and charging, routine checks, cleaning, storage, when to call us. Each routes by a **table to whole pages**, not by anchor; the owner rejected an anchor-based structure explicitly. Eight new pages under `tutorial/safety/` and `tutorial/maintenance/`, one per type: wheeled bases, quadrupeds, humanoids, manipulators.
+
+**Superseded claim.** The safety guide's intro previously read *"Everything below is deliberately on one page rather than split by platform. Safety guidance you have to click to find is safety guidance nobody reads."* That argument is real and was overruled deliberately — do not restore the sentence without reopening the decision. `docs/design/ia-proposal.md` §10 is amended accordingly.
+
+**Why no links broke.** All 74 inbound references survived because every anchor product pages use stayed on its landing page. Only 13 referenced the type-specific anchors, and those were repointed to whole pages — 8 of them the "How often do I need to lubricate the joints?" link from the quadruped and humanoid product pages.
+
+- [x] Four types for both guides, though maintenance previously combined `### Quadrupeds and humanoids`. Splitting them was a small improvement rather than pure duplication: the combined section linked only Go2 and B2 diagnostics, so `g1_diag_guide` was unreachable from it. The humanoid page now links it.
+- [x] New tag facet **platform type** (`ugv`, `quadruped`, `humanoid`, `manipulator`) in `tutorial/tags.yml`, which previously declared four facets and now declares five. `onInlineTags: 'throw'` catches any undeclared tag, which is how this surfaced.
+- [x] **Figure mis-filed and corrected 2026-09-11.** `tutorial/img/robot_on_stool.jpg` is a wheeled base, not a quadruped; its alt text claimed otherwise and the migration trusted it, landing the photo on the quadruped safety page. Now on `tutorial/safety/wheeled-bases.md` with an accurate description. **No legged platform has a raised-for-testing photo** — the quadruped and humanoid safety pages carry the instruction in prose only, and a photo of a quadruped on a stand would be worth taking.
+- [ ] **The A2 IP56 figure on `tutorial/safety/quadrupeds.md` depends on a section that is currently deleted.** The rating is quoted from `robot/quadruped/a2.md`'s `### Specifications` table (`IP56` body, Pro-variant core components IP67, LiDAR IPX7) — which is present in `HEAD` and on the live site, but **removed in the working tree**. If that deletion is intended, the safety page is the only place the figure survives and it should carry its own provenance; if the table is coming back, the two must agree. As2 has no published ingress figure anywhere in the repo, so its row says so rather than guessing.
+- [ ] **`tutorial/maintenance/wheeled-bases.md`'s tyre-pressure table names platforms this site does not document.** Its two rows are **Scout 2.0 and later** (1.8–2.0 bar) and **Hunter 2.0** (around 0.8 bar), while the page declares Scout Mini and Ranger Mini V2/V3. `grep -rl Hunter robot/ peripheral/ system/` returns nothing — the Hunter has no product page at all, and "Scout 2.0" is a different platform from the Scout Mini. Pre-existing in `robot-maintenance.md`; the split made it visible by putting a scope line above the table. The figures are real and worth keeping, but either the declared scope or the table is wrong. Decide whether this site covers the wider AgileX range or only the three UGVs under `robot/ugv/`.
+- [ ] The universal sections were neutralised of cross-type wording — the danger admonition no longer surveys four types, the mixed G1/Go2/B2 IP table moved to the type pages, and the quadruped-on-a-stool figure moved to the quadruped page. **Re-read the landing pages once more for tone**: they were written as a survey across platforms and now address a single reader, so some phrasing may still read as a comparison.
+- [ ] Type pages carry duplicated text where the content genuinely is shared — the legged hazards appear on both quadruped and humanoid safety pages, and the joint-service caution on both maintenance pages. That is deliberate (a pointer would recreate the problem the split fixes) but it is now four files that must be edited together when the guidance changes.
+- [ ] `robot/quadruped/as2.md`, `a2.md`, `h2.md`, `r1.md` and the manipulator pages still link only the landing pages, not their type pages. Ten product pages remain to be repointed the way go2, g1 and scout-mini were.
 
 ## File hosting — ADR 0001
 
@@ -141,7 +213,160 @@ claims removed were outright fabrications, two of them promising the reader a sa
 - [x] **Field guidance published (first tranche of [L8]).** Level-surface initialisation and why it matters; loop closure explained for a non-specialist plus route planning; controlled pace, tied to the scanning view's live **Translation** (m/s) and **Rotation** (°/s) readouts and the app's too-fast warning; forward movement through corridors and stairs; gentle tilting for corners and blind spots; sideways through tight doorways; inspect the cloud before exporting.
 - [x] **External best-practice search exhausted.** `3dmanifold.com/{support,faq,tutorial,tutorials}` all 404; `/download` carries only MindCloud Studio material; `manifoldtechltd.github.io/wiki/` is Odin-only. One addition survived the evidence rule — reflective, transparent and water surfaces return badly, grounded in the manual's own initialisation warning. Rejected as another product's guidance (NavVis VLX, not Pocket2): loop closures every 15–30 m, an on-screen "Quality Map", holding the scanner sideways in corridors (which also contradicts the operator's forward-movement ruling), enriching featureless areas with objects, and 3 h/8 h operator-wellness limits.
 
+## Current customer limitations — branch `docs/current-limitations`
+
+The current customer-facing limitation layer for the Robot Management Toolbox and the Robot
+Deployment Toolbox. It is **not** a mirror of Fleet's engineering backlog: an item earns a place
+here only if knowing it helps a customer avoid misunderstanding the product, taking the wrong
+action, or wasting meaningful time. Fleet's own TODO and issues remain the engineering record;
+cross-repo issue numbers stay out of customer prose and are named here instead, so a maintainer
+can trace a decision back rather than filing it twice.
+
+- [x] **Saved changes can reach a mission the robot already holds, during other work — published
+      2026-09-11, broadened the same day.** In `mission-editing.md` › *Sending missions to a robot*,
+      with a row in the Known limitations table on `robot-management-toolbox/index.md`. Classified a
+      current customer limitation because it contradicts the expectation the page itself sets two
+      paragraphs earlier ("Authoring a mission does not put it on a robot"). **It was first written
+      as a Quick Dispatch limitation, and that was wrong** — the v0.6.0 review established the
+      republish is a family, and a limitation titled after one control tells an operator they are
+      safe when they are not. Five operator actions were traced and all five qualify: Quick
+      Dispatch, **Go Home**, dispatching a saved mission, retrying a failed one-off, and
+      stopping/cancelling a run. **Four things the investigation established, so nobody
+      re-derives them:**
+  - **Residency is not the defect; content freshness is.** The older behaviour — an Active
+    mission the robot had never been sent becoming resident on a Quick Dispatch — is fixed and
+    regression-tested in Fleet (`westonrobot-dev/wr_fleet_management` issue #372, and
+    `backend/test/integration/quickdispatch_payload_narrowing_test.go`). The payload is narrowed
+    to missions the robot itself reports holding. What is *not* pinned is each held mission's
+    content: it is composed from the live bank row at push time, so a mission edited and saved
+    since its last send goes out at the newer version.
+  - **"Avoid Quick Dispatch" was rejected as the workaround, deliberately.** Naming one control
+    gives false safety, and telling a customer to hesitate over **Go Home** would trade a content
+    surprise for a robot somebody is reluctant to recall. The controllable step is the *save*, not
+    the dispatch, which is what the published wording says. Actions were named only where a
+    distinct operator press has the observable consequence — not because they share code. Go Home
+    is listed because it is its own button with the same effect, and Retry because the failed
+    quick-dispatch banner offers it.
+  - **Two pushes happen with no press at all.** A one-off run reaching a terminal state, and a
+    dispatch the robot never admits timing out, both republish the held set at current saved
+    content. That is why the published wording puts the remedy on the save rather than on a
+    pre-flight check alone — a check before setting a robot going cannot cover an update that
+    follows work *ending*.
+  - **The residency constraint holds for the dispatch family, and NOT everywhere — do not restate
+    the reassurance that was withdrawn.** Quick Dispatch, Go Home, dispatching a saved mission and
+    retrying a one-off all narrow the payload to what the robot itself reports holding, so an
+    unsent mission cannot arrive by those. Two other operator presses do **not** narrow that way on
+    a robot that is up to date with its map — cancelling a *scheduled* saved mission, and
+    acknowledging a finished Quick Dispatch — and republish the whole armed set. A sentence
+    promising that an unsent mission never arrives was published on 2026-09-11 and withdrawn the
+    same day once the trace reached those two paths. **It must not be reinstated** without the
+    ruling named below.
+- [x] **Residency-identity violation — Fleet ruled 2026-09-11, published the same day.** On a robot
+      whose set is known and which has adopted the activated map revision, cancelling or
+      acknowledging a *scheduled* saved mission, and acknowledging a finished Quick Dispatch, each
+      republish the whole **active** set rather than only what the robot holds. An activated mission
+      the operator never sent can therefore become resident and then run to its own schedule. Fleet's
+      verdict: a **known production contract violation** of ADR-056 §5 and a **distinct sibling
+      defect of #372** — not an accepted semantic, not a supersession of Active ≠ On Robot, and not a
+      variant of the content-refresh limitation. #372 delivered its own scope and stays closed; a new
+      Fleet issue linked to it is recommended and **has not yet been created**. Published as its own
+      `:::warning` in `mission-editing.md` › *Sending missions to a robot*, kept separate from the
+      content-refresh limitation below because the consequence and the eventual fix differ.
+  - **The precaution was verified before publishing, not assumed, and is scoped.** It is for a
+    saved mission that is **active but not on the robot** and should stay off it. Deactivating
+    excludes such a mission from the affected rebuild — it reads only active missions, and the one
+    path that adds held-but-deactivated rows back runs only on a robot that has *not* adopted its
+    map, which is outside the violating condition. It is **not** a way to take back a mission the
+    robot already holds: deactivating never publishes, so that copy stays until a later push leaves
+    it out. Deactivating is also free of traps: arming and disarming never
+    publish to a robot at all, disarm is not gated behind a location-confirmation round, a
+    deactivated mission can still be dispatched by hand, and reactivating still sends nothing by
+    itself, so the deliberate **Send to Robot** remains required.
+  - **Telling operators to avoid a control was rejected again, for the same reason as before.** Stop,
+    Go Home and the acknowledgement controls are how a robot is recalled and finished work is
+    cleared. The saved mission is the safe thing to control.
+  - **Do not describe every acknowledgement as affected, and do not name Quick Dispatch here.** Two
+    controls were published on 2026-09-11 and withdrawn the same day after tracing the UI rather
+    than the handler. **Acknowledging a finished Quick Dispatch is not affected on this release:**
+    ad-hoc work became an execution in migration 083, so it is acknowledged through the execution
+    route, which narrows unconditionally. The unsafe quick-dispatch branch fires only for a legacy
+    `quickdispatch-<robot>` row minted before 083 and still held by a robot — a transitional
+    residue, not a normal operation, and not worth customer wording. **Go Home does not belong here
+    either:** it establishes no residency, and naming it in a residency warning taught operators to
+    distrust a recall control over a defect it has no part in. It participates only in the
+    content-refresh limitation. The affected controls are **Stop** and **Acknowledge**, both on a
+    saved mission that was running to its schedule.
+  - **The signal exists and is visible before the fact, not after.** A mission the robot holds
+    whose saved version has moved ahead is badged with both version numbers in the mission list.
+    It is cleared once the robot acknowledges the newer version, so it has to be read *before*
+    setting a robot going — which is why the published wording points at it as a pre-flight check
+    rather than as something to look back on.
+- [ ] **Persistent "already confirmed" list after a location-confirmation round — NOT published,
+      and this is a decision rather than an omission.** Re-opening a mission while a confirmation
+      round is still open re-shows the locations already confirmed, because that list derives
+      from stored confirmation state rather than from the visit. It reads as a statement of what
+      is done, asks for nothing, and has no operational consequence: Fleet un-gates on the count
+      of *unanswered* items, not on whether the round row has been closed, so the residue never
+      blocks a robot or a mission. Publishing it would also mean introducing the whole
+      confirmation-round feature — which these pages do not currently explain — purely to caveat
+      a footnote of it, and Fleet holds the sweep's semantics frozen pending a v2 state model, so
+      any wording written now would be pinned to semantics expected to change. Revisit if the v2
+      model ships, or if support sees customers reading it as outstanding work.
+- [ ] **Mission-wide background audio is not a feature and must not be written up as a
+      limitation.** An earlier revision implied support; the claim was removed and the branch is
+      clean (no `background music` / `ambient audio` / `ambient_audio` anywhere in the content
+      tree). Per-checkpoint **Announce** is the real feature and stays documented in
+      `mission-editing.md`. The absence of an unimplemented feature is not a customer limitation —
+      `docs/design/product-page-template.md` › *Prose that earns its place* rules the same way
+      under **Negative-only**. If it is ever raised again, the answer is already here.
+- [x] **Merged `docs/fleet-v0.6.0` into this branch 2026-09-11, and PR #45 now stacks on PR #43
+      and then rebased onto `main` once #43 merged.** Done deliberately and early: both branches edit the same five files,
+      and resolving that at merge time would have meant reconciling prose nobody was looking at. One
+      content conflict, in *Sending missions to a robot* — #43's rewritten dispatch paragraph was
+      taken, since it owns that text and points at the Quick Dispatch section it adds; this branch's
+      two limitation admonitions were kept. Everything else auto-merged. **What the reconciliation
+      settled, so it is not re-opened:**
+  - **#43 had already absorbed most of what this branch catalogued.** Its activation paragraph no
+    longer claims sending is the only thing that puts work on a robot, and it already qualifies the
+    deactivation case. Two absolute statements did survive and were qualified here: *Saved
+    locations* ("moving either changes nothing on a robot that was sent the mission earlier") and
+    the *Common questions* answer about a moved location.
+  - **`· needs review` — #43's paragraph adopted wholesale**, as planned. This branch's narrower
+    sentence is gone.
+  - **The duplicate saved-location material was removed from this branch, not from #43.** #43 owns
+    the base fact and the **location changed** badge; this branch's caution keeps only what #43 does
+    not cover — that a move is not checked the way a save is, and that Send is not the only thing
+    that carries a move across.
+  - **The double-prompt limitation was withdrawn, because #43 supersedes it.** This branch called
+    the second prompt when saving a checkpoint as a location an unexplained repeat; #43 documents it
+    as the **Merge** / **Keep separate** choice, which is intended behaviour. #43 is newer and owns
+    v0.6.0 product truth, so its account wins. The index row went with it.
+  - **One clause was added to #43's activation paragraph** pointing at the residency exception
+    immediately below it, so the rule and its current exception are not read apart.
+  - **The 23-commit history was squashed for the rebase onto `main`, deliberately.** Every one of
+    those commits was authored against the pre-#43 text, so replaying them individually would have
+    meant re-resolving the same reconciliation a dozen times — and several of them carry wording
+    that was later withdrawn as factually wrong, which a replay would have re-introduced before
+    fixing it again. The reasoning those commit messages held is in this section instead, which is
+    why it is written at this length. The pre-rebase history is recoverable from
+    `backup/pre-main-rebase-481fac1` while that ref exists.
+  - **`main` had moved well past #43 by then** — the `tutorial/` → `guides/` restructure, the Robot
+    Platforms pages, new safety and maintenance pages. Of the eight files this branch touches, four
+    Robot Management Toolbox files were untouched by that restructure and were verified byte-identical
+    after the replay; `TODO.md` and the two Deployment Toolbox pages were three-way merged.
+
 ## Docs conventions and layout — issue #38
+
+**Future work, and deliberately gated: run it only after the v0.6.0 documentation and the
+current-limitations work have landed on `main`.** The order is not a preference. #38 rewrites prose
+across 66 pages, so running it while the facts on those pages are still being corrected means doing
+the work twice and losing corrections in the reflow. Factual and current-product accuracy must be
+settled first.
+
+**#38 owns** wording and prose cleanup, removing implementation-shaped explanation, context flow,
+discoverability and links, formatting and structure, figure and caption quality, and terminology
+harmonisation. **It does not own** whether a statement is true of the current product — that stays
+with whichever branch owns the page, and must be complete before #38 begins.
 
 A site-wide sweep of all 66 content pages against `docs/design/product-page-template.md`,
 `docs/design/ia-proposal.md`, `docs/LESSONS.md` and the two ADRs, with 26 routes measured

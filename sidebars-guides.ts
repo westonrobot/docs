@@ -1,14 +1,40 @@
 import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 
-const sidebarsTutorial: SidebarsConfig = {
+const sidebarsGuides: SidebarsConfig = {
   tutorialSidebar: [
     'intro',
     {
       type: 'category',
       label: 'Before You Operate',
       items: [
-        'operational-safety',
-        'robot-maintenance',
+        // Each landing page carries what holds for every robot and routes to
+        // the pages below by a table. The per-type pages exist because the
+        // hazards and checks that come from having legs, wheels or a single
+        // arm differ enough that a humanoid owner reading UGV guidance is
+        // reading someone else's document. Same category shape as Manifold
+        // Scanner Guides: the landing page is the category's own doc.
+        {
+          type: 'category',
+          label: 'Operational Safety',
+          link: {type: 'doc', id: 'operational-safety'},
+          items: [
+            'safety/wheeled-bases',
+            'safety/quadrupeds',
+            'safety/humanoids',
+            'safety/manipulators',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Robot Maintenance',
+          link: {type: 'doc', id: 'robot-maintenance'},
+          items: [
+            'maintenance/wheeled-bases',
+            'maintenance/quadrupeds',
+            'maintenance/humanoids',
+            'maintenance/manipulators',
+          ],
+        },
       ],
     },
     {
@@ -62,4 +88,4 @@ const sidebarsTutorial: SidebarsConfig = {
   ],
 };
 
-export default sidebarsTutorial;
+export default sidebarsGuides;

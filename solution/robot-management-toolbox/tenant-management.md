@@ -42,21 +42,62 @@ A **robot** belongs to one site and is assigned one map. Which map, and which ve
 
 | Role | Scope | Can |
 | --- | --- | --- |
-| **Observer** | One site | See the site and its robots. No commands |
-| **Operator** | One site | Everything an Observer can, plus command robots — dispatch, teleoperate, emergency stop |
+| **Observer** | One site | See the site and its robots. No commands, except the E-Stop, which every role at a site may use — releasing it afterwards is an Operator action |
+| **Operator** | One site | Everything an Observer can, plus command robots — dispatch, teleoperate, E-Stop |
 | **Site Admin** | One site | Everything an Operator can, plus manage and activate that site's maps — including its saved locations — and change a robot's name, model, capabilities and assigned map |
 | **Auditor** | Whole tenant | Read operational and audit logs across every site. No commands, no changes |
 | **Tenant Administrator** | Whole tenant | Site Admin authority at every site, plus managing users and roles. Sites themselves are provisioned by Weston Robot |
 
 Observer, Operator and Site Admin are granted **per site**, so the same person can hold different roles at different buildings. Auditor and Tenant Administrator apply across the whole tenant at once.
 
-Each role contains the one above it, so assigning access is one decision per person per site rather than a set of switches.
+Each role contains the one below it, so assigning access is one decision per person per site rather than a set of switches.
 
-**One thing worth planning around:** authoring a map and activating it are both Site Admin authority, so a single administrator can take a map from draft to live. Where a process calls for a second person to approve it first, that approval comes from the process rather than from the system.
+**Admin** is used throughout this documentation as a general term for a user with administrative permissions. Where an action requires a specific role, the required role is named explicitly.
+
+**One thing worth planning around:** authoring a map and activating it are both administrative authority at that site, so a single administrator can take a map from draft to live. Where a process calls for a second person to approve it first, that approval comes from the process rather than from the system.
+
+## Creating users and granting roles
+
+A **Tenant Administrator** creates the tenant's own users — there is no need to ask us for an
+account. From **Users**, select **New User**:
+
+| Field | What it is |
+| --- | --- |
+| **Display Name** | The name shown against the account throughout the toolbox |
+| **Email** | The address the person signs in with. It is the login identifier, and must be unique across all tenants |
+| **Password** | An initial password you set for them — at least 12 characters, and different from their last three |
+| **Require password change on first login** | Leave this on, so the person replaces that password themselves |
+
+<Figure
+  src={require('../img/fleet-new-user.png').default}
+  alt="The tenant management screen with the Users list behind and the New User dialog open. A callout marks the New User button above the list, and a second marks the dialog, which carries Display Name, Email, Password with its requirements, a Require password change on first login checkbox, a Tenant Role selector reading None with the note 'No tenant-wide authority. Assign per-site roles below.', and a Site Roles row pairing a site with a role, above Add Site Role, Cancel and Create"
+  size="lg"
+  framed
+  caption="New User, and the dialog it opens. The account here takes no tenant-wide authority and is given its access one site at a time." />
+
+**Tenant Role** is authority across the whole tenant:
+
+| Tenant Role | Grants |
+| --- | --- |
+| **Tenant Administrator** | Site Admin authority at every site, plus managing users and roles |
+| **Auditor (read-only)** | Reading operational and audit logs across every site, with no commands |
+| **None** | No tenant-wide authority — the account takes what it can do from its Site Roles instead |
+
+**None does not mean no access.** It means the account holds nothing tenant-wide. Under **Site
+Roles** you then pick a site and the role the person holds there — **Observer**, **Operator** or
+**Site Admin** — and **Add Site Role** again for each further site. Someone who works in one
+building normally has Tenant Role **None** and a single Site Role; the two are combined, so a
+tenant-wide role and per-site roles can be held together.
+
+**Create** finishes the account.
+
+**Sites are the one exception.** A Tenant Administrator manages the tenant's people, but sites
+themselves are provisioned by Weston Robot — a tenant with no sites yet, or one that needs another,
+is what to [contact us](/support/before-you-contact-us) about.
 
 ## A site's maps
 
-A site does not hold one map; it holds a **map lineage** — a named map that is revised over time. Each publish from the Robot Deployment Toolbox adds a **revision** to that lineage rather than replacing what was there, so `r4` and `r5` are the same map at two points in its life and the older one is still on record.
+A site does not hold one map; it holds a **map lineage** — a named map that is revised over time. A new **revision** is added to that lineage rather than replacing what was there — so `r4` and `r5` are the same map at two points in its life and the older one is still on record. Revisions arrive either as a push from the Robot Deployment Toolbox or by uploading a map bundle here.
 
 A revision moves through **draft**, then **published**, and one published revision at a time is **activated**. Activation is the decision that says "this is the revision robots should be running", and it is what the rest of the fleet reacts to. Revisions that are finished with can be archived without being deleted.
 
@@ -74,8 +115,8 @@ flowchart LR
         DRAFT["Draft revision"]
         PUB["Published"]
         ACTIVE["Activated"]
-        DRAFT -->|"publish<br/>(Site Admin)"| PUB
-        PUB -->|"activate<br/>(Site Admin)"| ACTIVE
+        DRAFT -->|"publish<br/>(Admin)"| PUB
+        PUB -->|"activate<br/>(Admin)"| ACTIVE
     end
     ROBOT["<b>Robot</b>"]
     TB -->|"push"| DRAFT
@@ -87,9 +128,9 @@ A revision reaches robots through three steps, and the Robot Deployment Toolbox 
 
 | Step | Who | What it does |
 | --- | --- | --- |
-| **Push** | Robot Deployment Toolbox | Sends the finished map into the Robot Management Toolbox as a **draft** revision, either starting a new lineage or adding to an existing one |
-| **Publish** | Site Admin | Marks the draft as a finished revision, ready to be used |
-| **Activate** | Site Admin | Makes it *the* revision robots are given |
+| **Push** | Robot Deployment Toolbox, or an upload here | Puts the finished map into the Robot Management Toolbox as a **draft** revision, either starting a new lineage or adding to an existing one |
+| **Publish** | Site Admin for that site, or Tenant Administrator | Marks the draft as a finished revision, ready to be used |
+| **Activate** | Site Admin for that site, or Tenant Administrator | Makes it *the* revision robots are given |
 
 **The deployment toolbox stops at the draft.** Publishing and activating are both actions taken here by a person; the deployment toolbox can do neither, and never talks to a robot at all.
 
@@ -114,14 +155,21 @@ Activating a map does not finish the job. A robot keeps the map it already holds
 
 <Figure
   src={require('../img/fleet-map-not-current.png').default}
-  alt="A dialog headed 'This robot's map is not up to date', naming the robot and the map, comparing the revision the fleet activated with the older revision on the robot, warning that navigation restarts and re-acquires localization, and noting that updating the robot's map needs the robot-manage permission at this site"
+  alt="A dialog headed 'Dev-A2 · map', comparing what the fleet activated — map blk55_office_level3, revision r8 and a bundle identifier — with what the robot reports: still on its previous map, no revision the fleet has seen it confirm, and a reported bundle that resolves to blk55_office_level3 r8. A status line reads 'downloaded, not applied'. A warning says navigation restarts and re-acquires localization and that the robot's missions are switched off and need switching back on; an error says its management agent is offline and to wait for it to come back before updating"
   size="md"
   framed
-  caption="A robot behind the activated map. The dialog names both revisions and what changing it will cost." />
+  caption="What the fleet activated, beside what the robot reports back. This robot has downloaded the new map without applying it, and its management agent is offline — so the update waits for that agent to return." />
 
-The dialog names the map, the revision the fleet activated and the revision on the robot, so it is clear how far behind it is. The recovery is to send it the activated map and wait for it to confirm; then check the missions and switch them back on. If the switch fails it can be retried from the same place, and the missions unlock when it succeeds.
+Two of those readings are worth knowing the first time you meet them. **downloaded, not applied**
+means the robot has fetched the new map and is still running the old one, so it counts as behind
+until it switches over. And where a robot's **management agent is offline**, the dialog says so, and
+the update waits until it is back — [When a robot reads as
+offline](/solution/robot-management-toolbox/robot-dashboard#when-a-robot-reads-as-offline) covers
+what that state means.
 
-Two things to plan around. **Updating a robot's map restarts navigation**, which then has to re-acquire localisation — so it is not a change to make to a robot part-way through something. And it needs **robot-management permission at that site**, which is Site Admin authority.
+The dialog names the map, the revision the fleet activated and the revision on the robot, so it is clear how far behind it is. The recovery is **Take control & update**, then wait for the robot to confirm; then check the missions and switch them back on. If the switch fails it can be retried from the same place, and the missions unlock when it succeeds.
+
+Two things to plan around. **Updating a robot's map restarts navigation**, which then has to re-acquire localisation — so it is not a change to make to a robot part-way through something. And it needs **robot-management permission at that site**, which an Operator holds as well as a Site Admin.
 
 ## The audit log
 

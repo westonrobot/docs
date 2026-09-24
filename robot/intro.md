@@ -10,7 +10,7 @@ Pick the platform you are working with. Each page covers setup, logins and inter
 :::warning Read the safety guidance before operating any platform
 
 These are powered machines that can injure people and damage themselves. Read
-[Operational Safety](/tutorial/operational-safety) and the manufacturer's documentation,
+[Operational Safety](/guides/operational-safety) and the manufacturer's documentation,
 and make sure operators are trained, before the first power-on. Legged platforms in
 particular can fall without warning during development.
 

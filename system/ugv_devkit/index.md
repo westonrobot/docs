@@ -60,7 +60,7 @@ The **[Getting Started guide](/system/ugv_devkit/v1/getting_started)** covers al
 | 3D mapping sample | LIO-SAM setup, pre-installed | [wr_devkit_mapping](https://github.com/westonrobot/wr_devkit_mapping) |
 | Navigation sample | ROS 2 Nav2 setup, pre-installed | [Nav2 Sample Setup](/system/ugv_devkit/v1/nav2_sample_setup_guide) |
 
-Installing Weston Robot packages on the onboard computer? Add our package repository first: [Weston Robot Apt Source](/tutorial/installation/apt_source).
+Installing Weston Robot packages on the onboard computer? Add our package repository first: [Weston Robot Apt Source](/guides/installation/apt_source).
 
 :::note What the pre-installed software is and is not
 

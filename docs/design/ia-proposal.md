@@ -63,7 +63,7 @@ A visitor arrives holding either **an object** ("I have a G1") or **a task** ("i
 
 ### 2.2 One product's content was scattered, cross-links pointed at indexes ✅ implemented
 
-Three product pages offered a link whose label promised a specific guide and whose target was the generic tutorial index — `go2.md` read `[Diagnostic Guide](/tutorial/intro)`. All three now deep-link. The structural fix is the tag mechanism in §9.
+Three product pages offered a link whose label promised a specific guide and whose target was the generic tutorial index — `go2.md` read `[Diagnostic Guide](/guides/intro)`. All three now deep-link. The structural fix is the tag mechanism in §9.
 
 ### 2.3 Content existed that the navigation never showed ✅ implemented
 
@@ -270,7 +270,7 @@ The payoff: every product page with tagged guides carries a **Guides for this pr
 
 ## 10. Support section ✅ implemented — scope deliberately reduced
 
-> **Reversal — safety and maintenance.** Revision 2 put `/support/safety` and `/support/maintenance` in this section. They are now under **Guides** instead, as `/tutorial/operational-safety` and `/tutorial/robot-maintenance`, because they are procedures you follow — one before operating, one on a schedule — which is the Guides axis. Keeping them here made Support a catch-all; Support is now scoped strictly to "something is wrong, or I need a human". Tagging them `safety` and `maintenance` also gives them more reach than a Support sub-page: a tag surfaces from any product page, whereas a Support page is only visited once there is already a problem.
+> **Reversal — safety and maintenance.** Revision 2 put `/support/safety` and `/support/maintenance` in this section. They are now under **Guides** instead, as `/guides/operational-safety` and `/guides/robot-maintenance`, because they are procedures you follow — one before operating, one on a schedule — which is the Guides axis. Keeping them here made Support a catch-all; Support is now scoped strictly to "something is wrong, or I need a human". Tagging them `safety` and `maintenance` also gives them more reach than a Support sub-page: a tag surfaces from any product page, whereas a Support page is only visited once there is already a problem.
 
 Per §0 this is the highest-value section on the site. Every page is one a support engineer currently retypes by hand.
 
@@ -288,7 +288,7 @@ Per §0 this is the highest-value section on the site. Every page is one a suppo
 
 `fault-codes` was removed rather than filled in. Codes come from firmware, so one site-wide list would have had to span every vendor and every revision, and a wrong entry sends a customer down the wrong diagnostic path. They will be documented per robot family or vendor instead, on the page that owns that firmware.
 
-`faq` was removed rather than kept. The questions it was to consolidate — joint lubrication, wireless development, waterproofing, fall recovery — are cross-platform answers, so they now live in the Guides that own them, and each product page links the anchor directly rather than sending the reader to a shared page. Seven product pages carry a **Questions that apply across our platforms** section built this way, pointing at `/tutorial/operational-safety#where-you-can-operate`, `#if-something-goes-wrong` and `#while-you-are-developing`, and `/tutorial/robot-maintenance#quadrupeds-and-humanoids` — each linked from four to seven of those pages. Model-specific questions stay on the product page. Same reasoning as the rows above: a shared page is a hop, and an answer reached from the product already in front of the reader is not.
+`faq` was removed rather than kept. The questions it was to consolidate — joint lubrication, wireless development, waterproofing, fall recovery — are cross-platform answers, so they now live in the Guides that own them, and each product page links the anchor directly rather than sending the reader to a shared page. Seven product pages carry a **Questions that apply across our platforms** section built this way, pointing at `/guides/operational-safety#where-you-can-operate`, `#if-something-goes-wrong` and `#while-you-are-developing`, and (until 2026-09-11) `/guides/robot-maintenance#quadrupeds-and-humanoids` — each linked from four to seven of those pages. **Amended 2026-09-11:** Operational Safety and Robot Maintenance were split by platform type, so that last anchor no longer exists; the seven quadruped and humanoid pages now link `/guides/maintenance/quadrupeds` and `/guides/maintenance/humanoids` as whole pages. The principle in this paragraph is unchanged and was the reason the split kept the two landing URLs: every other anchor those pages use — `#where-you-can-operate`, `#if-something-goes-wrong`, `#while-you-are-developing`, `#routine-checks`, `#batteries`, `#cleaning`, `#storage-and-transport` — stayed where it was, so none of the 74 inbound references broke. The product owner's instruction was explicitly *not* to route readers by anchor into a mixed page: a humanoid owner meeting UGV guidance is reading someone else's document. Model-specific questions stay on the product page. Same reasoning as the rows above: a shared page is a hop, and an answer reached from the product already in front of the reader is not.
 
 **Current state.** Support is one page — `before-you-contact-us` — plus a link to the support form. That is the entire section, by design.
 
@@ -306,11 +306,11 @@ Per §0 this is the highest-value section on the site. Every page is one a suppo
 | --- | --- |
 | `/software/toolbox/assisted_driving_toolbox` | `/solution/adt/intro` |
 | `/software/toolbox/adt_v1` `v2` `v3` | `/solution/adt/v1` `v2` `v3` |
-| `/software/installation/apt_source` | `/tutorial/installation/apt_source` |
-| `/software/slam/go2_slam` | `/tutorial/unitree/go2_slam` |
+| `/software/installation/apt_source` | `/guides/installation/apt_source` |
+| `/software/slam/go2_slam` | `/guides/unitree/go2_slam` |
 | `/software/intro` | `/solution/intro` |
-| `/general/operational-safety` | `/tutorial/operational-safety` |
-| `/general/robot-maintenance` | `/tutorial/robot-maintenance` |
+| `/general/operational-safety` | `/guides/operational-safety` |
+| `/general/robot-maintenance` | `/guides/robot-maintenance` |
 
 Unchanged: every `/robot/*`, `/peripheral/*` and `/system/*` URL.
 

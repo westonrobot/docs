@@ -40,7 +40,7 @@ Raspberry Pi's [Compute Module documentation](https://www.raspberrypi.com/docume
 | --- | --- | --- |
 | Compute Module documentation | Raspberry Pi's documentation for the CM4 module — module only, not our carrier board | [Raspberry Pi CM4 docs](https://www.raspberrypi.com/documentation/computers/compute-module.html) |
 
-Installing Weston Robot packages on the computer? Add our package repository first: [Weston Robot Apt Source](/tutorial/installation/apt_source).
+Installing Weston Robot packages on the computer? Add our package repository first: [Weston Robot Apt Source](/guides/installation/apt_source).
 
 ### Electrical interfaces
 

@@ -61,7 +61,7 @@ Teleoperation for mobile robot platforms, developed by Weston Robot. It lets an 
 
 **Install the client**
 
-Add our package repository first — see [Weston Robot Apt Source](/tutorial/installation/apt_source) — then:
+Add our package repository first — see [Weston Robot Apt Source](/guides/installation/apt_source) — then:
 
 ```bash
 sudo apt-get update
@@ -102,7 +102,7 @@ After logging in, choose the robot you want to control:
 
 **Install the client**
 
-Add our package repository first — see [Weston Robot Apt Source](/tutorial/installation/apt_source) — then:
+Add our package repository first — see [Weston Robot Apt Source](/guides/installation/apt_source) — then:
 
 ```bash
 sudo apt-get update
@@ -203,7 +203,7 @@ first-run settings dialogue will have nothing useful to put in it.
 
 | Resource | What it is | Where |
 | --- | --- | --- |
-| Package repository | Required before installing any version | [Weston Robot Apt Source](/tutorial/installation/apt_source) |
+| Package repository | Required before installing any version | [Weston Robot Apt Source](/guides/installation/apt_source) |
 
 ### Versions
 

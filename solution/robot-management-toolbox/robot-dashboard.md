@@ -1,6 +1,6 @@
 ---
 sidebar_position: 1
-description: "The robot view in the Robot Management Toolbox: the navigation map, camera feeds, operations and telemetry panels, the control panel, and how battery and connection loss change a running mission."
+description: "The robot view in the Robot Management Toolbox: the navigation map, camera feeds and how to arrange them, audio, operations and telemetry panels, the control panel, and how battery and connection loss change a running mission."
 ---
 
 # Robot dashboard
@@ -29,7 +29,68 @@ One robot on one screen. The view is laid out so that judging a running mission 
 
 **Localisation is worth watching.** A robot that is not localised does not know where it is on the map, so map-relative work — dispatching a mission, sending it home — has nothing to work from until it does. The map reports it beside the robot: **Localized** when it is tracking, **Not Localized** when it has no fix, and **Unknown** when the robot has not said recently enough to be trusted.
 
-**Init Pose**, on the map toolbar, is the recovery for a robot that is not tracking. You point at where the robot actually is and set its heading; it localises from there. It stays available while a locations-confirmation round is outstanding, precisely because it is the action that fixes the problem those actions are blocked by. A robot on an out-of-date map revision is a different matter: there Init Pose waits with everything else until the map is put right.
+**Not Localized is a status rather than a fault.** It can appear when the robot does not yet have a valid localisation on the current map, and map-relative controls may be unavailable until localisation succeeds. Localisation or navigation warnings caused by a robot not being localised should clear once it localises.
+
+**Init Pose**, on the map toolbar, is the recovery for a robot that is not tracking. Arm it, then **click to set the location and drag to set the heading** — releasing sends it, and the robot starts localising from the pose you gave. There is no separate confirm step and nothing further to press: watch the reading beside the robot for **Localized**. Init Pose remains available while location confirmation is outstanding. If the robot is on an out-of-date map revision, however, Init Pose remains unavailable until the map is brought up to date.
+
+Two things make it more likely to take. Put the pose where the robot physically is, as closely as you can judge — near enough in the right place is what it needs rather than an exact figure. And have the robot somewhere with clear, distinctive surroundings rather than a repetitive or bare one, because an aisle of identical bays gives it little to tell one position from another.
+
+## Arranging the view
+
+What the camera panel shows takes two separate decisions: **which of the robot's streams are running**, and **how the panes are arranged**. Both are set from the controls along the top of the panel, which appear when the camera feeds hold the main view area — switch **Map / Cameras** to Cameras if they are currently in the small one.
+
+### Which streams are running
+
+<Figure
+  src={require('../img/fleet-stream-selection.png').default}
+  alt="The controls along the top of the camera panel: an audio button reading Robot audio on, a Take Voice button, a camera button reading 6 / 6 with its Streams menu open beneath it, and a Settings button. The menu lists six streams — A2 Front Camera, A2 Rear Camera, A2 Left Camera, A2 Right Camera, A2 Gesture Camera and A2 Fence Detection 1 — each with a tick beside it"
+  size="md"
+  framed
+  caption="The Streams menu, opened from the camera count: every stream the robot offers, and which of them are running." />
+
+The camera control counts **the streams running against the streams the robot offers** — `6 / 6` when every one of them is up. Opening it lists them by name, and ticking one starts it. The same set appears as **Enabled Streams** in Stream Settings, with each stream's type beside it.
+
+**Ticking a stream asks the robot to start sending that camera.** It is not a filter over feeds already arriving, which is why a pane can be assigned correctly and still show nothing: a pane whose stream is not running reads **Waiting for stream…** instead. When a layout you have just set looks empty, check this count before changing the layout: assigning a pane starts nothing.
+
+**Streams are not restored when you come back.** A session opens with none of them running, and the ones you started are stopped when you leave the robot, so the panes fill as you turn feeds on rather than arriving populated. The arrangement around them is remembered.
+
+### How the panes are arranged
+
+**Stream Settings**, from the same row of controls, holds the arrangement, and it is remembered per robot.
+
+<Figure
+  src={require('../img/fleet-stream-settings.png').default}
+  alt="The Stream Settings dialog showing an audio mode of push-to-talk on hold-T, separate Dashboard and Teleop tabs, a layout picker with pane counts one to six and template thumbnails for two-by-two grid, focus left plus three and focus top plus three, a stream assignment list mapping slots A to D to cameras, and a grid fit choice between fill container and fixed aspect ratio"
+  size="md"
+  framed
+  caption="Stream Settings: audio mode, the layout and which camera sits in each pane, and how each view is fitted. Its enabled-stream list is empty here because the robot was reporting none." />
+
+**Layout is chosen in two steps** — first how many panes you want, from one to six, then which arrangement of that many. Four panes offers a 2×2 grid, one large pane with three small, or one across the top with three beneath; the thumbnails show each. **Stream assignment** then puts a named camera in each lettered slot.
+
+| Setting | Options |
+| --- | --- |
+| **Layout** | One to six panes, and from two panes up, several arrangements of each |
+| **Stream assignment** | Which camera goes in each lettered slot |
+| **Grid fit** | **Fill container**, which uses every pixel and may crop edges, or **fixed aspect ratio**, which keeps the whole frame |
+| **Primary stream** | The feed that fills the screen while driving |
+| **Picture-in-picture** | A stream pinned to a corner — top or bottom, left, centre or right — or switched off |
+| **Visible in teleop** | Which cameras appear while driving, which can be a smaller set than the dashboard shows |
+
+**Dashboard and teleop keep separate layouts**, on their own tabs, so the arrangement you want while monitoring need not be the one you want while driving. The dashboard tab holds the pane layout and the grid fit; the teleop tab holds the primary stream and what is pinned around it.
+
+Grid fit is the choice worth deliberate thought: filling the pane uses every pixel but crops the edges, and fixed aspect keeps the whole frame at the cost of letterboxing. For judging clearance beside a robot, seeing the whole frame usually matters more than filling the screen.
+
+## Audio
+
+Audio has two halves, and they are separate controls: hearing the robot, and speaking through it.
+
+**Hearing it** is the audio button on the camera panel — **Robot audio on** while it is live, **Robot audio muted** while it is not. Where the browser has not yet been allowed to play audio the same button reads **Click to enable audio**, and pressing it both unlocks playback and unmutes. It is an on-or-off control rather than a level: how loud the robot is comes from the computer's own volume.
+
+**Speaking through it** is claimed the way the robot's controls are — one person at a time. **Take Voice** takes the channel, and while you hold it the control offers the microphone and a button to release it. Anyone else sees **Voice:** and the name of whoever holds it, and a Site Admin can **Revoke** a channel left held by someone who has gone.
+
+**The voice channel is independent of the robot's controls.** Taking it does not take the robot, so an operator can speak to whoever is near a machine without touching anything that moves it — and someone else driving does not stop you. Taking the channel is an Operator action; an Observer cannot.
+
+Speaking is **push-to-talk** by default: hold to speak, release to stop — **`T`** on the keyboard, or the gamepad button bound to it while driving. **Always on**, set from **Audio Mode** in Stream Settings, leaves the microphone live and gives you a mute button instead. That suits an operator who needs both hands and does not suit a shared control room, where it carries whatever else is being said in the room to whoever is standing near the robot.
 
 ## Telemetry
 
@@ -109,11 +170,21 @@ The view is headed with the robot's name, model and serial number. Quote those w
 | **Commands** | Docking — dock and undock — and posture commands such as stand and sit |
 | **Missions** | Pick a mission this robot may run, and dispatch it |
 
+**After Go Home, trust the robot rather than the panel.** The robot begins driving home when the command is accepted, but the panel can go on reporting that the work is staged and not moving yet. The press took; the message is behind it. Watch the robot's position rather than pressing Go Home a second time.
+
 **What the E-Stop withdraws is the ability to set the robot going, not the ability to stop it.** While it is active, the controls that would start movement or take on new work are unavailable — driving, Go Home, the stance and docking commands, dispatching a mission, and auto-dispatch. The controls for dealing with what is already running stay available, so a run in progress can still be paused, resumed or stopped, a result acknowledged, and the robot cleared. Releasing the E-Stop is a deliberate second action rather than a side effect of anything else.
 
-Control is held under a **lease**, so a second operator cannot take the controls until the one held is released.
+**Every role at a site may activate the E-Stop, and it needs no control lease.** Safety is not something to
+hold a lease for, so an Observer — who can command nothing else here — can still stop a robot.
+**Releasing it is an Operator action:** **Reset E-Stop** is not open to every role, so an Observer
+who stops a robot needs an Operator to reset it.
+[Roles](/solution/robot-management-toolbox/tenant-management#roles) defines every role and its scope.
 
-Pressing **Teleop** starts a driving session in the main view area. Driving itself — keyboard and gamepad control, key mapping and axis inversion, speed and deadzone, arranging the camera views, and audio — is covered on [Robot teleoperation](/solution/robot-management-toolbox/robot-teleoperation).
+Every other control on this panel is held under a **lease** — an exclusive claim on that robot — so
+**only one person commands it at a time**, and a second operator cannot take the controls until the
+lease is released. There is no ambiguity about who is responsible for a moving robot.
+
+Pressing **Teleop** starts a driving session in the main view area. Driving itself — keyboard and gamepad control, key mapping and axis inversion, speed and deadzone — is covered on [Robot teleoperation](/solution/robot-management-toolbox/robot-teleoperation).
 
 Drive commands depend on the robot being on the map the fleet has activated. A robot that is behind has its dispatch and Go Home controls withdrawn until it catches up — see [Catching a robot up to the map](/solution/robot-management-toolbox/tenant-management#catching-a-robot-up-to-the-map).
 
@@ -125,18 +196,48 @@ Nothing starts by itself again until **Resume Auto-Dispatch**, so a robot paused
 
 A robot that is not reporting its dispatcher state shows the control unavailable rather than hiding it — an absent button means the robot is not reporting, not that it lacks the feature.
 
+## Recovery and acknowledgement
+
+A run that ends badly leaves something to settle, and the Management Toolbox keeps it in your way
+rather than clearing it quietly. On the control panel's **Missions** tab, the dispatch control is replaced by
+**Acknowledge "…" to continue** — the run's own name, and *failed* when it failed.
+
+That replacement is the point: **until you acknowledge it, you cannot dispatch anything else to that
+robot.** A result nobody looked at is the one that repeats, so you are asked to close it before the robot
+will take new work. Acknowledging is not an admission of anything; it is you saying you have seen
+the outcome.
+
+A robot that fails a run usually stops taking new work at the same time. Acknowledging can lift that
+pause for you, but only where the pause can be established as belonging to that run — so it is not
+something to count on. A **scheduled** mission's failure never resumes the schedule by itself: a
+schedule that restarts after failing is a schedule that fails all night.
+
+When the pause came from somewhere else — an operator paused it, a map update paused it, the robot's
+work was cleared — it is left alone, and auto-dispatch simply stays paused. Lifting a hold
+someone else put on deliberately would be worse than leaving yours in place, so the way back is the
+**Resume Auto-Dispatch** control rather than the acknowledgement.
+
+**Resume Auto-Dispatch** is the way back whatever paused the robot, and it is never withheld
+because an automatic resume was declined. Like anything else that lets work start, it needs the
+robot's controls and a settled map, and it is unavailable while the **E-Stop** is active. If a
+robot is idle when you expected it to be working, that control is the first thing to check.
+
 ## What happens during a mission
 
 Battery level and the connection to the fleet both change what a running mission does.
 
 - **Not enough battery** — the robot refuses to start a mission, and interrupts its schedule if the level becomes critical.
-- **The connection to the fleet drops mid-mission** — what the robot does next is set by its **disconnect policy**: `stop_safe`, which brings it to a controlled stop, or `continue_mission`, which carries on with the mission it holds. A custom behaviour can be fitted where a site needs something else. **The default is `stop_safe`.**
+- **The connection to the fleet drops mid-mission** — what the robot does next is decided on the robot, not from this dashboard.
 
-Two separate things are at work in that second case, and it is worth keeping them apart. **Navigation runs on the robot itself**, from the map it already holds, so completing a mission out of contact is a real capability rather than a hopeful one — which is what makes `continue_mission` a genuine option rather than a gamble. **The policy still decides what happens**, so a robot perfectly capable of continuing will stop if `stop_safe` is what it is set to.
-
-**The policy lives on the robot, not in the dashboard.** It is applied when Weston Robot commissions the robot, and changing it needs the same access as any other onboard change — see [Software updates](/solution/robot-management-toolbox/deployment-and-servicing#software-updates). The right answer differs between a warehouse aisle and an open yard, so it is worth settling at the site survey rather than after the first outage.
+**Navigation runs on the robot itself**, from the map it already holds, so the link to the fleet is not what keeps a robot navigating. What a robot does when that link drops is set on the robot when Weston Robot commissions it, and changing it needs the same access as any other onboard change — see [Software updates](/solution/robot-management-toolbox/deployment-and-servicing#software-updates). The right answer differs between a warehouse aisle and an open yard, so it is worth settling at the site survey rather than after the first outage; ask us what your robots are set to do.
 
 Messages are buffered on the robot while the link is down, so telemetry and events from that period arrive once it returns. What is genuinely unavailable in the meantime is the live view and the ability to send a command.
+
+## Unexpected errors
+
+If the toolbox or robot reports an unexpected error after the normal prerequisites have been
+satisfied, power the robot off and on once. This may clear a temporary fault. If the problem remains
+after the restart, [contact Weston Robot support](/support/before-you-contact-us).
 
 ## Common questions
 
@@ -144,7 +245,10 @@ Messages are buffered on the robot while the link is down, so telemetry and even
 No. Control is held under a lease, and only one person holds it at a time.
 
 **The camera panel is empty**  
-The robot is not connected. Feeds are live, so there is nothing to show for a robot that is not reporting in. Check the heartbeat reading in telemetry.
+Check the stream count first, since a session starts with nothing running and an empty panel may simply be a panel with no feeds turned on. If streams are running and the panes are still empty, the robot is not connected — feeds are live, so there is nothing to show for a robot that is not reporting in, and the heartbeat reading in telemetry will say so.
+
+**I set a layout and the panes are still empty**  
+A pane shows its camera only while that stream is running, and setting the layout does not start anything. Open the stream count beside **Settings** and tick the cameras you want — see [Which streams are running](#which-streams-are-running).
 
 **Why did teleoperation stop on its own?**  
 Teleoperation stops the robot when the connection to the fleet degrades. That is deliberate — driving a robot you cannot see is worse than stopping it.
