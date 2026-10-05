@@ -314,6 +314,14 @@ Per §0 this is the highest-value section on the site. Every page is one a suppo
 
 Unchanged: every `/robot/*`, `/peripheral/*` and `/system/*` URL.
 
+**Amended 2026-10-05 — three later moves, recorded here because their reasoning lived only in `docusaurus.config.ts`.**
+
+*Release 1 product renames.* The two Release 1 products were renamed to their trademark names — Robot Management Toolbox and Robot Deployment Toolbox — and their directories renamed to match: `/solution/fleet-management/*` → `/solution/robot-management-toolbox/*` (eight URLs) and `/solution/deployment-toolbox/*` → `/solution/robot-deployment-toolbox/*` (three). Every one is redirected, for the reason given at the top of this section: they are in circulation with customers and in support tickets.
+
+*The Guides tab kept its old route.* The tab was renamed in this restructure but its route stayed `/tutorial/*` — an oversight, not a decision; nothing in the revisions above records a reason to keep it. Renamed to `/guides/*` on 2026-09-11 so the URL matches the tab a customer clicked. All twenty-four old URLs redirected.
+
+*Version pages consolidated.* ADT v1/v2/v3 were three pages, v2 and v3 75% identical, now one page tabbed by version (`/solution/adt/v1` `v2` `v3` → `/solution/adt/intro`). The two UGV devkit version pages were 76% identical, now one page whose differences are a comparison table and a few tabbed images (`/system/ugv_devkit/v1.0` `v1.1` → `/system/ugv_devkit`). Both sets of old URLs are in circulation. This is §7 applied; the reconfiguration pages noted there as 87% identical are still outstanding.
+
 > **Caveat — redirects are client-side, not HTTP 301.** GitHub Pages cannot serve redirects, so `@docusaurus/plugin-client-redirects` emits a stub page with `<meta http-equiv="refresh">`, a canonical link, and a JS fallback that preserves the query string and hash. It works in a browser, including anchors. Two consequences: `curl` sees `200` at the old URL rather than a `30x`, and search engines weight these below a real 301.
 
 > **Caveat — the 91 anchor changes cannot be redirected at all.** Fragments are client-side only. Any `#2-1-electrical-interfaces` already pasted into a support ticket lands on the right page at the wrong scroll position. This is precisely why doing it before the product hubs exist was cheaper than after.
