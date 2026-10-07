@@ -36,7 +36,7 @@ Bring-up in outline:
 1. **Mount the arm** on a rigid surface, or on the base it will run on.
 2. **Connect power and a CAN interface** to your computer.
 3. **Bring up CAN** and confirm the arm responds — the CAN protocol reference under [Related resources](#related-resources) documents the frames.
-4. **Drive it from code** using `piper_sdk`, or from the Windows application for a first check.
+4. **Drive it from code** using `piper_sdk`.
 
 The quick start guide under [Related resources](#related-resources) is the shortest path, and the unboxing and gripper-installation videos below cover the mechanical side.
 
