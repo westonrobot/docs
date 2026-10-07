@@ -241,7 +241,7 @@ Add a redirect in `docusaurus.config.ts`. Old URLs are in circulation with custo
 - **Findings and follow-ups** → [`TODO.md`](TODO.md), with the `file:line` and how it was verified.
 - **Operational lessons** → [`docs/LESSONS.md`](docs/LESSONS.md), in Pattern / Correction / Context form.
 
-**Not in a config file.** `docusaurus.config.ts` and its neighbours record *what* is set, not why it was decided. Leave at most a one-line pointer and file the reasoning in one of the three above. The test is whether the comment would change if the decision were revisited: a note explaining a mechanism a maintainer needs at that line stays, a note explaining a decision moves. This repository is public, so a comment describing the state of our own content — which pages are incomplete, what was an oversight — is published where no reviewer reads it. See [`docs/LESSONS.md`](docs/LESSONS.md), *"Rationale in a config file is filed where nobody looks for a decision"*.
+**Not in a config file.** `docusaurus.config.ts`, the sidebars and CI workflows record *what* is set. A comment there may explain a mechanism a maintainer needs at that line. The reasoning behind a decision goes in an ADR, the design doc it amends, `TODO.md` or `docs/LESSONS.md`, with at most a one-line pointer left behind. If the comment would change when the decision is revisited, it moves. See [`docs/LESSONS.md`](docs/LESSONS.md), *"Rationale in a config file is filed where nobody looks for a decision"*.
 
 If an accepted decision contradicts an existing document, fix that document in the same change. An ADR that disagrees with the design doc is worse than no ADR.
 
