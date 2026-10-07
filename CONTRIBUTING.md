@@ -137,7 +137,7 @@ static/_upload/<section>/<product>/<product>-<kind>[-<subject>]-<lang>-v<version
 
 | Segment | Rules | Where it ends up |
 | --- | --- | --- |
-| `<section>` | one of `robot`, `solution`, `peripheral`, `system`, `tutorial`, `support` | first path segment of the URL |
+| `<section>` | one of `robot`, `solution`, `peripheral`, `system`, `guides`, `support` | first path segment of the URL |
 | `<product>` | lowercase and hyphens. **Must match the page's `<Downloads product="…" />`** or the document will not appear | second path segment — this is what groups every file for one robot |
 | `<product>-` | the filename repeats the product slug | so the name still means something once someone has saved it to a desktop |
 | `<kind>` | **one of the listed values below** — not free text | the **Document** column, tidied for display: `user-manual` → "User manual" |

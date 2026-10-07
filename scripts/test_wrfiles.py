@@ -8,9 +8,14 @@ afford a helpful default.
 Run: python3 -m unittest discover -s scripts -t scripts
 """
 
+import importlib.util
+import pathlib
+import re
 import unittest
 
 import wrfiles as w
+
+REPO = pathlib.Path(__file__).resolve().parent.parent
 
 
 class BothRoutesAgree(unittest.TestCase):
@@ -316,3 +321,25 @@ class SidecarsAreNotDocuments(unittest.TestCase):
 
     def test_the_index_itself_is_not(self):
         self.assertFalse(w.is_content_key("index.json"))
+
+
+def docs_plugin_paths():
+    config = (REPO / "docusaurus.config.ts").read_text(encoding="utf-8")
+    return set(re.findall(r"^\s*path:\s*'([^']+)',", config, re.M))
+
+
+class SectionsAreTheSiteSections(unittest.TestCase):
+    """`SECTIONS` must equal the `path` of every docs plugin instance in
+    `docusaurus.config.ts`, and `check-downloads.py` must scan the same set."""
+
+    def test_sections_match_the_config(self):
+        paths = docs_plugin_paths()
+        self.assertTrue(paths, "no `path:` entries found in docusaurus.config.ts")
+        self.assertEqual(set(w.SECTIONS), paths)
+
+    def test_check_downloads_scans_the_sections(self):
+        spec = importlib.util.spec_from_file_location(
+            "check_downloads", REPO / "scripts" / "check-downloads.py")
+        check_downloads = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(check_downloads)
+        self.assertEqual(set(check_downloads.CONTENT_ROOTS), set(w.SECTIONS))

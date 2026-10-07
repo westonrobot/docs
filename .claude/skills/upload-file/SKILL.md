@@ -35,7 +35,7 @@ Ask for whatever is missing. Ask in one message, not four.
 | **subject** | Optional, and the thing most often missed. Ask whether this is *the* CAD model / manual for the product or one of several — a wheel kit, a charging dock, a battery. If there is any chance of a second file of the same kind, include it: without a subject the second one overwrites the first and nothing reports it. |
 | **lang** | One of `LANGS`. Look inside the document if unsure; do not assume English. |
 | **version** | **From the document itself**, or the issue date when the manufacturer gives none — `v2020.10.29`, read from the file's own header. Never `v1` by default. — cover page, revision table, footer. Open it and check. Never invent one, never default to `v1`: it is permanent. If genuinely unversioned, say so and agree one with the user rather than guessing. |
-| **section** | The top-level content directory the page lives in: `robot`, `solution`, `peripheral`, `system`, `tutorial`, `support`. |
+| **section** | The top-level content directory the page lives in: `robot`, `solution`, `peripheral`, `system`, `guides`, `support`. |
 
 If the extension is not in `CONTENT_TYPES`, stop. Adding one is a deliberate
 edit to `wrfiles.py` with the right MIME type, not something to do in passing.

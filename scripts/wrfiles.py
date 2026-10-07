@@ -16,7 +16,7 @@ import re
 
 # The six Docusaurus plugin instances. A key's first segment must be one of
 # these: it is structural, unlike the taxonomy below it (ADR 0001 D4).
-SECTIONS = ("robot", "solution", "peripheral", "system", "tutorial", "support")
+SECTIONS = ("robot", "solution", "peripheral", "system", "guides", "support")
 
 UPLOAD_DIR = "_upload"
 
