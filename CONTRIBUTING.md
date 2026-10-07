@@ -142,7 +142,7 @@ static/_upload/<section>/<product>/<product>-<kind>[-<subject>]-<lang>-v<version
 | `<product>-` | the filename repeats the product slug | so the name still means something once someone has saved it to a desktop |
 | `<kind>` | **one of the listed values below** — not free text | the **Document** column, tidied for display: `user-manual` → "User manual" |
 | `<subject>` | **optional**, free text, lowercase and hyphens. Use it when a product has more than one of a kind — a CAD model of the body *and* of a wheel kit, a manual for the robot *and* for an accessory | appended to the **File** column: `CAD · Off road wheel`. Without it two such files share a key and the second silently overwrites the first |
-| `<lang>` | **one of `en`, `zh`, `zh-hans`, `zh-hant`** | the **Language** column |
+| `<lang>` | **one of `en`, `zh`, `zh-hans`, `zh-hant`, `zxx`**. `zxx` means no language: CAD models, firmware images, wiring diagrams | the **Language** column |
 | `v<version>` | `v` then digits and dots: `v2`, `v2.0`, `v2.0.1` | the **Version** column, sorted numerically so `v2.1` correctly beats `v2.0.9` |
 | `<ext>` | must be in the publishable set — PDF, ZIP, tar.gz, MP4, XLSX and a few others | sets `Content-Type`; an unlisted extension is refused rather than served as a generic download |
 
@@ -177,7 +177,7 @@ Three that catch people out:
 
 - **`cad` covers STEP, STL and DXF.** The format is the extension; the kind is what the document *is*.
 - **`manual` is not a value** — use `user-manual`, so it cannot drift apart from itself.
-- **Chinese is `zh`, never `cn`.** Language is one of `en`, `zh`, `zh-hans`, `zh-hant`.
+- **Chinese is `zh`, never `cn`.** Language is one of `en`, `zh`, `zh-hans`, `zh-hant`, `zxx`. A file with no language in it, such as a CAD model, firmware image or wiring diagram, is `zxx`, not `en`.
 
 If something genuinely new comes along, add it to `KINDS` in `scripts/wrfiles.py`. The moment's thought about whether it duplicates a value already there is the entire point of the list.
 
