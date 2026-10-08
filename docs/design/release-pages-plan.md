@@ -41,7 +41,7 @@ Per D0 the site serves existing customers post-purchase, so every page starts fr
 
 ### Phase 2 — operator and technician guides
 
-Task guides under `tutorial/`, tagged so they surface from product pages: planning a mission, monitoring and teleoperation, reviewing events and detections, managing users and roles, surveying and publishing a site map.
+Task guides under `guides/`, tagged so they surface from product pages: planning a mission, monitoring and teleoperation, reviewing events and detections, managing users and roles, surveying and publishing a site map.
 
 ### Phase 3 — hardware
 

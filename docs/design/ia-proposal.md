@@ -161,7 +161,7 @@ A solution is a capability we develop and deploy, not a component the customer i
 | Stage | Flag | Behaviour |
 | --- | --- | --- |
 | Drafting | `draft: true` | Visible in `npm run start`, **absent from production builds** |
-| Pilot customers | `unlisted: true` | Live and reachable by direct URL, excluded from sidebar, sitemap and search |
+| Pilot customers | `unlisted: true` | Live and reachable by direct URL, excluded from sidebar and sitemap. Search needs an `excludeRoutes` entry too (`CONTRIBUTING.md`, *Unlisting a page*) |
 | GA | neither | Full publish |
 
 ### Solution hub template
@@ -274,6 +274,8 @@ The payoff: every product page with tagged guides carries a **Guides for this pr
 
 > **Reversal — safety and maintenance.** Revision 2 put `/support/safety` and `/support/maintenance` in this section. They are now under **Guides** instead, as `/guides/operational-safety` and `/guides/robot-maintenance`, because they are procedures you follow — one before operating, one on a schedule — which is the Guides axis. Keeping them here made Support a catch-all; Support is now scoped strictly to "something is wrong, or I need a human". Tagging them `safety` and `maintenance` also gives them more reach than a Support sub-page: a tag surfaces from any product page, whereas a Support page is only visited once there is already a problem.
 
+> **Amended 2026-09-11 — split by platform type.** Both guides keep their landing URLs, which carry what holds for every robot and route by a table to one whole page per type: wheeled bases, quadrupeds, humanoids, manipulators. The hazards and checks that come from having legs, wheels or a single arm differ enough that a humanoid owner reading UGV guidance is reading someone else's document, so the table routes to pages rather than to anchors in a mixed page. This replaces the earlier choice to keep all safety guidance on one page so that none of it was a click away. That trade-off was weighed, and the split was chosen.
+
 Per §0 this is the highest-value section on the site. Every page is one a support engineer currently retypes by hand.
 
 | Page | Status | What it still needs |
@@ -322,7 +324,7 @@ Unchanged: every `/robot/*`, `/peripheral/*` and `/system/*` URL.
 
 *The Guides tab kept its old route.* The tab was renamed in this restructure but its route stayed `/tutorial/*`, and none of the revisions above records a reason to keep it. Renamed to `/guides/*` on 2026-09-11 so the URL matches the tab a customer clicked. All twenty-four old URLs redirected.
 
-*Version pages consolidated.* ADT v1/v2/v3 were three pages, with v2 and v3 largely duplicating each other, now one page tabbed by version (`/solution/adt/v1` `v2` `v3` → `/solution/adt/intro`). The two UGV devkit version pages largely duplicated each other, now one page whose differences are a comparison table and a few tabbed images (`/system/ugv_devkit/v1.0` `v1.1` → `/system/ugv_devkit`). Both sets of old URLs are in circulation. This is §7 applied. The devkit reconfiguration pages listed there as outstanding were merged the same way, into one page tabbed by generation.
+*Version pages consolidated.* ADT v1/v2/v3 were three pages, with v2 and v3 largely duplicating each other, now one page tabbed by version (`/solution/adt/v1` `v2` `v3` → `/solution/adt/intro`). The two UGV devkit version pages largely duplicated each other, now one page whose differences are a comparison table and a few tabbed images (`/system/ugv_devkit/v1.0` `v1.1` → `/system/ugv_devkit`). Both sets of old URLs are in circulation. This is §7 applied. The devkit reconfiguration pages were merged the same way, into one page tabbed by generation.
 
 > **Caveat — redirects are client-side, not HTTP 301.** GitHub Pages cannot serve redirects, so `@docusaurus/plugin-client-redirects` emits a stub page with `<meta http-equiv="refresh">`, a canonical link, and a JS fallback that preserves the query string and hash. It works in a browser, including anchors. Two consequences: `curl` sees `200` at the old URL rather than a `30x`, and search engines weight these below a real 301.
 
