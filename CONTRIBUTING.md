@@ -6,7 +6,7 @@ Everything here is a **task**. Where a task has reasoning behind it, this file l
 
 ## Who this is for
 
-This repository is edited by people writing documentation. **Technicians publishing a manual do not need it** — they upload through the AWS console and never clone anything. That flow is [`docs/design/file-hosting.md` §3](docs/design/file-hosting.md).
+This repository is edited by people writing documentation. A technician with a manual to publish can hand the file to someone in the `DocsDownloadPublishers` group, or use the upload-file skill (`.claude/skills/upload-file/SKILL.md`).
 
 ## Before you open a pull request
 
@@ -98,9 +98,10 @@ Manuals, SDK archives, firmware. These live in the file store, never in git — 
 1. Put the file in `static/_upload/<section>/<product>/`, **at the path it will occupy in the store**: `static/_upload/robot/wr65/wr65-user-manual-en-v2.3.pdf`. The directory is gitignored.
 
    **The name matters** — it carries all the metadata and is checked rather than trusted. See [Naming a document](#naming-a-document) below before you copy anything in.
-2. `npm run start` and check the page. The link works locally, so you are reviewing the real thing.
-3. `python3 scripts/publish-files.py` shows what it would do. Add `--publish` to upload and rewrite the page's link to the published URL.
-4. Rebuild and look again. The second review is against exactly what a customer gets.
+2. Check the page has `<Downloads product="…" />`, with the same `<product>` as the directory, and add it if not. Do not write a link to the file by hand.
+3. `npm run start` and check the page. The staged file shows in the table marked *staged*, so you are reviewing the real thing.
+4. `python3 scripts/publish-files.py` shows what it would do. Add `--publish` to upload.
+5. Rebuild and look again. The second review is against exactly what a customer gets.
 
 ### Has it actually gone up?
 
@@ -122,7 +123,7 @@ curl -s https://download.westonrobot.net/index.json | grep wr65
 
 That is the same file the site build reads, so if a document is in there it is live.
 
-`npm run check:downloads` fails if a page still points into `static/_upload/`. That is not a lint rule — CI has no copy of your local file, so such a page would 404 for everyone but you.
+`npm run check:downloads` fails if a page still points into `static/_upload/`. That is not a lint rule — CI has no copy of your local file, so such a page would 404 for everyone but you. It also fails if a `<Downloads>` query matches nothing in the store.
 
 The path convention is [ADR 0001 D4](docs/adr/0001-host-downloadable-documents-on-s3.md): `/<section>/<product>/<file>`, and a published path is **never renamed or deleted**. A customer's bookmark, a QR code printed on a chassis and a support email from 2024 all depend on that.
 
@@ -137,14 +138,14 @@ static/_upload/<section>/<product>/<product>-<kind>[-<subject>]-<lang>-v<version
 
 | Segment | Rules | Where it ends up |
 | --- | --- | --- |
-| `<section>` | one of `robot`, `solution`, `peripheral`, `system`, `tutorial`, `support` | first path segment of the URL |
+| `<section>` | one of `robot`, `solution`, `peripheral`, `system`, `guides`, `support` | first path segment of the URL |
 | `<product>` | lowercase and hyphens. **Must match the page's `<Downloads product="…" />`** or the document will not appear | second path segment — this is what groups every file for one robot |
 | `<product>-` | the filename repeats the product slug | so the name still means something once someone has saved it to a desktop |
-| `<kind>` | **one of the listed values below** — not free text | the **Document** column, tidied for display: `user-manual` → "User manual" |
+| `<kind>` | **one of the listed values below** — not free text | the **File** column, tidied for display: `user-manual` → "User manual" |
 | `<subject>` | **optional**, free text, lowercase and hyphens. Use it when a product has more than one of a kind — a CAD model of the body *and* of a wheel kit, a manual for the robot *and* for an accessory | appended to the **File** column: `CAD · Off road wheel`. Without it two such files share a key and the second silently overwrites the first |
-| `<lang>` | **one of `en`, `zh`, `zh-hans`, `zh-hant`** | the **Language** column |
+| `<lang>` | **one of `en`, `zh`, `zh-hans`, `zh-hant`, `zxx`**. `zxx` means no language: CAD models, firmware images, wiring diagrams | the **Language** column, shown as English, 中文, 简体中文, 繁體中文 or — |
 | `v<version>` | `v` then digits and dots: `v2`, `v2.0`, `v2.0.1` | the **Version** column, sorted numerically so `v2.1` correctly beats `v2.0.9` |
-| `<ext>` | must be in the publishable set — PDF, ZIP, tar.gz, MP4, XLSX and a few others | sets `Content-Type`; an unlisted extension is refused rather than served as a generic download |
+| `<ext>` | must be in the publishable set — PDF, ZIP, tar.gz, MP4, XLSX and a few others | the **Type** column, and sets `Content-Type`; an unlisted extension is refused rather than served as a generic download |
 
 **Use the version printed on the document itself.** It becomes part of a permanent URL that is never renamed (ADR 0001 D4), so a guessed version is wrong forever.
 
@@ -163,7 +164,7 @@ A hyphenated subject renders with spaces — `off-road-wheel` becomes "Off road 
 
 #### The `kind` vocabulary
 
-Fixed on purpose, and covering what a hardware documentation site normally carries. Free text here is how a store ends up holding `cad`, `CAD`, `STP` and `STL` for the same thing — at which point `<Downloads kind="…" />` stops being usable and the Document column reads inconsistently.
+Fixed on purpose, and covering what a hardware documentation site normally carries. Free text here is how a store ends up holding `cad`, `CAD`, `STP` and `STL` for the same thing — at which point `<Downloads kind="…" />` stops being usable and the File column reads inconsistently.
 
 | Group | Values |
 | --- | --- |
@@ -177,7 +178,7 @@ Three that catch people out:
 
 - **`cad` covers STEP, STL and DXF.** The format is the extension; the kind is what the document *is*.
 - **`manual` is not a value** — use `user-manual`, so it cannot drift apart from itself.
-- **Chinese is `zh`, never `cn`.** Language is one of `en`, `zh`, `zh-hans`, `zh-hant`.
+- **Chinese is `zh`, never `cn`.** Language is one of `en`, `zh`, `zh-hans`, `zh-hant`, `zxx`. A file with no language in it, such as a CAD model, firmware image or wiring diagram, is `zxx`, not `en`.
 
 If something genuinely new comes along, add it to `KINDS` in `scripts/wrfiles.py`. The moment's thought about whether it duplicates a value already there is the entire point of the list.
 
@@ -185,11 +186,11 @@ If something genuinely new comes along, add it to `KINDS` in `scripts/wrfiles.py
 
 | Filename | Renders as | URL becomes |
 | --- | --- | --- |
-| `scout-mini-user-manual-en-v2.0.1.pdf` | User manual · en · v2.0.1 | `download.westonrobot.net/robot/scout-mini/scout-mini-user-manual-en-v2.0.1.pdf` |
-| `scout-mini-user-manual-zh-v2.0.1.pdf` | User manual · zh · v2.0.1 | `download.westonrobot.net/robot/scout-mini/scout-mini-user-manual-zh-v2.0.1.pdf` |
-| `scout-mini-quick-start-en-v1.pdf` | Quick start · en · v1 | `download.westonrobot.net/robot/scout-mini/scout-mini-quick-start-en-v1.pdf` |
-| `scout-mini-cad-en-v1.zip` | Cad · en · v1 | `download.westonrobot.net/robot/scout-mini/scout-mini-cad-en-v1.zip` |
-| `wr65-wire-protocol-en-v3.2.pdf` | Wire protocol · en · v3.2 | `download.westonrobot.net/robot/wr65/wr65-wire-protocol-en-v3.2.pdf` |
+| `scout-mini-user-manual-en-v2.0.1.pdf` | User manual · English · v2.0.1 | `download.westonrobot.net/robot/scout-mini/scout-mini-user-manual-en-v2.0.1.pdf` |
+| `scout-mini-user-manual-zh-v2.0.1.pdf` | User manual · 中文 · v2.0.1 | `download.westonrobot.net/robot/scout-mini/scout-mini-user-manual-zh-v2.0.1.pdf` |
+| `scout-mini-quick-start-en-v1.pdf` | Quick start · English · v1 | `download.westonrobot.net/robot/scout-mini/scout-mini-quick-start-en-v1.pdf` |
+| `scout-mini-cad-zxx-v1.zip` | CAD · — · v1 | `download.westonrobot.net/robot/scout-mini/scout-mini-cad-zxx-v1.zip` |
+| `wr65-api-reference-wire-protocol-en-v3.2.pdf` | API reference · Wire protocol · English · v3.2 | `download.westonrobot.net/robot/wr65/wr65-api-reference-wire-protocol-en-v3.2.pdf` |
 
 The two Scout Mini rows differ only by language, and both appear in the same table — one row each, no page edit. That is the point of the convention: the store answers `product="scout-mini"` with everything it has.
 
@@ -235,11 +236,24 @@ Anything larger, or anything re-shot on a release cadence, belongs in the file s
 
 Add a redirect in `docusaurus.config.ts`. Old URLs are in circulation with customers and pasted into support tickets, so a moved page without a redirect is a broken link for someone who has no idea the page moved.
 
+Update `static/llms.txt` in the same change if it lists the page. The build does not check that file ([`docs/design/ia-proposal.md`](docs/design/ia-proposal.md) §10).
+
+## Unlisting a page
+
+1. Set `unlisted: true` in the page's front matter.
+2. Add the route to `excludeRoutes` under `docusaurus-lunr-search` in `docusaurus.config.ts`. Search does not read the front matter. The entries are globs, so a page with its own directory needs both `**/x` and `**/x/**`.
+3. Remove any `<ProductCard>` that links to the page, such as on `robot/intro.md`. Unlisting does not hide the card.
+4. Check with `npm run build && npm run serve`, not `npm start`. The dev server shows unlisted pages.
+
+See [`docs/LESSONS.md`](docs/LESSONS.md), *"A page hidden from the sidebar is still in site search"*.
+
 ## Recording a decision
 
 - **Design decisions** → an ADR in `docs/adr/`, including the rejected alternatives and *why*. A decision without its discarded options cannot be re-evaluated later.
 - **Findings and follow-ups** → [`TODO.md`](TODO.md), with the `file:line` and how it was verified.
 - **Operational lessons** → [`docs/LESSONS.md`](docs/LESSONS.md), in Pattern / Correction / Context form.
+
+**Not in a config file.** `docusaurus.config.ts`, the sidebars and CI workflows record *what* is set. A comment there may explain a mechanism a maintainer needs at that line. The reasoning behind a decision goes in an ADR, the design doc it amends, `TODO.md` or `docs/LESSONS.md`, with at most a one-line pointer left behind. If the comment would change when the decision is revisited, it moves. See [`docs/LESSONS.md`](docs/LESSONS.md), *"Rationale in a config file is filed where nobody looks for a decision"*.
 
 If an accepted decision contradicts an existing document, fix that document in the same change. An ADR that disagrees with the design doc is worse than no ADR.
 
@@ -251,6 +265,6 @@ If an accepted decision contradicts an existing document, fix that document in t
 | How a product page is laid out | `docs/design/product-page-template.md` |
 | How the file store works | `docs/design/file-hosting.md` |
 | Why the file store exists, and its decisions | `docs/adr/0001-host-downloadable-documents-on-s3.md` |
-| Deploying the file store infrastructure | `infra/README.md` |
+| Deploying the file store infrastructure | the private infrastructure repository |
 | Mistakes already made once | `docs/LESSONS.md` |
 | What is open | `TODO.md` |

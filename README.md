@@ -67,7 +67,7 @@ Documentation is split into six independent Docusaurus docs plugin instances, ea
 | `/peripheral` | `peripheral/` | `sidebars-peripheral.ts` |
 | `/system` | `system/` | `sidebars-system.ts` |
 | `/solution` | `solution/` | `sidebars-solution.ts` |
-| `/tutorial` | `tutorial/` | `sidebars-tutorial.ts` |
+| `/guides` | `guides/` | `sidebars-guides.ts` |
 
 The `general` and `software` sections were dissolved; `docusaurus.config.ts` keeps redirects for their old URLs, because support engineers paste them into tickets.
 

@@ -2,9 +2,9 @@
 
 How the downloadable-document store should be built and operated. [`../adr/0001-host-downloadable-documents-on-s3.md`](../adr/0001-host-downloadable-documents-on-s3.md) decides *what* and *why*; this document covers *how*, and the operational practice around it.
 
-Scope: public customer-facing files — product manuals, SDK and protocol specs, training decks, software archives, firmware, video. Roughly 39 documents today, growing per product and per release.
+Scope: public customer-facing files — product manuals, SDK and protocol specs, training decks, software archives, firmware, video. 24 documents in the store today, growing per product and per release.
 
-**Right-sizing is part of the design.** Every control below earns its place at this scale or is marked as deferred. A store of 39 documents does not need the topology of a package registry, and copying one in produces a system nobody maintains. Where a practice is standard but not yet worth it here, it is listed under §12 with the trigger that would change the answer.
+**Right-sizing is part of the design.** Every control below earns its place at this scale or is marked as deferred. A store of a few dozen documents does not need the topology of a package registry, and copying one in produces a system nobody maintains. Where a practice is standard but not yet worth it here, it is listed under §12 with the trigger that would change the answer.
 
 ## 0. Four principles
 
@@ -92,7 +92,7 @@ The component resolves that query against the index at build time. **A page cann
 | 1 | Stage the file under `static/_upload/`, at its published path | Anyone editing the page | none — local |
 | 2 | `publish-files.py --publish` uploads it with content type, cache headers, metadata and a `.sha256` sidecar | The publisher | `DocsDownloadPublish` |
 | 3 | The same run regenerates `index.json` from the bucket and invalidates the CDN | " | " |
-| 4 | It rewrites the page's local link to the published URL | " | none — local |
+| 4 | The page's `<Downloads>` query finds the document in the new index, so the page needs no edit. A hand-written link into `_upload/` is rewritten to the published URL | " | none — local |
 | 5 | Rebuild the docs site | CI, on `repository_dispatch` or the next push | none — the index is public |
 
 **The publish grant carries no `DeleteObject`.** Published paths are permanent (D4) and a manual for hardware still in the field outlives any reason to tidy it away (§10), so the worst a publisher can do is overwrite an existing key — which versioning makes recoverable. Removing an object is an admin act, done deliberately by someone who knows why.
@@ -111,7 +111,7 @@ So the engineer's path starts in the working tree:
 
    The name is deliberate. It is not `_publish/`, because dropping a file there does not publish it — a file sits there through however many local builds it takes to get the page right, and only `publish-files.py --publish` sends it anywhere. The directory holds things queued for upload, and is named for that.
 2. **Reference it locally and build.** `npm start` shows the real page with the real document attached — the thing no console-first flow can offer. A `<Downloads>` query resolves against staged files too, and marks them `staged` so a local build is never mistaken for a published one.
-3. **Run the publish script when the page is right.** It derives the D4 key from the local path, computes the digest, uploads with the right content type and cache headers, writes the checksum sidecar, regenerates the index, invalidates the CDN, and rewrites the page's local reference to the published one. One command, and the document is live.
+3. **Run the publish script when the page is right.** It derives the D4 key from the local path, computes the digest, uploads with the right content type and cache headers, writes the checksum sidecar, regenerates the index and invalidates the CDN. The page's `<Downloads>` query needs no edit, because it finds the document in the new index; a hand-written link into `_upload/` is rewritten to the published URL. One command, and the document is live.
 4. **Rebuild and review again.** The second review is against exactly what a customer will get.
 
 **The gitignore is the enforcement, and this is the load-bearing part.** CI has no local files, because they are not in the repository. A page committed before its document was uploaded therefore cannot resolve, and the build fails. The author saw a working page; CI sees the truth; the discrepancy surfaces in a pipeline rather than in a support ticket. It is the same mechanism as the video budget check (ADR 0001 D8) — a guarantee that comes from git and the filesystem disagreeing in a controlled, deliberate way.
@@ -212,7 +212,7 @@ A CloudWatch alarm on 404 rate is the piece that has to exist from day one. Acce
 
 **Effectively zero at this volume, and that is now measured rather than assumed.** Rates below were read from the AWS Pricing API on 2026-08-31 (`aws pricing get-products --service-code AmazonCloudFront`), not recalled; they are list prices, so any negotiated agreement only moves them down.
 
-| Line | Rate | At 39 documents |
+| Line | Rate | At 24 documents |
 | --- | --- | --- |
 | CloudFront egress, first 1 TB/month | **$0.00** — perpetual, not a trial | $0.00 |
 | CloudFront egress beyond that, Asia Pacific | $0.12/GB (0–10 TB), $0.085/GB in Europe and the US | — |
@@ -229,7 +229,7 @@ The levers, in order of effect, for whenever it does matter:
 - **Storage class.** Standard for served content. Archive tiers apply to masters, which are out of scope here.
 - **A billing alarm**, so video growth is noticed as a number rather than as an invoice. $20/month is a reasonable threshold — comfortably above zero, far below anything that would be a surprise.
 
-**Still a measurement to take:** total corpus size once the 39 documents are exported. Storage is a rounding error at any plausible figure, but the number is worth knowing before the first bulk load rather than after.
+**Measured 2026-10-07:** the 24 documents total about 146 MB, the sum of `bytes` in `index.json`. Storage is a rounding error at that size.
 
 ## 10. Content lifecycle and retention
 
@@ -246,9 +246,9 @@ The levers, in order of effect, for whenever it does matter:
 
 Ordered so each phase is independently useful and nothing is blocked on the phase after it.
 
-**Phase 0 — Unblock. Still blocked.** Export the 39 documents from the renamed M365 tenant. Everything downstream waits on this; WR65 and WRL63 first, since those products have no reachable documentation at all.
+**Phase 0 — Unblock. Closed without the export.** The old SharePoint can't be recovered, so the export from the renamed M365 tenant won't happen. The store was loaded in PR #44 instead, including the WR65 and WRL63 manuals. Documents that were only behind the old links are listed in `TODO.md` as lost until found.
 
-**Phase 1 — Serve it correctly. Infrastructure done 2026-09-01.** Bucket, CloudFront, ACM, OAC, Block Public Access, versioning — deployed and verified; `infra/README.md` records what exists. The bulk load and the link rewrite wait on Phase 0.
+**Phase 1 — Serve it correctly. Infrastructure done 2026-09-01.** Bucket, CloudFront, ACM, OAC, Block Public Access, versioning — deployed and verified; the private infrastructure repository records what exists. The bulk load and the link rewrite landed in PR #44.
 
 **Phase 2 — Make it repeatable. Done.** The publish script and the gitignored `_upload/` convention, plus — added once the need appeared — `--list` to see what is published and `--retire` to withdraw a document without breaking its URL.
 
@@ -265,7 +265,7 @@ Listed with the trigger that would change the answer, so the decision is revisit
 | Practice | Why not now | Trigger to revisit |
 | --- | --- | --- |
 | Cross-region replication | S3 durability within a region already exceeds the risk this addresses; versioning covers the realistic failure | A contractual availability commitment, or a second region for compliance |
-| A staging *environment* — a second distribution serving unpublished content for preview | 39 mostly-static documents; review happens on the page, before publishing. Nothing unpublished exists to preview: a document is either staged on someone's laptop or live | Publishing becoming frequent enough that a bad publish is likely |
+| A staging *environment* — a second distribution serving unpublished content for preview | A few dozen mostly-static documents; review happens on the page, before publishing. Nothing unpublished exists to preview: a document is either staged on someone's laptop or live | Publishing becoming frequent enough that a bad publish is likely |
 | Signed URLs / access control | ADR 0001 scope is public content only (decided 2026-08-31) | Any licence-gated SDK or customer-specific deliverable |
 | Object Lock / WORM | No regulatory retention requirement identified | A compliance or safety-certification requirement on firmware provenance |
 | A mainland-China mirror | Deferred by decision | Chinese customer download experience becoming a support burden |

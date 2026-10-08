@@ -352,7 +352,7 @@ An admonition block announcing missing data reads as unfinished. A sentence expl
 
 **No manual heading numbers.** `## 1. Overview` produces the anchor `#1-overview`, which breaks the moment a section is inserted above it — silently invalidating every anchor a support engineer has pasted into a ticket. See `ia-proposal.md` §8.
 
-**Sentence case applies to `##` and below, not to the page title.** Product page titles are the product's name, so the question rarely comes up there — but it does under `tutorial/`, where every existing guide's `<h1>` is Title Case (`G1 Diagnostics Guide`, `Ranger Mini Steering Calibration`). These are two rules rather than one applied inconsistently: **Title Case for a page title, sentence case for headings within it.** Recorded because the first draft of the Manifold Scanner Guides got it wrong, which is what an unstated convention invites. See [ADR 0002](../adr/0002-scanner-workflow-lives-in-guides-handed-over-at-the-pcd.md) D5.
+**Sentence case applies to `##` and below, not to the page title.** Product page titles are the product's name, so the question rarely comes up there — but it does under `guides/`, where every existing guide's `<h1>` is Title Case (`G1 Diagnostics Guide`, `Ranger Mini Steering Calibration`). These are two rules rather than one applied inconsistently: **Title Case for a page title, sentence case for headings within it.** Recorded because the first draft of the Manifold Scanner Guides got it wrong, which is what an unstated convention invites. See [ADR 0002](../adr/0002-scanner-workflow-lives-in-guides-handed-over-at-the-pcd.md) D5.
 
 **Do not duplicate a guide.** Link it. The bring-up procedure lives in the guide; the product page points at it.
 
@@ -366,7 +366,7 @@ Anchors into them are still validated at build time by `onBrokenAnchors: 'throw'
 
 **The tag page is the canonical guide list.** Naming the guides inline is good for readers; the tag link is what stops the list rotting. Include both.
 
-**Tags must be declared** in `tutorial/tags.yml` before use. `onInlineTags: 'throw'` fails the build on an undeclared tag.
+**Tags must be declared** in `guides/tags.yml` before use. `onInlineTags: 'throw'` fails the build on an undeclared tag.
 
 ## Beyond tables: diagrams and other elements
 
@@ -404,7 +404,7 @@ Hero images are almost always **the vendor's copyright**, not ours. As their dis
 | `peripheral/img/manifold/pocket2-rear-port-c.jpg` | Pocket2 Scanner | **Photographed in-house** by the operator | **Ours — no rights question.** The red ellipse marking Port C is the operator's annotation and is load-bearing, so do not crop or clean it out. Manifold publish no port diagram at all — manual §2.1 is a heading over an empty half-page — so this photograph is the only port reference that exists ([ADR 0002](../adr/0002-scanner-workflow-lives-in-guides-handed-over-at-the-pcd.md) D6) |
 | `peripheral/img/manifold/pocket2.png` | Pocket2 Scanner | Manifold Tech [Pocket2 product page](https://www.3dmanifold.com/products/pocket2) (`pocket2-device.640.webp`) | Vendor render, transparent cutout. **640 px is the largest published** — the wider `srcset` entries 404, so this is under the 1400 px cap by necessity rather than choice. Alpha-trimmed 640 × 640 → 208 × 505; 74 % of the canvas was padding. The `POCKET 2` and `MANIFOLD TECH` marks are on the product itself and are untouched |
 
-**Screenshots and photographs we take ourselves need none of this.** The ten MindCloud Go and MindCloud Studio captures under `tutorial/manifold/img/` and the Pocket2 port photograph above are operator captures of software we license and hardware we supply — ours to publish, with no vendor agreement in play. They are listed here only so that fact is on the record; guide assets do not otherwise belong in this table. What they *do* need is a check for incidental content before publishing: a real site, real people, a visible serial number or a local filesystem path in a window title are all things a screenshot picks up without anyone intending it.
+**Screenshots and photographs we take ourselves need none of this.** The ten MindCloud Go and MindCloud Studio captures under `guides/manifold/img/` and the Pocket2 port photograph above are operator captures of software we license and hardware we supply — ours to publish, with no vendor agreement in play. They are listed here only so that fact is on the record; guide assets do not otherwise belong in this table. What they *do* need is a check for incidental content before publishing: a real site, real people, a visible serial number or a local filesystem path in a window title are all things a screenshot picks up without anyone intending it.
 
 Every **vendor** render in the table is **pending confirmation** that our agreements cover documentation use. Replace with vendor-supplied assets if that is cleaner. The regulator photo is our own and needs no such check. (This sentence said "the three vendor renders" while the table held four; a count in prose beside a table it describes is a count that goes stale on the next row.)
 
@@ -617,7 +617,7 @@ includes the commands to gather it.
 - [ ] Serial number location recorded on the product page under Key information
 
 **Wiring**
-- [ ] Model has a declared tag in `tutorial/tags.yml`
+- [ ] Model has a declared tag in `guides/tags.yml`
 - [ ] Tag page linked as well as guides named inline
 - [ ] Shared FAQ answers linked by anchor, not copied
 - [ ] `npm run build` passes — this is what validates links, anchors and tags

@@ -161,7 +161,7 @@ A solution is a capability we develop and deploy, not a component the customer i
 | Stage | Flag | Behaviour |
 | --- | --- | --- |
 | Drafting | `draft: true` | Visible in `npm run start`, **absent from production builds** |
-| Pilot customers | `unlisted: true` | Live and reachable by direct URL, excluded from sidebar, sitemap and search |
+| Pilot customers | `unlisted: true` | Live and reachable by direct URL, excluded from sidebar and sitemap. Search needs an `excludeRoutes` entry too (`CONTRIBUTING.md`, *Unlisting a page*) |
 | GA | neither | Full publish |
 
 ### Solution hub template
@@ -220,7 +220,7 @@ The decision procedure, so the per-model versus cross-cutting question stops bei
 | Differs by **software** version of a solution | Versioned docs | Docusaurus versioning (D3) |
 | Vendor-published reference | Not duplicated | link out, name the vendor |
 
-Still outstanding under these rules (Phase 7): the devkit `v1.0`/`v1.1` reconfiguration pages are **87% identical** and will drift, and the three ADT versions are near-parallel.
+Phase 7 applied these rules to the devkit `v1.0`/`v1.1` reconfiguration pages and the three ADT versions; both are now single pages (§11).
 
 ### Document the model, not the interface
 
@@ -266,11 +266,15 @@ Governance is enforced, not conventional: `onInlineTags: 'throw'` is set on ever
 
 The payoff: every product page with tagged guides carries a **Guides for this product** section linking its tag page. Publish a new guide, tag it, and it appears on the right products with no edit to those pages.
 
+**Amended 2026-10-07 — a fifth facet.** *Platform type* (`ugv`, `quadruped`, `humanoid`, `manipulator`) was added on 2026-09-11, when Operational Safety and Robot Maintenance were split by type (§10). It is the axis that split is organised on, and it is separate from *model*: a guide tagged `quadruped` applies to every quadruped, including ones with no model tag. The file is now `guides/tags.yml` and declares 27 tags.
+
 ---
 
 ## 10. Support section ✅ implemented — scope deliberately reduced
 
 > **Reversal — safety and maintenance.** Revision 2 put `/support/safety` and `/support/maintenance` in this section. They are now under **Guides** instead, as `/guides/operational-safety` and `/guides/robot-maintenance`, because they are procedures you follow — one before operating, one on a schedule — which is the Guides axis. Keeping them here made Support a catch-all; Support is now scoped strictly to "something is wrong, or I need a human". Tagging them `safety` and `maintenance` also gives them more reach than a Support sub-page: a tag surfaces from any product page, whereas a Support page is only visited once there is already a problem.
+
+> **Amended 2026-09-11 — split by platform type.** Both guides keep their landing URLs, which carry what holds for every robot and route by a table to one whole page per type: wheeled bases, quadrupeds, humanoids, manipulators. The hazards and checks that come from having legs, wheels or a single arm differ enough that a humanoid owner reading UGV guidance is reading someone else's document, so the table routes to pages rather than to anchors in a mixed page. This replaces the earlier choice to keep all safety guidance on one page so that none of it was a click away. That trade-off was weighed, and the split was chosen.
 
 Per §0 this is the highest-value section on the site. Every page is one a support engineer currently retypes by hand.
 
@@ -313,6 +317,14 @@ Per §0 this is the highest-value section on the site. Every page is one a suppo
 | `/general/robot-maintenance` | `/guides/robot-maintenance` |
 
 Unchanged: every `/robot/*`, `/peripheral/*` and `/system/*` URL.
+
+**Amended 2026-10-05 — three later moves, recorded here because their reasoning lived only in `docusaurus.config.ts`.**
+
+*Release 1 product renames.* The two Release 1 products were renamed to their trademark names — Robot Management Toolbox and Robot Deployment Toolbox — and their directories renamed to match: `/solution/fleet-management/*` → `/solution/robot-management-toolbox/*` (eight URLs) and `/solution/deployment-toolbox/*` → `/solution/robot-deployment-toolbox/*` (three). Every one is redirected, for the reason given at the top of this section: they are in circulation with customers and in support tickets.
+
+*The Guides tab kept its old route.* The tab was renamed in this restructure but its route stayed `/tutorial/*`, and none of the revisions above records a reason to keep it. Renamed to `/guides/*` on 2026-09-11 so the URL matches the tab a customer clicked. All twenty-four old URLs redirected.
+
+*Version pages consolidated.* ADT v1/v2/v3 were three pages, with v2 and v3 largely duplicating each other, now one page tabbed by version (`/solution/adt/v1` `v2` `v3` → `/solution/adt/intro`). The two UGV devkit version pages largely duplicated each other, now one page whose differences are a comparison table and a few tabbed images (`/system/ugv_devkit/v1.0` `v1.1` → `/system/ugv_devkit`). Both sets of old URLs are in circulation. This is §7 applied. The devkit reconfiguration pages were merged the same way, into one page tabbed by generation.
 
 > **Caveat — redirects are client-side, not HTTP 301.** GitHub Pages cannot serve redirects, so `@docusaurus/plugin-client-redirects` emits a stub page with `<meta http-equiv="refresh">`, a canonical link, and a JS fallback that preserves the query string and hash. It works in a browser, including anchors. Two consequences: `curl` sees `200` at the old URL rather than a `30x`, and search engines weight these below a real 301.
 

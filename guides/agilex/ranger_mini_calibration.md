@@ -12,7 +12,7 @@ Two methods: autocalibration, which the robot performs itself, and manual calibr
 
 :::caution Autocalibration needs the right firmware
 
-Not every firmware build supports autocalibration. On the Ranger Mini 2.0, `V5.8.3` includes it and `V5.8.7` does not. Check which build your robot is running — see the firmware list on the [Ranger Mini 2.0](/robot/ugv/ranger-mini-v2) or [Ranger Mini 3.0](/robot/ugv/ranger-mini-v3) page — and use manual calibration if yours lacks it.
+Not every firmware build supports autocalibration, so check which build your robot is running and use manual calibration if yours lacks it. On the Ranger Mini 2.0, `V5.8.3` includes it and `V5.8.7` does not; the [Ranger Mini 2.0](/robot/ugv/ranger-mini-v2) page lists the builds. On the Ranger Mini 3.0, [submit a support request](https://forms.office.com/r/qELKzYF33W) quoting your version to ask whether it supports autocalibration.
 
 :::
 

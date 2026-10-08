@@ -7,12 +7,8 @@ const sidebarsGuides: SidebarsConfig = {
       type: 'category',
       label: 'Before You Operate',
       items: [
-        // Each landing page carries what holds for every robot and routes to
-        // the pages below by a table. The per-type pages exist because the
-        // hazards and checks that come from having legs, wheels or a single
-        // arm differ enough that a humanoid owner reading UGV guidance is
-        // reading someone else's document. Same category shape as Manifold
-        // Scanner Guides: the landing page is the category's own doc.
+        // The landing page is the category's own doc, as in Manifold Scanner
+        // Guides. Why per-type pages: docs/design/ia-proposal.md §10.
         {
           type: 'category',
           label: 'Operational Safety',
@@ -74,9 +70,7 @@ const sidebarsGuides: SidebarsConfig = {
       type: 'category',
       label: 'Manifold Scanner Guides',
       // The index is the category's own landing page, so clicking the category
-      // goes to the overview that explains where the workflow starts and stops
-      // instead of just expanding. Same shape as Robot Deployment Toolbox in
-      // sidebars-solution.ts.
+      // opens the overview instead of just expanding.
       link: {type: 'doc', id: 'manifold/index'},
       // Ordered as the workflow runs: connect, capture, process.
       items: [
