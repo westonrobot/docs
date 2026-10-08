@@ -241,8 +241,9 @@ Update `static/llms.txt` in the same change if it lists the page. The build does
 ## Unlisting a page
 
 1. Set `unlisted: true` in the page's front matter.
-2. Add the route to `excludeRoutes` under `docusaurus-lunr-search` in `docusaurus.config.ts`. Search does not read the front matter.
-3. Check with `npm run build && npm run serve`, not `npm start`. The dev server shows unlisted pages.
+2. Add the route to `excludeRoutes` under `docusaurus-lunr-search` in `docusaurus.config.ts`. Search does not read the front matter. The entries are globs, so a page with its own directory needs both `**/x` and `**/x/**`.
+3. Remove any `<ProductCard>` that links to the page, such as on `robot/intro.md`. Unlisting does not hide the card.
+4. Check with `npm run build && npm run serve`, not `npm start`. The dev server shows unlisted pages.
 
 See [`docs/LESSONS.md`](docs/LESSONS.md), *"A page hidden from the sidebar is still in site search"*.
 
