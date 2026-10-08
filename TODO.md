@@ -92,7 +92,7 @@ New page, not yet published. It is the hardware third of the Autonomy Stack, whi
   - [ ] WR65/WRL63 ROS 2 manual. The published integration guide covers ROS 1 (Melodic) only.
   - [ ] RM API samples (WR65, WRL63). No `api-examples` entry for either arm.
   - [ ] Ranger Mini 3.0 firmware V6.0.5. Not in OneDrive or on AgileX's site.
-  - [ ] MindCloud GO and MindCloud manuals (Manifold Pocket). See the `manifold_pocket.md` item below.
+  - [ ] MindCloud GO and MindCloud manuals (Manifold Pocket). See *Manifold Pocket (first generation)* below.
 - [x] Hostname decided: **`download.westonrobot.net`** (ADR 0001 D1, amended). `westonrobot.net` is in Route 53 in this account under direct administration; `westonrobot.com` is on Cloudflare (`dig +short NS westonrobot.com`). `HostedZoneId` defaults to `Z016356211Y82HTRJIPRB`, so ACM creates and resolves the validation records itself and the alias comes with the stack — no manual DNS step. Note for whoever next tidies the `.net` estate: this subdomain is production and its URLs are permanent.
 - [x] **Deployed 2026-09-01.** Both stacks are up: `westonrobot-files-certificate` (us-east-1, 3m15s) and `westonrobot-files` (ap-southeast-1, 19m30s). Bucket `westonrobot-files`, distribution `E2SQLRWCEUM8UK`, certificate ISSUED and renewal-ELIGIBLE. Verified: TLS terminates on `download.westonrobot.net`, the raw `s3.amazonaws.com` URL returns 403 (D3 holds), and the OAC bucket policy applied with all four public-access blocks on.
 - [x] **Smoke test passed 2026-09-01.** One generated PDF published end to end and removed again: correct `Content-Type` and immutable `Cache-Control`, bytes identical on download, `index.json` derived with full metadata, `.sha256` sidecar matching, and a re-run correctly reporting `= published`. The store is empty again.
@@ -135,6 +135,18 @@ maintenance trigger remains, plus one question worth asking Manifold. Everything
 this list is closed. **A sourcing pass on 2026-09-04 reopened and re-closed it** — see
 *Closed by the 2026-09-04 sourcing pass* below; those changes are **not yet committed**.
 
+### Manifold Pocket (first generation): discontinued, for the next branch
+
+The Pocket is no longer in production. PR #44 left `peripheral/sensor/manifold_pocket.md` unchanged on purpose; everything below is still open.
+
+- [ ] **Add a notice** at the top of `manifold_pocket.md`: the product is no longer in production or supported, with a link to `peripheral/sensor/manifold_pocket2.md`.
+- [ ] **Decide whether to unlist the page** once the notice is in, as was done for As2, H2 and NERO (front matter plus `excludeRoutes`; see CONTRIBUTING *Unlisting a page*). If it is unlisted, also drop its card from `peripheral/intro.md:44`.
+- [ ] **Dead manual links** (`manifold_pocket.md:46-47`, *MindCloud GO manual* and *MindCloud manual* on `tangrobot.sharepoint.com`). Lost until found. Check Manifold's download page, `version.manifoldtech.cn/download/mcs?lang=en`, then link it or remove the rows.
+- [ ] **Dead app links** (`manifold_pocket.md:48-49`, *MindCloud GO* APK and *MindCloud* for Windows on `www.manifoldtech.cloud`). The site's certificate expired on 2026-07-01 and was still expired on 2026-10-07. Best effort only: with the product discontinued, the vendor may not renew it. Remove the rows or replace them with Manifold's download page.
+- [ ] **Desktop software name.** `manifold_pocket.md:16`, `:20`, `:36` name "MindCloud" on Windows and say the desktop workflow matches the Pocket2's, while `guides/manifold/processing.md` uses MindCloud Studio and the Pocket2's rear Port C. Correct this when writing the notice.
+- [ ] **Sibling pages call it "earlier", not discontinued.** `manifold_pocket2.md:14` ("the newer of the two") and `peripheral/intro.md:44`, `:46` ("the earlier model"). Change to "replaces the discontinued Pocket".
+- [ ] **Image provenance.** `peripheral/img/manifold/pocket.png` has no row in the image-provenance table in `docs/design/product-page-template.md`; its source is unrecorded.
+
 ### Worth asking Manifold
 
 - [ ] **[L3]** Whether an unlisted Pocket2 resources area exists. `3dmanifold.com/download` shows only MindCloud Studio and its manual, yet the Pocket2 manual is served from `asset.3dmanifold.com/media/static/download/q9000/`, so there may be a Pocket2 section the site does not link. Worth raising at the same time: **their manual publishes no port diagram** — §2.1 *Physical Structure of Pocket 2* is a heading over an empty half-page, and `pdfimages -list -f 3 -l 3` returns only the header logo, which is why our port layout is operator-verified rather than vendor-sourced ([ADR 0002](docs/adr/0002-scanner-workflow-lives-in-guides-handed-over-at-the-pcd.md) D6). **Neither is a gap in our documentation.** For our current scope: no separate datasheet is known or needed, the user manual carries the getting-started and operating material, and there is no user-downloadable firmware package in the documented workflow — firmware is handled through the supported in-app mechanism. That is "not identified and not required", not a claim that no such Manifold resource exists anywhere.
@@ -148,14 +160,6 @@ this list is closed. **A sourcing pass on 2026-09-04 reopened and re-closed it**
 
 - [ ] **[L13] Revalidation trigger — maintenance only, wants nothing today.** Revalidate the guides when the Manifold app, manual or software changes **or when field use or fresh screenshots reveal UI or workflow drift, even where no published version number has moved**. **The original version-based signal is void:** it was proven insufficient twice in one day — the app renamed `My` to `Profile` and the documented initialisation prompt turned out not to be observable in the field, neither announcing itself in a version number. The reliable detector is a reader with the unit. Link fragility is designed out — no version-pinned URL, PDF or installer on any customer-facing page — so nothing can break; only the prose can go stale.
 - [ ] Tell whoever staffs the support form that **MindCloud Studio licence requests** may arrive through it. The licence is per-machine and can be requested from Manifold directly or through us; our route is offered as a convenience, not the only one.
-
-### Found while working, not fixed
-
-- [ ] **`peripheral/sensor/manifold_pocket.md`: the Pocket is no longer in production.** All four links in *Related resources* are dead.
-  - The two `tangrobot.sharepoint.com` manuals (*MindCloud GO* and *MindCloud*) are lost until found. Check Manifold's download page, `version.manifoldtech.cn/download/mcs?lang=en`, for them.
-  - The two `www.manifoldtech.cloud` app links fail because the site's certificate expired on 2026-07-01 (still expired on 2026-10-07). They are best effort: with the product discontinued, the vendor may not renew it.
-  - The page should say the product is no longer supported and point readers to `peripheral/sensor/manifold_pocket2.md`.
-- [ ] `peripheral/img/manifold/pocket.png` has no row in the image-provenance table in `docs/design/product-page-template.md`. Its source is unrecorded; the Pocket2 render added beside it is documented. Pre-existing gap, found while adding that row.
 
 ### Closed by the 2026-09-04 sourcing pass
 
@@ -495,7 +499,6 @@ Peripheral, system and support pages:
 - [ ] **Power Regulator V2 gaps.** "Every port fused" (`power_regulator_v2.md:29`) against the extension output (`:129`); no CAN or RS485 connector type, location or pinout (`:39`, `:92`); no way to tell V2.1 from V2.2 and no V2.2 EDS filename (`:102`, `:204-238`).
 - [ ] **`peripheral/network/industrial_5g_router.md`** gives no login (`:45-49`), no reset if the LAN address is lost (`:121-133`) and no APN or cellular setup (`:32-35`).
 - [ ] **Unclear support routes** for the Pocket2 (`peripheral/sensor/manifold_pocket2.md:58`, `:60`, `:184`) and for devkit customisation (`system/ugv_devkit/index.md:99`).
-- [ ] **Pocket called "earlier", not discontinued.** `manifold_pocket2.md:14` and `peripheral/intro.md:44`, `:46`. Also `manifold_pocket.md:16-49` names "MindCloud" and Port C while the guide uses MindCloud Studio; a note for whoever writes that page's discontinued notice.
 - [ ] **"No GPU" on the NanoPC.** `system/ugv_devkit/index.md:170` and `peripheral/computer/cm4.md:92`; the RK3588 has a Mali GPU. Say "CUDA-capable".
 - [ ] **`component_reconfiguration.md:46-50`** "frame dimensions" figure shows no dimensions.
 - [ ] **Devkit v1 guides.** `v1/getting_started.md:15`, `:24` give no Wi-Fi details and a relative config path; `v1/nav2_sample_setup_guide.md:15`, `:20-21`, `:107`, `:116-121` have plain-text "links" and a malformed camera table.
