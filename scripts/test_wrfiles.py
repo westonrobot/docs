@@ -343,3 +343,20 @@ class SectionsAreTheSiteSections(unittest.TestCase):
         check_downloads = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(check_downloads)
         self.assertEqual(set(check_downloads.CONTENT_ROOTS), set(w.SECTIONS))
+
+
+def plugin_list(name):
+    source = (REPO / "plugins" / "file-index" / "index.js").read_text(encoding="utf-8")
+    m = re.search(rf"^const {name} = \[(.*?)\];", source, re.M | re.S)
+    return tuple(re.findall(r"'([^']+)'", m.group(1))) if m else ()
+
+
+class PluginVocabularyIsWrfiles(unittest.TestCase):
+    """The file-index plugin re-derives staged documents' metadata from their
+    keys, so its copies of `KINDS` and `LANGS` must be the ones here."""
+
+    def test_kinds_match(self):
+        self.assertEqual(set(plugin_list("KINDS")), set(w.KINDS))
+
+    def test_langs_match(self):
+        self.assertEqual(set(plugin_list("LANGS")), set(w.LANGS))
