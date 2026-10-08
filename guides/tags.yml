@@ -4,14 +4,9 @@
 # so a tag that is not declared here fails the build rather than quietly
 # creating a near-duplicate tag page. Add new tags here first.
 #
-# Five facets: model, platform type, vendor, solution, topic. Keep them flat —
-# Docusaurus tags have no hierarchy — and prefer adding to an existing facet over
-# inventing one.
-#
-# "platform type" was added 2026-09-11 when Operational Safety and Robot
-# Maintenance were split per type. It is the axis that structure is organised on,
-# and it is deliberately distinct from "model": a guide tagged `quadruped`
-# applies to every quadruped including ones with no model tag of their own.
+# Five facets: model, platform type, vendor, solution, topic. Docusaurus tags
+# have no hierarchy, so keep them flat and prefer an existing facet to a new one.
+# Facet rationale: docs/design/ia-proposal.md §9.
 
 # --- model -------------------------------------------------------------------
 g1:

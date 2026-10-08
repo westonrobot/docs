@@ -37,6 +37,8 @@ Per D0 the site serves existing customers post-purchase, so every page starts fr
 | Site-suitability guide | The envelope: where this works and where it does not |
 | *(delete)* `industrial-patrolling.md`, `navigation.md` | Empty skeletons, never published, both 404 today |
 
+**Amended 2026-10-07 — order and the Robot Platforms directory.** The Solutions sidebar and the cards on `solution/intro.md` list Robot Platforms, Robot Deployment Toolbox, then Robot Management Toolbox. That is the order a deployment runs in: the robot the customer has, the site mapped before anything can run, and the system it is run from afterwards. It is not ordered by how often a page is opened. Robot Platforms was created as `robot-platforms/index.md` so that adding a sub-page would not move its URL; network configuration was added as one on 2026-09-11, and the index stays the category's landing page. The plural name is explained in `TODO.md` under *Robot Platforms page*.
+
 ### Phase 2 — operator and technician guides
 
 Task guides under `tutorial/`, tagged so they surface from product pages: planning a mission, monitoring and teleoperation, reviewing events and detections, managing users and roles, surveying and publishing a site map.

@@ -220,7 +220,7 @@ The decision procedure, so the per-model versus cross-cutting question stops bei
 | Differs by **software** version of a solution | Versioned docs | Docusaurus versioning (D3) |
 | Vendor-published reference | Not duplicated | link out, name the vendor |
 
-Still outstanding under these rules (Phase 7): the devkit `v1.0`/`v1.1` reconfiguration pages are **87% identical** and will drift, and the three ADT versions are near-parallel.
+Phase 7 applied these rules to the devkit `v1.0`/`v1.1` reconfiguration pages and the three ADT versions; both are now single pages (§11).
 
 ### Document the model, not the interface
 
@@ -265,6 +265,8 @@ Left alone deliberately, because they are content rather than numbering: `b2.md`
 Governance is enforced, not conventional: `onInlineTags: 'throw'` is set on every docs instance, so an undeclared tag **fails the build** rather than quietly creating a near-duplicate tag page. Since `typecheck` and `build` already gate every pull request, the taxonomy cannot decay by accident.
 
 The payoff: every product page with tagged guides carries a **Guides for this product** section linking its tag page. Publish a new guide, tag it, and it appears on the right products with no edit to those pages.
+
+**Amended 2026-10-07 — a fifth facet.** *Platform type* (`ugv`, `quadruped`, `humanoid`, `manipulator`) was added on 2026-09-11, when Operational Safety and Robot Maintenance were split by type (§10). It is the axis that split is organised on, and it is separate from *model*: a guide tagged `quadruped` applies to every quadruped, including ones with no model tag. The file is now `guides/tags.yml` and declares 27 tags.
 
 ---
 
@@ -318,9 +320,9 @@ Unchanged: every `/robot/*`, `/peripheral/*` and `/system/*` URL.
 
 *Release 1 product renames.* The two Release 1 products were renamed to their trademark names — Robot Management Toolbox and Robot Deployment Toolbox — and their directories renamed to match: `/solution/fleet-management/*` → `/solution/robot-management-toolbox/*` (eight URLs) and `/solution/deployment-toolbox/*` → `/solution/robot-deployment-toolbox/*` (three). Every one is redirected, for the reason given at the top of this section: they are in circulation with customers and in support tickets.
 
-*The Guides tab kept its old route.* The tab was renamed in this restructure but its route stayed `/tutorial/*` — an oversight, not a decision; nothing in the revisions above records a reason to keep it. Renamed to `/guides/*` on 2026-09-11 so the URL matches the tab a customer clicked. All twenty-four old URLs redirected.
+*The Guides tab kept its old route.* The tab was renamed in this restructure but its route stayed `/tutorial/*`, and none of the revisions above records a reason to keep it. Renamed to `/guides/*` on 2026-09-11 so the URL matches the tab a customer clicked. All twenty-four old URLs redirected.
 
-*Version pages consolidated.* ADT v1/v2/v3 were three pages, v2 and v3 75% identical, now one page tabbed by version (`/solution/adt/v1` `v2` `v3` → `/solution/adt/intro`). The two UGV devkit version pages were 76% identical, now one page whose differences are a comparison table and a few tabbed images (`/system/ugv_devkit/v1.0` `v1.1` → `/system/ugv_devkit`). Both sets of old URLs are in circulation. This is §7 applied; the reconfiguration pages noted there as 87% identical are still outstanding.
+*Version pages consolidated.* ADT v1/v2/v3 were three pages, with v2 and v3 largely duplicating each other, now one page tabbed by version (`/solution/adt/v1` `v2` `v3` → `/solution/adt/intro`). The two UGV devkit version pages largely duplicated each other, now one page whose differences are a comparison table and a few tabbed images (`/system/ugv_devkit/v1.0` `v1.1` → `/system/ugv_devkit`). Both sets of old URLs are in circulation. This is §7 applied. The devkit reconfiguration pages listed there as outstanding were merged the same way, into one page tabbed by generation.
 
 > **Caveat — redirects are client-side, not HTTP 301.** GitHub Pages cannot serve redirects, so `@docusaurus/plugin-client-redirects` emits a stub page with `<meta http-equiv="refresh">`, a canonical link, and a JS fallback that preserves the query string and hash. It works in a browser, including anchors. Two consequences: `curl` sees `200` at the old URL rather than a `30x`, and search engines weight these below a real 301.
 
