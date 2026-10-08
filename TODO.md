@@ -83,7 +83,7 @@ New page, not yet published. It is the hardware third of the Autonomy Stack, whi
 
 ## File hosting — ADR 0001
 
-**The store is live and holds 24 documents** (PR #44). The old SharePoint can't be recovered, so documents that were only linked from it are lost until found (listed below). `docs/design/file-hosting.md` carries the reference design, `infra/RUNBOOK.md` the deployment procedure with measured timings.
+**The store is live and holds 24 documents** (PR #44). The old SharePoint can't be recovered, so documents that were only linked from it are lost until found (listed below). `docs/design/file-hosting.md` carries the reference design, the private infrastructure repository the deployment procedure with measured timings.
 
 - [x] **Closed 2026-10-07: can't be done.** The export from the old SharePoint is no longer possible. The WR65 and WRL63 manuals came from our OneDrive instead and are in the store.
 - [ ] **Lost until found.** These were only linked from the old SharePoint. If a copy turns up (the OneDrive folder the WR65/WRL63 manuals came from is the first place to look), publish it and tick it off.
@@ -406,3 +406,134 @@ working notes are in `2026-09-03-docs-conventions-audit.md`.
 ## Minor
 
 - [ ] `solution/robot-management-toolbox/deployment-and-servicing.md:21` — the two subgraphs carry `direction LR`, which has no effect because neither contains edges, so the shared-cloud tenants stack vertically. Mermaid also draws the subgraphs in the reverse of the table's order (Dedicated left, Shared right). Cosmetic; the diagram reads correctly.
+
+## Audit 2026-10-07
+
+A read-only audit of every Markdown file on 2026-10-07. The high-severity items were checked against the files; items fixed in PR #44 are not listed.
+
+### Needs an answer before anyone edits (product owner)
+
+- [ ] **Does Quick Dispatch pause the schedule until acknowledged?** `solution/robot-management-toolbox/mission-editing.md:234-240` says both that the errand "runs alongside a scheduled mission" and that it "pauses the schedule until you acknowledge it". See also `robot-dashboard.md:201-213`.
+- [ ] **Power Regulator V2: is RS485 a control interface or for firmware upgrade only?** `peripheral/power/power_regulator_v2.md:31` and `:60` list it for control and feedback; `:136` says firmware upgrade and future extension.
+- [ ] **R1: which control shuts it down?** The e-stop table at `robot/humanoid/r1.md:176` says "short press, then long press the power button"; `:64-66` documents no power button sequence and says the only button stands the robot up. Consider removing the `:176` row until answered.
+- [ ] **Are saved locations held per robot or per site?** `mission-editing.md:95`, `:115` say per robot; `tenant-management.md:47` and `solution/robot-deployment-toolbox/map-editor.md:292` treat them as the site's.
+- [ ] **Can an inactive mission be sent?** `solution/robot-management-toolbox/index.md:115-116` says only an activated mission is carried to the robot; `mission-editing.md:174-179` treats activation and sending as independent.
+
+### Safety and wrong specifications (fix first)
+
+- [ ] **PiPER CAN bitrate.** `robot/manipulator/piper.md:71` says the UGV CAN setup "applies here too", but `guides/agilex/ugv_base_control.md:50` sets 500 kbps and the PiPER needs 1 Mbps (piper_sdk README: `can_activate.sh can0 1000000`, "cannot be changed"). Give the PiPER its own command.
+- [ ] **E-stop test on a legged robot.** `guides/operational-safety.md:37` (and the power cut at `:83`) has no instruction to support a legged robot first; a standing G1 collapses (`robot/humanoid/g1.md:137`, `:142`). The test also needs power but sits under *Before you power on*.
+- [ ] **G1 ankle example.** `guides/unitree/g1_dev_guide.md:337` says it works "whether or not the robot is in debug mode", and the run section never says to suspend the robot.
+- [ ] **Devkit reconfiguration.** `system/ugv_devkit/component_reconfiguration.md:10-13` has no step to switch off the base and battery before unplugging.
+- [ ] **Remote power cycle.** `solution/robot-management-toolbox/robot-dashboard.md:238-240` suggests "power the robot off and on once", and every supported platform is a quadruped. Require Sit or Dock and someone at the robot, or route to support.
+- [ ] **Link-loss behaviour.** `solution/robot-platforms/network-configuration.md:122` and `solution/robot-platforms/index.md:73` say a robot keeps patrolling when its link drops; `index.md:77` and `robot-dashboard.md:230-232` say it depends on the policy set at commissioning.
+- [ ] **Devkit Nav2 guide.** `system/ugv_devkit/v1/nav2_sample_setup_guide.md:38` defaults to the Ranger Mini 2.0, which the devkit page doesn't list; `:152` hardcodes Scout Mini RTAB parameters; the Cartographer section (`:23-63`, `:93`) needs a LiDAR extension it never names.
+- [ ] **RC transmitter.** `guides/agilex/ugv_base_control.md:119` says "keep the RC controller in hand"; `guides/operational-safety.md:41` and `guides/safety/wheeled-bases.md:43`, `:49` say switch it off when not driving.
+- [ ] **Default SSH credentials with no "change the password" warning.** `robot/humanoid/g1.md:39`, `:76`, `:107`; `robot/quadruped/go2.md:78`; `robot/quadruped/b2.md:79-81`; `robot/humanoid/h1-2.md:65`; `robot/humanoid/r1.md:125`; `robot/quadruped/a2.md:81`; `guides/unitree/g1_internet_guide.md`. Only `g1_dev_guide.md:213` warns.
+- [ ] **Router on the robot subnet.** `guides/unitree/g1_dev_guide.md:210` puts a router on `192.168.123.0/24` with no warning that its DHCP can hand out addresses the robot uses.
+- [ ] **apt signing key over http.** `guides/installation/apt_source.md:31` fetches it over http (https gives no response). The `$ ` prompts also break copy-paste.
+- [ ] **"The motors have overheated" given as the cause of going limp for every model.** `robot/quadruped/go2.md:151`, `guides/safety/quadrupeds.md:26`, `guides/safety/humanoids.md:29`, `guides/maintenance/humanoids.md:29`. The source is the Go2 FAQ only, and low battery is another documented cause (`guides/unitree/go2_diag_guide.md:36`).
+- [ ] **Docking robots linked to hand-charging rules.** `solution/robot-platforms/index.md:91` links `guides/operational-safety.md:74-75` ("do not leave charging unattended overnight").
+- [ ] **No emergency-stop subsection** on `h1-2.md`, `go2.md`, `b2.md`, `a2.md`. `g1.md` and `r1.md` have one.
+- [ ] **B2 sealing.** `robot/quadruped/b2.md:132` says "be familiar with the sealing procedure" and doesn't link one.
+- [ ] **WRL63 manual error.** The published `wrl63-user-manual-en-v1.1.pdf` contains RM65 text (an "RM65-B" spec heading, 610 mm radius, RM65 joint ranges). Raise it with the vendor.
+- [x] **WR65 J5 — 2026-10-08.** The WR65 manual gives J5 as ±128° in its installation section and ±180° in its spec table. The ±128° is likely a documentation error; `wr65.md` now uses ±180°, consistent with the spec table and the other joints.
+- [x] **WRL63 weight — 2026-10-08.** `wrl63.md` said 10.0 kg (`-B`); the published spec sheet (`wrl63-user-manual-en-v1.1.pdf`) says 10.2 kg. The page now follows the spec sheet.
+- [ ] **WRL63 force-sensing weight.** `wrl63.md` gives 10.1 kg for the force-sensing variants, from an unpublished 2023 document. The spec sheet gives no figure for them, and the page now shows them lighter than the `-B`. Source it or remove it.
+- [ ] **NanoPC 12 V claim.** `peripheral/computer/nanopc.md:35` "most robot bases we supply can feed 12 V directly" has no source. Check it against the bases before a customer over-volts a 5-20 V board.
+
+### Publishing tools
+
+- [ ] **`publish-files.py` overwrites and over-uploads.** `scripts/publish-files.py:340` uploads `! differs` items, overwriting a published key and its `.sha256` under an immutable cache header. `:312-315` treats an unreadable store as empty, so `--publish` would upload everything. Refuse both without an explicit override, and say in CONTRIBUTING what to do on `!`.
+- [ ] **No manual deploy.** `.github/workflows/deploy.yml:3-7` runs only on push and pull_request, so a publish or retire doesn't reach the download tables until the next merge. Add `workflow_dispatch` and a "trigger a deploy" step to CONTRIBUTING and both skills.
+- [ ] **`check-downloads.py` passes too easily.** `scripts/check-downloads.py:143-147` passes when the index is unreachable; `unsatisfied()` (`:100-106`) ignores `retired`, so an all-retired product passes with an empty table. `docs/design/file-hosting.md:86`, `:117` say "the build fails", but it's a separate script.
+- [ ] **`LOCAL_REF` misses link forms.** `scripts/check-downloads.py:32` doesn't match reference-style links, `pathname:///_upload/`, unquoted `href` or `static/_upload/`.
+- [ ] **`wrfiles.py` accepts bad names.** `scripts/wrfiles.py:171-245` accepts a subject with spaces or capitals, an uppercase extension (the key keeps `.PDF`) and firmware tagged `en`. CONTRIBUTING says bad names are refused.
+- [ ] **`--list` without credentials** ends in a `NoCredentialsError` traceback; `CONTRIBUTING.md:90` says it reports what's missing.
+- [ ] **upload-file skill.** `.claude/skills/upload-file/SKILL.md` should say a wrong version is also retired (as `retire-file/SKILL.md:21` does); `:94-96` "remove `static/_upload/` first" deletes staged files not yet published; `:37` has a garbled sentence.
+- [ ] **`check-video-budget.sh` extensions.** `scripts/check-video-budget.sh:41` patterns are case-sensitive and miss `.gif` and `.avi`.
+- [ ] **First checks need more than python3.** `CONTRIBUTING.md:18` says so, but the video check needs bash and git.
+- [ ] **What the store is for.** ADR 0001:21 and ADR 0002:42 disagree, and the store holds vendor manuals while the template says to link the vendor. Record the real rule.
+- [ ] **CI link checks described as existing.** ADR 0001 D6 (`:49`, `:71`), `docs/LESSONS.md:110` and `docs/design/ia-proposal.md:380` describe link checks CI doesn't run yet. Mark them as planned.
+- [ ] **`docs/design/file-hosting.md` §7.** Paragraphs duplicated (`:169-171` and `:184-186`); "two roles" (`:173`) against "five grants" (`:188`). The §3 example uses kind `manual` and `x-amz-meta-title`, neither valid.
+- [ ] **vendor-interface-summary skill** (`.claude/skills/vendor-interface-summary/SKILL.md:10-11`) cites a `PUBLISHING.md` that was never written (`ia-proposal.md:363`). Point at the template instead.
+- [ ] **Template checklist.** `docs/design/product-page-template.md:605` restates as an absolute the rule the template warns against; the skeleton (`:537-541`) has no `<Downloads>`.
+
+### Public repository: wording and data to move or redact
+
+- [ ] **This file's AWS account details.** The MFA, access-key and service-account items under *File hosting — ADR 0001* name IAM users, key state and a once-committed key identifier, plus the HostedZoneId. Move them to the private infrastructure repository and leave a one-line pointer.
+- [ ] **`docs/design/release-pages-plan.md:88-117`** carries VPN and SSH access details, customers' security rules, `VITE_AUTH_ENABLED` and internal repository paths. Move to a private location.
+- [ ] **This file's own wording.** `TODO.md:7` names a customer deployment's cameras; `TODO.md:286` uses "contract violation". Reword.
+- [ ] **Internal notes on unlisted pages.** `robot/quadruped/as2.md`, `robot/humanoid/h2.md` and `robot/manipulator/nero.md` show notes such as "Delete this admonition once the page is complete" and "only we can write" (and a TODO at `as2.md:23`) to anyone with the URL. Move them into MDX comments.
+- [ ] **Screenshots to redact.** `guides/unitree/img/unitree_robot_sn.png` shows a full G1 serial, and is used as the Go2 and B2 SN (`go2_diag_guide.md:137`, `b2_diag_guide.md:138`); `guides/unitree/img/g1_app_conn_05.jpg` shows office and neighbouring Wi-Fi names; `peripheral/img/westonrobot/regulator_v2.jpg` shows a serial and a phone number.
+- [ ] **Devkit SSH example.** `system/ugv_devkit/v1/getting_started.md:21` gives `ssh wr@10.10.0.20`, while the product page says credentials are only on the handover note.
+- [ ] **`robot/humanoid/r1.md:178`** "a known immature behavior, expected to be fixed". Reword.
+- [ ] **`peripheral/intro.md:8`** "Each has been tested for compatibility with our platforms" has no source.
+- [ ] **`solution/robot-management-toolbox/audit-log.md:91-92`** "lists every visit" needs "under elevation".
+
+### Customer pages: contradictions and gaps
+
+Robot pages:
+
+- [ ] **`robot/quadruped/go2.md:134`** refers to a "Connection Mode" table that doesn't exist; `:136` "to top it up, contact us" links to the ticket-prep page.
+- [ ] **Scout Mini SDK name.** `robot/ugv/scout-mini.md:71` names `wrp_sdk`, `:39` and `:61` name `ugv_sdk`. The Scout Mini and Ranger pages say Robot Base Control covers `ugv_sdk`, which it doesn't.
+- [ ] **Ranger Mini 3.0 firmware.** `robot/ugv/ranger-mini-v3.md:69-71` lists no firmware, so `guides/agilex/ranger_mini_calibration.md:15`, which sends the reader there to check autocalibration support, finds nothing. No way to read the firmware version is given.
+- [ ] **R1 tables.** `robot/humanoid/r1.md:68-108` has full spec and torque tables on a tier-1 page; wrist roll (`:104`) isn't marked Basic/EDU only, though the Air omits it (`:108`).
+- [ ] **A2 status.** `robot/quadruped/a2.md:32-35` caution and the TODO at `:162` are out of date; `robot/intro.md:35`, `:49` still say A2 and R1 are "in preparation".
+- [ ] **"Official documentation" duplicates the product page link** on `piper.md:19`, `kinova-gen3-lite.md:19`, `scout-mini.md:19`, `ranger-mini-v2.md:28`, `ranger-mini-v3.md:19`.
+- [ ] **Button sequence.** `robot/quadruped/a2.md:45` and `robot/humanoid/r1.md:66` refer to a Go2/B2 short-press-then-long-press sequence that neither the Go2 nor the B2 page documents.
+- [ ] **WR65 and WRL63** (`wr65.md`, `wrl63.md:51`, `:79-88`) compare against "our 2023 documentation" figures that aren't in the published manuals.
+- [ ] **`robot/quadruped/a2.md:172`** "disable it in the SDK" names no call.
+- [ ] **FAQ "the recovery sequence" links to `operational-safety#if-something-goes-wrong`, which has none.** `g1.md:173`, `go2.md:167`, `b2.md:160`, `a2.md:180`, `r1.md:198`, `h2.md:110`, `as2.md:112`.
+- [ ] **Empty "Troubleshooting & FAQ" headings** on `wr65`, `wrl63`, `xarm`, `z1`, `piper`, `kinova-gen3-lite`, `ranger-mini-v2`, `ranger-mini-v3`, `scout-mini`.
+- [ ] **Serial number subsection** missing on `h1-2`, `r1`, `wr65`, `wrl63`, `xarm`, `z1`, `piper`, `kinova-gen3-lite`, `scout-mini` and both Rangers; misplaced on `b2.md:43` and `g1.md:85`.
+
+Peripheral, system and support pages:
+
+- [ ] **"Includes the commands" no longer true.** About 24 pages, plus `docs/design/product-page-template.md:590` and `src/pages/index.tsx:93`, say *Before you contact us* includes the commands; they were removed in `9a95552`. `support/before-you-contact-us.md` asks only for a robot sticker, which doesn't fit peripherals or the Pocket2.
+- [ ] **Devkit power-up.** `system/ugv_devkit/index.md:47` "let the kit come up with it" against `:132`, `:186` "every channel is off by default".
+- [ ] **Power Regulator V2 gaps.** "Every port fused" (`power_regulator_v2.md:29`) against the extension output (`:129`); no CAN or RS485 connector type, location or pinout (`:39`, `:92`); no way to tell V2.1 from V2.2 and no V2.2 EDS filename (`:102`, `:204-238`).
+- [ ] **`peripheral/network/industrial_5g_router.md`** gives no login (`:45-49`), no reset if the LAN address is lost (`:121-133`) and no APN or cellular setup (`:32-35`).
+- [ ] **Unclear support routes** for the Pocket2 (`peripheral/sensor/manifold_pocket2.md:58`, `:60`, `:184`) and for devkit customisation (`system/ugv_devkit/index.md:99`).
+- [ ] **Pocket called "earlier", not discontinued.** `manifold_pocket2.md:14` and `peripheral/intro.md:44`, `:46`. Also `manifold_pocket.md:16-49` names "MindCloud" and Port C while the guide uses MindCloud Studio; a note for whoever writes that page's discontinued notice.
+- [ ] **"No GPU" on the NanoPC.** `system/ugv_devkit/index.md:170` and `peripheral/computer/cm4.md:92`; the RK3588 has a Mali GPU. Say "CUDA-capable".
+- [ ] **`component_reconfiguration.md:46-50`** "frame dimensions" figure shows no dimensions.
+- [ ] **Devkit v1 guides.** `v1/getting_started.md:15`, `:24` give no Wi-Fi details and a relative config path; `v1/nav2_sample_setup_guide.md:15`, `:20-21`, `:107`, `:116-121` have plain-text "links" and a malformed camera table.
+- [ ] **Missing fitting steps.** `mid360_extension.md:2`, `vision_extension.md:2` and `system/ugv_devkit/index.md:179-180` promise fitting steps the pages don't have; `vision_extension.md:40` "2.7inch" sensor is likely 1/2.7".
+- [ ] **CM4 and NanoPC details.** `cm4.md:56-61`, `:72` give no RS485 or CAN device names and no shipped OS; `nanopc.md:85` and `:95` disagree on txqueuelen (1000 and 10000); `nanopc.md:88-111` assumes ifupdown and net-tools.
+
+Solution pages:
+
+- [ ] **Internet access.** `solution/robot-management-toolbox/deployment-and-servicing.md:38`, `:57-58` ignore the 5G uplink and don't answer "do robots need internet access?". (Charging rules against docking robots are under *Safety* above.)
+- [ ] **Who authors maps.** `robot-management-toolbox/index.md:64` and `tenant-management.md:57` against `robot-deployment-toolbox/index.md:16-24`.
+- [ ] **`network-configuration.md`** (`:3`, `:47`, `:88`, `:95-102`, `:114`, `:118`) promises Wi-Fi change procedures it doesn't give, and is unclear about who switches off the access point.
+- [ ] **Audit log roles.** `audit-log.md:81`, `:86` "your platform administrator" isn't a customer role; `robot-management-toolbox/index.md:226` overstates what's recorded.
+- [ ] **"Set each robot's home"** (`robot-management-toolbox/index.md:111`) has no procedure or role.
+- [ ] **"Errand" and "dispatch" each mean two things.** `mission-editing.md:25`, `:148` against `:232-243`; `robot-management-toolbox/index.md:185` against `mission-editing.md:199`.
+- [ ] **`map-inspector.md:57`, `:66-67`** overstate what validation proves (`map-editor.md:205`, `:268`).
+- [ ] **`detection-review.md:45`** "reviewable" against `:25`, `:27` "not reviewable".
+- [ ] **`robot-dashboard.md:256-257`** "controls unavailable" FAQ leaves out causes listed on the same page.
+- [ ] **`tenant-management.md` consistency.** `:137`, `:184` "never changes map part-way" against `:150`, `:172`; role containment at `:53` breaks at Auditor; `:189-190` says E-Stop needs Operator, `:45` says Observer can E-Stop; `robot-dashboard.md:175` doesn't say what "resumed" means under E-Stop.
+- [ ] **Old or partial product names.** "Deployment Toolbox" (`robot-deployment-toolbox/index.md:145`, `map-editor.md:50`); "Management Toolbox" (`robot-dashboard.md:201`, `mission-editing.md:95`, `:119`, `:180-181`, `:247`, `:256`, `:292`); capitalised "Fleet" (`robot-deployment-toolbox/index.md:21-22`, `:92-93`).
+- [ ] **Map size advice.** `map-editor.md:73` "downsample first" against the scanner guide's 10 cm hand-off; its crop advice disagrees with `guides/manifold/processing.md:113`, `:228`, `:239-246`; `map-editor.md:48` "all of it over Wi-Fi".
+- [ ] **"Used once per site"** (`solution/intro.md:20` and others) against re-mapping when the site changes.
+- [ ] **ADT and llms.txt.** `solution/adt/intro.md` is retired but still links support (`:427-429`); its v1 install runs `apt-get install` before `update` and skips the apt source step (`:176-179`). `static/llms.txt:18` still describes Solutions as "such as teleoperation".
+
+Guides:
+
+- [ ] **`g1_internet_guide.md:126`** `echo "1" > /proc/sys/net/ipv4/ip_forward` fails without root. Use `sudo sysctl -w net.ipv4.ip_forward=1`.
+- [ ] **Two G1 internet procedures.** `g1_dev_guide.md:207-210` and `g1_internet_guide.md` differ. Keep one.
+- [ ] **`g1_internet_guide.md:54-90` method 2** names no adapter, gives no way to get a shell, and shows an "UNASSIGNED" interface against `eth0` in the example; `:61` may overwrite an existing netplan file.
+- [ ] **`go2_diag_guide.md:107`** "upgrade to the latest firmware" against `robot-maintenance.md:79-80`.
+- [ ] **`go2_slam.md`.** Press Q before placing the robot (`:186-187`); `:qa` should be `:q!` (`:136`, `:141`); the RViz files aren't on the User PC (`:176`); "try adding sudo", `chmod 777 -R` and `sudo git clone` (`:50`, `:87`, `:91-93`).
+- [ ] **Battery guidance disagrees.** Monthly against every two months (`robot-maintenance.md:32`, `:55`, `:70`; `guides/manifold/scanning.md:244`); "storage level" isn't defined; unattended (`:52`) against overnight (`operational-safety.md:75`).
+- [ ] **Tyre pressures.** `guides/maintenance/wheeled-bases.md:17-22` covers only models not on the site. See also the item under *Safety and maintenance split* above.
+- [ ] **`guides/manifold/processing.md:25`** version claim against the v0.2.12 screenshots.
+- [ ] **"Ratings by platform" anchor.** `robot-maintenance.md:60` and the g1, go2, b2 and as2 pages link to an anchor that no longer has ratings.
+- [ ] **Titles.** `g1_internet_guide.md:6` "Access" against "Connection"; `go2_slam.md:7` H1 "Go2 & Go2-W"; `guides/intro.md:62` "the most detailed guide on this site".
+- [ ] **Alt text.** 12 positional or wrong-model alt strings in the Go2, B2 and G1 diagnostics guides; `g1_internet_guide.md:15`, `:33`, `:55`. `b2_diag_guide.md` and `go2_diag_guide.md` reuse G1 captures (`:9-12`, `:63-91`).
+- [ ] **Check against vendor docs.** G1 MID-360 IP (`g1_dev_guide.md:205`, .20 or .120); charging order (`robot-maintenance.md:40-46`); "using the RC will immediately stop SLAM navigation" (`go2_slam.md:214`); manipulator brake joints and 900 mm reach (`guides/safety/manipulators.md:23-25`); "29 joints" (`g1_dev_guide.md:36`).
+
+### Unsourced frequency and absolute claims
+
+- [ ] **Keep the instruction, drop the ranking** ("most common", "always", "never" with no source). Robot pages: `g1.md:30`, `:177`; `r1.md:32`; `h2.md:43`; `a2.md:41`; `as2.md:46`; `ranger-mini-v2.md:88`; `ranger-mini-v3.md:77`; `z1.md:77`; `h1-2.md:70`; `kinova-gen3-lite.md:75`; `go2.md:151`. Guides: `operational-safety.md:41`, `:56`; `safety/quadrupeds.md:46`; `safety/humanoids.md:24`, `:39`; `robot-maintenance.md:9`, `:38`; `maintenance/manipulators.md:14`, `:16`; `maintenance/wheeled-bases.md:33`; `manifold/scanning.md:9`. Solution: `map-editor.md:94`, `:150`; `mission-editing.md:86`; `robot-management-toolbox/index.md:226`, `:279`; `map-inspector.md:51`; `robot-dashboard.md:257`.
