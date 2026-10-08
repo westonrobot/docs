@@ -188,7 +188,7 @@ class TheVersionTailIsRequiredWhenPublishing(unittest.TestCase):
 class KindAndLanguageAreControlledVocabularies(unittest.TestCase):
     """Free text here is how a store ends up holding cad, CAD, STP and STL for
     the same thing — at which point `<Downloads kind="…">` stops being usable
-    and the Document column reads inconsistently."""
+    and the File column reads inconsistently."""
 
     def key(self, name):
         return w.key_from_upload_path(f"_upload/robot/scout-mini/{name}")

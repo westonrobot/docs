@@ -22,7 +22,7 @@ UPLOAD_DIR = "_upload"
 
 # Controlled vocabulary for the `<kind>` segment. Free text here is how a store
 # ends up holding cad, CAD, STP and STL for the same thing, at which point
-# `<Downloads kind="…">` stops being usable and the Document column reads
+# `<Downloads kind="…">` stops being usable and the File column reads
 # inconsistently. Derived from what the dead SharePoint links actually were.
 #
 # Extending it is a deliberate act, like CONTENT_TYPES: add the value here with

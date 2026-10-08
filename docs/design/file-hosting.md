@@ -92,7 +92,7 @@ The component resolves that query against the index at build time. **A page cann
 | 1 | Stage the file under `static/_upload/`, at its published path | Anyone editing the page | none — local |
 | 2 | `publish-files.py --publish` uploads it with content type, cache headers, metadata and a `.sha256` sidecar | The publisher | `DocsDownloadPublish` |
 | 3 | The same run regenerates `index.json` from the bucket and invalidates the CDN | " | " |
-| 4 | It rewrites the page's local link to the published URL | " | none — local |
+| 4 | The page's `<Downloads>` query finds the document in the new index, so the page needs no edit. A hand-written link into `_upload/` is rewritten to the published URL | " | none — local |
 | 5 | Rebuild the docs site | CI, on `repository_dispatch` or the next push | none — the index is public |
 
 **The publish grant carries no `DeleteObject`.** Published paths are permanent (D4) and a manual for hardware still in the field outlives any reason to tidy it away (§10), so the worst a publisher can do is overwrite an existing key — which versioning makes recoverable. Removing an object is an admin act, done deliberately by someone who knows why.
@@ -111,7 +111,7 @@ So the engineer's path starts in the working tree:
 
    The name is deliberate. It is not `_publish/`, because dropping a file there does not publish it — a file sits there through however many local builds it takes to get the page right, and only `publish-files.py --publish` sends it anywhere. The directory holds things queued for upload, and is named for that.
 2. **Reference it locally and build.** `npm start` shows the real page with the real document attached — the thing no console-first flow can offer. A `<Downloads>` query resolves against staged files too, and marks them `staged` so a local build is never mistaken for a published one.
-3. **Run the publish script when the page is right.** It derives the D4 key from the local path, computes the digest, uploads with the right content type and cache headers, writes the checksum sidecar, regenerates the index, invalidates the CDN, and rewrites the page's local reference to the published one. One command, and the document is live.
+3. **Run the publish script when the page is right.** It derives the D4 key from the local path, computes the digest, uploads with the right content type and cache headers, writes the checksum sidecar, regenerates the index and invalidates the CDN. The page's `<Downloads>` query needs no edit, because it finds the document in the new index; a hand-written link into `_upload/` is rewritten to the published URL. One command, and the document is live.
 4. **Rebuild and review again.** The second review is against exactly what a customer will get.
 
 **The gitignore is the enforcement, and this is the load-bearing part.** CI has no local files, because they are not in the repository. A page committed before its document was uploaded therefore cannot resolve, and the build fails. The author saw a working page; CI sees the truth; the discrepancy surfaces in a pipeline rather than in a support ticket. It is the same mechanism as the video budget check (ADR 0001 D8) — a guarantee that comes from git and the filesystem disagreeing in a controlled, deliberate way.
@@ -246,7 +246,7 @@ The levers, in order of effect, for whenever it does matter:
 
 Ordered so each phase is independently useful and nothing is blocked on the phase after it.
 
-**Phase 0 — Unblock. Closed without the export.** The old SharePoint can't be recovered, so the export from the renamed M365 tenant won't happen. PR #44 loaded the store from our OneDrive and vendor sources instead, including the WR65 and WRL63 manuals. Documents that were only behind the old links are listed in `TODO.md` as lost until found.
+**Phase 0 — Unblock. Closed without the export.** The old SharePoint can't be recovered, so the export from the renamed M365 tenant won't happen. The store was loaded in PR #44 instead, including the WR65 and WRL63 manuals. Documents that were only behind the old links are listed in `TODO.md` as lost until found.
 
 **Phase 1 — Serve it correctly. Infrastructure done 2026-09-01.** Bucket, CloudFront, ACM, OAC, Block Public Access, versioning — deployed and verified; the private infrastructure repository records what exists. The bulk load and the link rewrite landed in PR #44.
 

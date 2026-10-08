@@ -21,7 +21,7 @@ this file** — a stale vocabulary here is worse than none, because it produces
 confident wrong answers.
 
 ```bash
-python3 -c "import sys;sys.path.insert(0,'scripts');import wrfiles as w;print(w.KINDS);print(w.LANGS);print(sorted(w.CONTENT_TYPES))"
+python3 -c "import sys;sys.path.insert(0,'scripts');import wrfiles as w;print(w.SECTIONS);print(w.KINDS);print(w.LANGS);print(sorted(w.CONTENT_TYPES))"
 ```
 
 ## What you must establish
@@ -35,7 +35,7 @@ Ask for whatever is missing. Ask in one message, not four.
 | **subject** | Optional, and the thing most often missed. Ask whether this is *the* CAD model / manual for the product or one of several — a wheel kit, a charging dock, a battery. If there is any chance of a second file of the same kind, include it: without a subject the second one overwrites the first and nothing reports it. |
 | **lang** | One of `LANGS`. Look inside the document if unsure; do not assume English. |
 | **version** | **From the document itself**, or the issue date when the manufacturer gives none — `v2020.10.29`, read from the file's own header. Never `v1` by default. — cover page, revision table, footer. Open it and check. Never invent one, never default to `v1`: it is permanent. If genuinely unversioned, say so and agree one with the user rather than guessing. |
-| **section** | The top-level content directory the page lives in: `robot`, `solution`, `peripheral`, `system`, `guides`, `support`. |
+| **section** | One of `SECTIONS`: the top-level content directory the page lives in. |
 
 If the extension is not in `CONTENT_TYPES`, stop. Adding one is a deliberate
 edit to `wrfiles.py` with the right MIME type, not something to do in passing.
@@ -50,7 +50,21 @@ Publishing needs the AWS CLI, boto3, credentials and `WR_FILES_DISTRIBUTION_ID` 
    `static/_upload/<section>/<product>/<product>-<kind>[-<subject>]-<lang>-v<version>.<ext>`.
    Copying leaves the user's original where they left it.
 
-2. **Dry run.** `python3 scripts/publish-files.py`
+2. **Put it on the page,** if it is not already there. One component covers
+   every document for that product:
+
+   ```jsx
+   <Downloads product="scout-mini" />
+   ```
+
+   It belongs in *Related resources*, under **Documents we publish**, never in
+   the hand-maintained table beside it. Do not write a link to the file by hand.
+   If that table has a dead link to this document, delete the row.
+
+3. **Preview.** `npm run start` and check the page. The staged file shows in
+   the table marked `staged`.
+
+4. **Dry run.** `python3 scripts/publish-files.py`
 
    `--list <product>` first is worth it when replacing something: it shows what
    is already published for that product, so you can see whether this is a new
@@ -60,13 +74,13 @@ Publishing needs the AWS CLI, boto3, credentials and `WR_FILES_DISTRIBUTION_ID` 
    nothing has been uploaded — fix the name and run it again. Never work around
    a refusal by editing the script.
 
-3. **Publish.** `python3 scripts/publish-files.py --publish`
+5. **Publish.** `python3 scripts/publish-files.py --publish`
 
    Needs `WR_FILES_DISTRIBUTION_ID` set, or the CDN is not invalidated —
    harmless for a new document, since published keys are immutable, but it
    delays `index.json` by up to a minute.
 
-4. **Verify it actually served.** Not optional, and not satisfied by the script
+6. **Verify it actually served.** Not optional, and not satisfied by the script
    exiting zero:
 
    ```bash
@@ -78,24 +92,13 @@ Publishing needs the AWS CLI, boto3, credentials and `WR_FILES_DISTRIBUTION_ID` 
    looks stale, that is the invalidation propagating — re-check after a minute
    rather than republishing.
 
-5. **Put it on the page,** if it is not already there. One component covers
-   every document for that product:
-
-   ```jsx
-   <Downloads product="scout-mini" />
-   ```
-
-   It belongs in *Related resources*, under **Documents we publish** — never in
-   the hand-maintained table beside it. If the page has a dead link to the
-   document you just published, delete that row.
-
-6. **Rebuild and look.** `npm run build && npm run serve`, then the product page.
+7. **Rebuild and look.** `npm run build && npm run serve`, then the product page.
 
    A local build with the file still staged shows the **local** copy, badged
    `staged`. To see what a customer gets, remove `static/_upload/` first and
    rebuild — that is the build CI produces.
 
-7. **Clean up.** Delete the staged copy once published; it is scaffolding, and
+8. **Clean up.** Delete the staged copy once published; it is scaffolding, and
    the page now resolves from the store.
 
 ## Things that will bite
@@ -110,8 +113,8 @@ the correct one alongside; the wrong key simply stays.
 Check the document, do not infer from a filename someone else chose.
 
 **`npm run check:downloads` must pass** before committing. It fails if a page
-still points into `static/_upload/`, which means the document was never
-uploaded and the page would 404 for everyone but you.
+still points into `static/_upload/`, which would 404 for everyone but you, or
+if a `<Downloads>` query matches nothing in the store.
 
 **Do not commit the file.** `static/_upload/` is gitignored deliberately; the
 repository is already ~350 MB packed and git history is permanent.
