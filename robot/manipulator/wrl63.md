@@ -96,9 +96,9 @@ before you rely on them. The figures below are the ones that are consistent acro
 | Degrees of freedom | 6 |
 | Payload | 3 kg |
 | Repeatability | ±0.05 mm |
-| Body weight | 10.0 kg (`-B`) · 10.1 kg (force-sensing variants) |
+| Body weight | 10.2 kg (`-B`) · 10.1 kg (force-sensing variants) |
 | Working radius | 900 mm (`-B`) — see the caution above for the others |
-| Power supply | DC 20–30 V, rated 24 V |
+| Power supply | DC 24 V rated, 27 V maximum |
 | Power consumption | ≤ 200 W maximum, ≤ 100 W comprehensive |
 | Protection level | IP54 (arm body) |
 | Materials | Aluminium alloy |
@@ -106,7 +106,7 @@ before you rely on them. The figures below are the ones that are consistent acro
 | Communication | WiFi · network interface · Bluetooth · USB serial · RS485 |
 | Control modes | Drag-and-drop teaching · teaching pendant · API · JSON |
 
-Note the trade against the [WR65](/robot/manipulator/wr65): half again the reach, but **3 kg payload rather than 5 kg** and 10 kg of arm rather than 7.2 kg. Both matter when you are sizing a mobile base.
+Note the trade against the [WR65](/robot/manipulator/wr65): half again the reach, but **3 kg payload rather than 5 kg** and 10.2 kg of arm rather than 7.2 kg. Both matter when you are sizing a mobile base.
 
 #### Joint limits and speeds
 
@@ -115,11 +115,11 @@ are planning trajectories — note that **J3 is asymmetric**, unlike every other
 
 | Joint | Motion range | Maximum speed |
 | --- | --- | --- |
-| J1 | ±178° | 180°/s |
-| J2 | ±178° | 180°/s |
-| J3 | +145° to −178° | 225°/s |
-| J4 | ±178° | 225°/s |
-| J5 | ±178° | 225°/s |
+| J1 | ±180° | 180°/s |
+| J2 | ±180° | 180°/s |
+| J3 | +165° to −150° | 225°/s |
+| J4 | ±180° | 225°/s |
+| J5 | ±180° | 225°/s |
 | J6 | ±360° | 225°/s |
 
 ### Control interface
