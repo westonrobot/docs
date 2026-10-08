@@ -2,9 +2,9 @@
 
 How the downloadable-document store should be built and operated. [`../adr/0001-host-downloadable-documents-on-s3.md`](../adr/0001-host-downloadable-documents-on-s3.md) decides *what* and *why*; this document covers *how*, and the operational practice around it.
 
-Scope: public customer-facing files — product manuals, SDK and protocol specs, training decks, software archives, firmware, video. Roughly 39 documents today, growing per product and per release.
+Scope: public customer-facing files — product manuals, SDK and protocol specs, training decks, software archives, firmware, video. 24 documents in the store today, growing per product and per release.
 
-**Right-sizing is part of the design.** Every control below earns its place at this scale or is marked as deferred. A store of 39 documents does not need the topology of a package registry, and copying one in produces a system nobody maintains. Where a practice is standard but not yet worth it here, it is listed under §12 with the trigger that would change the answer.
+**Right-sizing is part of the design.** Every control below earns its place at this scale or is marked as deferred. A store of a few dozen documents does not need the topology of a package registry, and copying one in produces a system nobody maintains. Where a practice is standard but not yet worth it here, it is listed under §12 with the trigger that would change the answer.
 
 ## 0. Four principles
 
@@ -212,7 +212,7 @@ A CloudWatch alarm on 404 rate is the piece that has to exist from day one. Acce
 
 **Effectively zero at this volume, and that is now measured rather than assumed.** Rates below were read from the AWS Pricing API on 2026-08-31 (`aws pricing get-products --service-code AmazonCloudFront`), not recalled; they are list prices, so any negotiated agreement only moves them down.
 
-| Line | Rate | At 39 documents |
+| Line | Rate | At 24 documents |
 | --- | --- | --- |
 | CloudFront egress, first 1 TB/month | **$0.00** — perpetual, not a trial | $0.00 |
 | CloudFront egress beyond that, Asia Pacific | $0.12/GB (0–10 TB), $0.085/GB in Europe and the US | — |
@@ -229,7 +229,7 @@ The levers, in order of effect, for whenever it does matter:
 - **Storage class.** Standard for served content. Archive tiers apply to masters, which are out of scope here.
 - **A billing alarm**, so video growth is noticed as a number rather than as an invoice. $20/month is a reasonable threshold — comfortably above zero, far below anything that would be a surprise.
 
-**Still a measurement to take:** total corpus size once the 39 documents are exported. Storage is a rounding error at any plausible figure, but the number is worth knowing before the first bulk load rather than after.
+**Measured 2026-10-07:** the 24 documents total about 146 MB, the sum of `bytes` in `index.json`. Storage is a rounding error at that size.
 
 ## 10. Content lifecycle and retention
 
@@ -246,9 +246,9 @@ The levers, in order of effect, for whenever it does matter:
 
 Ordered so each phase is independently useful and nothing is blocked on the phase after it.
 
-**Phase 0 — Unblock. Still blocked.** Export the 39 documents from the renamed M365 tenant. Everything downstream waits on this; WR65 and WRL63 first, since those products have no reachable documentation at all.
+**Phase 0 — Unblock. Closed without the export.** The old SharePoint can't be recovered, so the export from the renamed M365 tenant won't happen. PR #44 loaded the store from our OneDrive and vendor sources instead, including the WR65 and WRL63 manuals. Documents that were only behind the old links are listed in `TODO.md` as lost until found.
 
-**Phase 1 — Serve it correctly. Infrastructure done 2026-09-01.** Bucket, CloudFront, ACM, OAC, Block Public Access, versioning — deployed and verified; `infra/README.md` records what exists. The bulk load and the link rewrite wait on Phase 0.
+**Phase 1 — Serve it correctly. Infrastructure done 2026-09-01.** Bucket, CloudFront, ACM, OAC, Block Public Access, versioning — deployed and verified; the private infrastructure repository records what exists. The bulk load and the link rewrite landed in PR #44.
 
 **Phase 2 — Make it repeatable. Done.** The publish script and the gitignored `_upload/` convention, plus — added once the need appeared — `--list` to see what is published and `--retire` to withdraw a document without breaking its URL.
 
@@ -265,7 +265,7 @@ Listed with the trigger that would change the answer, so the decision is revisit
 | Practice | Why not now | Trigger to revisit |
 | --- | --- | --- |
 | Cross-region replication | S3 durability within a region already exceeds the risk this addresses; versioning covers the realistic failure | A contractual availability commitment, or a second region for compliance |
-| A staging *environment* — a second distribution serving unpublished content for preview | 39 mostly-static documents; review happens on the page, before publishing. Nothing unpublished exists to preview: a document is either staged on someone's laptop or live | Publishing becoming frequent enough that a bad publish is likely |
+| A staging *environment* — a second distribution serving unpublished content for preview | A few dozen mostly-static documents; review happens on the page, before publishing. Nothing unpublished exists to preview: a document is either staged on someone's laptop or live | Publishing becoming frequent enough that a bad publish is likely |
 | Signed URLs / access control | ADR 0001 scope is public content only (decided 2026-08-31) | Any licence-gated SDK or customer-specific deliverable |
 | Object Lock / WORM | No regulatory retention requirement identified | A compliance or safety-certification requirement on firmware provenance |
 | A mainland-China mirror | Deferred by decision | Chinese customer download experience becoming a support burden |
