@@ -85,7 +85,8 @@ and their figures for the force-sensing variant differ from ours — 917 mm reac
 
 Reach and force-sensor accuracy are the two values to confirm from the manual supplied with
 your arm, or from [Realman's current page](https://www.realman-robotics.com/en/products/rml63.html),
-before you rely on them. The figures below are the ones that are consistent across both.
+before you rely on them. Where Realman's current figures and our manual differ, the
+figures below follow Realman.
 
 :::
 
@@ -96,7 +97,7 @@ before you rely on them. The figures below are the ones that are consistent acro
 | Degrees of freedom | 6 |
 | Payload | 3 kg |
 | Repeatability | ±0.05 mm |
-| Body weight | 10.2 kg (`-B`) · 10.1 kg (force-sensing variants) |
+| Body weight | 10.0 kg (`-B`) · 10.1 kg (force-sensing variants) |
 | Working radius | 900 mm (`-B`) — see the caution above for the others |
 | Power supply | DC 24 V rated, 27 V maximum |
 | Power consumption | ≤ 200 W maximum, ≤ 100 W comprehensive |
@@ -106,20 +107,23 @@ before you rely on them. The figures below are the ones that are consistent acro
 | Communication | WiFi · network interface · Bluetooth · USB serial · RS485 |
 | Control modes | Drag-and-drop teaching · teaching pendant · API · JSON |
 
-Note the trade against the [WR65](/robot/manipulator/wr65): half again the reach, but **3 kg payload rather than 5 kg** and 10.2 kg of arm rather than 7.2 kg. Both matter when you are sizing a mobile base.
+Note the trade against the [WR65](/robot/manipulator/wr65): half again the reach, but **3 kg payload rather than 5 kg** and 10 kg of arm rather than 7.2 kg. Both matter when you are sizing a mobile base.
 
 #### Joint limits and speeds
 
-From our manual, and identical across the variants. Worth having in front of you when you
-are planning trajectories — note that **J3 is asymmetric**, unlike every other joint.
+From [Realman's current parameters](https://develop.realman-robotics.com/en/robot/robotParameter/RML63OntologyParameters/),
+and identical across the variants. The specification table in the manual we publish gives
+±180° for J1, J2, J4 and J5 and +165° to −150° for J3; plan to the ranges here. Worth
+having in front of you when you are planning trajectories — note that **J3 is asymmetric**,
+unlike every other joint.
 
 | Joint | Motion range | Maximum speed |
 | --- | --- | --- |
-| J1 | ±180° | 180°/s |
-| J2 | ±180° | 180°/s |
-| J3 | +165° to −150° | 225°/s |
-| J4 | ±180° | 225°/s |
-| J5 | ±180° | 225°/s |
+| J1 | ±178° | 180°/s |
+| J2 | ±178° | 180°/s |
+| J3 | +145° to −178° | 225°/s |
+| J4 | ±178° | 225°/s |
+| J5 | ±178° | 225°/s |
 | J6 | ±360° | 225°/s |
 
 ### Control interface
