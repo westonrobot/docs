@@ -123,7 +123,7 @@ curl -s https://download.westonrobot.net/index.json | grep wr65
 
 That is the same file the site build reads, so if a document is in there it is live.
 
-`npm run check:downloads` fails if a page still points into `static/_upload/`. That is not a lint rule — CI has no copy of your local file, so such a page would 404 for everyone but you. It also fails if a `<Downloads>` query matches nothing in the store.
+`npm run check:downloads` fails if a page still points into `static/_upload/`. That is not a lint rule — CI has no copy of your local file, so such a page would 404 for everyone but you. It also fails if a `<Downloads>` query matches nothing in the store's index. If the index can't be reached, it reports those queries as not checked and does not fail.
 
 The path convention is [ADR 0001 D4](docs/adr/0001-host-downloadable-documents-on-s3.md): `/<section>/<product>/<file>`, and a published path is **never renamed or deleted**. A customer's bookmark, a QR code printed on a chassis and a support email from 2024 all depend on that.
 
