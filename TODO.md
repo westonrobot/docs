@@ -455,7 +455,7 @@ A read-only audit of every Markdown file on 2026-10-07. The high-severity items 
 - [ ] **`LOCAL_REF` misses link forms.** `scripts/check-downloads.py:32` doesn't match reference-style links, `pathname:///_upload/`, unquoted `href` or `static/_upload/`.
 - [ ] **`wrfiles.py` accepts bad names.** `scripts/wrfiles.py:171-245` accepts a subject with spaces or capitals, an uppercase extension (the key keeps `.PDF`) and firmware tagged `en`. CONTRIBUTING says bad names are refused.
 - [ ] **`--list` without credentials** ends in a `NoCredentialsError` traceback; `CONTRIBUTING.md:90` says it reports what's missing.
-- [ ] **upload-file skill.** `.claude/skills/upload-file/SKILL.md` should say a wrong version is also retired (as `retire-file/SKILL.md:21` does); `:94-96` "remove `static/_upload/` first" deletes staged files not yet published; `:37` has a garbled sentence.
+- [ ] **upload-file skill.** `.claude/skills/upload-file/SKILL.md` should say a wrong version is also retired (as `retire-file/SKILL.md:21` does); `:37` has a garbled sentence. (Step 7 now moves `static/_upload/` aside instead of deleting it, 2026-10-15.)
 - [ ] **`check-video-budget.sh` extensions.** `scripts/check-video-budget.sh:41` patterns are case-sensitive and miss `.gif` and `.avi`.
 - [ ] **First checks need more than python3.** `CONTRIBUTING.md:18` says so, but the video check needs bash and git.
 - [ ] **What the store is for.** ADR 0001:21 and ADR 0002:42 disagree, and the store holds vendor manuals while the template says to link the vendor. Record the real rule.

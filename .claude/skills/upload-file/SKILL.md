@@ -95,8 +95,16 @@ Publishing needs the AWS CLI, boto3, credentials and `WR_FILES_DISTRIBUTION_ID` 
 7. **Rebuild and look.** `npm run build && npm run serve`, then the product page.
 
    A local build with the file still staged shows the **local** copy, badged
-   `staged`. To see what a customer gets, remove `static/_upload/` first and
-   rebuild — that is the build CI produces.
+   `staged`. To see what a customer gets — the build CI produces — move
+   `static/_upload/` outside the repository while you build, then move it back.
+   Do not delete it: it can hold staged documents that are not published yet.
+
+   ```bash
+   mv static/_upload ../_upload.hold
+   npm run build && npm run serve
+   # after stopping the server:
+   mv ../_upload.hold static/_upload
+   ```
 
 8. **Clean up.** Delete the staged copy once published; it is scaffolding, and
    the page now resolves from the store.
