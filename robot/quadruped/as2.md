@@ -1,6 +1,7 @@
 ---
 sidebar_position: 2
 description: "Unitree As2 compact industrial quadruped: setup, logins, interfaces and support resources."
+unlisted: true
 ---
 
 # As2

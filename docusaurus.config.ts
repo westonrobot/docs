@@ -66,24 +66,16 @@ const config: Config = {
     [
       '@docusaurus/plugin-client-redirects',
       {
-        // The Software section was dissolved: its pages were a solution (ADT)
-        // and two task guides, none of which belonged in a section of their
-        // own. These redirects keep old URLs working, which matters because
-        // support engineers paste them into tickets.
+        // Old URLs stay working because support engineers paste them into
+        // tickets. Why each move happened: docs/design/ia-proposal.md §11.
         redirects: [
           {from: '/software/toolbox/assisted_driving_toolbox', to: '/solution/adt/intro'},
           {from: '/software/toolbox/adt_v1', to: '/solution/adt/intro'},
           {from: '/software/toolbox/adt_v2', to: '/solution/adt/intro'},
           {from: '/software/toolbox/adt_v3', to: '/solution/adt/intro'},
-          // ADT v1/v2/v3 were three pages, v2 and v3 75% identical. Now one
-          // page tabbed by version.
           {from: '/solution/adt/v1', to: '/solution/adt/intro'},
           {from: '/solution/adt/v2', to: '/solution/adt/intro'},
           {from: '/solution/adt/v3', to: '/solution/adt/intro'},
-          // Release 1's two products were renamed to their trademark names,
-          // Robot Management Toolbox and Robot Deployment Toolbox, and their
-          // directories renamed to match. Every one of these old URLs is in
-          // circulation with customers and in support tickets.
           {from: '/solution/fleet-management', to: '/solution/robot-management-toolbox'},
           {from: '/solution/fleet-management/robot-dashboard', to: '/solution/robot-management-toolbox/robot-dashboard'},
           {from: '/solution/fleet-management/robot-teleoperation', to: '/solution/robot-management-toolbox/robot-teleoperation'},
@@ -95,11 +87,6 @@ const config: Config = {
           {from: '/solution/deployment-toolbox', to: '/solution/robot-deployment-toolbox'},
           {from: '/solution/deployment-toolbox/map-editor', to: '/solution/robot-deployment-toolbox/map-editor'},
           {from: '/solution/deployment-toolbox/map-inspector', to: '/solution/robot-deployment-toolbox/map-inspector'},
-          // The Guides tab was renamed in the IA restructure but its route stayed
-          // `/tutorial/*` — an oversight, not a decision: nothing in
-          // ia-proposal.md records a reason to keep it. Renamed to `/guides/*`
-          // on 2026-09-11 so the URL matches the tab a customer clicked. Every
-          // old URL is redirected because these are in support tickets.
           {from: '/tutorial/intro', to: '/guides/intro'},
           {from: '/tutorial/agilex/ranger_mini_calibration', to: '/guides/agilex/ranger_mini_calibration'},
           {from: '/tutorial/agilex/ugv_base_control', to: '/guides/agilex/ugv_base_control'},
@@ -127,14 +114,8 @@ const config: Config = {
           {from: '/software/installation/apt_source', to: '/guides/installation/apt_source'},
           {from: '/software/slam/go2_slam', to: '/guides/unitree/go2_slam'},
           {from: '/software/intro', to: '/solution/intro'},
-          // Safety and maintenance are procedures you follow, which makes
-          // them Guides rather than Support. Support is scoped to "something
-          // is wrong or I need a human".
           {from: '/general/operational-safety', to: '/guides/operational-safety'},
           {from: '/general/robot-maintenance', to: '/guides/robot-maintenance'},
-          // The two UGV devkit version pages were 76% identical. They are now
-          // one page whose differences are a comparison table and a few tabbed
-          // images. Both old URLs are in circulation with customers.
           {from: '/system/ugv_devkit/v1.0', to: '/system/ugv_devkit'},
           {from: '/system/ugv_devkit/v1.1', to: '/system/ugv_devkit'},
           {
@@ -159,12 +140,14 @@ const config: Config = {
         indexDocs: true,
         indexBlog: false,
         indexPages: true,
-        // The plugin does not honour `unlisted: true` front matter, so an
-        // unlisted page still turns up in site search unless named here.
-        // Keep this in step with any page carrying that flag.
+        // This plugin does not read `unlisted: true`. Every page carrying
+        // that flag must also be named here. See docs/LESSONS.md.
         excludeRoutes: [
           '**/robot/ugv/ranger-mini-v2',
           '**/solution/adt/intro',
+          '**/robot/quadruped/as2',
+          '**/robot/humanoid/h2',
+          '**/robot/manipulator/nero',
         ]
       }
     ],
@@ -262,10 +245,7 @@ const config: Config = {
         src: 'img/wr-logo.png',
       },
       items: [
-        // The top level runs on a single axis: what you own, what capability
-        // you deploy, what you want to do, and reference. It previously mixed
-        // product taxonomy (Robots/Peripherals/Systems) with document type
-        // (Software/Tutorials), which is why nothing was findable.
+        // Top level runs on a single axis. See docs/design/ia-proposal.md §2.1.
         {
             type: 'dropdown',
             label: 'Products',

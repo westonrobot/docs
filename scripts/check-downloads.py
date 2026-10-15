@@ -25,6 +25,9 @@ import sys
 import urllib.error
 import urllib.request
 
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+import wrfiles  # noqa: E402
+
 REPO = pathlib.Path(__file__).resolve().parent.parent
 LOCAL_REF = re.compile(r"[\"'(]\s*(/_upload/[^\s\"')]+)")
 DOWNLOADS_TAG = re.compile(r"<Downloads\b([^>]*?)/?>", re.S)
@@ -41,7 +44,7 @@ CONTENT_SUFFIXES = {".md", ".mdx"}
 # reference scan. `docs/` is deliberately absent: it is internal engineering
 # documentation, never served, and its examples are examples rather than
 # queries — scanning it made this gate report five findings against itself.
-CONTENT_ROOTS = ("robot", "solution", "peripheral", "system", "tutorial", "support")
+CONTENT_ROOTS = wrfiles.SECTIONS
 SCAN_ROOTS = CONTENT_ROOTS + ("src", "plugins")
 
 

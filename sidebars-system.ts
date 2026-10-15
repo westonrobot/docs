@@ -10,9 +10,6 @@ const sidebarsSystem: SidebarsConfig = {
       // category goes somewhere useful instead of just expanding.
       link: {type: 'doc', id: 'ugv_devkit/index'},
       items: [
-        // Previously only the two version pages were listed, which left the
-        // guides below reachable only through inline links — and
-        // getting_started reachable from nowhere at all.
         'ugv_devkit/v1/getting_started',
         'ugv_devkit/component_reconfiguration',
         'ugv_devkit/v1/nav2_sample_setup_guide',

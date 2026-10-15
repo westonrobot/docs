@@ -20,20 +20,59 @@ const UPLOAD_DIR = '_upload';
 const DEFAULT_BASE_URL =
   process.env.WR_FILES_BASE_URL || 'https://download.westonrobot.net';
 
+// Copies of wrfiles.KINDS and wrfiles.LANGS; scripts/test_wrfiles.py fails if
+// they drift.
+const KINDS = [
+  'user-manual',
+  'quick-start',
+  'installation-guide',
+  'service-manual',
+  'troubleshooting',
+  'datasheet',
+  'safety-manual',
+  'certificate',
+  'spare-parts',
+  'cad',
+  'wiring-diagram',
+  'firmware',
+  'sdk-manual',
+  'api-reference',
+  'api-examples',
+  'integration-guide',
+  'training',
+  'release-notes',
+];
+const LANGS = ['en', 'zh', 'zh-hans', 'zh-hant', 'zxx'];
+
+const byLengthDesc = (a, b) => b.length - a.length;
+const LANG_TAIL = new RegExp(
+  `-(${[...LANGS].sort(byLengthDesc).join('|')})-v(\\d+(?:\\.\\d+)*)$`,
+);
+
 /** Re-derive a record from a key, matching wrfiles.metadata_for. */
 function metadataForKey(key) {
   const [section, product, filename] = key.split('/');
-  const stem = filename.replace(/\.tar\.gz$/, '').replace(/\.[^.]+$/, '');
+  const stem = filename.replace(/\.tar\.gz$/i, '').replace(/\.[^.]+$/, '');
   let rest = stem.slice(product.length + 1);
   let lang = '';
   let version = '';
-  const m = rest.match(/-([a-z]{2}(?:-[a-z]+)?)-v(\d+(?:\.\d+)*)$/);
+  const m = rest.match(LANG_TAIL);
   if (m) {
     lang = m[1];
     version = m[2];
     rest = rest.slice(0, m.index);
   }
-  return {section, product, kind: rest, lang, version};
+  // Longest kind that prefixes the middle wins, as in wrfiles.split_kind.
+  let kind = rest;
+  let subject = '';
+  for (const k of [...KINDS].sort(byLengthDesc)) {
+    if (rest === k || rest.startsWith(`${k}-`)) {
+      kind = k;
+      subject = rest.slice(k.length + 1);
+      break;
+    }
+  }
+  return {section, product, kind, subject, lang, version};
 }
 
 function scanStaged(siteDir) {

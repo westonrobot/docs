@@ -19,10 +19,10 @@ product page links its manufacturer's own documentation near the top.
 
 ## Guides
 
-- [Operational Safety](https://docs.westonrobot.com/tutorial/operational-safety): read before first power-on; covers wheeled bases, quadrupeds, humanoids and manipulators
-- [Robot Maintenance](https://docs.westonrobot.com/tutorial/robot-maintenance): routine checks, batteries, cleaning, storage
-- [Weston Robot Apt Source](https://docs.westonrobot.com/tutorial/installation/apt_source): add before installing any of our packages
-- [All guides](https://docs.westonrobot.com/tutorial/intro): setup, development and diagnostics, tagged by platform
+- [Operational Safety](https://docs.westonrobot.com/guides/operational-safety): read before first power-on; covers wheeled bases, quadrupeds, humanoids and manipulators
+- [Robot Maintenance](https://docs.westonrobot.com/guides/robot-maintenance): routine checks, batteries, cleaning, storage
+- [Weston Robot Apt Source](https://docs.westonrobot.com/guides/installation/apt_source): add before installing any of our packages
+- [All guides](https://docs.westonrobot.com/guides/intro): setup, development and diagnostics, tagged by platform
 
 ## Support
 

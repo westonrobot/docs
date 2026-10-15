@@ -40,7 +40,7 @@ Bring-up in outline:
 3. **Confirm the arm responds** before writing any motion code.
 4. **Move to the SDK** — `wr_arm_sdk`, or the ROS packages if you are integrating into an existing stack.
 
-The [SDK manual](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EZ16f6SHNoxNvpkJ8o1ijTMBhU4XZkE8KfvYXObn9SeuCA?e=ZVbTYn) covers the software side in detail.
+The API reference and wire protocol documents under [Related resources](#related-resources) cover the software side in detail.
 
 ## Key information
 
@@ -50,13 +50,14 @@ A quick reference for the things you reach for most often. Values are as configu
 
 Files and repositories you clone or download to work with the arm. The manuals below are the ones we ship with the arm and are the ones to work from.
 
+**Documents we publish** — generated from the file store, so a new revision appears here without this page being edited.
+
+<Downloads product="wrl63" />
+
+**Everything else** — code repositories, maintained by hand.
+
 | Resource | What it is | Where |
 | --- | --- | --- |
-| Manual | Full product manual | [EN](https://tangrobot.sharepoint.com/:f:/s/Public-Outgoing/Eki4t2rSYfZJj0C1oM8muAYBSaEVZZLccVLizd3KZ0QOnA?e=fCpuuF) · [CN](https://tangrobot.sharepoint.com/:f:/s/Public-Outgoing/EsX7ahL2QwlJpUZvi-B5peIBLllti9KVbqd4ZK0kSwMKsg?e=bAlbLE) |
-| SDK manual | Using `wr_arm_sdk` | [SDK Manual](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EZ16f6SHNoxNvpkJ8o1ijTMBhU4XZkE8KfvYXObn9SeuCA?e=ZVbTYn) |
-| ROS manuals | ROS 1 and ROS 2 integration | [ROS 1](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/ET4USOMo1wBJo1MX9l_mMJEBZ_7MkDZKw51P5VzWy0ydeA?e=DL1nBT) · [ROS 2](https://tangrobot.sharepoint.com/:f:/s/Public-Outgoing/EkJTVQwtYqpJohPR-o-jFrABCfdmQFwSOrEVZ-JEdJPDcg?e=Wcc9cQ) |
-| JSON protocol | The wire protocol, if you are not using the SDK | [Protocol Manual](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EZ7t0oc9qnBDpLFsvta_lS4BvWJMEUFE7YfafvXfA6m0Bw?e=UxWjki) |
-| API examples | Worked samples against the Realman API | [RM API samples](https://tangrobot.sharepoint.com/:f:/s/Public-Outgoing/EiDbCkGaSA5CgOpQ8tcnw1IBrzKiorH_cXctCj9KcP5dmA?e=OZItiH) |
 | C++ SDK | Primary development interface | [wr_arm_sdk](https://github.com/westonrobot/wr_arm_sdk) |
 | ROS package | ROS 1 integration | [wrl63b_ros](https://github.com/westonrobot/wrl63b_ros) |
 | ROS 2 package | ROS 2 integration | [wr_arm_ros2](https://github.com/westonrobot/wr_arm_ros2) |
@@ -84,7 +85,8 @@ and their figures for the force-sensing variant differ from ours — 917 mm reac
 
 Reach and force-sensor accuracy are the two values to confirm from the manual supplied with
 your arm, or from [Realman's current page](https://www.realman-robotics.com/en/products/rml63.html),
-before you rely on them. The figures below are the ones that are consistent across both.
+before you rely on them. Where Realman's current figures and our manual differ, the
+figures below follow Realman.
 
 :::
 
@@ -97,7 +99,7 @@ before you rely on them. The figures below are the ones that are consistent acro
 | Repeatability | ±0.05 mm |
 | Body weight | 10.0 kg (`-B`) · 10.1 kg (force-sensing variants) |
 | Working radius | 900 mm (`-B`) — see the caution above for the others |
-| Power supply | DC 20–30 V, rated 24 V |
+| Power supply | DC 24 V rated, 27 V maximum |
 | Power consumption | ≤ 200 W maximum, ≤ 100 W comprehensive |
 | Protection level | IP54 (arm body) |
 | Materials | Aluminium alloy |
@@ -109,8 +111,11 @@ Note the trade against the [WR65](/robot/manipulator/wr65): half again the reach
 
 #### Joint limits and speeds
 
-From our manual, and identical across the variants. Worth having in front of you when you
-are planning trajectories — note that **J3 is asymmetric**, unlike every other joint.
+From [Realman's current parameters](https://develop.realman-robotics.com/en/robot/robotParameter/RML63OntologyParameters/),
+and identical across the variants. The specification table in the manual we publish gives
+±180° for J1, J2, J4 and J5 and +165° to −150° for J3; plan to the ranges here. Worth
+having in front of you when you are planning trajectories — note that **J3 is asymmetric**,
+unlike every other joint.
 
 | Joint | Motion range | Maximum speed |
 | --- | --- | --- |
@@ -123,7 +128,7 @@ are planning trajectories — note that **J3 is asymmetric**, unlike every other
 
 ### Control interface
 
-The arm is driven through `wr_arm_sdk`, or directly over its **JSON protocol** if you are integrating from a language or environment the SDK does not cover — the [protocol manual](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EZ7t0oc9qnBDpLFsvta_lS4BvWJMEUFE7YfafvXfA6m0Bw?e=UxWjki) documents the messages.
+The arm is driven through `wr_arm_sdk`, or directly over its **JSON protocol** if you are integrating from a language or environment the SDK does not cover — the wire protocol document under [Related resources](#related-resources) documents the messages.
 
 `wr_arm_sdk` and `wr_arm_ros2` are shared across the arm range; the ROS 1 package is per-model, so use `wrl63b_ros` for the WRL63 specifically.
 

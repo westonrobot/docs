@@ -50,10 +50,14 @@ A quick reference for the things you reach for most often, collected so you can 
 
 Files and repositories you clone or download to work with the robot.
 
+**Documents we publish** — generated from the file store, so a new revision appears here without this page being edited.
+
+<Downloads product="ranger-mini-v3" />
+
+**Everything else** — code repositories, maintained by hand.
+
 | Resource | What it is | Where |
 | --- | --- | --- |
-| Manual | Ranger Mini 3.0 user manual | [EN](https://tangrobot.sharepoint.com/:b:/s/Public-Outgoing/EUjRgOZIXK9KnW006BR8w3sB2jU6vFv3z7WgxDFmJ_PPQQ?e=mcYaJs) |
-| CAD model | STEP file for mechanical design | [Ranger Mini 3.0 STEP](https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/EcOIV7nLuutLoPvKU2WfbkIBu7Izpp4fykdaXQnlAck0dw?e=85bhT2) |
 | C++ SDK | Primary development interface | [ugv_sdk](https://github.com/westonrobot/ugv_sdk) |
 | ROS package | ROS 1 integration | [ranger_ros](https://github.com/westonrobot/ranger_ros) |
 | ROS 2 package | ROS 2 integration | [ranger_ros2](https://github.com/westonrobot/ranger_ros2) |
@@ -64,9 +68,7 @@ Dimensions, payload, speed and battery figures are on the [official product page
 
 ### Firmware
 
-| Version | What is different |
-| --- | --- |
-| [V6.0.5](https://tangrobot.sharepoint.com/:u:/s/Public-Outgoing/ET8rMyZGlnxBha4NuIoY3IYB3Cc9yJJ1DvJQ5UmqF_8MgQ?e=xVwAza) | Current release |
+Firmware images are not currently published here. [Submit a support request](https://forms.office.com/r/qELKzYF33W) for the current release, quoting the version you are running.
 
 ### Control interface
 
