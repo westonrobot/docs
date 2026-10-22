@@ -470,7 +470,7 @@ A read-only audit of every Markdown file on 2026-10-07. The high-severity items 
 - [ ] **This file's AWS account details.** The MFA, access-key and service-account items under *File hosting — ADR 0001* name IAM users, key state and a once-committed key identifier, plus the HostedZoneId. Move them to the private infrastructure repository and leave a one-line pointer.
 - [ ] **`docs/design/release-pages-plan.md:88-117`** carries VPN and SSH access details, customers' security rules, `VITE_AUTH_ENABLED` and internal repository paths. Move to a private location.
 - [ ] **This file's own wording.** `TODO.md:7` names a customer deployment's cameras; `TODO.md:290` uses "contract violation". Reword.
-- [ ] **Internal notes on unlisted pages.** `robot/quadruped/as2.md`, `robot/humanoid/h2.md` and `robot/manipulator/nero.md` show notes such as "Delete this admonition once the page is complete" and "only we can write" (and a TODO at `as2.md:23`) to anyone with the URL. Move them into MDX comments.
+- [ ] **Internal notes on unlisted pages.** `robot/quadruped/as2.md` and `robot/manipulator/nero.md` show notes such as "Delete this admonition once the page is complete" and "only we can write" (and a TODO at `as2.md:23`) to anyone with the URL. Move them into MDX comments.
 - [ ] **Screenshots to redact.** `guides/unitree/img/unitree_robot_sn.png` shows a full G1 serial, and is used as the Go2 and B2 SN (`go2_diag_guide.md:137`, `b2_diag_guide.md:138`); `guides/unitree/img/g1_app_conn_05.jpg` shows office and neighbouring Wi-Fi names; `peripheral/img/westonrobot/regulator_v2.jpg` shows a serial and a phone number.
 - [ ] **Devkit SSH example.** `system/ugv_devkit/v1/getting_started.md:21` gives `ssh wr@10.10.0.20`, while the product page says credentials are only on the handover note.
 - [ ] **`robot/humanoid/r1.md:178`** "a known immature behavior, expected to be fixed". Reword.
@@ -491,7 +491,7 @@ Robot pages:
 - [ ] **Button sequence.** `robot/quadruped/a2.md:45` and `robot/humanoid/r1.md:66` refer to a Go2/B2 short-press-then-long-press sequence that neither the Go2 nor the B2 page documents.
 - [ ] **WR65 and WRL63** (`wr65.md`, `wrl63.md:51`, `:79-88`) compare against "our 2023 documentation" figures that aren't in the published manuals.
 - [ ] **`robot/quadruped/a2.md:172`** "disable it in the SDK" names no call.
-- [ ] **FAQ "the recovery sequence" links to `operational-safety#if-something-goes-wrong`, which has none.** `g1.md:173`, `go2.md:167`, `b2.md:160`, `a2.md:180`, `r1.md:198`, `h2.md:110`, `as2.md:112`.
+- [ ] **FAQ "the recovery sequence" links to `operational-safety#if-something-goes-wrong`, which has none.** `g1.md:173`, `go2.md:167`, `b2.md:160`, `a2.md:180`, `r1.md:198`, `h2.md:274`, `as2.md:112`.
 - [ ] **Empty "Troubleshooting & FAQ" headings** on `wr65`, `wrl63`, `xarm`, `z1`, `piper`, `kinova-gen3-lite`, `ranger-mini-v2`, `ranger-mini-v3`, `scout-mini`.
 - [ ] **Serial number subsection** missing on `h1-2`, `r1`, `wr65`, `wrl63`, `xarm`, `z1`, `piper`, `kinova-gen3-lite`, `scout-mini` and both Rangers; misplaced on `b2.md:43` and `g1.md:85`.
 
@@ -542,4 +542,4 @@ Guides:
 
 ### Unsourced frequency and absolute claims
 
-- [ ] **Keep the instruction, drop the ranking** ("most common", "always", "never" with no source). Robot pages: `g1.md:30`, `:177`; `r1.md:32`; `h2.md:43`; `a2.md:41`; `as2.md:46`; `ranger-mini-v2.md:88`; `ranger-mini-v3.md:77`; `z1.md:77`; `h1-2.md:70`; `kinova-gen3-lite.md:75`; `go2.md:151`. Guides: `operational-safety.md:41`, `:56`; `safety/quadrupeds.md:46`; `safety/humanoids.md:24`, `:39`; `robot-maintenance.md:9`, `:38`; `maintenance/manipulators.md:14`, `:16`; `maintenance/wheeled-bases.md:33`; `manifold/scanning.md:9`. Solution: `map-editor.md:94`, `:150`; `mission-editing.md:86`; `robot-management-toolbox/index.md:226`, `:279`; `map-inspector.md:51`; `robot-dashboard.md:257`.
+- [ ] **Keep the instruction, drop the ranking** ("most common", "always", "never" with no source). Robot pages: `g1.md:30`, `:177`; `r1.md:32`; `a2.md:41`; `as2.md:46`; `ranger-mini-v2.md:88`; `ranger-mini-v3.md:77`; `z1.md:77`; `h1-2.md:70`; `kinova-gen3-lite.md:75`; `go2.md:151`. Guides: `operational-safety.md:41`, `:56`; `safety/quadrupeds.md:46`; `safety/humanoids.md:24`, `:39`; `robot-maintenance.md:9`, `:38`; `maintenance/manipulators.md:14`, `:16`; `maintenance/wheeled-bases.md:33`; `manifold/scanning.md:9`. Solution: `map-editor.md:94`, `:150`; `mission-editing.md:86`; `robot-management-toolbox/index.md:226`, `:279`; `map-inspector.md:51`; `robot-dashboard.md:257`.
