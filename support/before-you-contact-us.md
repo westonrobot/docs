@@ -54,7 +54,7 @@ Send what you have gathered. The more your first message carries, the sooner we 
 That includes photos, screenshots and video. Send them one of two ways:
 
 - **Share a link** — upload the files to your own cloud storage and paste the link into your request. Check that the link opens for someone outside your organisation.
-- **Otherwise, tell us what you have** — list the files in your request, for example "a 10-second video of the fault". We will ask for them in our email reply.
+- **Otherwise, send them by email** — attach them to your reply when we email you about your request.
 
 :::
 
