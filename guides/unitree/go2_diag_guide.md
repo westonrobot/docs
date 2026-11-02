@@ -128,7 +128,7 @@ When reaching out to our support team, please provide a structured and detailed 
 * Were there any error messages, warning tones, or abnormal movements? (*Alarms may be reset when the robot is restarted.*)
 * Are there any visible signs of physical damage or wear?
 
-Please attach screenshots taken from the mobile app, including diagnostic data and alarm information. If available, include relevant video footage. This helps us understand and reproduce the issue more effectively. 
+Please send screenshots taken from the mobile app, including diagnostic data and alarm information. If available, include relevant video footage. This helps us understand and reproduce the issue more effectively. See [how to send screenshots and video](/support/before-you-contact-us#then-contact-us).
 
 Understanding and documenting the issue clearly will help prevent further damage and ensure safe continuation of your development or testing efforts.
 

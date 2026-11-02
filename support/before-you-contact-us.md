@@ -29,7 +29,7 @@ What the robot was doing **just before**, what happened **at the moment**, and w
 
 **Anything else you can add**
 
-- **Photos or video** — especially of how payloads are mounted, or ten seconds of the fault if it is a movement.
+- **Photos or video** — especially of how payloads are mounted, or ten seconds of the fault if it is a movement. [How to send them](#then-contact-us).
 - **What you observed** — exact error text, which lights and what colour, whether the joints were stiff or limp.
 - **Whether it reproduces** — every time, sometimes, or once. If it is safe to try: with nothing mounted, on flat ground, after a power cycle?
 - **What changed recently** — firmware, packages, payload, site, transport. "Nothing" is a real answer.
@@ -37,7 +37,7 @@ What the robot was doing **just before**, what happened **at the moment**, and w
 
 :::tip What a useful request looks like
 
-> *Unitree Go2 — serial number on the sticker, photo attached.*
+> *Unitree Go2 — serial number on the sticker, photo here: [link]*
 >
 > *Driving at walking pace on flat concrete, about ten minutes in. Stopped dead and went limp with no warning, nothing shown on the controller. Stayed limp roughly 30 seconds, then responded again. Happened twice today, both times after about ten minutes of driving.*
 
@@ -48,6 +48,15 @@ Which unit, then what happened. That is already enough to point at thermal prote
 ## Then contact us
 
 Send what you have gathered. The more your first message carries, the sooner we can work on the problem itself instead of asking about it.
+
+:::note The request form cannot take attachments
+
+That includes photos, screenshots and video. Send them one of two ways:
+
+- **Share a link** — upload the files to your own cloud storage and paste the link into your request. Check that the link opens for someone outside your organisation.
+- **Otherwise, tell us what you have** — list the files in your request, for example "a 10-second video of the fault". We will ask for them in our email reply.
+
+:::
 
 {/* Keep the label on the same line as the tags. Split across lines, MDX parses
     it as a block and wraps it in a <p>, whose bottom margin lands inside the
