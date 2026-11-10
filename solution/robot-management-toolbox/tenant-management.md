@@ -154,13 +154,13 @@ Applying a map to a robot is not a background operation. The robot **stops navig
 Activating a map does not finish the job. A robot keeps the map it already holds until it confirms the new one, and **while it is behind, its missions are switched off and cannot be edited or dispatched** — rather than run against waypoints that may have moved.
 
 <Figure
-  src={require('../img/fleet-map-not-current.png').default}
-  alt="A dialog headed 'Dev-A2 · map', comparing what the fleet activated — map blk55_office_level3, revision r8 and a bundle identifier — with what the robot reports: still on its previous map, no revision the fleet has seen it confirm, and a reported bundle that resolves to blk55_office_level3 r8. A status line reads 'downloaded, not applied'. A warning says navigation restarts and re-acquires localization and that the robot's missions are switched off and need switching back on; an error says its management agent is offline and to wait for it to come back before updating"
-  size="md"
+  src={require('../img/fleet-map-update.png').default}
+  alt="A dialog headed 'Dev-B2 · map', comparing what the fleet has activated — map Meeting Room, revision r1 and a bundle identifier — with what is on the robot: map blk55_office_level3, revision r8 and a bundle identifier. Between them a status line reads 'not on this robot yet'. A warning says navigation restarts and re-acquires localization, and that the robot's missions are switched off and need checking and switching back on. Close and Approve apply buttons sit at the bottom"
+  size="lg"
   framed
-  caption="What the fleet activated, beside what the robot reports back. This robot has downloaded the new map without applying it, and its management agent is offline — so the update waits for that agent to return." />
+  caption="What the fleet activated, and what is on the robot. This robot is not on the new map yet; opened from Map status, Approve apply starts the update." />
 
-Two of those readings are worth knowing the first time you meet them. **downloaded, not applied**
+Two other readings are worth knowing the first time you meet them. **downloaded, not applied**
 means the robot has fetched the new map and is still running the old one, so it counts as behind
 until it switches over. And where a robot's **management agent is offline**, the dialog says so, and
 the update waits until it is back — [When a robot reads as
