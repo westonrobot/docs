@@ -138,6 +138,31 @@ tells you so.
 Go Home then drives there, and missions that return home follow it the next time they are sent to
 the robot.
 
+### After a map change
+
+When a new version of a robot's map goes live, or the robot is assigned a different map, each of
+its saved locations has to be checked against that map before the robot can work again. Missions
+store positions rather than a map version, so a person has to look.
+
+Until then the robot's view reads **This robot's map changed — every mission is inactive until its
+locations are confirmed**, with a count of the locations still to confirm. The robot cannot be
+given work: sending, switching on or running a mission, Go Home, and resuming are refused.
+Stopping is not held: a run in progress can still be paused or cancelled, and auto-dispatch
+paused.
+
+An Admin clears each location in one of two ways:
+
+| | |
+| --- | --- |
+| **Confirm pose** | Open the location, check that it still points where it should, and confirm it |
+| **Move it** | Moving the location to where it belongs also confirms it. Renaming it does not |
+
+An Operator sees that an admin must confirm each one. Confirming the last location does not
+switch the missions back on; that is a separate step, covered in [Catching a robot up to the
+map](/solution/robot-management-toolbox/tenant-management#catching-a-robot-up-to-the-map).
+Activating the version that is already live does not ask again, and a location saved after the
+change is not part of the check.
+
 ## Run conditions
 
 Run conditions answer **"when should it run?"**. A run condition is what lets a mission start on its own, and it is the gate on activating and sending a mission rather than on saving one.
