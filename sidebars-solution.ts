@@ -3,6 +3,7 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 const sidebarsSolution: SidebarsConfig = {
   solutionSidebar: [
     'intro',
+    'quick-start',
     // Same order as the cards on solution/intro.md; change both together.
     // Why this order: docs/design/release-pages-plan.md §2.
     {

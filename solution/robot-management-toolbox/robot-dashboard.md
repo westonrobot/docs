@@ -27,13 +27,22 @@ One robot on one screen. The view is laid out so that judging a running mission 
 
 **The main view area shows one or the other.** A **Map / Cameras** toggle decides whether the navigation map or the camera feeds take the large panel, with the other moving aside. An operator watching a robot drive can give the space to the feeds; one checking progress against the building can give it to the map. Which of the two opens by default is a per-user preference.
 
-**Localisation is worth watching.** A robot that is not localised does not know where it is on the map, so map-relative work — dispatching a mission, sending it home — has nothing to work from until it does. The map reports it beside the robot: **Localized** when it is tracking, **Not Localized** when it has no fix, and **Unknown** when the robot has not said recently enough to be trusted.
+**Localisation is worth watching.** A robot that is not localised does not know where it is on the map, so map-relative work — dispatching a mission, sending it home — has nothing to work from until it does. The navigation map reports it in its header, beside the title: **Localized** when it is tracking, **Not Localized** when it has no fix, and **Unknown** when the robot has not said recently enough to be trusted.
 
 **Not Localized is a status rather than a fault.** It can appear when the robot does not yet have a valid localisation on the current map, and map-relative controls may be unavailable until localisation succeeds. Localisation or navigation warnings caused by a robot not being localised should clear once it localises.
 
-**Init Pose**, on the map toolbar, is the recovery for a robot that is not tracking. Arm it, then **click to set the location and drag to set the heading** — releasing sends it, and the robot starts localising from the pose you gave. There is no separate confirm step and nothing further to press: watch the reading beside the robot for **Localized**. Init Pose remains available while location confirmation is outstanding. If the robot is on an out-of-date map revision, however, Init Pose remains unavailable until the map is brought up to date.
+**The robot is drawn as a blue arrow** at its position on the map, pointing the way it faces. The arrow turns grey when the robot's reported position is out of date.
 
-Two things make it more likely to take. Put the pose where the robot physically is, as closely as you can judge — near enough in the right place is what it needs rather than an exact figure. And have the robot somewhere with clear, distinctive surroundings rather than a repetitive or bare one, because an aisle of identical bays gives it little to tell one position from another.
+<Figure
+  src={require('../img/fleet-robot-marker.png').default}
+  alt="A close view of the navigation map: the robot drawn as a blue arrow with a white outline, pointing up and to the left, beside a green marker labelled Home, among the map's blue nodes, segments and corridor labels"
+  size="md"
+  framed
+  caption="The robot is the blue arrow, pointing the way it faces. The green marker beside it is a saved location named Home." />
+
+**Init Pose**, on the map toolbar, is the recovery for a robot that is not tracking. Arm it, then **click to set the location and drag to set the heading**. While you drag, a see-through green arrow shows the pose you are setting. Releasing sends it, and the robot starts localising from the pose you gave. Once it takes the pose, its blue arrow moves to where you set it, facing the way you dragged. There is no separate confirm step and nothing further to press: watch the reading in the map's header for **Localized**. Init Pose remains available while [location confirmation](/solution/robot-management-toolbox/mission-editing#after-a-map-change) is outstanding. If the robot is on an out-of-date map revision, however, Init Pose remains unavailable until the map is brought up to date.
+
+Two things make it more likely to take. Put the pose where the robot physically is, facing the way it faces, as closely as you can judge — near enough in the right place is what it needs rather than an exact figure. And have the robot somewhere with clear, distinctive surroundings rather than a repetitive or bare one, because an aisle of identical bays gives it little to tell one position from another.
 
 ## Arranging the view
 
@@ -171,6 +180,8 @@ The view is headed with the robot's name, model and serial number. Quote those w
 | **Missions** | Pick a mission this robot may run, and dispatch it |
 
 **After Go Home, trust the robot rather than the panel.** The robot begins driving home when the command is accepted, but the panel can go on reporting that the work is staged and not moving yet. The press took; the message is behind it. Watch the robot's position rather than pressing Go Home a second time.
+
+**Go Home is refused while the robot is running a mission.** Cancel the run, or wait for it to finish, and then send it home. Pausing the run is not enough.
 
 **What the E-Stop withdraws is the ability to set the robot going, not the ability to stop it.** While it is active, the controls that would start movement or take on new work are unavailable — driving, Go Home, the stance and docking commands, dispatching a mission, and auto-dispatch. The controls for dealing with what is already running stay available, so a run in progress can still be paused, resumed or stopped, a result acknowledged, and the robot cleared. Releasing the E-Stop is a deliberate second action rather than a side effect of anything else.
 

@@ -22,3 +22,5 @@ Three parts make that work, and a deployment needs all three. The **Robot Platfo
 <ProductCard to="/solution/robot-management-toolbox" src={require('./img/fleet-cover.jpg').default} alt="The robot dashboard: the site map with the robot's route drawn over the building, live camera feeds, telemetry and the control panel on one screen" title="Robot Management Toolbox">Plan, dispatch, watch and review missions from a browser. The part your operators use every day.</ProductCard>
 
 </ProductGrid>
+
+**Setting up a site?** [Quick start](/solution/quick-start) covers the whole deployment on one page, from scanning the site to robots running their missions.
