@@ -181,6 +181,8 @@ The view is headed with the robot's name, model and serial number. Quote those w
 
 **After Go Home, trust the robot rather than the panel.** The robot begins driving home when the command is accepted, but the panel can go on reporting that the work is staged and not moving yet. The press took; the message is behind it. Watch the robot's position rather than pressing Go Home a second time.
 
+**Go Home is refused while the robot is running a mission.** Cancel the run, or wait for it to finish, and then send it home. Pausing the run is not enough.
+
 **What the E-Stop withdraws is the ability to set the robot going, not the ability to stop it.** While it is active, the controls that would start movement or take on new work are unavailable — driving, Go Home, the stance and docking commands, dispatching a mission, and auto-dispatch. The controls for dealing with what is already running stay available, so a run in progress can still be paused, resumed or stopped, a result acknowledged, and the robot cleared. Releasing the E-Stop is a deliberate second action rather than a side effect of anything else.
 
 **Every role at a site may activate the E-Stop, and it needs no control lease.** Safety is not something to

@@ -147,6 +147,8 @@ Two facts are tracked for every robot, and the difference between them is the wh
 
 While the two agree, the robot is up to date. Activating a new revision changes the target for **every robot assigned to that lineage at once**, which makes them all out of date until each one catches up.
 
+An Admin sets the lineage on the site's own page, in its **Robots** list: **Assign Map**, beside the robot's **Assigned Map**, changes it, and a robot never given one reads **Not set**. **Map status** in the same row opens the comparison shown under [Catching a robot up to the map](#catching-a-robot-up-to-the-map).
+
 Applying a map to a robot is not a background operation. The robot **stops navigating and restarts its stack**, then re-acquires localisation before it can work again — so it is a change to make deliberately rather than to a robot mid-task.
 
 ### Catching a robot up to the map
@@ -167,9 +169,13 @@ the update waits until it is back — [When a robot reads as
 offline](/solution/robot-management-toolbox/robot-dashboard#when-a-robot-reads-as-offline) covers
 what that state means.
 
-The dialog names the map, the revision the fleet activated and the revision on the robot, so it is clear how far behind it is. The recovery is **Take control & update**, then wait for the robot to confirm; then check the missions and switch them back on. If the switch fails it can be retried from the same place, and the missions unlock when it succeeds.
+The dialog names the map, the revision the fleet activated and the revision on the robot, so it is clear how far behind it is. The recovery is **Take control & update** — **Approve apply** where an Admin opens the same comparison from **Map status** — then wait for the robot to confirm; then check the missions and switch them back on. If the switch fails it can be retried from the same place, and the missions unlock when it succeeds.
 
 Two things to plan around. **Updating a robot's map restarts navigation**, which then has to re-acquire localisation — so it is not a change to make to a robot part-way through something. And it needs **robot-management permission at that site**, which an Operator holds as well as a Site Admin.
+
+**An update clears the robot's work.** Applying the new map takes the robot's saved missions off it, switches them off in the toolbox, and leaves its auto-dispatch paused. An update does not start while the robot is running a mission: cancel the run or wait for it to finish, because pausing it is not enough. Once the robot is on the new map and an Admin has [confirmed its locations](/solution/robot-management-toolbox/mission-editing#after-a-map-change), switch the missions back on, choose **Send to Robot**, then [**Resume Auto-Dispatch**](/solution/robot-management-toolbox/robot-dashboard#auto-dispatch).
+
+**Approving from the site's page.** An Admin can approve from the site's **Robots** list as well as from the comparison. A robot awaiting approval, or whose last update failed, carries **Approve apply** or **Approve retry** beside its **Map status**. Where more than one robot is waiting, **Approve map updates (N)** above the list approves them all at once.
 
 ## The audit log
 

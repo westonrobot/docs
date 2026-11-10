@@ -105,6 +105,11 @@ and one **Send to Robot** clears it. The badge is shown for an offline robot too
 exactly when a stale copy keeps running to its own schedule. A mission you have also edited since
 sending reports that edit instead — one Send answers either cause.
 
+**Some presses use the new place before a Send does.** Dispatch, Quick Dispatch, Go Home, Stop and
+Acknowledge use each saved location and home where it stands now, so a moved location reaches the
+missions the robot holds on the next of those presses. The missions stay badged **location
+changed** until you choose **Send to Robot**, because only a Send records what the robot holds.
+
 <Figure
   src={require('../img/fleet-mission-saved-location.png').default}
   alt="The saved-location picker for a checkpoint, explaining that a stop made from a saved location follows it so fixing the location later fixes every mission that uses it, with a searchable list of the robot's locations each showing whether it has been used"
@@ -213,6 +218,11 @@ already holds. What confirms any of this is the robot's own report, so *active* 
 Toolbox's intent and the badge beside it is the robot's answer: read the badge, not the activation,
 when you want to know what the robot has.
 
+**On the mission list the button reads Send active set to robot.** One press sends every mission
+marked Active and takes off the robot any saved mission that is not, so with nothing active it
+would clear the robot. Dispatch, Quick Dispatch, Go Home, Stop and Acknowledge do the work they
+name; they are not a way to deliver, edit or remove the robot's saved missions.
+
 | Badge | Means |
 | --- | --- |
 | **robot confirmed** | The robot accepted this mission list when it was sent |
@@ -277,10 +287,10 @@ knowing before you rely on it:
 ## When an action cannot proceed
 
 The Management Toolbox refuses an action when it does not have enough information to proceed safely,
-or when the result would be invalid or in conflict with something that already exists. Four come up
+or when the result would be invalid or in conflict with something that already exists. Five come up
 in normal use, each with a different thing to do about it.
 
-**[1]**, **[3]** and **[4]** are reported on screen. **[2]** is quieter — what you see is that
+**[1]**, **[3]**, **[4]** and **[5]** are reported on screen. **[2]** is quieter — what you see is that
 auto-dispatch has gone paused.
 
 | Ref | Refusal | What it means | What to do |
@@ -289,6 +299,7 @@ auto-dispatch has gone paused.
 | **[2]** | **The removal was withheld, and auto-dispatch is paused** | You asked for work to be taken off a robot whose current list cannot be seen. Sending a corrected list would mean guessing the rest of it, so nothing was sent and new work was paused instead, to stop the robot picking up something you were trying to remove | Wait until the robot reports again, repeat the removal, then **Resume Auto-Dispatch** |
 | **[3]** | **A saved location already stands here** | The place you are saving is the same spot, facing the same way, as a location that already exists — and the refusal names the one already there | Use the location it names instead of saving a second one at the same place |
 | **[4]** | **A place this mission needs cannot be resolved** | The mission refers to a home position or a checkpoint that no longer exists, or that cannot be resolved on the robot's current map. The mission is invalid to send at all, so this is answered before anything about schedules or holds | Open the mission and set the missing place, then send it again |
+| **[5]** | **The fleet cannot rebuild this robot's missions exactly** | A saved location was deleted while the robot still holds an earlier version of a mission that uses it. Rather than guess, Dispatch, Quick Dispatch, Go Home and Retry are refused. Stop still stops the robot, but leaves its mission list as it is and pauses auto-dispatch | **Send to Robot** to put the missions back in step, then **Resume Auto-Dispatch** |
 
 **[3]** and **[4]** are about the mission or its saved places, so they are answered first: a mission
 that cannot be dispatched at all is never reported as merely waiting.
