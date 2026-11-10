@@ -54,6 +54,8 @@ If you are doing this for the first time, read the guides in this order rather t
 
 **Step 14 is the one that decides whether the rest worked.** Every check before it — a clean-looking cloud, a `.pcd` the toolbox accepts, levels that extract, a map that validates — tells you the files are coherent, not that a robot will drive on them.
 
+For everything after the `.pcd` (building the map, putting it live and running missions), follow the [Quick start](/solution/quick-start) from stage 2.
+
 ## The guides
 
 | Guide | Reach for it when |
