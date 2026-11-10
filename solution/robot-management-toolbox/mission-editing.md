@@ -105,10 +105,11 @@ and one **Send to Robot** clears it. The badge is shown for an offline robot too
 exactly when a stale copy keeps running to its own schedule. A mission you have also edited since
 sending reports that edit instead — one Send answers either cause.
 
-**Some presses use the new place before a Send does.** Dispatch, Quick Dispatch, Go Home, Stop and
-Acknowledge use each saved location and home where it stands now, so a moved location reaches the
-missions the robot holds on the next of those presses. The missions stay badged **location
-changed** until you choose **Send to Robot**, because only a Send records what the robot holds.
+**Five actions use a moved location straight away.** **Dispatch**, **Quick Dispatch**, **Go Home**,
+**Stop** and **Acknowledge** read each saved location and home where it is now. The next time you
+use any of them, the robot's missions pick up the moved location. The missions still show
+**location changed** until you choose **Send to Robot**, because only Send to Robot updates the
+record of what the robot holds.
 
 <Figure
   src={require('../img/fleet-mission-saved-location.png').default}
@@ -218,10 +219,10 @@ already holds. What confirms any of this is the robot's own report, so *active* 
 Toolbox's intent and the badge beside it is the robot's answer: read the badge, not the activation,
 when you want to know what the robot has.
 
-**On the mission list the button reads Send active set to robot.** One press sends every mission
-marked Active and takes off the robot any saved mission that is not, so with nothing active it
-would clear the robot. Dispatch, Quick Dispatch, Go Home, Stop and Acknowledge do the work they
-name; they are not a way to deliver, edit or remove the robot's saved missions.
+**On the mission list, the button reads Send active set to robot.** It sends all of the robot's
+Active missions at once, and removes from the robot every mission that is not Active. If no mission
+is Active, sending removes them all. Dispatch, Quick Dispatch, Go Home, Stop and Acknowledge only
+do what their names say. To add, update or remove the robot's saved missions, use Send to Robot.
 
 | Badge | Means |
 | --- | --- |
