@@ -104,7 +104,7 @@ The push succeeds, and the site has a new **draft** revision in the Robot Manage
 
 1. **Publish, then activate:** under the site's **Maps**, choose **Publish** on the draft revision, then **Activate**. [How a map reaches a robot](/solution/robot-management-toolbox/tenant-management#how-a-map-reaches-a-robot)
 2. **Assign the map to each robot:** in the site's **Robots** list, **Assign Map** sets which map a robot runs. [How a robot is assigned a map](/solution/robot-management-toolbox/tenant-management#how-a-robot-is-assigned-a-map)
-3. **Catch each robot up:** choose **Take control & update** on the robot's own view. An Admin can also choose **Approve apply** from **Map status** in the site's Robots list. Wait for the robot to confirm the new map. If the update fails, retry it from the same place. [Catching a robot up to the map](/solution/robot-management-toolbox/tenant-management#catching-a-robot-up-to-the-map)
+3. **Catch each robot up:** choose **Take control & update** on the robot's own view. An Admin can also choose **Approve apply** beside the robot's **Map status** in the site's Robots list, or **Approve map updates (N)** for every robot waiting. Wait for the robot to confirm the new map. If the update fails, retry it from the same place. [Catching a robot up to the map](/solution/robot-management-toolbox/tenant-management#catching-a-robot-up-to-the-map)
 
    <Figure
      src={require('./img/fleet-map-update.png').default}
@@ -171,7 +171,7 @@ Every mission each robot should run reads **active** and **on robot**, the badge
 1. **Open the Dashboard** and look for anything that needs attention.
 2. **Open the robot** in question.
 3. **Let the schedule run, or start something yourself:** run a saved mission now with **Dispatch**, or send the robot to one point with **Quick Dispatch**.
-4. **Watch it.** To step in while a mission is running, stop the run or use the **E-Stop**. Go Home is refused until the run has ended.
+4. **Watch it.** To step in while a mission is running, stop the run or use the **E-Stop**. Go Home is refused until the run has ended. [Taking control](/solution/robot-management-toolbox/robot-dashboard#taking-control)
 5. **When a run fails, acknowledge it,** then check that auto-dispatch is running again. [Recovery and acknowledgement](/solution/robot-management-toolbox/robot-dashboard#recovery-and-acknowledgement)
 6. **Review what the robots found.** [Detection review](/solution/robot-management-toolbox/detection-review)
 
