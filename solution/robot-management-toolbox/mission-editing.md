@@ -131,6 +131,13 @@ saving a checkpoint as a location always asks whether it should **Merge** into t
 **Keep separate**, while *Add Location* on the map simply reuses the location already there and
 tells you so.
 
+**A robot's home is one of its saved locations.** Where a robot has no home, its
+[control panel](/solution/robot-management-toolbox/robot-dashboard#taking-control) offers
+**Set Home** in place of Go Home: choose it, then click the map where the home should be.
+**Set home** on a saved location makes that location the home, replacing any home already set.
+Go Home then drives there, and missions that return home follow it the next time they are sent to
+the robot.
+
 ## Run conditions
 
 Run conditions answer **"when should it run?"**. A run condition is what lets a mission start on its own, and it is the gate on activating and sending a mission rather than on saving one.
