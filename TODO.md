@@ -547,10 +547,11 @@ Guides:
 
 ## Quick start page — branch `docs/solution-quick-start`
 
-`solution/quick-start.md`, decision D-R11 in `docs/design/release-pages-plan.md`. Facts added for it were checked against `wr_fleet_management` v0.6.0.
+`solution/quick-start.md`, decision D-R11 in `docs/design/release-pages-plan.md`. Facts added for it were checked against `wr_fleet_management` v0.6.0 and re-checked against v0.7.0 and v0.7.1.
 
 - [ ] **Re-check stage 3 once `docs/fleet-v0.7.0` merges.** The quick start names **Assign Map**, **Map status** and **Approve apply** from v0.6.0 source; on `main` the owning page `tenant-management.md` names none of them yet, and that branch adds them.
 - [ ] **Link the location-confirmation hold from `tenant-management.md` §Catching a robot up to the map.** It is documented in `mission-editing.md` §After a map change only, to keep clear of `docs/fleet-v0.7.0`, which edits that section.
 - [ ] **`robot-management-toolbox/index.md` Admin standard workflow** has no step for confirming locations after a map change or for test-driving a new map, and its step 7 (give your team their roles) is a Tenant Administrator action, not a Site Admin one.
 - [ ] **`guides/manifold/index.md` The workflow end to end**, rows 13–14, now overlap quick-start stages 2–3. Decide whether those rows should point at the quick start.
 - [ ] **Delete `solution/img/fleet-map-not-current.png` once `docs/fleet-v0.7.0` has merged.** This branch replaced both uses with `fleet-map-update.png`, which shows the comparison with **Approve apply** rather than an offline management agent; the fleet branch still references the old file.
+- [ ] **For `docs/fleet-v0.7.0`, owning-page gaps found re-checking the quick start against v0.7.0/v0.7.1.** `tenant-management.md` §Catching a robot up: a map update clears the robot's missions and leaves auto-dispatch paused, so the way back is switch on, **Send to Robot**, **Resume Auto-Dispatch**. `mission-editing.md` §Saved locations: since 0.7.0, Dispatch, Quick Dispatch, Go Home, Stop and Acknowledge use a moved location where it stands now. §When an action cannot proceed: the 0.7.0 refusal after a saved location the robot's copy still uses is deleted. The site page's per-row **Approve apply** and **Approve map updates (N)**. Also: the mission list's send button reads **Send active set to robot**, while the pages say Send to Robot; `robot-management-toolbox/index.md` Operator standard workflow step 4 offers Go Home to intervene, but Go Home is refused while a mission is running.
