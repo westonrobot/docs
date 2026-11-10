@@ -22,7 +22,7 @@ flowchart LR
 | [1 · Scan the site](#1--scan-the-site) | Whoever captures the site | You have the exported `.pcd`, below 200 MB |
 | [2 · Build the map](#2--build-the-map) | Anyone can author it. Pushing needs an Admin | The site has a new draft revision |
 | [3 · Put the map live](#3--put-the-map-live) | Admin. An Operator can catch a robot up | Each robot runs the activated map, is localised, and reaches the points you send it to |
-| [4 · Set up the work](#4--set-up-the-work) | Admin. An Operator can set run conditions and send missions | Each mission's badge reads **robot confirmed** |
+| [4 · Set up the work](#4--set-up-the-work) | Admin. An Operator can set run conditions, switch missions on and send them | The robot's mission list reads **robot confirmed** |
 | [5 · Run the robots](#5--run-the-robots) | Operator | Ongoing |
 
 *Admin* on this page means a **Site Admin** for that site or a **Tenant Administrator**. [Roles](/solution/robot-management-toolbox/tenant-management#roles) defines every role.
@@ -102,7 +102,7 @@ The push succeeds, and the site has a new **draft** revision in the Robot Manage
 **Who:** An **Admin** publishes, activates and assigns maps. Catching a robot up can also be done by an **Operator**.  
 **Where:** The Robot Management Toolbox, on the site's own page. [A site's maps](/solution/robot-management-toolbox/tenant-management#a-sites-maps)
 
-1. **Publish, then activate:** under the site's **Maps**, choose **Publish** on the draft revision, then **Activate**. The confirmation lists the robots on that map. [How a map reaches a robot](/solution/robot-management-toolbox/tenant-management#how-a-map-reaches-a-robot)
+1. **Publish, then activate:** under the site's **Maps**, choose **Publish** on the draft revision, then **Activate**. [How a map reaches a robot](/solution/robot-management-toolbox/tenant-management#how-a-map-reaches-a-robot)
 2. **Assign the map to each robot:** in the site's **Robots** list, **Assign Map** sets which map a robot runs. [How a robot is assigned a map](/solution/robot-management-toolbox/tenant-management#how-a-robot-is-assigned-a-map)
 3. **Catch each robot up:** choose **Take control & update** on the robot's own view. An Admin can also choose **Approve apply** from **Map status** in the site's Robots list. Wait for the robot to confirm the new map. If the update fails, retry it from the same place. [Catching a robot up to the map](/solution/robot-management-toolbox/tenant-management#catching-a-robot-up-to-the-map)
 
@@ -127,8 +127,8 @@ The push succeeds, and the site has a new **draft** revision in the Robot Manage
 **What to expect**
 
 - **One Admin can take a map from draft to live.** If your process needs a second person to approve a map, that check has to happen outside the system.
-- **Updating a robot's map restarts its navigation.** The robot has to localise again before it can work, so do not update a robot in the middle of a task.
-- **A robot that is behind cannot be dispatched.** Its missions are switched off, and dispatch and Go Home are unavailable until it confirms the new map. **downloaded, not applied** means it is still running the old map.
+- **Updating a robot's map restarts its navigation and pauses auto-dispatch.** The robot has to localise again before it can work, and nothing starts on its schedule until auto-dispatch is resumed in stage 4. Do not update a robot in the middle of a task.
+- **A robot that is behind cannot be dispatched.** Dispatch and Go Home are unavailable until it confirms the new map. Its missions are switched off in the toolbox, and the copies the robot holds are cleared when its map is updated. **downloaded, not applied** means it is still running the old map.
 - **A robot that already has saved locations cannot be given work until an Admin confirms each one against the new map.** A robot with no saved locations yet has nothing to confirm. [After a map change](/solution/robot-management-toolbox/mission-editing#after-a-map-change)
 - **After each Quick Dispatch, the robot takes no new work until you acknowledge the result.** [Recovery and acknowledgement](/solution/robot-management-toolbox/robot-dashboard#recovery-and-acknowledgement)
 - **The first activation on a new site is a test, not a delivery.** If the robot cannot localise, drifts off segments or fails to reach nodes, go back to stage 2. If the scan itself is the problem, go back to stage 1.
@@ -141,24 +141,25 @@ Each robot runs the activated revision, reads **Localized**, and reaches the poi
 
 ## 4 · Set up the work
 
-**Who:** Saved locations and missions need an **Admin**. Run conditions and sending can also be done by an **Operator**.  
+**Who:** Saved locations and missions need an **Admin**. Run conditions, switching missions on and off, sending and resuming auto-dispatch can also be done by an **Operator**.  
 **Where:** The Robot Management Toolbox. [Mission editing and dispatch](/solution/robot-management-toolbox/mission-editing)
 
 1. **Save the places** the work uses, and set each robot's **home**: choose **Set Home** on the control panel and click the map, or choose **Set home** on a saved location. [Saved locations](/solution/robot-management-toolbox/mission-editing#saved-locations)
 2. **Build each mission** in the Mission Editor: name it, choose patrol or errand, then add checkpoints and the actions at each one. [The editor](/solution/robot-management-toolbox/mission-editing#the-editor)
 3. **Give each mission a run condition.** A mission without one cannot be activated or sent. [Run conditions](/solution/robot-management-toolbox/mission-editing#run-conditions)
-4. **Activate the mission, then choose Send to Robot,** and check that the badge reads **robot confirmed**. [Sending missions to a robot](/solution/robot-management-toolbox/mission-editing#sending-missions-to-a-robot)
-5. **Give your team their roles.** This needs a Tenant Administrator. [Creating users and granting roles](/solution/robot-management-toolbox/tenant-management#creating-users-and-granting-roles)
+4. **Activate the missions, then choose Send to Robot.** On the mission list the button reads **Send active set to robot**, and it sends every active mission at once. Check that the badge beside it reads **robot confirmed**. [Sending missions to a robot](/solution/robot-management-toolbox/mission-editing#sending-missions-to-a-robot)
+5. **Resume auto-dispatch:** on the robot's **Missions** tab, choose **Resume Auto-Dispatch**. A map update leaves auto-dispatch paused, so expect it to be paused after stage 3, and scheduled missions do not start until it is resumed. [Auto-dispatch](/solution/robot-management-toolbox/robot-dashboard#auto-dispatch)
+6. **Give your team their roles.** This needs a Tenant Administrator. [Creating users and granting roles](/solution/robot-management-toolbox/tenant-management#creating-users-and-granting-roles)
 
 **What to expect**
 
-- **An active mission is not necessarily on the robot.** Activating makes a mission eligible to run, and **Send to Robot** puts it on the robot. To see what the robot has, read the badge rather than the activation.
+- **An active mission is not necessarily on the robot.** Activating makes a mission eligible to run, and **Send to Robot** puts it on the robot. To see what the robot has, read **on robot** on the mission's row and the badge beside the send button, not the activation.
 - **Times are in the robot's local time**, not the browser's.
-- **Moving a saved location does not update a robot that already holds the mission.** The mission is badged **location changed** until you choose **Send to Robot** again.
+- **Moving a saved location does not by itself update a robot that already holds the mission.** The mission is badged **location changed** until you choose **Send to Robot** again.
 
 :::tip Done when
 
-Every mission each robot should run is **Active**, and its badge reads **robot confirmed**.
+Every mission each robot should run reads **active** and **on robot**, the badge beside the send button reads **robot confirmed**, and auto-dispatch is running.
 
 :::
 
@@ -170,7 +171,7 @@ Every mission each robot should run is **Active**, and its badge reads **robot c
 1. **Open the Dashboard** and look for anything that needs attention.
 2. **Open the robot** in question.
 3. **Let the schedule run, or start something yourself:** run a saved mission now with **Dispatch**, or send the robot to one point with **Quick Dispatch**.
-4. **Watch it**, and use **Go Home** or the **E-Stop** if you need to step in.
+4. **Watch it.** To step in while a mission is running, stop the run or use the **E-Stop**. Go Home is refused until the run has ended.
 5. **When a run fails, acknowledge it,** then check that auto-dispatch is running again. [Recovery and acknowledgement](/solution/robot-management-toolbox/robot-dashboard#recovery-and-acknowledgement)
 6. **Review what the robots found.** [Detection review](/solution/robot-management-toolbox/detection-review)
 
@@ -186,18 +187,18 @@ Every mission each robot should run is **Active**, and its badge reads **robot c
 | You see | What to check |
 | --- | --- |
 | A robot is idle when it should be working | **Resume Auto-Dispatch**: auto-dispatch may be paused. [Auto-dispatch](/solution/robot-management-toolbox/robot-dashboard#auto-dispatch) |
-| Dispatch and Go Home are unavailable | The robot is behind the activated map. [Catching a robot up](/solution/robot-management-toolbox/tenant-management#catching-a-robot-up-to-the-map) |
+| Dispatch and Go Home are unavailable | The E-Stop is active, the robot is behind the activated map, or its saved locations still need confirming. [Taking control](/solution/robot-management-toolbox/robot-dashboard#taking-control) · [Catching a robot up](/solution/robot-management-toolbox/tenant-management#catching-a-robot-up-to-the-map) · [After a map change](/solution/robot-management-toolbox/mission-editing#after-a-map-change) |
 | **This robot's map changed** on the robot's view | Its saved locations need an Admin to confirm them. [After a map change](/solution/robot-management-toolbox/mission-editing#after-a-map-change) |
 | **Not Localized** in the navigation map's header | **Init Pose**. [The panels](/solution/robot-management-toolbox/robot-dashboard#the-panels) |
 | **Go Home** reads **Set Home** | No home is set for this robot. [Saved locations](/solution/robot-management-toolbox/mission-editing#saved-locations) |
-| A mission badge ends in **· needs review** | The map has changed under the mission, so check the mission against the map now activated. [Sending missions to a robot](/solution/robot-management-toolbox/mission-editing#sending-missions-to-a-robot) |
+| The badge beside the send button ends in **· needs review** | The map has changed under the mission, so check the mission against the map now activated. [Sending missions to a robot](/solution/robot-management-toolbox/mission-editing#sending-missions-to-a-robot) |
 | An action is refused | [When an action cannot proceed](/solution/robot-management-toolbox/mission-editing#when-an-action-cannot-proceed) |
 
 ## When the site changes
 
 You come back to the map when the building changes: racking is added, a wall is moved, or a door is closed for good.
 
-**If only a saved location has moved,** an Admin moves the location in the Robot Management Toolbox, and no new map is needed. Then choose **Send to Robot** for each mission badged **location changed**. [Saved locations](/solution/robot-management-toolbox/mission-editing#saved-locations)
+**If only a saved location has moved,** an Admin moves the location in the Robot Management Toolbox, and no new map is needed. Then choose **Send to Robot** once: it sends every active mission and clears **location changed**. [Saved locations](/solution/robot-management-toolbox/mission-editing#saved-locations)
 
 **If the building has changed:**
 
@@ -206,7 +207,8 @@ You come back to the map when the building changes: racking is added, a wall is 
 3. **Publish it, then activate it at a time when the robots can stop and restart their navigation.** You can push as soon as the work is done. [What activation costs a robot](/solution/robot-deployment-toolbox/map-editor#what-activation-costs-a-robot)
 4. **Catch each robot up.** [Catching a robot up to the map](/solution/robot-management-toolbox/tenant-management#catching-a-robot-up-to-the-map)
 5. **Confirm its saved locations:** an Admin chooses **Confirm pose** on each one, or moves it to where it belongs. Until every location is confirmed, the robot cannot be given work. [After a map change](/solution/robot-management-toolbox/mission-editing#after-a-map-change)
-6. **Switch its missions back on,** and check that each badge reads **robot confirmed**. [Sending missions to a robot](/solution/robot-management-toolbox/mission-editing#sending-missions-to-a-robot)
+6. **Switch its missions back on,** choose **Send to Robot**, and check that the badge beside it reads **robot confirmed**. [Sending missions to a robot](/solution/robot-management-toolbox/mission-editing#sending-missions-to-a-robot)
+7. **Resume auto-dispatch,** which the map update left paused. [Auto-dispatch](/solution/robot-management-toolbox/robot-dashboard#auto-dispatch)
 
 ## Support
 
