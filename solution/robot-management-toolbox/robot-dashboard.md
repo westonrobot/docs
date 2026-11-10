@@ -31,9 +31,18 @@ One robot on one screen. The view is laid out so that judging a running mission 
 
 **Not Localized is a status rather than a fault.** It can appear when the robot does not yet have a valid localisation on the current map, and map-relative controls may be unavailable until localisation succeeds. Localisation or navigation warnings caused by a robot not being localised should clear once it localises.
 
-**Init Pose**, on the map toolbar, is the recovery for a robot that is not tracking. Arm it, then **click to set the location and drag to set the heading** — releasing sends it, and the robot starts localising from the pose you gave. There is no separate confirm step and nothing further to press: watch the reading in the map's header for **Localized**. Init Pose remains available while [location confirmation](/solution/robot-management-toolbox/mission-editing#after-a-map-change) is outstanding. If the robot is on an out-of-date map revision, however, Init Pose remains unavailable until the map is brought up to date.
+**The robot is drawn as a blue arrow** at its position on the map, pointing the way it faces. The arrow turns grey when the robot's reported position is out of date.
 
-Two things make it more likely to take. Put the pose where the robot physically is, as closely as you can judge — near enough in the right place is what it needs rather than an exact figure. And have the robot somewhere with clear, distinctive surroundings rather than a repetitive or bare one, because an aisle of identical bays gives it little to tell one position from another.
+<Figure
+  src={require('../img/fleet-robot-marker.png').default}
+  alt="A close view of the navigation map: the robot drawn as a blue arrow with a white outline, pointing up and to the left, beside a green marker labelled Home, among the map's blue nodes, segments and corridor labels"
+  size="md"
+  framed
+  caption="The robot is the blue arrow, pointing the way it faces. The green marker beside it is a saved location named Home." />
+
+**Init Pose**, on the map toolbar, is the recovery for a robot that is not tracking. Arm it, then **click to set the location and drag to set the heading**. While you drag, a see-through green arrow shows the pose you are setting. Releasing sends it, and the robot starts localising from the pose you gave. Once it takes the pose, its blue arrow moves to where you set it, facing the way you dragged. There is no separate confirm step and nothing further to press: watch the reading in the map's header for **Localized**. Init Pose remains available while [location confirmation](/solution/robot-management-toolbox/mission-editing#after-a-map-change) is outstanding. If the robot is on an out-of-date map revision, however, Init Pose remains unavailable until the map is brought up to date.
+
+Two things make it more likely to take. Put the pose where the robot physically is, facing the way it faces, as closely as you can judge — near enough in the right place is what it needs rather than an exact figure. And have the robot somewhere with clear, distinctive surroundings rather than a repetitive or bare one, because an aisle of identical bays gives it little to tell one position from another.
 
 ## Arranging the view
 
