@@ -544,3 +544,13 @@ Guides:
 ### Unsourced frequency and absolute claims
 
 - [ ] **Keep the instruction, drop the ranking** ("most common", "always", "never" with no source). Robot pages: `g1.md:30`, `:177`; `r1.md:32`; `h2.md:43`; `a2.md:41`; `as2.md:46`; `ranger-mini-v2.md:88`; `ranger-mini-v3.md:77`; `z1.md:77`; `h1-2.md:70`; `kinova-gen3-lite.md:75`; `go2.md:151`. Guides: `operational-safety.md:41`, `:56`; `safety/quadrupeds.md:46`; `safety/humanoids.md:24`, `:39`; `robot-maintenance.md:9`, `:38`; `maintenance/manipulators.md:14`, `:16`; `maintenance/wheeled-bases.md:33`; `manifold/scanning.md:9`. Solution: `map-editor.md:94`, `:150`; `mission-editing.md:86`; `robot-management-toolbox/index.md:226`, `:279`; `map-inspector.md:51`; `robot-dashboard.md:257`.
+
+## Quick start page — branch `docs/solution-quick-start`
+
+`solution/quick-start.md`, decision D-R11 in `docs/design/release-pages-plan.md`. Facts added for it were checked against `wr_fleet_management` v0.6.0.
+
+- [ ] **Re-check stage 3 once `docs/fleet-v0.7.0` merges.** The quick start names **Assign Map**, **Map status** and **Approve apply** from v0.6.0 source; on `main` the owning page `tenant-management.md` names none of them yet, and that branch adds them.
+- [ ] **Link the location-confirmation hold from `tenant-management.md` §Catching a robot up to the map.** It is documented in `mission-editing.md` §After a map change only, to keep clear of `docs/fleet-v0.7.0`, which edits that section.
+- [ ] **`robot-management-toolbox/index.md` Admin standard workflow** has no step for confirming locations after a map change or for test-driving a new map, and its step 7 (give your team their roles) is a Tenant Administrator action, not a Site Admin one.
+- [ ] **`guides/manifold/index.md` The workflow end to end**, rows 13–14, now overlap quick-start stages 2–3. Decide whether those rows should point at the quick start.
+- [ ] **Delete `solution/img/fleet-map-not-current.png` once `docs/fleet-v0.7.0` has merged.** This branch replaced both uses with `fleet-map-update.png`, which shows the comparison with **Approve apply** rather than an offline management agent; the fleet branch still references the old file.
