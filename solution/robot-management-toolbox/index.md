@@ -107,7 +107,10 @@ Setting a site up, once. The map arrives first and the missions refer to it, so 
 2. Publish and activate the map for the site — [A site's
    maps](/solution/robot-management-toolbox/tenant-management#a-sites-maps).
 3. Get each robot onto that map — [Catching a robot up to the
-   map](/solution/robot-management-toolbox/tenant-management#catching-a-robot-up-to-the-map).
+   map](/solution/robot-management-toolbox/tenant-management#catching-a-robot-up-to-the-map). Check
+   that it localises, and drive it to a few points before relying on the map — [The map is validated
+   by driving on
+   it](/solution/robot-deployment-toolbox/map-editor#the-map-is-validated-by-driving-on-it).
 4. Save the places the work refers to, and set each robot's home — [Saved
    locations](/solution/robot-management-toolbox/mission-editing#saved-locations).
 5. Build the missions — [Mission
@@ -117,7 +120,14 @@ Setting a site up, once. The map arrives first and the missions refer to it, so 
 6. Send the missions to the robots that will run them, and confirm the badge reads **robot
    confirmed** —
    [Sending missions to a robot](/solution/robot-management-toolbox/mission-editing#sending-missions-to-a-robot).
-7. Give your team their roles — [Roles](/solution/robot-management-toolbox/tenant-management#roles).
+   Then choose **Resume Auto-Dispatch**: the map update left it paused, and scheduled missions do not
+   start until it is resumed — [Auto-dispatch](/solution/robot-management-toolbox/robot-dashboard#auto-dispatch).
+7. Give your team their roles. This is a Tenant Administrator's job — [Creating users and granting
+   roles](/solution/robot-management-toolbox/tenant-management#creating-users-and-granting-roles).
+
+When the map changes later, the same path runs again from step 2, with one step added before the
+missions go back on: an Admin confirms each robot's saved locations against the new map — [After a
+map change](/solution/robot-management-toolbox/mission-editing#after-a-map-change).
 
 ## Operator standard workflow
 
@@ -128,7 +138,8 @@ Setting run conditions and running the robots.
    dashboard](/solution/robot-management-toolbox/robot-dashboard).
 3. Let the schedule run, or start something yourself: run a saved mission now, or Quick Dispatch the
    robot to one point.
-4. Watch it in Operations, and use Go Home or the E-Stop if you need to intervene.
+4. Watch it in Operations. To intervene while a mission is running, stop the run or use the E-Stop;
+   Go Home is refused until the run has ended.
 5. When a run fails, acknowledge it — and check that auto-dispatch is running again afterwards.
    [Recovery and
    acknowledgement](/solution/robot-management-toolbox/robot-dashboard#recovery-and-acknowledgement).
