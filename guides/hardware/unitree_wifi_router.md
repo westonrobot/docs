@@ -39,7 +39,9 @@ Unitree robots use a private wired network inside the robot, `192.168.123.0/24`.
 |------|-------|
 | Wi-Fi router | This guide uses the GL.iNet GL-AXT1800. Other routers are set up the same way, but their menu names may differ. |
 | Ethernet cable (RJ45) | From a LAN port on the router to the robot's Ethernet port. |
-| USB-C to USB-C cable | Powers the router from the robot. The router needs 5 V / 4 A; see [Step 1: Connect power](#step-1-connect-power). |
+| DC-DC step-down (buck) converter | Turns the robot's 12 V output into 5 V for the router. Input 12 V, output 5 V at **at least 4 A**, with a USB-C output. This guide uses an Mcuzone board (9–24 V DC input, USB-C PD output); see [Step 1: Connect power](#step-1-connect-power). |
+| Power cable, robot to converter | From the G1's 12 V accessory output to the converter's DC input. |
+| USB-C to USB-C cable | From the converter's USB-C output to the router's USB-C power port. |
 | Laptop | With an Ethernet port (or a USB-to-Ethernet adapter) and a web browser. |
 
 :::warning
@@ -66,13 +68,31 @@ Unitree's guides tell you to set your computer to a fixed address such as `192.1
 
 ## Part 1: Hardware
 
-The router needs two cables to the robot: one for power and one for the network. On a G1 both go to the neck panel.
+The router needs two connections to the robot: power from the robot's 12 V output through a 5 V converter, and an Ethernet cable for the network. On a G1 both go to the neck panel.
 
-[![G1 to router connections: USB-C power (red) and Ethernet (green)](./img/g1-router-connections.png)](./img/g1-router-connections.png)
+[![G1 to router connections: power from the G1's 12 V output through the 12 V to 5 V converter to the router's USB-C port (red), and Ethernet from the G1's RJ45 port to a router LAN port (green)](./img/g1-router-converter-connections.jpg)](./img/g1-router-converter-connections.jpg)
+
+```mermaid
+flowchart LR
+    subgraph G1["G1 neck panel"]
+        V12["12 V output"]
+        RJ45["RJ45 port"]
+    end
+    CONV["12 V to 5 V converter<br/>5 V, at least 4 A, USB-C out"]
+    subgraph ROUTER["GL-AXT1800 router"]
+        USBC["USB-C power port"]
+        LAN["LAN port, not WAN"]
+    end
+    V12 -->|"12 V"| CONV
+    CONV -->|"5 V USB-C cable"| USBC
+    RJ45 ---|"Ethernet cable"| LAN
+    linkStyle 0,1 stroke:#e03131,stroke-width:3px
+    linkStyle 2 stroke:#2f9e44,stroke-width:3px
+```
 
 | Cable | Robot side (G1 neck panel) | Router side (GL-AXT1800) |
 |-------|----------------------------|--------------------------|
-| Power (red) | USB-C port, 5 V | USB-C power port |
+| Power (red) | 12 V output → 12 V to 5 V converter | USB-C power port, from the converter's USB-C output |
 | Ethernet (green) | RJ45 port | **LAN** port (not WAN) |
 
 ### Step 1: Connect power
@@ -85,13 +105,21 @@ The GL-AXT1800 needs **5 V / 4 A** through its USB-C power port.
 
 :::warning
 
-The G1's USB-C ports are rated 1.5 A, less than the router's rating. In our test the router ran normally from one G1 USB-C port, but this is not guaranteed for every robot or workload. If the router restarts by itself, use a DC-DC converter as described below.
+Do not power the router from the G1's USB-C ports. They are rated 1.5 A, less than the router's rating. In our test on a G1 USB-C port the router restarted by itself every few seconds to few minutes under Wi-Fi load, dropping every connected laptop. With the same router on a separate supply it stayed up. Use the 12 V output through a DC-DC converter, as below.
 
 :::
 
-Connect a USB-C to USB-C cable from a USB-C port on the G1's neck panel to the router's USB-C power port.
+Power the router from the G1's **12 V** accessory output through a DC-DC step-down (buck) converter:
 
-See the red line in the [connection photo](#part-1-hardware).
+1. Connect the G1's 12 V output on the neck panel to the converter's DC input (marked **INPUT 9-24VDC** on the board used here).
+2. Connect a USB-C to USB-C cable from the converter's USB-C output (marked **PD OUTPUT**) to the router's USB-C power port.
+3. Switch the converter on. Its green LED lights and the router starts.
+
+[![DC-DC converter: 12 V in through the DC jack (top), 5 V out to the router through the USB-C PD output (bottom); the inline USB meter reads 5.4 V, 1.2 A, 6.4 W](./img/router-buck-converter.jpg)](./img/router-buck-converter.jpg)
+
+The photo above has a USB power meter between the converter and the router cable, for checking only; you do not need it. With the router running, it read 5.4 V and 1.2 A (6.4 W).
+
+See the red lines in the [connection photo](#part-1-hardware).
 
 :::warning
 
@@ -99,7 +127,7 @@ Never connect the router directly to a 12 V or 24 V output. It needs 5 V.
 
 :::
 
-**If the router restarts or loses power:** power it from the robot's 12 V or 24 V accessory output through a DC-DC step-down (buck) converter:
+**Choosing a converter** (if you use a different one from this guide):
 
 - **Input:** matches the output you use (12 V or 24 V).
 - **Output:** 5 V, **at least 4 A**, with a USB-C connector to the router's power port.
@@ -228,7 +256,7 @@ If all of the above work, the router is set up correctly.
 | Router page reachable but robot does not answer `ping` | Cable in the router's WAN port, or loose cable | Move the cable to a LAN port; reseat both ends |
 | Robot answers sometimes, drops out at random | Two devices share one address | Make sure no device uses the router address or the `.220`–`.249` range; see [Reserved addresses](#reserved-addresses) |
 | Robot answers `ping`, but `http://192.168.123.1` does not open | The router's web page failed to start | Restart the router. If the page still does not open, factory reset it (hold the reset button for about 10 s) and repeat [Part 2](#part-2-router-configuration) |
-| Router restarts by itself | Not enough power from the robot's USB-C port | Power it through a 5 V / 4 A DC-DC converter; see [Step 1: Connect power](#step-1-connect-power) |
+| Router restarts by itself; laptops drop off the Wi-Fi every few minutes | Not enough power: router fed from a robot USB-C port, or an undersized converter | Power it from the 12 V output through a 5 V / 4 A DC-DC converter; see [Step 1: Connect power](#step-1-connect-power) |
 | Forgot the admin password | — | Factory reset: hold the reset button for about 10 s, then restart from [Part 2](#part-2-router-configuration) |
 
 ## Do's and don'ts
@@ -244,3 +272,4 @@ If all of the above work, the router is set up correctly.
 - Don't give the router an address the robot already uses (see [Reserved addresses](#reserved-addresses)).
 - Don't connect a second router or DHCP server to the robot network.
 - Don't plug the robot into the router's WAN port.
+- Don't power the router directly from the G1's USB-C ports. They cannot supply enough current, so the router becomes unstable: it restarts again and again, and every Wi-Fi connection drops each time it restarts. Use the 12 V output through a 5 V converter (see [Step 1: Connect power](#step-1-connect-power)).
