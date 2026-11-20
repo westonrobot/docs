@@ -35,6 +35,13 @@ const sidebarsGuides: SidebarsConfig = {
     },
     {
       type: 'category',
+      label: 'Hardware Setup',
+      items: [
+        'hardware/unitree_wifi_router',
+      ],
+    },
+    {
+      type: 'category',
       label: 'Software Setup',
       items: [
         'installation/apt_source',
