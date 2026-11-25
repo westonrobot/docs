@@ -48,6 +48,46 @@ sudo nmcli device wifi connect <SSID> password <password>
 ```bash
 ping 8.8.8.8
 ```
+If the ping fails with `Destination Host Unreachable` from `192.168.123.164`, see [WiFi Connected but No Internet](#wifi-connected-but-no-internet).
+
+### WiFi Connected but No Internet
+
+The development PC can join the WiFi network and still have no internet access, even when other devices on the same network do. The symptoms:
+
+* `nmcli dev status` shows `wlan0` as `connected`.
+* `ping 8.8.8.8` fails with `Destination Host Unreachable`, and each line reads `From 192.168.123.164`. That is the `eth0` address on the robot's internal network, not the WiFi address.
+* `ping google.com` fails with `Temporary failure in name resolution`.
+
+Check the routing table:
+```bash
+ip route
+```
+If it lists two `default` routes, the one with the lower `metric` carries all internet traffic. Output from an affected robot:
+```
+default via 192.168.123.1 dev eth0 proto static metric 20100
+default via 192.168.0.1 dev wlan0 proto dhcp metric 20600
+```
+Here the `eth0` route wins, so internet traffic is sent to `192.168.123.1` on the robot's internal network. The robot has no router on that network (see [Network Configuration](/guides/unitree/g1_dev_guide#network-configuration)), so the traffic goes nowhere.
+
+1. Confirm the cause. Delete the `eth0` default route and test again:
+```bash
+sudo ip route del default via 192.168.123.1 dev eth0
+ping -c3 8.8.8.8
+ping -c3 google.com
+```
+If both pings succeed, the `eth0` default route was the cause. This change is not saved, so the route returns when the robot restarts.
+
+2. Fix it permanently. Find the connection on `eth0` in the `CONNECTION` column of `nmcli dev status` (`unitree1` on the robot above), then stop NetworkManager from giving that connection a default route. Replace `unitree1` with your connection name:
+```bash
+sudo nmcli con mod unitree1 ipv4.never-default yes
+sudo nmcli con up unitree1
+ip route
+```
+`ip route` should now list one `default` route, via `wlan0`. `eth0` keeps its address (`192.168.123.164`) and its `192.168.123.0/24` route, so the development PC still reaches the rest of the robot.
+
+:::warning
+`nmcli con up` re-activates the `eth0` connection, which can briefly interrupt the robot's internal network. Run it while no program on the development PC is commanding the robot.
+:::
 
 ## Method 2: Network Sharing Between Host and Internal Development PC
 
