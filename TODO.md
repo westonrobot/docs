@@ -528,17 +528,17 @@ Solution pages:
 
 Guides:
 
-- [ ] **`g1_internet_guide.md:126`** `echo "1" > /proc/sys/net/ipv4/ip_forward` fails without root. Use `sudo sysctl -w net.ipv4.ip_forward=1`.
+- [ ] **`g1_internet_guide.md:166`** `echo "1" > /proc/sys/net/ipv4/ip_forward` fails without root. Use `sudo sysctl -w net.ipv4.ip_forward=1`.
 - [ ] **`guides/safety/humanoids.md:33`** links to the unlisted H2 page.
 - [ ] **Two G1 internet procedures.** `g1_dev_guide.md:207-210` and `g1_internet_guide.md` differ. Keep one.
-- [ ] **`g1_internet_guide.md:54-90` method 2** names no adapter, gives no way to get a shell, and shows an "UNASSIGNED" interface against `eth0` in the example; `:61` may overwrite an existing netplan file.
+- [ ] **`g1_internet_guide.md:94-130` method 2** names no adapter, gives no way to get a shell, and shows an "UNASSIGNED" interface against `eth0` in the example; `:101` may overwrite an existing netplan file.
 - [ ] **`go2_diag_guide.md:107`** "upgrade to the latest firmware" against `robot-maintenance.md:79-80`.
 - [ ] **`go2_slam.md`.** Press Q before placing the robot (`:186-187`); `:qa` should be `:q!` (`:136`, `:141`); the RViz files aren't on the User PC (`:176`); "try adding sudo", `chmod 777 -R` and `sudo git clone` (`:50`, `:87`, `:91-93`).
 - [ ] **Battery guidance disagrees.** Monthly against every two months (`robot-maintenance.md:32`, `:55`, `:70`; `guides/manifold/scanning.md:244`); "storage level" isn't defined. (Unattended against overnight charging is under *Safety* above.)
 - [ ] **`guides/manifold/processing.md:25`** version claim against the v0.2.12 screenshots.
 - [ ] **"Ratings by platform" anchor.** `robot-maintenance.md:60` and the g1, go2, b2 and as2 pages link to an anchor that no longer has ratings.
 - [ ] **Titles.** `g1_internet_guide.md:6` "Access" against "Connection"; `go2_slam.md:7` H1 "Go2 & Go2-W"; `guides/intro.md:62` "the most detailed guide on this site".
-- [ ] **Alt text.** 12 positional or wrong-model alt strings in the Go2, B2 and G1 diagnostics guides; `g1_internet_guide.md:15`, `:33`, `:55`. `b2_diag_guide.md:9-12`, `:87`, `:91` and `go2_diag_guide.md:81`, `:85` reuse G1 captures.
+- [ ] **Alt text.** 12 positional or wrong-model alt strings in the Go2, B2 and G1 diagnostics guides; `g1_internet_guide.md:15`, `:33`, `:95`. `b2_diag_guide.md:9-12`, `:87`, `:91` and `go2_diag_guide.md:81`, `:85` reuse G1 captures.
 - [ ] **Check against vendor docs.** G1 MID-360 IP (`g1_dev_guide.md:205`, .20 or .120); charging order (`robot-maintenance.md:40-46`); "using the RC will immediately stop SLAM navigation" (`go2_slam.md:214`); manipulator brake joints and 900 mm reach (`guides/safety/manipulators.md:23-25`); "29 joints" (`g1_dev_guide.md:36`).
 
 ### Unsourced frequency and absolute claims
